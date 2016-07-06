@@ -10,22 +10,40 @@ class findCircles(object):
         self.file = file
         print 'file:',file
         self.img = cv2.imread(file)
-        cv2.imshow('img',self.img)
-        cv2.waitKey(0)
+        # cv2.imshow('img',self.img)
+        # cv2.waitKey(0)
         self.origin = self.img.copy()
         # self.method()
 
     def run(self):
         try:
-            # img = self.method(self.img)
-            img = self.noGradMethod(self.img)
+            img = self.method()
+            # img = self.noGradMethod(self.img)
             cv2.imshow(str(self.file),img)
             cv2.waitKey(0)
         except Exception as e:
             print(e)
 
 
-    def method(self,img):
+    def method(self):
+        img = self.img
+        # img = self._edgeDetectDiff(img)
+        img = self._edgeDetectCanny(img)
+        cv2.imshow("adaptiveThreshold",img)
+        # cv2.imwrite('threshold.jpg',img)
+        cv2.waitKey(0)
+        # img = self._circleFind(img)
+        img = self._circleFindContours(img)
+
+        return img
+
+
+    def _edgeDetectCanny(self,img):
+        # img = cv2.GaussianBlur(img,(3, 3 ),0)
+        img = cv2.Canny(img, 10, 150)
+        return img
+
+    def _edgeDetectDiff(self,img):
         # img = cv2.medianBlur(img,3)
         img  = cv2.pyrMeanShiftFiltering(img,5,5,1)
         img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
@@ -45,9 +63,7 @@ class findCircles(object):
         img = cv2.absdiff(dilate,erode)
         img = cv2.bitwise_not(img)
         img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 41, 3)
-        cv2.imshow("adaptiveThreshold",img)
-        cv2.imwrite('threshold.jpg',img)
-        cv2.waitKey(0)
+
         # img = cv2.equalizeHist(img)
         # cv2.imshow("equalizeHist",img)
         # cv2.waitKey(0)
@@ -57,6 +73,20 @@ class findCircles(object):
         # pdb.set_trace()
         # print('ctshy',cts,hy)
         # cv2.imshow(,contours)
+        return img
+
+    def _circleFindContours(self,img):
+        contours, hierarchy = cv2.findContours(img,cv2.RETR_LIST,cv2.CHAIN_APPROX_SIMPLE)
+        result = np.ones(img.shape)*255
+        for x in contours:
+            # pdb.set_trace()
+            cv2.drawContours(result,x,-1,(0,0,255))
+        cv2.imshow("img", result)
+        cv2.waitKey(0)
+
+
+
+    def _circleFind(self,img):
         para = 150
         circleMap = cv2.HoughCircles(image = img,
             method = cv2.cv.CV_HOUGH_GRADIENT,
@@ -86,6 +116,7 @@ class findCircles(object):
         cv2.circle(self.origin,(circle[1],circle[2]), circle[3], (0,0,255), 4)
         cv2.imwrite('result.jpg',self.origin)
         return img
+
 
     def noGradMethod(self,img):
         # img = cv2.medianBlur(img,3)
