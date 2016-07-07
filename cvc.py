@@ -29,8 +29,8 @@ class findCircles(object):
         img = self.img
         img = self._edgeDetectDiff(img)
         # img = self._edgeDetectCanny(img)
-        cv2.imshow("adaptiveThreshold",img)
-        cv2.waitKey(0)
+        # cv2.imshow("adaptiveThreshold",img)
+        # cv2.waitKey(0)
         # img = self._circleFind(img)
         img = self._circleFindContours(img)
 
@@ -76,18 +76,20 @@ class findCircles(object):
         return img
 
     def _circleFindContours(self,img):
-        contours, hierarchy = cv2.findContours(img,cv2.RETR_LIST,cv2.CHAIN_APPROX_SIMPLE)
+        contours, hierarchys = cv2.findContours(img,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
         result = np.ones(img.shape)*255
+        # for x in contours:
         for x in contours:
-
+            pdb.set_trace()
             area = cv2.contourArea(x)
             cvMom = cv2.moments(x)
             if cvMom['m00'] != 0.0:
                 cvMomXY = (cvMom['m10']/cvMom['m00'],cvMom['m01']/cvMom['m00'])
                 circleIndex = self._isCircle(area, cvMomXY, x)
-                print "area" , area , "circleIndex:", circleIndex,"mom:", cvMomXY
+
                 if circleIndex > 0.8:
-                    cv2.drawContours(result, x, -1, (0,0,255))
+                    print "area" , area , "circleIndex:", circleIndex,"mom:", cvMomXY
+                    cv2.drawContours(result, x, -1, (0,0,255),maxLevel = 2)
         cv2.imshow("img", result)
         cv2.waitKey(0)
 
