@@ -27,6 +27,7 @@ class findCircles(object):
 
     def method(self):
         img = self.img
+        # img = self._edgeDetectThr(img)
         img = self._edgeDetectDiff(img)
         # img = self._edgeDetectCanny(img)
         # cv2.imshow("adaptiveThreshold",img)
@@ -42,9 +43,15 @@ class findCircles(object):
         img = cv2.Canny(img, 10, 200)
         return img
 
+    def _edgeDetectThr(self,img):
+        img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+        img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 41, 3)
+
+        return img
+
     def _edgeDetectDiff(self,img):
         # img = cv2.medianBlur(img,3)
-        img  = cv2.pyrMeanShiftFiltering(img,5,5,1)
+        img  = cv2.pyrMeanShiftFiltering(img,3,3,1)
         img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
 
         # img = cv2.GaussianBlur(img,(3, 3 ),0)
@@ -79,8 +86,12 @@ class findCircles(object):
         contours, hierarchys = cv2.findContours(img,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
         result = np.ones(img.shape)*255
         # for x in contours:
-        for x in contours:
-            pdb.set_trace()
+        for i,x in enumerate(contours):
+            # pdb.set_trace()
+            # x = contours[i]
+            # print "i,x",i,x
+            # pdb.set_trace()
+            xhierar = hierarchys[0][i]
             area = cv2.contourArea(x)
             cvMom = cv2.moments(x)
             if cvMom['m00'] != 0.0:
@@ -88,7 +99,7 @@ class findCircles(object):
                 circleIndex = self._isCircle(area, cvMomXY, x)
 
                 if circleIndex > 0.8:
-                    print "area" , area , "circleIndex:", circleIndex,"mom:", cvMomXY
+                    print "area" , area , "circleIndex:", circleIndex,"mom:", cvMomXY, "hierar:", xhierar
                     cv2.drawContours(result, x, -1, (0,0,255),maxLevel = 2)
         cv2.imshow("img", result)
         cv2.waitKey(0)
