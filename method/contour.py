@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import pdb
 from method.tree import NodeDict
+from method.toolkit import IsCircle
 
 class find(object):
     """docstring for find"""
@@ -33,7 +34,7 @@ class findContours(find):
 
             if cvMom['m00'] != 0.0:
                 cvMomXY = (cvMom['m10']/cvMom['m00'],cvMom['m01']/cvMom['m00'])
-                circleIndex = self._isCircle(area, cvMomXY, x)
+                circleIndex = IsCircle().run(area, cvMomXY, x)
 
                 # if circleIndex > 0.8 and area >40:
                 # if circleIndex > 0.4 and area >10:
@@ -65,12 +66,12 @@ class findContours(find):
             #
             print "key", key
 
-            cv2.drawContours(result, contours[int(key)], -1, (0,0,255))
+            cv2.drawContours(result, contours[int(key)], -1, (0,255,255))
         # print
         # pdb.set_trace()
-
-        cv2.imshow("img", result[::2,::2])
-        cv2.waitKey(0)
+        return (img, result , contours , tree)
+        # cv2.imshow("img", result[::2,::2])
+        # cv2.waitKey(0)
 
 class HoughCircles(find):
     """docstring for HoughCircles"""
@@ -78,6 +79,7 @@ class HoughCircles(find):
         super(HoughCircles, self).__init__()
 
     def run(self,img):
+        self.origin = img.copy()
         para = 150
         circleMap = cv2.HoughCircles(image = img,
             method = cv2.cv.CV_HOUGH_GRADIENT,

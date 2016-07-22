@@ -22,7 +22,6 @@ class Canny(Edge):
         img = cv2.bitwise_not(img)
         return img
 
-
 class Threshold(Edge):
     """docstring for Threshold"""
     def __init__(self, ):
@@ -41,7 +40,7 @@ class Threshold(Edge):
         img = cv2.bitwise_not(img)
         return img
 
-class ErodeDilate(object):
+class ErodeDilate(Edge):
     """docstring for ErodeDilate"""
     def __init__(self, ):
         super(ErodeDilate, self).__init__()
@@ -57,9 +56,6 @@ class ErodeDilate(object):
         kernel = cv2.getStructuringElement(cv2.MORPH_RECT,(3, 3))
         # pdb.set_trace()
         # erosion = cv2.morphologyEx(img,cv2.MORPH_OPEN,kernel)
-        # cv2.imshow('show',erosion)
-        # cv2.waitKey(0)
-        # img = erosion
         # arrimg = cv2.cv.fromarray(img)
         erode = cv2.erode(img,kernel)
         dilate = cv2.dilate(img,kernel)
@@ -70,14 +66,9 @@ class ErodeDilate(object):
         img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 11, 3)
         img = cv2.erode(img,kernel)
         # img = cv2.equalizeHist(img)
-        # cv2.imshow("equalizeHist",img)
-        # cv2.waitKey(0)
         # img = cv2.dilate(img,kernel)
         # img = cv2.medianBlur(img,3)
         # cts,hy = cv2.findContours(img, mode=cv2.RETR_LIST, method=cv2.CHAIN_APPROX_SIMPLE, offset=(0, 0))
-        # pdb.set_trace()
-        # print('ctshy',cts,hy)
-        # cv2.imshow(,contours)
         return img
 
 
