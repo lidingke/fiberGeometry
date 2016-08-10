@@ -28,6 +28,9 @@ class MetaDict(MutableMapping):
     def __len__(self):
         return len(self.store)
 
+    def __str__(self):
+        return str(self.store)
+
 class NodeDict(MetaDict):
     """"""
     def __init__(self,):

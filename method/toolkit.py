@@ -51,4 +51,21 @@ class Cv2ImShow(object):
         cv2.waitKey(0)
 
 
+class cv2CircleIndex(object):
+    """docstring for cv2CircleIndex"""
+    def __init__(self, ):
+        super(cv2CircleIndex, self).__init__()
+        # self.arg = arg
+
+    def contourIn(self,x):
+        area = cv2.contourArea(x)
+        cvMom = cv2.moments(x)
+        if cvMom['m00'] != 0.0:
+            cvMomXY = (cvMom['m10']/cvMom['m00'],cvMom['m01']/cvMom['m00'])
+            circleIndex = IsCircle().run(area, cvMomXY, x)
+        else:
+            circleIndex = 0
+
+        return (area , circleIndex)
+
 

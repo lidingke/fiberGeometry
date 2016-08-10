@@ -3,6 +3,7 @@ import numpy as np
 import pdb
 from method.tree import NodeDict
 from method.toolkit import IsCircle
+from method.toolkit import cv2CircleIndex
 
 class find(object):
     """docstring for find"""
@@ -20,34 +21,34 @@ class findContours(find):
     def __init__(self, ):
         super(findContours, self).__init__()
         # self.arg = arg
+        self.circleIndex = cv2CircleIndex()
 
     def run(self,img):
-        contours, hierarchys = cv2.findContours(img,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
-        result = np.ones(img.shape)*255
-        # for x in contours:
+        # pdb.set_trace()
+        # what, contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+        contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+        result = np.ones(img.shape) * 255
         print "next and previous contours at the same hierarchical level, the first child contour and the parent contour,"
         tree = NodeDict()
+
         for i,x in enumerate(contours):
             xhierar = hierarchys[0][i]
-            area = cv2.contourArea(x)
-            cvMom = cv2.moments(x)
-
-            if cvMom['m00'] != 0.0:
-                cvMomXY = (cvMom['m10']/cvMom['m00'],cvMom['m01']/cvMom['m00'])
-                circleIndex = IsCircle().run(area, cvMomXY, x)
-
-                # if circleIndex > 0.8 and area >40:
-                # if circleIndex > 0.4 and area >10:
-                if area >10:
-                    # print "area" , area , "circleIndex:", circleIndex,"mom:", cvMomXY, "hierar:", xhierar
-                    # print "index", i,"area",area,\
-                    #  "next area",cv2.contourArea(contours[xhierar[0]]),\
-                    # "pre area",cv2.contourArea(contours[xhierar[1]]),\
-                    # "child area",cv2.contourArea(contours[xhierar[2]]),\
-                    # "parent area",cv2.contourArea(contours[xhierar[3]]), xhierar
-                    # cv2.drawContours(result, x, -1, (0,0,255),maxLevel = 2)
-                    tree[xhierar[3]] = i
-                # cv2.drawContours(result, contours, 363, (0,0,255))
+            area , circleIndex = self.circleIndex.contourIn(x)
+            if xhierar[2] == -1:
+                # pdb.set_trace()
+                print 'hieracrchys' ,i ,hierarchys[0][i]
+            # if circleIndex > 0.8 and area >40:
+            # if circleIndex > 0.4 and area >10:
+            if area >10:
+                # print "area" , area , "circleIndex:", circleIndex,"mom:", cvMomXY, "hierar:", xhierar
+                # print "index", i,"area",area,\
+                #  "next area",cv2.contourArea(contours[xhierar[0]]),\
+                # "pre area",cv2.contourArea(contours[xhierar[1]]),\
+                # "child area",cv2.contourArea(contours[xhierar[2]]),\
+                # "parent area",cv2.contourArea(contours[xhierar[3]]), xhierar
+                # cv2.drawContours(result, x, -1, (0,0,255),maxLevel = 2)
+                tree[xhierar[3]] = i
+        cv2.drawContours(result, contours, -1, (0,0,255))
         # pdb.set_trace()
         # for key in tree.keys():
         #     print "key", key, "value", tree[key]
@@ -58,28 +59,33 @@ class findContours(find):
             # pdb.set_trace()
             print "key", key, "value", tree[key]
         print '----------------------'
-        # tree.treeFilter()
-        # pdb.set_trace()
         maxTree = tree.maxLenTree()
         maxTree.append(tree[maxTree[-1]][0])
-        for key in maxTree:
-            #
-            print "key", key
+        # resultTree = []
+        for key in maxTree[2:]:
+            contour = contours[int(key)]
+            area , index = self.circleIndex.contourIn(contour)
 
+            print "key", key, area , index
+            # if index > 0.7:
+            #     resultTree.append(key)
             cv2.drawContours(result, contours[int(key)], -1, (0,255,255))
-        # print
+            temp = np.ones(img.shape)*255
+            cv2.drawContours(temp, contours[int(key)], -1, (0,255,255))
+            cv2.imshow("img", temp[::2,::2])
+            cv2.waitKey(0)
         # pdb.set_trace()
-        return (img, result , contours , tree)
-        # cv2.imshow("img", result[::2,::2])
-        # cv2.waitKey(0)
+        # print('result:',resultTree)
+        return (img, result, contours, tree, maxTree, )
+
 
 class HoughCircles(find):
     """docstring for HoughCircles"""
     def __init__(self, ):
         super(HoughCircles, self).__init__()
 
-    def run(self,img):
-        self.origin = img.copy()
+    def run(self, img, origin ):
+        self.origin = origin
         para = 150
         circleMap = cv2.HoughCircles(image = img,
             method = cv2.cv.CV_HOUGH_GRADIENT,
@@ -88,7 +94,7 @@ class HoughCircles(find):
             param1 = 20,
             param2 = 10,
             minRadius = 0,
-            maxRadius = 100)
+            maxRadius = 300)
         c0map = []
         if circleMap is None:
             raise Exception('circle not find')
@@ -99,13 +105,31 @@ class HoughCircles(find):
                 c01sum.append(diff)
             c0map.append((sum(c01sum)/len(c01sum), c0[0], c0[1], c0[2]))
             # img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
-            cv2.circle(img,(c0[0],c0[1]), c0[2], (255 ,0,0), 2)
+            cv2.circle(self.origin,(c0[0],c0[1]), c0[2], (255 ,0,0), 2)
         # pdb.set_trace()
         # if len(c0map) >10:
         #     c0map = c0map[4:-4]
         c0map.sort()
         circle = c0map[0]
-        cv2.circle(img,(circle[1],circle[2]), circle[3], (0,255,0), 10)
+        # cv2.circle(img,(circle[1],circle[2]), circle[3], (0,255,0), 10)
         cv2.circle(self.origin,(circle[1],circle[2]), circle[3], (0,0,255), 4)
         # cv2.imwrite('result.jpg',self.origin)
-        return img
+        return self.origin
+
+
+class FitEllipse(object):
+    """docstring for FitEllipse"""
+    def __init__(self, ):
+        super(FitEllipse, self).__init__()
+        # self.arg = arg
+
+    def run(self, origin, result, contours, treeList):
+        print 'tree:' , treeList[ 2 : ]
+        ellipseTree = []
+        for x in treeList[2 : ]:
+            result = cv2.fitEllipse(contours[int(x)])
+            ellipseTree.append(result)
+            print 'result:', result
+        for circle in ellipseTree:
+            cv2.ellipse(img = origin, box = circle, color = (0,0,255))
+        return origin
