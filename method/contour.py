@@ -2,8 +2,8 @@ import cv2
 import numpy as np
 import pdb
 from method.tree import NodeDict
-from method.toolkit import IsCircle
-from method.toolkit import cv2CircleIndex
+from method.toolkit import IsCircle, cv2CircleIndex, XlsWrite
+# from method.toolkit import
 
 class find(object):
     """docstring for find"""
@@ -78,6 +78,26 @@ class findContours(find):
         # print('result:',resultTree)
         return (img, result, contours, tree, maxTree, )
 
+    def runNewTreeMethod(self,img):
+        contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+        result = np.ones(img.shape) * 255
+        print "next and previous contours at the same hierarchical level, the first child contour and the parent contour,"
+        # pdb.set_trace()
+        fatherDot = set()
+        for i,x in enumerate(contours):
+            xhierar = hierarchys[0][i]
+            area , circleIndex = self.circleIndex.contourIn(x)
+            # if xhierar[2] == -1:
+                # pdb.set_trace()
+                # print 'hieracrchys' ,i ,hierarchys[0][i]
+            # xhierar[3]
+            fatherDot.add(xhierar[3])
+        print 'fatherdot', fatherDot
+
+        for x in fatherDot:
+            cv2.drawContours(result, contours[x], -1, (0,0,255))
+        return img, result, contours, fatherDot
+
 
 class HoughCircles(find):
     """docstring for HoughCircles"""
@@ -114,6 +134,7 @@ class HoughCircles(find):
         # cv2.circle(img,(circle[1],circle[2]), circle[3], (0,255,0), 10)
         cv2.circle(self.origin,(circle[1],circle[2]), circle[3], (0,0,255), 4)
         # cv2.imwrite('result.jpg',self.origin)
+
         return self.origin
 
 
@@ -124,6 +145,21 @@ class FitEllipse(object):
         # self.arg = arg
 
     def run(self, origin, result, contours, treeList):
+        print 'tree:' , treeList
+        isCircle = IsCircle()
+        ellipseTree = []
+
+        for x in treeList:
+            if not (x == 0 or x == -1):
+                result = cv2.fitEllipse(contours[int(x)])
+                ellipseTree.append(result)
+                print 'result:',x ,result
+        for circle in ellipseTree:
+            cv2.ellipse(img = origin, box = circle, color=(0, 0, 255))
+        XlsWrite().savelist(ellipseTree)
+        return origin
+
+    def runFromOldTree(self, origin, result, contours, treeList):
         print 'tree:' , treeList[ 2 : ]
         ellipseTree = []
         for x in treeList[2 : ]:

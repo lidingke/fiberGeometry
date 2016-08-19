@@ -4,7 +4,7 @@ import pdb
 import sys
 import os
 
-from method.toolkit import Cv2ImShow
+from method.toolkit import Cv2ImShow, Cv2ImSave
 
 from method.edgedetect import Canny
 from method.edgedetect import Threshold
@@ -25,6 +25,7 @@ class Flow(object):
         self.img = cv2.imread(self.file)
         self.origin = self.img.copy()
         self.show = Cv2ImShow()
+        self.save = Cv2ImSave()
 
     def flow(self,):
         img = self.img
@@ -34,9 +35,28 @@ class Flow(object):
         self.show.show('edge', img[::2,::2])
         # img, result , contours , tree, treeList = findContours().run(img)
         img, result, contours, tree, treeList = findContours().run(img)
+        # result = findContours().runNewTreeMethod(img)
         self.show.show('result', result[::2,::2])
         origin = FitEllipse().run(self.origin, result, contours, treeList)
         self.show.show('ellipse', origin[::2,::2])
+
+
+    def flowTree(self,):
+        img = self.img
+        # self.show.show('origin', img[::2,::2])
+        # self.save.save('save\\0.jpg', img)
+        # img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+        img = ErodeDilate().run(img)
+        self.show.show('edge', img[::2,::2])
+        # self.save.save('save\\1.jpg', img)
+        # img, result , contours , tree, treeList = findContours().run(img)
+        # img, result, contours, tree, treeList = findContours().run(img)
+        img, result, contours, treeList = findContours().runNewTreeMethod(img)
+        self.show.show('find contours result', result[::2,::2])
+        # self.save.save('save\\2.jpg', result)
+        origin = FitEllipse().run(self.origin, result, contours, treeList)
+        # self.show.show('ellipse', origin[::2,::2])
+        # self.save.save('save\\3.jpg', origin)
 
     # def flowTest(self,):
     #     img = self.img
@@ -59,7 +79,8 @@ class TraverseFolder(object):
     def traverse(self):
         for file in os.listdir(self.folder):
             flow = Flow(self.folder + "\\" + file)
-            flow.flow()
+            # flow.flow()
+            flow.flowTree()
             # flow.flowTest()
 
 if __name__ == '__main__':

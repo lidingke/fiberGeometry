@@ -3,4 +3,7 @@
 *.bmp
 *.cdr
 *.pyc
-/SDK
+save
+*.pdf
+*.dll
+*.pdf

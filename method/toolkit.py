@@ -51,6 +51,16 @@ class Cv2ImShow(object):
         cv2.waitKey(0)
 
 
+class Cv2ImSave(object):
+    """docstring for Cv2ImSave"""
+    def __init__(self, ):
+        super(Cv2ImSave, self).__init__()
+        # self.arg = arg
+
+    def save(self, title, img):
+        cv2.imwrite(title, img)
+
+
 class cv2CircleIndex(object):
     """docstring for cv2CircleIndex"""
     def __init__(self, ):
@@ -68,4 +78,24 @@ class cv2CircleIndex(object):
 
         return (area , circleIndex)
 
+import xlwt
+class XlsWrite(object):
+    """docstring for XlsWrite"""
+    def __init__(self, ):
+        super(XlsWrite, self).__init__()
+        # self.arg = arg
+        self.filename = 'save\\test.xls'
+        self.sheetName = 'sheet1'
+        self.workbook = xlwt.Workbook(encoding= 'utf-8')
+        self.booksheet = self.workbook.add_sheet(self.sheetName, cell_overwrite_ok= True)
+
+
+    def savelist(self,lst):
+        for i,row in enumerate(lst):
+            # pdb.set_trace()
+            row = (row[0][0], row[0][1], row[1][0], row[1][1])
+            for j,col in enumerate(row):
+                self.booksheet.write(i, j, col)
+        print 'write xls ', self.filename
+        self.workbook.save(self.filename)
 
