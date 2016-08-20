@@ -10,3 +10,22 @@ class tSdkCameraDevInfo(Structure):
     ("acFirmwareVersion", c_char*32),
     ("acSensorType", c_char*32),
     ("acPortType", c_char*32)]
+
+class tSdkCameraCapbility(Structure):
+    _fields_ = [('pTriggerDesc', pointer(tSdkTrigger)),
+    ('iTriggerDesc', c_int),
+    ('')
+    ]
+
+
+
+
+class tSdkTrigger(Structure):
+    _fields_ = [('iIndex', c_int),
+    ('acDescription', c_char * 32)]
+
+class tSdkImageResolution(Structure):
+    _fields_ = [('iIndex', c_int),
+    ('acDescription', c_char * 32),
+    ('uBinSumMode', c_uint),
+    ('uBinAverageMode', c_uint)]
