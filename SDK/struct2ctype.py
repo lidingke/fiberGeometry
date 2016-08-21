@@ -9,7 +9,7 @@ class Struct2ctypes(object):
         self._typesdict()
 
     def method(self):
-        with open('CameraDefineStructure.H', 'rb') as f:
+        with open('doth\\struct.h', 'rb') as f:
             origin = f.readlines()
         print 'lines number', len(origin)
         annotation = []
@@ -25,7 +25,7 @@ class Struct2ctypes(object):
         print 'len annotation', len(annotation)
         allcontext = []
         for x in annotation[1:]:
-            name ,context = self.structer(x)
+            name ,context = self.typedefContextGet(x)
             context = self._structHead(name, context)
             # context =
             allcontext.append(context)
@@ -34,7 +34,7 @@ class Struct2ctypes(object):
             f.writelines(flattened)
 
 
-    def structer(self, origin):
+    def typedefContextGet(self, origin):
         # print 'origin', origin
         print '------------------------ line ',len(origin)
         splited = [' '.join(s.split()) for s in origin]
@@ -50,11 +50,10 @@ class Struct2ctypes(object):
             print 'name', name
             # pdb.set_trace()
             context = self.eachLine(splited[head : end])
-        print splited[head: end]
+        print splited[end]
         context[-1] = self._tailExchange(context[-1])
 
         return (name, context)
-
 
 
     def eachLine(self, context):
@@ -63,7 +62,7 @@ class Struct2ctypes(object):
             # print 'line', line
             # pdb.set_trace()
             if line.find(';') <= 0:
-                break
+                continue
             cmdline, comments = line.split(';', 1)
             if comments.find('//') > 0:
                 null, comments = comments.split('//', 1)
@@ -107,7 +106,7 @@ class Struct2ctypes(object):
 
     def _tailExchange(self, str_):
         splited = str_.split('#', 1)
-        return splited[0].replace('),', ')]') + splited[1]
+        return splited[0].replace('),', ')] # ') + splited[1]
 
     def _returnName(self, name):
         name = name.replace('}', ' ')
