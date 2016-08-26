@@ -11,11 +11,11 @@ class tSdkCameraDevInfo(Structure):
     ("acSensorType", c_char*32),
     ("acPortType", c_char*32)]
 
-class tSdkCameraCapbility(Structure):
-    _fields_ = [('pTriggerDesc', pointer(tSdkTrigger)),
-    ('iTriggerDesc', c_int),
-    ('')
-    ]
+# class tSdkCameraCapbility(Structure):
+#     _fields_ = [('pTriggerDesc', pointer(tSdkTrigger)),
+#     ('iTriggerDesc', c_int),
+#     ('')
+#     ]
 
 
 
