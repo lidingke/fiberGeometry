@@ -7,3 +7,15 @@ save
 *.pdf
 *.dll
 *.pdf
+*.VC.db
+*.lib
+*.obj
+*.vcxproj
+*.BMP
+Debug/
+Release/
+obj/
+*.vs
+*.exp
+*.vcxproj.filters
+*.vcxproj.user

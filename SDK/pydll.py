@@ -31,7 +31,8 @@ def initCamera():
     pFrameInfo = pointer(sdkFrameHead)
     pWidth = pointer(c_int(sdkFrameHead.iWidth))
     pHeight = pointer(c_int(sdkFrameHead.iHeight))
-
+    sdkFrameHead.iWidth = 2592
+    sdkFrameHead.iHeight = 2048
     pbyBuffer = pointer(pointer(c_byte()))
     wTimes = c_uint(1000)
 
@@ -40,11 +41,13 @@ def initCamera():
     # photoHead = sdk.CameraGetImageBufferEx(CameraHandle, pWidth, pHeight, wTimes)
     # sdkFrameHead.uiMediaType =
     print 'CameraGetImageBuffer ', status
-    pRgbBuffer = POINTER(c_ubyte * sdkFrameHead.iWidth * sdkFrameHead.iHeight)
-    pdb.set_trace()
+    pRgbBuffer = sdk.CameraAlignMalloc(sdkFrameHead.iWidth * sdkFrameHead.iHeight * 3, 8)
+    print 'CameraAlignMalloc', pRgbBuffer
+
     status =sdk.CameraImageProcess(CameraHandle,pbyBuffer.contents, pRgbBuffer, pFrameInfo )
     # pdb
-    status = sdk.CameraSaveImage(CameraHandle, '', photoHead, pFrameInfo, 1, 100)
+    print 'CameraImageProcess', status
+    status = sdk.CameraSaveImage(CameraHandle, '.\\test', pRgbBuffer, pFrameInfo, 1, 100)
 
     print 'CameraSaveImage', status
 
