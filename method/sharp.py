@@ -16,6 +16,7 @@ class IsSharp(object):
 
 
     def isSharp(self):
+        #better than isSharpCanny
         time0 = time.time()
         img = self.img
         img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
@@ -73,7 +74,7 @@ class IsSharp(object):
         return round(normalizationSharp/1000.0,2)
 
 
-    def _midSize(self,sizecoup = (100,100), rato = 0.4):
+    def _midSize(self,sizecoup = (100,100), rato = 0.2):
         # size0 = sizecoup[]
         x00 = int(sizecoup[0]*rato)
         x01 = int(sizecoup[0]*(1-rato))

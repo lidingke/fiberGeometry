@@ -20,7 +20,7 @@ class Canny(Edge):
 
     def run(self,img):
         # img = cv2.GaussianBlur(img,(3, 3 ),0)
-        img = cv2.Canny(img, 10, 200)
+        img = cv2.Canny(img, 40, 200)
         img = cv2.bitwise_not(img)
         return img
 
@@ -52,15 +52,7 @@ class ErodeDilate(Edge):
         # img = cv2.medianBlur(img,3)
         img  = cv2.pyrMeanShiftFiltering(img, 3, 3, 1)
         img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-        # img = cv2.equalizeHist(img)
-        # img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 11, 3)
-        # self.show.show('adaptiveThreshold', img)
-        # img = cv2.GaussianBlur(img,(3, 3 ),0)
-        # kernel = np.ones((10,10),np.uint8)
-        kernel = cv2.getStructuringElement(cv2.MORPH_RECT,(6, 6))
-        # pdb.set_trace()
-        # erosion = cv2.morphologyEx(img,cv2.MORPH_OPEN,kernel)
-        # arrimg = cv2.cv.fromarray(img)
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT,(3, 3))
         erode = cv2.erode(img,kernel)
         dilate = cv2.dilate(img,kernel)
         # img = np.array(arrimg)

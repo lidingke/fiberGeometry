@@ -19,3 +19,5 @@ obj/
 *.exp
 *.vcxproj.filters
 *.vcxproj.user
+ipch/
+*.VC.VC.opendb

@@ -28,7 +28,7 @@ class findContours(find):
         # what, contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         result = np.ones(img.shape) * 255
-        print "next and previous contours at the same hierarchical level, the first child contour and the parent contour,"
+        # print "next and previous contours at the same hierarchical level, the first child contour and the parent contour,"
         tree = NodeDict()
 
         for i,x in enumerate(contours):
@@ -40,13 +40,6 @@ class findContours(find):
             # if circleIndex > 0.8 and area >40:
             # if circleIndex > 0.4 and area >10:
             if area >10:
-                # print "area" , area , "circleIndex:", circleIndex,"mom:", cvMomXY, "hierar:", xhierar
-                # print "index", i,"area",area,\
-                #  "next area",cv2.contourArea(contours[xhierar[0]]),\
-                # "pre area",cv2.contourArea(contours[xhierar[1]]),\
-                # "child area",cv2.contourArea(contours[xhierar[2]]),\
-                # "parent area",cv2.contourArea(contours[xhierar[3]]), xhierar
-                # cv2.drawContours(result, x, -1, (0,0,255),maxLevel = 2)
                 tree[xhierar[3]] = i
         cv2.drawContours(result, contours, -1, (0,0,255))
         # pdb.set_trace()
@@ -81,7 +74,27 @@ class findContours(find):
     def runNewTreeMethod(self,img):
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         result = np.ones(img.shape) * 255
-        print "next and previous contours at the same hierarchical level, the first child contour and the parent contour,"
+        # print "next and previous contours at the same hierarchical level, the first child contour and the parent contour,"
+        # pdb.set_trace()
+        fatherDot = set()
+        for i,x in enumerate(contours):
+            xhierar = hierarchys[0][i]
+            area , circleIndex = self.circleIndex.contourIn(x)
+            # if xhierar[2] == -1:
+                # pdb.set_trace()
+                # print 'hieracrchys' ,i ,hierarchys[0][i]
+            # xhierar[3]
+            fatherDot.add(xhierar[3])
+        print 'fatherdot', fatherDot
+
+        for x in fatherDot:
+            cv2.drawContours(result, contours[x], -1, (0,0,255))
+        return img, result, contours, fatherDot
+
+    def runCannyMethod(self,img):
+        contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        result = np.ones(img.shape) * 255
+        # print "next and previous contours at the same hierarchical level, the first child contour and the parent contour,"
         # pdb.set_trace()
         fatherDot = set()
         for i,x in enumerate(contours):
@@ -143,29 +156,56 @@ class FitEllipse(object):
     def __init__(self, ):
         super(FitEllipse, self).__init__()
         # self.arg = arg
+        self.circleIndex = cv2CircleIndex()
 
     def run(self, origin, result, contours, treeList):
         print 'tree:' , treeList
         isCircle = IsCircle()
         ellipseTree = []
-
+        ellipseTreeforCircleIndexSort = []
         for x in treeList:
             if not (x == 0 or x == -1):
                 result = cv2.fitEllipse(contours[int(x)])
                 ellipseTree.append(result)
-                print 'result:',x ,result
+                print 'result:',x , result
         for circle in ellipseTree:
             cv2.ellipse(img = origin, box = circle, color=(0, 0, 255))
-        XlsWrite().savelist(ellipseTree)
+        # XlsWrite().savelist(ellipseTree)
         return origin
+
+    def ellipseTreeforCircleIndexSort(self, origin, result, contours, treeList):
+        # print 'tree:' , treeList
+        isCircle = IsCircle()
+        ellipseTree = []
+        ellipseTreeforCircleIndexSort = []
+        for x in treeList:
+            if not (x == 0 or x == -1):
+                result = cv2.fitEllipse(contours[int(x)])
+                area , circleIndex = self.circleIndex.contourIn(contours[int(x)])
+
+                ellipseTree.append(result)
+                result = self._sort2filterCircle(result) + (area,0.0)
+                ellipseTreeforCircleIndexSort.append(result)
+        ellipseTreeforCircleIndexSort.sort()
+        for x in ellipseTreeforCircleIndexSort[:4]:
+            # pdb.set_trace
+            print 'result:', x[0] * 0.06, x[1][1][0] * 0.06, x[1][1][1] * 0.06, (x[2]/3.14)**0.5
+        for circle in ellipseTree:
+            cv2.ellipse(img = origin, box = circle, color=(0, 0, 255))
+        # XlsWrite().savelist(ellipseTree)
+        return origin
+
 
     def runFromOldTree(self, origin, result, contours, treeList):
         print 'tree:' , treeList[ 2 : ]
         ellipseTree = []
         for x in treeList[2 : ]:
             result = cv2.fitEllipse(contours[int(x)])
-            ellipseTree.append(result)
-            print 'result:', result
+            print 'result:', ellipseTree
         for circle in ellipseTree:
             cv2.ellipse(img = origin, box = circle, color = (0,0,255))
         return origin
+
+    def _sort2filterCircle(self, result):
+        coaxiality = abs(result[1][0] - result[1][1])
+        return (coaxiality, result)
