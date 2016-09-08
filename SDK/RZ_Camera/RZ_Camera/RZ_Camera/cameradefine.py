@@ -1,6 +1,6 @@
 from ctypes import *
 class CapInfoStruct(Structure):
-    _fields_ = [("Buffer", POINTER(c_uchar)),
+    _fields_ = [("Buffer", POINTER(c_ubyte)),
     ("Height", c_ulong),
     ("Width", c_ulong),
     ("OffsetX", c_ulong),

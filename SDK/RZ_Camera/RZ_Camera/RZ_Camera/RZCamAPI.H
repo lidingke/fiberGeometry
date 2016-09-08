@@ -5,9 +5,11 @@
 #define _RZCAMAPI_H
 
 #include "DataType.h"
-typedef const wchar_t *LPCTSTR;
+#include "demodata.h"
+#include "windows.h"
+//typedef const wchar_t *LPCTSTR;
 typedef unsigned long DWORD;
-typedef void *HANDLE;
+//typedef void *HANDLE;
 #if defined(_UNICODE)
 #define _T(x) L ##x
 #else
@@ -69,17 +71,17 @@ RZ_Uninitialize(  HANDLE hCamera );
 	参数:   
 	说明:   
   --------------------------------------------------------------*/
-//RZ_API
-//RZ_StartView(  HANDLE	hCamera, 
-//			   LPCTSTR	lpszWindowName, 
-//			   DWORD		dwStyle, 
-//			   int		x, 
-//			   int		y, 
-//			   int		nWidth, 
-//			   int		nHeight, 
-//			   HWND		hwndParent, 
-//			   HMENU		nIDorHMenu
-//			  );
+RZ_API
+RZ_StartView(  HANDLE	hCamera, 
+			   LPCTSTR	lpszWindowName, 
+			   DWORD		dwStyle, 
+			   int		x, 
+			   int		y, 
+			   int		nWidth, 
+			   int		nHeight, 
+			   HWND		hwndParent, 
+			   HMENU		nIDorHMenu
+			  );
 
 
 
@@ -152,10 +154,10 @@ RZ_SetParamFlip( HANDLE hCamera, FLIP_MODE  DLParam);
 //	参数:   
 //	说明:   
 //  --------------------------------------------------------------*/
-//RZ_API 
-//RZ_SetDoAE(  HANDLE hCamera,  int bAE,   unsigned char btTarget, 
-//			  DL_AUTOCALLBACK pfAECallback,  LPVOID lpContext );
-//
+RZ_API 
+RZ_SetDoAE(  HANDLE hCamera,  int bAE,   unsigned char btTarget, 
+			  int pfAECallback,  LPVOID lpContext );
+
 
 /*==============================================================
 	函数:	RZ_GetFrameRate
@@ -183,8 +185,8 @@ RZ_GetRawFrame( HANDLE hCamera,  struct CapInfoStruct *pCapInfo);
 	参数:   
 	说明:   unsigned short  
   --------------------------------------------------------------*/
-RZ_API
-RZ_GetRawFrameToBmp( HANDLE hCamera,  struct CapInfoStruct *pCapInfo, LPCTSTR  strFileName );
+//RZ_API
+//RZ_GetRawFrameToBmp( HANDLE hCamera,  struct CapInfoStruct *pCapInfo, LPCTSTR  strFileName );
 
 
 /*==============================================================

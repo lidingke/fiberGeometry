@@ -12,9 +12,12 @@
 #define RZPY_API __declspec(dllimport)  
 #endif  
 
-#include "demodata.h"
-#include "DataType.h"
+
+
+
+//
 #include "RZCamAPI.H"
+
 #include <iostream>
 #include <string>
 
@@ -39,15 +42,15 @@ public:
 	int				m_nHBlank, m_nVBlank;
 	int				m_nSharp;
 	int				m_nSta;
+	CapInfoStruct	m_CapInfo;
 protected:
-	//HWND			m_hWnd;	//ÏÔÊ¾´°¿Ú¾ä±ú
+	HWND			m_hWnd;	//ÏÔÊ¾´°¿Ú¾ä±ú
 
 	unsigned char			*m_pRawData;
 	unsigned char			*m_pRgbData;
 	unsigned char			*m_pSnapBuffer;
 	unsigned char			*m_buffercache;
 
-	CapInfoStruct	m_CapInfo;
 	unsigned long			m_dwCompressor;
 
 	//	int				m_nContrast;
@@ -66,79 +69,21 @@ protected:
 public:
 	RZ_CameraPy();
 	~RZ_CameraPy();
-	void CAM_Initialize(HANDLE hCamera, struct CapInfoStruct *pCapInfo, int*  pDest, int nIdx = 1);
-//	void PixelCalibration();
-//	void EnableCompressor(int bOn);
-//	void SelectComprossor();
-//	void SetTriggerMode(int bOn);
-//	void SetTriggerStatus(int bOn, LPCTSTR lpPath);
-//	void CAM_Initialize(HWND hWnd = NULL, int nIdx = 1);
-//	LPCTSTR GetFrameRate(float &fr);
-//	int IsPlaying();
-//	int IsVideoStretch();
-//	HANDLE GetDeviceHandle() const;
-//	int IsShowCorssLine();
-//	void DrawCrossLine(unsigned char * pData);
-//	void EnableCrossline(int bOn);
-//	void VideoAutoSize(int bChange = FALSE);
-//	void SetDoAWB(int bAWB, LPVOID lpContext);
-//	void SetDoAE(int bAE, LPVOID lpContext);
-//	void Snap(ENUM_IMAGE_TYPE type, LPCTSTR lpszPath);
-//	int Capture2AVI(int bStart, LPCTSTR lpszPath);
-//	void SetVideoSize(long width, long height);
-//	void SetParam(ENUM_Param type, long value, long value2 = -1);
-//	CapInfoStruct * GetCapInfo();
-//	void SetScrollOffset(int H = -1, int V = -1);
-//	CSize GetVideoSize();
-//	int StopView();
-//	int StartView();
-//	void Play(int bPlay);
-//	CRZ_Camera(HWND hWnd, int nIdx = 1);
-//	CRZ_Camera();
-//	virtual ~CRZ_Camera();
-//	void softTrigger();
-//	void SetHDR(int bEnable);
-//	RZCAMERA GetCamType() { return m_CamType; };
-//	void EnableLightAvg(int bOn);
-//	void ResetLightAvgTable();
-//	void SetTriggerDelayTime(LONG Time);
-//	void EEProm_Set(unsigned char *pData);
-//	void EEProm_Get(unsigned char *pData);
-//	void EEProm_Setunsigned char(int nIndex, int nCount, unsigned char *pData);
-//	void EEProm_Getunsigned char(int nIndex, int nCount, unsigned char *pData);
-//	void SetCustomIO(unsigned char data);
-//	void SetTriggerSource(unsigned char data);
-//	void SetTriggerSourceTime(LONG Time);
-//	void SetAEParam(int bAE, LPVOID lpContext);
-//
-//	void SetHBlank(int nHBlank);
-//	void SetVBlank(int nVBlank);
-//	void SetZoom(int b);
-//
-//	void SetExpouseDelayTime(int nTime);
-//
-//	CString GetSerialNumber();
-//	void SetNewHWDN(HWND hwnd);
-//	CString GetCameraVertion();
-//	void SetFastCapMode(int b);
-	int GetBuffer(HANDLE hCamera, struct CapInfoStruct *pCapInfo, int*  pDest, int bFlip = false);
-//	void SavePic(ENUM_IMAGE_TYPE type, LPCTSTR lpszPath);
-//
-//protected:
-//	DECLARE_DYNCREATE(CRZ_Camera);
-//	// Overrides
-//	// ClassWizard generated virtual function overrides
-//	//{{AFX_VIRTUAL(CRZ_Camera)
-//public:
-//	virtual void Serialize(CArchive& ar);
-	//}}AFX_VIRTUAL
+	int CAM_Initialize(HANDLE hCamera, struct CapInfoStruct *pCapInfo);
+	void Play(HANDLE hCamera, struct CapInfoStruct *pCapInfo);
+
 };
 
+static RZ_CameraPy m_pCamera;
 
 extern "C"
 {
-	RZPY_API int InitRz_Camera();
-	RZPY_API int display();
+	RZPY_API int InitRz_Camera(HANDLE hCamera, struct CapInfoStruct *pCapInfo);
+	RZPY_API int Display(HANDLE hCamera, struct CapInfoStruct *pCapInfo);
+	RZPY_API int GetBuffer(HANDLE hCamera, struct CapInfoStruct *pCapInfo);
+	RZPY_API int GetRgbBuffer(int *m_pRgbData);
+	RZPY_API int GetRawBmp(int *m_pRgbData);
+
 	//RZPY_API PyArrayObject* rePyArrayObject();
 }
 

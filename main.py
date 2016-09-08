@@ -140,7 +140,7 @@ class TraverseFolder(object):
 if __name__ == '__main__':
     # tr = TraverseFolder(folder = 'VT')
     # tr.flowTree()
-    tr = TraverseFolder(folder='IMG\\rep')
+    tr = TraverseFolder(folder='IMG\\RZGREEB')
     tr.flow()
     # calc hist
     # tr = TraverseFolder(folder = 'VT')
