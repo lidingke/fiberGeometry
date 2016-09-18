@@ -8,7 +8,6 @@ class CalcHist(object):
         super(CalcHist, self).__init__()
 
     def run(self,img):
-
         hist = cv2.calcHist([img], [0], None, [256], [0.0,255.0])
         minVal, maxVal, minLoc, maxLoc = cv2.minMaxLoc(hist)
         histImg = np.zeros([256,256,1],np.uint8)
@@ -99,3 +98,13 @@ class XlsWrite(object):
         print 'write xls ', self.filename
         self.workbook.save(self.filename)
 
+
+import time
+def timing(fun):
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        fun(*args, **kwargs)
+        # pdb.set_trace()
+        runtime = time.time()-start
+        print fun.func_name, 'consume: ', runtime, 's'
+    return wrapper

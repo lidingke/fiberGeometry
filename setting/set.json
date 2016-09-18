@@ -1,0 +1,14 @@
+{
+    "1": 1,
+    "{\"ampFactor\": \"20X\", \"cameraID\": \"MindVision\"}": {
+        "dip": "500W",
+        "ampPixSize": 0.088,
+        "adaptiveTreshold": {
+            "blockSize": 11,
+            "Constant": 7
+        },
+        "medianBlur": {
+            "ErodeDilateKsize": 9
+        }
+    }
+}

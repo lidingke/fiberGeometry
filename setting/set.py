@@ -1,7 +1,7 @@
 from collections import MutableMapping
 import json
-from model.toolkit import WRpickle
-
+# from model.toolkit import WRpickle
+from setting.load import WriteReadJson
 
 class MetaDict(MutableMapping):
     """A dictionary that applies an arbitrary key-altering
@@ -59,15 +59,22 @@ class SETTING(MetaDict):
         MetaDict.__init__(self)
         if not ParaDict:
             print("set SETTING to default")
-        getSettingID = json.dumps(ParaDict)
+        self.GET_SETTING_ID = json.dumps(ParaDict)
+        self.wrJson = WriteReadJson("setting\\set.json")
+        self.jsonLoad = self.wrJson.load()
+        self.store = self.jsonLoad.get(self.GET_SETTING_ID, {})
+        # self.IS_GETED_SETTING = False
 
 
     def getSetting(self):
+        # if not self.IS_GETED_SETTING:
+        #     self.store = self.jsonLoad.get(self.GET_SETTING_ID, {})
+        #     self.IS_GETED_SETTING = True
+        return self.store
 
-
-
-
-
+    def saveSetting(self):
+        self.jsonLoad.update({self.GET_SETTING_ID:self.store})
+        self.wrJson.save(self.jsonLoad)
 
 
 

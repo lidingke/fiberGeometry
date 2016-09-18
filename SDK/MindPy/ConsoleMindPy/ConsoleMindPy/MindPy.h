@@ -94,20 +94,21 @@ public:
 	int OnButtonSnapshot();
 	BYTE * OnButtonSnapshotWithNoSaveFree(CameraHandle m_hCamera);
 	BYTE * GetRawImg(CameraHandle m_hCamera);
+	int ReleaseRawImg(CameraHandle m_hCamera, BYTE *pbyBuffer);
 
 };
 
 
 extern "C"
 {
-	MINDPY_API int Edisplay(int a);
+	//MINDPY_API int Edisplay(int a);
 	MINDPY_API int GetImg();
 
-	MINDPY_API int RePyArray(BYTE *barray[], int limit);
-	MINDPY_API int doubleRePyArray(BYTE barray[], int limit);
+	//MINDPY_API int RePyArray(BYTE *barray[], int limit);
+	//MINDPY_API int doubleRePyArray(BYTE barray[], int limit);
 
-	MINDPY_API BYTE PointerSweep(BYTE *head, int index);
-	MINDPY_API int sweepArray(int *ar1, int *ar2, int length);
+	//MINDPY_API BYTE PointerSweep(BYTE *head, int index);
+	//MINDPY_API int sweepArray(int *ar1, int *ar2, int length);
 
 	MINDPY_API CameraHandle InitCameraPlay();
 	MINDPY_API int GetRawImg(BYTE barray[], int limit, CameraHandle m_hCamera);

@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import pdb
 from method.toolkit import Cv2ImShow
+from setting.set import SETTING
 
 class Edge(object):
     """docstring for Edge"""
@@ -47,18 +48,23 @@ class ErodeDilate(Edge):
     def __init__(self, ):
         super(ErodeDilate, self).__init__()
         # self.arg = arg
+        self.SET = SETTING()
 
     def run(self, img):
-        # img = cv2.medianBlur(img,3)
-        img  = cv2.pyrMeanShiftFiltering(img, 3, 3, 1)
+        medianBlur = self.SET["medianBlur"]["ErodeDilateKsize"]
+        img = cv2.medianBlur(img, 9)
+
+        # img  = cv2.pyrMeanShiftFiltering(img, 30, 30, 5)
         img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-        kernel = cv2.getStructuringElement(cv2.MORPH_RECT,(3, 3))
-        erode = cv2.erode(img,kernel)
-        dilate = cv2.dilate(img,kernel)
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
+        erode = cv2.erode(img, kernel)
+        dilate = cv2.dilate(img, kernel)
         # img = np.array(arrimg)
-        img = cv2.absdiff(dilate,erode)
+        img = cv2.absdiff(dilate, erode)
         # img = cv2.absdiff(img,erode)
         img = cv2.bitwise_not(img)
+        blockSize = self.SET["adaptiveTreshold"]["blockSize"]
+        Constant = self.SET["adaptiveTreshold"]["Constant"]
         img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 17, 7)
         # img = cv2.erode(img,kernel)
         # img = cv2.equalizeHist(img)
@@ -100,7 +106,6 @@ class CloseOpen(Edge):
         img = cv2.absdiff(self._close(img), img)
         img = cv2.bitwise_not(img)
         return img
-
 
 
 

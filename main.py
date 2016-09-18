@@ -1,6 +1,8 @@
 
 #MindVision pixel size = 4.8 um,
+#MindVision pixel new size = 2.2 um,/20 0.11um
 #a pix = 4.8um/40 = 0.12um
+
 import cv2
 import numpy as np
 import pdb
@@ -20,6 +22,8 @@ from method.sharp import IsSharp
 from method.contour import findContours
 from method.contour import HoughCircles
 from method.contour import FitEllipse
+
+from setting.set import SETTING
 
 
 class Flow(object):
@@ -66,13 +70,14 @@ class Flow(object):
 
     def flowRepetitive(self,):
         img = self.img
+        pdb.set_trace()
         img = ErodeDilate().run(img)
         # img = Canny().run(img)
         self.show.show('edge', img[::4,::4])
         img, result, contours, treeList = findContours().runNewTreeMethod(img)
         self.show.show('find contours result', result[::4,::4])
         origin = FitEllipse().ellipseTreeforCircleIndexSort(self.origin, result, contours, treeList)
-        # self.show.show('ellipse result', origin[::4,::4])
+        self.show.show('ellipse result', origin[::4,::4])
 
     def flowCannyEllipse(self,):
         img = self.img
@@ -137,11 +142,39 @@ class TraverseFolder(object):
         plt.plot(xlist[:,0],xlist[:,1])
         plt.show()
 
+from SDK.mindpy import GetImg
+
+class RealTimeFlow(object):
+    """docstring for RealTimeFlow
+    real-time method get picture"""
+    def __init__(self, ):
+        super(RealTimeFlow, self).__init__()
+        # self.arg = arg
+        self.show = Cv2ImShow()
+        self.getImg = GetImg()
+
+    def img(self):
+        return self.getImg.getImg()
+
+    def flow(self):
+        img = self.img()
+        self.origin = img.copy()
+        img = ErodeDilate().run(img)
+        # img = Canny().run(img)
+        self.show.show('edge', img[::4,::4])
+        img, result, contours, treeList = findContours().runNewTreeMethod(img)
+        self.show.show('find contours result', result[::4,::4])
+        origin = FitEllipse().ellipseTreeforCircleIndexSort(self.origin, result, contours, treeList)
+        self.show.show('ellipse result', origin[::4,::4])
+
 if __name__ == '__main__':
     # tr = TraverseFolder(folder = 'VT')
     # tr.flowTree()
-    tr = TraverseFolder(folder='IMG\\RZGREEB')
-    tr.flow()
+    SETTING({'ampFactor':'20X','cameraID':'MindVision'})
+    # tr = TraverseFolder(folder='IMG\\GIOF1')
+    # tr.flow()
+    rtf = RealTimeFlow()
+    rtf.flow()
     # calc hist
     # tr = TraverseFolder(folder = 'VT')
     # tr.flowHist()

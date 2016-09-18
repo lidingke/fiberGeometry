@@ -181,15 +181,26 @@ class FitEllipse(object):
         for x in treeList:
             if not (x == 0 or x == -1):
                 result = cv2.fitEllipse(contours[int(x)])
-                area , circleIndex = self.circleIndex.contourIn(contours[int(x)])
-
                 ellipseTree.append(result)
-                result = self._sort2filterCircle(result) + (area,0.0)
+                area , circleIndex = self.circleIndex.contourIn(contours[int(x)])
+                result = tuple([circleIndex,area]) + self._coaxialityGet(result)
                 ellipseTreeforCircleIndexSort.append(result)
         ellipseTreeforCircleIndexSort.sort()
-        for x in ellipseTreeforCircleIndexSort[:4]:
-            # pdb.set_trace
-            print 'result:', x[0] * 0.06, x[1][1][0] * 0.06, x[1][1][1] * 0.06, (x[2]/3.14)**0.5
+        for x in ellipseTreeforCircleIndexSort:
+            # pdb.set_trace()
+            # pixSize = 2.2/20
+            areaIndex = x[2]
+            if areaIndex > 1:
+                # pixSize = 2.2/20
+                pixSize = 0.0886
+                circleIndex = x[0]
+                coaxiality = x[1] * pixSize
+                radiusMin = x[3][1][0] * pixSize
+                radiusMax = x[3][1][1] * pixSize
+                radiusIndex = ((x[2]/3.14)**0.5) * pixSize
+                print x[3]
+                print "circleIndex: %8.4f, coaxiality: %8.4f, radiusMin: %8.4f, radiusMax: %8.4f, radiusIndex: %8.4f, %f"%(
+                    circleIndex, coaxiality, radiusMin, radiusMax, radiusIndex, areaIndex)
         for circle in ellipseTree:
             cv2.ellipse(img = origin, box = circle, color=(0, 0, 255))
         # XlsWrite().savelist(ellipseTree)
@@ -206,6 +217,6 @@ class FitEllipse(object):
             cv2.ellipse(img = origin, box = circle, color = (0,0,255))
         return origin
 
-    def _sort2filterCircle(self, result):
+    def _coaxialityGet(self, result):
         coaxiality = abs(result[1][0] - result[1][1])
         return (coaxiality, result)
