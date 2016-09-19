@@ -15,6 +15,7 @@ class Controller(QObject):
 
 
     def show(self):
+        self._model.start()
         self._view.show()
 
 
@@ -31,4 +32,4 @@ class Controller(QObject):
     def _startModel(self):
         self._model = Model()
         self._model.returnImg.connect(self._view.updatePixmap)
-        self._model.start()
+        self._view.pushButton.clicked.connect(self._model.mainCalculate)

@@ -19,13 +19,13 @@ class GetImg(object):
         # self.arg = arg
 
     def getImg(self):
-        limit = 2592*2048*3
+        limit = 2592*1944*3
         ctypeArray = c_byte * limit
         arget = ctypeArray()
         hand = mydll.InitCameraPlay()
         md = mydll.GetOneImg(arget, limit, hand)
         npArray = np.array(arget, dtype=np.uint8)
-        npArray = npArray.reshape(2048, 2592, 3)
+        npArray = npArray.reshape(1944, 2592, 3)
         return npArray
 
 class GetRawImg(object):
@@ -38,8 +38,13 @@ class GetRawImg(object):
         self.hand = mydll.InitCameraPlay()
         print 'init end', self.limit, self.arget, self.hand
 
-    @timing
+    # @timing
     def get(self):
+        """ get 0.0990002155304 s
+            get raw dll 0.0910000801086 s
+            create np.array 0.00600004196167 s
+            reshape 0s
+        """
         try:
             md = mydll.GetRawImg(self.arget, self.limit, self.hand)
         except Exception, e:
@@ -47,7 +52,7 @@ class GetRawImg(object):
 
         npArray = np.array(self.arget, dtype=np.uint8)
         npArray = npArray.reshape(1944, 2592)
-        print 'nparray ', npArray.shape
+        # print 'nparray ', npArray.shape
         return npArray
 
 

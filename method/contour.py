@@ -91,6 +91,21 @@ class findContours(find):
             cv2.drawContours(result, contours[x], -1, (0,0,255))
         return img, result, contours, fatherDot
 
+    def runNoThrowChirldMethod(self, img):
+        contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+        result = np.ones(img.shape) * 255
+        print 'before contour', hierarchys
+        fatherDot = set()
+        for i,x in enumerate(contours):
+            xhierar = hierarchys[0][i]
+            area , circleIndex = self.circleIndex.contourIn(x)
+            fatherDot.add(xhierar[3])
+        print 'fatherdot', fatherDot
+        for x in fatherDot:
+            cv2.drawContours(result, contours[x], -1, (0,0,255))
+        return img, result, contours, xrange(0, len(hierarchys[0]))
+
+
     def runCannyMethod(self,img):
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         result = np.ones(img.shape) * 255
@@ -178,6 +193,7 @@ class FitEllipse(object):
         isCircle = IsCircle()
         ellipseTree = []
         ellipseTreeforCircleIndexSort = []
+        print 'tree', treeList
         for x in treeList:
             if not (x == 0 or x == -1):
                 result = cv2.fitEllipse(contours[int(x)])
@@ -204,6 +220,24 @@ class FitEllipse(object):
         for circle in ellipseTree:
             cv2.ellipse(img = origin, box = circle, color=(0, 0, 255))
         # XlsWrite().savelist(ellipseTree)
+        return origin
+
+    def ellipseForIfCondition(self, origin, result, contours, treeList):
+        isCircle = IsCircle()
+        ellipseTree = []
+        ellipseTreeforCircleIndexSort = []
+        print 'tree', treeList
+        for x in treeList:
+            if not (x == 0 or x == -1):
+                result = cv2.fitEllipse(contours[int(x)])
+                ellipseTree.append(result)
+                area , circleIndex = self.circleIndex.contourIn(contours[int(x)])
+                result = tuple([circleIndex,area]) + self._coaxialityGet(result)
+                ellipseTreeforCircleIndexSort.append(result)
+
+        for circle in ellipseTree:
+            cv2.ellipse(img = origin, box = circle, color=(0, 0, 255))
+
         return origin
 
 

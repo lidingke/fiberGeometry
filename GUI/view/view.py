@@ -27,7 +27,7 @@ class View(QMainWindow,Ui_MainWindow):
         img = cv2.imread("IMG\\7core2.bmp")
         return img
 
-    @timing
+    # @timing
     def updatePixmap(self,arr):
         if not self.IS_INIT_PAINTER:
             self.painterWidget.initPixmap(arr)
@@ -60,7 +60,7 @@ class PainterWidget(QWidget):
     def paintEvent(self, event):
 
         if self.pixmap:
-            print 'rect', self.rect
+            # print 'rect', self.rect
             self.painter.begin(self)
             self.painter.drawPixmap(self.rect, self.pixmap)
             self.painter.end()

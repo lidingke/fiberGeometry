@@ -218,14 +218,14 @@ BYTE * MindPy::GetRawImg(CameraHandle m_hCamera) //в╔едр╩уем╪ф╛
 		std::cout << "Snapshot failed,is camera in pause mode?" << status << std::endl;
 		return FALSE;
 	}
-	else
-	{
-		std::cout << "Function: SUCCESS!" << "CameraGetImageBuffer" << std::endl;
+	//else
+	//{
+	//	std::cout << "function: success!" << "cameragetimagebuffer" << std::endl;
 
-		//Release the buffer which get from CameraSnapToBuffer or CameraGetImageBuffer
-		//CameraReleaseImageBuffer(m_hCamera, pRawBuffer);
+	//	//release the buffer which get from camerasnaptobuffer or cameragetimagebuffer
+	//	//camerareleaseimagebuffer(m_hcamera, prawbuffer);
 
-	}
+	//}
 	return pRawBuffer;
 	//return FrameInfo.iWidth*FrameInfo.iHeight * 3 * 8;
 }
@@ -237,14 +237,6 @@ int MindPy::ReleaseRawImg(CameraHandle m_hCamera, BYTE *pbyBuffer)
 	{
 		std::cout << "release failed,error code " << status << std::endl;
 		return FALSE;
-	}
-	else
-	{
-		std::cout << "Function: SUCCESS!" << "releaseBuffer" << std::endl;
-
-		//Release the buffer which get from CameraSnapToBuffer or CameraGetImageBuffer
-		//CameraReleaseImageBuffer(m_hCamera, pRawBuffer);
-
 	}
 	return status;
 };

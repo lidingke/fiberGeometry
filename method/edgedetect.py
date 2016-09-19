@@ -55,7 +55,11 @@ class ErodeDilate(Edge):
         img = cv2.medianBlur(img, 9)
 
         # img  = cv2.pyrMeanShiftFiltering(img, 30, 30, 5)
-        img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+        try:
+            img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+        except Exception, e:
+            pass
+
         kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
         erode = cv2.erode(img, kernel)
         dilate = cv2.dilate(img, kernel)
