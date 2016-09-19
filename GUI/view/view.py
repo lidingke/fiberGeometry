@@ -46,14 +46,15 @@ class PainterWidget(QWidget):
         self.painter = QPainter(self)
 
     def initPixmap(self, mapArray):
-        """Init pixmap after get image, so this map can't init in __init__"""
+        """Init pixmap after get image,
+        so this map can't init in __init__"""
         try:
             width, height, size = mapArray.shape
         except Exception, e:
             width, height = mapArray.shape
         self.width = width
         self.height = height
-        self.rect = QRect(0, 0, width, height)
+        self.rect = QRect(0, 0,height, width )
         self.setGeometry(self.rect)
 
     def paintEvent(self, event):

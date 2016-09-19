@@ -9,6 +9,11 @@
         },
         "medianBlur": {
             "ErodeDilateKsize": 9
+        },
+        "rect": {
+            "width": 2592,
+            "hight": 1944,
+            "dimension": 1
         }
     }
 }

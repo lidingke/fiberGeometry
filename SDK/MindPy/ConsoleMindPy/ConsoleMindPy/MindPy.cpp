@@ -2,7 +2,6 @@
 #include "MindPy.h"
 
 
-
 MindPy::MindPy()
 {
 }
@@ -250,6 +249,11 @@ int MindPy::ReleaseRawImg(CameraHandle m_hCamera, BYTE *pbyBuffer)
 	return status;
 };
 
+bool MindPy::UninitCamera(CameraHandle m_hCamera)
+{
+	CameraUnInit(m_hCamera);
+	return true;
+};
 
 
 //MINDPY_API int Edisplay(int a)
@@ -388,51 +392,53 @@ int MindPy::ReleaseRawImg(CameraHandle m_hCamera, BYTE *pbyBuffer)
 //	return 1;
 //};
 
-MINDPY_API int GetImg()
-{
-	MindPy mindpy;
-	int status;
-	int language = 0;
-	status = CameraSdkInit(language);
-	if (CAMERA_STATUS_SUCCESS != status)
-	{
-		std::cout << "CameraSdkInit error " << status << std::endl;
-		return 0;
-	}
-	else
-	{
-		std::cout << "CameraSdkInit " << status << std::endl;
-	}
-	status = mindpy.InitCamera();
-	if (!status)
-	{
-		std::cout << "InitCamera error" << status << std::endl;
-		return 0;
-	}
-	else
-	{
-		std::cout << "InitCamera " << status << std::endl;
-	}
-	
-	status = mindpy.OnButtonSnapshot();
-	if (!status)
-	{
-		std::cout << "OnButtonSnapshot error" << status << std::endl;
-		return 0;
-	}
-	else
-	{
-		std::cout << "OnButtonSnapshot " << status << std::endl;
-	}
-	return TRUE;
-}
+//MINDPY_API int GetImg()
+//{
+//	MindPy mindpy;
+//	int status;
+//	int language = 0;
+//	status = CameraSdkInit(language);
+//	if (CAMERA_STATUS_SUCCESS != status)
+//	{
+//		std::cout << "CameraSdkInit error " << status << std::endl;
+//		return 0;
+//	}
+//	else
+//	{
+//		std::cout << "CameraSdkInit " << status << std::endl;
+//	}
+//	status = mindpy.InitCamera();
+//	if (!status)
+//	{
+//		std::cout << "InitCamera error" << status << std::endl;
+//		return 0;
+//	}
+//	else
+//	{
+//		std::cout << "InitCamera " << status << std::endl;
+//	}
+//	
+//	status = mindpy.OnButtonSnapshot();
+//	if (!status)
+//	{
+//		std::cout << "OnButtonSnapshot error" << status << std::endl;
+//		return 0;
+//	}
+//	else
+//	{
+//		std::cout << "OnButtonSnapshot " << status << std::endl;
+//	}
+//	return TRUE;
+//}
 
 
 
 
 MINDPY_API CameraHandle InitCameraPlay()
 {
-	MindPy mindpy;
+	//MindPy mindpy;
+	
+	pMindpy = new MindPy;
 	int status;
 	int language = 0;
 	status = CameraSdkInit(language);
@@ -445,7 +451,7 @@ MINDPY_API CameraHandle InitCameraPlay()
 	{
 		std::cout << "CameraSdkInit " << status << std::endl;
 	}
-	status = mindpy.InitCamera();
+	status = pMindpy->InitCamera();
 	if (!status)
 	{
 		std::cout << "InitCamera error" << status << std::endl;
@@ -455,18 +461,18 @@ MINDPY_API CameraHandle InitCameraPlay()
 	{
 		std::cout << "InitCamera " << status << std::endl;
 	}
-	return mindpy.m_hCamera;
+	return pMindpy->m_hCamera;
 };
 
 
 MINDPY_API int GetOneImg(BYTE barray[], int limit, CameraHandle m_hCamera)
 {
-	MindPy mindpy;
+	//MindPy mindpy;
 	BYTE * arrayGet;
 	int limitGet;
-	arrayGet = mindpy.OnButtonSnapshotWithNoSaveFree(m_hCamera);
+	arrayGet = pMindpy->OnButtonSnapshotWithNoSaveFree(m_hCamera);
 	//arrayGet = mindpy.passBuffer;
-	limitGet = mindpy.bufferSize;
+	limitGet = pMindpy->bufferSize;
 	//barray = arrayGet;
 	memcpy(barray, arrayGet, limitGet);//2ms 1920*1080*3
 	//CameraAlignFree(arrayGet);
@@ -476,16 +482,20 @@ MINDPY_API int GetOneImg(BYTE barray[], int limit, CameraHandle m_hCamera)
 
 MINDPY_API int GetRawImg(BYTE barray[], int limit, CameraHandle m_hCamera) 
 {
-	MindPy mindpy;
+	//MindPy mindpy;
 	BYTE * arrayGet;
 	int limitGet;
-	arrayGet = mindpy.GetRawImg(m_hCamera);
-	//arrayGet = mindpy.passBuffer;
-	//limitGet = mindpy.bufferSize;
-	//barray = arrayGet;
+	int status;
+	arrayGet = pMindpy->GetRawImg(m_hCamera);
 	memcpy(barray, arrayGet, limit);//2ms 1920*1080*3
-	mindpy.ReleaseRawImg(m_hCamera, arrayGet);
+	status = pMindpy->ReleaseRawImg(m_hCamera, arrayGet);
 	//CameraAlignFree(arrayGet);
-	return TRUE;
+	return status;
 
+};
+
+MINDPY_API int UninitCamera(CameraHandle m_hCamera)
+{
+	pMindpy->UninitCamera(m_hCamera);
+	return true;
 };

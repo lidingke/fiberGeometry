@@ -2,6 +2,7 @@ from threading import Thread
 from PyQt4.QtCore import QObject, pyqtSignal
 from SDK.mindpy import GetRawImg
 import time
+import pdb
 
 
 class Model(Thread,QObject):
@@ -18,7 +19,7 @@ class Model(Thread,QObject):
 
     def run(self):
         while True:
-            time.sleep(1)
+            # time.sleep(1)
             img = self._getImg()
 
             print 'emit ', img.shape
@@ -26,5 +27,6 @@ class Model(Thread,QObject):
 
     def _getImg(self):
         img = self.getRawImg.get()
+        print 'img shape', img.shape
         return img[::4,::4]
 

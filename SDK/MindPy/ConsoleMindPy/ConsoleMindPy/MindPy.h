@@ -33,35 +33,32 @@ using std::string;
 #pragma comment(lib, "..\\MVCAMSDK.lib")
 #endif
 /*输出例程中调用相机的SDK接口日志信息*/
-#define SDK_TRACE(_FUNC_,TXT) \
-{\
-	CameraSdkStatus status;\
-	string msg;\
-	string FuncName;\
-	FuncName = #_FUNC_;\
-	FuncName = FuncName.Left(FuncName.FindOneOf("("));\
-\
-	status = _FUNC_;\
-	if (status != CAMERA_STATUS_SUCCESS)\
-	{\
-	msg = "Function:"+FuncName+" return error";\
-	std::cout<<msg<<std::endl;\
-	msg = "Error code:"+status+".refer to CameraStatus.h for more information";\
-	std::cout<<msg<<std::endl;\
-	}\
-	else\
-	{\
-	msg = "Function:"+FuncName+" return error";\
-	std::cout<<msg<<std::endl;\
-	msg = "Error code:"+status+".refer to CameraStatus.h for more information";\
-	std::cout<<msg<<std::endl;\
-	}\
-	msg = "";\
-	std::cout<<msg<<std::endl;\
-}
-
-
-
+//#define SDK_TRACE(_FUNC_,TXT) \
+//{\
+//	CameraSdkStatus status;\
+//	string msg;\
+//	string FuncName;\
+//	FuncName = #_FUNC_;\
+//	FuncName = FuncName.Left(FuncName.FindOneOf("("));\
+//\
+//	status = _FUNC_;\
+//	if (status != CAMERA_STATUS_SUCCESS)\
+//	{\
+//	msg = "Function:"+FuncName+" return error";\
+//	std::cout<<msg<<std::endl;\
+//	msg = "Error code:"+status+".refer to CameraStatus.h for more information";\
+//	std::cout<<msg<<std::endl;\
+//	}\
+//	else\
+//	{\
+//	msg = "Function:"+FuncName+" return error";\
+//	std::cout<<msg<<std::endl;\
+//	msg = "Error code:"+status+".refer to CameraStatus.h for more information";\
+//	std::cout<<msg<<std::endl;\
+//	}\
+//	msg = "";\
+//	std::cout<<msg<<std::endl;\
+//}
 
 
 class MindPy
@@ -87,33 +84,39 @@ public:
 	LONG			m_SnapRequest;//截图请求	
 	BYTE*           passBuffer;
 	int             bufferSize;
+
+
 	MindPy();
 	~MindPy();
-	int display(int a);
+	//int display(int a);
 	BOOL InitCamera();
 	int OnButtonSnapshot();
 	BYTE * OnButtonSnapshotWithNoSaveFree(CameraHandle m_hCamera);
 	BYTE * GetRawImg(CameraHandle m_hCamera);
 	int ReleaseRawImg(CameraHandle m_hCamera, BYTE *pbyBuffer);
+	bool UninitCamera(CameraHandle m_hCamera);
 
 };
 
+static MindPy* pMindpy;
 
 extern "C"
 {
+	//MINDPY_API int GetImg();
+	MINDPY_API CameraHandle InitCameraPlay();
+	MINDPY_API int GetRawImg(BYTE barray[], int limit, CameraHandle m_hCamera);
+	MINDPY_API int GetOneImg(BYTE barray[], int limit, CameraHandle m_hCamera);
+	MINDPY_API int UninitCamera(CameraHandle m_hCamera);
+
 	//MINDPY_API int Edisplay(int a);
-	MINDPY_API int GetImg();
+	
 
 	//MINDPY_API int RePyArray(BYTE *barray[], int limit);
 	//MINDPY_API int doubleRePyArray(BYTE barray[], int limit);
 
 	//MINDPY_API BYTE PointerSweep(BYTE *head, int index);
 	//MINDPY_API int sweepArray(int *ar1, int *ar2, int length);
-
-	MINDPY_API CameraHandle InitCameraPlay();
-	MINDPY_API int GetRawImg(BYTE barray[], int limit, CameraHandle m_hCamera);
-	MINDPY_API int GetOneImg(BYTE barray[], int limit, CameraHandle m_hCamera);
-	//MINDPY_API PyArrayObject* getPyArrayObject(PyArrayObject* aobj);
+//MINDPY_API PyArrayObject* getPyArrayObject(PyArrayObject* aobj);
 	//MINDPY_API npy_intp* reArrayData(PyArrayObject* aobj);
 	//MINDPY_API PyArrayObject* rePyArrayObject();
 }
