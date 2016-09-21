@@ -22,6 +22,7 @@ class Model(Thread,QObject):
         super(Model, self).__init__()
         self.setDaemon(True)
         self.show = Cv2ImShow()
+        self.save = Cv2ImSave()
         self.getRawImg = GetRawImg()
         self.imgQueue = collections.deque(maxlen = 3)
 
@@ -65,8 +66,14 @@ class Model(Thread,QObject):
         img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 17, 7)
 
         self.show.show('edge', img[::4,::4])
-        img, result, contours, treeList = findContours().runNoThrowChirldMethod(img)
-        self.show.show('find contours result', result[::4,::4])
-        origin = imgs[2].copy()
-        origin = FitEllipse().ellipseTreeforCircleIndexSort(origin, result, contours, treeList)
-        self.show.show('ellipse result', origin[::4,::4])
+        # self.save.save('filter.jpg', img[::4,::4])
+        # imgs = list(self.imgQueue)
+        # self.save.save('origin', imgs[0][::4,::4])
+        # img, result, contours, treeList = findContours().runNoThrowChirldMethod(img)
+        # self.show.show('find contours result', result[::4,::4])
+        # origin = imgs[2].copy()
+        # origin = FitEllipse().ellipseTreeforCircleIndexSort(origin, result, contours, treeList)
+        # self.show.show('ellipse result', origin[::4,::4])
+
+        FitEllipse().ellipseForIfCondition(img)
+

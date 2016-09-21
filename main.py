@@ -70,7 +70,7 @@ class Flow(object):
 
     def flowRepetitive(self,):
         img = self.img
-        pdb.set_trace()
+        # pdb.set_trace()
         img = ErodeDilate().run(img)
         # img = Canny().run(img)
         self.show.show('edge', img[::4,::4])
@@ -78,6 +78,14 @@ class Flow(object):
         self.show.show('find contours result', result[::4,::4])
         origin = FitEllipse().ellipseTreeforCircleIndexSort(self.origin, result, contours, treeList)
         self.show.show('ellipse result', origin[::4,::4])
+
+    def flowTest(self):
+        img = self.img
+        img = ErodeDilate().run(img)
+        img = cv2.medianBlur(img, 9)
+        self.show.show('edge', img[::4,::4])
+        FitEllipse().ellipseForIfCondition(img)
+        # self.show.show('ellipse result', origin[::4,::4])
 
     def flowCannyEllipse(self,):
         img = self.img
@@ -107,7 +115,8 @@ class TraverseFolder(object):
             flow = Flow(self.folder + "\\" + file)
             # flow.flow()
             # flow.flowCannyEllipse()
-            flow.flowRepetitive()
+            # flow.flowRepetitive()
+            flow.flowTest()
 
     def flowTree(self):
         for file in os.listdir(self.folder):
@@ -152,6 +161,7 @@ class RealTimeFlow(object):
         # self.arg = arg
         self.show = Cv2ImShow()
         self.getImg = GetImg()
+        self.save = Cv2ImSave()
 
     def img(self):
         return self.getImg.getImg()
@@ -162,8 +172,10 @@ class RealTimeFlow(object):
         img = ErodeDilate().run(img)
         # img = Canny().run(img)
         self.show.show('edge', img[::4,::4])
+        self.save.save('1.jpg',img[::4,::4])
         img, result, contours, treeList = findContours().runNewTreeMethod(img)
         self.show.show('find contours result', result[::4,::4])
+        # self.save.save('2', img[::4,::4])
         origin = FitEllipse().ellipseTreeforCircleIndexSort(self.origin, result, contours, treeList)
         self.show.show('ellipse result', origin[::4,::4])
 
@@ -171,7 +183,7 @@ if __name__ == '__main__':
     # tr = TraverseFolder(folder = 'VT')
     # tr.flowTree()
     SETTING({'ampFactor':'20X','cameraID':'MindVision'})
-    # tr = TraverseFolder(folder='IMG\\GIOF1')
+    # tr = TraverseFolder(folder='IMG\\GIOF1\\sig')
     # tr.flow()
     rtf = RealTimeFlow()
     rtf.flow()

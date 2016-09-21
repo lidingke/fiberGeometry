@@ -1,8 +1,9 @@
 import cv2
 import numpy as np
 import pdb
+import pickle
 from method.tree import NodeDict
-from method.toolkit import IsCircle, cv2CircleIndex, XlsWrite
+from method.toolkit import IsCircle, cv2CircleIndex, XlsWrite, Cv2ImShow
 # from method.toolkit import
 
 class find(object):
@@ -172,6 +173,7 @@ class FitEllipse(object):
         super(FitEllipse, self).__init__()
         # self.arg = arg
         self.circleIndex = cv2CircleIndex()
+        self.show = Cv2ImShow()
 
     def run(self, origin, result, contours, treeList):
         print 'tree:' , treeList
@@ -222,23 +224,64 @@ class FitEllipse(object):
         # XlsWrite().savelist(ellipseTree)
         return origin
 
-    def ellipseForIfCondition(self, origin, result, contours, treeList):
-        isCircle = IsCircle()
-        ellipseTree = []
-        ellipseTreeforCircleIndexSort = []
-        print 'tree', treeList
-        for x in treeList:
-            if not (x == 0 or x == -1):
-                result = cv2.fitEllipse(contours[int(x)])
-                ellipseTree.append(result)
-                area , circleIndex = self.circleIndex.contourIn(contours[int(x)])
-                result = tuple([circleIndex,area]) + self._coaxialityGet(result)
-                ellipseTreeforCircleIndexSort.append(result)
+    def ellipseForIfCondition(self, img):
+        contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+        # pdb.set_trace()
+        ampRatio = 0.08895
+        cladingList, coreList = [], []
+        for x, contour in enumerate(contours):
+            if contour.shape[0] > 5:
+                area, circleIndex = self.circleIndex.contourIn(contour)
+                ellipseResult = cv2.fitEllipse(contour)
+                if area > 50 :
+                    print 'ellipseCounter Result ', area, circleIndex, ellipseResult[1][0] * ampRatio, ellipseResult[1][1]*ampRatio
+                    radiusTemp = (ellipseResult[1][0] + ellipseResult[1][1]) * ampRatio / 2
+                    if radiusTemp > 3 and radiusTemp < 7 and circleIndex > 0.3:
+                        print 'core: ', ellipseResult[1][0]*ampRatio, ellipseResult[1][1]*ampRatio, circleIndex
+                        coreList.append((area, circleIndex, ellipseResult, contour))
+                    elif radiusTemp > 58 and radiusTemp < 65:
+                        print 'clad: ', area,ellipseResult[1][0], ellipseResult[1][1]
+                        cladingList.append((area, circleIndex, ellipseResult, contour))
+        self._filterCoreRange(coreList, cladingList, ampRatio)
+        # print 'coreclad', corePara, cladingList
+            # pdb.set_trace()
+            # self._mergeContour(img, coreList, 5)
+        # for circle in ellipseTree:
+        #     cv2.ellipse(img = origin, box = circle, color=(0, 0, 255))
 
-        for circle in ellipseTree:
-            cv2.ellipse(img = origin, box = circle, color=(0, 0, 255))
+        # return origin
 
-        return origin
+    def _filterCoreRange(self, coreList, cladingList, ampRatio):
+        if len(coreList) > 1:
+            corePara = self._getInnerCore(coreList)
+            # pdb.set_trace()
+            corePara = (corePara[1][1][0] * ampRatio, corePara[1][1][1] * ampRatio)
+        elif len(coreList) == 1:
+            corePara = coreList[0]
+            corePara = (corePara[2][1][0] * ampRatio, corePara[2][1][1] * ampRatio)
+            # pdb.set_trace()
+        else:
+            corePara = False
+        if len(cladingList) > 1:
+            cladPara = self._getInnerCore(cladingList)
+            cladPara = (cladPara[1][1][0]*ampRatio, cladPara[1][1][1]*ampRatio)
+        elif len(cladingList) == 1:
+            cladPara = cladingList[0]
+            cladPara = (cladPara[2][1][0]*ampRatio, cladPara[2][1][1]*ampRatio)
+        else:
+            cladPara = False
+        if corePara:
+            print 'core result: ', (corePara[0] + corePara[1])
+        if cladPara:
+            print 'clad result: ', (cladPara[0] + cladPara[1])
+
+    def _getInnerCore(self,coreList):
+        forSort = []
+        for x in coreList:
+            index = self._coaxialityGet(x[2])
+            forSort.append((index,x))
+        forSort.sort()
+        return forSort[1][0]
 
 
     def runFromOldTree(self, origin, result, contours, treeList):
@@ -250,6 +293,35 @@ class FitEllipse(object):
         for circle in ellipseTree:
             cv2.ellipse(img = origin, box = circle, color = (0,0,255))
         return origin
+
+    def _mergeContour(self, img, coreList,kernelIndex):
+        erodes = []
+        for contour in coreList:
+            contour = contour[3]
+            result = np.zeros(img.shape)
+            cv2.drawContours(result, contour, -1, (255), thickness = -1)
+            # self.show.show('core', result[::4,::4])
+            kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (kernelIndex, kernelIndex))
+            dilate = cv2.dilate(result, kernel)
+            self.show.show('core', dilate[::4,::4])
+            erodes.append(dilate)
+        erodeResult = np.zeros(img.shape)
+        for aerode in erodes:
+            erodeResult = erodeResult + aerode
+
+        erodeResult = erodeResult/len(erodes)
+        img = cv2.medianBlur(img, 9)
+        self.show.show('all', erodeResult[::4,::4])
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (kernelIndex, kernelIndex))
+        erode = cv2.erode(erodeResult, kernel+5)
+        # erodeResult = cv2.adaptiveThreshold(erodeResult, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 17, 7)
+
+        # self.show.show('core', erodeResult[::4,::4])
+
+
+            # dilate = cv2.dilate(result, kernel)
+
+
 
     def _coaxialityGet(self, result):
         coaxiality = abs(result[1][0] - result[1][1])

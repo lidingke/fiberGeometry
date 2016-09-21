@@ -52,13 +52,11 @@ class ErodeDilate(Edge):
 
     def run(self, img):
         medianBlur = self.SET["medianBlur"]["ErodeDilateKsize"]
-        img = cv2.medianBlur(img, 9)
+        img = cv2.medianBlur(img, medianBlur)
 
         # img  = cv2.pyrMeanShiftFiltering(img, 30, 30, 5)
-        try:
+        if len(img.shape) > 2:
             img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-        except Exception, e:
-            pass
 
         kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
         erode = cv2.erode(img, kernel)
@@ -69,7 +67,8 @@ class ErodeDilate(Edge):
         img = cv2.bitwise_not(img)
         blockSize = self.SET["adaptiveTreshold"]["blockSize"]
         Constant = self.SET["adaptiveTreshold"]["Constant"]
-        img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 17, 7)
+        img = cv2.adaptiveThreshold(img, 255,
+            cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, blockSize, Constant)
         # img = cv2.erode(img,kernel)
         # img = cv2.equalizeHist(img)
         # img = cv2.dilate(img,kernel)
