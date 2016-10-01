@@ -2,6 +2,7 @@ from threading import Thread
 from PyQt4.QtCore import QObject, pyqtSignal
 from SDK.mindpy import GetRawImg
 import cv2
+import numpy as np
 from method.edgedetect import ErodeDilate
 from method.contour import findContours
 from method.contour import FitEllipse
@@ -29,21 +30,12 @@ class Model(Thread,QObject):
 
     def run(self):
         while True:
-            # time.sleep(1)
             img = self._getImg()
-
-            # print 'emit ', img.shape
             self.returnImg.emit(img)
 
     def _getImg(self):
         img = self.getRawImg.get()
-        # print 'img shape', img.shape
         self.imgQueue.append(img)
-        # q = list(self.imgQueue)
-        # # print 'qlen ', len(q)
-        # if len(q) == 3:
-        #     pass
-        #     print 'imgqueue id ', id(q[0]), id(q[1]), id(q[2])
         return img[::4,::4]
 
 
@@ -64,16 +56,17 @@ class Model(Thread,QObject):
         img = imgadd/3
         img = cv2.medianBlur(img, 9)
         img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 17, 7)
-
         self.show.show('edge', img[::4,::4])
-        # self.save.save('filter.jpg', img[::4,::4])
-        # imgs = list(self.imgQueue)
-        # self.save.save('origin', imgs[0][::4,::4])
-        # img, result, contours, treeList = findContours().runNoThrowChirldMethod(img)
-        # self.show.show('find contours result', result[::4,::4])
-        # origin = imgs[2].copy()
-        # origin = FitEllipse().ellipseTreeforCircleIndexSort(origin, result, contours, treeList)
-        # self.show.show('ellipse result', origin[::4,::4])
+        FitEllipse().ellipseForIfCondition(img)
 
+    def _calcImg2(self):
+        imgs = list(self.imgQueue)
+        imgAllor = np.zeros(imgs[0].shape, dtype=imgs[0].dtype)
+        for img in imgs:
+            img = ErodeDilate().run(img)
+            imgAllor = cv2.bitwise_or(imgAllor, img)
+        img = cv2.medianBlur(imgAllor, 9)
+        # img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 17, 7)
+        self.show.show('edge', img[::4,::4])
         FitEllipse().ellipseForIfCondition(img)
 
