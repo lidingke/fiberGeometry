@@ -15,5 +15,21 @@
             "hight": 1944,
             "dimension": 1
         }
+    },
+    "{}":{
+        "dip": "500W",
+        "ampPixSize": 0.088,
+        "adaptiveTreshold": {
+            "blockSize": 11,
+            "Constant": 7
+        },
+        "medianBlur": {
+            "ErodeDilateKsize": 9
+        },
+        "rect": {
+            "width": 819,
+            "hight": 460,
+            "dimension": 1
+        }
     }
 }

@@ -4,6 +4,7 @@ import pdb
 import pickle
 from method.tree import NodeDict
 from method.toolkit import IsCircle, cv2CircleIndex, XlsWrite, Cv2ImShow
+from method.toolkit import DynamicPick
 # from method.toolkit import
 
 class find(object):
@@ -38,14 +39,10 @@ class findContours(find):
             if xhierar[2] == -1:
                 # pdb.set_trace()
                 print 'hieracrchys' ,i ,hierarchys[0][i]
-            # if circleIndex > 0.8 and area >40:
-            # if circleIndex > 0.4 and area >10:
             if area >10:
                 tree[xhierar[3]] = i
         cv2.drawContours(result, contours, -1, (0,0,255))
-        # pdb.set_trace()
-        # for key in tree.keys():
-        #     print "key", key, "value", tree[key]
+
         tree.treeFilter()
 
         # tree.treeFilter()
@@ -68,23 +65,17 @@ class findContours(find):
             cv2.drawContours(temp, contours[int(key)], -1, (0,255,255))
             cv2.imshow("img", temp[::2,::2])
             cv2.waitKey(0)
-        # pdb.set_trace()
-        # print('result:',resultTree)
         return (img, result, contours, tree, maxTree, )
 
     def runNewTreeMethod(self,img):
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         result = np.ones(img.shape) * 255
         # print "next and previous contours at the same hierarchical level, the first child contour and the parent contour,"
-        # pdb.set_trace()
         fatherDot = set()
         for i,x in enumerate(contours):
             xhierar = hierarchys[0][i]
             area , circleIndex = self.circleIndex.contourIn(x)
-            # if xhierar[2] == -1:
-                # pdb.set_trace()
-                # print 'hieracrchys' ,i ,hierarchys[0][i]
-            # xhierar[3]
+
             fatherDot.add(xhierar[3])
         print 'fatherdot', fatherDot
 
@@ -128,43 +119,43 @@ class findContours(find):
         return img, result, contours, fatherDot
 
 
-class HoughCircles(find):
-    """docstring for HoughCircles"""
-    def __init__(self, ):
-        super(HoughCircles, self).__init__()
+# class HoughCircles(find):
+#     """docstring for HoughCircles"""
+#     def __init__(self, ):
+#         super(HoughCircles, self).__init__()
 
-    def run(self, img, origin ):
-        self.origin = origin
-        para = 150
-        circleMap = cv2.HoughCircles(image = img,
-            method = cv2.cv.CV_HOUGH_GRADIENT,
-            dp = 1,
-            minDist = len(img)/8,#len(img)/8,
-            param1 = 20,
-            param2 = 10,
-            minRadius = 0,
-            maxRadius = 300)
-        c0map = []
-        if circleMap is None:
-            raise Exception('circle not find')
-        for c0 in circleMap[0]:
-            c01sum = []
-            for c1 in circleMap[0]:
-                diff = abs(c0[1]-c1[1])+abs(c0[0]-c1[0])
-                c01sum.append(diff)
-            c0map.append((sum(c01sum)/len(c01sum), c0[0], c0[1], c0[2]))
-            # img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
-            cv2.circle(self.origin,(c0[0],c0[1]), c0[2], (255 ,0,0), 2)
-        # pdb.set_trace()
-        # if len(c0map) >10:
-        #     c0map = c0map[4:-4]
-        c0map.sort()
-        circle = c0map[0]
-        # cv2.circle(img,(circle[1],circle[2]), circle[3], (0,255,0), 10)
-        cv2.circle(self.origin,(circle[1],circle[2]), circle[3], (0,0,255), 4)
-        # cv2.imwrite('result.jpg',self.origin)
+#     def run(self, img, origin ):
+#         self.origin = origin
+#         para = 150
+#         circleMap = cv2.HoughCircles(image = img,
+#             method = cv2.cv.CV_HOUGH_GRADIENT,
+#             dp = 1,
+#             minDist = len(img)/8,#len(img)/8,
+#             param1 = 20,
+#             param2 = 10,
+#             minRadius = 0,
+#             maxRadius = 300)
+#         c0map = []
+#         if circleMap is None:
+#             raise Exception('circle not find')
+#         for c0 in circleMap[0]:
+#             c01sum = []
+#             for c1 in circleMap[0]:
+#                 diff = abs(c0[1]-c1[1])+abs(c0[0]-c1[0])
+#                 c01sum.append(diff)
+#             c0map.append((sum(c01sum)/len(c01sum), c0[0], c0[1], c0[2]))
+#             # img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
+#             cv2.circle(self.origin,(c0[0],c0[1]), c0[2], (255 ,0,0), 2)
+#         # pdb.set_trace()
+#         # if len(c0map) >10:
+#         #     c0map = c0map[4:-4]
+#         c0map.sort()
+#         circle = c0map[0]
+#         # cv2.circle(img,(circle[1],circle[2]), circle[3], (0,255,0), 10)
+#         cv2.circle(self.origin,(circle[1],circle[2]), circle[3], (0,0,255), 4)
+#         # cv2.imwrite('result.jpg',self.origin)
 
-        return self.origin
+        # return self.origin
 
 
 class FitEllipse(object):
@@ -174,6 +165,7 @@ class FitEllipse(object):
         # self.arg = arg
         self.circleIndex = cv2CircleIndex()
         self.show = Cv2ImShow()
+        self.dpick = DynamicPick()
 
     def run(self, origin, result, contours, treeList):
         print 'tree:' , treeList
@@ -234,22 +226,28 @@ class FitEllipse(object):
                 area, circleIndex = self.circleIndex.contourIn(contour)
                 ellipseResult = cv2.fitEllipse(contour)
                 if area > 50 :
-                    print 'ellipseCounter Result ', area, circleIndex, ellipseResult[1][0] * ampRatio, ellipseResult[1][1]*ampRatio
+                    # print 'ellipseCounter Result ', area, circleIndex, ellipseResult[1][0] * ampRatio, ellipseResult[1][1]*ampRatio
                     radiusTemp = (ellipseResult[1][0] + ellipseResult[1][1]) * ampRatio / 2
                     if radiusTemp > 3 and radiusTemp < 7 and circleIndex > 0.3:
-                        print 'core: ', ellipseResult[1][0]*ampRatio, ellipseResult[1][1]*ampRatio, circleIndex
+                        # print 'core: ', ellipseResult[1][0]*ampRatio, ellipseResult[1][1]*ampRatio, circleIndex
                         coreList.append((area, circleIndex, ellipseResult, contour))
                     elif radiusTemp > 58 and radiusTemp < 65:
-                        print 'clad: ', area,ellipseResult[1][0], ellipseResult[1][1]
+                        # print 'clad: ', area,ellipseResult[1][0], ellipseResult[1][1]
                         cladingList.append((area, circleIndex, ellipseResult, contour))
-        self._filterCoreRange(coreList, cladingList, ampRatio)
-        # print 'coreclad', corePara, cladingList
-            # pdb.set_trace()
-            # self._mergeContour(img, coreList, 5)
-        # for circle in ellipseTree:
-        #     cv2.ellipse(img = origin, box = circle, color=(0, 0, 255))
+        # pdb.set_trace()
+        if len(coreList) == 2:
+            allContour = np.concatenate((coreList[0][3], coreList[1][3]))
+            ellipseResult = cv2.fitEllipse(allContour)
+            # print 'ellipseResult', ellipseResult
+            print '2 core: ', ellipseResult[1][0]*ampRatio, ellipseResult[1][1]*ampRatio
+        elif len(coreList) == 1:
+            ellipseResult = coreList[0][2]
+            print '1 core: ', ellipseResult[1][0]*ampRatio, ellipseResult[1][1]*ampRatio
+        # self._filterCoreRange(coreList, cladingList, ampRatio)
 
-        # return origin
+
+    def _twoCircle2one(self):
+        pdb.set_trace()
 
     def _filterCoreRange(self, coreList, cladingList, ampRatio):
         if len(coreList) > 1:

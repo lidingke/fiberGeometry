@@ -183,10 +183,14 @@ if __name__ == '__main__':
     # tr = TraverseFolder(folder = 'VT')
     # tr.flowTree()
     SETTING({'ampFactor':'20X','cameraID':'MindVision'})
-    # tr = TraverseFolder(folder='IMG\\GIOF1\\sig')
-    # tr.flow()
-    rtf = RealTimeFlow()
-    rtf.flow()
+    tr = TraverseFolder(folder='IMG\\GIOF1\\sig')
+    tr.flow()
+    # rtf = RealTimeFlow()
+    # rtf.flow()
+
+
+
+
     # calc hist
     # tr = TraverseFolder(folder = 'VT')
     # tr.flowHist()

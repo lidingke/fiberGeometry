@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import pdb
+import pickle
 
 class CalcHist(object):
     """docstring for CalcHist"""
@@ -17,6 +18,22 @@ class CalcHist(object):
             cv2.line(histImg,(h,256),(h,256-intensity), [255,0,0])
         cv2.imshow("hist",histImg)
         cv2.waitKey(0)
+
+class DynamicPick(object):
+    """docstring for DynamicPick"""
+    def __init__(self, ):
+        super(DynamicPick, self).__init__()
+        self.pick = {}
+
+    def load(self, name):
+        with open(name,'rb') as f:
+            self.pick = pickle.load(f)
+        return self.pick
+
+    def save(self, name, pick):
+        self.pick = pick
+        with open(name,'wb') as f:
+            pickle.dump(self.pick, f)
 
 
 class IsCircle(object):
