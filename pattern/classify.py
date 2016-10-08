@@ -9,6 +9,7 @@ class MetaClassify(CV2MethodSet):
         super(MetaClassify, self).__init__()
         # self.arg = arg
         self.result = {}
+
     # @timing
     def find(self, img):
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
@@ -46,6 +47,7 @@ class G652Classify(MetaClassify):
         # pdb.set_trace()
         self._mergedEllipese(coreList, 'core')
         self._mergedEllipese(cladingList, 'clad')
+        # self.getResult()
 
     def _mergedEllipese(self, lst, id_):
         ampRatio = self.ampRatio
@@ -65,3 +67,29 @@ class G652Classify(MetaClassify):
             ellipseResult = cv2.fitEllipse(allContour)
             print '2+ ', id_, ellipseResult[1][0]*ampRatio, ellipseResult[1][1]*ampRatio
         self.result[id_] = ellipseResult
+
+    def getResult(self):
+        coreResult = self.result.get('core', False)
+        cladResult = self.result.get('clad', False)
+        if coreResult and cladResult:
+            coreCore, coreRadius, angle = coreResult
+            cladCore, cladRadius, angle = cladResult
+            concentricity = ((coreCore[0] - cladCore[0])**2
+                             + (coreCore[1] - cladCore[1])**2 )**0.5
+            concentricity = concentricity * self.ampRatio
+            coreMidRadius = self.ampRatio * (coreRadius[0] + coreRadius[1])/2
+            cladMidRadius = self.ampRatio * (cladRadius[0] + cladRadius[1])/2
+            coreRness = self.ampRatio * abs(coreRadius[0] - coreRadius[1])
+            cladRness = self.ampRatio * abs(cladRadius[0] - cladRadius[1])
+            # print 'concentricity:', concentricity
+            # print 'coreMindRadius:', coreMidRadius
+            # print 'cladMidRadius:', cladMidRadius
+            # print 'coreRness: ', coreRness
+            # print 'cladRness:', cladRness
+            print "result ,%0.4f,%0.4f,%0.4f,%0.4f,%0.4f,"%(concentricity,
+                                                    coreMidRadius,
+                                                    cladMidRadius,
+                                                    coreRness,
+                                                    cladRness)
+        else:
+            print 'error find core or clad'

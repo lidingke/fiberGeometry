@@ -19,6 +19,7 @@ import collections
 class Model(Thread,QObject):
     """docstring for Model"""
     returnImg = pyqtSignal(object)
+    # returnFiberResult = pyqtSignal(object)
 
     def __init__(self, ):
         Thread.__init__(self)
@@ -28,7 +29,8 @@ class Model(Thread,QObject):
         self.show = Cv2ImShow()
         self.save = Cv2ImSave()
         self.getRawImg = GetRawImg()
-        self.imgQueue = collections.deque(maxlen = 3)
+        self.imgQueue = collections.deque(maxlen = 5)
+        self.fiberResult = {}
 
 
     def run(self):
@@ -43,7 +45,7 @@ class Model(Thread,QObject):
 
 
     def mainCalculate(self):
-        Thread(target = self._calcImg).start()
+        Thread(target = self._calcImg2).start()
 
 
     def _calcImg(self):
@@ -67,9 +69,20 @@ class Model(Thread,QObject):
         imgAllor = np.zeros(imgs[0].shape, dtype=imgs[0].dtype)
         for img in imgs:
             img = ExtractEdge().run(img)
+            # self.show.show('img', img[::4,::4])
             imgAllor = cv2.bitwise_or(imgAllor, img)
-        img = cv2.medianBlur(imgAllor, 9)
+        img = cv2.medianBlur(imgAllor, 5)
         # img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 17, 7)
         self.show.show('edge', img[::4,::4])
-        G652Classify().find(img)
+        classify = G652Classify()
+        classify.find(img)
+        classify.getResult()
+
+        # coreResult = self.fiberResult.get('core', (0))
+        # cladResult = self.fiberResult.get('clad', (0))
+        #
+        # coreCore, coreRadius, angle = coreResult
+        # cladCore, cladRadius, angle = cladResult
+        # # concentricity =
+
 

@@ -27,7 +27,6 @@ class GetImage(CV2MethodSet):
                 self.img = cv2.cvtColor(self.img, cv2.COLOR_RGB2GRAY)
 
 
-
     def singleFileFind(self, dir_):
         self.img = cv2.imread(dir_)
         self.origin = self.img.copy()

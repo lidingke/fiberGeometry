@@ -19,8 +19,11 @@ class CVTest(unittest.TestCase):
         self.assertIsInstance(img, np.ndarray)
         img = ExtractEdge().run(img)
         self.assertIsInstance(img, np.ndarray)
-        result = G652Classify().find(img)
+        classify = G652Classify()
+        result = classify.find(img)
         self.assertIsInstance(result, dict)
+        print 'result', classify.getResult()
+        # print 'result ', result
 
 
 if __name__ == '__main__':
