@@ -24,7 +24,7 @@
             "Constant": 7
         },
         "medianBlur": {
-            "ErodeDilateKsize": 9
+            "ErodeDilateKsize": 5
         },
         "rect": {
             "width": 819,

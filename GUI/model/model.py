@@ -7,6 +7,9 @@ from method.edgedetect import ErodeDilate
 from method.contour import findContours
 from method.contour import FitEllipse
 
+from pattern.edge import ExtractEdge
+from pattern.classify import G652Classify
+
 from method.toolkit import Cv2ImShow, Cv2ImSave
 import time
 import pdb
@@ -63,10 +66,10 @@ class Model(Thread,QObject):
         imgs = list(self.imgQueue)
         imgAllor = np.zeros(imgs[0].shape, dtype=imgs[0].dtype)
         for img in imgs:
-            img = ErodeDilate().run(img)
+            img = ExtractEdge().run(img)
             imgAllor = cv2.bitwise_or(imgAllor, img)
         img = cv2.medianBlur(imgAllor, 9)
         # img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 17, 7)
         self.show.show('edge', img[::4,::4])
-        FitEllipse().ellipseForIfCondition(img)
+        G652Classify().find(img)
 

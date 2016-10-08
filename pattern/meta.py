@@ -11,7 +11,7 @@ from setting.set import SETTING
 
 class CV2MethodSet(object):
     """docstring for CV2MethodSet"""
-    def __init__(self,)
+    def __init__(self,):
         """ init """
         super(CV2MethodSet, self).__init__()
         self.Show = Cv2ImShow()

@@ -1,17 +1,20 @@
 import cv2
 import numpy as np
 from pattern.meta import CV2MethodSet
+from method.toolkit import timing
 
 class MetaClassify(CV2MethodSet):
     """docstring for MetaClassify"""
     def __init__(self, ):
         super(MetaClassify, self).__init__()
         # self.arg = arg
-
-    def find(self):
+        self.result = {}
+    # @timing
+    def find(self, img):
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         # pdb.set_trace()
         self.fitEllipses(contours, hierarchys)
+        return self.result
 
     def fitEllipses(self, contours, hierarchys):
         pass
@@ -21,7 +24,7 @@ class G652Classify(MetaClassify):
     """docstring for G652Classify"""
     def __init__(self, ):
         super(G652Classify, self).__init__()
-        self.result = []
+        self.result = {}
         self.ampRatio = 0.08895
 
     def fitEllipses(self, contours, hierarchys):

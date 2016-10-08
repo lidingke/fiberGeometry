@@ -1,12 +1,35 @@
 # from setting.load import WriteReadJson
 from setting.set import SETTING
 import pdb
+import numpy as np
+from pattern.getimg import GetImage
+from pattern.edge import ExtractEdge
+from pattern.classify import G652Classify
+
+import unittest
+
+class CVTest(unittest.TestCase):
 
 
-from method.new.mergecircle import MergeCircle
-from method.new.testMerge import mer
+    def setUp(self):
+        SETTING({})
+
+    def test_functionall(self):
+        img = GetImage().get("IMG\\GIOF1\\sig")
+        self.assertIsInstance(img, np.ndarray)
+        img = ExtractEdge().run(img)
+        self.assertIsInstance(img, np.ndarray)
+        result = G652Classify().find(img)
+        self.assertIsInstance(result, dict)
+
 
 if __name__ == '__main__':
+    unittest.main()
     # mc = MergeCircle()
     # mc.flow()
-    mer()
+    # SETTING({})
+    # img = GetImage().get("IMG\\GIOF1\\sig")
+    # img = ExtractEdge().run(img)
+    # img = G652Classify().find(img)
+
+
