@@ -25,7 +25,7 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(745, 534)
+        MainWindow.resize(775, 534)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.pushButton = QtGui.QPushButton(self.centralwidget)
@@ -35,9 +35,15 @@ class Ui_MainWindow(object):
         self.widget.setGeometry(QtCore.QRect(10, 10, 648, 486))
         self.widget.setMinimumSize(QtCore.QSize(400, 400))
         self.widget.setObjectName(_fromUtf8("widget"))
+        self.multiTest = QtGui.QPushButton(self.centralwidget)
+        self.multiTest.setGeometry(QtCore.QRect(670, 60, 75, 23))
+        self.multiTest.setObjectName(_fromUtf8("multiTest"))
+        self.sharpLabel = QtGui.QLabel(self.centralwidget)
+        self.sharpLabel.setGeometry(QtCore.QRect(670, 100, 101, 41))
+        self.sharpLabel.setObjectName(_fromUtf8("sharpLabel"))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 745, 23))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 775, 23))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(MainWindow)
@@ -50,4 +56,6 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow", None))
         self.pushButton.setText(_translate("MainWindow", "PushButton", None))
+        self.multiTest.setText(_translate("MainWindow", "multiTest", None))
+        self.sharpLabel.setText(_translate("MainWindow", "TextLabel", None))
 

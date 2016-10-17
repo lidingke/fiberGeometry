@@ -26,7 +26,7 @@ class G652Classify(MetaClassify):
     def __init__(self, ):
         super(G652Classify, self).__init__()
         self.result = {}
-        self.ampRatio = 0.08895
+        self.ampRatio = 0.0835#0.08653
 
     def fitEllipses(self, contours, hierarchys):
         ampRatio = self.ampRatio
@@ -41,7 +41,7 @@ class G652Classify(MetaClassify):
                     if radiusTemp > 3 and radiusTemp < 7 and circleIndex > 0.3:
                         # print 'core: ', ellipseResult[1][0]*ampRatio, ellipseResult[1][1]*ampRatio, circleIndex
                         coreList.append((area, circleIndex, ellipseResult, contour))
-                    elif radiusTemp > 50 and radiusTemp < 70:
+                    elif radiusTemp > 55 and radiusTemp < 70:
                         # print 'clad: ', area,ellipseResult[1][0], ellipseResult[1][1]
                         cladingList.append((area, circleIndex, ellipseResult, contour))
         # pdb.set_trace()
@@ -77,19 +77,17 @@ class G652Classify(MetaClassify):
             concentricity = ((coreCore[0] - cladCore[0])**2
                              + (coreCore[1] - cladCore[1])**2 )**0.5
             concentricity = concentricity * self.ampRatio
-            coreMidRadius = self.ampRatio * (coreRadius[0] + coreRadius[1])/2
-            cladMidRadius = self.ampRatio * (cladRadius[0] + cladRadius[1])/2
+            coreMidRadius = self.ampRatio * (coreRadius[0] + coreRadius[1])
+            cladMidRadius = self.ampRatio * (cladRadius[0] + cladRadius[1])
+            # cladMidRadius = (cladRadius[0] + cladRadius[1])
             coreRness = self.ampRatio * abs(coreRadius[0] - coreRadius[1])
             cladRness = self.ampRatio * abs(cladRadius[0] - cladRadius[1])
-            # print 'concentricity:', concentricity
-            # print 'coreMindRadius:', coreMidRadius
-            # print 'cladMidRadius:', cladMidRadius
-            # print 'coreRness: ', coreRness
-            # print 'cladRness:', cladRness
-            print "result ,%0.4f,%0.4f,%0.4f,%0.4f,%0.4f,"%(concentricity,
-                                                    coreMidRadius,
-                                                    cladMidRadius,
-                                                    coreRness,
-                                                    cladRness)
+            # print "result ,%0.4f,%0.4f,%0.4f,%0.4f,%0.4f,"%(concentricity,
+            #                                         coreMidRadius,
+            #                                         cladMidRadius,
+            #                                         coreRness,
+            #                                         cladRness)
+            return (concentricity,coreMidRadius,cladMidRadius,coreRness,cladRness)
         else:
             print 'error find core or clad'
+            return ()

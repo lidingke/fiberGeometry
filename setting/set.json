@@ -4,7 +4,7 @@
         "dip": "500W",
         "ampPixSize": 0.088,
         "adaptiveTreshold": {
-            "blockSize": 11,
+            "blockSize": 15,
             "Constant": 7
         },
         "medianBlur": {

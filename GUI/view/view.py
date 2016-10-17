@@ -1,7 +1,7 @@
 from GUI.UI.mainUI import Ui_MainWindow
 
 from PyQt4.QtCore import QRect
-from PyQt4.QtGui import QWidget, QMainWindow, QPainter,\
+from PyQt4.QtGui import QWidget, QMainWindow, QPainter,QFont,\
 QPixmap, QImage, QColor
 from method.toolkit import timing
 import time
@@ -22,19 +22,26 @@ class View(QMainWindow,Ui_MainWindow):
         # self.painterWidget.getPixmap(self.readImg())
         # self.addWidget(pw)
         self.IS_INIT_PAINTER = False
+        font = QFont("Microsoft YaHei", 20, 75)
+        self.sharpLabel.setFont(font)
 
     def readImg(self):
         img = cv2.imread("IMG\\7core2.bmp")
         return img
 
     # @timing
-    def updatePixmap(self,arr):
+    def updatePixmap(self,arr, sharp):
         if not self.IS_INIT_PAINTER:
             self.painterWidget.initPixmap(arr)
             self.IS_INIT_PAINTER = True
         self.painterWidget.getPixmap(arr)
+        self.sharpLabel.setText(sharp)
 
+    def getModel(self, model):
+        self.model = model
 
+    def closeEvent(self, *args, **kwargs):
+        self.model.exit()
 
 
 class PainterWidget(QWidget):

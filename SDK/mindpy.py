@@ -12,21 +12,21 @@ except WindowsError:
 print mydll
 
 
-class GetImg(object):
-    """docstring for GetImg"""
-    def __init__(self, ):
-        super(GetImg, self).__init__()
-        # self.arg = arg
-
-    def getImg(self):
-        limit = 2592*1944*3
-        ctypeArray = c_byte * limit
-        arget = ctypeArray()
-        hand = mydll.InitCameraPlay()
-        md = mydll.GetOneImg(arget, limit, hand)
-        npArray = np.array(arget, dtype=np.uint8)
-        npArray = npArray.reshape(1944, 2592, 3)
-        return npArray
+# class GetImg(object):
+#     """docstring for GetImg"""
+#     def __init__(self, ):
+#         super(GetImg, self).__init__()
+#         # self.arg = arg
+#
+#     def getImg(self):
+#         limit = 2592*1944*3
+#         ctypeArray = c_byte * limit
+#         arget = ctypeArray()
+#         hand = mydll.InitCameraPlay()
+#         md = mydll.GetOneImg(arget, limit, hand)
+#         npArray = np.array(arget, dtype=np.uint8)
+#         npArray = npArray.reshape(1944, 2592, 3)
+#         return npArray
 
 class GetRawImg(object):
     """docstring for getRawImg"""
@@ -55,21 +55,23 @@ class GetRawImg(object):
         # print 'nparray ', npArray.shape
         return npArray
 
-
-class IsInitCamera(object):
-    """docstring for InitCamera"""
-    def __init__(self, ):
-        super(IsInitCamera, self).__init__()
-        # self.arg = arg
+    def unInitCamera(self):
+        mydll.UninitCamera(self.hand)
 
 
-    def isInit(self):
-        hand = mydll.InitCameraPlay()
-        mydll.UninitCamera(hand)
-        if hand:
-            return True
-        else:
-            return False
+# class IsInitCamera(object):
+#     """docstring for InitCamera"""
+#     def __init__(self, ):
+#         super(IsInitCamera, self).__init__()
+#         # self.arg = arg
+#
+#     def isInit(self):
+#         hand = mydll.InitCameraPlay()
+#         mydll.UninitCamera(hand)
+#         if hand:
+#             return True
+#         else:
+#             return False
 
 
 

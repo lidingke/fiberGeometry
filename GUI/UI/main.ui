@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>745</width>
+    <width>775</width>
     <height>534</height>
    </rect>
   </property>
@@ -43,13 +43,39 @@
      </size>
     </property>
    </widget>
+   <widget class="QPushButton" name="multiTest">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>60</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>multiTest</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="sharpLabel">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>100</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>745</width>
+     <width>775</width>
      <height>23</height>
     </rect>
    </property>
