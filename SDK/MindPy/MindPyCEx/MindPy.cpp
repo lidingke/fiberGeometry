@@ -60,13 +60,13 @@ CameraSdkStatus MindPy::InitCamera()
 	status = CameraInitEx(0, -1, -1, &m_hCamera);
 	funName = "CameraInitEx";
 	IsCameraStatusSuccess(status, &funName);
-	if (status != 0){return status;}
+	if (status != CAMERA_STATUS_SUCCESS){return status;}
 
 	//Tell the camera begin to sendding image
 	status = CameraPlay(m_hCamera);
 	funName = "CameraPlay";
 	IsCameraStatusSuccess(status, &funName);
-	if (status != 0) { return status; }
+	if (status != CAMERA_STATUS_SUCCESS) { return status; }
 	return CAMERA_STATUS_SUCCESS;
 }
 
@@ -87,13 +87,13 @@ CameraSdkStatus MindPy::GetRawImg()
 
 CameraSdkStatus MindPy::ReleaseRawImg()
 {
-	int status;
 	//	CameraSnapToBuffer抓拍一帧图像数据到缓冲区中，该缓冲区由SDK内部申请,成功调用后，需要
 	if ((status = CameraReleaseImageBuffer(m_hCamera, pRawBuffer)) != CAMERA_STATUS_SUCCESS)
 	{
-		std::cout << "release failed,error code " << status << std::endl;
+		std::cout << "release failed, error code " << status << std::endl;
 		return status;
 	}
+	CameraAlignFree(this->pRawBuffer);
 	return status;
 }
 
@@ -119,8 +119,8 @@ static PyObject* GetRawImg(PyObject* self, PyObject* args)
 {
 
 	CameraSdkStatus status;
-
-	npy_int limit = 1944 * 2592;
+	// 1944*2052 dpi
+	npy_int limit = 5038848;
 
 	//if (!PyArg_ParseTuple(args, "I", &limit))
 	//{
@@ -144,9 +144,10 @@ static PyObject* GetRawImg(PyObject* self, PyObject* args)
 	if (status != CAMERA_STATUS_SUCCESS)
 	{
 		PyErr_Format(PyExc_ValueError, "release raw img buffer error: %d", status);
+		Py_DECREF(out);
 		return NULL;
 	}
-	//CameraAlignFree(arrayGet);
+	
 	return PyArray_Return(out);
 
 };
@@ -227,13 +228,3 @@ initMindPy(void)
 	import_array();
 }
 
-
-//
-//
-
-//
-//MINDPY_API int UninitCamera(CameraHandle m_hCamera)
-//{
-//	pMindpy->UninitCamera(m_hCamera);
-//	return true;
-//};

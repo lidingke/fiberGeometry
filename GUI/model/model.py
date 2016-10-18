@@ -69,21 +69,6 @@ class Model(Thread,QObject):
         with open('IMG\\result.csv', 'wb+') as f:
             f.writelines(resultlist)
 
-    # def _calcImg2(self):
-    #     imgs = list(self.imgQueue)
-    #     isImgAdded = True
-    #     for img in imgs:
-    #         img = ErodeDilate().run(img)
-    #         if isImgAdded:
-    #             imgadd = img
-    #             isImgAdded = False
-    #         else:
-    #             imgadd = imgadd + img
-    #     img = imgadd/3
-    #     img = cv2.medianBlur(img, 9)
-    #     img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 17, 7)
-    #     self.show.show('edge', img[::4,::4])
-    #     FitEllipse().ellipseForIfCondition(img)
 
     def _calcImg(self):
         img = self._getDifferImg()
@@ -97,14 +82,11 @@ class Model(Thread,QObject):
             img = ExtractEdge().run(img)
 
             imgAllor = cv2.bitwise_or(imgAllor, img)
-        # self.show.show('img', img[::4, ::4])
         img = cv2.medianBlur(imgAllor, 7)
-
         return img
 
     def _toClassify(self, img):
 
-        # self.show.show('edge', img[::4,::4])
         classify = G652Classify()
         classify.find(img)
         result = classify.getResult()

@@ -57,11 +57,6 @@ class CVTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-    # mc = MergeCircle()
-    # mc.flow()
-    # SETTING({})
-    # img = GetImage().get("IMG\\GIOF1\\sig")
-    # img = ExtractEdge().run(img)
-    # img = G652Classify().find(img)
+
 
 

@@ -41,19 +41,5 @@ class GetRawImg(object):
         mdp.uninitCamera()
 
 
-# class IsInitCamera(object):
-#     """docstring for InitCamera"""
-#     def __init__(self, ):
-#         super(IsInitCamera, self).__init__()
-#         # self.arg = arg
-#
-#     def isInit(self):
-#         hand = mydll.InitCameraPlay()
-#         mydll.UninitCamera(hand)
-#         if hand:
-#             return True
-#         else:
-#             return False
-
 
 
