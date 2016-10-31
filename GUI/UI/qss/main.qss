@@ -1,0 +1,120 @@
+QLabel{
+    color: white;
+}
+
+QPushButton {
+    background-color: #049ff1;
+    color: white;
+    border-width: 2px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 5;
+    padding: 3px;
+    min-width: 9ex;
+    min-height: 2.5ex;
+}
+
+QPushButton:hover {
+    padding-right: 5px;
+    padding-bottom: 5px;
+    background-color: #72CF07;
+}
+
+/* Increase the padding, so the text is shifted when the button is
+   pressed. */
+QPushButton:pressed {
+    padding-left: 5px;
+    padding-top: 5px;
+    background-color: #58b2dc;
+}
+
+QWidget#canvas{
+    background-color: white;
+    border-width: 2px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 5;
+}
+
+/**********QLineEdit************/
+QLineEdit{
+    /*border:none;*/
+    border-radius: 5px;
+    border: 2px solid white;
+    /*border-color:white;*/
+    background:#049ff1;
+    color: white;
+}
+
+QLineEdit:read-only, QLineEdit:read-only:hover{
+    border: none;
+    background:#049ff1;
+    color: white;
+}
+
+QLineEdit:!read-only:hover {
+    border-radius: 5px;
+    border: 2px solid white;
+    /*border-color:white;*/
+    background:#049ff1;
+    color: black;
+}
+
+/***********QComboBox**********/
+QComboBox {
+    border-radius: 4px;
+    border: 2px solid white;
+    background:#049ff1;
+}
+QComboBox:enabled {
+    color: white;
+}
+QComboBox:!enabled {
+    color: gray;
+}
+QComboBox:enabled:hover {
+    border-radius: 5px;
+    border: 2px solid white;
+    background:#72cf07;
+}
+QComboBox::drop-down {
+    width: 20px;
+    border-left: 2px solid white;
+    background: transparent;
+}
+QComboBox::drop-down:hover {
+    border-left: 2px solid white;
+    background: #FF6600;
+}
+/*QComboBox::down-arrow:on {*/
+    /*border-left: 2px solid white;*/
+    /*background: #FF6600;*/
+/*}*/
+QComboBox QAbstractItemView {
+    border: 2px solid #1291A9;
+        background: #049ff1;
+        outline: 2px solid #1291A9;
+}
+QComboBox QAbstractItemView::item {
+        color: #049ff1;
+}
+QComboBox QAbstractItemView::item:selected {
+        background: rgb(232, 241, 250);
+        color: rgb(2, 65, 132);
+}
+
+QComboBox QAbstractItemView::scrollbar {
+        background: black;
+}
+
+QTextBrowser{
+    background-color: #049ff1;
+    color: white;
+    border-width: 2px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 5;
+    padding: 3px;
+    min-width: 9ex;
+    min-height: 2.5ex;
+}

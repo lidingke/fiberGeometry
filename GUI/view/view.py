@@ -1,4 +1,5 @@
 from GUI.UI.mainUI import Ui_MainWindow
+from GUI.UI.newgui import Ui_MainWindow as new_MainWindow
 
 from PyQt4.QtCore import QRect
 from PyQt4.QtGui import QWidget, QMainWindow, QPainter,QFont,\
@@ -25,9 +26,9 @@ class View(QMainWindow,Ui_MainWindow):
         font = QFont("Microsoft YaHei", 20, 75)
         self.sharpLabel.setFont(font)
 
-    def readImg(self):
-        img = cv2.imread("IMG\\7core2.bmp")
-        return img
+    # def readImg(self):
+    #     img = cv2.imread("IMG\\7core2.bmp")
+    #     return img
 
     # @timing
     def updatePixmap(self,arr, sharp):
@@ -79,3 +80,16 @@ class PainterWidget(QWidget):
 
         self.pixmap = QPixmap.fromImage(img)
         self.update()
+
+
+class StaticView(QMainWindow,new_MainWindow):
+
+    def __init__(self):
+        super(StaticView, self).__init__()
+        self.setupUi(self)
+        self.__initUI__()
+
+    def __initUI__(self):
+        items = ['G652']
+        self.fiberType.addItems(items)
+
