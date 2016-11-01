@@ -1,5 +1,4 @@
-# from    view        import View
-
+# from view import View
 from GUI.model.model import Model
 from PyQt4.QtCore import QObject, pyqtSignal
 # from SDK.mindpy import IsInitCamera
@@ -20,5 +19,5 @@ class Controller(QObject):
         self._model = Model()
         self._view.getModel(self._model)
         self._model.returnImg.connect(self._view.updatePixmap)
-        self._view.pushButton.clicked.connect(self._model.mainCalculate)
-        self._view.multiTest.clicked.connect(self._model.multiTest)
+        self._view.beginTest.clicked.connect(self._model.mainCalculate)
+        # self._view.multiTest.clicked.connect(self._model.multiTest)
