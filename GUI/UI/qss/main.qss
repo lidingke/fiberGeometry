@@ -33,9 +33,16 @@ QWidget#canvas{
     border-width: 2px;
     border-color: white;
     border-style: solid;
-    border-radius: 5;
+    border-radius: 5px;
 }
 
+QWidget#axis{
+    background-color: white;
+    border-width: 2px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 5px;
+}
 /**********QLineEdit************/
 QLineEdit{
     /*border:none;*/
