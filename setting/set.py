@@ -58,7 +58,7 @@ class SETTING(MetaDict):
     def __init__(self, ParaDict = {}):
         MetaDict.__init__(self)
         if not ParaDict:
-            print("set SETTING to default")
+            print("set SETTING to default", ParaDict)
         self.GET_SETTING_ID = json.dumps(ParaDict)
         self.wrJson = WriteReadJson("setting\\set.json")
         self.jsonLoad = self.wrJson.load()

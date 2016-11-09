@@ -3,11 +3,18 @@ import pdb
 import numpy as np
 import time
 import cv2
+from pattern.getimg import GetImage
 from method.toolkit import timing
 try:
     import SDK.MindPy.MindPyCEx.MindPy as mdp
 except WindowsError:
-    import MindPy.MindPyCEx.MindPy as mdp
+    try:
+        import MindPy.MindPyCEx.MindPy as mdp
+    except WindowsError:
+        import MindPy as mdp
+
+# print 'mdp', mdp
+# import  string as mdp
 
 
 class GetRawImg(object):
@@ -39,6 +46,22 @@ class GetRawImg(object):
 
     def unInitCamera(self):
         mdp.uninitCamera()
+
+
+class GetRawImgTest(object):
+    """docstring for getRawImg"""
+    def __init__(self, ):
+        super(GetRawImgTest, self).__init__()
+        print ('test img init')
+
+    def get(self):
+        img = GetImage().get("IMG\\GIOF1\\sig")
+        # print 'get image', img.shape
+        time.sleep(0.1)
+        return img
+
+    def unInitCamera(self):
+        pass
 
 
 

@@ -38,6 +38,7 @@ class PainterWidget(QWidget):
         super(PainterWidget, self).__init__(parent)
         self.pixmap = False
         self.painter = QPainter(self)
+        self.ellipses, self.result = False, False
 
     def initPixmap(self, mapArray):
         try:
@@ -55,15 +56,28 @@ class PainterWidget(QWidget):
             # print 'rect', self.rect
             self.painter.begin(self)
             self.painter.drawPixmap(self.rect, self.pixmap)
+            # self._decorateImg(self.painter)
             self.painter.end()
 
 
+    # def _decorateImg(self, painter):
+    #     if self.ellipses or self.result:
+    #         pass
+
+
     def getPixmap(self, mapArray):
-
-        img = QImage(mapArray.flatten(), self.height, self.width, QImage.Format_Indexed8)
-
+        #todo: image format error
+        # self.ellipses, self.result = plotResults
+        if len(mapArray.shape) >= 3:
+            img = QImage(mapArray.flatten(), self.height, self.width, QImage.Format_RGB16)
+        else:
+            img = QImage(mapArray.flatten(), self.height, self.width, QImage.Format_Indexed8)
+        # img = QImage(mapArray.flatten(), self.height, self.width, QImage.Format_Indexed8)
         self.pixmap = QPixmap.fromImage(img)
         self.update()
+
+
+
 
 class DynamicView(QMainWindow, new_MainWindow):
     """docstring for View"""
@@ -81,12 +95,13 @@ class DynamicView(QMainWindow, new_MainWindow):
         items = ['G652']
         self.fiberType.addItems(items)
 
-    def updatePixmap(self,arr, sharp):
+    def updatePixmap(self, arr, sharp):
+        #todo : set Text box
         if not self.IS_INIT_PAINTER:
             self.painterWidget.initPixmap(arr)
             self.IS_INIT_PAINTER = True
         self.painterWidget.getPixmap(arr)
-        self.sharpLabel.setText(sharp)
+        # self.sharpLabel.setText(sharp)
 
     def getModel(self, model):
         self.model = model
