@@ -1,5 +1,11 @@
 from threading import Thread
 from PyQt4.QtCore import QObject, pyqtSignal
+import time
+import pdb
+import collections
+import cv2
+import numpy as np
+
 from setting.set import SETTING
 Set = SETTING()
 setGet = Set.get('ifcamera', False)
@@ -9,8 +15,7 @@ if setGet:
 else:
     from SDK.mdpy import GetRawImgTest as GetRawImg
     print 'script don\'t open camera'
-import cv2
-import numpy as np
+
 from method.edgedetect import ErodeDilate
 from method.contour import findContours
 from method.contour import FitEllipse
@@ -21,9 +26,7 @@ from pattern.sharp import IsSharp
 from pattern.draw import DecorateImg
 
 from method.toolkit import Cv2ImShow, Cv2ImSave
-import time
-import pdb
-import collections
+
 
 
 class Model(Thread,QObject):
@@ -62,31 +65,11 @@ class Model(Thread,QObject):
         # self.sharpQueue.append(img)
         return img
 
-
     def mainCalculate(self):
         Thread(target = self._calcImg).start()
 
-    def multiTest(self):
-        Thread(target=self._multiCalc).start()
-
-    def _multiCalc(self):
-        resultlist = []
-        for x in range(20):
-            img = self._getDifferImg()
-            result = self._toClassify(img)
-            print 'result,', result
-            if result:
-                resultlist.append(str(result)[1:-1]+'\n')
-            time.sleep(3)
-
-
-        with open('IMG\\result.csv', 'wb+') as f:
-            f.writelines(resultlist)
-
-
     def _calcImg(self):
         img = self._getDifferImg()
-        # img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 17, 7)
         self._toClassify(img)
 
     def _getDifferImg(self):
@@ -109,7 +92,7 @@ class Model(Thread,QObject):
         """"mark the circle and size parameter"""
         ellipses = self.ellipses
         result = self.result
-        print 'decorate in ', ellipses or result, result
+        # print 'decorate in ', ellipses or result, result
         if not (ellipses or result):
             return img
         img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
@@ -117,10 +100,25 @@ class Model(Thread,QObject):
         # origin = np.ones_like(origin) * 255
         # cv2.ellipse(origin, ellipses['clad'], (131, 210, 253), 1, lineType=200)  # (162,183,0)(green, blue, red)
         # cv2.ellipse(origin, ellipses['core'], (0, 102, 255), 1, lineType=200)  # 255,102,0#FF6600
-        #
-        print 'after decorate', img.shape
+        # print 'after decorate', img.shape
         img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         return img
+
+
+    def multiTest(self):
+        Thread(target=self._multiCalc).start()
+
+    def _multiCalc(self):
+        resultlist = []
+        for x in range(20):
+            img = self._getDifferImg()
+            result = self._toClassify(img)
+            print 'result,', result
+            if result:
+                resultlist.append(str(result)[1:-1]+'\n')
+            time.sleep(3)
+        with open('IMG\\result.csv', 'wb+') as f:
+            f.writelines(resultlist)
 
     def exit(self):
         print "unInit"

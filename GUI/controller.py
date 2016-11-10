@@ -14,7 +14,6 @@ class Controller(QObject):
         self._model.start()
         self._view.show()
 
-
     def _startModel(self):
         self._model = Model()
         self._view.getModel(self._model)

@@ -59,11 +59,9 @@ class PainterWidget(QWidget):
             # self._decorateImg(self.painter)
             self.painter.end()
 
-
     # def _decorateImg(self, painter):
     #     if self.ellipses or self.result:
     #         pass
-
 
     def getPixmap(self, mapArray):
         #todo: image format error
@@ -109,14 +107,14 @@ class DynamicView(QMainWindow, new_MainWindow):
     def closeEvent(self, *args, **kwargs):
         self.model.exit()
 
-class StaticView(QMainWindow,new_MainWindow):
-
-    def __init__(self):
-        super(StaticView, self).__init__()
-        self.setupUi(self)
-        self.__initUI__()
-
-    def __initUI__(self):
-        items = ['G652']
-        self.fiberType.addItems(items)
-
+# class StaticView(QMainWindow,new_MainWindow):
+#
+#     def __init__(self):
+#         super(StaticView, self).__init__()
+#         self.setupUi(self)
+#         self.__initUI__()
+#
+#     def __initUI__(self):
+#         items = ['G652']
+#         self.fiberType.addItems(items)
+#

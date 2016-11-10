@@ -5,17 +5,14 @@ import time
 import cv2
 from pattern.getimg import GetImage
 from method.toolkit import timing
-try:
-    import SDK.MindPy.MindPyCEx.MindPy as mdp
-except WindowsError:
-    try:
-        import MindPy.MindPyCEx.MindPy as mdp
-    except WindowsError:
-        import MindPy as mdp
-
-# print 'mdp', mdp
-# import  string as mdp
-
+# try:
+#     import SDK.MindPy.MindPyCEx.MindPy as mdp
+# except WindowsError:
+#     try:
+#         import MindPy.MindPyCEx.MindPy as mdp
+#     except WindowsError:
+#         import MindPy as mdp
+import SDK.MindPy as mdp
 
 class GetRawImg(object):
     """docstring for getRawImg"""

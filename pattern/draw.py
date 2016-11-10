@@ -19,7 +19,7 @@ def DecorateImg(origin, ellipses, result):
     radius = (radius[0]+radius[1])/4
     core = (int(corex + radius*0.7), int(corey - radius*0.7))
     coreR = "%4.2f"%result[1]
-    print ('clad', coreR, core)
+    # print ('clad', coreR, core)
     cv2.putText(origin, coreR, core,
                 cv2.FONT_HERSHEY_SIMPLEX, 2, (215, 207, 39), thickness=3)
     #clad radius
@@ -28,7 +28,7 @@ def DecorateImg(origin, ellipses, result):
     radius = (radius[0]+radius[1])/4
     core = (int(corex + radius*0.7), int(corey - radius*0.7))
     coreR = "%4.2f"%result[2]
-    print ('clad', coreR, core)
+    # print ('clad', coreR, core)
     cv2.putText(origin, coreR, core,
                 cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), thickness=3)
     # corex, corey = result[0], result[1]
