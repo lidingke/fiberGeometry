@@ -20,7 +20,6 @@ class GetRawImg(object):
         super(GetRawImg, self).__init__()
         self.limit = 2592*1944
         print dir(mdp)
-
         self.hand = mdp.initCamera()
 
     # @timing

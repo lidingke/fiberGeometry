@@ -1,5 +1,6 @@
 from GUI.UI.mainUI import Ui_MainWindow
 from GUI.UI.newgui import Ui_MainWindow as new_MainWindow
+from GUI.view.opplot import OpticalPlot
 
 from PyQt4.QtCore import QRect
 from PyQt4.QtGui import QWidget, QMainWindow, QPainter,QFont,\
@@ -13,7 +14,7 @@ class View(QMainWindow,Ui_MainWindow):
     def __init__(self,):
         super(View, self).__init__()
         self.setupUi(self)
-        self.painterWidget = PainterWidget(self.widget)
+        self.painterWidget = CVPainterWidget(self.widget)
         self.IS_INIT_PAINTER = False
         font = QFont("Microsoft YaHei", 20, 75)
         self.sharpLabel.setFont(font)
@@ -32,10 +33,10 @@ class View(QMainWindow,Ui_MainWindow):
         self.model.exit()
 
 
-class PainterWidget(QWidget):
+class CVPainterWidget(QWidget):
     """docstring for PainterWidget"""
     def __init__(self, parent):
-        super(PainterWidget, self).__init__(parent)
+        super(CVPainterWidget, self).__init__(parent)
         self.pixmap = False
         self.painter = QPainter(self)
         self.ellipses, self.result = False, False
@@ -83,8 +84,10 @@ class DynamicView(QMainWindow, new_MainWindow):
     def __init__(self,):
         super(DynamicView, self).__init__()
         self.setupUi(self)
-        self.painterWidget = PainterWidget(self.canvas)
+        self.painterWidget = CVPainterWidget(self.canvas)
+        self.axisWidget = OpticalPlot(parent=self.axis)
         self.IS_INIT_PAINTER = False
+        self.IS_INIT_AXIS = False
         # font = QFont("Microsoft YaHei", 20, 75)
         # self.sharpLabel.setFont(font)
         self.__initUI__()
@@ -106,6 +109,10 @@ class DynamicView(QMainWindow, new_MainWindow):
 
     def closeEvent(self, *args, **kwargs):
         self.model.exit()
+
+    def upadateOpticalview(self, wave, powers):
+        #todo : add optical mat plot
+        self.axisWidget.XYaxit(wave, powers)
 
 # class StaticView(QMainWindow,new_MainWindow):
 #

@@ -29,7 +29,7 @@ from method.toolkit import Cv2ImShow, Cv2ImSave
 
 
 
-class Model(Thread,QObject):
+class ModelCV(Thread, QObject):
     """docstring for Model"""
     returnImg = pyqtSignal(object, object)
     # returnFiberResult = pyqtSignal(object)
@@ -37,7 +37,7 @@ class Model(Thread,QObject):
     def __init__(self, ):
         Thread.__init__(self)
         QObject.__init__(self)
-        super(Model, self).__init__()
+        super(ModelCV, self).__init__()
         self.setDaemon(True)
         self.IS_RUN = True
         self.isSharp = IsSharp()
