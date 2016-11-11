@@ -27,5 +27,9 @@ class ModelOp(Thread, QObject):
             wave, powers = self.oceanoptics.getData(25)
             time.sleep(0.5)
             self.returnImg.emit(wave, powers)
+
+    def getAttenuation(self,length):
             # print 'emit'
+        wave, powers = self.oceanoptics.getData(25)
+        return wave, powers
 

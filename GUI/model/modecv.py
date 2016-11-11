@@ -24,7 +24,7 @@ from pattern.edge import ExtractEdge
 from pattern.classify import G652Classify
 from pattern.sharp import IsSharp
 from pattern.draw import DecorateImg
-
+from SDK.oceanoptics import OceanOpticsTest
 from method.toolkit import Cv2ImShow, Cv2ImSave
 
 
@@ -32,6 +32,7 @@ from method.toolkit import Cv2ImShow, Cv2ImSave
 class ModelCV(Thread, QObject):
     """docstring for Model"""
     returnImg = pyqtSignal(object, object)
+    returnATImg = pyqtSignal(object, object)
     # returnFiberResult = pyqtSignal(object)
 
     def __init__(self, ):
@@ -48,6 +49,7 @@ class ModelCV(Thread, QObject):
         self.getRawImg = GetRawImg()
         self.imgQueue = collections.deque(maxlen = 5)
         self.fiberResult = {}
+        self.Oceanoptics = OceanOpticsTest()
 
 
     def run(self):
@@ -125,3 +127,8 @@ class ModelCV(Thread, QObject):
         self.IS_RUN = False
         time.sleep(0.5)
         self.getRawImg.unInitCamera()
+
+    def attenuationTest(self, length):
+        wave, powers = self.Oceanoptics.getData(length)
+
+        self.returnATImg.emit(wave, powers)

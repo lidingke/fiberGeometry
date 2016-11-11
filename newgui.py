@@ -13,8 +13,6 @@ from PyQt4.QtCore import QCoreApplication, QFile
 from GUI.view.view import DynamicView
 from GUI.controller import Controller
 
-
-
 def loadStyleSheet(sheetName):
 #D:\MyProjects\WorkProject\opencv4fiber\cv\GUI\UI\qss\main.qss
     with open('GUI/UI/qss/{}.qss'.format(sheetName), 'rb') as f:

@@ -13,16 +13,22 @@ class Controller(QObject):
 
     def show(self):
         self._modelcv.start()
-        self._modelop.start()
+        # self._modelop.start()
         self._view.show()
 
     def _startModel(self):
         self._modelcv = ModelCV()
-        self._modelop = ModelOp()
+        # self._modelop = ModelOp()
         self._view.getModel(self._modelcv)
         self._modelcv.returnImg.connect(self._view.updatePixmap)
-        self._view.beginTest.clicked.connect(self._modelcv.mainCalculate)
-        self._modelop.returnImg.connect(self._view.upadateOpticalview)
+        self._modelcv.returnATImg.connect(self._view.upadateOpticalview)
+        self._view.beginTestCV.clicked.connect(self._modelcv.mainCalculate)
+        self._view.beginTestAT.clicked.connect(self._getAttenuation)
+
         # self._view.multiTest.clicked.connect(self._model.multiTest)
 
+    def _getAttenuation(self,):
+        length = self._view.fiberLength.text()
+        length = float(length)
+        self._modelcv.attenuationTest(length)
 

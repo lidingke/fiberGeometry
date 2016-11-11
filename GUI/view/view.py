@@ -1,16 +1,11 @@
 from GUI.UI.mainUI import Ui_MainWindow
-from GUI.UI.newgui import Ui_MainWindow as new_MainWindow
+from GUI.UI.mainUI import Ui_MainWindow as new_MainWindow
 from GUI.view.opplot import OpticalPlot
-
 from PyQt4.QtCore import QRect
-from PyQt4.QtGui import QWidget, QMainWindow, QPainter,QFont,\
-QPixmap, QImage, QColor
-
-
+from PyQt4.QtGui import QWidget, QMainWindow, QPainter,QFont,QPixmap, QImage, QColor
 
 class View(QMainWindow,Ui_MainWindow):
     """docstring for View"""
-
     def __init__(self,):
         super(View, self).__init__()
         self.setupUi(self)
@@ -85,12 +80,18 @@ class DynamicView(QMainWindow, new_MainWindow):
         super(DynamicView, self).__init__()
         self.setupUi(self)
         self.painterWidget = CVPainterWidget(self.canvas)
+    #     self.painterWidget.setStyleSheet("QWidget {background-color: white;\
+    # border-width: 2px;\
+    # border-color: blue;\
+    # border-style: solid;\
+    # border-radius: 50px;}")
         self.axisWidget = OpticalPlot(parent=self.axis)
+        # self.axisWidget.setStyleSheet("QWidget{border-radius: 50px}")
         self.IS_INIT_PAINTER = False
-        self.IS_INIT_AXIS = False
         # font = QFont("Microsoft YaHei", 20, 75)
         # self.sharpLabel.setFont(font)
         self.__initUI__()
+        # self.fiberLength.connect(self.attenuationTest)
 
     def __initUI__(self):
         items = ['G652']
@@ -111,8 +112,15 @@ class DynamicView(QMainWindow, new_MainWindow):
         self.model.exit()
 
     def upadateOpticalview(self, wave, powers):
-        #todo : add optical mat plot
         self.axisWidget.XYaxit(wave, powers)
+
+    # def attenuationTest(self):
+    #     length = self.fiberLength.getText()
+    #     threading.Thread
+    #
+    # def attenuationGetThread(self, length):
+
+
 
 # class StaticView(QMainWindow,new_MainWindow):
 #
