@@ -1,6 +1,6 @@
 from collections import MutableMapping
 import json
-# from model.toolkit import WRpickle
+# from model.util import WRpickle
 from setting.load import WriteReadJson
 
 class MetaDict(MutableMapping):

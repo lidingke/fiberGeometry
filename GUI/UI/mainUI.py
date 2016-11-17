@@ -107,10 +107,10 @@ class Ui_MainWindow(object):
         self.labelAT = QtGui.QLabel(self.layoutWidget_2)
         self.labelAT.setObjectName(_fromUtf8("labelAT"))
         self.attenuationLayout.addWidget(self.labelAT, 0, 1, 1, 1)
-        self.resultShowDL = QtGui.QTextBrowser(self.centralwidget)
-        self.resultShowDL.setGeometry(QtCore.QRect(1040, 510, 256, 91))
-        self.resultShowDL.setMinimumSize(QtCore.QSize(50, 90))
-        self.resultShowDL.setObjectName(_fromUtf8("resultShowDL"))
+        self.resultShowAT = QtGui.QTextBrowser(self.centralwidget)
+        self.resultShowAT.setGeometry(QtCore.QRect(1040, 510, 256, 91))
+        self.resultShowAT.setMinimumSize(QtCore.QSize(50, 90))
+        self.resultShowAT.setObjectName(_fromUtf8("resultShowAT"))
         self.axis = QtGui.QWidget(self.centralwidget)
         self.axis.setGeometry(QtCore.QRect(660, 10, 648, 486))
         self.axis.setMinimumSize(QtCore.QSize(400, 400))
@@ -156,7 +156,7 @@ class Ui_MainWindow(object):
         self.reporterAT.setText(_translate("MainWindow", "输出报告", None))
         self.beginTestAT.setText(_translate("MainWindow", "开始测试", None))
         self.labelAT.setText(_translate("MainWindow", "衰减：", None))
-        self.resultShowDL.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.resultShowAT.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"

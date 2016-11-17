@@ -1,3 +1,4 @@
+#coding:utf-8
 from threading import Thread
 from PyQt4.QtCore import QObject, pyqtSignal
 import time
@@ -33,6 +34,8 @@ class ModelCV(Thread, QObject):
     """docstring for Model"""
     returnImg = pyqtSignal(object, object)
     returnATImg = pyqtSignal(object, object)
+    resultShowCV = pyqtSignal(object)
+    resultShowAT = pyqtSignal(object)
     # returnFiberResult = pyqtSignal(object)
 
     def __init__(self, ):
@@ -55,10 +58,11 @@ class ModelCV(Thread, QObject):
     def run(self):
         while self.IS_RUN:
             img = self._getImg()
-            sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
+            self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
             # plotResults = (self.ellipses, self.result)
             img = self._decorateImg(img)
-            self.returnImg.emit(img[::4,::4], sharp)
+
+            self.returnImg.emit(img[::4,::4], self.sharp)
 
     def _getImg(self):
         img = self.getRawImg.get()
@@ -73,6 +77,7 @@ class ModelCV(Thread, QObject):
     def _calcImg(self):
         img = self._getDifferImg()
         self._toClassify(img)
+        self._emitCVShowResult()
 
     def _getDifferImg(self):
         imgs = list(self.imgQueue)
@@ -130,5 +135,38 @@ class ModelCV(Thread, QObject):
 
     def attenuationTest(self, length):
         wave, powers = self.Oceanoptics.getData(length)
-
+        self._emitATShowResult(wave, powers)
         self.returnATImg.emit(wave, powers)
+
+    def _emitATShowResult(self, wave, powers):
+        waveLimit = wave[-1] - wave[0]
+        waveMax = np.max(powers)
+        waveMin = np.min(powers)
+        waveAvg = np.average(powers)
+        print waveLimit, waveMax, waveMin, waveAvg
+        text = [
+            u'''波长范围：    {}\n'''.format('%0.2f' % waveLimit),
+            u'''最大值：      {}\n'''.format('%0.2f' % waveMax),
+            u'''最小值：      {}\n'''.format('%0.2f' % waveMin),
+            u'''平均值：      {}\n'''.format('%0.2f' % waveAvg)
+        ]
+        text = u''.join(text)
+        self.resultShowAT.emit(text)
+
+
+    def _emitCVShowResult(self):
+        result = self.result
+        sharp = self.sharp
+        if isinstance(result, tuple):
+            # print 'get result', result
+            text = [
+                u'''清晰度指数：  {}\n'''.format(sharp),
+                u'''纤芯直径：    {}\n'''.format('%0.2f'%result[1]),
+                u'''包层直径：    {}\n'''.format('%0.2f'%result[2]),
+                u'''纤芯不圆度：  {}\n'''.format('%0.2f'%result[3]),
+                u'''包层不圆度：  {}\n'''.format('%0.2f'%result[4]),
+                u'''芯包同心度：  {}'''.format('%0.2f'%result[0])
+                ]
+            text = u''.join(text)
+            self.resultShowCV.emit(text)
+

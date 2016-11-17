@@ -8,7 +8,7 @@ def DecorateImg(origin, ellipses, result):
         origin = cv2.cvtColor(origin, cv2.COLOR_GRAY2RGB)
     # origin = np.ones_like(origin)*255
     # origin = np.zeros_like(origin)
-    print 'ellipses result', ellipses, result
+    # print 'ellipses result', ellipses, result
     if not (ellipses or result):
         return origin
     cv2.ellipse(origin, ellipses['clad'], (131, 210, 253), 5, lineType=2)  # (162,183,0)(green, blue, red)

@@ -1,8 +1,11 @@
+#coding:utf-8
 from GUI.UI.mainUI import Ui_MainWindow
 from GUI.UI.mainUI import Ui_MainWindow as new_MainWindow
 from GUI.view.opplot import OpticalPlot
+from .reporter import Reporter
 from PyQt4.QtCore import QRect
-from PyQt4.QtGui import QWidget, QMainWindow, QPainter,QFont,QPixmap, QImage, QColor
+from PyQt4.QtGui import QWidget, QMainWindow, QPainter, QFont,\
+    QPixmap, QImage, QColor, QFileDialog, QMessageBox
 
 class View(QMainWindow,Ui_MainWindow):
     """docstring for View"""
@@ -71,8 +74,6 @@ class CVPainterWidget(QWidget):
         self.update()
 
 
-
-
 class DynamicView(QMainWindow, new_MainWindow):
     """docstring for View"""
 
@@ -91,6 +92,7 @@ class DynamicView(QMainWindow, new_MainWindow):
         # font = QFont("Microsoft YaHei", 20, 75)
         # self.sharpLabel.setFont(font)
         self.__initUI__()
+        self.reporterCV.clicked.connect(self.writeReporterCV)
         # self.fiberLength.connect(self.attenuationTest)
 
     def __initUI__(self):
@@ -111,7 +113,7 @@ class DynamicView(QMainWindow, new_MainWindow):
     def closeEvent(self, *args, **kwargs):
         self.model.exit()
 
-    def upadateOpticalview(self, wave, powers):
+    def updateOpticalview(self, wave, powers):
         self.axisWidget.XYaxit(wave, powers)
 
     # def attenuationTest(self):
@@ -120,6 +122,15 @@ class DynamicView(QMainWindow, new_MainWindow):
     #
     # def attenuationGetThread(self, length):
 
+    def updateCVShow(self,str_):
+        self.resultShowCV.setText(str_)
+
+    def updateATShow(self,str_):
+        self.resultShowAT.setText(str_)
+
+    def writeReporterCV(self):
+        para = {}
+        Reporter(self)
 
 
 # class StaticView(QMainWindow,new_MainWindow):
@@ -132,4 +143,3 @@ class DynamicView(QMainWindow, new_MainWindow):
 #     def __initUI__(self):
 #         items = ['G652']
 #         self.fiberType.addItems(items)
-#

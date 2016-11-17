@@ -228,7 +228,7 @@ p, li { white-space: pre-wrap; }
      </item>
     </layout>
    </widget>
-   <widget class="QTextBrowser" name="resultShowDL">
+   <widget class="QTextBrowser" name="resultShowAT">
     <property name="geometry">
      <rect>
       <x>1040</x>
