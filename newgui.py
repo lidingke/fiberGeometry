@@ -6,7 +6,7 @@ import pdb
 from setting.set import SETTING
 Set = SETTING({'ampFactor': '20X', 'cameraID': 'MindVision'})
 Set['ifcamera'] = False
-print 'if camera', len(Set)
+# print 'if camera', len(Set)
 
 from PyQt4.QtGui import QPalette, QColor,QApplication
 from PyQt4.QtCore import QCoreApplication, QFile
