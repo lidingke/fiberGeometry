@@ -16,6 +16,8 @@ class GetImage(CV2MethodSet):
             self.singleFileFind(dir_)
         else :
             self.fileFind(dir_)
+        if not isinstance(self.img, np.ndarray):
+            raise ValueError('img not ndarray')
         return self.img
 
     def fileFind(self, dir_):
@@ -33,3 +35,6 @@ class GetImage(CV2MethodSet):
         if len(self.img.shape) == 3:
             self.img = cv2.cvtColor(self.img, cv2.COLOR_RGB2GRAY)
 
+"""" interface """
+def getImage(dir_):
+    return GetImage().get(dir_)

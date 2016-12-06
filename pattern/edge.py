@@ -30,3 +30,44 @@ class ExtractEdge(CV2MethodSet):
 
         return img
 
+class EdgeFuncs(object):
+    """docstring for CloseOpen"""
+    def __init__(self, ):
+        super(EdgeFuncs, self).__init__()
+        # self.arg = arg
+
+    def open(self, img, time_ = 4, kernelLen = 3, ):
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT,(kernelLen, kernelLen))
+        for x in range(1,time_):
+            img = cv2.erode(img,kernel)
+            img = cv2.dilate(img,kernel)
+        return img
+
+    def close(self, img, time_ = 4, kernelLen = 3):
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT,(kernelLen, kernelLen))
+        for x in range(1,time_):
+            img = cv2.dilate(img,kernel)
+            img = cv2.erode(img,kernel)
+        return img
+
+    def topHat(self,img):
+        img = cv2.absdiff(img,self.open(img, kernelLen = 3))
+        img = cv2.bitwise_not(img)
+        return img
+
+    def blackHat(self,img):
+        img = cv2.absdiff(self.close(img, kernelLen = 3), img)
+        img = cv2.bitwise_not(img)
+        return img
+
+    def multiDilate(self, img, time_ = 4, kernelLen = 3):
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT,(kernelLen, kernelLen))
+        for x in range(1,time_):
+            img = cv2.dilate(img,kernel)
+        return img
+
+    def multiErode(self, img, time_ = 4, kernelLen = 3):
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT,(kernelLen, kernelLen))
+        for x in range(1,time_):
+            img = cv2.erode(img,kernel)
+        return img
