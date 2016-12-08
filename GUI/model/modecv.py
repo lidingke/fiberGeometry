@@ -29,7 +29,6 @@ from SDK.oceanoptics import OceanOpticsTest
 from method.toolkit import Cv2ImShow, Cv2ImSave
 
 
-
 class ModelCV(Thread, QObject):
     """docstring for Model"""
     returnImg = pyqtSignal(object, object)
