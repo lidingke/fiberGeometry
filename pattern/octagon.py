@@ -30,8 +30,8 @@ class OctagonClassify(object):
 
     def _classOctagon(self, img):
         co = ClassOctagon()
-        tempPlots = co.run(img)
-        return tempPlots
+        result = co.run(img)
+        return result
 
 
 class ClassOctagon(object):
@@ -83,8 +83,10 @@ class ClassOctagon(object):
         if len(getVerticalPoint) < 3:
             raise ValueError('not enough points')
         point1 = np.array(getVerticalPoint[1])
-        point2 = np.array(getVerticalPoint[2])
-        result['contour'] = np.array([longAxis[1], longAxis[2], vPoint, point1, point2])
+        point2 = np.array(getVerticalPoint[-1])
+        # pdb.set_trace()
+        # result['contour'] = np.array([longAxis[1], longAxis[2], vPoint, point1, point2])
+        result['contour'] = np.array([point1, point2, longAxis[1], longAxis[2], vPoint ])
         # pdb.set_trace()
         return result
 
@@ -96,21 +98,25 @@ class ClassOctagon(object):
         :param img:
         :return:
         """
+        print 'get in contour', img.shape, img.dtype
+        img = cv2.medianBlur(img, 3)
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         tempPlots = np.ones(img.shape) * 255
-        # tempPlots = img
+
         for contour in contours:
             cv2.drawContours(tempPlots, contour, -1, (0, 0, 255))
         mergedpoints = np.concatenate(contours[1:])
         points = cv2.convexHull(points=mergedpoints)
         longAxis = self._getLongAxit(points)
         x, y = tuple(longAxis[1][0].tolist()),tuple(longAxis[2][0].tolist())
+
         cv2.line(tempPlots, x, y, (0, 255, 0), 2)
         midPoint = longAxis[1][0] + longAxis[2][0]
         midPoint = midPoint / 2
         getVerticalPoint = points.tolist()
         getVerticalPoint.sort(key=lambda x: abs(self.angleRatio([midPoint], longAxis[1], x)))
         x, y = tuple(getVerticalPoint[0][0]), tuple(midPoint.tolist())
+
         print 'get x y ', x, y, midPoint, longAxis
         cv2.line(tempPlots, x, y, (0, 25, 25), 2)
 
@@ -120,8 +126,23 @@ class ClassOctagon(object):
         # cv2.ellipse(result, ellipese)
 
         result = self._getResult(longAxis, midPoint, getVerticalPoint)
-        # pdb.set_trace()
+        print 'result[\'contour\']', result['contour']
         ellipese = cv2.fitEllipse(result['contour'])
         cv2.ellipse(tempPlots, ellipese, (0, 25, 25), 2)
         result['plot'] = tempPlots
+
+        for circleCore in result['contour']:
+            circleCore = tuple(circleCore[0].tolist())
+            cv2.circle(tempPlots, circleCore, 20, (0,255,0))
+
+        # #temp
+        # imgObject = GetImage()
+        # colorimg = imgObject.get('IMG\\IMG00003.BMP',colour=)
+        # cv2.line(colorimg, x1, y1, (0, 255, 0), 2)
+        # cv2.line(colorimg, x2, y2, (0, 255, 0), 2)
+        # cv2.ellipse(colorimg, ellipese, (255,0,0), 2)
+        # print 'img'
+        # cv2.imshow("img", colorimg[::2, ::2])
+        # cv2.waitKey(0)
+
         return  result
