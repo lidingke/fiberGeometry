@@ -7,11 +7,19 @@ import pdb
 
 import pytest
 
-def test_pickOctagon():
-    po = PickOctagon()
-    img = GetImage().get('IMG\\IMG00001.BMP')
+
+
+@pytest.mark.parametrize(
+    'dir_',(
+        'IMG\\IMG00001.BMP',
+        'IMG\\IMG00003.BMP',
+    )
+)
+def test_pickOctagon(dir_):
+
+    img = GetImage().get(dir_)
     img = ExtractEdge().run(img)
-    img = po.pick(img)
+    core, img = PickOctagon().pick(img)
     assert isinstance(img,np.ndarray)
     assert len(img.shape) == 2
     assert img.dtype == 'uint8'
@@ -20,11 +28,16 @@ def test_pickOctagon():
     # mergedpoints = np.concatenate(contours[1:])
     # ellipse = cv2.fitEllipse(mergedpoints)
     # print 'ellipse', ellipse
-
-def test_pickForEllipese():
-    img = GetImage().get('IMG\\IMG00001.BMP')
+@pytest.mark.parametrize(
+    'dir_',(
+        'IMG\\IMG00001.BMP',
+        'IMG\\IMG00003.BMP',
+    )
+)
+def test_pickForEllipese(dir_):
+    img = GetImage().get(dir_)
     img = ExtractEdge().run(img)
-    img = PickOctagon().pick(img)
+    core, img = PickOctagon().pick(img)
     contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
     mergedpoints = np.concatenate(contours[1:])
     points = cv2.convexHull(points=mergedpoints)
@@ -40,14 +53,18 @@ def test_pickForEllipese():
     assert shortaxis > 0
     assert shortaxis/logaxis
     # print 'ellipse', ellipse, shortaxis, logaxis, shortaxis/logaxis
+    ellipse =
+
+
+
 
 if __name__ == '__main__':
-    po = PickOctagon()
-    img = GetImage().get('IMG\\IMG00001.BMP')
+    img = GetImage().get('IMG\\IMG00003.BMP')
     img = ExtractEdge().run(img)
-
-    img = po.pick(img)
+    core, img = PickOctagon().pick(img)
     cv2.imshow("pick", img[::2, ::2])
+    cv2.waitKey(0)
+    cv2.imshow("pick", core[::2, ::2])
     cv2.waitKey(0)
     contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
     mergedpoints = np.concatenate(contours[1:])

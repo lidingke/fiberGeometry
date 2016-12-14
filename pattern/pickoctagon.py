@@ -14,7 +14,7 @@ class PickOctagon(MetaClassify):
         self.result = {}
         self.ampRatio = 0.0835#0.08653
 
-    def fitEllipses(self, contours, hierarchys):
+    def _filter(self, contours, hierarchys):
         ampRatio = self.ampRatio
         coreList = []
         for x, contour in enumerate(contours):
@@ -26,17 +26,16 @@ class PickOctagon(MetaClassify):
                     coreList.append((area, circleIndex, ellipseResult))
         # coreList.sort()
         coreList.sort(key= itemgetter(1))
-        # if len(coreList)>10:
-        #     perhapsCore = coreList[-10:]
-        # else:
-        #     perhapsCore = coreList
-        # for _ in coreList:
-        #     print _
-        img = np.ones(self.img.shape, dtype='uint8') * 255
-        # for core in coreList[-3:-1]:
-        # img = self.img
-        cv2.ellipse(img,coreList[-1][2],(0,0,0),3)
+
+        # cv2.ellipse(img,coreList[-1][2],(0,0,0),3)
         core = coreList[-1][2]
+        octagonImg = self._getOctagon(core, contours)
+        coreImg = self._getCore(core, contours)
+
+        return (coreImg, octagonImg)
+
+    def _getOctagon(self, core, contours):
+        img = np.ones(self.img.shape, dtype='uint8') * 255
         minRange = (core[1][1]+core[1][0])/2 + 50.0
         maxRange = (core[1][1]+core[1][0])/2 + 300.0
         # corePoint = {'core'}
@@ -45,12 +44,23 @@ class PickOctagon(MetaClassify):
         contourImg = np.ones(self.img.shape, dtype='uint8') * 255
         cv2.drawContours(contourImg, contours, -1, (0,0,0))
         img = cv2.bitwise_or(img,contourImg)
+        return img
 
+    def _getCore(self, core, contours):
+        img = np.ones(self.img.shape, dtype='uint8') * 255
+        minRange = (core[1][1]+core[1][0])/2*0.5
+        maxRange = (core[1][1]+core[1][0])/2*1.2
+        # corePoint = {'core'}
+        cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(maxRange), (0, 0, 0), -1)
+        cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
+        contourImg = np.ones(self.img.shape, dtype='uint8') * 255
+        cv2.drawContours(contourImg, contours, -1, (0,0,0))
+        img = cv2.bitwise_or(img,contourImg)
         return img
 
 
     def pick(self, img):
         self.img = img
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
-        img = self.fitEllipses(contours, hierarchys)
-        return img
+        core, octagon = self._filter(contours, hierarchys)
+        return (core, octagon)
