@@ -15,16 +15,20 @@ class ExtractEdge(CV2MethodSet):
 
         if len(img.shape) > 2:
             img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (7, 7))
+        kernelSize = self.SET["adaptiveTreshold"].get("kernelSize",7)
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (kernelSize, kernelSize))
         erode = cv2.erode(img, kernel)
         dilate = cv2.dilate(img, kernel)
         img = cv2.absdiff(dilate, erode)
 
         img = cv2.bitwise_not(img)
+        # cv2.imshow("bitwise_not", img[::2, ::2])
+        # cv2.waitKey(0)
         blockSize = self.SET["adaptiveTreshold"]["blockSize"]
         Constant = self.SET["adaptiveTreshold"]["Constant"]
         img = cv2.adaptiveThreshold(img, 255,
             cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, blockSize, Constant)
+
         # blurSize = self.SET["medianBlur"]["ErodeDilateKsize"]
         # img = cv2.medianBlur(img, blurSize)
 
@@ -71,3 +75,5 @@ class EdgeFuncs(object):
         for x in range(1,time_):
             img = cv2.erode(img,kernel)
         return img
+
+

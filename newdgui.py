@@ -1,5 +1,6 @@
 
-
+from setting.set import SETTING
+SETTING({'ampFactor':'20X','cameraID':'MindVision500'})
 import sys
 import os
 import pdb
@@ -7,7 +8,8 @@ import pdb
 from PyQt4.QtGui import QPalette, QColor,QApplication
 from GUI.view.view import DynamicView
 from GUI.controller import Controller
-from setting.set import SETTING
+
+
 
 def loadStyleSheet(sheetName):
     with open('GUI/UI/qss/{}.qss'.format(sheetName), 'rb') as f:
@@ -19,7 +21,7 @@ def loadStyleSheet(sheetName):
 
 
 if __name__ == '__main__':
-    SETTING({'ampFactor':'20X','cameraID':'MindVision'})
+    SETTING({'ampFactor':'20X','cameraID':'MindVision500'})
     app = QApplication(sys.argv)
     app.setStyleSheet(loadStyleSheet('main'))
     pt = QPalette()

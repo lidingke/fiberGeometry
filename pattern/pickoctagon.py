@@ -20,13 +20,25 @@ class PickOctagon(MetaClassify):
         for x, contour in enumerate(contours):
             if contour.shape[0] > 5:
                 area, circleIndex = self.CircleIndex.contourIn(contour)
-                # print area, circleIndex
+
                 ellipseResult = cv2.fitEllipse(contour)
-                if area > 100 and circleIndex >0.7 and area < 1000000:
+                # print area, circleIndex, ellipseResult
+                if area > 100 and circleIndex >0.5:
+                    # and area < 1000000:
                     coreList.append((area, circleIndex, ellipseResult))
         # coreList.sort()
+        # for c in coreList:
+        #     print 'core list', c
+        # tempPlots = np.ones(self.img.shape, dtype='uint8') * 255
+        # cv2.drawContours(tempPlots,contours,-1,(0,255,255))
+        # # pdb.set_trace()
+        # x, y = int(coreList[-1][2][0][0]), int(coreList[-1][2][0][0])
+        # cv2.circle(tempPlots, (x,y), 200, (0,255,255))
+        # # cv2.circle(tempPlots)
+        # cv2.imshow("ell", tempPlots[::2, ::2])
+        # cv2.waitKey(0)
         coreList.sort(key= itemgetter(1))
-
+        # pdb.set_trace()
         # cv2.ellipse(img,coreList[-1][2],(0,0,0),3)
         core = coreList[-1][2]
         octagonImg = self._getOctagon(core, contours)

@@ -60,8 +60,8 @@ class ModelCV(Thread, QObject):
             self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
             # plotResults = (self.ellipses, self.result)
             img = self._decorateImg(img)
-
-            self.returnImg.emit(img[::4,::4], self.sharp)
+            colorImg = self.getRawImg.bayer2RGB(img)
+            self.returnImg.emit(colorImg[::4,::4], self.sharp)
 
     def _getImg(self):
         img = self.getRawImg.get()
@@ -111,20 +111,20 @@ class ModelCV(Thread, QObject):
         return img
 
 
-    def multiTest(self):
-        Thread(target=self._multiCalc).start()
-
-    def _multiCalc(self):
-        resultlist = []
-        for x in range(20):
-            img = self._getDifferImg()
-            result = self._toClassify(img)
-            print 'result,', result
-            if result:
-                resultlist.append(str(result)[1:-1]+'\n')
-            time.sleep(3)
-        with open('IMG\\result.csv', 'wb+') as f:
-            f.writelines(resultlist)
+    # def multiTest(self):
+    #     Thread(target=self._multiCalc).start()
+    #
+    # def _multiCalc(self):
+    #     resultlist = []
+    #     for x in range(20):
+    #         img = self._getDifferImg()
+    #         result = self._toClassify(img)
+    #         print 'result,', result
+    #         if result:
+    #             resultlist.append(str(result)[1:-1]+'\n')
+    #         time.sleep(3)
+    #     with open('IMG\\result.csv', 'wb+') as f:
+    #         f.writelines(resultlist)
 
     def exit(self):
         print "unInit"

@@ -7,14 +7,11 @@ import pdb
 
 import pytest
 
-
-
 @pytest.mark.parametrize(
     'dir_',(
         'IMG\\IMG00001.BMP',
         'IMG\\IMG00003.BMP',
-    )
-)
+    ))
 def test_pickOctagon(dir_):
 
     img = GetImage().get(dir_)
@@ -24,16 +21,12 @@ def test_pickOctagon(dir_):
     assert len(img.shape) == 2
     assert img.dtype == 'uint8'
 
-    # contours = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
-    # mergedpoints = np.concatenate(contours[1:])
-    # ellipse = cv2.fitEllipse(mergedpoints)
-    # print 'ellipse', ellipse
+
 @pytest.mark.parametrize(
     'dir_',(
         'IMG\\IMG00001.BMP',
         'IMG\\IMG00003.BMP',
-    )
-)
+    ))
 def test_pickForEllipese(dir_):
     img = GetImage().get(dir_)
     img = ExtractEdge().run(img)
@@ -52,10 +45,6 @@ def test_pickForEllipese(dir_):
     assert logaxis > 0
     assert shortaxis > 0
     assert shortaxis/logaxis
-    # print 'ellipse', ellipse, shortaxis, logaxis, shortaxis/logaxis
-    ellipse =
-
-
 
 
 if __name__ == '__main__':

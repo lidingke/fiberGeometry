@@ -66,7 +66,7 @@ class CVPainterWidget(QWidget):
         #todo: image format error
         # self.ellipses, self.result = plotResults
         if len(mapArray.shape) >= 3:
-            img = QImage(mapArray.flatten(), self.height, self.width, QImage.Format_RGB16)
+            img = QImage(mapArray.flatten(), self.height, self.width, QImage.Format_RGB888)
         else:
             img = QImage(mapArray.flatten(), self.height, self.width, QImage.Format_Indexed8)
         # img = QImage(mapArray.flatten(), self.height, self.width, QImage.Format_Indexed8)

@@ -1,7 +1,7 @@
 from collections import MutableMapping
 import json
 # from model.util import WRpickle
-from setting.load import WriteReadJson
+from .load import WriteReadJson
 
 class MetaDict(MutableMapping):
     """A dictionary that applies an arbitrary key-altering
@@ -76,5 +76,5 @@ class SETTING(MetaDict):
         self.jsonLoad.update({self.GET_SETTING_ID:self.store})
         self.wrJson.save(self.jsonLoad)
 
-
+from collections import OrderedDict
 

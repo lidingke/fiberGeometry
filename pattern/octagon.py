@@ -1,3 +1,4 @@
+from __future__ import  division
 import cv2
 import numpy as np
 import pdb
@@ -8,30 +9,6 @@ from pattern.edge import ExtractEdge
 from .classify import MetaClassify
 
 
-class OctagonClassify(object):
-    """find: return a plot for plot show
-    getResult: return a final result for result show"""
-    def __init__(self,):
-        super(OctagonClassify, self).__init__()
-
-
-    def find(self, img):
-        contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
-        resultForm = self._formClassify(contours)
-        self._classOctagon(resultForm['octagonClad'])
-
-    def getResult(self):
-        pass
-
-
-    def _formClassify(self, contours):
-        resultForm = {'core':False, 'octagonClad':False}
-        return resultForm
-
-    def _classOctagon(self, img):
-        co = ClassOctagon()
-        result = co.run(img)
-        return result
 
 class ClassCore(object):
     def __init__(self):
@@ -57,7 +34,6 @@ class ClassCore(object):
         return result
 
     def _getResult(self, ellipse):
-        # pdb.set_trace()
         result = {}
         result['longAxisLen'] = ellipse[1][1]
         result['shortAxisLen'] = ellipse[1][0]
@@ -78,14 +54,25 @@ class ClassOctagon(object):
         c = np.sqrt(((A[0][0] - B[0][0]) ** 2 + (A[0][1] - B[0][1]) ** 2))
         a = np.sqrt(((C[0][0] - B[0][0]) ** 2 + (C[0][1] - B[0][1]) ** 2))
         b = np.sqrt(((A[0][0] - C[0][0]) ** 2 + (A[0][1] - C[0][1]) ** 2))
-        dif = (b ** 2 + c ** 2 - a ** 2)
+
+        dif = (b * b + c * c - a * a)
         diff = (2 * b * c)
-        alpha =  dif//diff
+        if diff == 0:
+            return 1
+        alpha =  dif/diff
         return alpha
 
     def horizonalRatio(self, A, B):
         C = [[B[0][0], A[0][1]]]
         return self.angleRatio(A, B, C)
+
+    # def horizonalRatio45(self,A,B,C):
+    #     AB = np.linalg.norm(np.array(A) - np.array(B))
+    #     AC = np.linalg.norm(np.array(A) - np.array(C))
+    #     result = AB/AC
+    #     result = abs(result - 1.619775)
+    #     print 'jiao 45 ',result
+    #     return result
 
     def _getLongAxit(self, points):
         lenPoints = points.shape[0]
@@ -104,7 +91,7 @@ class ClassOctagon(object):
         pointsContain.sort(key=itemgetter(0))
         return pointsContain[-1]
 
-    def _getResult(self, longAxis, midPoint, getVerticalPoint):
+    def _getResult(self, longAxis, midPoint, getVerticalPoint,tempCounters):
         result = {}
         vPoint = getVerticalPoint[0]
         result['longAxisLen'] = longAxis[0]
@@ -118,9 +105,17 @@ class ClassOctagon(object):
         point2 = np.array(getVerticalPoint[-1])
         # pdb.set_trace()
         # result['contour'] = np.array([longAxis[1], longAxis[2], vPoint, point1, point2])
-        result['contour'] = np.array([point1, point2, longAxis[1], longAxis[2], vPoint ])
+        result['contour'] = np.array([tempCounters[0], tempCounters[-1], point1, point2, longAxis[1], longAxis[2], vPoint ])
         # pdb.set_trace()
         return result
+
+    def _getHalfList(self, list_):
+        len_ = len(list_)
+        if len_ > 3:
+            end = int(len_/2)
+            return list_[end:]
+        else:
+            return list_
 
 
     def run(self, img):
@@ -130,7 +125,7 @@ class ClassOctagon(object):
         :param img:
         :return:
         """
-        print 'get in contour', img.shape, img.dtype
+        # print 'get in contour', img.shape, img.dtype
         img = cv2.medianBlur(img, 3)
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         tempPlots = np.ones(img.shape) * 255
@@ -142,23 +137,29 @@ class ClassOctagon(object):
         longAxis = self._getLongAxit(points)
         x, y = tuple(longAxis[1][0].tolist()),tuple(longAxis[2][0].tolist())
 
-        cv2.line(tempPlots, x, y, (0, 255, 0), 2)
+        cv2.line(tempPlots, x, y, (0, 255, 0), 1)
         midPoint = longAxis[1][0] + longAxis[2][0]
-        midPoint = midPoint / 2
-        getVerticalPoint = points.tolist()
-        getVerticalPoint.sort(key=lambda x: abs(self.angleRatio([midPoint], longAxis[1], x)))
-        x, y = tuple(getVerticalPoint[0][0]), tuple(midPoint.tolist())
+        midPoint = midPoint //2
+        # pdb.set_trace()
+        getVerticalPoint = mergedpoints.tolist()
+        getVerticalPoint.sort(key = lambda x: np.linalg.norm(x-midPoint))
+        tempCounters = (getVerticalPoint[0], getVerticalPoint[-1])
+        getVerticalPoint = self._getHalfList(getVerticalPoint)
+        getVerticalPoint.sort(key = lambda x: abs(self.angleRatio([midPoint], longAxis[1], x)))
+        # getVerticalPoint.sort(key=lambda x: abs(self.horizonalRatio45([midPoint], longAxis[1], x)))
 
-        print 'get x y ', x, y, midPoint, longAxis
-        cv2.line(tempPlots, x, y, (0, 25, 25), 2)
+        # print 'get x y ', x, y, midPoint, longAxis
+        # pdb.set_trace()
+        x,y = tuple(midPoint.tolist()), tuple(getVerticalPoint[0][0])
+        cv2.line(tempPlots, x, y, (0, 255, 0), 8)
 
-        result = self._getResult(longAxis, midPoint, getVerticalPoint)
+        result = self._getResult(longAxis, midPoint, getVerticalPoint,tempCounters)
         print 'result[\'contour\']', result['contour']
         ellipese = cv2.fitEllipse(result['contour'])
-        cv2.ellipse(tempPlots, ellipese, (0, 25, 25), 2)
+        cv2.ellipse(tempPlots, ellipese, (0, 25, 25), 4)
         result['plot'] = tempPlots
 
         for circleCore in result['contour']:
             circleCore = tuple(circleCore[0].tolist())
-            cv2.circle(tempPlots, circleCore, 20, (0,255,0))
+            cv2.circle(tempPlots, circleCore, 40, (0,255,0), lineType=4)
         return  result

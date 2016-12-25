@@ -1,5 +1,4 @@
 {
-    "1": 1,
     "{\"ampFactor\": \"20X\", \"cameraID\": \"MindVision\"}": {
         "dip": "500W",
         "ampPixSize": 0.088,
@@ -24,12 +23,47 @@
             "Constant": 7
         },
         "medianBlur": {
-            "ErodeDilateKsize": 5
+            "ErodeDilateKsize": 7
         },
         "rect": {
             "width": 819,
             "hight": 460,
             "dimension": 1
         }
+    },
+    "{\"ampFactor\": \"20X\", \"cameraID\": \"MindVision1600\"}": {
+        "dip": "1600W",
+        "ampPixSize": 0.088,
+        "adaptiveTreshold": {
+            "blockSize": 15,
+            "Constant": 7
+        },
+        "medianBlur": {
+            "ErodeDilateKsize": 9
+        },
+        "rect": {
+            "width": 2592,
+            "hight": 1944,
+            "dimension": 1
+        }
+    },
+        "{\"ampFactor\": \"20X\", \"cameraID\": \"MindVision500\"}": {
+        "dip": "1600W",
+        "ifcamera": true,
+        "ampPixSize": 0.088,
+        "adaptiveTreshold": {
+            "blockSize": 15,
+            "Constant": 7,
+            "kernelSize": 5
+        },
+        "medianBlur": {
+            "ErodeDilateKsize": 9
+        },
+        "rect": {
+            "width": 2592,
+            "hight": 1944,
+            "dimension": 1
+        }
     }
+
 }
