@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import pdb
 from method.toolkit import Cv2ImShow
-from setting.set import SETTING
+from setting.dset import SETTING
 
 class Edge(object):
     """docstring for Edge"""

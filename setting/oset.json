@@ -1,0 +1,30 @@
+{
+  "Default":{"dip": "500W",
+      "adaptiveTreshold": {
+          "blockSize": 15,
+          "Constant": 7,
+          "kernelSize": 5
+        },
+      "medianBlur": {
+          "ErodeDilateKsize": 9
+        },
+      "rect": {
+          "width": 2592,
+          "hight": 1944,
+          "dimension": 1
+        }
+  },
+  "MindVision500":{
+    "ifcamera": true
+  },
+  "20X": {
+    "ampPixSize": 0.088
+  },
+  "Online":{
+    "ifcamera": true
+  },
+  "test":{
+    "ifcamera": false
+  }
+
+}

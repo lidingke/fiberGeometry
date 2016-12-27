@@ -9,7 +9,7 @@ from pattern.getimg import GetImage
 import numpy as np
 from pattern.edge import EdgeFuncs
 import pdb
-from setting.set import SETTING
+from setting.dset import SETTING
 @pytest.mark.parametrize(
     'dir_',(
         'IMG\\thr.png',
@@ -32,6 +32,7 @@ def test_ClassOctagon(dir_):
         'IMG\\IMG00003.BMP',
     ))
 def test_ClassCore(dir_):
+
     img = GetImage().get(dir_)
     img = ExtractEdge().run(img)
     core, img = PickOctagon().pick(img)
@@ -88,6 +89,10 @@ def oldmain():
     # cv2.imshow("result", result['plot'][::2,::2])
     # cv2.waitKey(0)
 
+
+"""GetImage().get()->ExtractEdge().run()
+PickOctagon().pick()=>core/outer
+=>ClassCore().run()/ClassOctagon().run()"""
 
 if __name__ == '__main__':
     img = GetImage().get('IMG\\octagon\\500oc.BMP')

@@ -6,6 +6,7 @@ from .reporter import Reporter
 from PyQt4.QtCore import QRect
 from PyQt4.QtGui import QWidget, QMainWindow, QPainter, QFont,\
     QPixmap, QImage, QColor, QFileDialog, QMessageBox
+import numpy as np
 
 class View(QMainWindow,Ui_MainWindow):
     """docstring for View"""
@@ -65,8 +66,12 @@ class CVPainterWidget(QWidget):
     def getPixmap(self, mapArray):
         #todo: image format error
         # self.ellipses, self.result = plotResults
+        if not isinstance(mapArray, np.ndarray):
+            raise ValueError('get Pixmap ERROR input')
         if len(mapArray.shape) >= 3:
-            img = QImage(mapArray.flatten(), self.height, self.width, QImage.Format_RGB888)
+            height, width, bytesPerComponent = mapArray.shape
+            bytesPerLine = bytesPerComponent * width
+            img = QImage(mapArray.data, width, height, bytesPerLine, QImage.Format_RGB888)
         else:
             img = QImage(mapArray.flatten(), self.height, self.width, QImage.Format_Indexed8)
         # img = QImage(mapArray.flatten(), self.height, self.width, QImage.Format_Indexed8)

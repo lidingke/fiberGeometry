@@ -7,7 +7,7 @@ import collections
 import cv2
 import numpy as np
 
-from setting.set import SETTING
+from setting.orderset import SETTING
 Set = SETTING()
 setGet = Set.get('ifcamera', False)
 print 'setget', setGet
@@ -61,7 +61,7 @@ class ModelCV(Thread, QObject):
             # plotResults = (self.ellipses, self.result)
             img = self._decorateImg(img)
             colorImg = self.getRawImg.bayer2RGB(img)
-            self.returnImg.emit(colorImg[::4,::4], self.sharp)
+            self.returnImg.emit(colorImg[::4,::4].copy(), self.sharp)
 
     def _getImg(self):
         img = self.getRawImg.get()

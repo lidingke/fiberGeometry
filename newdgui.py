@@ -1,6 +1,6 @@
 
-from setting.set import SETTING
-SETTING({'ampFactor':'20X','cameraID':'MindVision500'})
+from setting.orderset import SETTING
+SETTING('MindVision500', 'Online')
 import sys
 import os
 import pdb
@@ -21,7 +21,7 @@ def loadStyleSheet(sheetName):
 
 
 if __name__ == '__main__':
-    SETTING({'ampFactor':'20X','cameraID':'MindVision500'})
+    SETTING('MindVision500', 'Online')
     app = QApplication(sys.argv)
     app.setStyleSheet(loadStyleSheet('main'))
     pt = QPalette()

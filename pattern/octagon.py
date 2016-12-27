@@ -140,7 +140,6 @@ class ClassOctagon(object):
         cv2.line(tempPlots, x, y, (0, 255, 0), 1)
         midPoint = longAxis[1][0] + longAxis[2][0]
         midPoint = midPoint //2
-        # pdb.set_trace()
         getVerticalPoint = mergedpoints.tolist()
         getVerticalPoint.sort(key = lambda x: np.linalg.norm(x-midPoint))
         tempCounters = (getVerticalPoint[0], getVerticalPoint[-1])
@@ -154,7 +153,7 @@ class ClassOctagon(object):
         cv2.line(tempPlots, x, y, (0, 255, 0), 8)
 
         result = self._getResult(longAxis, midPoint, getVerticalPoint,tempCounters)
-        print 'result[\'contour\']', result['contour']
+        # print 'result[\'contour\']', result['contour']
         ellipese = cv2.fitEllipse(result['contour'])
         cv2.ellipse(tempPlots, ellipese, (0, 25, 25), 4)
         result['plot'] = tempPlots

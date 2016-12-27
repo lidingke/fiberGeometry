@@ -12,14 +12,14 @@ from method.toolkit import timing
 #         import MindPy.MindPyCEx.MindPy as mdp
 #     except WindowsError:
 #         import MindPy as mdp
-from setting.set import SETTING
+from setting.orderset import SETTING
 import SDK.MindPy as mdp
 
 class GetRawImg(object):
     """docstring for getRawImg"""
     def __init__(self, ):
         super(GetRawImg, self).__init__()
-        self.SET = SETTING()
+        self.SET = SETTING({})
         self.limit = 2592*1944
         # if self.SET.get("ifcamera", False):
         self.hand = mdp.initCamera()

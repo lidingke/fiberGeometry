@@ -46,18 +46,27 @@ def test_pickForEllipese(dir_):
     assert shortaxis > 0
     assert shortaxis/logaxis
 
+@pytest.mark.parametrize(
+    'dir_',(
+        'IMG\\IMG00001.BMP',
+    ))
+def test_findcore(dir_):
+    img = GetImage().get(dir_)
+    img = ExtractEdge().run(img)
+    PickOctagon()._findCore(img)
 
 if __name__ == '__main__':
-    img = GetImage().get('IMG\\IMG00003.BMP')
-    img = ExtractEdge().run(img)
-    core, img = PickOctagon().pick(img)
-    cv2.imshow("pick", img[::2, ::2])
-    cv2.waitKey(0)
-    cv2.imshow("pick", core[::2, ::2])
-    cv2.waitKey(0)
-    contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
-    mergedpoints = np.concatenate(contours[1:])
-    # pdb.set_trace()
-    points = cv2.convexHull(points=mergedpoints)
-    ellipse = cv2.fitEllipse(points)
-    print 'ellipse', ellipse
+    # img = GetImage().get('IMG\\IMG00003.BMP')
+    # img = ExtractEdge().run(img)
+    # core, img = PickOctagon().pick(img)
+    # cv2.imshow("pick", img[::2, ::2])
+    # cv2.waitKey(0)
+    # cv2.imshow("pick", core[::2, ::2])
+    # cv2.waitKey(0)
+    # contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+    # mergedpoints = np.concatenate(contours[1:])
+    # # pdb.set_trace()
+    # points = cv2.convexHull(points=mergedpoints)
+    # ellipse = cv2.fitEllipse(points)
+    # print 'ellipse', ellipse
+    test_findcore('IMG\\IMG00001.BMP')

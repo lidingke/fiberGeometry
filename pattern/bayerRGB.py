@@ -31,7 +31,7 @@ def getNp():
     grt = GetRawImg()
     img = grt.get()
     grt.unInitCamera()
-    # pdb.set_trace()
+    pdb.set_trace()
     img.tofile("tests\\data\\imggreen.bin")
     img = cv2.cvtColor(img, cv2.COLOR_BAYER_GR2RGB)
     cv2.imshow('img', img[::8, ::8])

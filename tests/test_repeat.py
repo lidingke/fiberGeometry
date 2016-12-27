@@ -7,7 +7,7 @@ from pattern.getimg import GetImage
 import numpy as np
 from pattern.edge import EdgeFuncs
 import pdb
-from setting.set import SETTING
+from setting.orderset import SETTING
 
 
 if __name__ == '__main__':

@@ -48,6 +48,7 @@ def singleton(class_):
     def getinstance(*args,**kwargs):
         if class_ not in instance:
             instance[class_] = class_(*args,**kwargs)
+            print 'singleton id', id(instance[class_])
         return instance[class_]
     return getinstance
 
@@ -76,5 +77,5 @@ class SETTING(MetaDict):
         self.jsonLoad.update({self.GET_SETTING_ID:self.store})
         self.wrJson.save(self.jsonLoad)
 
-from collections import OrderedDict
+
 

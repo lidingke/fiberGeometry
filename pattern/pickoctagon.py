@@ -26,17 +26,7 @@ class PickOctagon(MetaClassify):
                 if area > 100 and circleIndex >0.5:
                     # and area < 1000000:
                     coreList.append((area, circleIndex, ellipseResult))
-        # coreList.sort()
-        # for c in coreList:
-        #     print 'core list', c
-        # tempPlots = np.ones(self.img.shape, dtype='uint8') * 255
-        # cv2.drawContours(tempPlots,contours,-1,(0,255,255))
-        # # pdb.set_trace()
-        # x, y = int(coreList[-1][2][0][0]), int(coreList[-1][2][0][0])
-        # cv2.circle(tempPlots, (x,y), 200, (0,255,255))
-        # # cv2.circle(tempPlots)
-        # cv2.imshow("ell", tempPlots[::2, ::2])
-        # cv2.waitKey(0)
+
         coreList.sort(key= itemgetter(1))
         # pdb.set_trace()
         # cv2.ellipse(img,coreList[-1][2],(0,0,0),3)
@@ -76,3 +66,29 @@ class PickOctagon(MetaClassify):
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         core, octagon = self._filter(contours, hierarchys)
         return (core, octagon)
+
+    def _findCore(self, img):
+        img = cv2.medianBlur(img, 15)
+        # cv2.imshow("md", img[::4,::4])
+        # cv2.waitKey()
+        contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+        ellipses = []
+        for contour in contours:
+            area, circleIndex = self.CircleIndex.contourIn(contour)
+            if len(contour) < 5 or area <50 or circleIndex < 0.5 or area > 2000000:
+                continue
+            ellipse= cv2.fitEllipse(contour)
+            ellipses.append((area, circleIndex, ellipse))
+        ellipses.sort(key=itemgetter(1))
+        for e in ellipses:
+            print e
+        if len(ellipses) == 0:
+            raise CanNotFindCore("can't find core")
+        core = ellipses[-1][1]
+        return core
+
+
+class CanNotFindCore(Exception):
+    
+    def __init__(self):
+        super(CanNotFindCore, self).__init__()
