@@ -10,7 +10,7 @@ def test_origin_imgColor():
     img.shape = (1944, 2592)
     img = bayer2RGB(img)
     r, g, b = img[:, :, 0].sum(), img[:, :, 1].sum(), img[:, :, 2].sum()
-    assert r > g and r > b
+    assert b > g and b > r
     img = np.fromfile("tests\\data\\imggreen.bin", dtype="uint8")
     img.shape = (1944, 2592)
     img = bayer2RGB(img)
@@ -20,6 +20,6 @@ def test_origin_imgColor():
     img.shape = (1944, 2592)
     img = bayer2RGB(img)
     r, g, b = img[:, :, 0].sum(), img[:, :, 1].sum(), img[:, :, 2].sum()
-    assert b > g and b > r
+    assert r > g and r > b
 
 

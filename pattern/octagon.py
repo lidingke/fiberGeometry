@@ -6,8 +6,7 @@ from operator import itemgetter
 from pattern.getimg import GetImage
 from pattern.getimg import getImage
 from pattern.edge import ExtractEdge
-from .classify import MetaClassify
-
+from pattern.exception import ClassCoreError, ClassOctagonError
 
 
 class ClassCore(object):
@@ -17,9 +16,15 @@ class ClassCore(object):
     def run(self,img):
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         tempPlots = np.ones(img.shape) * 255
-        mergedpoints = np.concatenate(contours[1:])
+        if len(contours) ==0:
+            raise ClassCoreError
+        elif len(contours) ==1:
+            mergedpoints =contours[0]
+        else:
+            mergedpoints = np.concatenate(contours[1:])
         ellipse = cv2.fitEllipse(mergedpoints)
         result = self._getResult(ellipse)
+        result['ellipese'] = ellipse
         cv2.ellipse(tempPlots, ellipse, (0,255,255))
         # pdb.set_trace()
         # ellipeses = []
@@ -31,6 +36,7 @@ class ClassCore(object):
         # cv2.waitKey(0)
         result['plot'] = tempPlots
         result['contour'] = mergedpoints
+
         return result
 
     def _getResult(self, ellipse):
@@ -132,14 +138,24 @@ class ClassOctagon(object):
 
         for contour in contours:
             cv2.drawContours(tempPlots, contour, -1, (0, 0, 255))
-        mergedpoints = np.concatenate(contours[1:])
+        for contour in contours:
+            cv2.drawContours(tempPlots, contour, -1, (0, 0, 255))
+        if len(contours) == 0:
+            raise ClassCoreError
+        elif len(contours) == 1:
+            mergedpoints = contours[0]
+        else:
+            mergedpoints = np.concatenate(contours[1:])
         points = cv2.convexHull(points=mergedpoints)
         longAxis = self._getLongAxit(points)
+        result = {}
         x, y = tuple(longAxis[1][0].tolist()),tuple(longAxis[2][0].tolist())
-
+        result['longPlot'] = (x, y)
         cv2.line(tempPlots, x, y, (0, 255, 0), 1)
         midPoint = longAxis[1][0] + longAxis[2][0]
-        midPoint = midPoint //2
+        midPointf = midPoint /2
+        midPoint = midPoint // 2
+
         getVerticalPoint = mergedpoints.tolist()
         getVerticalPoint.sort(key = lambda x: np.linalg.norm(x-midPoint))
         tempCounters = (getVerticalPoint[0], getVerticalPoint[-1])
@@ -150,13 +166,16 @@ class ClassOctagon(object):
         # print 'get x y ', x, y, midPoint, longAxis
         # pdb.set_trace()
         x,y = tuple(midPoint.tolist()), tuple(getVerticalPoint[0][0])
-        cv2.line(tempPlots, x, y, (0, 255, 0), 8)
 
-        result = self._getResult(longAxis, midPoint, getVerticalPoint,tempCounters)
+        cv2.line(tempPlots, x, y, (0, 255, 0), 8)
+        result['shortPlot'] = (x,y)
+        result.update(self._getResult(longAxis, midPoint, getVerticalPoint,tempCounters))
+
         # print 'result[\'contour\']', result['contour']
-        ellipese = cv2.fitEllipse(result['contour'])
-        cv2.ellipse(tempPlots, ellipese, (0, 25, 25), 4)
+        ellipse = cv2.fitEllipse(result['contour'])
+        cv2.ellipse(tempPlots, ellipse, (0, 25, 25), 4)
         result['plot'] = tempPlots
+        result['ellipese'] = ellipse
 
         for circleCore in result['contour']:
             circleCore = tuple(circleCore[0].tolist())

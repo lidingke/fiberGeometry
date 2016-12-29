@@ -22,9 +22,14 @@ from method.contour import findContours
 from method.contour import FitEllipse
 
 from pattern.edge import ExtractEdge
-from pattern.classify import G652Classify
+setGet = Set.get('fiberType',"G652")
+print 'fibertype',setGet
+if setGet == "octagon":
+    from pattern.classify import OctagonClassify as Classify
+else:
+    from pattern.classify import G652Classify as Classify
 from pattern.sharp import IsSharp
-from pattern.draw import DecorateImg
+from pattern.draw import DecorateImg, drawCoreCircle
 from SDK.oceanoptics import OceanOpticsTest
 from method.toolkit import Cv2ImShow, Cv2ImSave
 
@@ -59,8 +64,9 @@ class ModelCV(Thread, QObject):
             img = self._getImg()
             self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
             # plotResults = (self.ellipses, self.result)
-            img = self._decorateImg(img)
+
             colorImg = self.getRawImg.bayer2RGB(img)
+            colorImg = self._decorateImg(colorImg)
             self.returnImg.emit(colorImg[::4,::4].copy(), self.sharp)
 
     def _getImg(self):
@@ -88,7 +94,7 @@ class ModelCV(Thread, QObject):
         return img
 
     def _toClassify(self, img):
-        classify = G652Classify()
+        classify = Classify()
         self.ellipses = classify.find(img)
         self.result = classify.getResult()
         return self.result
@@ -101,13 +107,14 @@ class ModelCV(Thread, QObject):
         # print 'decorate in ', ellipses or result, result
         if not (ellipses or result):
             return img
-        img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
+        # img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
         img = DecorateImg(img,ellipses,result)
+        img = drawCoreCircle(img)
         # origin = np.ones_like(origin) * 255
         # cv2.ellipse(origin, ellipses['clad'], (131, 210, 253), 1, lineType=200)  # (162,183,0)(green, blue, red)
         # cv2.ellipse(origin, ellipses['core'], (0, 102, 255), 1, lineType=200)  # 255,102,0#FF6600
         # print 'after decorate', img.shape
-        img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+        # img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         return img
 
 

@@ -4,7 +4,7 @@ import sys
 import os
 import pdb
 from setting.orderset import SETTING
-Set = SETTING({'ampFactor': '20X', 'cameraID': 'MindVision'})
+Set = SETTING("test", "octagon", "centerImg")
 Set['ifcamera'] = False
 # print 'if camera', len(Set)
 

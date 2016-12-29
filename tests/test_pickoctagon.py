@@ -46,14 +46,14 @@ def test_pickForEllipese(dir_):
     assert shortaxis > 0
     assert shortaxis/logaxis
 
-@pytest.mark.parametrize(
-    'dir_',(
-        'IMG\\IMG00001.BMP',
-    ))
-def test_findcore(dir_):
-    img = GetImage().get(dir_)
-    img = ExtractEdge().run(img)
-    PickOctagon()._findCore(img)
+# @pytest.mark.parametrize(
+#     'dir_',(
+#         'IMG\\IMG00001.BMP',
+#     ))
+# def test_findcore(dir_):
+#     img = GetImage().get(dir_)
+#     img = ExtractEdge().run(img)
+#     PickOctagon()._findCore(img)
 
 if __name__ == '__main__':
     # img = GetImage().get('IMG\\IMG00003.BMP')

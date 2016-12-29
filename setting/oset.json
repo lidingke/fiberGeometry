@@ -12,7 +12,12 @@
           "width": 2592,
           "hight": 1944,
           "dimension": 1
-        }
+        },
+      "imgsize":[1944,2592],
+      "coreRange":[10,80],
+      "cladRange":[200,400],
+      "fiberType":"G652",
+      "corepoint":[1296,972]
   },
   "MindVision500":{
     "ifcamera": true
@@ -25,6 +30,18 @@
   },
   "test":{
     "ifcamera": false
+  },
+  "sjtRange":{
+    "coreRange":[10,30],
+    "cladRange":[150,300]
+},
+  "G652":{
+    "fiberType":"G652"
+  },
+  "octagon":{
+    "fiberType":"octagon"
+  },
+  "centerImg":{
+    "centerImg":true
   }
-
 }

@@ -1,6 +1,9 @@
 import cv2
 import numpy as np
+from setting.orderset import SETTING
+
 from pattern.meta import CV2MethodSet
+from octagon import ClassCore, ClassOctagon
 from method.toolkit import timing
 
 class MetaClassify(CV2MethodSet):
@@ -88,6 +91,74 @@ class G652Classify(MetaClassify):
             #                                         coreRness,
             #                                         cladRness)
             return (concentricity,coreMidRadius,cladMidRadius,coreRness,cladRness)
+        else:
+            print 'error find core or clad'
+            return ()
+
+
+class OctagonClassify(MetaClassify):
+
+    def __init__(self):
+        super(OctagonClassify, self).__init__()
+        self.SET = SETTING()
+        self.ampRatio = 0.086
+
+
+    def find(self, img):
+        self.img = img
+        coreimg, cladimg = self._difcore(img)
+        coreResult = ClassCore().run(coreimg)
+        cladResult = ClassOctagon().run(cladimg)
+        self.result['core'] = coreResult['ellipese']
+        self.result['coreResult'] = coreResult
+        self.result['clad'] = cladResult['ellipese']
+        self.result['cladResult'] = cladResult
+        return self.result
+
+
+    def _difcore(self,img):
+        corecore = self.SET["corepoint"]
+        minRange, maxRange = self.SET["cladRange"]
+        cladimg = self._getFilterImg(corecore, img, minRange, maxRange)
+        minRange, maxRange = self.SET["coreRange"]
+        coreimg = self._getFilterImg(corecore, img, minRange, maxRange)
+        # cv2.imshow('core range', cladimg[::4,::4])
+        # cv2.waitKey()
+        return coreimg, cladimg
+
+
+
+    def _getFilterImg(self, core, origin, minRange, maxRange):
+        img = np.ones(self.img.shape, dtype='uint8') * 255
+        core = [core,1]
+        cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(maxRange), (0, 0, 0), -1)
+        cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
+        # origin = cv2.bitwise_not(origin)
+        img = cv2.bitwise_or(img, origin)
+        return img
+
+
+    def getResult(self):
+        coreResult = self.result.get('coreResult', False)
+        cladResult = self.result.get('cladResult', False)
+        if coreResult and cladResult:
+
+            coreCore = coreResult["corePoint"].tolist()[0]
+            cladCore = cladResult["corePoint"].tolist()[0]
+            coreRadius = coreResult["longAxisLen"] + coreResult["shortAxisLen"]/2
+            cladRadius = cladResult["longAxisLen"] + cladResult["shortAxisLen"]/2
+            print coreCore, cladCore ,type(coreCore)
+
+            concentricity = ((coreCore[0] - cladCore[0]) ** 2
+                             + (coreCore[1] - cladCore[1]) ** 2) ** 0.5
+            concentricity = concentricity * self.ampRatio
+            coreMidRadius = self.ampRatio * coreRadius
+            cladMidRadius = self.ampRatio * cladRadius
+            # cladMidRadius = (cladRadius[0] + cladRadius[1])
+            coreRness = self.ampRatio * abs(coreResult["longAxisLen"] - coreResult["shortAxisLen"]/2)
+            cladRness = self.ampRatio * abs(cladResult["longAxisLen"] - cladResult["shortAxisLen"]/2)
+
+            return (concentricity, coreMidRadius, cladMidRadius, coreRness, cladRness)
         else:
             print 'error find core or clad'
             return ()

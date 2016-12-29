@@ -78,12 +78,14 @@ class PickOctagon(MetaClassify):
             if len(contour) < 5 or area <50 or circleIndex < 0.5 or area > 2000000:
                 continue
             ellipse= cv2.fitEllipse(contour)
+            if ellipse[2] == 0.0:
+                continue
             ellipses.append((area, circleIndex, ellipse))
         ellipses.sort(key=itemgetter(1))
         for e in ellipses:
             print e
         if len(ellipses) == 0:
-            raise CanNotFindCore("can't find core")
+            raise CanNotFindCore()
         core = ellipses[-1][1]
         return core
 

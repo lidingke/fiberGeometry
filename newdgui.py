@@ -1,6 +1,6 @@
 
 from setting.orderset import SETTING
-SETTING('MindVision500', 'Online')
+SETTING('MindVision500', 'Online', "octagon", "centerImg")
 import sys
 import os
 import pdb

@@ -46,7 +46,7 @@ class GetRawImg(object):
     def bayer2RGB(self, img):
         if not isinstance(img, np.ndarray):
             raise ValueError("bayer2RGB input para error")
-        return cv2.cvtColor(img, cv2.COLOR_BAYER_GR2RGB)
+        return cv2.cvtColor(img, cv2.COLOR_BAYER_GR2BGR)
 
     def unInitCamera(self):
         mdp.uninitCamera()
@@ -61,7 +61,7 @@ class GetRawImgTest(GetRawImg):
     def get(self):
         # img = GetImage().get("IMG\\GIOF1\\sig")
         shape = (1944, 2592)
-        img = np.fromfile("tests\\data\\imgred.bin", dtype="uint8")
+        img = np.fromfile("tests\\data\\dynamicimg1.bin", dtype="uint8")
         img.shape = shape
         # print 'get image', img.shape
         time.sleep(0.1)

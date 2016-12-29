@@ -7,7 +7,7 @@
 import cv2
 import numpy as np
 from method.toolkit import IsCircle, cv2CircleIndex, XlsWrite, Cv2ImShow, Cv2ImSave, DynamicPick
-from setting.dset import SETTING
+from setting.orderset import SETTING
 
 class CV2MethodSet(object):
     """docstring for CV2MethodSet"""
