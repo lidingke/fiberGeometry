@@ -3,7 +3,7 @@ import pdb
 import numpy as np
 import time
 import cv2
-from pattern.getimg import GetImage
+from pattern.getimg import GetImage, yieldImg
 from method.toolkit import timing
 # try:
 #     import SDK.MindPy.MindPyCEx.MindPy as mdp
@@ -13,6 +13,7 @@ from method.toolkit import timing
 #     except WindowsError:
 #         import MindPy as mdp
 from setting.orderset import SETTING
+from pattern.getimg import randomImg
 import SDK.MindPy as mdp
 
 class GetRawImg(object):
@@ -43,9 +44,11 @@ class GetRawImg(object):
         npArray = md.reshape(1944, 2592)
         return npArray
 
-    def bayer2RGB(self, img):
+    def bayer2BGR(self, img):
         if not isinstance(img, np.ndarray):
             raise ValueError("bayer2RGB input para error")
+        if len(img.shape) == 3:
+            return cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         return cv2.cvtColor(img, cv2.COLOR_BAYER_GR2BGR)
 
     def unInitCamera(self):
@@ -60,12 +63,16 @@ class GetRawImgTest(GetRawImg):
 
     def get(self):
         # img = GetImage().get("IMG\\GIOF1\\sig")
-        shape = (1944, 2592)
-        img = np.fromfile("tests\\data\\dynamicimg1.bin", dtype="uint8")
-        img.shape = shape
+        # img = np.fromfile("tests\\data\\dynamicimg1.bin", dtype="uint8")
+        # img.shape = (1944, 2592)
         # print 'get image', img.shape
-        time.sleep(0.1)
-        return img
+        # time.sleep(0.1)
+        return self.dynamicGet()
+
+    def dynamicGet(self):
+        return randomImg("IMG\\octagon\\D500\\")
+        # return yieldImg("IMG\\octagon\\D500")
+
 
     # def bayer2RGB(self, img):
     #     if not isinstance(img, np.ndarray):

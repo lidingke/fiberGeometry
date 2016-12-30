@@ -22,8 +22,17 @@ class IsSharp(CV2MethodSet):
         normalizationSharp = sumGrad2*1000//img.size
         return normalizationSharp/1000.0
 
+    def _imgs2gray(self,imgs):
+        result = []
+        for img in imgs:
+            img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+            result.append(img)
+        return result
+
     # @timing
     def isSharpDiff(self, imgs):
+        if len(imgs[0].shape) == 3:
+            imgs = self._imgs2gray(imgs)
 
         imgAllor = np.zeros(imgs[0][::5,::5].shape, dtype=imgs[0].dtype)
         for img in imgs[-3:]:

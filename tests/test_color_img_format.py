@@ -5,7 +5,7 @@ from SDK.mdpy import GetRawImgTest as GetRawImg
 
 
 def test_origin_imgColor():
-    bayer2RGB = GetRawImg().bayer2RGB
+    bayer2RGB = GetRawImg().bayer2BGR
     img = np.fromfile("tests\\data\\imgblue.bin", dtype="uint8")
     img.shape = (1944, 2592)
     img = bayer2RGB(img)

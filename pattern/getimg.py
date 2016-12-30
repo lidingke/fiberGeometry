@@ -1,5 +1,6 @@
 import cv2
 import os
+from random import choice
 import pdb
 import numpy as np
 from pattern.meta import CV2MethodSet
@@ -34,6 +35,24 @@ class GetImage(CV2MethodSet):
         self.origin = self.img.copy()
         if len(self.img.shape) == 3 and colour == 'black':
             self.img = cv2.cvtColor(self.img, cv2.COLOR_RGB2GRAY)
+
+def yieldImg(dirs):
+    if dirs[-4:].find('.') > 0:
+        raise ValueError('input para is not a folder, a file')
+    dirlist = os.listdir(dirs)
+    dirlist = [dirs + x for x in dirlist]
+    for dir_ in dirlist:
+        img = GetImage().get(dir_)
+        yield  img
+
+def randomImg(dirs):
+    if dirs[-4:].find('.') > 0:
+        raise ValueError('input para is not a folder, a file')
+    dirlist = os.listdir(dirs)
+    dirlist = [dirs + x for x in dirlist]
+    img = GetImage().get(choice(dirlist),colour='color')
+    return img
+
 
 """" interface """
 def getImage(dir_):

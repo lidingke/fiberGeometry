@@ -1,18 +1,22 @@
 from __future__ import division
+from setting.orderset import SETTING
+Set = SETTING("test", "octagon", "centerImg")
+
 from pattern.octagon import ClassOctagon
 from pattern.edge import ExtractEdge
 import cv2
 from test_edge2img import edge2img, yieldImg
-from pattern.getimg import GetImage
+from pattern.getimg import GetImage, randomImg
 import numpy as np
+from SDK.mdpy import GetRawImgTest
 from pattern.edge import EdgeFuncs
 import pdb
-from setting.orderset import SETTING
+import time
+from random import choice
 
 
-if __name__ == '__main__':
-
-    sets = SETTING({"ampFactor": "20X", "cameraID": "MindVision500"})
+def test_repeat_octagon():
+    sets = SETTING()
     resultget = []
     for img in yieldImg("IMG\\octagon\\500s\\"):
         img = ExtractEdge().run(img)
@@ -23,6 +27,19 @@ if __name__ == '__main__':
         resultget.append([_1, _2, radius])
 
     resultarray = np.array(resultget)
-    print resultarray
+    # print resultarray
     std  = np.std(resultarray, axis= 0 )
-    print std * 0.088
+    x, y, z = std
+    assert z < 0.5
+
+
+def test_GetRawImgTest():
+    # print std * 0.088
+    getraw = GetRawImgTest()
+    dget = getraw.get()
+    isinstance(dget, np.ndarray)
+        # print dget.shape, type(dget), dget.sum()
+
+
+if __name__ == '__main__':
+    test_GetRawImgTest()

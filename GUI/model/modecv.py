@@ -65,7 +65,7 @@ class ModelCV(Thread, QObject):
             self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
             # plotResults = (self.ellipses, self.result)
 
-            colorImg = self.getRawImg.bayer2RGB(img)
+            colorImg = self.getRawImg.bayer2BGR(img)
             colorImg = self._decorateImg(colorImg)
             self.returnImg.emit(colorImg[::4,::4].copy(), self.sharp)
 
@@ -86,7 +86,7 @@ class ModelCV(Thread, QObject):
 
     def _getDifferImg(self):
         imgs = list(self.imgQueue)
-        imgAllor = np.zeros(imgs[0].shape, dtype=imgs[0].dtype)
+        imgAllor = np.zeros(imgs[0].shape[:2], dtype=imgs[0].dtype)
         for img in imgs:
             img = ExtractEdge().run(img)
             imgAllor = cv2.bitwise_or(imgAllor, img)
