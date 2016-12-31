@@ -23,23 +23,21 @@ class GetRawImg(object):
         self.SET = SETTING({})
         self.limit = 2592*1944
         # if self.SET.get("ifcamera", False):
-        self.hand = mdp.initCamera()
+        try:
+            self.open()
+        finally:
+            self.unInitCamera()
 
+    def open(self):
+        mdp.initCamera()
 
     # @timing
     def get(self):
-        """ get 0.0990002155304 s
-            get raw dll 0.0910000801086 s
-            create np.array 0.00600004196167 s
-            reshape 0s
-        """
         try:
-            # md = mdp.getRawImg(self.limit)
             md = mdp.getRawImg()
             # ValueError: get raw image error: -12
-
-        except Exception, e:
-            raise e
+        finally:
+            self.unInitCamera()
 
         npArray = md.reshape(1944, 2592)
         return npArray
@@ -52,6 +50,7 @@ class GetRawImg(object):
         return cv2.cvtColor(img, cv2.COLOR_BAYER_GR2BGR)
 
     def unInitCamera(self):
+        print "release camera"
         mdp.uninitCamera()
 
 

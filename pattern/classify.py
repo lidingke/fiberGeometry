@@ -155,8 +155,8 @@ class OctagonClassify(MetaClassify):
             coreMidRadius = self.ampRatio * coreRadius
             cladMidRadius = self.ampRatio * cladRadius
             # cladMidRadius = (cladRadius[0] + cladRadius[1])
-            coreRness = self.ampRatio * abs(coreResult["longAxisLen"] - coreResult["shortAxisLen"]/2)
-            cladRness = self.ampRatio * abs(cladResult["longAxisLen"] - cladResult["shortAxisLen"]/2)
+            coreRness = self.ampRatio * abs(coreResult["longAxisLen"] - coreResult["shortAxisLen"])
+            cladRness = self.ampRatio * abs(cladResult["longAxisLen"] - cladResult["shortAxisLen"])
 
             return (concentricity, coreMidRadius, cladMidRadius, coreRness, cladRness)
         else:

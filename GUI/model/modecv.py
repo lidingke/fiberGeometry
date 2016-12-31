@@ -102,6 +102,7 @@ class ModelCV(Thread, QObject):
     def _decorateImg(self,img):
         #todo: grb2gray need delete after rgb image show bug fixed
         """"mark the circle and size parameter"""
+        img = drawCoreCircle(img)
         ellipses = self.ellipses
         result = self.result
         # print 'decorate in ', ellipses or result, result
@@ -109,7 +110,7 @@ class ModelCV(Thread, QObject):
             return img
         # img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
         img = DecorateImg(img,ellipses,result)
-        img = drawCoreCircle(img)
+
         # origin = np.ones_like(origin) * 255
         # cv2.ellipse(origin, ellipses['clad'], (131, 210, 253), 1, lineType=200)  # (162,183,0)(green, blue, red)
         # cv2.ellipse(origin, ellipses['core'], (0, 102, 255), 1, lineType=200)  # 255,102,0#FF6600

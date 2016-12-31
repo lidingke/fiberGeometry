@@ -5,10 +5,10 @@ import sys
 import os
 import pdb
 
-from PyQt4.QtGui import QPalette, QColor,QApplication
+from PyQt4.QtGui import QPalette, QColor,QApplication, QMessageBox, QWidget
 from GUI.view.view import DynamicView
 from GUI.controller import Controller
-
+from setting.initcorrect import InitCorrect
 
 
 def loadStyleSheet(sheetName):
@@ -23,6 +23,10 @@ def loadStyleSheet(sheetName):
 if __name__ == '__main__':
     SETTING('MindVision500', 'Online')
     app = QApplication(sys.argv)
+    msg = InitCorrect().run()
+    if msg:
+        QMessageBox.information(QWidget(), "error", str(msg), QMessageBox.NoButton, QMessageBox.NoButton)
+        sys.exit(app.exec_())
     app.setStyleSheet(loadStyleSheet('main'))
     pt = QPalette()
     pt.setColor(QPalette.Background , QColor(4,159,241))

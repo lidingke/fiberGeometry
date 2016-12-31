@@ -26,14 +26,7 @@ class ClassCore(object):
         result = self._getResult(ellipse)
         result['ellipese'] = ellipse
         cv2.ellipse(tempPlots, ellipse, (0,255,255))
-        # pdb.set_trace()
-        # ellipeses = []
-        # for contour in contours:
-        #     ellipeses.append(cv2.fitEllipse(contour))
-        # for ellipese in ellipeses:
-        #     cv2.ellipse(tempPlots,ellipese)
-        # cv2.imshow("ell", tempPlots[::2, ::2])
-        # cv2.waitKey(0)
+
         result['plot'] = tempPlots
         result['contour'] = mergedpoints
 
@@ -72,13 +65,6 @@ class ClassOctagon(object):
         C = [[B[0][0], A[0][1]]]
         return self.angleRatio(A, B, C)
 
-    # def horizonalRatio45(self,A,B,C):
-    #     AB = np.linalg.norm(np.array(A) - np.array(B))
-    #     AC = np.linalg.norm(np.array(A) - np.array(C))
-    #     result = AB/AC
-    #     result = abs(result - 1.619775)
-    #     print 'jiao 45 ',result
-    #     return result
 
     def _getLongAxit(self, points):
         lenPoints = points.shape[0]
@@ -132,7 +118,7 @@ class ClassOctagon(object):
         :return:
         """
         # print 'get in contour', img.shape, img.dtype
-        img = cv2.medianBlur(img, 3)
+        # img = cv2.medianBlur(img, 3)
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         tempPlots = np.ones(img.shape) * 255
 

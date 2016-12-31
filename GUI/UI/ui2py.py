@@ -6,6 +6,8 @@ import sys
 
 
 def ui2pyCml(name):
+    cml = 'activate Anaconda2'
+    os.system(cml)
     cml = 'pyuic4 {}.ui -o {}UI.py'.format(name,name)
     print(cml)
     os.system(cml)

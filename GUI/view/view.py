@@ -1,6 +1,12 @@
 #coding:utf-8
+from setting.orderset import SETTING
 from GUI.UI.mainUI import Ui_MainWindow
-from GUI.UI.mainUI import Ui_MainWindow as new_MainWindow
+fibertype = SETTING().get("fiberType", "G652")
+if fibertype == "octagon":
+    from GUI.UI.mainocUI import Ui_MainWindow as new_MainWindow
+else:
+    from GUI.UI.mainUI import Ui_MainWindow as new_MainWindow
+
 from GUI.view.opplot import OpticalPlot
 from .reporter import Reporter
 from PyQt4.QtCore import QRect
@@ -110,6 +116,8 @@ class DynamicView(QMainWindow, new_MainWindow):
             self.painterWidget.initPixmap(arr)
             self.IS_INIT_PAINTER = True
         self.painterWidget.getPixmap(arr)
+        if hasattr(self, 'dynamicSharp'):
+            self.dynamicSharp.setText(sharp)
         # self.sharpLabel.setText(sharp)
 
     def getModel(self, model):
@@ -138,13 +146,3 @@ class DynamicView(QMainWindow, new_MainWindow):
         Reporter(self)
 
 
-# class StaticView(QMainWindow,new_MainWindow):
-#
-#     def __init__(self):
-#         super(StaticView, self).__init__()
-#         self.setupUi(self)
-#         self.__initUI__()
-#
-#     def __initUI__(self):
-#         items = ['G652']
-#         self.fiberType.addItems(items)
