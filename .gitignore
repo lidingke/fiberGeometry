@@ -23,3 +23,5 @@ obj/
 ipch/
 *.VC.VC.opendb
 tests/data
+*.xlsx
+SDK/MindPyScript/MindPyCEx/VSProject
