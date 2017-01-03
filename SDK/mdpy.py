@@ -3,7 +3,7 @@ import pdb
 import numpy as np
 import time
 import cv2
-from pattern.getimg import GetImage, yieldImg
+from pattern.getimg import GetImage
 from method.toolkit import timing
 # try:
 #     import SDK.MindPy.MindPyCEx.MindPy as mdp
@@ -13,35 +13,31 @@ from method.toolkit import timing
 #     except WindowsError:
 #         import MindPy as mdp
 from setting.orderset import SETTING
-from pattern.getimg import randomImg
 import SDK.MindPy as mdp
 
 class GetRawImg(object):
     """docstring for getRawImg"""
     def __init__(self, ):
         super(GetRawImg, self).__init__()
-        self.SET = SETTING({})
+        self.SET = SETTING()
         self.limit = 2592*1944
-        self.serialnumnber = ""
         # if self.SET.get("ifcamera", False):
-        try:
-            self.open()
-        except Exception as e:
-            self.unInitCamera()
-            raise e
-            # pass
+        self.hand = mdp.initCamera()
 
-    def open(self):
-        mdp.initCamera()
-        self.serialnumnber = mdp.getCameraSerial()
 
     # @timing
     def get(self):
+        """ get 0.0990002155304 s
+            get raw dll 0.0910000801086 s
+            create np.array 0.00600004196167 s
+            reshape 0s
+        """
         try:
+            # md = mdp.getRawImg(self.limit)
             md = mdp.getRawImg()
             # ValueError: get raw image error: -12
-        except Exception as e:
-            self.unInitCamera()
+
+        except Exception, e:
             raise e
 
         npArray = md.reshape(1944, 2592)
@@ -50,21 +46,19 @@ class GetRawImg(object):
     def bayer2BGR(self, img):
         if not isinstance(img, np.ndarray):
             raise ValueError("bayer2RGB input para error")
-        if len(img.shape) == 3:
-            return cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         return cv2.cvtColor(img, cv2.COLOR_BAYER_GR2BGR)
 
     def unInitCamera(self):
-        print "release camera"
         mdp.uninitCamera()
 
     def getSerialNumber(self):
-        # if self.serialnumnber:
-        return self.serialnumnber
-        # else:
+        return  mdp.getCameraSerial()
 
 def releaseCamera():
     mdp.uninitCamera()
+
+def getSerialNumber():
+    mdp.getCameraSerial()
 
 
 class GetRawImgTest(GetRawImg):
@@ -75,16 +69,12 @@ class GetRawImgTest(GetRawImg):
 
     def get(self):
         # img = GetImage().get("IMG\\GIOF1\\sig")
-        # img = np.fromfile("tests\\data\\dynamicimg1.bin", dtype="uint8")
-        # img.shape = (1944, 2592)
+        shape = (1944, 2592)
+        img = np.fromfile("tests\\data\\imgred.bin", dtype="uint8")
+        img.shape = shape
         # print 'get image', img.shape
-        # time.sleep(0.1)
-        return self.dynamicGet()
-
-    def dynamicGet(self):
-        return randomImg("IMG\\octagon\\D500\\")
-        # return yieldImg("IMG\\octagon\\D500")
-
+        time.sleep(0.1)
+        return img
 
     # def bayer2RGB(self, img):
     #     if not isinstance(img, np.ndarray):

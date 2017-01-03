@@ -1,7 +1,7 @@
 
 from setting.orderset import SETTING
 SETTING("test")
-from SDK.mdpy import GetRawImg, releaseCamera
+from SDK.mdpy import GetRawImg, releaseCamera, getSerialNumber
 import uuid
 from util.load import  MetaDict, WriteReadJson
 from PyQt4.QtGui import QPalette, QColor,QApplication, QMessageBox, QWidget
