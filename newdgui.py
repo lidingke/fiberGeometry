@@ -9,15 +9,15 @@ from PyQt4.QtGui import QPalette, QColor,QApplication, QMessageBox, QWidget
 from GUI.view.view import DynamicView
 from GUI.controller import Controller
 from setting.initcorrect import InitCorrect
+from setting.load import loadStyleSheet
 
-
-def loadStyleSheet(sheetName):
-    with open('GUI/UI/qss/{}.qss'.format(sheetName), 'rb') as f:
-        styleSheet = f.readlines()
-        styleSheet = b''.join(styleSheet)
-        styleSheet = styleSheet.decode('utf-8')
-
-    return styleSheet
+# def loadStyleSheet(sheetName):
+#     with open('GUI/UI/qss/{}.qss'.format(sheetName), 'rb') as f:
+#         styleSheet = f.readlines()
+#         styleSheet = b''.join(styleSheet)
+#         styleSheet = styleSheet.decode('utf-8')
+#
+#     return styleSheet
 
 
 if __name__ == '__main__':

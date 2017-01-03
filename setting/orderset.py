@@ -1,7 +1,7 @@
 from collections import OrderedDict
 import json
 import pdb
-from setting.dset import  MetaDict, WriteReadJson
+from util.load import  MetaDict, WriteReadJson
 
 
 def singleton(class_):

@@ -1,15 +1,14 @@
-from pattern.octagon import ClassOctagon
-from pattern.octagon import ClassCore
+from pattern.octagon import ClassOctagon, ClassCore
 from pattern.pickoctagon import PickOctagon
 from pattern.edge import ExtractEdge
 import pytest
 import cv2
-from test_edge2img import edge2img, yieldImg
+from util.loadimg import edge2img, yieldImg
 from pattern.getimg import GetImage
 import numpy as np
 from pattern.edge import EdgeFuncs
 import pdb
-from setting.dset import SETTING
+from setting.orderset import SETTING
 @pytest.mark.parametrize(
     'dir_',(
         'IMG\\thr.png',

@@ -22,3 +22,4 @@ obj/
 *.vcxproj.user
 ipch/
 *.VC.VC.opendb
+tests/data

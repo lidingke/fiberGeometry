@@ -32,6 +32,7 @@ from pattern.sharp import IsSharp
 from pattern.draw import DecorateImg, drawCoreCircle
 from SDK.oceanoptics import OceanOpticsTest
 from method.toolkit import Cv2ImShow, Cv2ImSave
+import logging
 
 
 class ModelCV(Thread, QObject):
@@ -47,6 +48,8 @@ class ModelCV(Thread, QObject):
         QObject.__init__(self)
         super(ModelCV, self).__init__()
         self.setDaemon(True)
+        logging.basicConfig(filename="setting\\modelog.txt", filemode='a', level=logging.ERROR,
+                            format="%(asctiem)s-%(levelname)s-%(funcName):%(message)s")
         self.IS_RUN = True
         self.isSharp = IsSharp()
         self.show = Cv2ImShow()
@@ -80,11 +83,15 @@ class ModelCV(Thread, QObject):
         Thread(target = self._calcImg).start()
 
     def _calcImg(self):
-        img = self._getDifferImg()
-        self._toClassify(img)
-        self._emitCVShowResult()
+        try:
+            img = self._getDifferImg()
+            self._toClassify(img)
+            self._emitCVShowResult()
+        except Exception as e:
+            logging.exception(e)
 
     def _getDifferImg(self):
+        #todo: quanju medianblur
         imgs = list(self.imgQueue)
         imgAllor = np.zeros(imgs[0].shape[:2], dtype=imgs[0].dtype)
         for img in imgs:
@@ -100,7 +107,6 @@ class ModelCV(Thread, QObject):
         return self.result
 
     def _decorateImg(self,img):
-        #todo: grb2gray need delete after rgb image show bug fixed
         """"mark the circle and size parameter"""
         img = drawCoreCircle(img)
         ellipses = self.ellipses
@@ -111,28 +117,8 @@ class ModelCV(Thread, QObject):
         # img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
         img = DecorateImg(img,ellipses,result)
 
-        # origin = np.ones_like(origin) * 255
-        # cv2.ellipse(origin, ellipses['clad'], (131, 210, 253), 1, lineType=200)  # (162,183,0)(green, blue, red)
-        # cv2.ellipse(origin, ellipses['core'], (0, 102, 255), 1, lineType=200)  # 255,102,0#FF6600
-        # print 'after decorate', img.shape
-        # img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         return img
 
-
-    # def multiTest(self):
-    #     Thread(target=self._multiCalc).start()
-    #
-    # def _multiCalc(self):
-    #     resultlist = []
-    #     for x in range(20):
-    #         img = self._getDifferImg()
-    #         result = self._toClassify(img)
-    #         print 'result,', result
-    #         if result:
-    #             resultlist.append(str(result)[1:-1]+'\n')
-    #         time.sleep(3)
-    #     with open('IMG\\result.csv', 'wb+') as f:
-    #         f.writelines(resultlist)
 
     def exit(self):
         print "unInit"

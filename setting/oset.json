@@ -14,7 +14,7 @@
           "dimension": 1
         },
       "imgsize":[1944,2592],
-      "coreRange":[10,80],
+      "coreRange":[15,80],
       "cladRange":[200,400],
       "fiberType":"G652",
       "corepoint":[1296,972]

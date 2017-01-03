@@ -5,6 +5,7 @@ import numpy as np
 import os
 from pattern.edge import EdgeFuncs
 
+
 def edge2img(dirs):
     dirlist = os.listdir(dirs)
     dirlist = [dirs + x for x in dirlist]
@@ -28,8 +29,3 @@ def yieldImg(dirs):
     for dir_ in dirlist:
         img = GetImage().get(dir_)
         yield  img
-
-if __name__ == "__main__":
-    img = edge2img("IMG\\octagon\\500s\\")
-    cv2.imshow("bitwise_not", img[::4, ::4])
-    cv2.waitKey(0)

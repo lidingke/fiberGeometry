@@ -1,11 +1,12 @@
 
 from setting.orderset import SETTING
 SETTING("test")
-from SDK.mdpy import GetRawImg
+from SDK.mdpy import GetRawImg, releaseCamera
 import uuid
-from setting.dset import  MetaDict, WriteReadJson
+from util.load import  MetaDict, WriteReadJson
 from PyQt4.QtGui import QPalette, QColor,QApplication, QMessageBox, QWidget
 import sys
+import time
 class InitCorrect(object):
 
     def __init__(self):
@@ -13,28 +14,40 @@ class InitCorrect(object):
 
     def run(self):
         try:
+            self.readJson()
             self.rightMac()
             self.rightCamera()
 
         except ValueError as e:
             return e
-        return
+        # return
+
+    def readJson(self):
+        wrJson = WriteReadJson("setting\\userdata.json")
+        self.json = wrJson.load()
+        # print jsonLoad
 
     def rightCamera(self):
         try:
-            GetRawImg()
+            get = GetRawImg()
+            serialnumber = get.getSerialNumber()
         except ValueError as e:
             print 'get e is ',e
+            # releaseCamera()
+            # time.sleep(0.1)
             raise e
+        finally:
+            releaseCamera()
+        if serialnumber not in self.json["camera"]:
+            raise ValueError("Camera serial number error")
 
     def rightMac(self):
-        macid = uuid.UUID(int=uuid.getnode()).hex[-12:]
-        wrJson = WriteReadJson("setting\\userdata.json")
-        jsonLoad = wrJson.load()
-        print jsonLoad
-        if macid not in jsonLoad["mac"]:
+        macid = uuid.UUID(int=uuid.getnode()).hex[-12:].upper()
+        # macid = macid
+        print macid , self.json["mac"]
+        if macid not in self.json["mac"]:
             raise ValueError("device information error")
-        return
+        # return
 
 # class ErrorWindow(QWidget):
 #

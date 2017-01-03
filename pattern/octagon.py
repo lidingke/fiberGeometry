@@ -68,7 +68,7 @@ class ClassOctagon(object):
 
     def _getLongAxit(self, points):
         lenPoints = points.shape[0]
-        print 'lens is ', lenPoints
+        # print 'lens is ', lenPoints
         pointsContain = []
         for i in range(0, lenPoints):
             points2top = []

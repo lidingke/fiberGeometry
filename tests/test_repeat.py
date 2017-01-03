@@ -1,11 +1,10 @@
 from __future__ import division
 from setting.orderset import SETTING
-Set = SETTING("test", "octagon", "centerImg")
-
+SETTING("test", "octagon", "centerImg")
 from pattern.octagon import ClassOctagon
 from pattern.edge import ExtractEdge
 import cv2
-from test_edge2img import edge2img, yieldImg
+from util.loadimg import edge2img, yieldImg
 from pattern.getimg import GetImage, randomImg
 import numpy as np
 from SDK.mdpy import GetRawImgTest
@@ -24,12 +23,14 @@ def test_repeat_octagon():
         result = ClassOctagon().run(img)
         _1, _2 = result['corePoint'][0].tolist()
         radius = result['longAxisLen'] + result['shortAxisLen'] / 2
+        print  _1, _2, radius
         resultget.append([_1, _2, radius])
 
     resultarray = np.array(resultget)
     # print resultarray
     std  = np.std(resultarray, axis= 0 )
-    x, y, z = std
+    x, y, z = std * 0.088
+    print 'std', x, y, z
     assert z < 0.5
 
 
@@ -42,4 +43,4 @@ def test_GetRawImgTest():
 
 
 if __name__ == '__main__':
-    test_GetRawImgTest()
+    test_repeat_octagon()

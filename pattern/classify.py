@@ -105,6 +105,7 @@ class OctagonClassify(MetaClassify):
 
 
     def find(self, img):
+        # todo: shape==3 custom Threshold
         self.img = img
         coreimg, cladimg = self._difcore(img)
         coreResult = ClassCore().run(coreimg)

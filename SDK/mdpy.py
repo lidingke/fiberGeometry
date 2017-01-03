@@ -22,22 +22,27 @@ class GetRawImg(object):
         super(GetRawImg, self).__init__()
         self.SET = SETTING({})
         self.limit = 2592*1944
+        self.serialnumnber = ""
         # if self.SET.get("ifcamera", False):
         try:
             self.open()
-        finally:
+        except Exception as e:
             self.unInitCamera()
+            raise e
+            # pass
 
     def open(self):
         mdp.initCamera()
+        self.serialnumnber = mdp.getCameraSerial()
 
     # @timing
     def get(self):
         try:
             md = mdp.getRawImg()
             # ValueError: get raw image error: -12
-        finally:
+        except Exception as e:
             self.unInitCamera()
+            raise e
 
         npArray = md.reshape(1944, 2592)
         return npArray
@@ -52,6 +57,14 @@ class GetRawImg(object):
     def unInitCamera(self):
         print "release camera"
         mdp.uninitCamera()
+
+    def getSerialNumber(self):
+        # if self.serialnumnber:
+        return self.serialnumnber
+        # else:
+
+def releaseCamera():
+    mdp.uninitCamera()
 
 
 class GetRawImgTest(GetRawImg):

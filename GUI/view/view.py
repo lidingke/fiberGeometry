@@ -14,28 +14,28 @@ from PyQt4.QtGui import QWidget, QMainWindow, QPainter, QFont,\
     QPixmap, QImage, QColor, QFileDialog, QMessageBox
 import numpy as np
 
-class View(QMainWindow,Ui_MainWindow):
-    """docstring for View"""
-    def __init__(self,):
-        super(View, self).__init__()
-        self.setupUi(self)
-        self.painterWidget = CVPainterWidget(self.widget)
-        self.IS_INIT_PAINTER = False
-        font = QFont("Microsoft YaHei", 20, 75)
-        self.sharpLabel.setFont(font)
-
-    def updatePixmap(self,arr, sharp):
-        if not self.IS_INIT_PAINTER:
-            self.painterWidget.initPixmap(arr)
-            self.IS_INIT_PAINTER = True
-        self.painterWidget.getPixmap(arr)
-        self.sharpLabel.setText(sharp)
-
-    def getModel(self, model):
-        self.model = model
-
-    def closeEvent(self, *args, **kwargs):
-        self.model.exit()
+# class View(QMainWindow,Ui_MainWindow):
+#     """docstring for View"""
+#     def __init__(self,):
+#         super(View, self).__init__()
+#         self.setupUi(self)
+#         self.painterWidget = CVPainterWidget(self.widget)
+#         self.IS_INIT_PAINTER = False
+#         font = QFont("Microsoft YaHei", 20, 75)
+#         self.sharpLabel.setFont(font)
+#
+#     def updatePixmap(self,arr, sharp):
+#         if not self.IS_INIT_PAINTER:
+#             self.painterWidget.initPixmap(arr)
+#             self.IS_INIT_PAINTER = True
+#         self.painterWidget.getPixmap(arr)
+#         self.sharpLabel.setText(sharp)
+#
+#     def getModel(self, model):
+#         self.model = model
+#
+#     def closeEvent(self, *args, **kwargs):
+#         self.model.exit()
 
 
 class CVPainterWidget(QWidget):

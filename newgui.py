@@ -12,16 +12,8 @@ from PyQt4.QtGui import QPalette, QColor,QApplication
 from PyQt4.QtCore import QCoreApplication, QFile
 from GUI.view.view import DynamicView
 from GUI.controller import Controller
+from setting.load import loadStyleSheet
 
-def loadStyleSheet(sheetName):
-#D:\MyProjects\WorkProject\opencv4fiber\cv\GUI\UI\qss\main.qss
-    with open('GUI/UI/qss/{}.qss'.format(sheetName), 'rb') as f:
-        styleSheet = f.readlines()
-        # print(read)
-        styleSheet = b''.join(styleSheet)
-        styleSheet = styleSheet.decode('utf-8')
-
-    return styleSheet
 
 
 if __name__ == '__main__':

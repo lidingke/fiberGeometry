@@ -3,7 +3,7 @@ from PyQt4.QtCore import QObject, pyqtSignal
 import time
 import pdb
 import numpy as np
-from setting.dset import SETTING
+from setting.orderset import SETTING
 Set = SETTING()
 setGet = Set.get('ifcamera', False)
 from SDK.oceanoptics import OceanOpticsTest
