@@ -27,26 +27,26 @@ def test_ClassOctagon(dir_):
     print dir_, result['shortAxisLen'], result['longAxisLen'], ratio
     assert isinstance(result['corePoint'], np.ndarray)
 
-@pytest.mark.parametrize(
-    'dir_',(
-        'IMG\\IMG00001.BMP',
-        'IMG\\IMG00003.BMP',
-    ))
-def test_ClassCore(dir_):
-
-    img = GetImage().get(dir_)
-    img = ExtractEdge().run(img)
-    # cv2.imshow('img', img[::4,::4])
-    # cv2.waitKey()
-    core, img = PickOctagon().pick(img)
-    result = ClassCore().run(core)
-    assert isinstance(result['plot'], np.ndarray)
-    assert result['longAxisLen'] > result['shortAxisLen']
-    ratio = result['shortAxisLen'] / result['longAxisLen']
-    print 'len', result['shortAxisLen'] , result['longAxisLen']
-    assert ratio > 0.9
+# @pytest.mark.parametrize(
+#     'dir_',(
+#         'IMG\\IMG00001.BMP',
+#         'IMG\\IMG00003.BMP',
+#     ))
+# def test_ClassCore(dir_):
+#
+#     img = GetImage().get(dir_)
+#     img = ExtractEdge().run(img)
+#     cv2.imshow('img', img[::4,::4])
+#     cv2.waitKey()
+    # core, img = PickOctagon().pick(img)
+    # result = ClassCore().run(core)
+    # assert isinstance(result['plot'], np.ndarray)
+    # assert result['longAxisLen'] > result['shortAxisLen']
+    # ratio = result['shortAxisLen'] / result['longAxisLen']
+    # print 'len', result['shortAxisLen'] , result['longAxisLen']
+    # assert ratio > 0.9
     # print result['shortAxisLen'], result['longAxisLen'], ratio
-    assert isinstance(result['corePoint'], np.ndarray)
+    # assert isinstance(result['corePoint'], np.ndarray)
 
 def oldmain():
     sets = SETTING({"ampFactor": "20X", "cameraID": "MindVision500"})

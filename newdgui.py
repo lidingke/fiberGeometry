@@ -6,7 +6,7 @@ import os
 import pdb
 
 from PyQt4.QtGui import QPalette, QColor,QApplication, QMessageBox, QWidget
-from GUI.view.view import DynamicView
+from GUI.view.view import View
 from GUI.controller import Controller
 from setting.initcorrect import InitCorrect
 from setting.load import loadStyleSheet
@@ -33,6 +33,6 @@ if __name__ == '__main__':
     pt = QPalette()
     pt.setColor(QPalette.Background , QColor(4,159,241))
     app.setPalette(pt)
-    c = Controller(DynamicView())
+    c = Controller(View())
     c.show()
     sys.exit(app.exec_())

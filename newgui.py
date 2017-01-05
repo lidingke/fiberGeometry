@@ -1,5 +1,3 @@
-
-
 import sys
 import os
 import pdb
@@ -10,7 +8,7 @@ Set['ifcamera'] = False
 
 from PyQt4.QtGui import QPalette, QColor,QApplication
 from PyQt4.QtCore import QCoreApplication, QFile
-from GUI.view.view import DynamicView
+from GUI.view.view import View
 from GUI.controller import Controller
 from setting.load import loadStyleSheet
 
@@ -24,7 +22,7 @@ if __name__ == '__main__':
     pt = QPalette()
     pt.setColor(QPalette.Background , QColor(4,159,241))
     app.setPalette(pt)
-    c = Controller(DynamicView())
+    c = Controller(View())
     c.show()
 
     sys.exit(app.exec_())

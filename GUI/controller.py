@@ -26,6 +26,7 @@ class Controller(QObject):
         self._view.beginTestAT.clicked.connect(self._getAttenuation)
         self._modelcv.resultShowCV.connect(self._view.updateCVShow)
         self._modelcv.resultShowAT.connect(self._view.updateATShow)
+        # self._tempMedianIndex()
 
         # self._view.multiTest.clicked.connect(self._model.multiTest)
 
@@ -33,4 +34,6 @@ class Controller(QObject):
         length = self._view.fiberLength.text()
         length = float(length)
         self._modelcv.attenuationTest(length)
+
+
 

@@ -15,7 +15,7 @@ class ClassCore(object):
     def __init__(self):
         super(ClassCore, self).__init__()
 
-    @timing
+    # @timing
     def run(self,img):
         blurindex = SETTING()["medianBlur"].get("corefilter", 3)
 
@@ -130,18 +130,13 @@ class ClassOctagon(object):
         :param img:
         :return:
         """
-        # print 'get in contour', img.shape, img.dtype
+
         blurindex = SETTING()["medianBlur"].get("cladfilter", 3)
-        blurindex = 5
         img = cv2.medianBlur(img, blurindex)
-        cv2.imshow('median', img[::4,::4])
-        cv2.waitKey()
         # img = cv2.adaptiveBilateralFilter
-        img = cv2.bilateralFilter(img, 9, 80, 75)
+        img = cv2.bilateralFilter(img, 5, 80, 75)
         # img = EdgeFuncs().close(img,kernelLen=3)
         print 'get blur index ', blurindex
-        # cv2.imshow('imgoc', img[::4,::4])
-        # cv2.waitKey()
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         tempPlots = np.ones(img.shape) * 255
 

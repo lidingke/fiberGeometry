@@ -37,19 +37,19 @@ import pdb
 #     assert long > 55 and long < 90
 #     assert short > 55 and short < 90
 
-def test_big_noise():
-    img = randomBin("tests\\data\\bignoise\\")
-    # img = cv2.medianBlur(img, 9)
-    cv2.imshow('img',img[::4,::4])
-    cv2.waitKey()
-    classify = Classify()
-    coreimg, cladimg = classify._difcore(img)
-    core = ClassCore().run(coreimg)
-    clad = ClassOctagon().run(cladimg)
+# def test_big_noise():
+#     img = randomBin("tests\\data\\bignoise\\")
+#     img = cv2.medianBlur(img, 9)
+    # cv2.imshow('img',img[::4,::4])
+    # cv2.waitKey()
+    # classify = Classify()
+    # coreimg, cladimg = classify._difcore(img)
+    # core = ClassCore().run(coreimg)
+    # clad = ClassOctagon().run(cladimg)
     # cv2.imshow('clad', core['plot'][::4,::4])
     # cv2.waitKey()
-    cv2.imshow('clad', clad['plot'][::4,::4])
-    cv2.waitKey()
+    # cv2.imshow('clad', clad['plot'][::4,::4])
+    # cv2.waitKey()
     # cv2.imshow('coreimg',coreimg[::4,::4])
     # cv2.waitKey()
     # cv2.imshow('cladimg',cladimg[::4,::4])

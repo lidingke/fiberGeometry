@@ -144,13 +144,10 @@ class OctagonClassify(MetaClassify):
         coreResult = self.result.get('coreResult', False)
         cladResult = self.result.get('cladResult', False)
         if coreResult and cladResult:
-
             coreCore = coreResult["corePoint"].tolist()[0]
             cladCore = cladResult["corePoint"].tolist()[0]
-            coreRadius = coreResult["longAxisLen"] + coreResult["shortAxisLen"]/2
-            cladRadius = cladResult["longAxisLen"] + cladResult["shortAxisLen"]/2
-            print coreCore, cladCore ,type(coreCore)
-
+            coreRadius = (coreResult["longAxisLen"] + coreResult["shortAxisLen"])/2
+            cladRadius = (cladResult["longAxisLen"] + cladResult["shortAxisLen"])/2
             concentricity = ((coreCore[0] - cladCore[0]) ** 2
                              + (coreCore[1] - cladCore[1]) ** 2) ** 0.5
             concentricity = concentricity * self.ampRatio

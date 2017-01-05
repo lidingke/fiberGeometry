@@ -166,3 +166,5 @@ class ModelCV(Thread, QObject):
             text = u''.join(text)
             self.resultShowCV.emit(text)
 
+
+

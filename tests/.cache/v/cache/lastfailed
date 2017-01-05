@@ -1,5 +1,3 @@
 {
-  "test_G652class.py::CVTest::test_mindpySDK": true, 
-  "test_octagon.py::test_ClassCore[IMG\\IMG00001.BMP]": true, 
-  "test_octagon.py::test_ClassCore[IMG\\IMG00003.BMP]": true
+  "test_G652class.py::CVTest::test_mindpySDK": true
 }

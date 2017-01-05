@@ -9,9 +9,10 @@ else:
 
 from GUI.view.opplot import OpticalPlot
 from .reporter import Reporter
-from PyQt4.QtCore import QRect
+from pattern.sharp import MaxSharp
+from PyQt4.QtCore import QRect, Qt
 from PyQt4.QtGui import QWidget, QMainWindow, QPainter, QFont,\
-    QPixmap, QImage, QColor, QFileDialog, QMessageBox
+    QPixmap, QImage, QColor, QFileDialog, QMessageBox, QPalette
 import numpy as np
 
 # class View(QMainWindow,Ui_MainWindow):
@@ -85,30 +86,26 @@ class CVPainterWidget(QWidget):
         self.update()
 
 
-class DynamicView(QMainWindow, new_MainWindow):
+class View(QMainWindow, new_MainWindow):
     """docstring for View"""
 
     def __init__(self,):
-        super(DynamicView, self).__init__()
+        super(View, self).__init__()
         self.setupUi(self)
         self.painterWidget = CVPainterWidget(self.canvas)
-    #     self.painterWidget.setStyleSheet("QWidget {background-color: white;\
-    # border-width: 2px;\
-    # border-color: blue;\
-    # border-style: solid;\
-    # border-radius: 50px;}")
         self.axisWidget = OpticalPlot(parent=self.axis)
-        # self.axisWidget.setStyleSheet("QWidget{border-radius: 50px}")
         self.IS_INIT_PAINTER = False
-        # font = QFont("Microsoft YaHei", 20, 75)
-        # self.sharpLabel.setFont(font)
         self.__initUI__()
         self.reporterCV.clicked.connect(self.writeReporterCV)
-        # self.fiberLength.connect(self.attenuationTest)
+        self._tempMedianIndex()
+        self.isMaxSharp = MaxSharp()
+
 
     def __initUI__(self):
         items = ['G652']
         self.fiberType.addItems(items)
+        self.setWindowFlags(Qt.WindowMaximizeButtonHint)
+        self.setFixedSize(self.width(),self.height())
 
     def updatePixmap(self, arr, sharp):
         #todo : set Text box
@@ -118,7 +115,11 @@ class DynamicView(QMainWindow, new_MainWindow):
         self.painterWidget.getPixmap(arr)
         if hasattr(self, 'dynamicSharp'):
             self.dynamicSharp.setText(sharp)
-        # self.sharpLabel.setText(sharp)
+            if self.isMaxSharp.isRight(sharp):
+                self.dynamicSharp.setStyleSheet("color:red")
+            else:
+                self.dynamicSharp.setStyleSheet("color:white")
+
 
     def getModel(self, model):
         self.model = model
@@ -144,5 +145,17 @@ class DynamicView(QMainWindow, new_MainWindow):
     def writeReporterCV(self):
         para = {}
         Reporter(self)
+
+    def _tempMedianIndex(self):
+        def changeCoreIndex():
+            index = self.coreMedianIndex.value()
+            SETTING()["medianBlur"]["corefilter"] = index
+        def changeCladIndex():
+            index = self.cladMedianIndex.value()
+            SETTING()["medianBlur"]["cladfilter"] = index
+        if hasattr(self, "cladMedianIndex"):
+            self.cladMedianIndex.valueChanged.connect(changeCladIndex)
+        if hasattr(self, "coreMedianIndex"):
+            self.coreMedianIndex.valueChanged.connect(changeCoreIndex)
 
 

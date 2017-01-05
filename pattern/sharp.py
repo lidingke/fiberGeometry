@@ -5,6 +5,7 @@ from method.toolkit import timing
 import numpy as np
 from setting.orderset import SETTING
 import pdb
+import collections
 
 class IsSharp(CV2MethodSet):
     """docstring for IsSharp"""
@@ -82,3 +83,23 @@ class IsSharp(CV2MethodSet):
         x10 = int(sizecoup[1]*(rato))
         x11 = int(sizecoup[1]*(1-rato))
         return (x00, x01, x10 ,x11)
+
+
+class MaxSharp(object):
+
+    def __init__(self):
+        super(MaxSharp, self).__init__()
+        self.deque = collections.deque(maxlen = 20)
+
+    def isRight(self, sharp):
+        sharp = float(sharp)
+        self.deque.append(sharp)
+
+        if len(self.deque) < 5:
+            return False
+        sortque = sorted(list(self.deque))
+        print sortque[-1], type(sortque[-1])
+        if sharp > sortque[-1] * 0.6:
+            return True
+        else:
+            return False
