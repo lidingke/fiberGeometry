@@ -4,10 +4,11 @@ from pattern.octagon import ClassOctagon
 from pattern.octagon import ClassCore
 from pattern.pickoctagon import PickOctagon
 from pattern.edge import ExtractEdge
+from pattern.classify import OctagonClassify as Classify
 import pytest
 import cv2
 from util.loadimg import edge2img, yieldImg
-from pattern.getimg import GetImage
+from pattern.getimg import GetImage, randomBin
 import numpy as np
 from pattern.edge import EdgeFuncs
 import pdb
@@ -35,6 +36,26 @@ import pdb
 #     assert long > short
 #     assert long > 55 and long < 90
 #     assert short > 55 and short < 90
+
+def test_big_noise():
+    img = randomBin("tests\\data\\bignoise\\")
+    # img = cv2.medianBlur(img, 9)
+    cv2.imshow('img',img[::4,::4])
+    cv2.waitKey()
+    classify = Classify()
+    coreimg, cladimg = classify._difcore(img)
+    core = ClassCore().run(coreimg)
+    clad = ClassOctagon().run(cladimg)
+    # cv2.imshow('clad', core['plot'][::4,::4])
+    # cv2.waitKey()
+    cv2.imshow('clad', clad['plot'][::4,::4])
+    cv2.waitKey()
+    # cv2.imshow('coreimg',coreimg[::4,::4])
+    # cv2.waitKey()
+    # cv2.imshow('cladimg',cladimg[::4,::4])
+    # cv2.waitKey()
+    # result = classify.getResult()
+
 
 
 def test_dynamic_img():
@@ -81,5 +102,5 @@ def test_main():
     # cv2.waitKey()
 
 if __name__ == "__main__":
-    test_dynamic_img()
+    test_big_noise()
     # test_main()

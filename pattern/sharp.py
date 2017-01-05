@@ -3,12 +3,14 @@ from pattern.meta import CV2MethodSet
 from pattern.edge import ExtractEdge
 from method.toolkit import timing
 import numpy as np
+from setting.orderset import SETTING
 import pdb
 
 class IsSharp(CV2MethodSet):
     """docstring for IsSharp"""
     def __init__(self):
         super(IsSharp, self).__init__()
+        self.SET = SETTING()
 
 
     def isSharp(self, img):
@@ -33,10 +35,13 @@ class IsSharp(CV2MethodSet):
     def isSharpDiff(self, imgs):
         if len(imgs[0].shape) == 3:
             imgs = self._imgs2gray(imgs)
-
-        imgAllor = np.zeros(imgs[0][::5,::5].shape, dtype=imgs[0].dtype)
+        # for i,img in enumerate(imgs):
+        #     img.tofile("tests\\data\\imgforsharp{}.bin".format(i))
+        imgs = [self._doSharpRange(img) for img in imgs]
+        # self._doSharpRange(img)
+        imgAllor = np.zeros(imgs[0].shape, dtype=imgs[0].dtype)
         for img in imgs[-3:]:
-            img = ExtractEdge().run(img[::5,::5])
+            img = ExtractEdge().run(img)
             imgAllor = cv2.bitwise_or(imgAllor, img)
         imgAllor = cv2.bitwise_not(imgAllor)
         kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
@@ -44,10 +49,21 @@ class IsSharp(CV2MethodSet):
         # self.Show.show('sharp', imgAllor)
         # imgAllor = cv2.medianBlur(imgAllor, 7)
         sumGrad2 = imgAllor.sum()
-
-        normalizationSharp = sumGrad2**2//imgAllor.size//1000.0
+        normalizationSharp = sumGrad2**2//imgAllor.size//100
 
         return normalizationSharp
+
+    def _doSharpRange(self, img):
+        # if hasattr(self.SET, "corepoint") and hasattr(self.SET, "cladRange"):
+        if "cladRange" in self.SET:
+            corex, corey = self.SET["corepoint"]
+            minRange, maxRange = self.SET["cladRange"]
+            begin = (corex - maxRange, corey - maxRange)
+            end = (corex + maxRange, corey + maxRange)
+            return img[begin[0]:end[0]:2, begin[1]:end[1]:2]
+        else:
+            return img[::5,::5]
+
 
 
     def erodeDilate(self,img):

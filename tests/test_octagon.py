@@ -1,3 +1,5 @@
+from setting.orderset import SETTING
+SETTING('test','octagon')
 from pattern.octagon import ClassOctagon, ClassCore
 from pattern.pickoctagon import PickOctagon
 from pattern.edge import ExtractEdge
@@ -8,7 +10,7 @@ from pattern.getimg import GetImage
 import numpy as np
 from pattern.edge import EdgeFuncs
 import pdb
-from setting.orderset import SETTING
+
 @pytest.mark.parametrize(
     'dir_',(
         'IMG\\thr.png',
@@ -34,11 +36,14 @@ def test_ClassCore(dir_):
 
     img = GetImage().get(dir_)
     img = ExtractEdge().run(img)
+    # cv2.imshow('img', img[::4,::4])
+    # cv2.waitKey()
     core, img = PickOctagon().pick(img)
     result = ClassCore().run(core)
     assert isinstance(result['plot'], np.ndarray)
     assert result['longAxisLen'] > result['shortAxisLen']
     ratio = result['shortAxisLen'] / result['longAxisLen']
+    print 'len', result['shortAxisLen'] , result['longAxisLen']
     assert ratio > 0.9
     # print result['shortAxisLen'], result['longAxisLen'], ratio
     assert isinstance(result['corePoint'], np.ndarray)
@@ -62,7 +67,7 @@ def oldmain():
     for img in yieldImg("IMG\\octagon\\500s\\"):
         img = ExtractEdge().run(img)
         # img = EdgeFuncs().open(img, 10)
-        img = cv2.medianBlur(img, 11)
+        # img = cv2.medianBlur(img, 11)
         result = ClassOctagon().run(img)
         _1, _2 = result['corePoint'][0].tolist()
         resultget.append([_1, _2, result['longAxisLen'],result['shortAxisLen']])

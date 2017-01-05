@@ -17,13 +17,14 @@
       "coreRange":[15,80],
       "cladRange":[200,400],
       "fiberType":"G652",
-      "corepoint":[1296,972]
+      "corepoint":[1296,972],
+      "ampPixSize": 0.218
   },
   "MindVision500":{
     "ifcamera": true
   },
   "20X": {
-    "ampPixSize": 0.088
+    "ampPixSize": 0.218
   },
   "Online":{
     "ifcamera": true
@@ -39,7 +40,12 @@
     "fiberType":"G652"
   },
   "octagon":{
-    "fiberType":"octagon"
+    "fiberType":"octagon",
+    "medianBlur": {
+          "ErodeDilateKsize": 9,
+          "corefilter": 11,
+          "cladfilter": 11
+        }
   },
   "centerImg":{
     "centerImg":true

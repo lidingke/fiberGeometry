@@ -53,6 +53,16 @@ def randomImg(dirs):
     img = GetImage().get(choice(dirlist),colour='color')
     return img
 
+def randomBin(dirs):
+    if dirs[-4:].find('.') > 0:
+        raise ValueError('input para is not a folder, a file')
+    dirlist = os.listdir(dirs)
+    dirlist = [dirs + x for x in dirlist]
+    # dir_ = "tests\\data\\imgforsharp{}.bin".format(i)
+    img = np.fromfile(choice(dirlist), dtype="uint8")
+    img.shape = (1944, 2592)
+    return img
+
 
 """" interface """
 def getImage(dir_):

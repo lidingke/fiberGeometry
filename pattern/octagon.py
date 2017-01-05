@@ -5,15 +5,28 @@ import pdb
 from operator import itemgetter
 from pattern.getimg import GetImage
 from pattern.getimg import getImage
-from pattern.edge import ExtractEdge
+from pattern.edge import ExtractEdge, EdgeFuncs
 from pattern.exception import ClassCoreError, ClassOctagonError
+from setting.orderset import SETTING
+from util.timing import timing
 
 
 class ClassCore(object):
     def __init__(self):
         super(ClassCore, self).__init__()
 
+    @timing
     def run(self,img):
+        blurindex = SETTING()["medianBlur"].get("corefilter", 3)
+
+        # print 'get core median', blurindex
+
+        img = cv2.medianBlur(img, blurindex)
+        # img = cv2.bilateralFilter(img, 20, 75, 75)
+
+        # img = EdgeFuncs().close(img, time_ = 1)
+        # cv2.imshow('coreimg', img[::4, ::4])
+        # cv2.waitKey()
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         tempPlots = np.ones(img.shape) * 255
         if len(contours) ==0:
@@ -109,7 +122,7 @@ class ClassOctagon(object):
         else:
             return list_
 
-
+    @timing
     def run(self, img):
         """
         :findContours->convexHull->sortMaxPointsDistance
@@ -118,7 +131,17 @@ class ClassOctagon(object):
         :return:
         """
         # print 'get in contour', img.shape, img.dtype
-        # img = cv2.medianBlur(img, 3)
+        blurindex = SETTING()["medianBlur"].get("cladfilter", 3)
+        blurindex = 5
+        img = cv2.medianBlur(img, blurindex)
+        cv2.imshow('median', img[::4,::4])
+        cv2.waitKey()
+        # img = cv2.adaptiveBilateralFilter
+        img = cv2.bilateralFilter(img, 9, 80, 75)
+        # img = EdgeFuncs().close(img,kernelLen=3)
+        print 'get blur index ', blurindex
+        # cv2.imshow('imgoc', img[::4,::4])
+        # cv2.waitKey()
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         tempPlots = np.ones(img.shape) * 255
 
@@ -137,13 +160,14 @@ class ClassOctagon(object):
         result = {}
         x, y = tuple(longAxis[1][0].tolist()),tuple(longAxis[2][0].tolist())
         result['longPlot'] = (x, y)
-        cv2.line(tempPlots, x, y, (0, 255, 0), 1)
+        cv2.line(tempPlots, x, y, (0, 255, 0), 8)
         midPoint = longAxis[1][0] + longAxis[2][0]
         midPointf = midPoint /2
         midPoint = midPoint // 2
 
         getVerticalPoint = mergedpoints.tolist()
         getVerticalPoint.sort(key = lambda x: np.linalg.norm(x-midPoint))
+        # getVerticalPoint = getVerticalPoint[:-2]
         tempCounters = (getVerticalPoint[0], getVerticalPoint[-1])
         getVerticalPoint = self._getHalfList(getVerticalPoint)
         getVerticalPoint.sort(key = lambda x: abs(self.angleRatio([midPoint], longAxis[1], x)))
@@ -159,7 +183,7 @@ class ClassOctagon(object):
 
         # print 'result[\'contour\']', result['contour']
         ellipse = cv2.fitEllipse(result['contour'])
-        cv2.ellipse(tempPlots, ellipse, (0, 25, 25), 4)
+        # cv2.ellipse(tempPlots, ellipse, (0, 25, 25), 4)
         result['plot'] = tempPlots
         result['ellipese'] = ellipse
 

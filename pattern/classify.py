@@ -101,7 +101,8 @@ class OctagonClassify(MetaClassify):
     def __init__(self):
         super(OctagonClassify, self).__init__()
         self.SET = SETTING()
-        self.ampRatio = 0.086
+        self.ampRatio = self.SET.get("ampPixSize", 0.088)
+        # self.ampRatio = 1
 
 
     def find(self, img):
@@ -130,7 +131,7 @@ class OctagonClassify(MetaClassify):
 
 
     def _getFilterImg(self, core, origin, minRange, maxRange):
-        img = np.ones(self.img.shape, dtype='uint8') * 255
+        img = np.ones(origin.shape, dtype='uint8') * 255
         core = [core,1]
         cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(maxRange), (0, 0, 0), -1)
         cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)

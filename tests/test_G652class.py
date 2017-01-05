@@ -1,5 +1,4 @@
 
-# from setting.load import WriteReadJson
 from setting.orderset import SETTING
 import pdb
 import numpy as np
@@ -45,7 +44,7 @@ class CVTest(unittest.TestCase):
         img = self.img
         issharp = IsSharp()
         result = issharp.isSharpDiff([img,img,img,img,img])
-        self.assertIsInstance(result, float)
+        assert isinstance(result, int) or isinstance(result, np.int64)
         print 'sharp: ', result
 
     def test_mindpySDK(self):

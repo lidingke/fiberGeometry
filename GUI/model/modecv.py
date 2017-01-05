@@ -8,7 +8,7 @@ import cv2
 import numpy as np
 
 from setting.orderset import SETTING
-Set = SETTING()
+Set = SETTING('octagon')
 setGet = Set.get('ifcamera', False)
 print 'setget', setGet
 if setGet:
@@ -33,6 +33,7 @@ from pattern.draw import DecorateImg, drawCoreCircle
 from SDK.oceanoptics import OceanOpticsTest
 from method.toolkit import Cv2ImShow, Cv2ImSave
 import logging
+from util.timing import timing
 
 
 class ModelCV(Thread, QObject):
@@ -57,7 +58,7 @@ class ModelCV(Thread, QObject):
         self.ellipses = False
         self.result = False
         self.getRawImg = GetRawImg()
-        self.imgQueue = collections.deque(maxlen = 5)
+        self.imgQueue = collections.deque(maxlen = 3)
         self.fiberResult = {}
         self.Oceanoptics = OceanOpticsTest()
 
@@ -67,7 +68,6 @@ class ModelCV(Thread, QObject):
             img = self._getImg()
             self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
             # plotResults = (self.ellipses, self.result)
-
             colorImg = self.getRawImg.bayer2BGR(img)
             colorImg = self._decorateImg(colorImg)
             self.returnImg.emit(colorImg[::4,::4].copy(), self.sharp)
@@ -85,11 +85,13 @@ class ModelCV(Thread, QObject):
     def _calcImg(self):
         try:
             img = self._getDifferImg()
+            # img.tofile("tests\\data\\tests\\midimg{}.bin".format(str(int(time.time()))[-3:]))
             self._toClassify(img)
             self._emitCVShowResult()
         except Exception as e:
             logging.exception(e)
 
+    @timing
     def _getDifferImg(self):
         #todo: quanju medianblur
         imgs = list(self.imgQueue)
@@ -97,9 +99,10 @@ class ModelCV(Thread, QObject):
         for img in imgs:
             img = ExtractEdge().run(img)
             imgAllor = cv2.bitwise_or(imgAllor, img)
-        img = cv2.medianBlur(imgAllor, 7)
+
         return img
 
+    @timing
     def _toClassify(self, img):
         classify = Classify()
         self.ellipses = classify.find(img)

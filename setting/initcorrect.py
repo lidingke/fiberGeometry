@@ -17,7 +17,7 @@ class InitCorrect(object):
             self.readJson()
             self.rightMac()
             self.rightCamera()
-
+            print "finish init msg"
         except ValueError as e:
             return e
         # return
@@ -44,7 +44,7 @@ class InitCorrect(object):
     def rightMac(self):
         macid = uuid.UUID(int=uuid.getnode()).hex[-12:].upper()
         # macid = macid
-        print macid , self.json["mac"]
+        # print macid , self.json["mac"]
         if macid not in self.json["mac"]:
             raise ValueError("device information error")
         # return

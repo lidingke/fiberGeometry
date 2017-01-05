@@ -54,13 +54,13 @@ class EdgeFuncs(object):
             img = cv2.erode(img,kernel)
         return img
 
-    def topHat(self,img):
-        img = cv2.absdiff(img,self.open(img, kernelLen = 3))
+    def topHat(self,img, kernelLen = 3):
+        img = cv2.absdiff(img,self.open(img, kernelLen))
         img = cv2.bitwise_not(img)
         return img
 
-    def blackHat(self,img):
-        img = cv2.absdiff(self.close(img, kernelLen = 3), img)
+    def blackHat(self,img, kernelLen = 3):
+        img = cv2.absdiff(self.close(img, kernelLen ), img)
         img = cv2.bitwise_not(img)
         return img
 
