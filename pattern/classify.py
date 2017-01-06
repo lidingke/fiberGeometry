@@ -1,10 +1,10 @@
 import cv2
 import numpy as np
+
+from octagon import ClassCore, ClassOctagon
+from pattern.meta import CV2MethodSet
 from setting.orderset import SETTING
 
-from pattern.meta import CV2MethodSet
-from octagon import ClassCore, ClassOctagon
-from method.toolkit import timing
 
 class MetaClassify(CV2MethodSet):
     """docstring for MetaClassify"""

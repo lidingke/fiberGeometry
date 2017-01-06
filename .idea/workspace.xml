@@ -2,18 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0bfb64c9-d5b9-4173-a8c5-446b26e779e2" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/method/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/method/contour.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/method/corelist.pickle" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/method/edgedetect.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/method/i2g.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/method/sharp.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/method/test.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/method/tree.py" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GUI/controller.py" afterPath="$PROJECT_DIR$/GUI/controller.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GUI/model/modecv.py" afterPath="$PROJECT_DIR$/GUI/model/modecv.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GUI/view/view.py" afterPath="$PROJECT_DIR$/GUI/view/view.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newdgui.py" afterPath="$PROJECT_DIR$/newdgui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newgui.py" afterPath="$PROJECT_DIR$/newgui.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GUI/model/modelop.py" afterPath="$PROJECT_DIR$/GUI/model/modelop.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pattern/classify.py" afterPath="$PROJECT_DIR$/pattern/classify.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pattern/octagon.py" afterPath="$PROJECT_DIR$/pattern/octagon.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pattern/draw.py" afterPath="$PROJECT_DIR$/pattern/draw.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pattern/edge.py" afterPath="$PROJECT_DIR$/pattern/edge.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pattern/meta.py" afterPath="$PROJECT_DIR$/pattern/meta.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pattern/sharp.py" afterPath="$PROJECT_DIR$/pattern/sharp.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/.cache/v/cache/lastfailed" afterPath="$PROJECT_DIR$/tests/.cache/v/cache/lastfailed" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_octagon.py" afterPath="$PROJECT_DIR$/tests/test_octagon.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_proccess.py" afterPath="$PROJECT_DIR$/tests/test_proccess.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/util/load.py" afterPath="$PROJECT_DIR$/util/load.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/method/toolkit.py" afterPath="$PROJECT_DIR$/util/toolkit.py" />
     </list>
     <ignored path="cv.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,7 +45,7 @@
     <SUITE FILE_PATH="coverage/octagon$SET.coverage" NAME="SET Coverage Results" MODIFIED="1482739548546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/cv$newgui.coverage" NAME="dgui Coverage Results" MODIFIED="1477972400572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/octagon$test_color_img_format.coverage" NAME="test_color_img_format Coverage Results" MODIFIED="1482655478165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/octagon$staticGUI.coverage" NAME="staticGUI Coverage Results" MODIFIED="1483626043926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/octagon$staticGUI.coverage" NAME="staticGUI Coverage Results" MODIFIED="1483673501294" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/cv$dgui.coverage" NAME="dgui Coverage Results" MODIFIED="1478657481071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/octagon$octagonall.coverage" NAME="octagonall Coverage Results" MODIFIED="1481791531315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/octagon$test_hist.coverage" NAME="test_hist Coverage Results" MODIFIED="1482328998542" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/" />
@@ -49,7 +55,7 @@
     <SUITE FILE_PATH="coverage/octagon$test_pickoctagon.coverage" NAME="test_pickoctagon Coverage Results" MODIFIED="1482743140401" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/octagon$dgui.coverage" NAME="dgui Coverage Results" MODIFIED="1483588118819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/octagon$toctagon.coverage" NAME="toctagon Coverage Results" MODIFIED="1481679955857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/octagon$pytests.coverage" NAME="pytests Coverage Results" MODIFIED="1483600970115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/octagon$pytests.coverage" NAME="pytests Coverage Results" MODIFIED="1483671379933" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/octagon$edge2img.coverage" NAME="edge2img Coverage Results" MODIFIED="1481788196667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/octagon$test_sharp.coverage" NAME="test_sharp Coverage Results" MODIFIED="1483500174992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/octagon$differcore.coverage" NAME="differcore Coverage Results" MODIFIED="1483168672024" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -60,107 +66,62 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <splitter split-orientation="horizontal" split-proportion="0.5168375">
-            <split-first>
-              <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-                <file leaf-file-name="test_proccess.py" pinned="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/tests/test_proccess.py">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="1350">
-                        <caret line="50" column="19" selection-start-line="50" selection-start-column="19" selection-end-line="50" selection-end-column="19" />
-                        <folding />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file leaf-file-name="oset.json" pinned="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/setting/oset.json">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="1215">
-                        <caret line="45" column="21" selection-start-line="45" selection-start-column="11" selection-end-line="45" selection-end-column="21" />
-                        <folding />
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file leaf-file-name="octagon.py" pinned="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/pattern/octagon.py">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="594">
-                        <caret line="32" column="32" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="32" />
-                        <folding>
-                          <element signature="e#0#32#0" expanded="true" />
-                        </folding>
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file leaf-file-name="modecv.py" pinned="false" current-in-tab="false">
-                  <entry file="file://$PROJECT_DIR$/GUI/model/modecv.py">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="1404">
-                        <caret line="60" column="35" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="35" />
-                        <folding>
-                          <element signature="e#14#42#0" expanded="true" />
-                        </folding>
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-                <file leaf-file-name="view.py" pinned="false" current-in-tab="true">
-                  <entry file="file://$PROJECT_DIR$/GUI/view/view.py">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="274">
-                        <caret line="116" column="44" selection-start-line="116" selection-start-column="44" selection-end-line="116" selection-end-column="44" />
-                        <folding>
-                          <element signature="e#14#50#0" expanded="true" />
-                        </folding>
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-              </leaf>
-            </split-first>
-            <split-second>
-              <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-                <file leaf-file-name="classify.py" pinned="false" current-in-tab="true">
-                  <entry file="file://$PROJECT_DIR$/pattern/classify.py">
-                    <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="-929">
-                        <caret line="111" column="45" selection-start-line="111" selection-start-column="45" selection-end-line="111" selection-end-column="45" />
-                        <folding>
-                          <element signature="e#703#4318#0" expanded="false" />
-                        </folding>
-                      </state>
-                    </provider>
-                  </entry>
-                </file>
-              </leaf>
-            </split-second>
-          </splitter>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="cv" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="sharp.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sharp.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pattern/sharp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="101" column="36" selection-start-line="101" selection-start-column="36" selection-end-line="101" selection-end-column="36" />
+            <state relative-caret-position="540">
+              <caret line="102" column="23" selection-start-line="102" selection-start-column="23" selection-end-line="102" selection-end-column="23" />
               <folding>
-                <element signature="e#0#10#0" expanded="true" />
-                <element signature="e#240#2987#0" expanded="false" />
+                <element signature="e#198#2945#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="view.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GUI/view/view.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2808">
+              <caret line="105" column="22" selection-start-line="105" selection-start-column="18" selection-end-line="105" selection-end-column="22" />
+              <folding>
+                <element signature="e#14#50#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="modecv.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GUI/model/modecv.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2889">
+              <caret line="115" column="22" selection-start-line="115" selection-start-column="22" selection-end-line="115" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="load.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/util/load.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1701">
+              <caret line="66" column="23" selection-start-line="66" selection-start-column="23" selection-end-line="66" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="toolkit.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/util/toolkit.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3102">
+              <caret line="118" column="11" selection-start-line="118" selection-start-column="11" selection-end-line="118" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -168,7 +129,7 @@
       <file leaf-file-name="test_octagon.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_octagon.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
+            <state relative-caret-position="1080">
               <caret line="40" column="19" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
               <folding />
             </state>
@@ -203,7 +164,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/octagon.py" />
         <option value="$PROJECT_DIR$/tests/test_ocean.py" />
         <option value="$PROJECT_DIR$/tests/octagonTemp.py" />
         <option value="$PROJECT_DIR$/tests/edge2img.py" />
@@ -225,7 +185,6 @@
         <option value="$PROJECT_DIR$/GUI/UI/mainUI.py" />
         <option value="$PROJECT_DIR$/pattern/differ.py" />
         <option value="$PROJECT_DIR$/setting/load.py" />
-        <option value="$PROJECT_DIR$/pattern/draw.py" />
         <option value="$PROJECT_DIR$/GUI/model/modelop.py" />
         <option value="$PROJECT_DIR$/method/edgedetect.py" />
         <option value="$PROJECT_DIR$/method/main.py" />
@@ -254,6 +213,8 @@
         <option value="$PROJECT_DIR$/tests/test_octagon.py" />
         <option value="$PROJECT_DIR$/GUI/view/view.py" />
         <option value="$PROJECT_DIR$/pattern/sharp.py" />
+        <option value="$PROJECT_DIR$/pattern/draw.py" />
+        <option value="$PROJECT_DIR$/util/load.py" />
       </list>
     </option>
   </component>
@@ -313,7 +274,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -330,48 +290,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="octagon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="octagon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="octagon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="octagon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="octagon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="setting" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="octagon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="octagon" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pattern" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -445,12 +363,13 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/test_proccess.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -463,6 +382,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\MyProjects\WorkProject\opencv4fiber\octagon\util" />
       <recent name="D:\MyProjects\WorkProject\opencv4fiber\octagon\tests" />
     </key>
   </component>
@@ -1252,17 +1172,24 @@
       <option name="project" value="LOCAL" />
       <updated>1483582416445</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="red sharp index">
+      <created>1483626667492</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1483626667492</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="pytests - 2017.01.04 at 15h 05m 55s.xml">
-      <configuration name="pytests" configurationId="tests" />
-    </history-entry>
     <history-entry file="pytests - 2017.01.05 at 15h 21m 13s.xml">
       <configuration name="pytests" configurationId="tests" />
     </history-entry>
     <history-entry file="pytests - 2017.01.05 at 15h 23m 15s.xml">
+      <configuration name="pytests" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytests - 2017.01.06 at 10h 56m 48s.xml">
       <configuration name="pytests" configurationId="tests" />
     </history-entry>
     <history-entry file="test_octagon - 2017.01.04 at 11h 27m 03s.xml">
@@ -1300,26 +1227,26 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25341427" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2215478" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1821192" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.68874174" sideWeight="0.5182094" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.205298" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294702" sideWeight="0.4969651" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21523179" sideWeight="0.4817906" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294702" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39569536" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29139072" sideWeight="0.4817906" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22516556" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295711" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39569536" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1821192" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1395,7 +1322,8 @@
     <MESSAGE value="refactory some mode" />
     <MESSAGE value="git reset error" />
     <MESSAGE value="img noise work" />
-    <option name="LAST_COMMIT_MESSAGE" value="img noise work" />
+    <MESSAGE value="red sharp index" />
+    <option name="LAST_COMMIT_MESSAGE" value="red sharp index" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.88757396" />
   </component>
   <component name="XDebuggerManager">
@@ -1405,14 +1333,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/GUI/UI/mainUI.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="49">
-          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pattern/centrepoint.py" />
     <entry file="file://$PROJECT_DIR$/method/mainGUI.py" />
     <entry file="file://$PROJECT_DIR$/pattern/exception.py" />
     <entry file="file://$PROJECT_DIR$/pattern/pickoctagon.py">
@@ -1431,13 +1351,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GUI/model/modeloctagon.py" />
     <entry file="file://$PROJECT_DIR$/SDK/MindPyScript/MindPyCEx/test.py" />
-    <entry file="file://$PROJECT_DIR$/method/edgedetect.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/method/edgedetect.py" />
     <entry file="file://$PROJECT_DIR$/method/main.py" />
     <entry file="file://$PROJECT_DIR$/tests/test_edge2img.py" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
@@ -1451,13 +1365,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
           <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pattern/draw.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="82" column="30" selection-start-line="82" selection-start-column="30" selection-end-line="82" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -1504,13 +1411,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/method/toolkit.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="127" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pattern/meta.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -1529,13 +1429,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util/load.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1641,7 +1534,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1215">
           <caret line="45" column="21" selection-start-line="45" selection-start-column="11" selection-end-line="45" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1649,7 +1541,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="27">
           <caret line="130" column="45" selection-start-line="130" selection-start-column="31" selection-end-line="130" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1660,31 +1551,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pattern/octagon.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="32" column="32" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_proccess.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1350">
           <caret line="50" column="19" selection-start-line="50" selection-start-column="19" selection-end-line="50" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GUI/model/modecv.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1404">
-          <caret line="60" column="35" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="35" />
-          <folding>
-            <element signature="e#14#42#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1692,19 +1562,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-929">
           <caret line="111" column="45" selection-start-line="111" selection-start-column="45" selection-end-line="111" selection-end-column="45" />
-          <folding>
-            <element signature="e#703#4318#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GUI/view/view.py">
+    <entry file="file://$PROJECT_DIR$/tests/test_octagon.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="116" column="44" selection-start-line="116" selection-start-column="44" selection-end-line="116" selection-end-column="44" />
-          <folding>
-            <element signature="e#14#50#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1080">
+          <caret line="40" column="19" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1718,24 +1583,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_octagon.py">
+    <entry file="file://$PROJECT_DIR$/pattern/octagon.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="40" column="19" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
-          <folding />
+        <state relative-caret-position="270">
+          <caret line="32" column="32" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pattern/sharp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="101" column="36" selection-start-line="101" selection-start-column="36" selection-end-line="101" selection-end-column="36" />
+        <state relative-caret-position="540">
+          <caret line="102" column="23" selection-start-line="102" selection-start-column="23" selection-end-line="102" selection-end-column="23" />
           <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <element signature="e#240#2987#0" expanded="false" />
+            <element signature="e#198#2945#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/GUI/view/view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2808">
+          <caret line="105" column="22" selection-start-line="105" selection-start-column="18" selection-end-line="105" selection-end-column="22" />
+          <folding>
+            <element signature="e#14#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pattern/draw.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1472">
+          <caret line="57" column="9" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI/model/modecv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2889">
+          <caret line="115" column="22" selection-start-line="115" selection-start-column="22" selection-end-line="115" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/load.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1701">
+          <caret line="66" column="23" selection-start-line="66" selection-start-column="23" selection-end-line="66" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/method/test.py" />
+    <entry file="file://$PROJECT_DIR$/util/toolkit.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3102">
+          <caret line="118" column="11" selection-start-line="118" selection-start-column="11" selection-end-line="118" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/method/contour.py" />
   </component>
 </project>

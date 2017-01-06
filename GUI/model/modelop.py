@@ -1,13 +1,14 @@
-from threading import Thread
-from PyQt4.QtCore import QObject, pyqtSignal
 import time
-import pdb
-import numpy as np
+from threading import Thread
+
+from PyQt4.QtCore import QObject, pyqtSignal
+
 from setting.orderset import SETTING
+
 Set = SETTING()
 setGet = Set.get('ifcamera', False)
 from SDK.oceanoptics import OceanOpticsTest
-from method.toolkit import Cv2ImShow, Cv2ImSave
+from util.toolkit import Cv2ImShow, Cv2ImSave
 
 class ModelOp(Thread, QObject):
     """docstring for Model"""

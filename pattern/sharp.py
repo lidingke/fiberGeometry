@@ -1,11 +1,12 @@
-import cv2
-from pattern.meta import CV2MethodSet
-from pattern.edge import ExtractEdge
-from method.toolkit import timing
-import numpy as np
-from setting.orderset import SETTING
-import pdb
 import collections
+
+import cv2
+import numpy as np
+
+from pattern.edge import ExtractEdge
+from pattern.meta import CV2MethodSet
+from setting.orderset import SETTING
+
 
 class IsSharp(CV2MethodSet):
     """docstring for IsSharp"""
@@ -98,7 +99,6 @@ class MaxSharp(object):
         if len(self.deque) < 5:
             return False
         sortque = sorted(list(self.deque))
-        print sortque[-1], type(sortque[-1])
         if sharp > sortque[-1] * 0.6:
             return True
         else:

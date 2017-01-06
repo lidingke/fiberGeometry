@@ -6,7 +6,6 @@ from setting.orderset import SETTING
 def newDecorateImg(origin, ellipses, result):
     # print ellipses.keys()
     if len(origin.shape)<3:
-        print 'origin shape', origin.shape
         origin = cv2.cvtColor(origin, cv2.COLOR_GRAY2RGB)
     if not (ellipses or result):
         return origin

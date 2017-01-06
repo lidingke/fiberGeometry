@@ -1,13 +1,14 @@
 #coding:utf-8
-from threading import Thread
-from PyQt4.QtCore import QObject, pyqtSignal
-import time
-import pdb
 import collections
+import time
+from threading import Thread
+
 import cv2
 import numpy as np
+from PyQt4.QtCore import QObject, pyqtSignal
 
 from setting.orderset import SETTING
+
 Set = SETTING('octagon')
 setGet = Set.get('ifcamera', False)
 print 'setget', setGet
@@ -16,10 +17,6 @@ if setGet:
 else:
     from SDK.mdpy import GetRawImgTest as GetRawImg
     print 'script don\'t open camera'
-
-from method.edgedetect import ErodeDilate
-from method.contour import findContours
-from method.contour import FitEllipse
 
 from pattern.edge import ExtractEdge
 setGet = Set.get('fiberType',"G652")
@@ -31,7 +28,7 @@ else:
 from pattern.sharp import IsSharp
 from pattern.draw import DecorateImg, drawCoreCircle
 from SDK.oceanoptics import OceanOpticsTest
-from method.toolkit import Cv2ImShow, Cv2ImSave
+from util.toolkit import Cv2ImShow, Cv2ImSave
 import logging
 from util.timing import timing
 

@@ -4,10 +4,9 @@
 # extract contours
 # fit ellipese
 # aimed optimizing
-import cv2
-import numpy as np
-from method.toolkit import IsCircle, cv2CircleIndex, XlsWrite, Cv2ImShow, Cv2ImSave, DynamicPick
 from setting.orderset import SETTING
+from util.toolkit import cv2CircleIndex, Cv2ImShow, Cv2ImSave, DynamicPick
+
 
 class CV2MethodSet(object):
     """docstring for CV2MethodSet"""

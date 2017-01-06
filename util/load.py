@@ -20,8 +20,8 @@ class WRpickle(object):
             try:
                 self.pick = pickle.load(f)
             except Exception as e:
-                # raise e
-                pass
+                raise e
+                # pass
             # print('load',self.pick)
         return self.pick
 
@@ -63,13 +63,8 @@ class WriteReadJson(object):
             try:
                 bitFileRead2Str = f.read().decode('utf-8')
                 self.store = json.loads(bitFileRead2Str)
-            # except FileNotFoundError:
-
             except Exception as e:
-                # raise e
-                print(e)
-                pdb.set_trace()
-
+                raise e
         return self.store
 
     def save(self , store):

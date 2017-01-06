@@ -1,7 +1,7 @@
 import cv2
-import numpy as np
+
 from pattern.meta import CV2MethodSet
-from method.toolkit import timing
+
 
 class ExtractEdge(CV2MethodSet):
     """docstring for ExtractEdge"""
