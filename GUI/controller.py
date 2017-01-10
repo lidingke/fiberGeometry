@@ -26,6 +26,7 @@ class Controller(QObject):
         self._view.beginTestAT.clicked.connect(self._getAttenuation)
         self._modelcv.resultShowCV.connect(self._view.updateCVShow)
         self._modelcv.resultShowAT.connect(self._view.updateATShow)
+        self._modelcv.returnGreen.connect(self._view.getCoreLight)
         # self._tempMedianIndex()
 
         # self._view.multiTest.clicked.connect(self._model.multiTest)

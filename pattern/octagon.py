@@ -136,7 +136,7 @@ class ClassOctagon(object):
         # img = cv2.adaptiveBilateralFilter
         img = cv2.bilateralFilter(img, 5, 80, 75)
         # img = EdgeFuncs().close(img,kernelLen=3)
-        print 'get blur index ', blurindex
+        # print 'get blur index ', blurindex
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         tempPlots = np.ones(img.shape) * 255
 

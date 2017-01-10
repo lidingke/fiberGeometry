@@ -27,5 +27,16 @@ def yieldImg(dirs):
     dirlist = os.listdir(dirs)
     dirlist = [dirs + x for x in dirlist]
     for dir_ in dirlist:
-        img = GetImage().get(dir_)
+        img = GetImage().get(dir_, 'color')
         yield  img
+
+
+def sliceImg(img, core, slice, split = 1):
+    corex, corey = core
+    maxRange = slice
+    begin = (corex - maxRange, corey - maxRange)
+    end = (corex + maxRange, corey + maxRange)
+    if len(img.shape) == 2:
+        return img[begin[0]:end[0]:split, begin[1]:end[1]:split]
+    else:
+        return img[begin[0]:end[0]:split, begin[1]:end[1]:split]

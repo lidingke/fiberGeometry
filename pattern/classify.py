@@ -1,6 +1,5 @@
 import cv2
 import numpy as np
-
 from octagon import ClassCore, ClassOctagon
 from pattern.meta import CV2MethodSet
 from setting.orderset import SETTING
@@ -124,8 +123,6 @@ class OctagonClassify(MetaClassify):
         cladimg = self._getFilterImg(corecore, img, minRange, maxRange)
         minRange, maxRange = self.SET["coreRange"]
         coreimg = self._getFilterImg(corecore, img, minRange, maxRange)
-        # cv2.imshow('core range', cladimg[::4,::4])
-        # cv2.waitKey()
         return coreimg, cladimg
 
 

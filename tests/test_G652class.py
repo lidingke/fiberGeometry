@@ -47,17 +47,19 @@ class CVTest(unittest.TestCase):
         assert isinstance(result, int) or isinstance(result, np.int64)
         print 'sharp: ', result
 
-    def test_mindpySDK(self):
-
-        grt = GetRawImg()
-        img = grt.get()
-        grt.unInitCamera()
-        self.assertIsInstance(img, np.ndarray)
-        shape = (1944, 2592)
-        img.shape = shape
-        img = cv2.cvtColor(img, cv2.COLOR_BAYER_GB2BGR)
+    # def test_mindpySDK(self):
+    #
+    #     grt = GetRawImg()
+    #     img = grt.get()
+    #     grt.unInitCamera()
+    #     self.assertIsInstance(img, np.ndarray)
+    #     shape = (1944, 2592)
+    #     img.shape = shape
+    #     img = cv2.cvtColor(img, cv2.COLOR_BAYER_GB2BGR)
         # cv2.imshow('img', img[::8,::8])
         # cv2.waitKey(0)
+
+
 
 
 if __name__ == '__main__':

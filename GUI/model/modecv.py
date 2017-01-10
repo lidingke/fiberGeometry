@@ -31,6 +31,7 @@ from SDK.oceanoptics import OceanOpticsTest
 from util.toolkit import Cv2ImShow, Cv2ImSave
 import logging
 from util.timing import timing
+from util.loadimg import sliceImg
 
 
 class ModelCV(Thread, QObject):
@@ -39,6 +40,7 @@ class ModelCV(Thread, QObject):
     returnATImg = pyqtSignal(object, object)
     resultShowCV = pyqtSignal(object)
     resultShowAT = pyqtSignal(object)
+    returnGreen = pyqtSignal(object)
     # returnFiberResult = pyqtSignal(object)
 
     def __init__(self, ):
@@ -54,6 +56,7 @@ class ModelCV(Thread, QObject):
         self.save = Cv2ImSave()
         self.ellipses = False
         self.result = False
+        # self.green = False
         self.getRawImg = GetRawImg()
         self.imgQueue = collections.deque(maxlen = 3)
         self.fiberResult = {}
@@ -66,6 +69,7 @@ class ModelCV(Thread, QObject):
             self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
             # plotResults = (self.ellipses, self.result)
             colorImg = self.getRawImg.bayer2BGR(img)
+            self._greenLight(colorImg[::, ::, 1])
             colorImg = self._decorateImg(colorImg)
             self.returnImg.emit(colorImg[::4,::4].copy(), self.sharp)
 
@@ -101,6 +105,7 @@ class ModelCV(Thread, QObject):
 
     @timing
     def _toClassify(self, img):
+
         classify = Classify()
         self.ellipses = classify.find(img)
         self.result = classify.getResult()
@@ -162,6 +167,18 @@ class ModelCV(Thread, QObject):
                 ]
             text = u''.join(text)
             self.resultShowCV.emit(text)
+
+    def _greenLight(self, green):
+        # print green
+
+        if isinstance(green, np.ndarray):
+            corey, corex = SETTING()["corepoint"]
+            minRange, maxRange = SETTING()["coreRange"]
+            green = sliceImg(green, (corex, corey), maxRange)
+            result = green.sum()/2550
+            # return result
+            # self.coreLight.setText("%0.2f"%result)
+            self.returnGreen.emit("%0.2f"%result)
 
 
 

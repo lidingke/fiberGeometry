@@ -106,6 +106,7 @@ class View(QMainWindow, new_MainWindow):
         self.fiberType.addItems(items)
         self.setWindowFlags(Qt.WindowMaximizeButtonHint)
         self.setFixedSize(self.width(),self.height())
+        self.beginTestCV.clicked.connect(self._disableCVButton)
 
     def updatePixmap(self, arr, sharp):
         #todo : set Text box
@@ -138,6 +139,10 @@ class View(QMainWindow, new_MainWindow):
 
     def updateCVShow(self,str_):
         self.resultShowCV.setText(str_)
+        self._disableCVButton(True)
+
+    def _disableCVButton(self, bool = False):
+        self.beginTestCV.setEnabled(bool)
 
     def updateATShow(self,str_):
         self.resultShowAT.setText(str_)
@@ -158,4 +163,5 @@ class View(QMainWindow, new_MainWindow):
         if hasattr(self, "coreMedianIndex"):
             self.coreMedianIndex.valueChanged.connect(changeCoreIndex)
 
-
+    def getCoreLight(self, green):
+        self.coreLight.setText(green)

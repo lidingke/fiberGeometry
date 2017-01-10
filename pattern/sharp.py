@@ -1,8 +1,6 @@
 import collections
-
 import cv2
 import numpy as np
-
 from pattern.edge import ExtractEdge
 from pattern.meta import CV2MethodSet
 from setting.orderset import SETTING
@@ -41,9 +39,11 @@ class IsSharp(CV2MethodSet):
         #     img.tofile("tests\\data\\imgforsharp{}.bin".format(i))
         imgs = [self._doSharpRange(img) for img in imgs]
         # self._doSharpRange(img)
+
         imgAllor = np.zeros(imgs[0].shape, dtype=imgs[0].dtype)
         for img in imgs[-3:]:
             img = ExtractEdge().run(img)
+            # cv2.medianBlur(img, 7)
             imgAllor = cv2.bitwise_or(imgAllor, img)
         imgAllor = cv2.bitwise_not(imgAllor)
         kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
@@ -103,3 +103,6 @@ class MaxSharp(object):
             return True
         else:
             return False
+
+def issharp():
+    pass

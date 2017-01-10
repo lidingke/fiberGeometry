@@ -14,6 +14,18 @@ QPushButton {
     min-height: 2.5ex;
 }
 
+QPushButton:!enabled {
+    background-color: #049ff1;
+    color: gray;
+    border-width: 2px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 3px;
+    min-width: 9ex;
+    min-height: 2.5ex;
+}
+
 QPushButton:hover {
     padding-right: 5px;
     padding-bottom: 5px;

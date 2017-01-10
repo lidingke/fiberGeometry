@@ -79,7 +79,7 @@ class GetRawImgTest(GetRawImg):
         # img.shape = shape
         # # print 'get image', img.shape
         # time.sleep(0.1)
-        img = randomImg("IMG\\octagon\\D500\\")
+        img = randomImg("IMG\\\midoctagon\\img\\")
         return img
 
     # def bayer2RGB(self, img):
