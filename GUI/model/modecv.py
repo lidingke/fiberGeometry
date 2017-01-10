@@ -23,6 +23,8 @@ setGet = Set.get('fiberType',"G652")
 print 'fibertype',setGet
 if setGet == "octagon":
     from pattern.classify import OctagonClassify as Classify
+elif setGet == "20400":
+    from pattern.classify import G652Classify as Classify
 else:
     from pattern.classify import G652Classify as Classify
 from pattern.sharp import IsSharp
@@ -71,7 +73,7 @@ class ModelCV(Thread, QObject):
             colorImg = self.getRawImg.bayer2BGR(img)
             self._greenLight(colorImg[::, ::, 1])
             colorImg = self._decorateImg(colorImg)
-            self.returnImg.emit(colorImg[::4,::4].copy(), self.sharp)
+            self.returnImg.emit(colorImg[::2,::2].copy(), self.sharp)
 
     def _getImg(self):
         img = self.getRawImg.get()
@@ -169,15 +171,11 @@ class ModelCV(Thread, QObject):
             self.resultShowCV.emit(text)
 
     def _greenLight(self, green):
-        # print green
-
         if isinstance(green, np.ndarray):
             corey, corex = SETTING()["corepoint"]
             minRange, maxRange = SETTING()["coreRange"]
             green = sliceImg(green, (corex, corey), maxRange)
             result = green.sum()/2550
-            # return result
-            # self.coreLight.setText("%0.2f"%result)
             self.returnGreen.emit("%0.2f"%result)
 
 

@@ -28,7 +28,8 @@ class G652Classify(MetaClassify):
     def __init__(self, ):
         super(G652Classify, self).__init__()
         self.result = {}
-        self.ampRatio = 0.0835#0.08653
+        self.ampRatio = SETTING().get("ampPixSize", 0.0835)
+        # self.ampRatio = 0.0835#0.08653
 
     def _filter(self, contours, hierarchys):
         ampRatio = self.ampRatio
@@ -158,3 +159,28 @@ class OctagonClassify(MetaClassify):
         else:
             print 'error find core or clad'
             return ()
+
+class Big20400Classify(G652Classify):
+
+    def __init__(self):
+        super(Big20400Classify, self).__init__()
+
+    def _getRange(self, rangeType, radiusTemp):
+        if not isinstance(rangeType, str):
+            raise ValueError("input range error")
+        minRange, maxRange = SETTING()[rangeType]
+        return radiusTemp > minRange and radiusTemp < maxRange
+
+    def find(self, img):
+        self.img = img
+        coreimg, cladimg = self._difcore(img)
+
+        coreResult = ClassCore().run(coreimg)
+        cladResult = ClassCore().run(cladimg)
+        return coreResult, cladResult
+
+    def _difcore(self,img):
+        core = img[-500::,-500::,1]
+        clad = img[::,:2000:,2]
+        print "shape", core.shape, clad.shape
+        return core, clad

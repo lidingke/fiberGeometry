@@ -45,7 +45,23 @@
           "ErodeDilateKsize": 9,
           "corefilter": 11,
           "cladfilter": 11
-        }
+        },
+    "coreRange":[38,62],
+    "cladRange":[540,660],
+    "ampPixSize": 0.10715
+  },
+    "20400":{
+    "fiberType":"20400",
+    "medianBlur": {
+          "ErodeDilateKsize": 9,
+          "corefilter": 11,
+          "cladfilter": 11
+        },
+    "imgsize":[1944,2592],
+    "coreRange":[15,80],
+    "cladRange":[200,400],
+    "corepoint":[1296,972],
+    "ampPixSize": 0.10715
   },
   "centerImg":{
     "centerImg":true

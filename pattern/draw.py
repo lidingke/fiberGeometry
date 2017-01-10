@@ -12,7 +12,7 @@ def newDecorateImg(origin, ellipses, result):
     x, y = ellipses['cladResult']['longPlot']
     cv2.line(origin, x, y, (25,255,0), 8)
     x, y = ellipses['cladResult']['shortPlot']
-    cv2.line(origin, x, y, (25, 0, 0), 8)
+    cv2.line(origin, x, y, (25, 200, 0), 8)
     # cv2.ellipse(origin, ellipses['clad'], (131, 210, 253), 5, lineType=2)  # (162,183,0)(green, blue, red)
     cv2.ellipse(origin, ellipses['core'], (0, 102, 255), 5, lineType=2)  # 255,102,0#FF6600
     corex, corey = ellipses['core'][0]
@@ -24,7 +24,7 @@ def newDecorateImg(origin, ellipses, result):
                 cv2.FONT_HERSHEY_SIMPLEX, 2, (215, 207, 39), thickness=3)
     corex, corey = ellipses['clad'][0]
     radius = ellipses['cladResult']['shortAxisLen']
-    core = (int(corex + radius * 0.7), int(corey - radius * 0.7))
+    core = (int(corex + radius * 0.5), int(corey - radius * 0.5))
     coreR = "%4.2f" % result[2]
     cv2.putText(origin, coreR, core,
                 cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), thickness=3)
