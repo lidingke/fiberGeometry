@@ -85,6 +85,12 @@ class IsSharp(CV2MethodSet):
         x11 = int(sizecoup[1]*(1-rato))
         return (x00, x01, x10 ,x11)
 
+    def issharpla(self,img):
+        if isinstance(img, list):
+            img = img[0]
+        sharp = cv2.Laplacian(img, cv2.CV_64F).var()
+        return sharp
+
 
 class MaxSharp(object):
 

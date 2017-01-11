@@ -30,6 +30,28 @@ def newDecorateImg(origin, ellipses, result):
                 cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), thickness=3)
     return origin
 
+def DecorateImg20400(origin, ellipses, result):
+    # print ellipses.keys()
+    if len(origin.shape)<3:
+        origin = cv2.cvtColor(origin, cv2.COLOR_GRAY2RGB)
+    cv2.ellipse(origin, ellipses['clad'], (0, 102, 255), 5, lineType=2)
+    # cv2.ellipse(origin, ellipses['clad'], (131, 210, 253), 5, lineType=2)  # (162,183,0)(green, blue, red)
+    cv2.ellipse(origin, ellipses['core'], (0, 102, 255), 5, lineType=2)  # 255,102,0#FF6600
+    corex, corey = ellipses['core'][0]
+    # radius = ellipses['core'][1]
+    radius = ellipses['coreResult']['shortAxisLen']
+    core = (int(corex + radius * 0.7), int(corey - radius * 0.7))
+    coreR = "%4.2f" % result[1]
+    cv2.putText(origin, coreR, core,
+                cv2.FONT_HERSHEY_SIMPLEX, 2, (215, 207, 39), thickness=3)
+    corex, corey = ellipses['clad'][0]
+    radius = ellipses['cladResult']['shortAxisLen']
+    core = (int(corex + radius * 0.5), int(corey - radius * 0.5))
+    coreR = "%4.2f" % result[2]
+    cv2.putText(origin, coreR, core,
+                cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), thickness=3)
+    return origin
+
 def oldDecorateImg(origin, ellipses, result):
     if len(origin.shape)<3:
         print 'origin shape', origin.shape
@@ -63,6 +85,8 @@ def oldDecorateImg(origin, ellipses, result):
     return  origin
 
 def DecorateImg(origin, ellipses, result):
+    if SETTING().get("fiberType") == "20400":
+        return DecorateImg20400(origin, ellipses, result)
     if isinstance(ellipses, dict):
         return newDecorateImg(origin, ellipses, result)
     else:

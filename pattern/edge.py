@@ -1,5 +1,4 @@
 import cv2
-
 from pattern.meta import CV2MethodSet
 
 
@@ -7,7 +6,6 @@ class ExtractEdge(CV2MethodSet):
     """docstring for ExtractEdge"""
     def __init__(self, ):
         super(ExtractEdge, self).__init__()
-        # self.arg = arg
 
     # @timing
     def run(self, img):
@@ -20,18 +18,11 @@ class ExtractEdge(CV2MethodSet):
         erode = cv2.erode(img, kernel)
         dilate = cv2.dilate(img, kernel)
         img = cv2.absdiff(dilate, erode)
-
         img = cv2.bitwise_not(img)
-        # cv2.imshow("bitwise_not", img[::2, ::2])
-        # cv2.waitKey(0)
         blockSize = self.SET["adaptiveTreshold"]["blockSize"]
         Constant = self.SET["adaptiveTreshold"]["Constant"]
         img = cv2.adaptiveThreshold(img, 255,
             cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, blockSize, Constant)
-
-        # blurSize = self.SET["medianBlur"]["ErodeDilateKsize"]
-        # img = cv2.medianBlur(img, blurSize)
-
         return img
 
 class EdgeFuncs(object):

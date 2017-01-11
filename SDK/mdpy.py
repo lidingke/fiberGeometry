@@ -92,5 +92,17 @@ class GetRawImgTest(GetRawImg):
         pass
 
 
+class GetRawImgTest20400(GetRawImg):
+    """docstring for getRawImg"""
+    def __init__(self, ):
+        # super(GetRawImgTest, self).__init__()
+        print ('test img init')
 
+    def get(self):
+        time.sleep(0.1)
+        img = randomImg("IMG\\20400clad4\\")
+        return img
+
+    def unInitCamera(self):
+        pass
 

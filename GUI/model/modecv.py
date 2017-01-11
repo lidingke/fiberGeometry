@@ -11,20 +11,23 @@ from setting.orderset import SETTING
 
 Set = SETTING('octagon')
 setGet = Set.get('ifcamera', False)
-print 'setget', setGet
+fiberType = Set.get('fiberType',"G652")
+print 'fibertype',fiberType,'setget', setGet
 if setGet:
     from SDK.mdpy import GetRawImg
 else:
-    from SDK.mdpy import GetRawImgTest as GetRawImg
+    if fiberType == "20400":
+        from SDK.mdpy import GetRawImgTest20400 as GetRawImg
+    else:
+        from SDK.mdpy import GetRawImgTest as GetRawImg
     print 'script don\'t open camera'
 
 from pattern.edge import ExtractEdge
-setGet = Set.get('fiberType',"G652")
-print 'fibertype',setGet
-if setGet == "octagon":
+
+if fiberType == "octagon":
     from pattern.classify import OctagonClassify as Classify
-elif setGet == "20400":
-    from pattern.classify import G652Classify as Classify
+elif fiberType == "20400":
+    from pattern.classify import Big20400Classify as Classify
 else:
     from pattern.classify import G652Classify as Classify
 from pattern.sharp import IsSharp
@@ -50,8 +53,8 @@ class ModelCV(Thread, QObject):
         QObject.__init__(self)
         super(ModelCV, self).__init__()
         self.setDaemon(True)
-        logging.basicConfig(filename="setting\\modelog.txt", filemode='a', level=logging.ERROR,
-                            format="%(asctiem)s-%(levelname)s-%(funcName):%(message)s")
+        # logging.basicConfig(filename="setting\\modelog.txt", filemode='a', level=logging.ERROR,
+        #                     format="%(asctiem)s-%(levelname)s-%(funcName):%(message)s")
         self.IS_RUN = True
         self.isSharp = IsSharp()
         self.show = Cv2ImShow()
@@ -68,7 +71,8 @@ class ModelCV(Thread, QObject):
     def run(self):
         while self.IS_RUN:
             img = self._getImg()
-            self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
+            # self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
+            self.sharp = "%0.2f" % self.isSharp.issharpla(list(self.imgQueue))
             # plotResults = (self.ellipses, self.result)
             colorImg = self.getRawImg.bayer2BGR(img)
             self._greenLight(colorImg[::, ::, 1])
@@ -102,7 +106,8 @@ class ModelCV(Thread, QObject):
         for img in imgs:
             img = ExtractEdge().run(img)
             imgAllor = cv2.bitwise_or(imgAllor, img)
-
+        img = imgs[-1]
+        print 'img.shape', img.shape
         return img
 
     @timing

@@ -54,12 +54,12 @@
     "fiberType":"20400",
     "medianBlur": {
           "ErodeDilateKsize": 9,
-          "corefilter": 11,
-          "cladfilter": 11
+          "corefilter": 15,
+          "cladfilter": 15
         },
     "imgsize":[1944,2592],
-    "coreRange":[15,80],
-    "cladRange":[200,400],
+    "coreRange":[20,80],
+    "cladRange":[700,1000],
     "corepoint":[1296,972],
     "ampPixSize": 0.10715
   },

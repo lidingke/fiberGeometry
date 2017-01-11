@@ -29,6 +29,7 @@ class ClassCore(object):
         # cv2.waitKey()
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         tempPlots = np.ones(img.shape) * 255
+        print 'get contours len', len(contours)
         if len(contours) ==0:
             raise ClassCoreError
         elif len(contours) ==1:
