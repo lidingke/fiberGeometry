@@ -1,7 +1,6 @@
 from setting.orderset import SETTING
 SETTING('test','octagon')
-from pattern.octagon import ClassOctagon, ClassCore
-from pattern.pickoctagon import PickOctagon
+from pattern.octagon import ClassOctagon, ClassCircle
 from pattern.edge import ExtractEdge
 import pytest
 import cv2

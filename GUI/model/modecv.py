@@ -53,69 +53,68 @@ class ModelCV(Thread, QObject):
         QObject.__init__(self)
         super(ModelCV, self).__init__()
         self.setDaemon(True)
-        # logging.basicConfig(filename="setting\\modelog.txt", filemode='a', level=logging.ERROR,
-        #                     format="%(asctiem)s-%(levelname)s-%(funcName):%(message)s")
+        logging.basicConfig(filename="setting\\modelog.txt", filemode='a', level=logging.ERROR,
+                            format="%(asctime)s-%(levelname)s-%(funcName)s:%(message)s")
         self.IS_RUN = True
         self.isSharp = IsSharp()
         self.show = Cv2ImShow()
         self.save = Cv2ImSave()
         self.ellipses = False
         self.result = False
-        # self.green = False
         self.getRawImg = GetRawImg()
-        self.imgQueue = collections.deque(maxlen = 3)
+        self.imgQueue = collections.deque(maxlen = 1)
         self.fiberResult = {}
         self.Oceanoptics = OceanOpticsTest()
+        self.classify = Classify()
 
 
     def run(self):
         while self.IS_RUN:
             img = self._getImg()
             # self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
-            self.sharp = "%0.2f" % self.isSharp.issharpla(list(self.imgQueue))
+            self.sharp = "%0.2f" % self.isSharp.issharpla(self.img)
             # plotResults = (self.ellipses, self.result)
-            colorImg = self.getRawImg.bayer2BGR(img)
-            self._greenLight(colorImg[::, ::, 1])
-            colorImg = self._decorateImg(colorImg)
+            self._greenLight(img[::, ::, 1])
+            colorImg = self._decorateImg(img)
             self.returnImg.emit(colorImg[::2,::2].copy(), self.sharp)
+
 
     def _getImg(self):
         img = self.getRawImg.get()
-        self.imgQueue.append(img)
+        img = self.getRawImg.bayer2BGR(img)
+        self.img = img
+        # self.imgQueue.append(img)
         # print 'imgqueue', len(self.imgQueue)
         # self.sharpQueue.append(img)
         return img
 
     def mainCalculate(self):
-        Thread(target = self._calcImg).start()
+        def _calcImg():
+            try:
+                # img.tofile("tests\\data\\tests\\midimg{}.bin".format(str(int(time.time()))[-3:]))
+                self._toClassify(self.img)
+                self._emitCVShowResult()
+            except Exception as e:
+                logging.exception(e)
+        Thread(target = _calcImg).start()
 
-    def _calcImg(self):
-        try:
-            img = self._getDifferImg()
-            # img.tofile("tests\\data\\tests\\midimg{}.bin".format(str(int(time.time()))[-3:]))
-            self._toClassify(img)
-            self._emitCVShowResult()
-        except Exception as e:
-            logging.exception(e)
 
-    @timing
-    def _getDifferImg(self):
-        #todo: quanju medianblur
-        imgs = list(self.imgQueue)
-        imgAllor = np.zeros(imgs[0].shape[:2], dtype=imgs[0].dtype)
-        for img in imgs:
-            img = ExtractEdge().run(img)
-            imgAllor = cv2.bitwise_or(imgAllor, img)
-        img = imgs[-1]
-        print 'img.shape', img.shape
-        return img
+
+    # @timing
+    # def _getDifferImg(self):
+    #     imgs = list(self.imgQueue)
+    #     imgAllor = np.zeros(imgs[0].shape[:2], dtype=imgs[0].dtype)
+    #     for img in imgs:
+    #         img = ExtractEdge().run(img)
+    #         imgAllor = cv2.bitwise_or(imgAllor, img)
+    #     img = imgs[-1]
+    #     print 'img.shape', img.shape
+    #     return img
 
     @timing
     def _toClassify(self, img):
-
-        classify = Classify()
-        self.ellipses = classify.find(img)
-        self.result = classify.getResult()
+        self.ellipses = self.classify.find(img)
+        self.result = self.classify.getResult()
         return self.result
 
     def _decorateImg(self,img):

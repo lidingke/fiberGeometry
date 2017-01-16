@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from octagon import ClassCore, ClassOctagon
+from octagon import ClassCircle, ClassOctagon
 from pattern.meta import CV2MethodSet
 from setting.orderset import SETTING
 from pattern.edge import ExtractEdge
@@ -111,7 +111,7 @@ class OctagonClassify(MetaClassify):
         coreimg = ExtractEdge().run(coreimg)
         cladimg = ExtractEdge().run(cladimg)
 
-        coreResult = ClassCore().run(coreimg)
+        coreResult = ClassCircle().run(coreimg)
         cladResult = ClassOctagon().run(cladimg)
         self.result['core'] = coreResult['ellipese']
         self.result['coreResult'] = coreResult
@@ -173,8 +173,8 @@ class Big20400Classify(OctagonClassify):
         # cv2.imshow("clad edge", cladimg[::4,::4])
         # cv2.waitKey()
 
-        coreResult = ClassCore().run(coreimg)
-        cladResult = ClassCore().run(cladimg)
+        coreResult = ClassCircle().run(coreimg)
+        cladResult = ClassCircle().run(cladimg)
         self.result['core'] = coreResult['ellipese']
         self.result['coreResult'] = coreResult
         self.result['clad'] = cladResult['ellipese']

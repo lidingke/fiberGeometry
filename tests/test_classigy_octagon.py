@@ -4,7 +4,7 @@ SETTING('MindVision500', 'test', 'octagon','centerImg')
 import cv2
 import numpy as np
 import pdb
-
+from pattern.getimg import getImage
 from pattern.classify import OctagonClassify
 
 
@@ -35,19 +35,25 @@ def test_class_octagon_getResult():
     result = oca.getResult()
     assert len(result) == 5
 
-
-
+def getthr():
+    img = getImage("IMG\\thr.png")
+    dst = np.zeros(img.shape, dtype= 'bool')
+    cv2.adaptiveThreshold(img, 1,
+                                cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 5, 5, dst=dst)
+    pdb.set_trace()
 
 
 
 if __name__ == '__main__':
-    img = np.fromfile("tests\\data\\dynamicimg.bin", "uint8")
-    img.shape = SETTING().get("imgsize",(1944,2592))
-    oca = OctagonClassify().find(img)
-    plot = oca['coreResult']['plot']
-    print 'shape', plot.shape
-    print oca['coreResult']['longAxisLen'], oca['coreResult']['shortAxisLen'], oca["coreResult"]["corePoint"]
-    print oca['cladResult']['longAxisLen'], oca['cladResult']['shortAxisLen'], oca["cladResult"]["corePoint"]
+    print  'get'
+    getthr()
+    # img = np.fromfile("tests\\data\\dynamicimg.bin", "uint8")
+    # img.shape = SETTING().get("imgsize",(1944,2592))
+    # oca = OctagonClassify().find(img)
+    # plot = oca['coreResult']['plot']
+    # print 'shape', plot.shape
+    # print oca['coreResult']['longAxisLen'], oca['coreResult']['shortAxisLen'], oca["coreResult"]["corePoint"]
+    # print oca['cladResult']['longAxisLen'], oca['cladResult']['shortAxisLen'], oca["cladResult"]["corePoint"]
     # cv2.imshow('core', plot[::4,::4])
     # cv2.waitKey()
     # cv2.imshow('clad', oca['cladResult']['plot'][::4,::4])

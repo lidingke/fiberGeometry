@@ -11,9 +11,9 @@ from setting.orderset import SETTING
 from util.timing import timing
 
 
-class ClassCore(object):
+class ClassCircle(object):
     def __init__(self):
-        super(ClassCore, self).__init__()
+        super(ClassCircle, self).__init__()
 
     # @timing
     def run(self,img):

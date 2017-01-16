@@ -2,9 +2,6 @@
 from setting.orderset import SETTING
 SETTING('MindVision500', 'Online', "octagon", "centerImg")
 import sys
-import os
-import pdb
-
 from PyQt4.QtGui import QPalette, QColor,QApplication, QMessageBox, QWidget
 from GUI.view.view import View
 from GUI.controller import Controller

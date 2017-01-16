@@ -4,7 +4,7 @@ from GUI.UI.mainUI import Ui_MainWindow
 fibertype = SETTING().get("fiberType", "G652")
 if fibertype == "octagon":
     from GUI.UI.mainocUI import Ui_MainWindow as new_MainWindow
-if fibertype == "20400":
+elif fibertype == "20400":
     from GUI.UI.mainocUI import Ui_MainWindow as new_MainWindow
 else:
     from GUI.UI.mainUI import Ui_MainWindow as new_MainWindow

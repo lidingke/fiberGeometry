@@ -44,6 +44,7 @@ class GetRawImg(object):
             raise e
 
         npArray = md.reshape(1944, 2592)
+
         return npArray
 
     def bayer2BGR(self, img):
