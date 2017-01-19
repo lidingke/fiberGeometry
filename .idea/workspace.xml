@@ -1,58 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bfb64c9-d5b9-4173-a8c5-446b26e779e2" name="Default" comment="some tests update">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GUI/UI/mainoc.ui" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/MindPy.pyd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/test/test.pyd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/GUI/UI/mainocUI.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/Include/CameraApi.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/Include/CameraDefine.H" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/Include/CameraStatus.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/MANIFEST" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/MindPy.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/MindPy.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/VSProject/MindPyCEx.sln" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/set.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/setup.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/test/otherdistribution/Include/CameraApi.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/test/otherdistribution/Include/CameraDefine.H" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/test/otherdistribution/Include/CameraStatus.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/test/otherdistribution/MANIFEST" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/test/otherdistribution/MindPy.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/test/otherdistribution/MindPy.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/test/otherdistribution/set.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/test/otherdistribution/setup.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/test/otherdistribution/test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/test/setup.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/test/test.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/MindPyScript/test/test.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/newdgui20400.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/newgui20400.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pattern/exception.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/start.bat" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/test_class_method.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/test_thres.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/test_octagon.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GUI/model/modecv.py" afterPath="$PROJECT_DIR$/GUI/model/modecv.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GUI/view/view.py" afterPath="$PROJECT_DIR$/GUI/view/view.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SDK/mdpy.py" afterPath="$PROJECT_DIR$/SDK/mdpy.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pattern/classify.py" afterPath="$PROJECT_DIR$/pattern/classify.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pattern/draw.py" afterPath="$PROJECT_DIR$/pattern/draw.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pattern/edge.py" afterPath="$PROJECT_DIR$/pattern/edge.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pattern/getimg.py" afterPath="$PROJECT_DIR$/pattern/getimg.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pattern/meta.py" afterPath="$PROJECT_DIR$/pattern/meta.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setting/modelog.txt" afterPath="$PROJECT_DIR$/setting/modelog.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setting/oset.json" afterPath="$PROJECT_DIR$/setting/oset.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_classigy_octagon.py" afterPath="$PROJECT_DIR$/tests/test_classigy_octagon.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_color_img_format.py" afterPath="$PROJECT_DIR$/tests/test_color_img_format.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_repeat.py" afterPath="$PROJECT_DIR$/tests/test_repeat.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/util/toolkit.py" afterPath="$PROJECT_DIR$/util/toolkit.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/pattern/octagon.py" afterPath="$PROJECT_DIR$/pattern/pickmethod.py" />
-    </list>
+    <list default="true" id="0bfb64c9-d5b9-4173-a8c5-446b26e779e2" name="Default" comment="some tests update" />
     <ignored path="cv.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -1419,7 +1368,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17678301" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18487395" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1427,7 +1376,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32615894" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294702" sideWeight="0.4969651" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2334437" sideWeight="0.4817906" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2334437" sideWeight="0.4817906" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294702" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
