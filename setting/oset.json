@@ -61,7 +61,7 @@
     "coreRange":[20,80],
     "cladRange":[700,1000],
     "corepoint":[1296,972],
-    "ampPixSize": 0.10715
+    "ampPixSize": 0.215
   },
   "centerImg":{
     "centerImg":true

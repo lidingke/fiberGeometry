@@ -41,3 +41,667 @@
 2017-01-14 17:12:27,630-ERROR-run:123
 2017-01-14 17:12:28,125-ERROR-run:123
 2017-01-14 17:12:28,805-ERROR-run:123
+2017-01-16 13:56:15,368-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 95, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 116, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 13:56:42,273-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 95, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 116, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 13:59:48,841-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 95, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 116, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 14:00:46,732-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 95, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 116, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 14:01:44,924-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 95, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 116, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 14:06:50,730-ERROR-_calcImg:Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 95, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 116, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 169, in find
+    coreimg, cladimg = self._difcore(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 190, in _difcore
+    cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 198, in _getFilterImgClad
+    cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
+TypeError: Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+2017-01-16 14:07:22,835-ERROR-_calcImg:Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 95, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 116, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 169, in find
+    coreimg, cladimg = self._difcore(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 190, in _difcore
+    cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 198, in _getFilterImgClad
+    cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
+TypeError: Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+2017-01-16 14:08:20,482-ERROR-_calcImg:Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 95, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 116, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 169, in find
+    coreimg, cladimg = self._difcore(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 192, in _difcore
+    cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 200, in _getFilterImgClad
+    cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
+TypeError: Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+2017-01-16 14:10:12,221-ERROR-_calcImg:Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 95, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 116, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 169, in find
+    coreimg, cladimg = self._difcore(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 192, in _difcore
+    cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 200, in _getFilterImgClad
+    cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
+TypeError: Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+2017-01-16 14:11:59,349-ERROR-_calcImg:Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 95, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 116, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 169, in find
+    coreimg, cladimg = self._difcore(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 192, in _difcore
+    cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 200, in _getFilterImgClad
+    cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
+TypeError: Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+2017-01-16 14:15:18,134-ERROR-_calcImg:Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 169, in find
+    coreimg, cladimg = self._difcore(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 192, in _difcore
+    cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 200, in _getFilterImgClad
+    cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
+TypeError: Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+2017-01-16 14:16:24,979-ERROR-_calcImg:Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 169, in find
+    coreimg, cladimg = self._difcore(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 191, in _difcore
+    cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 203, in _getFilterImgClad
+    cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
+TypeError: Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+2017-01-16 14:16:36,928-ERROR-_calcImg:Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 169, in find
+    coreimg, cladimg = self._difcore(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 191, in _difcore
+    cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 203, in _getFilterImgClad
+    cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
+TypeError: Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+2017-01-16 14:16:53,585-ERROR-_calcImg:Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 169, in find
+    coreimg, cladimg = self._difcore(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 191, in _difcore
+    cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 203, in _getFilterImgClad
+    cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
+TypeError: Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+2017-01-16 14:17:51,336-ERROR-_calcImg:Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 169, in find
+    coreimg, cladimg = self._difcore(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 191, in _difcore
+    cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 203, in _getFilterImgClad
+    cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
+TypeError: Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+2017-01-16 14:18:25,532-ERROR-_calcImg:Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 169, in find
+    coreimg, cladimg = self._difcore(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 191, in _difcore
+    cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 203, in _getFilterImgClad
+    cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
+TypeError: Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+2017-01-16 14:19:00,871-ERROR-_calcImg:Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 169, in find
+    coreimg, cladimg = self._difcore(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 192, in _difcore
+    cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 204, in _getFilterImgClad
+    cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
+TypeError: Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+2017-01-16 14:20:11,118-ERROR-_calcImg:Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 169, in find
+    coreimg, cladimg = self._difcore(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 192, in _difcore
+    cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 205, in _getFilterImgClad
+    cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
+TypeError: Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+2017-01-16 14:21:56,684-ERROR-_calcImg:Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 169, in find
+    coreimg, cladimg = self._difcore(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 192, in _difcore
+    cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 205, in _getFilterImgClad
+    cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
+TypeError: Layout of the output array img is incompatible with cv::Mat (step[ndims-1] != elemsize or step[1] != elemsize*nchannels)
+2017-01-16 14:22:31,322-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 14:23:49,448-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 14:24:25,171-ERROR-_calcImg:'int' object has no attribute '__getitem__'
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 169, in find
+    coreimg, cladimg = self._difcore(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 192, in _difcore
+    cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 206, in _getFilterImgClad
+    cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
+TypeError: 'int' object has no attribute '__getitem__'
+2017-01-16 14:26:10,497-ERROR-_calcImg:'int' object has no attribute '__getitem__'
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 169, in find
+    coreimg, cladimg = self._difcore(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 192, in _difcore
+    cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 206, in _getFilterImgClad
+    cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
+TypeError: 'int' object has no attribute '__getitem__'
+2017-01-16 14:26:49,165-ERROR-_calcImg:'int' object has no attribute '__getitem__'
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 169, in find
+    coreimg, cladimg = self._difcore(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 192, in _difcore
+    cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 206, in _getFilterImgClad
+    cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
+TypeError: 'int' object has no attribute '__getitem__'
+2017-01-16 14:27:20,927-ERROR-_calcImg:'int' object has no attribute '__getitem__'
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 169, in find
+    coreimg, cladimg = self._difcore(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 192, in _difcore
+    cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 206, in _getFilterImgClad
+    cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), -1)
+TypeError: 'int' object has no attribute '__getitem__'
+2017-01-16 14:27:40,903-ERROR-_calcImg:'int' object has no attribute '__getitem__'
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 169, in find
+    coreimg, cladimg = self._difcore(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 192, in _difcore
+    cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 206, in _getFilterImgClad
+    cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), 255, -1)
+TypeError: 'int' object has no attribute '__getitem__'
+2017-01-16 14:28:01,861-ERROR-_calcImg:'int' object has no attribute '__getitem__'
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 169, in find
+    coreimg, cladimg = self._difcore(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 192, in _difcore
+    cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 206, in _getFilterImgClad
+    cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), 255)
+TypeError: 'int' object has no attribute '__getitem__'
+2017-01-16 14:29:55,911-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 14:30:29,319-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 14:32:03,532-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 14:36:44,131-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 14:47:10,927-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 14:47:59,476-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 14:48:49,496-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 14:49:15,500-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 14:51:07,378-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 14:52:02,377-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 14:52:34,430-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 14:53:06,658-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 14:54:33,556-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 14:54:52,125-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-16 14:55:36,391-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-17 08:40:19,641-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-17 08:43:23,132-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-17 08:44:09,788-ERROR-_calcImg:src is not a numerical tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 176, in find
+    coreResult = ClassCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\octagon.py", line 24, in run
+    img = cv2.medianBlur(img, blurindex)
+TypeError: src is not a numerical tuple
+2017-01-17 08:44:57,428-ERROR-_calcImg:tuple indices must be integers, not tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 170, in find
+    coreimg = ExtractEdge().runMax(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\edge.py", line 56, in runMax
+    cv2.imshow('thr', img[::4,::4])
+TypeError: tuple indices must be integers, not tuple
+2017-01-17 08:45:16,943-ERROR-_calcImg:tuple indices must be integers, not tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 170, in find
+    coreimg = ExtractEdge().runMax(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\edge.py", line 56, in runMax
+    cv2.imshow('thr', img[::4,::4])
+TypeError: tuple indices must be integers, not tuple
+2017-01-17 08:52:54,306-ERROR-_calcImg:tuple indices must be integers, not tuple
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 97, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 118, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 170, in find
+    coreimg = ExtractEdge().runMax(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\edge.py", line 58, in runMax
+    cv2.imshow('thr', img[::4,::4])
+TypeError: tuple indices must be integers, not tuple

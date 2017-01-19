@@ -20,6 +20,18 @@ class CV2MethodSet(object):
         self.SET = SETTING()
 
 
+class ClassifyInterface(object):
+
+    def find(self):
+        raise NotImplementedError
+
+    def _difcore(self, img):
+        raise NotImplementedError
+
+    def getResult(self):
+        raise NotImplementedError
+
+
 
 
 

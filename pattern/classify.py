@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from octagon import ClassCircle, ClassOctagon
+from pickmethod import PickCircle, PickOctagon
 from pattern.meta import CV2MethodSet
 from setting.orderset import SETTING
 from pattern.edge import ExtractEdge
@@ -111,8 +111,8 @@ class OctagonClassify(MetaClassify):
         coreimg = ExtractEdge().run(coreimg)
         cladimg = ExtractEdge().run(cladimg)
 
-        coreResult = ClassCircle().run(coreimg)
-        cladResult = ClassOctagon().run(cladimg)
+        coreResult = PickCircle().run(coreimg)
+        cladResult = PickOctagon().run(cladimg)
         self.result['core'] = coreResult['ellipese']
         self.result['coreResult'] = coreResult
         self.result['clad'] = cladResult['ellipese']
@@ -167,14 +167,14 @@ class Big20400Classify(OctagonClassify):
     def find(self, img):
         self.img = img
         coreimg, cladimg = self._difcore(img)
-        coreimg = ExtractEdge().run(coreimg)
+        coreimg = ExtractEdge().directThr(coreimg)
         cladimg = ExtractEdge().run(cladimg)
         # cladimg = cv2.bilateralFilter(cladimg, 20, 80, 75)
         # cv2.imshow("clad edge", cladimg[::4,::4])
         # cv2.waitKey()
 
-        coreResult = ClassCircle().run(coreimg)
-        cladResult = ClassCircle().run(cladimg)
+        coreResult = PickCircle().run(coreimg)
+        cladResult = PickCircle().run(cladimg)
         self.result['core'] = coreResult['ellipese']
         self.result['coreResult'] = coreResult
         self.result['clad'] = cladResult['ellipese']
@@ -185,15 +185,35 @@ class Big20400Classify(OctagonClassify):
     def _difcore(self, img):
         corecore = self.SET["corepoint"]
         minRange, maxRange = self.SET["cladRange"]
-        redimg =img[::,::,2]
+        redimg =img[::,::,2].copy()
+        # cv2.imshow("redimg", redimg[::4,::4])
+        # cv2.waitKey()
         redimg = cv2.bitwise_not(redimg)
         cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+        print 'get clad img ?'
+        # cv2.imshow("clad", cladimg[::4,::4])
+        # cv2.waitKey()
         minRange, maxRange = self.SET["coreRange"]
-        coreimg = self._getFilterImg(corecore, img[::,::,1], minRange, maxRange)
+        # coreimg = cv2.bitwise_not(img.copy())
+        # coreimg = self._getFilterImgCore(corecore, img[::,::,1], minRange, maxRange)
+        coreimg = img[::,::,1]
+        # cv2.imshow("core", img[::4, ::4, 1])
+        # cv2.waitKey()
         return coreimg, cladimg
+
+    def _getFilterImgCore(self, core, origin, minRange, maxRange):
+        img = np.ones(origin.shape, dtype='uint8') * 255
+        cv2.circle(img, (int(core[0]), int(core[1])), int(maxRange), (0, 0, 0), -1)
+        cv2.circle(img, (int(core[0]), int(core[1])), int(minRange), (255, 255, 255), -1)
+        # origin = cv2.bitwise_not(origin)
+        img = cv2.bitwise_or(img, origin)
+        return img
 
 
     def _getFilterImgClad(self, core, origin, minRange, maxRange):
-        core = [core,1]
-        cv2.circle(origin, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
+        # core = [
+        origin = origin.copy()
+        print 'get core inner', (int(core[0]), int(core[1])), int(minRange), origin.shape
+        cv2.circle(origin, (int(core[0]), int(core[1])), int(minRange), 255, -1)
+
         return origin

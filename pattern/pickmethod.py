@@ -11,28 +11,23 @@ from setting.orderset import SETTING
 from util.timing import timing
 
 
-class ClassCircle(object):
+class PickCircle(object):
     def __init__(self):
-        super(ClassCircle, self).__init__()
+        super(PickCircle, self).__init__()
 
     # @timing
     def run(self,img):
         blurindex = SETTING()["medianBlur"].get("corefilter", 3)
 
-        # print 'get core median', blurindex
-
         img = cv2.medianBlur(img, blurindex)
-        # img = cv2.bilateralFilter(img, 20, 75, 75)
-
-        # img = EdgeFuncs().close(img, time_ = 1)
-        # cv2.imshow('coreimg', img[::4, ::4])
+        # cv2.imshow("img", img[::4, ::4])
         # cv2.waitKey()
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         tempPlots = np.ones(img.shape) * 255
         print 'get contours len', len(contours)
-        if len(contours) ==0:
+        if len(contours) == 0:
             raise ClassCoreError
-        elif len(contours) ==1:
+        elif len(contours) == 1:
             mergedpoints =contours[0]
         else:
             mergedpoints = np.concatenate(contours[1:])
@@ -40,10 +35,8 @@ class ClassCircle(object):
         result = self._getResult(ellipse)
         result['ellipese'] = ellipse
         cv2.ellipse(tempPlots, ellipse, (0,255,255))
-
         result['plot'] = tempPlots
         result['contour'] = mergedpoints
-
         return result
 
     def _getResult(self, ellipse):
@@ -56,10 +49,10 @@ class ClassCircle(object):
 
 
 
-class ClassOctagon(object):
+class PickOctagon(object):
 
     def __init__(self):
-        super(ClassOctagon, self).__init__()
+        super(PickOctagon, self).__init__()
 
     def angleRatio(self, A, B, C):
         """"baike baidu yuxiandingli
@@ -67,7 +60,6 @@ class ClassOctagon(object):
         c = np.sqrt(((A[0][0] - B[0][0]) ** 2 + (A[0][1] - B[0][1]) ** 2))
         a = np.sqrt(((C[0][0] - B[0][0]) ** 2 + (C[0][1] - B[0][1]) ** 2))
         b = np.sqrt(((A[0][0] - C[0][0]) ** 2 + (A[0][1] - C[0][1]) ** 2))
-
         dif = (b * b + c * c - a * a)
         diff = (2 * b * c)
         if diff == 0:

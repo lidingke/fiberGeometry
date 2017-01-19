@@ -71,6 +71,7 @@ class ModelCV(Thread, QObject):
     def run(self):
         while self.IS_RUN:
             img = self._getImg()
+            img = self.getRawImg.bayer2BGR(img)
             # self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
             self.sharp = "%0.2f" % self.isSharp.issharpla(self.img)
             # plotResults = (self.ellipses, self.result)
@@ -81,7 +82,7 @@ class ModelCV(Thread, QObject):
 
     def _getImg(self):
         img = self.getRawImg.get()
-        img = self.getRawImg.bayer2BGR(img)
+
         self.img = img
         # self.imgQueue.append(img)
         # print 'imgqueue', len(self.imgQueue)

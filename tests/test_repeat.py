@@ -1,7 +1,7 @@
 from __future__ import division
 from setting.orderset import SETTING
 SETTING("test", "octagon", "centerImg")
-from pattern.octagon import ClassOctagon
+from pattern.pickmethod import PickOctagon
 from pattern.edge import ExtractEdge
 import cv2
 from util.loadimg import edge2img, yieldImg
@@ -20,7 +20,7 @@ def test_repeat_octagon():
     for img in yieldImg("IMG\\octagon\\500s\\"):
         img = ExtractEdge().run(img)
         img = cv2.medianBlur(img, 11)
-        result = ClassOctagon().run(img)
+        result = PickOctagon().run(img)
         _1, _2 = result['corePoint'][0].tolist()
         radius = result['longAxisLen'] + result['shortAxisLen'] / 2
         print  _1, _2, radius

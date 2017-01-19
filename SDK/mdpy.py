@@ -30,11 +30,6 @@ class GetRawImg(object):
 
     # @timing
     def get(self):
-        """ get 0.0990002155304 s
-            get raw dll 0.0910000801086 s
-            create np.array 0.00600004196167 s
-            reshape 0s
-        """
         try:
             # md = mdp.getRawImg(self.limit)
             md = mdp.getRawImg()
@@ -78,9 +73,10 @@ class GetRawImgTest(GetRawImg):
         # shape = (1944, 2592)
         # img = np.fromfile("tests\\data\\imgred.bin", dtype="uint8")
         # img.shape = shape
-        # # print 'get image', img.shape
         # time.sleep(0.1)
-        img = randomImg("IMG\\\midoctagon\\img\\")
+        img = randomImg("IMG\\20400corec\\750\\")
+        print 'change rgb'
+        img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         return img
 
     # def bayer2RGB(self, img):
@@ -101,7 +97,8 @@ class GetRawImgTest20400(GetRawImg):
 
     def get(self):
         time.sleep(0.1)
-        img = randomImg("IMG\\20400clad4\\")
+        img = randomImg("IMG\\20400coreb\\750\\")
+        # img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         return img
 
     def unInitCamera(self):

@@ -2,6 +2,7 @@ import pdb
 import numpy as np
 import cv2
 from SDK.mdpy import GetRawImgTest as GetRawImg
+from pattern.getimg import GetImage
 
 
 def test_origin_imgColor():
@@ -23,3 +24,10 @@ def test_origin_imgColor():
     assert r > g and r > b
 
 
+def test_get_img():
+    img = GetImage().get('IMG\\204001.BMP', colour="colour")
+    assert img.dtype == "uint8"
+
+
+if __name__ == "__main__":
+    getdtype()

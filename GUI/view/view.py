@@ -1,5 +1,6 @@
 #coding:utf-8
 from setting.orderset import SETTING
+import cv2
 from GUI.UI.mainUI import Ui_MainWindow
 fibertype = SETTING().get("fiberType", "G652")
 if fibertype == "octagon":

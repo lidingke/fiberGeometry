@@ -94,6 +94,16 @@ class cv2CircleIndex(object):
 
         return (area , circleIndex)
 
+def circleIndex(x):
+    area = cv2.contourArea(x)
+    cvMom = cv2.moments(x)
+    if cvMom['m00'] != 0.0:
+        cvMomXY = (cvMom['m10'] / cvMom['m00'], cvMom['m01'] / cvMom['m00'])
+        circleIndex = IsCircle().run(area, cvMomXY, x)
+    else:
+        circleIndex = 0
+    return (area, circleIndex)
+
 import xlwt
 class XlsWrite(object):
     """docstring for XlsWrite"""

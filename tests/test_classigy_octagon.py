@@ -35,18 +35,11 @@ def test_class_octagon_getResult():
     result = oca.getResult()
     assert len(result) == 5
 
-def getthr():
-    img = getImage("IMG\\thr.png")
-    dst = np.zeros(img.shape, dtype= 'bool')
-    cv2.adaptiveThreshold(img, 1,
-                                cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 5, 5, dst=dst)
-    pdb.set_trace()
-
 
 
 if __name__ == '__main__':
     print  'get'
-    getthr()
+    # getthr()
     # img = np.fromfile("tests\\data\\dynamicimg.bin", "uint8")
     # img.shape = SETTING().get("imgsize",(1944,2592))
     # oca = OctagonClassify().find(img)

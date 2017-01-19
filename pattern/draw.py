@@ -105,7 +105,7 @@ def drawCoreCircle(img):
     x0,y0 = corecore
     x1, y1 = x0 + minRange, y0
     x2, y2 = x0 + maxRange, y0
-    cv2.line(img, (x1,y1), (x2,y2), (255,255,255), 4)
+    cv2.line(img, (x1,y1), (x2,y2), (255,0,0), 4)
     x1, y1 = x0, y0 + minRange
     x2, y2 = x0, y0 + maxRange
     cv2.line(img, (x1,y1), (x2,y2), (255,255,255), 4)

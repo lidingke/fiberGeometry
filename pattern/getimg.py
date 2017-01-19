@@ -19,6 +19,9 @@ class GetImage(CV2MethodSet):
             self.fileFind(dir_,colour)
         if not isinstance(self.img, np.ndarray):
             raise ValueError('img not ndarray')
+        if self.img.dtype != "uint8":
+            self.img = cv2.convertScaleAbs(self.img)
+            # self.img = np.array(self.img,dtype="uint8")
         return self.img
 
     def fileFind(self, dir_,colour):
