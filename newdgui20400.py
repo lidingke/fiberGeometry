@@ -16,7 +16,6 @@ from setting.load import loadStyleSheet
 #         styleSheet = f.readlines()
 #         styleSheet = b''.join(styleSheet)
 #         styleSheet = styleSheet.decode('utf-8')
-#
 #     return styleSheet
 
 

@@ -5,7 +5,7 @@ from GUI.UI.mainUI import Ui_MainWindow
 fibertype = SETTING().get("fiberType", "G652")
 if fibertype == "octagon":
     from GUI.UI.mainocUI import Ui_MainWindow as new_MainWindow
-elif fibertype == "20400":
+elif fibertype in ("20400","G652"):
     from GUI.UI.mainocUI import Ui_MainWindow as new_MainWindow
 else:
     from GUI.UI.mainUI import Ui_MainWindow as new_MainWindow
@@ -17,6 +17,7 @@ from PyQt4.QtCore import QRect, Qt
 from PyQt4.QtGui import QWidget, QMainWindow, QPainter, QFont,\
     QPixmap, QImage, QColor, QFileDialog, QMessageBox, QPalette
 import numpy as np
+from util.load import WriteReadJson
 
 # class View(QMainWindow,Ui_MainWindow):
 #     """docstring for View"""
@@ -129,6 +130,9 @@ class View(QMainWindow, new_MainWindow):
         self.model = model
 
     def closeEvent(self, *args, **kwargs):
+        result = SETTING()['tempLight']
+        print 'get light result', result
+        WriteReadJson('tests/data/light.json').save(result)
         self.model.exit()
 
     def updateOpticalview(self, wave, powers):

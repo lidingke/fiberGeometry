@@ -85,7 +85,7 @@ def oldDecorateImg(origin, ellipses, result):
     return  origin
 
 def DecorateImg(origin, ellipses, result):
-    if SETTING().get("fiberType") == "20400":
+    if SETTING().get("fiberType") in ("20400", "G652"):
         return DecorateImg20400(origin, ellipses, result)
     if isinstance(ellipses, dict):
         return newDecorateImg(origin, ellipses, result)
@@ -94,6 +94,7 @@ def DecorateImg(origin, ellipses, result):
 
 
 def drawCoreCircle(img):
+    img = img.copy()
     SET = SETTING()
     corecore = SET.get("corepoint",(1296,972))
     core = [corecore,1]
@@ -117,6 +118,7 @@ def drawCoreCircle(img):
     cv2.line(img, (x1,y1), (x2,y2), (255,255,255), 4)
 
     # minRange, maxRange = SET.get("cladRange")
+    #
     # cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(maxRange), (0, 0, 0), 4)
     # cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), 4)
     return img

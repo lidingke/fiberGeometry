@@ -51,6 +51,7 @@ def yieldImg(dirs):
 def randomImg(dirs):
     if dirs[-4:].find('.') > 0:
         raise ValueError('input para is not a folder, a file')
+
     dirlist = os.listdir(dirs)
     dirlist = [dirs + x for x in dirlist]
     img = GetImage().get(choice(dirlist),colour='color')

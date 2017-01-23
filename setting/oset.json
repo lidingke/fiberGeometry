@@ -36,9 +36,6 @@
     "coreRange":[10,30],
     "cladRange":[150,300]
 },
-  "G652":{
-    "fiberType":"G652"
-  },
   "octagon":{
     "fiberType":"octagon",
     "medianBlur": {
@@ -65,5 +62,13 @@
   },
   "centerImg":{
     "centerImg":true
+  },
+  "G652":{
+    "fiberType":"G652",
+    "imgsize":[1944,2592],
+    "coreRange":[20,100],
+    "cladRange":[650,900],
+    "corepoint":[1296,972],
+    "ampPixSize": 0.07963
   }
 }

@@ -8,7 +8,7 @@ import numpy as np
 def test_class_rough():
     big = Big20400Classify()
     for img in yieldImg("IMG\\sizeCore\\"):
-        img = cv2.cvtColor(img,cv2.COLOR_RGB2BGR)
+        # img = cv2.cvtColor(img,cv2.COLOR_RGB2BGR)
         print img.shape
         core, clad = big.find(img)
         print core['ellipese'], clad['ellipese']

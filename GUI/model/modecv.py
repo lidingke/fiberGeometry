@@ -18,6 +18,8 @@ if setGet:
 else:
     if fiberType == "20400":
         from SDK.mdpy import GetRawImgTest20400 as GetRawImg
+    elif fiberType == "G652":
+        from SDK.mdpy import GetRawImgTestg652 as GetRawImg
     else:
         from SDK.mdpy import GetRawImgTest as GetRawImg
     print 'script don\'t open camera'
@@ -28,6 +30,9 @@ if fiberType == "octagon":
     from pattern.classify import OctagonClassify as Classify
 elif fiberType == "20400":
     from pattern.classify import Big20400Classify as Classify
+elif fiberType == "G652":
+    print 'get new g652 classify'
+    from pattern.classify import NewG652Classify as Classify
 else:
     from pattern.classify import G652Classify as Classify
 from pattern.sharp import IsSharp
@@ -71,7 +76,7 @@ class ModelCV(Thread, QObject):
     def run(self):
         while self.IS_RUN:
             img = self._getImg()
-            img = self.getRawImg.bayer2BGR(img)
+
             # self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
             self.sharp = "%0.2f" % self.isSharp.issharpla(self.img)
             # plotResults = (self.ellipses, self.result)
@@ -82,8 +87,8 @@ class ModelCV(Thread, QObject):
 
     def _getImg(self):
         img = self.getRawImg.get()
-
-        self.img = img
+        img = self.getRawImg.bayer2BGR(img)
+        self.img = img.copy()
         # self.imgQueue.append(img)
         # print 'imgqueue', len(self.imgQueue)
         # self.sharpQueue.append(img)
@@ -114,8 +119,11 @@ class ModelCV(Thread, QObject):
 
     @timing
     def _toClassify(self, img):
+        print 'get img type', img.shape, img.dtype
         self.ellipses = self.classify.find(img)
         self.result = self.classify.getResult()
+        if self.result:
+            SETTING()['tempLight'].append([int(self.green), float(self.result[1])])
         return self.result
 
     def _decorateImg(self,img):
@@ -162,6 +170,7 @@ class ModelCV(Thread, QObject):
     def _emitCVShowResult(self):
         result = self.result
         sharp = self.sharp
+
         if isinstance(result, tuple):
             # print 'get result', result
             text = [
@@ -180,8 +189,10 @@ class ModelCV(Thread, QObject):
             corey, corex = SETTING()["corepoint"]
             minRange, maxRange = SETTING()["coreRange"]
             green = sliceImg(green, (corex, corey), maxRange)
-            result = green.sum()/2550
-            self.returnGreen.emit("%0.2f"%result)
+            self.green = green.sum()/2550
+
+            self.returnGreen.emit("%0.2f"%self.green)
+
 
 
 
