@@ -18,14 +18,37 @@ import pdb
 def test_ClassOctagon(dir_):
     img = GetImage().get(dir_)
     result = PickOctagon().run(img)
-    # print 'get octagon', ['shortAxisLen'],result['longAxisLen']
+    print 'get octagon', result['shortAxisLen'],result['longAxisLen'],'angle', result['angle']
     assert isinstance(result['plot'], np.ndarray)
+    # cv2.imshow(dir_, result['plot'][::4,::4])
+    # cv2.waitKey()
     assert result['longAxisLen'] > result['shortAxisLen']
     ratio = result['shortAxisLen']/result['longAxisLen']
     assert ratio > 0.9
+    assert result['angle'] > 0.9
     print dir_, result['shortAxisLen'], result['longAxisLen'], ratio
     assert isinstance(result['corePoint'], np.ndarray)
 
+
+@pytest.mark.parametrize(
+    'dir_',(
+        'IMG\\midoctagon\\mid1.bmp',
+    ))
+def test_ClassMidOctagon(dir_):
+    img = GetImage().get(dir_,colour='color')
+    img = ExtractEdge().run(img[::,::,2].copy())
+    img = cv2.medianBlur(img, 11)
+    result = PickOctagon().run(img)
+    print 'get octagon mid', result['shortAxisLen'],result['longAxisLen'],'angle', result['angle']
+    assert isinstance(result['plot'], np.ndarray)
+    # cv2.imshow('octagon', result['plot'][::4,::4])
+    # cv2.waitKey()
+    assert result['longAxisLen'] > result['shortAxisLen']
+    ratio = result['shortAxisLen']/result['longAxisLen']
+    assert ratio > 0.9
+    assert result['angle'] > 0.9
+    print dir_, result['shortAxisLen'], result['longAxisLen'], ratio
+    assert isinstance(result['corePoint'], np.ndarray)
 
 @pytest.mark.parametrize(
     'dir_',(
@@ -47,6 +70,7 @@ def test_pickcircle(dir_):
     ratio = result['shortAxisLen']/result['longAxisLen']
     print dir_, result['shortAxisLen'], result['longAxisLen'], ratio
     assert ratio > 0.9
+
 
     assert isinstance(result['corePoint'], np.ndarray)
 

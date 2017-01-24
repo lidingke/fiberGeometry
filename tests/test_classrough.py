@@ -10,11 +10,12 @@ def test_class_rough():
     for img in yieldImg("IMG\\sizeCore\\"):
         # img = cv2.cvtColor(img,cv2.COLOR_RGB2BGR)
         print img.shape
-        core, clad = big.find(img)
+        result = big.find(img)
+        core, clad = result['coreResult'], result['cladResult']
         print core['ellipese'], clad['ellipese']
-        cv2.imshow("core", core['plot'])
-        cv2.imshow("clad", clad['plot'][::4,::4])
-        cv2.waitKey()
+        # cv2.imshow("core", core['plot'])
+        # cv2.imshow("clad", clad['plot'][::4,::4])
+        # cv2.waitKey()
 
 
 

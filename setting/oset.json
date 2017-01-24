@@ -32,6 +32,9 @@
   "test":{
     "ifcamera": false
   },
+  "set":{
+    "testset":".json"
+  },
   "sjtRange":{
     "coreRange":[10,30],
     "cladRange":[150,300]

@@ -15,7 +15,7 @@ def test_sliceImg():
         minRange, maxRange = SETTING()["coreRange"]
         img = sliceImg(img, (corex, corey), maxRange)
         print 'slice shape', img.shape
-        assert img.shape == (160, 160)
+        assert img.shape == (124, 124)
 
     img = GetImage().get("IMG\\midoctagon\\mid1.BMP","color")
     if img.shape == (1944, 2592, 3):
@@ -24,7 +24,7 @@ def test_sliceImg():
         minRange, maxRange = SETTING()["coreRange"]
         img = sliceImg(img, (corex, corey), maxRange)
         print 'slice shape', img.shape
-        assert img.shape == (160, 160, 3)
+        assert img.shape == (124, 124, 3)
 
 
 

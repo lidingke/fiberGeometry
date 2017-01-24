@@ -127,7 +127,7 @@ class PickOctagon(object):
         blurindex = SETTING()["medianBlur"].get("cladfilter", 3)
         img = cv2.medianBlur(img, blurindex)
         # img = cv2.adaptiveBilateralFilter
-        img = cv2.bilateralFilter(img, 5, 80, 75)
+        # img = cv2.bilateralFilter(img, 5, 80, 75)
         # img = EdgeFuncs().close(img,kernelLen=3)
         # print 'get blur index ', blurindex
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
@@ -145,7 +145,9 @@ class PickOctagon(object):
             mergedpoints = np.concatenate(contours[1:])
         points = cv2.convexHull(points=mergedpoints)
         longAxis = self._getLongAxit(points)
+
         result = {}
+        result['angle'] = longAxis[3]
         x, y = tuple(longAxis[1][0].tolist()),tuple(longAxis[2][0].tolist())
         result['longPlot'] = (x, y)
         cv2.line(tempPlots, x, y, (0, 255, 0), 8)
@@ -160,7 +162,7 @@ class PickOctagon(object):
         getVerticalPoint = self._getHalfList(getVerticalPoint)
         getVerticalPoint.sort(key = lambda x: abs(self.angleRatio([midPoint], longAxis[1], x)))
         # getVerticalPoint.sort(key=lambda x: abs(self.horizonalRatio45([midPoint], longAxis[1], x)))
-
+        result['angle'] = self.angleRatio([midPoint], longAxis[1], getVerticalPoint[-1])
         # print 'get x y ', x, y, midPoint, longAxis
         # pdb.set_trace()
         x,y = tuple(midPoint.tolist()), tuple(getVerticalPoint[0][0])
