@@ -88,6 +88,9 @@ class SETTING(MetaDict):
     def __str__(self):
         return str(self.store)
 
+    def __del__(self):
+        self.store.clear()
+
     # def saveSetting(self):
     #     self.jsonLoad.update({self.GET_SETTING_ID:self.store})
     #     self.wrJson.save(self.jsonLoad)

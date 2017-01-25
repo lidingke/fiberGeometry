@@ -16,7 +16,9 @@ import pdb
         'IMG\\500edge.bmp',
     ))
 def test_ClassOctagon(dir_):
-    img = GetImage().get(dir_)
+
+    img = GetImage().get(dir_,colour='black')
+    print 'get shape', img.shape
     result = PickOctagon().run(img)
     print 'get octagon', result['shortAxisLen'],result['longAxisLen'],'angle', result['angle']
     assert isinstance(result['plot'], np.ndarray)
@@ -35,9 +37,9 @@ def test_ClassOctagon(dir_):
         'IMG\\midoctagon\\mid1.bmp',
     ))
 def test_ClassMidOctagon(dir_):
-    img = GetImage().get(dir_,colour='color')
-    img = ExtractEdge().run(img[::,::,2].copy())
-    img = cv2.medianBlur(img, 11)
+    img = GetImage().get(dir_,colour='colour')
+    img = ExtractEdge().run(img[::,::,0].copy())
+    img = cv2.medianBlur(img, 15)
     result = PickOctagon().run(img)
     print 'get octagon mid', result['shortAxisLen'],result['longAxisLen'],'angle', result['angle']
     assert isinstance(result['plot'], np.ndarray)
@@ -45,7 +47,7 @@ def test_ClassMidOctagon(dir_):
     # cv2.waitKey()
     assert result['longAxisLen'] > result['shortAxisLen']
     ratio = result['shortAxisLen']/result['longAxisLen']
-    assert ratio > 0.9
+    assert ratio > 0.88
     assert result['angle'] > 0.9
     print dir_, result['shortAxisLen'], result['longAxisLen'], ratio
     assert isinstance(result['corePoint'], np.ndarray)

@@ -1,8 +1,9 @@
 import cv2
 import numpy as np
+from setting.orderset import SETTING
 from pickmethod import PickCircle, PickOctagon
 from pattern.meta import CV2MethodSet
-from setting.orderset import SETTING
+
 from pattern.edge import ExtractEdge
 
 
@@ -23,10 +24,10 @@ class MetaClassify(CV2MethodSet):
         pass
 
 
-class G652Classify(MetaClassify):
+class OldG652Classify(MetaClassify):
     """docstring for G652Classify"""
     def __init__(self, ):
-        super(G652Classify, self).__init__()
+        super(OldG652Classify, self).__init__()
         self.result = {}
         self.ampRatio = SETTING().get("ampPixSize", 0.0835)
         # self.ampRatio = 0.0835#0.08653
@@ -162,8 +163,8 @@ class OctagonClassify(MetaClassify):
         else:
             print 'error find core or clad'
             return ()
-
-class Big20400Classify(OctagonClassify):
+#Big20400Classify
+class DoubleCircleClassify(OctagonClassify):
 
     def find(self, img):
         self.img = img
@@ -192,8 +193,8 @@ class Big20400Classify(OctagonClassify):
         corecore = self.SET["corepoint"]
         minRange, maxRange = self.SET["cladRange"]
         redimg =img[::,::,0].copy()
-        # cv2.imshow("redimg", redimg[::4,::4])
-        # cv2.waitKey()
+        cv2.imshow("redimg", redimg[::4,::4])
+        cv2.waitKey()
         redimg = cv2.bitwise_not(redimg)
 
         cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
@@ -237,4 +238,5 @@ class Big20400Classify(OctagonClassify):
 #     def __init__(self):
 #         super(NewG652Classify, self).__init__()
 
-NewG652Classify = Big20400Classify
+G652Classify = DoubleCircleClassify
+Big20400Classify = DoubleCircleClassify

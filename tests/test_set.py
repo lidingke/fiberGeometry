@@ -1,31 +1,14 @@
 from setting.orderset import SETTING, singleton
-import unittest
 
+def test_other_set():
 
-
-class TestDom1(unittest.TestCase):
-    def setUp(self):
-        self.s = SETTING("printline")
-
-    def test_get_in(self):
-        s = self.s
-        assert s.keys()
-        # assert not s.keys()
-        assert "ampPixSize" in s.keys()
-        assert 'overdom' not in s.keys()
-        s['overdom'] = True
-
-class TestDom2(unittest.TestCase):
-    def setUp(self):
-        self.s = SETTING("octagon", "printline")
-
-    def test_get_out(self):
-        s = self.s
-        # print singleton.instance
-        print 'dom2', s.get("fiberType")
-        assert s.get("fiberType") == "octagon"
-        assert 'overdom' in s.keys()
-        assert s.get('overdom')
+    s = SETTING('G652')
+    print s.store
+    assert 'G652' == s.get('fiberType')
+    s = SETTING('octagon')
+    print s.store
+    print 'singleton2', id(s)
+    assert 'octagon' != s.get('fiberType')
 
 
 

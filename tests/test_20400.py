@@ -12,10 +12,12 @@ def test_class_rough():
         print img.shape
         result = big.find(img)
         core, clad = result['coreResult'], result['cladResult']
-        print core['ellipese'], clad['ellipese']
-        # cv2.imshow("core", core['plot'])
-        # cv2.imshow("clad", clad['plot'][::4,::4])
-        # cv2.waitKey()
+        print core['ellipese'], clad['ellipese'], result['cladResult'].keys()
+        assert core['longAxisLen'] > 0.5
+        assert core['shortAxisLen'] > 0.5
+        assert core['longAxisLen'] > core['shortAxisLen']
+        ratio = core['shortAxisLen'] / core['longAxisLen']
+        assert ratio > 0.9
 
 
 

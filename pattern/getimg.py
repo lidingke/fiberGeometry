@@ -11,8 +11,9 @@ class GetImage(CV2MethodSet):
         super(GetImage, self).__init__()
         # self.arg = arg
         self.img = False
+        self.colour = None
 
-    def get(self, dir_='', colour = 'black'):
+    def get(self, dir_='', colour = 'colour'):
         if dir_.find('.') > 0:
             self.singleFileFind(dir_,colour)
         else :
@@ -29,15 +30,24 @@ class GetImage(CV2MethodSet):
             # pdb.set_trace()
             self.img = cv2.imread(dir_ + "\\" + file)
             self.origin = self.img.copy()
-            if len(self.img.shape) == 3 and colour == 'black':
-                self.img = cv2.cvtColor(self.img, cv2.COLOR_RGB2GRAY)
+            self._getColorImg(colour = colour)
 
 
     def singleFileFind(self, dir_,colour):
         self.img = cv2.imread(dir_)
         self.origin = self.img.copy()
-        if len(self.img.shape) == 3 and colour == 'black':
+        self._getColorImg(colour = colour)
+
+    def _getColorImg(self,colour = 'colour'):
+        if not self.colour:
+            self.colour = colour
+        print '_get', self.colour
+        if self.colour in ('gray', 'black'):
             self.img = cv2.cvtColor(self.img, cv2.COLOR_RGB2GRAY)
+        elif self.colour == 'colour':
+            self.img = cv2.cvtColor(self.img, cv2.COLOR_RGB2BGR)
+        else:
+            pass
 
 def yieldImg(dirs):
     if dirs[-4:].find('.') > 0:
