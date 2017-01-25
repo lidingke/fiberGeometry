@@ -16,11 +16,12 @@ from random import choice
 
 def test_repeat_G652():
     sets = SETTING()
+    sets.updates('G652','test')
+    print 'sets', sets
     resultgetcore = []
     resultgetclad = []
-    big = G652Classify()
     for img in yieldImg("IMG\\G652\\"):
-        result = big.find(img)
+        result = G652Classify().find(img)
         core, clad = result['coreResult'], result['cladResult']
         print core['ellipese'], clad['ellipese']
         assert core['longAxisLen'] > 0.5
@@ -56,7 +57,7 @@ def test_repeat_G652():
     std  = np.std(resultarray, axis= 0 )
     x, y, z = std
     print 'std', x, y, z
-    assert z < 0.5
+    assert z < 1.5
 
 def test_repeat_octagon():
     sets = SETTING()

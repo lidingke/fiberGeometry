@@ -12,9 +12,11 @@ class GetImage(CV2MethodSet):
         # self.arg = arg
         self.img = False
         self.colour = None
+        self.suffix = ''
 
     def get(self, dir_='', colour = 'colour'):
         if dir_.find('.') > 0:
+            self.suffix = dir_.split('.')[-1]
             self.singleFileFind(dir_,colour)
         else :
             self.fileFind(dir_,colour)
@@ -28,6 +30,7 @@ class GetImage(CV2MethodSet):
     def fileFind(self, dir_,colour):
         for file in os.listdir(dir_):
             # pdb.set_trace()
+            self.suffix = dir_.split('.')[-1]
             self.img = cv2.imread(dir_ + "\\" + file)
             self.origin = self.img.copy()
             self._getColorImg(colour = colour)
@@ -41,10 +44,10 @@ class GetImage(CV2MethodSet):
     def _getColorImg(self,colour = 'colour'):
         if not self.colour:
             self.colour = colour
-        print '_get', self.colour
+        print '_get img colour', self.colour, self.suffix
         if self.colour in ('gray', 'black'):
             self.img = cv2.cvtColor(self.img, cv2.COLOR_RGB2GRAY)
-        elif self.colour == 'colour':
+        elif self.colour == 'colour' and self.suffix.upper() == 'BMP':
             self.img = cv2.cvtColor(self.img, cv2.COLOR_RGB2BGR)
         else:
             pass
