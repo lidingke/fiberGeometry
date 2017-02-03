@@ -1,5 +1,5 @@
 from  setting.orderset import SETTING
-SETTING("test")
+SETTING("test").keyUpdates('20400')
 from util.loadimg import yieldImg
 from pattern.classify import Big20400Classify
 import cv2
