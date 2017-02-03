@@ -1,6 +1,6 @@
 from __future__ import division
 from setting.orderset import SETTING
-SETTING("test", "octagon", "centerImg")
+SETTING().keyUpdates("test", "octagon", "centerImg")
 from pattern.pickmethod import PickOctagon
 from pattern.edge import ExtractEdge
 import cv2

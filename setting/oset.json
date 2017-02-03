@@ -50,7 +50,7 @@
     "cladRange":[540,660],
     "ampPixSize": 0.10715
   },
-    "20400":{
+  "20400":{
     "fiberType":"20400",
     "medianBlur": {
           "ErodeDilateKsize": 9,

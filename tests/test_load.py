@@ -1,5 +1,5 @@
 from setting.orderset import SETTING
-SETTING("test")
+SETTING().keyUpdates("Default")
 import cv2
 from util.loadimg import sliceImg
 from pattern.getimg import GetImage
@@ -23,4 +23,4 @@ def test_sliceImg():
         minRange, maxRange = SETTING()["coreRange"]
         img = sliceImg(img, (corex, corey), maxRange)
         print 'slice shape', img.shape
-        assert img.shape == (160, 160, 3)
+        assert img.shape == (124, 124, 3)

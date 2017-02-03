@@ -1,5 +1,5 @@
 from setting.orderset import SETTING
-SETTING('test','octagon')
+SETTING().keyUpdates('test','octagon')
 from pattern.pickmethod import PickOctagon, PickCircle
 from pattern.edge import ExtractEdge
 import pytest

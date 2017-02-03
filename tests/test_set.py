@@ -1,4 +1,5 @@
 from setting.orderset import SETTING, singleton
+SETTING().keyUpdates('G652')
 
 def test_other_set():
 

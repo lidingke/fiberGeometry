@@ -1,5 +1,5 @@
 from setting.orderset import SETTING
-SETTING('MindVision500', 'test', 'octagon','centerImg')
+SETTING().keyUpdates('octagon','centerImg')
 
 import cv2
 import numpy as np

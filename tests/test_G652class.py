@@ -1,6 +1,6 @@
 
 from setting.orderset import SETTING
-SETTING('G652','test')
+SETTING().keyUpdates('G652','test')
 import pdb
 import numpy as np
 import cv2

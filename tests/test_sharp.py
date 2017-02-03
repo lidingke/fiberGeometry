@@ -1,5 +1,5 @@
 from setting.orderset import SETTING
-SETTING('test','octagon')
+SETTING().keyUpdates('test', 'octagon')
 from pattern.sharp import IsSharp
 from pattern.edge import ExtractEdge, EdgeFuncs
 import numpy as np

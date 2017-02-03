@@ -32,8 +32,8 @@ class SETTING(MetaDict):
         # self.store = self._mergeDict(args)
         # print self.store.keys()
         self.store = OrderedDict()
-        jsonLoad = self._readJson()
-        self.store.update(jsonLoad["Default"])
+        self.jsonLoad = self._readJson()
+        self.store.update(self.jsonLoad["Default"])
         for data in args:
             self.updates(data)
         for data in kwargs:
@@ -64,6 +64,16 @@ class SETTING(MetaDict):
                 else:
                     raise ValueError("updateSets input data error", type(data))
 
+    def keyUpdates(self, *key):
+        print 'get keyupdats', type(key), key
+        # if isinstance(key,list) or isinstance(key, tuple):
+        for k in key:
+            if isinstance(k, str):
+                self.store.update(self.jsonLoad.get(k, {}))
+                # return
+            else:
+                raise ValueError("error input key", type(key))
+
 
     def _storeUpdateJsonStr(self, data):
         if not isinstance(data, str):
@@ -84,6 +94,9 @@ class SETTING(MetaDict):
 
     def getSetting(self):
         return self.store
+
+    def getInitLoad(self):
+        return self.jsonLoad
 
     def __str__(self):
         return str(self.store)
