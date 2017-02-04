@@ -9,6 +9,7 @@ def decorateOctagon(origin, ellipses, result):
         origin = cv2.cvtColor(origin, cv2.COLOR_GRAY2RGB)
     if not (ellipses or result):
         return origin
+    result = ellipses['showResult']
     x, y = ellipses['cladResult']['longPlot']
     cv2.line(origin, x, y, (25,255,0), 8)
     x, y = ellipses['cladResult']['shortPlot']
@@ -34,6 +35,7 @@ def decorateDoubleCircle(origin, ellipses, result):
     # print ellipses.keys()
     if len(origin.shape)<3:
         origin = cv2.cvtColor(origin, cv2.COLOR_GRAY2RGB)
+    result = ellipses['showResult']
     cv2.ellipse(origin, ellipses['clad'], (0, 102, 255), 5, lineType=2)
     # cv2.ellipse(origin, ellipses['clad'], (131, 210, 253), 5, lineType=2)  # (162,183,0)(green, blue, red)
     cv2.ellipse(origin, ellipses['core'], (0, 102, 255), 5, lineType=2)  # 255,102,0#FF6600
@@ -58,6 +60,7 @@ def oldDecorateImg(origin, ellipses, result):
         origin = cv2.cvtColor(origin, cv2.COLOR_GRAY2RGB)
     if not (ellipses or result):
         return origin
+    result = ellipses['showResult']
     cv2.ellipse(origin, ellipses['clad'], (131, 210, 253), 5, lineType=2)  # (162,183,0)(green, blue, red)
     cv2.ellipse(origin, ellipses['core'], (0, 102, 255), 5, lineType=2)  # 255,102,0#FF6600
     #core radius

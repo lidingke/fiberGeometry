@@ -119,6 +119,7 @@ class OctagonClassify(MetaClassify):
         self.result['coreResult'] = coreResult
         self.result['clad'] = cladResult['ellipese']
         self.result['cladResult'] = cladResult
+        self.result['showResult'] = self.getResult()
         return self.result
 
 
@@ -191,6 +192,7 @@ class DoubleCircleClassify(OctagonClassify):
         self.result['coreResult'] = coreResult
         self.result['clad'] = cladResult['ellipese']
         self.result['cladResult'] = cladResult
+        self.result['showResult'] = self.getResult()
         return self.result
 
 

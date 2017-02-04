@@ -57,7 +57,7 @@ class ModelCV(Thread, QObject):
         self.isSharp = IsSharp()
         self.show = Cv2ImShow()
         self.save = Cv2ImSave()
-        self.ellipses = False
+        self.eresults = False
         self.result = False
         self.decorateMethod = decorateMethod("G652")
         self.getRawImg = GetRawImg()
@@ -114,10 +114,13 @@ class ModelCV(Thread, QObject):
     @timing
     def _toClassify(self, img):
         print 'get img type', img.shape, img.dtype
-        self.ellipses = self.classify.find(img)
-        self.result = self.classify.getResult()
-        if self.result:
-            SETTING()['tempLight'].append([int(self.green), float(self.result[1])])
+        self.eresults = self.classify.find(img)
+
+        self.result = self.eresults["showResult"]
+        print 'get ellipses', self.result
+        # if self.result:
+        #     SETTING()['tempLight'].append([int(self.green), float(self.result[1])])
+
         return self.result
 
     def updateClassifyObject(self, obj = 'G652'):
@@ -127,14 +130,13 @@ class ModelCV(Thread, QObject):
     def _decorateImg(self,img):
         """"mark the circle and size parameter"""
         img = drawCoreCircle(img)
-        ellipses = self.ellipses
+        ellipses = self.eresults
         result = self.result
-        # print 'decorate in ', ellipses or result, result
-        if not (ellipses or result or self.decorateMethod):
+        # print 'decorate in ',not (ellipses  or self.decorateMethod), ellipses , result , self.decorateMethod
+        if not (ellipses or result):
             return img
         # img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
-        img = self.decorateMethod(img,ellipses,result)
-
+        img = self.decorateMethod(img, ellipses, result)
         return img
 
 
@@ -181,6 +183,7 @@ class ModelCV(Thread, QObject):
                 ]
             text = u''.join(text)
             self.resultShowCV.emit(text)
+            print 'emit result', text
 
     def _greenLight(self, green):
         if isinstance(green, np.ndarray):
