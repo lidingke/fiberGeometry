@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 from setting.orderset import SETTING
 
-def newDecorateImg(origin, ellipses, result):
+def decorateOctagon(origin, ellipses, result):
     # print ellipses.keys()
     if len(origin.shape)<3:
         origin = cv2.cvtColor(origin, cv2.COLOR_GRAY2RGB)
@@ -30,7 +30,7 @@ def newDecorateImg(origin, ellipses, result):
                 cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), thickness=3)
     return origin
 
-def DecorateImg20400(origin, ellipses, result):
+def decorateDoubleCircle(origin, ellipses, result):
     # print ellipses.keys()
     if len(origin.shape)<3:
         origin = cv2.cvtColor(origin, cv2.COLOR_GRAY2RGB)
@@ -56,9 +56,6 @@ def oldDecorateImg(origin, ellipses, result):
     if len(origin.shape)<3:
         print 'origin shape', origin.shape
         origin = cv2.cvtColor(origin, cv2.COLOR_GRAY2RGB)
-    # origin = np.ones_like(origin)*255
-    # origin = np.zeros_like(origin)
-    # print 'ellipses result', ellipses, result
     if not (ellipses or result):
         return origin
     cv2.ellipse(origin, ellipses['clad'], (131, 210, 253), 5, lineType=2)  # (162,183,0)(green, blue, red)
@@ -69,7 +66,6 @@ def oldDecorateImg(origin, ellipses, result):
     radius = (radius[0]+radius[1])/4
     core = (int(corex + radius*0.7), int(corey - radius*0.7))
     coreR = "%4.2f"%result[1]
-    # print ('clad', coreR, core)
     cv2.putText(origin, coreR, core,
                 cv2.FONT_HERSHEY_SIMPLEX, 2, (215, 207, 39), thickness=3)
     #clad radius
@@ -86,11 +82,18 @@ def oldDecorateImg(origin, ellipses, result):
 
 def DecorateImg(origin, ellipses, result):
     if SETTING().get("fiberType") in ("20400", "G652"):
-        return DecorateImg20400(origin, ellipses, result)
+        return decorateDoubleCircle(origin, ellipses, result)
     if isinstance(ellipses, dict):
-        return newDecorateImg(origin, ellipses, result)
+        return decorateOctagon(origin, ellipses, result)
     else:
         return oldDecorateImg(origin, ellipses, result)
+
+def decorateMethod(obj):
+    if obj in ('octagon'):
+        return decorateOctagon
+    else:
+        return decorateDoubleCircle
+
 
 
 def drawCoreCircle(img):

@@ -65,14 +65,12 @@ class SETTING(MetaDict):
                     raise ValueError("updateSets input data error", type(data))
 
     def keyUpdates(self, *key):
-        print 'get keyupdats', type(key), key
-        # if isinstance(key,list) or isinstance(key, tuple):
         for k in key:
             if isinstance(k, str):
                 self.store.update(self.jsonLoad.get(k, {}))
-                # return
             else:
                 raise ValueError("error input key", type(key))
+        print 'key update', self.store
 
 
     def _storeUpdateJsonStr(self, data):

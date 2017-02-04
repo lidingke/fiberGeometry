@@ -1048,3 +1048,71 @@ Traceback (most recent call last):
   File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\pickmethod.py", line 29, in run
     raise ClassCoreError
 ClassCoreError
+2017-02-03 14:19:21,556-ERROR-_calcImg:'tempLight'
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 101, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 126, in _toClassify
+    SETTING()['tempLight'].append([int(self.green), float(self.result[1])])
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\load.py", line 88, in __getitem__
+    return self.store[key]
+KeyError: 'tempLight'
+2017-02-03 14:31:27,736-ERROR-_calcImg:'tempLight'
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 101, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 126, in _toClassify
+    SETTING()['tempLight'].append([int(self.green), float(self.result[1])])
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\load.py", line 88, in __getitem__
+    return self.store[key]
+KeyError: 'tempLight'
+2017-02-04 12:51:35,865-ERROR-_calcImg:
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 94, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 116, in _toClassify
+    self.ellipses = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\classify.py", line 183, in find
+    coreResult = PickCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\pattern\pickmethod.py", line 29, in run
+    raise ClassCoreError
+ClassCoreError
+2017-02-04 14:57:58,989-ERROR-_calcImg:'tempLight'
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 94, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 119, in _toClassify
+    SETTING()['tempLight'].append([int(self.green), float(self.result[1])])
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\load.py", line 88, in __getitem__
+    return self.store[key]
+KeyError: 'tempLight'
+2017-02-04 14:58:43,513-ERROR-_calcImg:'tempLight'
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 95, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 120, in _toClassify
+    SETTING()['tempLight'].append([int(self.green), float(self.result[1])])
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\load.py", line 88, in __getitem__
+    return self.store[key]
+KeyError: 'tempLight'
+2017-02-04 14:59:11,625-ERROR-_calcImg:'tempLight'
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 95, in _calcImg
+    self._toClassify(self.img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\timing.py", line 5, in wrapper
+    result = fun(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\GUI\model\modecv.py", line 120, in _toClassify
+    SETTING()['tempLight'].append([int(self.green), float(self.result[1])])
+  File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\load.py", line 88, in __getitem__
+    return self.store[key]
+KeyError: 'tempLight'

@@ -73,6 +73,7 @@
           "corefilter": 15,
           "cladfilter": 15
         },
+    "thresholdSize":{"core":40},
     "imgsize":[1944,2592],
     "coreRange":[20,100],
     "cladRange":[650,900],

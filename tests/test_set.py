@@ -2,7 +2,6 @@ from setting.orderset import SETTING, singleton
 SETTING().keyUpdates('G652')
 
 def test_other_set():
-
     s = SETTING('G652')
     print s.store
     assert 'G652' == s.get('fiberType')
@@ -10,8 +9,6 @@ def test_other_set():
     print s.store
     print 'singleton2', id(s)
     assert 'octagon' != s.get('fiberType')
-
-
 
 def test_get_new_value():
     s = SETTING("printline")
@@ -39,6 +36,16 @@ def test_updateSets_Exception():
         s.updates(1)
     except Exception, e:
         assert isinstance(e, ValueError)
+
+
+def test_updatekeys():
+    s = SETTING()
+    s.keyUpdates('20400')
+    assert s.get('fiberType') == "20400"
+    s.keyUpdates('octagon')
+    assert s.get('fiberType') == "octagon"
+    s.keyUpdates('G652')
+    assert s.get('fiberType') == "G652"
 
 
 

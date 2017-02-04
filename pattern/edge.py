@@ -50,10 +50,11 @@ class ExtractEdge(CV2MethodSet):
         # cv2.waitKey()
         return img
 
-    def directThr(self, img):
+    def directThr(self, img, hight = 175):
         if len(img.shape) > 2:
             img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-        size, img = cv2.threshold(img, 40, 255, cv2.THRESH_BINARY)
+
+        size, img = cv2.threshold(img, hight, 255, cv2.THRESH_BINARY)
         return img
 
 class EdgeFuncs(object):

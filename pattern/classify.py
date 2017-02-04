@@ -172,7 +172,12 @@ class DoubleCircleClassify(OctagonClassify):
         coreimg, cladimg = self._difcore(img)
         # cv2.imshow("clad edge", cladimg[::4,::4])
         # cv2.waitKey()
-        coreimg = ExtractEdge().directThr(coreimg)
+        sets = SETTING()
+        if hasattr(sets, 'thresholdSize'):
+            hight = sets['thresholdSize'].get("core")
+            coreimg = ExtractEdge().directThr(coreimg,hight)
+        else:
+            coreimg = ExtractEdge().directThr(coreimg)
         # coreimg = ExtractEdge().run(coreimg)
         cladimg = ExtractEdge().run(cladimg)
         # cladimg = cv2.bilateralFilter(cladimg, 20, 80, 75)

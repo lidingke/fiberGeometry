@@ -26,17 +26,10 @@ else:
 
 from pattern.edge import ExtractEdge
 
-if fiberType == "octagon":
-    from pattern.classify import OctagonClassify as Classify
-elif fiberType == "20400":
-    from pattern.classify import Big20400Classify as Classify
-elif fiberType == "G652":
-    print 'get new g652 classify'
-    from pattern.classify import NewG652Classify as Classify
-else:
-    from pattern.classify import G652Classify as Classify
+from pattern.classfiyInterface import classifyObject
+
 from pattern.sharp import IsSharp
-from pattern.draw import DecorateImg, drawCoreCircle
+from pattern.draw import DecorateImg, drawCoreCircle, decorateMethod
 from SDK.oceanoptics import OceanOpticsTest
 from util.toolkit import Cv2ImShow, Cv2ImSave
 import logging
@@ -66,11 +59,12 @@ class ModelCV(Thread, QObject):
         self.save = Cv2ImSave()
         self.ellipses = False
         self.result = False
+        self.decorateMethod = decorateMethod("G652")
         self.getRawImg = GetRawImg()
         self.imgQueue = collections.deque(maxlen = 1)
         self.fiberResult = {}
         self.Oceanoptics = OceanOpticsTest()
-        self.classify = Classify()
+        self.classify = classifyObject('G652')
 
 
     def run(self):
@@ -87,7 +81,7 @@ class ModelCV(Thread, QObject):
 
     def _getImg(self):
         img = self.getRawImg.get()
-        img = self.getRawImg.bayer2BGR(img)
+        # img = self.getRawImg.bayer2BGR(img)
         self.img = img.copy()
         # self.imgQueue.append(img)
         # print 'imgqueue', len(self.imgQueue)
@@ -126,16 +120,20 @@ class ModelCV(Thread, QObject):
             SETTING()['tempLight'].append([int(self.green), float(self.result[1])])
         return self.result
 
+    def updateClassifyObject(self, obj = 'G652'):
+        self.classify = classifyObject(obj)
+        self.decorateMethod = decorateMethod(obj)
+
     def _decorateImg(self,img):
         """"mark the circle and size parameter"""
         img = drawCoreCircle(img)
         ellipses = self.ellipses
         result = self.result
         # print 'decorate in ', ellipses or result, result
-        if not (ellipses or result):
+        if not (ellipses or result or self.decorateMethod):
             return img
         # img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
-        img = DecorateImg(img,ellipses,result)
+        img = self.decorateMethod(img,ellipses,result)
 
         return img
 
@@ -190,8 +188,10 @@ class ModelCV(Thread, QObject):
             minRange, maxRange = SETTING()["coreRange"]
             green = sliceImg(green, (corex, corey), maxRange)
             self.green = green.sum()/2550
-
             self.returnGreen.emit("%0.2f"%self.green)
+
+    def fiberTypeMethod(self, key):
+        SETTING().keyUpdates(key)
 
 
 

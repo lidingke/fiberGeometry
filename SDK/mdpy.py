@@ -39,14 +39,14 @@ class GetRawImg(object):
             raise e
 
         npArray = md.reshape(1944, 2592)
-
+        npArray = self.bayer2BGR(npArray)
         return npArray
 
     def bayer2BGR(self, img):
         if not isinstance(img, np.ndarray):
             raise ValueError("bayer2RGB input para error")
-        if len(img.shape) == 3:
-            return cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+        # if len(img.shape) == 3:
+        #     return cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         return cv2.cvtColor(img, cv2.COLOR_BAYER_GR2BGR)
 
     def unInitCamera(self):
