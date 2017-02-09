@@ -1,1 +1,1 @@
-python newdgui.py
+python dynamicgui.py

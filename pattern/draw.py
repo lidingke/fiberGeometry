@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 from setting.orderset import SETTING
 
-def decorateOctagon(origin, ellipses, result):
+def decorateOctagon(origin, ellipses, result = False):
     # print ellipses.keys()
     if len(origin.shape)<3:
         origin = cv2.cvtColor(origin, cv2.COLOR_GRAY2RGB)
@@ -31,7 +31,7 @@ def decorateOctagon(origin, ellipses, result):
                 cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), thickness=3)
     return origin
 
-def decorateDoubleCircle(origin, ellipses, result):
+def decorateDoubleCircle(origin, ellipses, result = False):
     # print ellipses.keys()
     if len(origin.shape)<3:
         origin = cv2.cvtColor(origin, cv2.COLOR_GRAY2RGB)
@@ -54,7 +54,7 @@ def decorateDoubleCircle(origin, ellipses, result):
                 cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), thickness=3)
     return origin
 
-def oldDecorateImg(origin, ellipses, result):
+def oldDecorateImg(origin, ellipses, result = False):
     if len(origin.shape)<3:
         print 'origin shape', origin.shape
         origin = cv2.cvtColor(origin, cv2.COLOR_GRAY2RGB)
@@ -83,7 +83,7 @@ def oldDecorateImg(origin, ellipses, result):
     # corex, corey = result[0], result[1]
     return  origin
 
-def DecorateImg(origin, ellipses, result):
+def DecorateImg(origin, ellipses, result = False):
     if SETTING().get("fiberType") in ("20400", "G652"):
         return decorateDoubleCircle(origin, ellipses, result)
     if isinstance(ellipses, dict):

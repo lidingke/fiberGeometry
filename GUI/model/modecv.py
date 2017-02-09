@@ -125,18 +125,18 @@ class ModelCV(Thread, QObject):
 
     def updateClassifyObject(self, obj = 'G652'):
         self.classify = classifyObject(obj)
+        self.eresults = False
         self.decorateMethod = decorateMethod(obj)
 
     def _decorateImg(self,img):
         """"mark the circle and size parameter"""
         img = drawCoreCircle(img)
-        ellipses = self.eresults
-        result = self.result
+
         # print 'decorate in ',not (ellipses  or self.decorateMethod), ellipses , result , self.decorateMethod
-        if not (ellipses or result):
+        if not self.eresults:
             return img
         # img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
-        img = self.decorateMethod(img, ellipses, result)
+        img = self.decorateMethod(img, self.eresults)
         return img
 
 
