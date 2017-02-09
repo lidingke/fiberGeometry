@@ -62,7 +62,7 @@ def test_repeat_G652():
 def test_repeat_octagon():
     sets = SETTING()
     resultget = []
-    for img in yieldImg("IMG\\octagon\\500s\\"):
+    for img in yieldImg("IMG\\repeat\\octagon\\"):
         img = ExtractEdge().run(img)
         img = cv2.medianBlur(img, 11)
         result = PickOctagon().run(img)
