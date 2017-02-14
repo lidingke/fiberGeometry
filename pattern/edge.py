@@ -53,7 +53,7 @@ class ExtractEdge(CV2MethodSet):
     def directThr(self, img, hight = 175):
         if len(img.shape) > 2:
             img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-
+        print 'thr', hight
         size, img = cv2.threshold(img, hight, 255, cv2.THRESH_BINARY)
         return img
 

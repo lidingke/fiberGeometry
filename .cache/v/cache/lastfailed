@@ -1,1 +1,3 @@
-{}
+{
+  "tests/test_pdf.py::test_write_pdf": true
+}

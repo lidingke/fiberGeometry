@@ -174,8 +174,9 @@ class DoubleCircleClassify(OctagonClassify):
         # cv2.imshow("clad edge", cladimg[::4,::4])
         # cv2.waitKey()
         sets = SETTING()
-        if hasattr(sets, 'thresholdSize'):
+        if 'thresholdSize' in sets.keys():
             hight = sets['thresholdSize'].get("core")
+
             coreimg = ExtractEdge().directThr(coreimg,hight)
         else:
             coreimg = ExtractEdge().directThr(coreimg)

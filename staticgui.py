@@ -8,7 +8,7 @@ from PyQt4.QtGui import QPalette, QColor,QApplication
 from PyQt4.QtCore import QCoreApplication, QFile
 from GUI.view.view import View
 from GUI.controller import Controller
-from setting.load import loadStyleSheet
+from util.load import loadStyleSheet
 
 
 

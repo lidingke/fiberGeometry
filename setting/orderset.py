@@ -3,7 +3,7 @@ import json
 import pdb
 import traceback
 import sys
-from util.load import  MetaDict, WriteReadJson
+from util.load import  MetaDict, WriteReadJson, WRpickle
 
 
 def singleton(class_):
@@ -84,11 +84,15 @@ class SETTING(MetaDict):
             print 'WARNNING: no str keys:', data
 
     def _readJson(self):
-        wrJson = WriteReadJson("setting\\oset.json")
-        jsonLoad = wrJson.load()
-        if not isinstance(jsonLoad, dict):
-            raise ValueError('SETTING\'s oset.json error format')
-        return jsonLoad
+        wrp = WRpickle("setting\\oset.pickle")
+        try:
+            load = wrp.loadPick()
+        except IOError:
+            wrJson = WriteReadJson("setting\\oset.json")
+            load = wrJson.load()
+        if not isinstance(load, dict):
+            raise ValueError('SETTING\'s oset error format')
+        return load
 
     def getSetting(self):
         return self.store

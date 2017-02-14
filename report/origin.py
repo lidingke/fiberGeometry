@@ -90,5 +90,6 @@ htmlpara = {
     'concentricity': '',
     'sharpindex': '',
     'lightindex': '',
-    'date': ''
+    'date': '',
+    'fiberLength': ''
 }
