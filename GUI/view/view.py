@@ -18,30 +18,7 @@ from PyQt4.QtGui import QWidget, QMainWindow, QPainter, QFont,\
     QPixmap, QImage, QColor, QFileDialog, QMessageBox, QPalette
 import numpy as np
 from util.load import WriteReadJson
-
-# class View(QMainWindow,Ui_MainWindow):
-#     """docstring for View"""
-#     def __init__(self,):
-#         super(View, self).__init__()
-#         self.setupUi(self)
-#         self.painterWidget = CVPainterWidget(self.widget)
-#         self.IS_INIT_PAINTER = False
-#         font = QFont("Microsoft YaHei", 20, 75)
-#         self.sharpLabel.setFont(font)
-#
-#     def updatePixmap(self,arr, sharp):
-#         if not self.IS_INIT_PAINTER:
-#             self.painterWidget.initPixmap(arr)
-#             self.IS_INIT_PAINTER = True
-#         self.painterWidget.getPixmap(arr)
-#         self.sharpLabel.setText(sharp)
-#
-#     def getModel(self, model):
-#         self.model = model
-#
-#     def closeEvent(self, *args, **kwargs):
-#         self.model.exit()
-
+from datetime import datetime as dt
 
 class View(QMainWindow, new_MainWindow):
     """docstring for View"""
@@ -53,10 +30,9 @@ class View(QMainWindow, new_MainWindow):
         self.axisWidget = OpticalPlot(parent=self.axis)
         self.IS_INIT_PAINTER = False
         self.__initUI__()
-        self.reporterCV.clicked.connect(self.writeReporterCV)
+        # self.reporterCV.clicked.connect(self.writeReporterCV)
         self._tempMedianIndex()
         self.isMaxSharp = MaxSharp()
-
 
     def __initUI__(self):
         # items = ['G652']
@@ -65,6 +41,7 @@ class View(QMainWindow, new_MainWindow):
         self.setFixedSize(self.width(),self.height())
         self.beginTestCV.clicked.connect(self._disableCVButton)
         self._initItems()
+        self.reporterCV.clicked.connect(self.writeReporterCV)
 
     def _initItems(self):
         wrJson = WriteReadJson("setting\\userdata.json")
@@ -115,7 +92,16 @@ class View(QMainWindow, new_MainWindow):
 
     def writeReporterCV(self):
         para = {}
+        para['fiberLength'] = self.fiberLength.text()
+        para['worker'] = self.Worker.text()
+        para['producer'] = self.factory.text()
+        para['fiberNo'] = self.fiberNumber.text()
+        para['fibertype'] = self.fiberTypeBox.currentIndex()
+        para['date'] = dt.strftime(dt.now(), '%Y-%m-%d %H:%M:%S')
+        para['title'] = '测试报告'
+        SETTING()['pdfpara'].update(para)
         Reporter(self)
+
 
     def _tempMedianIndex(self):
         def changeCoreIndex():

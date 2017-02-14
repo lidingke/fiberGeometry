@@ -54,7 +54,6 @@ originHTML =  '''
     </style>
     <title>{title}</title>
 </head>
-
 <body>
     <h1 id="_1">{title}</h1>
     <p>日期：{date}
@@ -62,6 +61,7 @@ originHTML =  '''
         <br /> 光纤型号：{fibertype}
         <br /> 生产厂家：{producer}
         <br /> 光纤编号：{fiberNo}
+        <br /> 光纤长度：{fiberLength}
     </p>
     <h2 id="_2">测试结果</h2>
     <p> 纤芯直径：{corediameter}
@@ -76,18 +76,19 @@ originHTML =  '''
         <br /></p>
 </body>
 </html>'''
+
 htmlpara = {
-    'title':'标题',
-    'worker':'操作人',
-    'fibertype':'光纤型号',
-    'producer':'生产厂家',
-    'fiberNo':'光纤编号',
-    'corediameter':'纤芯直径',
-    'claddiameter':'包层直径',
-    'coreroundness':'',
-    'cladroundness':'',
-    'concentricity':'',
-    'sharpindex':'',
-    'lightindex':'',
-    'date':''
+    'title': '标题',
+    'worker': '操作人',
+    'fibertype': '光纤型号',
+    'producer': '生产厂家',
+    'fiberNo': '光纤编号',
+    'corediameter': '纤芯直径',
+    'claddiameter': '包层直径',
+    'coreroundness': '',
+    'cladroundness': '',
+    'concentricity': '',
+    'sharpindex': '',
+    'lightindex': '',
+    'date': ''
 }

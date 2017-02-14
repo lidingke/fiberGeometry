@@ -18,7 +18,8 @@
       "cladRange":[200,400],
       "fiberType":"G652",
       "corepoint":[1296,972],
-      "ampPixSize": 0.218
+      "ampPixSize": 0.218,
+      "pdfpara":{}
   },
   "MindVision500":{
     "ifcamera": true

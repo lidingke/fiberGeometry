@@ -1,4 +1,6 @@
 *.jpg
+.cache
+.idea
 *.exe
 *.png
 *.bmp

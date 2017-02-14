@@ -44,7 +44,7 @@ class GetImage(CV2MethodSet):
     def _getColorImg(self,colour = 'colour'):
         if not self.colour:
             self.colour = colour
-        print '_get img colour', self.colour, self.suffix
+            print '_get img colour', self.colour, self.suffix
         if self.colour in ('gray', 'black'):
             self.img = cv2.cvtColor(self.img, cv2.COLOR_RGB2GRAY)
         elif self.colour == 'colour' and self.suffix.upper() == 'BMP':

@@ -25,7 +25,7 @@ else:
     print 'script don\'t open camera'
 
 from pattern.edge import ExtractEdge
-
+from report import pdf
 from pattern.classfiyInterface import classifyObject
 
 from pattern.sharp import IsSharp
@@ -65,6 +65,7 @@ class ModelCV(Thread, QObject):
         self.fiberResult = {}
         self.Oceanoptics = OceanOpticsTest()
         self.classify = classifyObject('G652')
+        self.pdfparameter = SETTING()['pdfpara']
 
 
     def run(self):
@@ -173,6 +174,14 @@ class ModelCV(Thread, QObject):
 
         if isinstance(result, tuple):
             # print 'get result', result
+            para = {'corediameter': '%0.2f'%result[1],
+            'claddiameter': '%0.2f'%result[2],
+            'coreroundness': '%0.2f'%result[2],
+            'cladroundness': '%0.2f'%result[4],
+            'concentricity': '%0.2f'%result[0],
+            'sharpindex': sharp}
+            self.pdfparameter.update(para)
+
             text = [
                 u'''清晰度指数：  {}\n'''.format(sharp),
                 u'''纤芯直径：    {}\n'''.format('%0.2f'%result[1]),
@@ -181,6 +190,7 @@ class ModelCV(Thread, QObject):
                 u'''包层不圆度：  {}\n'''.format('%0.2f'%result[4]),
                 u'''芯包同心度：  {}'''.format('%0.2f'%result[0])
                 ]
+
             text = u''.join(text)
             self.resultShowCV.emit(text)
             print 'emit result', text
@@ -191,6 +201,7 @@ class ModelCV(Thread, QObject):
             minRange, maxRange = SETTING()["coreRange"]
             green = sliceImg(green, (corex, corey), maxRange)
             self.green = green.sum()/2550
+            self.pdfparameter['lightindex'] = "%0.2f"%self.green
             self.returnGreen.emit("%0.2f"%self.green)
 
     def fiberTypeMethod(self, key):

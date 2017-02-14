@@ -29,6 +29,7 @@ class Controller(QObject):
         self._modelcv.resultShowAT.connect(self._view.updateATShow)
         self._modelcv.returnGreen.connect(self._view.getCoreLight)
         self._view.fiberTypeBox.currentIndexChanged.connect(self._changeFiberType)
+
         # self._tempMedianIndex()
 
         # self._view.multiTest.clicked.connect(self._model.multiTest)
@@ -42,7 +43,7 @@ class Controller(QObject):
         key = str(self._view.fiberTypeBox.currentText())
         SETTING().keyUpdates(key)
         newKey = SETTING().get('fiberType','error type')
-        self._view.fiberTypeLabel.setText(newKey)
+        # self._view.fiberTypeLabel.setText(newKey)
         self._modelcv.updateClassifyObject(key)
 
 
