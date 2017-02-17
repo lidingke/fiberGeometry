@@ -29,19 +29,19 @@ class MedianFilter(object):
 
 class MedianLimitFilter(object):
 
-    def __init__(self):
+    def __init__(self,maxlen=5):
         super(MedianLimitFilter, self).__init__()
         self.oldforrepet = 0
         self.oldbeforcounter = 0.0001
         self.counter = 0
-        self.queue = collections.deque(maxlen=5)
+        self.queue = collections.deque(maxlen=maxlen)
 
-    def removeRepet(self, data):
+    def _removeRepet(self, data):
         if data != self.oldforrepet:
             self.oldforrepet = data
             return data
 
-    def medianMean(self, datas):
+    def _medianMean(self, datas):
         if isinstance(datas,collections.deque):
             datas = list(datas)
 
@@ -54,16 +54,17 @@ class MedianLimitFilter(object):
         return result
 
     def run(self, data):
-        data = self.removeRepet(data)
-        if data:
-            self.queue.append(data)
-            get_ = self.medianMean(self.queue)
-            if abs(get_ - self.oldbeforcounter)/self.oldbeforcounter > 0.01:
-                self.counter = self.counter + 1
-            if self.counter > 3:
-                self.counter = 0
-                self.oldbeforcounter = get_
-                return get_
-            else:
+        data = self._removeRepet(data)
+        if not data:
+            return self.oldbeforcounter
+        self.queue.append(data)
+        get_ = self._medianMean(self.queue)
+        if abs(get_ - self.oldbeforcounter)/self.oldbeforcounter > 0.01:
+            self.oldbeforcounter = get_
+        else:
+            self.counter = self.counter + 1
+        if self.counter > 3:
+            self.counter = 0
+            self.oldbeforcounter = get_
 
-                return self.oldbeforcounter
+        return self.oldbeforcounter

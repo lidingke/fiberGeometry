@@ -1,5 +1,5 @@
 from setting.orderset import SETTING
-SETTING().keyUpdates("Default")
+
 import cv2
 from util.loadimg import sliceImg
 from pattern.getimg import GetImage
@@ -7,7 +7,8 @@ from pattern.getimg import GetImage
 
 
 def test_sliceImg():
-    img = GetImage().get("IMG\\midoctagon\\mid1.BMP")
+    SETTING().keyUpdates("Default")
+    img = GetImage().get("IMG\\midoctagon\\mid1.BMP", "gray")
     if img.shape == (1944, 2592):
         print 'slice shape', img.shape
         corey, corex = SETTING()["corepoint"]
@@ -23,4 +24,4 @@ def test_sliceImg():
         minRange, maxRange = SETTING()["coreRange"]
         img = sliceImg(img, (corex, corey), maxRange)
         print 'slice shape', img.shape
-        assert img.shape == (124, 124, 3)
+        assert img.shape == (160, 160, 3)

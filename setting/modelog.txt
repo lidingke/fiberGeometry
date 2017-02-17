@@ -1222,3 +1222,10 @@ Traceback (most recent call last):
   File "D:\MyProjects\WorkProject\opencv4fiber\octagon\util\load.py", line 88, in __getitem__
     return self.store[key]
 KeyError: 'tempLight'
+2017-02-15 16:39:46,046-ERROR-_calcImg:float argument required, not NoneType
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 97, in _calcImg
+    self._emitCVShowResult()
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 177, in _emitCVShowResult
+    para = {'corediameter': '%0.2f'%result[1],
+TypeError: float argument required, not NoneType

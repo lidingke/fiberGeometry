@@ -5,8 +5,10 @@
           "Constant": 7,
           "kernelSize": 5
         },
-      "medianBlur": {
-          "ErodeDilateKsize": 9
+    "medianBlur": {
+          "ErodeDilateKsize": 9,
+          "corefilter": 15,
+          "cladfilter": 15
         },
       "rect": {
           "width": 2592,
@@ -47,38 +49,40 @@
           "corefilter": 11,
           "cladfilter": 11
         },
-    "coreRange":[38,62],
+    "coreRange":[38,100],
     "cladRange":[540,660],
-    "ampPixSize": 0.10715
+    "ampPixSize": 0.07963,
+    "enlarge": [20,3]
   },
   "20400":{
     "fiberType":"20400",
-    "medianBlur": {
-          "ErodeDilateKsize": 9,
-          "corefilter": 15,
-          "cladfilter": 15
-        },
     "imgsize":[1944,2592],
     "coreRange":[20,80],
     "cladRange":[700,1000],
-    "corepoint":[1296,972],
-    "ampPixSize": 0.215
+    "ampPixSize": 0.215,
+    "enlarge": [10,3]
   },
   "centerImg":{
     "centerImg":true
   },
   "G652":{
     "fiberType":"G652",
-    "medianBlur": {
-          "ErodeDilateKsize": 9,
-          "corefilter": 15,
-          "cladfilter": 15
-        },
     "thresholdSize":{"core":40},
     "imgsize":[1944,2592],
     "coreRange":[20,100],
     "cladRange":[650,900],
-    "corepoint":[1296,972],
-    "ampPixSize": 0.07963
+    "ampPixSize": 0.07963,
+    "enlarge": [20,3]
+  },
+    "105125":{
+    "fiberType":"105125",
+    "thresholdSize":{"core":170},
+    "imgsize":[1944,2592],
+    "coreRange":[500,690],
+    "cladRange":[710,800],
+    "ampPixSize": 0.07963,
+      "enlarge": [20,3]
   }
+
 }
+

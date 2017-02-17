@@ -5,11 +5,7 @@ import sys
 from PyQt4.QtGui import QTextDocument, QPrinter, QApplication
 def writePdf(dir_):
     newbody = originHTML.format(**htmlpara)
-    # print newbody, '\n', htmlpara
-    # with open(dir_+'.html', 'wb') as f:
-    #     f.write(newbody)
-    #     f.close()
-    # app = QApplication(sys.argv)
+
     printer = QPrinter()
     printer.setOutputFormat(QPrinter.PdfFormat)
     printer.setOutputFileName(dir_+'.pdf')
@@ -24,6 +20,9 @@ def writePdfabs(dir_):
     updates = SETTING().get('pdfpara')
     htmlpara.update(updates)
     newbody = originHTML.format(**htmlpara)
+    with open('t.html', 'wb') as f:
+        f.write(newbody)
+        f.close()
     printer = QPrinter()
     printer.setOutputFormat(QPrinter.PdfFormat)
     printer.setOutputFileName(dir_)

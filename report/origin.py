@@ -7,7 +7,7 @@ originHTML =  '''
     <meta charset="utf-8">
     <style>
     body {{
-        /*overflow-y:scroll;*/
+        overflow-y:scroll;
         width: 45em;
         border: 1px solid #ddd;
         outline: 1300px solid #fff;
@@ -27,6 +27,7 @@ originHTML =  '''
         font-size: 50px;
         font-weight: bold;
         color: #283c51;
+        text-align: center;
     }}
 
     h2 {{
@@ -42,8 +43,8 @@ originHTML =  '''
 
     p {{
         padding-left: 20px;
-        /*margin-left: 45px;
-        font-size: 20px;*/
+        margin-left: 45px;
+        font-size: 20px;
     }}
 
     img {{

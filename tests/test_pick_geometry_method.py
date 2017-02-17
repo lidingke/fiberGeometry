@@ -16,7 +16,7 @@ import pdb
         'IMG\\500edge.bmp',
     ))
 def test_ClassOctagon(dir_):
-
+    SETTING().keyUpdates('test', 'octagon')
     img = GetImage().get(dir_,colour='black')
     print 'get shape', img.shape
     result = PickOctagon().run(img)
@@ -37,6 +37,7 @@ def test_ClassOctagon(dir_):
         'IMG\\midoctagon\\mid1.bmp',
     ))
 def test_ClassMidOctagon(dir_):
+    SETTING().keyUpdates('test', 'octagon')
     img = GetImage().get(dir_,colour='colour')
     img = ExtractEdge().run(img[::,::,0].copy())
     img = cv2.medianBlur(img, 15)

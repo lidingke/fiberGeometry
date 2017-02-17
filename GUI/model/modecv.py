@@ -26,7 +26,7 @@ else:
 
 from pattern.edge import ExtractEdge
 from report import pdf
-from pattern.classfiyInterface import classifyObject
+from pattern.classify import classifyObject
 
 from pattern.sharp import IsSharp
 from pattern.draw import DecorateImg, drawCoreCircle, decorateMethod
@@ -93,7 +93,9 @@ class ModelCV(Thread, QObject):
         def _calcImg():
             try:
                 # img.tofile("tests\\data\\tests\\midimg{}.bin".format(str(int(time.time()))[-3:]))
-                self._toClassify(self.img)
+                self.eresults = self.classify.find(self.img)
+
+                self.result = self.eresults["showResult"]
                 self._emitCVShowResult()
             except Exception as e:
                 logging.exception(e)
@@ -112,17 +114,17 @@ class ModelCV(Thread, QObject):
     #     print 'img.shape', img.shape
     #     return img
 
-    @timing
-    def _toClassify(self, img):
-        print 'get img type', img.shape, img.dtype
-        self.eresults = self.classify.find(img)
-
-        self.result = self.eresults["showResult"]
-        print 'get ellipses', self.result
+    # @timing
+    # def _toClassify(self, img):
+    #     print 'get img type', img.shape, img.dtype
+    #     self.eresults = self.classify.find(img)
+    #
+    #     self.result = self.eresults["showResult"]
+    #     print 'get ellipses', self.result
         # if self.result:
         #     SETTING()['tempLight'].append([int(self.green), float(self.result[1])])
 
-        return self.result
+        # return self.result
 
     def updateClassifyObject(self, obj = 'G652'):
         self.classify = classifyObject(obj)
