@@ -32,13 +32,11 @@ class GetImage(CV2MethodSet):
             # pdb.set_trace()
             self.suffix = dir_.split('.')[-1]
             self.img = cv2.imread(dir_ + "\\" + file)
-            self.origin = self.img.copy()
             self._getColorImg(colour = colour)
 
 
     def singleFileFind(self, dir_,colour):
         self.img = cv2.imread(dir_)
-        self.origin = self.img.copy()
         self._getColorImg(colour = colour)
 
     def _getColorImg(self,colour = 'colour'):

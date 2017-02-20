@@ -3,6 +3,7 @@ from .origin import *
 from setting.orderset import SETTING
 import sys
 from PyQt4.QtGui import QTextDocument, QPrinter, QApplication
+
 def writePdf(dir_):
     newbody = originHTML.format(**htmlpara)
 

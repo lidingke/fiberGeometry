@@ -100,7 +100,6 @@ def decorateMethod(obj):
 
 
 def drawCoreCircle(img):
-    img = img.copy()
     SET = SETTING()
     corecore = SET.get("corepoint",(1296,972))
     core = [corecore,1]
