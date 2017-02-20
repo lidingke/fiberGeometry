@@ -39,3 +39,4 @@ tests/__pycache__/
 util/reporter/
 tests/RI
 SDK/MindPyScript/test
+*.pickle
