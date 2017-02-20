@@ -94,7 +94,6 @@ class ModelCV(Thread, QObject):
             try:
                 # img.tofile("tests\\data\\tests\\midimg{}.bin".format(str(int(time.time()))[-3:]))
                 self.eresults = self.classify.find(self.img)
-
                 self.result = self.eresults["showResult"]
                 self._emitCVShowResult()
             except Exception as e:
@@ -118,13 +117,12 @@ class ModelCV(Thread, QObject):
     # def _toClassify(self, img):
     #     print 'get img type', img.shape, img.dtype
     #     self.eresults = self.classify.find(img)
-    #
     #     self.result = self.eresults["showResult"]
     #     print 'get ellipses', self.result
-        # if self.result:
-        #     SETTING()['tempLight'].append([int(self.green), float(self.result[1])])
-
-        # return self.result
+    #     if self.result:
+    #         SETTING()['tempLight'].append([int(self.green), float(self.result[1])])
+    #
+    #     return self.result
 
     def updateClassifyObject(self, obj = 'G652'):
         self.classify = classifyObject(obj)

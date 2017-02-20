@@ -1229,3 +1229,31 @@ Traceback (most recent call last):
   File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 177, in _emitCVShowResult
     para = {'corediameter': '%0.2f'%result[1],
 TypeError: float argument required, not NoneType
+2017-02-17 11:53:22,158-ERROR-_calcImg:float argument required, not NoneType
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 99, in _calcImg
+    self._emitCVShowResult()
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 180, in _emitCVShowResult
+    'claddiameter': '%0.2f'%result[2],
+TypeError: float argument required, not NoneType
+2017-02-17 11:54:30,770-ERROR-_calcImg:float argument required, not NoneType
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 99, in _calcImg
+    self._emitCVShowResult()
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 180, in _emitCVShowResult
+    'claddiameter': '%0.2f'%result[2],
+TypeError: float argument required, not NoneType
+2017-02-17 11:54:56,101-ERROR-_calcImg:float argument required, not NoneType
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 99, in _calcImg
+    self._emitCVShowResult()
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 180, in _emitCVShowResult
+    'claddiameter': '%0.2f'%result[2],
+TypeError: float argument required, not NoneType
+2017-02-17 11:58:27,865-ERROR-_calcImg:float argument required, not NoneType
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 97, in _calcImg
+    self._emitCVShowResult()
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 178, in _emitCVShowResult
+    'claddiameter': '%0.2f'%result[2],
+TypeError: float argument required, not NoneType

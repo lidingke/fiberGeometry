@@ -39,10 +39,10 @@ class MetaClassify(CV2MethodSet):
                              + (coreCore[1] - cladCore[1]) ** 2) ** 0.5
             concentricity = concentricity * self.ampRatio
             coreMidRadius = self.ampRatio * coreRadius
-            self.medianlimitFilterCore.append(coreMidRadius)
+            # self.medianlimitFilterCore.append(coreMidRadius)
             # coreMidRadius = self.medianlimitFilterCore.get()
             cladMidRadius = self.ampRatio * cladRadius
-            cladMidRadius = self.medianlimitFilterClad.append(cladMidRadius)
+            # cladMidRadius = self.medianlimitFilterClad.append(cladMidRadius)
             # cladMidRadius = self.medianlimitFilterClad.get()
             # cladMidRadius = (cladRadius[0] + cladRadius[1])
             coreRness = self.ampRatio * abs(coreResult["longAxisLen"] - coreResult["shortAxisLen"])
