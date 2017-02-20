@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1542</width>
+    <width>1538</width>
     <height>1029</height>
    </rect>
   </property>
@@ -66,7 +66,7 @@
      <item row="3" column="1">
       <widget class="QPushButton" name="reporterCV">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="text">
         <string>输出报告</string>
@@ -122,84 +122,6 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;最小值：&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;平均值：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
-    </widget>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>100</y>
-       <width>201</width>
-       <height>222</height>
-      </rect>
-     </property>
-     <layout class="QGridLayout" name="inputLayout">
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelFiberType">
-        <property name="text">
-         <string>光纤规格：</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="labelLength">
-        <property name="text">
-         <string>光纤长度(km)：</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="labelFactory">
-        <property name="text">
-         <string>生产厂家：</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="labelWorker">
-        <property name="text">
-         <string>操作人员：</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="labelFiberNumber">
-        <property name="text">
-         <string>光纤编号：</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="fiberLength">
-        <property name="text">
-         <string>24</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QComboBox" name="fiberType"/>
-      </item>
-      <item row="4" column="1">
-       <widget class="QLineEdit" name="Worker">
-        <property name="text">
-         <string>12345</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QLineEdit" name="factory">
-        <property name="text">
-         <string>yofc</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QLineEdit" name="fiberNumber">
-        <property name="text">
-         <string>123456</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
     </widget>
     <widget class="QWidget" name="layoutWidget_2">
      <property name="geometry">
@@ -361,13 +283,91 @@ p, li { white-space: pre-wrap; }
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>1310</x>
+      <y>380</y>
+      <width>201</width>
+      <height>222</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="inputLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelFiberType">
+       <property name="text">
+        <string>光纤规格：</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="labelLength">
+       <property name="text">
+        <string>光纤长度(km)：</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="labelFactory">
+       <property name="text">
+        <string>生产厂家：</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="labelWorker">
+       <property name="text">
+        <string>操作人员：</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="labelFiberNumber">
+       <property name="text">
+        <string>光纤编号：</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="fiberLength">
+       <property name="text">
+        <string>24</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLineEdit" name="Worker">
+       <property name="text">
+        <string>12345</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="factory">
+       <property name="text">
+        <string>yofc</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="fiberNumber">
+       <property name="text">
+        <string>123456</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QComboBox" name="fiberTypeBox"/>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1542</width>
+     <width>1538</width>
      <height>23</height>
     </rect>
    </property>

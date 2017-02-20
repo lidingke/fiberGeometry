@@ -18,20 +18,18 @@ if setGet:
 else:
     if fiberType == "20400":
         from SDK.mdpy import GetRawImgTest20400 as GetRawImg
+    elif fiberType == "G652":
+        from SDK.mdpy import GetRawImgTestg652 as GetRawImg
     else:
         from SDK.mdpy import GetRawImgTest as GetRawImg
     print 'script don\'t open camera'
 
 from pattern.edge import ExtractEdge
+from report import pdf
+from pattern.classify import classifyObject
 
-if fiberType == "octagon":
-    from pattern.classify import OctagonClassify as Classify
-elif fiberType == "20400":
-    from pattern.classify import Big20400Classify as Classify
-else:
-    from pattern.classify import G652Classify as Classify
 from pattern.sharp import IsSharp
-from pattern.draw import DecorateImg, drawCoreCircle
+from pattern.draw import DecorateImg, drawCoreCircle, decorateMethod
 from SDK.oceanoptics import OceanOpticsTest
 from util.toolkit import Cv2ImShow, Cv2ImSave
 import logging
@@ -59,19 +57,21 @@ class ModelCV(Thread, QObject):
         self.isSharp = IsSharp()
         self.show = Cv2ImShow()
         self.save = Cv2ImSave()
-        self.ellipses = False
+        self.eresults = False
         self.result = False
+        self.decorateMethod = decorateMethod("G652")
         self.getRawImg = GetRawImg()
         self.imgQueue = collections.deque(maxlen = 1)
         self.fiberResult = {}
         self.Oceanoptics = OceanOpticsTest()
-        self.classify = Classify()
+        self.classify = classifyObject('G652')
+        self.pdfparameter = SETTING()['pdfpara']
 
 
     def run(self):
         while self.IS_RUN:
             img = self._getImg()
-            img = self.getRawImg.bayer2BGR(img)
+
             # self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
             self.sharp = "%0.2f" % self.isSharp.issharpla(self.img)
             # plotResults = (self.ellipses, self.result)
@@ -82,8 +82,8 @@ class ModelCV(Thread, QObject):
 
     def _getImg(self):
         img = self.getRawImg.get()
-
-        self.img = img
+        # img = self.getRawImg.bayer2BGR(img)
+        self.img = img.copy()
         # self.imgQueue.append(img)
         # print 'imgqueue', len(self.imgQueue)
         # self.sharpQueue.append(img)
@@ -93,7 +93,8 @@ class ModelCV(Thread, QObject):
         def _calcImg():
             try:
                 # img.tofile("tests\\data\\tests\\midimg{}.bin".format(str(int(time.time()))[-3:]))
-                self._toClassify(self.img)
+                self.eresults = self.classify.find(self.img)
+                self.result = self.eresults["showResult"]
                 self._emitCVShowResult()
             except Exception as e:
                 logging.exception(e)
@@ -112,23 +113,31 @@ class ModelCV(Thread, QObject):
     #     print 'img.shape', img.shape
     #     return img
 
-    @timing
-    def _toClassify(self, img):
-        self.ellipses = self.classify.find(img)
-        self.result = self.classify.getResult()
-        return self.result
+    # @timing
+    # def _toClassify(self, img):
+    #     print 'get img type', img.shape, img.dtype
+    #     self.eresults = self.classify.find(img)
+    #     self.result = self.eresults["showResult"]
+    #     print 'get ellipses', self.result
+    #     if self.result:
+    #         SETTING()['tempLight'].append([int(self.green), float(self.result[1])])
+    #
+    #     return self.result
+
+    def updateClassifyObject(self, obj = 'G652'):
+        self.classify = classifyObject(obj)
+        self.eresults = False
+        self.decorateMethod = decorateMethod(obj)
 
     def _decorateImg(self,img):
         """"mark the circle and size parameter"""
         img = drawCoreCircle(img)
-        ellipses = self.ellipses
-        result = self.result
-        # print 'decorate in ', ellipses or result, result
-        if not (ellipses or result):
+
+        # print 'decorate in ',not (ellipses  or self.decorateMethod), ellipses , result , self.decorateMethod
+        if not self.eresults:
             return img
         # img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
-        img = DecorateImg(img,ellipses,result)
-
+        img = self.decorateMethod(img, self.eresults)
         return img
 
 
@@ -162,8 +171,17 @@ class ModelCV(Thread, QObject):
     def _emitCVShowResult(self):
         result = self.result
         sharp = self.sharp
+
         if isinstance(result, tuple):
             # print 'get result', result
+            para = {'corediameter': '%0.2f'%result[1],
+            'claddiameter': '%0.2f'%result[2],
+            'coreroundness': '%0.2f'%result[2],
+            'cladroundness': '%0.2f'%result[4],
+            'concentricity': '%0.2f'%result[0],
+            'sharpindex': sharp}
+            self.pdfparameter.update(para)
+
             text = [
                 u'''清晰度指数：  {}\n'''.format(sharp),
                 u'''纤芯直径：    {}\n'''.format('%0.2f'%result[1]),
@@ -172,16 +190,23 @@ class ModelCV(Thread, QObject):
                 u'''包层不圆度：  {}\n'''.format('%0.2f'%result[4]),
                 u'''芯包同心度：  {}'''.format('%0.2f'%result[0])
                 ]
+
             text = u''.join(text)
             self.resultShowCV.emit(text)
+            print 'emit result', text
 
     def _greenLight(self, green):
         if isinstance(green, np.ndarray):
             corey, corex = SETTING()["corepoint"]
             minRange, maxRange = SETTING()["coreRange"]
             green = sliceImg(green, (corex, corey), maxRange)
-            result = green.sum()/2550
-            self.returnGreen.emit("%0.2f"%result)
+            self.green = green.sum()/2550
+            self.pdfparameter['lightindex'] = "%0.2f"%self.green
+            self.returnGreen.emit("%0.2f"%self.green)
+
+    def fiberTypeMethod(self, key):
+        SETTING().keyUpdates(key)
+
 
 
 

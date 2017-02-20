@@ -1,5 +1,5 @@
 from setting.orderset import SETTING
-SETTING('test','octagon')
+SETTING().keyUpdates('test','octagon')
 from pattern.pickmethod import PickOctagon, PickCircle
 from pattern.edge import ExtractEdge
 import pytest
@@ -16,16 +16,42 @@ import pdb
         'IMG\\500edge.bmp',
     ))
 def test_ClassOctagon(dir_):
-    img = GetImage().get(dir_)
+    SETTING().keyUpdates('test', 'octagon')
+    img = GetImage().get(dir_,colour='black')
+    print 'get shape', img.shape
     result = PickOctagon().run(img)
-    # print 'get octagon', ['shortAxisLen'],result['longAxisLen']
+    print 'get octagon', result['shortAxisLen'],result['longAxisLen'],'angle', result['angle']
     assert isinstance(result['plot'], np.ndarray)
+    # cv2.imshow(dir_, result['plot'][::4,::4])
+    # cv2.waitKey()
     assert result['longAxisLen'] > result['shortAxisLen']
     ratio = result['shortAxisLen']/result['longAxisLen']
     assert ratio > 0.9
+    assert result['angle'] > 0.9
     print dir_, result['shortAxisLen'], result['longAxisLen'], ratio
     assert isinstance(result['corePoint'], np.ndarray)
 
+
+@pytest.mark.parametrize(
+    'dir_',(
+        'IMG\\midoctagon\\mid1.bmp',
+    ))
+def test_ClassMidOctagon(dir_):
+    SETTING().keyUpdates('test', 'octagon')
+    img = GetImage().get(dir_,colour='colour')
+    img = ExtractEdge().run(img[::,::,0].copy())
+    img = cv2.medianBlur(img, 15)
+    result = PickOctagon().run(img)
+    print 'get octagon mid', result['shortAxisLen'],result['longAxisLen'],'angle', result['angle']
+    assert isinstance(result['plot'], np.ndarray)
+    # cv2.imshow('octagon', result['plot'][::4,::4])
+    # cv2.waitKey()
+    assert result['longAxisLen'] > result['shortAxisLen']
+    ratio = result['shortAxisLen']/result['longAxisLen']
+    assert ratio > 0.88
+    assert result['angle'] > 0.9
+    print dir_, result['shortAxisLen'], result['longAxisLen'], ratio
+    assert isinstance(result['corePoint'], np.ndarray)
 
 @pytest.mark.parametrize(
     'dir_',(
@@ -47,6 +73,7 @@ def test_pickcircle(dir_):
     ratio = result['shortAxisLen']/result['longAxisLen']
     print dir_, result['shortAxisLen'], result['longAxisLen'], ratio
     assert ratio > 0.9
+
 
     assert isinstance(result['corePoint'], np.ndarray)
 

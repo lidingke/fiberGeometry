@@ -1,4 +1,6 @@
 *.jpg
+.cache
+.idea
 *.exe
 *.png
 *.bmp
@@ -6,6 +8,7 @@
 *.pdf
 *.dll
 *.pdf
+*.pickle
 *.VC.db
 *.lib
 *.obj
@@ -21,15 +24,7 @@ tests/data
 *.xlsx
 SDK/MindPyScript/MindPyCEx/VSProject
 .idea/workspace.xml
-IMG/GIOF/
-IMG/GIOF1/
-IMG/MIND/
-IMG/RZGREEB/
-IMG/black/
-IMG/octagon/
-IMG/rep/
-IMG/sharp/
-IMG/simple/
+IMG
 SDK/Lib/
 SDK/MindPyScript/MindPyCEx/Lib/
 SDK/OceanOpticsScript/
@@ -38,5 +33,8 @@ pattern/__pycache__/
 tests/__pycache__/
 util/reporter/
 tests/RI
+<<<<<<< HEAD
 SDK/MindPyScript/test
 *.pickle
+=======
+

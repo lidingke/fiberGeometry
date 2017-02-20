@@ -1,6 +1,5 @@
-
 from setting.orderset import SETTING
-SETTING('MindVision500', 'Online', "20400", "centerImg")
+SETTING('MindVision500', 'Online', "G652", "centerImg")
 import sys
 import os
 import pdb
@@ -9,19 +8,12 @@ from PyQt4.QtGui import QPalette, QColor,QApplication, QMessageBox, QWidget
 from GUI.view.view import View
 from GUI.controller import Controller
 from setting.initcorrect import InitCorrect
-from setting.load import loadStyleSheet
-
-# def loadStyleSheet(sheetName):
-#     with open('GUI/UI/qss/{}.qss'.format(sheetName), 'rb') as f:
-#         styleSheet = f.readlines()
-#         styleSheet = b''.join(styleSheet)
-#         styleSheet = styleSheet.decode('utf-8')
-#
-#     return styleSheet
+from util.load import loadStyleSheet
 
 
 if __name__ == '__main__':
-    SETTING('MindVision500', 'Online')
+    # SETTING('MindVision500', 'Online')
+    SETTING()['tempLight'] = []
     app = QApplication(sys.argv)
     msg = InitCorrect().run()
     if msg:

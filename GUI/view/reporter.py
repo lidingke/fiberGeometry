@@ -3,6 +3,7 @@ from util.reporter.reportcontext import PickContext
 import re
 from datetime import datetime as dt
 from PyQt4.QtGui import QWidget, QFileDialog, QMessageBox
+from report.pdf import writePdfabs
 
 def Reporter(father):
     if not isinstance(father, QWidget):
@@ -11,7 +12,8 @@ def Reporter(father):
                                            '',
                                            " (*.pdf);;(*.html);;All Files (*)")
     print 'file', fileName
-    if str(fileName).find('.') > 0:
+    fileName = str(fileName)
+    if fileName.find('.') > 0:
         fileform = fileName.split('.')[-1]
     else:
         fileform = False
@@ -19,11 +21,12 @@ def Reporter(father):
     if not (fileName and fileform):
         return
     try:
-        out_file = open(str(fileName), 'wb')
+        out_file = open(fileName, 'wb')
     except IOError:
         QMessageBox.information(father, u"无法打开文件",
                                 u"在打开文件 \"%s\" 时出错，新文件未生成" % fileName)
         return
+
     out_file.close()
     if fileform:
         try:
@@ -33,16 +36,7 @@ def Reporter(father):
         print('fileform,', fileform)
         if fileform == 'pdf':
             # self.savePdf(fileName)
-            pass
-        elif fileform == 'html':
-            import codecs
-            pc = PickContext()
-            pcr = pc.thtmlGet()
-            f = codecs.open(fileName, 'wb', 'utf-8')
-            f.write(pcr)
-            f.close()
-        else:
-            pass
+            writePdfabs(fileName)
             # self.saveFile(fileName)
     # print(fileName)
 

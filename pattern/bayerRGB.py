@@ -4,7 +4,6 @@ import numpy as np
 import cv2
 from pattern.getimg import GetImage
 from pattern.edge import ExtractEdge
-from pattern.classify import G652Classify
 from pattern.sharp import IsSharp
 from SDK.mdpy import GetRawImg
 

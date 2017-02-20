@@ -2,15 +2,13 @@ import sys
 import os
 import pdb
 from setting.orderset import SETTING
-Set = SETTING("test", "20400", "centerImg")
+Set = SETTING("test", "octagon", "centerImg")
 Set['ifcamera'] = False
-# print 'if camera', len(Set)
-
 from PyQt4.QtGui import QPalette, QColor,QApplication
 from PyQt4.QtCore import QCoreApplication, QFile
 from GUI.view.view import View
 from GUI.controller import Controller
-from setting.load import loadStyleSheet
+from util.load import loadStyleSheet
 
 
 

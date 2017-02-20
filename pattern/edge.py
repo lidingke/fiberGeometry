@@ -13,7 +13,6 @@ class ExtractEdge(CV2MethodSet):
         """medianBlur consume 0.23s"""
         if len(img.shape) > 2:
             img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-
         kernelSize = self.SET["adaptiveTreshold"].get("kernelSize",3)
         kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (kernelSize, kernelSize))
         erode = cv2.erode(img, kernel)
@@ -24,7 +23,6 @@ class ExtractEdge(CV2MethodSet):
         Constant = self.SET["adaptiveTreshold"]["Constant"]
         img = cv2.adaptiveThreshold(img, 255,
             cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, blockSize, Constant)
-
         return img
 
     def runMax(self, img):
@@ -52,10 +50,11 @@ class ExtractEdge(CV2MethodSet):
         # cv2.waitKey()
         return img
 
-    def directThr(self, img):
+    def directThr(self, img, hight = 175):
         if len(img.shape) > 2:
             img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-        size, img = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
+        print 'thr', hight
+        size, img = cv2.threshold(img, hight, 255, cv2.THRESH_BINARY)
         return img
 
 class EdgeFuncs(object):

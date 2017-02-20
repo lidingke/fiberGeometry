@@ -27,7 +27,7 @@ def yieldImg(dirs):
     dirlist = os.listdir(dirs)
     dirlist = [dirs + x for x in dirlist]
     for dir_ in dirlist:
-        img = GetImage().get(dir_, 'color')
+        img = GetImage().get(dir_, 'colour')
         yield  img
 
 

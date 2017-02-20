@@ -1,4 +1,5 @@
 # from view import View
+from setting.orderset import SETTING
 from GUI.model.modecv import ModelCV
 from GUI.model.modelop import ModelOp
 from PyQt4.QtCore import QObject, pyqtSignal
@@ -27,6 +28,8 @@ class Controller(QObject):
         self._modelcv.resultShowCV.connect(self._view.updateCVShow)
         self._modelcv.resultShowAT.connect(self._view.updateATShow)
         self._modelcv.returnGreen.connect(self._view.getCoreLight)
+        self._view.fiberTypeBox.currentIndexChanged.connect(self._changeFiberType)
+
         # self._tempMedianIndex()
 
         # self._view.multiTest.clicked.connect(self._model.multiTest)
@@ -36,5 +39,11 @@ class Controller(QObject):
         length = float(length)
         self._modelcv.attenuationTest(length)
 
+    def _changeFiberType(self):
+        key = str(self._view.fiberTypeBox.currentText())
+        SETTING().keyUpdates(key)
+        newKey = SETTING().get('fiberType','error type')
+        # self._view.fiberTypeLabel.setText(newKey)
+        self._modelcv.updateClassifyObject(key)
 
 
