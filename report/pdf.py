@@ -21,9 +21,9 @@ def writePdfabs(dir_):
     updates = SETTING().get('pdfpara')
     htmlpara.update(updates)
     newbody = originHTML.format(**htmlpara)
-    with open('t.html', 'wb') as f:
-        f.write(newbody)
-        f.close()
+    # with open('t.html', 'wb') as f:
+    #     f.write(newbody)
+    #     f.close()
     printer = QPrinter()
     printer.setOutputFormat(QPrinter.PdfFormat)
     printer.setOutputFileName(dir_)

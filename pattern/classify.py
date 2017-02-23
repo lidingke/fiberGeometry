@@ -267,7 +267,8 @@ Big20400Classify = DoubleCircleClassify
 
 
 def classifyObject(fiberType):
-    if fiberType == "octagon":
+    print 'get fiber type', fiberType
+    if fiberType in ["octagon","10/130(oc)"]:
         return OctagonClassify()
     else:
         # import DoubleCircleClassify as Classify

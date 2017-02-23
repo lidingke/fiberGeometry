@@ -105,6 +105,7 @@ class ModelCV(Thread, QObject):
     def updateClassifyObject(self, obj = 'G652'):
         self.classify = classifyObject(obj)
         self.eresults = False
+        self.result2Show = False
         self.decorateMethod = decorateMethod(obj)
 
 

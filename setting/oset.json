@@ -69,20 +69,28 @@
     "fiberType":"G652",
     "thresholdSize":{"core":40},
     "imgsize":[1944,2592],
-    "coreRange":[20,100],
+    "coreRange":[20,140],
     "cladRange":[650,900],
     "ampPixSize": 0.07963,
     "enlarge": [20,3]
   },
     "105125":{
     "fiberType":"105125",
-    "thresholdSize":{"core":170},
+    "thresholdSize":{"core":40},
     "imgsize":[1944,2592],
     "coreRange":[500,690],
     "cladRange":[710,800],
     "ampPixSize": 0.07963,
       "enlarge": [20,3]
+  },
+  "10/130(oc)":{
+    "fiberType":"octagon",
+    "thresholdSize":{"core":40},
+    "imgsize":[1944,2592],
+    "coreRange":[20,140],
+    "cladRange":[650,900],
+    "ampPixSize": 0.07963,
+    "enlarge": [20,3]
   }
-
 }
 

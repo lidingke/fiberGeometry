@@ -74,8 +74,8 @@ class GetRawImgTest(GetRawImg):
         # img = np.fromfile("tests\\data\\imgred.bin", dtype="uint8")
         # img.shape = shape
         # time.sleep(0.1)
-        img = randomImg("IMG\\20400\\750\\")
-        print 'change rgb'
+        img = randomImg("IMG\\10130\\")
+        # print 'change rgb'
         img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         return img
 
