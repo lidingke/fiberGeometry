@@ -5,27 +5,8 @@ from pattern.edge import ExtractEdge, EdgeFuncs
 import numpy as np
 from util.loadimg import yieldImg
 import cv2
-# from pattern.edge import E
 import pdb
 import pytest
-
-
-def test_doSharpRange():
-    imgs = []
-    for i in range(0,3):
-        dir_ = "tests\\data\\imgforsharp{}.bin".format(i)
-        img = np.fromfile(dir_,dtype= "uint8")
-        img.shape = (1944,2592)
-        imgs.append(img)
-    sharp = IsSharp()
-    for img in imgs:
-        img = sharp._doSharpRange(img)
-        assert isinstance(img, np.ndarray)
-        assert len(img.shape) == 2
-
-    result = sharp.isSharpDiff(imgs)
-    assert isinstance(result, int) or isinstance(result, np.int64)
-
 
 def _getFilterImg(core, origin, minRange, maxRange):
     img = np.ones(origin.shape, dtype='uint8') * 255
@@ -40,10 +21,8 @@ def _getFilterImg(core, origin, minRange, maxRange):
 def n_test_new_sharp():
     imgs = yieldImg("IMG\\midoctagon\\sharp\\")
     for img in imgs:
-        # pdb.set_trace()
         if len(img.shape) > 2:
             img = img[:,:,2]
-
         kernelSize = 15
         kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (kernelSize, kernelSize))
         erode = cv2.erode(img, kernel)

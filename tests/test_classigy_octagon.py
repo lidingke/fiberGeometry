@@ -9,8 +9,8 @@ from pattern.classify import OctagonClassify
 
 
 def test_octagon_class_find_result():
-    img = np.fromfile("tests\\data\\dynamicimg.bin", "uint8")
-    img.shape = SETTING().get("imgsize",(1944,2592))
+    SETTING().keyUpdates('octagon', 'centerImg')
+    img = getImage("IMG\\midoctagon\\mid1.BMP")
     result = OctagonClassify().find(img)
     keys = ['core','clad','coreResult','cladResult']
     for k in keys:
@@ -28,8 +28,8 @@ def test_octagon_class_find_result():
     assert len(result['cladResult']['longPlot'])== 2
 
 def test_class_octagon_getResult():
-    img = np.fromfile("tests\\data\\dynamicimg.bin", "uint8")
-    img.shape = SETTING().get("imgsize",(1944,2592))
+    img = getImage("IMG\\midoctagon\\mid1.BMP")
+    result = OctagonClassify().find(img)
     oca = OctagonClassify()
     oca.find(img)
     result = oca.getResult()
@@ -40,8 +40,7 @@ def test_class_octagon_getResult():
 if __name__ == '__main__':
     print  'get'
     # getthr()
-    # img = np.fromfile("tests\\data\\dynamicimg.bin", "uint8")
-    # img.shape = SETTING().get("imgsize",(1944,2592))
+
     # oca = OctagonClassify().find(img)
     # plot = oca['coreResult']['plot']
     # print 'shape', plot.shape

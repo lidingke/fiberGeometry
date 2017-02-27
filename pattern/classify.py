@@ -138,6 +138,7 @@ class OctagonClassify(MetaClassify):
         self.img = img
 
         coreimg, cladimg = self._difcore(img)
+
         sets = SETTING()
         if 'thresholdSize' in sets.keys():
             hight = sets['thresholdSize'].get("core")
@@ -147,9 +148,13 @@ class OctagonClassify(MetaClassify):
             coreimg = ExtractEdge().directThr(coreimg)
         # coreimg = ExtractEdge().run(coreimg)
         cladimg = ExtractEdge().run(cladimg)
-
+        # cv2.imshow('core', coreimg[::4, ::4])
+        # cv2.waitKey()
+        # cv2.imshow('core', cladimg[::4, ::4])
+        # cv2.waitKey()
         coreResult = PickCircle().run(coreimg)
         cladResult = PickOctagon().run(cladimg)
+        print 'start octagon test', cladResult.keys()
         self.result['core'] = coreResult['ellipese']
         self.result['coreResult'] = coreResult
         self.result['clad'] = cladResult['ellipese']
@@ -160,9 +165,27 @@ class OctagonClassify(MetaClassify):
     def _difcore(self,img):
         corecore = self.SET["corepoint"]
         minRange, maxRange = self.SET["cladRange"]
-        cladimg = self._getFilterImg(corecore, img, minRange, maxRange)
+        # cv2.imshow("redimg", img[::4,::4,0])
+        # cv2.waitKey()
+        # cv2.imshow("redimg", img[::4,::4,1])
+        # cv2.waitKey()
+        # cv2.imshow("redimg", img[::4,::4,2])
+        # cv2.waitKey()
+        redimg =img[::,::,0].copy()
+
+        redimg = cv2.bitwise_not(redimg)
+
+        cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+        # print 'get clad img ?'
+        # cv2.imshow("clad", cladimg[::4,::4])
+        # cv2.waitKey()
         minRange, maxRange = self.SET["coreRange"]
-        coreimg = self._getFilterImg(corecore, img, minRange, maxRange)
+        # coreimg = cv2.bitwise_not(img.copy())
+        # coreimg = self._getFilterImgCore(corecore, img[::,::,1], minRange, maxRange)
+        # coreimg = self._getFilterImgCoreRange(corecore, img, minRange, maxRange)
+        coreimg = img[::,::,1].copy()
+        # cv2.imshow("core", img[::4, ::4, 1])
+        # cv2.waitKey()
         return coreimg, cladimg
 
     def _getFilterImg(self, core, origin, minRange, maxRange):
@@ -173,6 +196,14 @@ class OctagonClassify(MetaClassify):
         # origin = cv2.bitwise_not(origin)
         img = cv2.bitwise_or(img, origin)
         return img
+
+    def _getFilterImgClad(self, core, origin, minRange, maxRange):
+        # core = [
+        # origin = origin.copy()
+        print 'get core inner', (int(core[0]), int(core[1])), int(minRange), origin.shape
+        cv2.circle(origin, (int(core[0]), int(core[1])), int(minRange), 255, -1)
+
+        return origin
 
 
 #Big20400Classify
@@ -194,7 +225,6 @@ class DoubleCircleClassify(MetaClassify):
         # coreimg = ExtractEdge().run(coreimg)
         cladimg = ExtractEdge().run(cladimg)
         # cladimg = cv2.bilateralFilter(cladimg, 20, 80, 75)
-
         # cv2.imshow("cladimg edge", cladimg[::4,::4])
         # cv2.waitKey()
 

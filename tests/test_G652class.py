@@ -11,9 +11,10 @@ from pattern.sharp import IsSharp
 from SDK.mdpy import GetRawImg
 
 def test_class_G652():
+    SETTING().keyUpdates('G652', 'test')
     print 'set', SETTING()
     big = G652Classify()
-    img = GetImage().get("IMG\\G652\\g652mid.BMP", colour = 'colour')
+    img = GetImage().get("IMG\\G652\\mid\\g652mid.BMP", colour = 'colour')
     # img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
     # img = cv2.cvtColor(img,cv2.COLOR_RGB2BGR)
     print img.shape

@@ -13,6 +13,8 @@ class GetImage(CV2MethodSet):
         self.img = False
         self.colour = None
         self.suffix = ''
+        self.GRAY = ('gray', 'black')
+        self.COLOR = ('colour', 'color')
 
     def get(self, dir_='', colour = 'colour'):
         if dir_.find('.') > 0:
@@ -42,11 +44,11 @@ class GetImage(CV2MethodSet):
     def _getColorImg(self,colour = 'colour'):
         if not self.colour:
             self.colour = colour
-            # print '_get img colour', self.colour, self.suffix
-        if self.colour in ('gray', 'black'):
+            print '_get img colour', self.colour, self.suffix
+        if self.colour in self.GRAY:
             self.img = cv2.cvtColor(self.img, cv2.COLOR_RGB2GRAY)
-        elif self.colour == 'colour' and self.suffix.upper() == 'BMP':
-            self.img = cv2.cvtColor(self.img, cv2.COLOR_RGB2BGR)
+        elif self.colour in self.COLOR and self.suffix.upper() == 'BMP':
+            self.img = cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB)
         else:
             pass
 

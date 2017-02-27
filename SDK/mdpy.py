@@ -1,4 +1,3 @@
-
 import pdb
 import numpy as np
 import time
@@ -74,7 +73,7 @@ class GetRawImgTest(GetRawImg):
         # img = np.fromfile("tests\\data\\imgred.bin", dtype="uint8")
         # img.shape = shape
         # time.sleep(0.1)
-        img = randomImg("IMG\\10130\\")
+        img = randomImg("IMG\\G652\\pk\\")
         # print 'change rgb'
         img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         return img
@@ -112,7 +111,7 @@ class GetRawImgTestg652(GetRawImg):
 
     def get(self):
         time.sleep(0.1)
-        img = randomImg("IMG\\g652\\")
+        img = randomImg("IMG\\g652\\mid\\")
         # img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         return img
 

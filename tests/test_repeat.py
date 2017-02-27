@@ -20,7 +20,7 @@ def test_repeat_G652():
     print 'sets', sets
     resultgetcore = []
     resultgetclad = []
-    for img in yieldImg("IMG\\G652\\"):
+    for img in yieldImg("IMG\\G652\\mid\\"):
         result = G652Classify().find(img)
         core, clad = result['coreResult'], result['cladResult']
         print core['ellipese'], clad['ellipese']

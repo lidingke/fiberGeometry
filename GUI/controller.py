@@ -44,6 +44,6 @@ class Controller(QObject):
         SETTING().keyUpdates(key)
         newKey = SETTING().get('fiberType','error type')
         # self._view.fiberTypeLabel.setText(newKey)
-        self._modelcv.updateClassifyObject(key)
+        self._modelcv.updateClassifyObject(newKey)
 
 
