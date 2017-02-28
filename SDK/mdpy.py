@@ -75,7 +75,7 @@ class GetRawImgTest(GetRawImg):
         # time.sleep(0.1)
         img = randomImg("IMG\\G652\\pk\\")
         # print 'change rgb'
-        img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+        # img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
         return img
 
     # def bayer2RGB(self, img):

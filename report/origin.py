@@ -5,54 +5,7 @@ originHTML =  '''
 
 <head>
     <meta charset="utf-8">
-    <style>
-    body {{
-        overflow-y:scroll;
-        width: 45em;
-        border: 1px solid #ddd;
-        outline: 1300px solid #fff;
-        margin: 16px auto;
-        font-family: 'Microsoft YaHei', freesans, sans-serif;
-
-    }}
-
-    h1 {{
-        border-bottom: 1px solid #eee;
-        margin-top: 1em;
-        margin-bottom: 16px;
-        margin-left: 30px;
-        margin: 0.67em 0;
-        padding-left: 8px;
-        padding-bottom: 0.3em;
-        font-size: 50px;
-        font-weight: bold;
-        color: #283c51;
-        text-align: center;
-    }}
-
-    h2 {{
-        border-bottom: 1px solid #eee;
-        padding-bottom: 0.3em;
-        margin-left: 30px;
-        padding-left: 20px;
-        font-size: 40px;
-        font-weight: bold;
-        color: #2EA9DF;
-
-    }}
-
-    p {{
-        padding-left: 20px;
-        margin-left: 45px;
-        font-size: 20px;
-    }}
-
-    img {{
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-
-    }}
-    </style>
+    <style>{mystyle}</style>
     <title>{title}</title>
 </head>
 <body>
@@ -77,6 +30,9 @@ originHTML =  '''
         <br /></p>
 </body>
 </html>'''
+with open('report\\my.css') as f:
+    mystyle = f.readlines()
+mystyle = ''.join(mystyle)
 
 htmlpara = {
     'title': '标题',
@@ -92,5 +48,7 @@ htmlpara = {
     'sharpindex': '',
     'lightindex': '',
     'date': '',
-    'fiberLength': ''
+    'fiberLength': '',
+    'mystyle':mystyle
 }
+

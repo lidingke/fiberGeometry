@@ -230,6 +230,7 @@ class DoubleCircleClassify(MetaClassify):
 
         coreResult = PickCircle().run(coreimg)
         cladResult = PickCircle().run(cladimg)
+        print 'amp',self.SET['ampPixSize'], self.SET['fiberType']
         self.result['core'] = coreResult['ellipese']
         self.result['coreResult'] = coreResult
         self.result['clad'] = cladResult['ellipese']

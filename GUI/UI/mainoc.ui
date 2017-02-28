@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1538</width>
+    <width>1533</width>
     <height>1029</height>
    </rect>
   </property>
@@ -40,13 +40,13 @@
      </rect>
     </property>
     <layout class="QGridLayout" name="operaLayout">
-     <item row="4" column="1">
-      <widget class="QPushButton" name="parameterCV">
+     <item row="3" column="1">
+      <widget class="QPushButton" name="reporterCV">
        <property name="enabled">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="text">
-        <string>参数配置</string>
+        <string>输出报告</string>
        </property>
       </widget>
      </item>
@@ -60,16 +60,6 @@
        </property>
        <property name="text">
         <string>开始测试</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QPushButton" name="reporterCV">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="text">
-        <string>输出报告</string>
        </property>
       </widget>
      </item>
@@ -202,92 +192,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry">
      <rect>
       <x>1320</x>
-      <y>280</y>
-      <width>181</width>
-      <height>84</height>
-     </rect>
-    </property>
-    <layout class="QFormLayout" name="formLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="dynamicSharp">
-       <property name="text">
-        <string>0.0</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="coreMedian">
-       <property name="text">
-        <string>纤芯滤波值：</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QSpinBox" name="coreMedianIndex">
-       <property name="readOnly">
-        <bool>false</bool>
-       </property>
-       <property name="minimum">
-        <number>3</number>
-       </property>
-       <property name="maximum">
-        <number>15</number>
-       </property>
-       <property name="singleStep">
-        <number>2</number>
-       </property>
-       <property name="value">
-        <number>11</number>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="cladMedian">
-       <property name="text">
-        <string>包层滤波值：</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QSpinBox" name="cladMedianIndex">
-       <property name="readOnly">
-        <bool>false</bool>
-       </property>
-       <property name="minimum">
-        <number>3</number>
-       </property>
-       <property name="maximum">
-        <number>17</number>
-       </property>
-       <property name="singleStep">
-        <number>2</number>
-       </property>
-       <property name="value">
-        <number>11</number>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>纤芯亮度：</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLabel" name="coreLight">
-       <property name="text">
-        <string>0.0</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>1310</x>
-      <y>380</y>
+      <y>350</y>
       <width>201</width>
       <height>222</height>
      </rect>
@@ -361,13 +266,145 @@ p, li { white-space: pre-wrap; }
      </item>
     </layout>
    </widget>
+   <widget class="QPushButton" name="parameterCV">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>1590</x>
+      <y>60</y>
+      <width>169</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>参数配置</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="coreMedianIndex">
+    <property name="geometry">
+     <rect>
+      <x>1678</x>
+      <y>100</y>
+      <width>36</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>false</bool>
+    </property>
+    <property name="minimum">
+     <number>3</number>
+    </property>
+    <property name="maximum">
+     <number>15</number>
+    </property>
+    <property name="singleStep">
+     <number>2</number>
+    </property>
+    <property name="value">
+     <number>11</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="cladMedian">
+    <property name="geometry">
+     <rect>
+      <x>1600</x>
+      <y>126</y>
+      <width>72</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>包层滤波值：</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="cladMedianIndex">
+    <property name="geometry">
+     <rect>
+      <x>1678</x>
+      <y>126</y>
+      <width>36</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>false</bool>
+    </property>
+    <property name="minimum">
+     <number>3</number>
+    </property>
+    <property name="maximum">
+     <number>17</number>
+    </property>
+    <property name="singleStep">
+     <number>2</number>
+    </property>
+    <property name="value">
+     <number>11</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="coreMedian">
+    <property name="geometry">
+     <rect>
+      <x>1600</x>
+      <y>100</y>
+      <width>72</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>纤芯滤波值：</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>1320</x>
+      <y>280</y>
+      <width>191</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>清晰度：</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="dynamicSharp">
+       <property name="text">
+        <string>0.0</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>纤芯亮度：</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLabel" name="coreLight">
+       <property name="text">
+        <string>0.0</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1538</width>
+     <width>1533</width>
      <height>23</height>
     </rect>
    </property>

@@ -44,10 +44,11 @@
 },
   "20400":{
     "fiberType":"20400",
+    "thresholdSize":{"core":20},
     "imgsize":[1944,2592],
-    "coreRange":[20,80],
+    "coreRange":[10,60],
     "cladRange":[700,1000],
-    "ampPixSize": 0.215,
+    "ampPixSize": 0.222,
     "enlarge": [10,3]
   },
   "centerImg":{

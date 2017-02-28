@@ -16,12 +16,7 @@ print 'fibertype',fiberType,'setget', setGet
 if setGet:
     from SDK.mdpy import GetRawImg
 else:
-    if fiberType == "20400":
-        from SDK.mdpy import GetRawImgTest20400 as GetRawImg
-    elif fiberType == "G652":
-        from SDK.mdpy import GetRawImgTestg652 as GetRawImg
-    else:
-        from SDK.mdpy import GetRawImgTest as GetRawImg
+    from SDK.mdpy import GetRawImgTest as GetRawImg
     print 'script don\'t open camera'
 
 from pattern.edge import ExtractEdge
@@ -70,6 +65,8 @@ class ModelCV(Thread, QObject):
         self.pdfparameter = SETTING()['pdfpara']
 
 
+
+
     def run(self):
         while self.IS_RUN:
             img = self.getRawImg.get()
@@ -78,7 +75,7 @@ class ModelCV(Thread, QObject):
             # self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
             self.sharp = "%0.2f" % self.isSharp.issharpla(img)
             # plotResults = (self.ellipses, self.result)
-            self._greenLight(img[::, ::, 1])
+            self._greenLight(img)
             colorImg = self._decorateImg(img)
             self.returnImg.emit(colorImg[::2,::2].copy(), self.sharp)
 
@@ -124,6 +121,10 @@ class ModelCV(Thread, QObject):
         time.sleep(0.5)
         self.getRawImg.unInitCamera()
 
+    def initGUI(self):
+        existence = {}
+
+
     def attenuationTest(self, length):
         wave, powers = self.Oceanoptics.getData(length)
         self._emitATShowResult(wave, powers)
@@ -154,10 +155,12 @@ class ModelCV(Thread, QObject):
             # print 'get result', result
             para = {'corediameter': '%0.2f'%result[1],
             'claddiameter': '%0.2f'%result[2],
-            'coreroundness': '%0.2f'%result[2],
+            'coreroundness': '%0.2f'%result[3],
             'cladroundness': '%0.2f'%result[4],
             'concentricity': '%0.2f'%result[0],
+            'fibertype':SETTING()["fiberType"],
             'sharpindex': sharp}
+
             self.pdfparameter.update(para)
 
             text = [
@@ -173,14 +176,16 @@ class ModelCV(Thread, QObject):
             self.resultShowCV.emit(text)
             print 'emit result', text
 
-    def _greenLight(self, green):
-        if isinstance(green, np.ndarray):
+    def _greenLight(self, img):
+        if isinstance(img, np.ndarray):
             corey, corex = SETTING()["corepoint"]
             minRange, maxRange = SETTING()["coreRange"]
-            green = sliceImg(green, (corex, corey), maxRange)
-            self.green = green.sum()/2550
+            green = sliceImg(img[::, ::, 1], (corex, corey), maxRange)
+            blue = sliceImg(img[::, ::, 2], (corex, corey), maxRange)
+            self.green = green.sum() / 2550
+            self.blue = blue.sum() / 2550
             self.pdfparameter['lightindex'] = "%0.2f"%self.green
-            self.returnGreen.emit("%0.2f"%self.green)
+            self.returnGreen.emit("%0.2f,%0.2f"%(self.green,self.blue))
 
     def fiberTypeMethod(self, key):
         SETTING().keyUpdates(key)

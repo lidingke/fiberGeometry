@@ -12,4 +12,4 @@ def test_write_pdf():
     assert 'report.pdf' in listdir
     assert 'report2.pdf' in listdir
     os.system('del tests\\data\\report.pdf')
-    os.system('del tests\\data\\report2.pdf')
+    # os.system('del tests\\data\\report2.pdf')

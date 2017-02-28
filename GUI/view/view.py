@@ -18,7 +18,7 @@ from PyQt4.QtGui import QWidget, QMainWindow, QPainter, QFont,\
     QPixmap, QImage, QColor, QFileDialog, QMessageBox, QPalette
 import numpy as np
 from util.load import WriteReadJson
-from datetime import datetime as dt
+from datetime import datetime
 
 class View(QMainWindow, new_MainWindow):
     """docstring for View"""
@@ -42,6 +42,7 @@ class View(QMainWindow, new_MainWindow):
         self.beginTestCV.clicked.connect(self._disableCVButton)
         self._initItems()
         self.reporterCV.clicked.connect(self.writeReporterCV)
+        self.initGUI()
 
     def _initItems(self):
         wrJson = WriteReadJson("setting\\userdata.json")
@@ -49,7 +50,6 @@ class View(QMainWindow, new_MainWindow):
         self.fiberTypeBox.addItems(types)
 
     def updatePixmap(self, arr, sharp):
-        #todo : set Text box
         if not self.IS_INIT_PAINTER:
             self.painterWidget.initPixmap(arr)
             self.IS_INIT_PAINTER = True
@@ -69,6 +69,10 @@ class View(QMainWindow, new_MainWindow):
         # result = SETTING()['tempLight']
         # print 'get light result', result
         # WriteReadJson('tests/data/light.json').save(result)
+        if 'olddata' in SETTING().keys():
+            print 'get old data', SETTING()['olddata']
+            self.olddata.save(SETTING()['olddata'])
+
         self.model.exit()
 
     def updateOpticalview(self, wave, powers):
@@ -90,16 +94,32 @@ class View(QMainWindow, new_MainWindow):
     def updateATShow(self,str_):
         self.resultShowAT.setText(str_)
 
+    def initGUI(self):
+        try:
+            self.olddata = WriteReadJson('setting\\old.json')
+            para = self.olddata.load()
+        except ValueError:
+            return
+        if para:
+            self.fiberLength.setText(para['fiberLength'])
+            self.Worker.setText(para['worker'])
+            self.factory.setText(para['producer'])
+            self.fiberNumber.setText(para['fiberNo'])
+            # print para['fibertypeindex'], int(para['fibertypeindex'])
+            # self.fiberTypeBox.setCurrentIndex(int(para['fibertypeindex']))
+
     def writeReporterCV(self):
         para = {}
-        para['fiberLength'] = self.fiberLength.text()
-        para['worker'] = self.Worker.text()
-        para['producer'] = self.factory.text()
-        para['fiberNo'] = self.fiberNumber.text()
-        para['fibertype'] = self.fiberTypeBox.currentIndex()
-        para['date'] = dt.strftime(dt.now(), '%Y-%m-%d %H:%M:%S')
-        para['title'] = '测试报告'
+        para['fiberLength'] = str(self.fiberLength.text())
+        para['worker'] = str(self.Worker.text())
+        para['producer'] = str(self.factory.text())
+        para['fiberNo'] = str(self.fiberNumber.text())
+        para['fibertype'] = str(self.fiberTypeBox.currentText())
+        para['fibertypeindex'] = str(self.fiberTypeBox.currentIndex())
+        para['date'] = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
+        para['title'] = para['fibertype']+'光纤端面几何测试报告'
         SETTING()['pdfpara'].update(para)
+        SETTING()['olddata'] = para
         Reporter(self)
 
 
@@ -164,3 +184,16 @@ class CVPainterWidget(QWidget):
         # img = QImage(mapArray.flatten(), self.height, self.width, QImage.Format_Indexed8)
         self.pixmap = QPixmap.fromImage(img)
         self.update()
+
+
+class Initdata(object):
+
+    def __init__(self):
+        self.wr = WriteReadJson('setting\\old.json')
+
+
+    def get(self):
+        return self.wr.load()
+
+    def save(self, data):
+        self.wr.save(data)
