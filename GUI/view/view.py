@@ -70,7 +70,6 @@ class View(QMainWindow, new_MainWindow):
         # print 'get light result', result
         # WriteReadJson('tests/data/light.json').save(result)
         if 'olddata' in SETTING().keys():
-            print 'get old data', SETTING()['olddata']
             self.olddata.save(SETTING()['olddata'])
 
         self.model.exit()
@@ -81,7 +80,6 @@ class View(QMainWindow, new_MainWindow):
     # def attenuationTest(self):
     #     length = self.fiberLength.getText()
     #     threading.Thread
-    #
     # def attenuationGetThread(self, length):
 
     def updateCVShow(self,str_):
@@ -185,15 +183,3 @@ class CVPainterWidget(QWidget):
         self.pixmap = QPixmap.fromImage(img)
         self.update()
 
-
-class Initdata(object):
-
-    def __init__(self):
-        self.wr = WriteReadJson('setting\\old.json')
-
-
-    def get(self):
-        return self.wr.load()
-
-    def save(self, data):
-        self.wr.save(data)

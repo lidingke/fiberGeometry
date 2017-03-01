@@ -87,32 +87,14 @@ class GetRawImgTest(GetRawImg):
     def unInitCamera(self):
         pass
 
-
-class GetRawImgTest20400(GetRawImg):
+class DynamicGetRawImgTest(GetRawImg):
     """docstring for getRawImg"""
     def __init__(self, ):
         # super(GetRawImgTest, self).__init__()
-        print ('test img init')
+        print ('dynamic get img test')
 
     def get(self):
-        time.sleep(0.1)
-        img = randomImg("IMG\\20400coreb\\750\\")
-        # img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
-        return img
-
-    def unInitCamera(self):
-        pass
-
-class GetRawImgTestg652(GetRawImg):
-    """docstring for getRawImg"""
-    def __init__(self, ):
-        # super(GetRawImgTest, self).__init__()
-        print ('test img init')
-
-    def get(self):
-        time.sleep(0.1)
-        img = randomImg("IMG\\g652\\mid\\")
-        # img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+        img = randomImg("IMG\\G652\\pk\\")
         return img
 
     def unInitCamera(self):

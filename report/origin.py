@@ -10,23 +10,24 @@ originHTML =  '''
 </head>
 <body>
     <h1 id="_1">{title}</h1>
-    <p>日期：{date}
-        <br /> 操作人：{worker}
-        <br /> 光纤型号：{fibertype}
-        <br /> 生产厂家：{producer}
-        <br /> 光纤编号：{fiberNo}
-        <br /> 光纤长度：{fiberLength}
+    <h2 id="_2">测 试 人 员</h2>
+    <p>日 期：{date}
+        <br /> 操 作 人：{worker}
+        <br /> 光 纤 型 号：{fibertype}
+        <br /> 生 产 厂 家：{producer}
+        <br /> 光 纤 编 号：{fiberNo}
+        <br /> 光 纤 长 度：{fiberLength}
     </p>
-    <h2 id="_2">测试结果</h2>
-    <p> 纤芯直径：{corediameter}
-        <br /> 包层直径：{claddiameter}
-        <br /> 纤芯不圆度：{coreroundness}
-        <br /> 包层不圆度：{cladroundness}
-        <br /> 芯包同心度: {concentricity}
+    <h2 id="_2">测 试 结 果</h2>
+    <p> 纤 芯 直 径：{corediameter}
+        <br /> 包 层 直 径：{claddiameter}
+        <br /> 纤 芯 不 圆 度：{coreroundness}
+        <br /> 包 层 不 圆 度：{cladroundness}
+        <br /> 芯 包 同 心 度: {concentricity}
     </p>
-    <h2 id="_3">测试参数</h2>
-    <p>清晰度指数：{sharpindex}
-        <br /> 纤芯亮度指数：{lightindex}
+    <h2 id="_3">测 试 参 数</h2>
+    <p>清 晰 度 指 数：{sharpindex}
+        <br /> 纤 芯 亮 度 指数：{lightindex}
         <br /></p>
 </body>
 </html>'''
