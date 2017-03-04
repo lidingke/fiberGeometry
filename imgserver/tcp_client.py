@@ -7,6 +7,7 @@ import tornado.ioloop
 import tornado.iostream
 import socket
 import numpy as np
+from PyQt4.QtCore import QObject, pyqtSignal
 import cv2
 #Init logging
 def init_logging():
@@ -18,8 +19,11 @@ def init_logging():
     logger.addHandler(sh)
     logging.info("Current log level is : %s", logging.getLevelName(logger.getEffectiveLevel()))
 
-class TCPClient(object):
+class ImgClient(QObject):
+    returnImg = pyqtSignal(object)
+
     def __init__(self, host, port, io_loop=None):
+        QObject.__init__(self)
         self.host = host
         self.port = port
         self.io_loop = io_loop
@@ -34,14 +38,11 @@ class TCPClient(object):
         self.stream = tornado.iostream.IOStream(self.sock_fd)
         self.stream.set_close_callback(self.on_close)
 
-
-
     def on_close(self):
         if self.shutdown:
             self.io_loop.stop()
 
-
-    def connect(self):
+    def get_img(self):
         self.get_stream()
         self.stream.connect((self.host, self.port), self.send_message)
 
@@ -53,44 +54,34 @@ class TCPClient(object):
 
     def on_receive(self, data):
         assert isinstance(data, str)
-        if len(data) <100:
-            if data.strip() == 'getend':
-                print 'get ended', len(self.imgs)
-                self.showimgs()
-                self.on_close()
-                return
         if data[-2:] == self.EOF:
             data = data[:-2]
         img = np.fromstring(data, dtype=np.uint8)
-        # pdb.set_trace()
         print 'getimg size', img.shape
         if img.shape[0] == 15116544:
             img.shape = (1944, 2592, 3)
-            self.imgs.append(img)
-        self.stream.read_until(self.EOF, self.on_receive)
-        # self.on_close()
+        self.returnImg.emit(img)
+            # self.imgs.append(img)
 
     def set_shutdown(self):
         self.shutdown = True
 
-    def showimgs(self):
-        if self.imgs:
-            for img in self.imgs:
-                cv2.imshow('img', img[::4,::4])
-                cv2.waitKey()
 
 def main():
     init_logging()
     io_loop = tornado.ioloop.IOLoop.instance()
-    c2 = TCPClient("127.0.0.1", 8001, io_loop)
-    c2.connect()
-    c2.set_shutdown()
+    c2 = ImgClient("127.0.0.1", 8011, io_loop)
+    # c2.connect()
+    c2.get_img()
+    # c2.set_shutdown()
     logging.info("**********************start ioloop******************")
     io_loop.start()
-    
+    c2.get_img()
+    # c2.set_shutdown()
+    logging.info("**********************start ioloop******************")
+    io_loop.start()
+
+
+
 if __name__ == "__main__":
-    try:
-        main()
-    except Exception, ex:
-        print "Ocurred Exception: %s" % str(ex)
-        quit()
+    main()

@@ -8,7 +8,7 @@
     "medianBlur": {
           "ErodeDilateKsize": 9,
           "corefilter": 15,
-          "cladfilter": 15
+          "cladfilter": 17
         },
       "rect": {
           "width": 2592,
@@ -70,20 +70,34 @@
   },
   "G652":{
     "fiberType":"G652",
-    "thresholdSize":{"core":20},
+    "thresholdSize":{"core":120},
     "imgsize":[1944,2592],
     "coreRange":[20,140],
     "cladRange":[650,900],
-    "ampPixSize": 0.07923,
+    "ampPixSize": 0.07926,
     "enlarge": [20,3]
   },
     "105125":{
     "fiberType":"105125",
-    "thresholdSize":{"core":40},
+    "thresholdSize":{"core":20},
     "imgsize":[1944,2592],
     "coreRange":[500,690],
     "cladRange":[710,800],
     "ampPixSize": 0.07963,
+      "enlarge": [20,3]
+  },
+  "200220":{
+    "fiberType":"200220",
+    "thresholdSize":{"core":40},
+    "imgsize":[1944,2592],
+    "coreRange":[410,440],
+    "cladRange":[460,500],
+    "medianBlur": {
+          "ErodeDilateKsize": 9,
+          "corefilter": 11,
+          "cladfilter": 17
+        },
+    "ampPixSize": 0.222,
       "enlarge": [20,3]
   },
   "10/130(oc)":{
@@ -99,6 +113,15 @@
           "corefilter": 11,
           "cladfilter": 17
         }
+  },
+  "50400":{
+    "fiberType":"20400",
+    "thresholdSize":{"core":20},
+    "imgsize":[1944,2592],
+    "coreRange":[10,60],
+    "cladRange":[700,1000],
+    "ampPixSize": 0.222,
+    "enlarge": [10,3]
   },
     "20/130(oc)":{
     "fiberType":"octagon",

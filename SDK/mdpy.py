@@ -3,7 +3,7 @@ import numpy as np
 import time
 import cv2
 from pattern.getimg import GetImage, randomImg
-
+import json
 # try:
 #     import SDK.MindPy.MindPyCEx.MindPy as mdp
 # except WindowsError:
@@ -13,6 +13,7 @@ from pattern.getimg import GetImage, randomImg
 #         import MindPy as mdp
 from setting.orderset import SETTING
 import SDK.MindPy as mdp
+import socket
 
 class GetRawImg(object):
     """docstring for getRawImg"""
@@ -61,33 +62,46 @@ def getSerialNumber():
     mdp.getCameraSerial()
 
 
-class GetRawImgTest(GetRawImg):
+class DynamicGetRawImgTest(GetRawImg):
     """docstring for getRawImg"""
-    def __init__(self, ):
+    def __init__(self, port = 5110):
         # super(GetRawImgTest, self).__init__()
         print ('test img init')
+        import socket
+        self.EOF = '\n\r'
+        self.port = port
+
+        self.host = 'localhost'
+
 
     def get(self):
-        # img = GetImage().get("IMG\\GIOF1\\sig")
-        # shape = (1944, 2592)
-        # img = np.fromfile("tests\\data\\imgred.bin", dtype="uint8")
-        # img.shape = shape
-        # time.sleep(0.1)
-        img = randomImg("IMG\\G652\\pk\\")
-        # print 'change rgb'
-        # img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+        self.ser = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.ser.connect((self.host, self.port))
+        self.ser.sendall("getimg\n\r")
+        length = self.ser.recv(4).strip()
+        jsonget = self.ser.recv(int(length))
+        jsonget = json.loads(jsonget)
+        times = jsonget['imgtimes']
+        slicesize = jsonget['slicesize']
+        imgs = []
+        for i in range(0,times):
+            imgs.append(self.ser.recv(slicesize))
+        imgs = ''.join(imgs)
+        img = np.fromstring(imgs,dtype='uint8')
+        if img.shape[0] == 15116544:
+            img.shape = (1944, 2592, 3)
+        print img.shape
         return img
-
-    # def bayer2RGB(self, img):
-    #     if not isinstance(img, np.ndarray):
-    #         raise ValueError("bayer2RGB input para error")
-    #     img = cv2.cvtColor(img, cv2.COLOR_BAYER_GB2RGB)
-    #     return img
 
     def unInitCamera(self):
         pass
 
-class DynamicGetRawImgTest(GetRawImg):
+    def closeSever(self):
+        self.ser = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.ser.connect((self.host, self.port))
+        self.ser.sendall("close\n\r")
+
+class GetRawImgTest(GetRawImg):
     """docstring for getRawImg"""
     def __init__(self, ):
         # super(GetRawImgTest, self).__init__()
