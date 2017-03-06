@@ -80,3 +80,44 @@ Traceback (most recent call last):
   File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
     raise ClassCoreError
 ClassCoreError
+2017-03-06 13:22:50,108-ERROR-_calcImg:
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 93, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 236, in find
+    coreResult = PickCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
+    raise ClassCoreError
+ClassCoreError
+2017-03-06 13:25:38,819-ERROR-_calcImg:
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 93, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 236, in find
+    coreResult = PickCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
+    raise ClassCoreError
+ClassCoreError
+2017-03-06 13:27:51,786-ERROR-_calcImg:unbound method run() must be called with ExtractEdge instance as first argument (got ndarray instance instead)
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 93, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 232, in find
+    cladimg = ExtractEdge.run(cladimg)
+TypeError: unbound method run() must be called with ExtractEdge instance as first argument (got ndarray instance instead)
+2017-03-06 13:28:19,321-ERROR-_calcImg:unbound method run() must be called with ExtractEdge instance as first argument (got ndarray instance instead)
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 93, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 232, in find
+    cladimg = ExtractEdge.run(cladimg)
+TypeError: unbound method run() must be called with ExtractEdge instance as first argument (got ndarray instance instead)
+2017-03-06 13:52:37,111-ERROR-_calcImg:
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 93, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 237, in find
+    coreResult = PickCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
+    raise ClassCoreError
+ClassCoreError

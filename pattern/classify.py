@@ -224,6 +224,12 @@ class DoubleCircleClassify(MetaClassify):
             coreimg = ExtractEdge().directThr(coreimg)
         # coreimg = ExtractEdge().run(coreimg)
         cladimg = ExtractEdge().run(cladimg)
+        # if 'thresholdSize' in sets.keys():
+        #     hight = sets['thresholdSize'].get("clad",40)
+        #
+        #     cladimg = ExtractEdge().directThr(cladimg,hight)
+        # else:
+        #     cladimg = ExtractEdge().directThr(cladimg)
         # cladimg = cv2.bilateralFilter(cladimg, 20, 80, 75)
         # cv2.imshow("cladimg edge", cladimg[::4,::4])
         # cv2.waitKey()

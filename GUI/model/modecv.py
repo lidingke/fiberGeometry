@@ -176,6 +176,8 @@ class ModelCV(Thread, QObject):
             text = u''.join(text)
             self.resultShowCV.emit(text)
             print 'emit result', text
+            # time.sleep(0.01)
+            # self.resultShowCV.emit(text)
 
     def _greenLight(self, img):
         if isinstance(img, np.ndarray):
@@ -184,11 +186,12 @@ class ModelCV(Thread, QObject):
             green = sliceImg(img[::, ::, 1], (corex, corey), maxRange)
             blue = sliceImg(img[::, ::, 2], (corex, corey), maxRange)
             self.allblue = img[::,::,2].sum()/255
-            self.allgreen = img[::,::,1].sum()/255
-            self.green = green.sum() / 2550
+
+            self.green = green.sum() / 255
             self.blue = blue.sum() / 255
+            self.allgreen = img[::, ::, 1].sum() / 255 - self.green
             self.pdfparameter['lightindex'] = "%0.2f"%self.green
-            self.returnGreen.emit("%0.2f,%0.2f,%0.2f"%(self.blue,self.allblue, self.allgreen))
+            self.returnGreen.emit("%0.2f,%0.2f,%0.2f"%(self.blue,self.allgreen,self.allblue ))
 
     def fiberTypeMethod(self, key):
         SETTING().keyUpdates(key)

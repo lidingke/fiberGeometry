@@ -46,7 +46,7 @@
     "fiberType":"20400",
     "thresholdSize":{"core":40},
     "imgsize":[1944,2592],
-    "coreRange":[10,60],
+    "coreRange":[10,100],
     "cladRange":[700,1000],
     "ampPixSize": 0.2237,
     "enlarge": [10,3]
@@ -102,7 +102,7 @@
   },
   "10/130(oc)":{
     "fiberType":"octagon",
-    "thresholdSize":{"core":40},
+    "thresholdSize":{"core":120},
     "imgsize":[1944,2592],
     "coreRange":[20,140],
     "cladRange":[650,900],
