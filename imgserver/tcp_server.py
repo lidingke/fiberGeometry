@@ -11,6 +11,7 @@ import json
 import numpy as np
 import cv2
 import copy
+from . import methods
 #Init logging
 def init_logging():
     logger = logging.getLogger()
@@ -38,6 +39,7 @@ class TCPConnection(object):
         self.address = address
         self.address_family = stream.socket.family
         self.EOF = '\n\r'
+        self.methodpara = {'function' : 'randomImg', 'para' : """\'IMG/G652/pk/\'"""}
         self._clear_request_state()
         self._message_callback = stack_context.wrap(self._on_message)
         self.stream.set_close_callback(self._on_connection_close)
@@ -47,24 +49,43 @@ class TCPConnection(object):
         logging.info("Send message..")
         self.write("Hello client! time out" + self.EOF)
 
+    def _getImgMethod(self, function = 'randomImg', para = """\'IMG\\G652\\pk\\\''"""):
+        if function not in dir(methods):
+            return 'function not found'
+        cmd = function+"({})".format(para)
+        # logging.info('cmd:',str(cmd))
+        print 'cmd:', cmd
+        return eval(cmd)
+
     def _on_message(self, data):
-        # print data
+        print data
         data = native_str(data.decode('latin1'))
         logging.info("Received: %s", data)
-        if data.strip() == 'getimg' :
-            self._writeimg()
-        elif data.strip() == 'close':
+        data = data.strip()
+        if data == 'getimg' :
+            self._getImg()
+        elif data[:7] == 'change:':
+            self.methodpara = json.loads(data[7:])
+            print 'get change', self.methodpara
+        elif data == 'close':
             logging.info("close img sever")
             self.close()
             # self.io_loop.add_timeout(self.io_loop.time() + timeout, self._on_timeout)
 
-    def _writeimg(self):
-        # for i in range(1,5):
-        img = randomImg('IMG\\20400\\750\\')
-        shape = img.shape
-        print 'get img size', shape, img.dtype
-        img = img.tostring()
+    def _getImg(self):
+        img = self._getImgMethod(**self.methodpara)
+        print 'getImg', self.methodpara
+        if isinstance(img, str):
+            cmd = 'funnotfd'
+            self.write(cmd)
+        elif isinstance(img, np.ndarray):
+            self._writeimg(img)
+        else:
+            raise ValueError(len(img),type(img))
 
+    def _writeimg(self,img):
+        shape = img.shape
+        img = img.tostring()
         slicesize = shape[0]
         times = len(img)//slicesize
         emit = {'imgshape':shape,
@@ -74,21 +95,12 @@ class TCPConnection(object):
         }
         jsonemit = json.dumps(emit)
         print jsonemit
-        self.write("%04d"%len(jsonemit))
+        self.write("img:%04d"%len(jsonemit))
         self.write(jsonemit)
-        # temp = []
         for i in range(0,times):
             cmd = img[i*slicesize:(i + 1)*slicesize]
-            # temp.append(cmd)
             self.write(cmd)
-        print 'write img len ', len(cmd)
-        # temp = ''.join(temp)
-        # temp = np.fromstring(temp,dtype='uint8')
-        # temp.shape = (1944, 2592, 3)
-        # cv2.imshow('temp',temp[::4,::4])
-        # cv2.waitKey()
-            # time.sleep(0.1)
-        # self.write(b'getend'+self.EOF)
+
 
     def _clear_request_state(self):
         """Clears the per-request state.

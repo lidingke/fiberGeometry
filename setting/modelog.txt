@@ -35,3 +35,48 @@ Traceback (most recent call last):
   File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
     raise ClassCoreError
 ClassCoreError
+2017-03-06 12:21:14,798-ERROR-_calcImg:
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 93, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 231, in find
+    coreResult = PickCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
+    raise ClassCoreError
+ClassCoreError
+2017-03-06 12:52:16,595-ERROR-_calcImg:
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 93, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 231, in find
+    coreResult = PickCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
+    raise ClassCoreError
+ClassCoreError
+2017-03-06 12:52:47,000-ERROR-_calcImg:
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 93, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 231, in find
+    coreResult = PickCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
+    raise ClassCoreError
+ClassCoreError
+2017-03-06 12:55:43,158-ERROR-_calcImg:
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 93, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 231, in find
+    coreResult = PickCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
+    raise ClassCoreError
+ClassCoreError
+2017-03-06 12:58:14,289-ERROR-_calcImg:
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 93, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 231, in find
+    coreResult = PickCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
+    raise ClassCoreError
+ClassCoreError

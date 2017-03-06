@@ -78,8 +78,10 @@ class DynamicGetRawImgTest(GetRawImg):
         self.ser = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.ser.connect((self.host, self.port))
         self.ser.sendall("getimg\n\r")
-        length = self.ser.recv(4).strip()
-        jsonget = self.ser.recv(int(length))
+        length = self.ser.recv(8).strip()
+        if length[:4] != 'img:':
+            raise ValueError('error',length)
+        jsonget = self.ser.recv(int(length[4:]))
         jsonget = json.loads(jsonget)
         times = jsonget['imgtimes']
         slicesize = jsonget['slicesize']
@@ -92,6 +94,14 @@ class DynamicGetRawImgTest(GetRawImg):
             img.shape = (1944, 2592, 3)
         print img.shape
         return img
+
+    def changeImgFunction(self,kwargs):
+        self.ser = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.ser.connect((self.host, self.port))
+        cmd = 'change:'
+        # para = {'function' : 'randomImg', 'para' : """\'IMG/G652/pk/\'"""}
+        cmd = cmd+json.dumps(kwargs) +self.EOF
+        self.ser.sendall(cmd)
 
     def unInitCamera(self):
         pass

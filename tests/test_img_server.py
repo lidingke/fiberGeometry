@@ -30,6 +30,12 @@ def test_img_get():
     img = DyIMG.get()
     assert img.shape == (1944, 2592, 3)
     assert img.dtype == 'uint8'
+    kwargs = {'function' : 'getImage', 'para' : """\'IMG/midoc.BMP\'"""}
+    DyIMG.changeImgFunction(kwargs)
+
+    img = DyIMG.get()
+    cv2.imshow('img', img[::4,::4])
+    cv2.waitKey()
     DyIMG.closeSever()
     # server.close()
     ioloop.IOLoop.instance().stop()

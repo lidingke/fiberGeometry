@@ -183,10 +183,12 @@ class ModelCV(Thread, QObject):
             minRange, maxRange = SETTING()["coreRange"]
             green = sliceImg(img[::, ::, 1], (corex, corey), maxRange)
             blue = sliceImg(img[::, ::, 2], (corex, corey), maxRange)
+            self.allblue = img[::,::,2].sum()/255
+            self.allgreen = img[::,::,1].sum()/255
             self.green = green.sum() / 2550
-            self.blue = blue.sum() / 2550
+            self.blue = blue.sum() / 255
             self.pdfparameter['lightindex'] = "%0.2f"%self.green
-            self.returnGreen.emit("%0.2f,%0.2f"%(self.green,self.blue))
+            self.returnGreen.emit("%0.2f,%0.2f,%0.2f"%(self.blue,self.allblue, self.allgreen))
 
     def fiberTypeMethod(self, key):
         SETTING().keyUpdates(key)
