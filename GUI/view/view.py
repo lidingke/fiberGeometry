@@ -2,6 +2,7 @@
 from setting.orderset import SETTING
 import cv2
 from GUI.UI.mainUI import Ui_MainWindow
+import logging
 fibertype = SETTING().get("fiberType", "G652")
 if fibertype == "octagon":
     from GUI.UI.mainocUI import Ui_MainWindow as new_MainWindow
@@ -17,7 +18,7 @@ from PyQt4.QtCore import QRect, Qt
 from PyQt4.QtGui import QWidget, QMainWindow, QPainter, QFont,\
     QPixmap, QImage, QColor, QFileDialog, QMessageBox, QPalette
 import numpy as np
-from util.load import WriteReadJson
+from util.load import WriteReadJson, WRpickle
 from datetime import datetime
 
 class View(QMainWindow, new_MainWindow):
@@ -33,6 +34,8 @@ class View(QMainWindow, new_MainWindow):
         # self.reporterCV.clicked.connect(self.writeReporterCV)
         self._tempMedianIndex()
         self.isMaxSharp = MaxSharp()
+        logging.basicConfig(filename="setting\\modelog.txt", filemode='a', level=logging.ERROR,
+                            format="%(asctime)s-%(levelname)s-%(funcName)s:%(message)s")
 
     def __initUI__(self):
         # items = ['G652']
@@ -45,8 +48,14 @@ class View(QMainWindow, new_MainWindow):
         self.initGUI()
 
     def _initItems(self):
-        wrJson = WriteReadJson("setting\\userdata.json")
-        types = wrJson.load().get("fiberTypes")
+        # wrJson = WriteReadJson("setting\\userdata.json")
+        wrp = WRpickle("setting\\userdata.pickle")
+        try:
+            load = wrp.loadPick()
+        except IOError:
+            wrJson = WriteReadJson("setting\\userdata.json")
+            load = wrJson.load()
+        types = load.get("fiberTypes")
         self.fiberTypeBox.addItems(types)
 
     def updatePixmap(self, arr, sharp):
@@ -83,7 +92,8 @@ class View(QMainWindow, new_MainWindow):
     # def attenuationGetThread(self, length):
 
     def updateCVShow(self,str_):
-        self.resultShowCV.setText(str_)
+        if str_:
+            self.resultShowCV.setText(str_)
         self._disableCVButton(True)
 
     def _disableCVButton(self, bool = False):
@@ -133,8 +143,9 @@ class View(QMainWindow, new_MainWindow):
         if hasattr(self, "coreMedianIndex"):
             self.coreMedianIndex.valueChanged.connect(changeCoreIndex)
 
-    def getCoreLight(self, green):
-        self.coreLight.setText(green)
+    def getCoreLight(self, coreLight, cladLight):
+        self.coreLight.setText(coreLight)
+        self.cladLight.setText(cladLight)
 
 
 class CVPainterWidget(QWidget):

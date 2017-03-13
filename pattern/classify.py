@@ -139,22 +139,24 @@ class OctagonClassify(MetaClassify):
 
         coreimg, cladimg = self._difcore(img)
 
+
         sets = SETTING()
         if 'thresholdSize' in sets.keys():
             hight = sets['thresholdSize'].get("core")
 
             coreimg = ExtractEdge().directThr(coreimg,hight)
+
         else:
             coreimg = ExtractEdge().directThr(coreimg)
         # coreimg = ExtractEdge().run(coreimg)
         cladimg = ExtractEdge().run(cladimg)
         # cv2.imshow('core', coreimg[::4, ::4])
         # cv2.waitKey()
-        # cv2.imshow('core', cladimg[::4, ::4])
+        # cv2.imshow('clad', cladimg[::4, ::4])
         # cv2.waitKey()
         coreResult = PickCircle().run(coreimg)
         cladResult = PickOctagon().run(cladimg)
-        print 'start octagon test', cladResult.keys()
+        print 'start octagon test', cladResult.keys(), cladResult['ellipese']
         self.result['core'] = coreResult['ellipese']
         self.result['coreResult'] = coreResult
         self.result['clad'] = cladResult['ellipese']
@@ -224,6 +226,7 @@ class DoubleCircleClassify(MetaClassify):
             coreimg = ExtractEdge().directThr(coreimg)
         # coreimg = ExtractEdge().run(coreimg)
         cladimg = ExtractEdge().run(cladimg)
+
         # if 'thresholdSize' in sets.keys():
         #     hight = sets['thresholdSize'].get("clad",40)
         #
@@ -235,7 +238,9 @@ class DoubleCircleClassify(MetaClassify):
         # cv2.waitKey()
 
         coreResult = PickCircle().run(coreimg)
+        # print 'get diff'
         cladResult = PickCircle().run(cladimg)
+
         print 'amp',self.SET['ampPixSize'], self.SET['fiberType']
         self.result['core'] = coreResult['ellipese']
         self.result['coreResult'] = coreResult

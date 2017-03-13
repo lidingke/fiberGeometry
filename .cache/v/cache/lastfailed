@@ -1,1 +1,3 @@
-{}
+{
+  "tests/test_img_server.py::test_img_get": true
+}

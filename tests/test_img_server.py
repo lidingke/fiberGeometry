@@ -22,20 +22,24 @@ def Server():
 
 
 
-def test_img_get():
+def ntest_img_get():
     # multiprocessing.Process(target=server).start()
     Thread(target = Server).start()
     time.sleep(1)
     DyIMG = DynamicGetRawImgTest(5110)
+    print time.time()
     img = DyIMG.get()
+    print time.time()
     assert img.shape == (1944, 2592, 3)
     assert img.dtype == 'uint8'
     kwargs = {'function' : 'getImage', 'para' : """\'IMG/midoc.BMP\'"""}
-    DyIMG.changeImgFunction(kwargs)
-
-    img = DyIMG.get()
-    cv2.imshow('img', img[::4,::4])
-    cv2.waitKey()
+    # DyIMG.changeImgFunction(kwargs)
+    # print time.time()
+    # img = DyIMG.get()
+    # print time.time()
+    # DyIMG.getBigImg()
+    # cv2.imshow('img', img[::4,::4])
+    # cv2.waitKey()
     DyIMG.closeSever()
     # server.close()
     ioloop.IOLoop.instance().stop()
@@ -43,3 +47,18 @@ def test_img_get():
     #
     # cv2.imshow('img', img[::4,::4])
     # cv2.waitKey()
+
+def test_getImgOnce():
+    Thread(target = Server).start()
+    # time.sleep(1)
+    DyIMG = DynamicGetRawImgTest(5110)
+    def getImg(img):
+        print 'getImg def',img.shape
+    DyIMG.imgclient.returnImg.connect(getImg)
+    DyIMG.getImgOnce()
+
+
+    DyIMG.closeSever()
+    # server.close()
+    ioloop.IOLoop.instance().stop()
+    ioloop.IOLoop.instance().close()

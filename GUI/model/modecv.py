@@ -8,6 +8,7 @@ import numpy as np
 from PyQt4.QtCore import QObject, pyqtSignal
 
 from setting.orderset import SETTING
+from pattern.exception import ClassCoreError, ClassOctagonError
 
 Set = SETTING('octagon')
 setGet = Set.get('ifcamera', False)
@@ -16,8 +17,8 @@ print 'fibertype',fiberType,'setget', setGet
 if setGet:
     from SDK.mdpy import GetRawImg
 else:
-    from SDK.mdpy import DynamicGetRawImgTest as GetRawImg
-    # from SDK.mdpy import GetRawImgTest as GetRawImg
+    # from SDK.mdpy import DynamicGetRawImgTest as GetRawImg
+    from SDK.mdpy import GetRawImgTest as GetRawImg
     print 'script don\'t open camera'
 
 from pattern.edge import ExtractEdge
@@ -32,6 +33,7 @@ import logging
 from util.timing import timing
 from util.filter import AvgResult
 from util.loadimg import sliceImg
+import sys
 
 
 class ModelCV(Thread, QObject):
@@ -40,8 +42,7 @@ class ModelCV(Thread, QObject):
     returnATImg = pyqtSignal(object, object)
     resultShowCV = pyqtSignal(object)
     resultShowAT = pyqtSignal(object)
-    returnGreen = pyqtSignal(object)
-    # returnFiberResult = pyqtSignal(object)
+    returnCoreLight = pyqtSignal(object, object)
 
     def __init__(self, ):
         Thread.__init__(self)
@@ -82,6 +83,7 @@ class ModelCV(Thread, QObject):
 
 
     def mainCalculate(self):
+        #
         def _calcImg():
             try:
                 # img.tofile("tests\\data\\tests\\midimg{}.bin".format(str(int(time.time()))[-3:]))
@@ -90,11 +92,20 @@ class ModelCV(Thread, QObject):
                 while len(self.imgQueue) != 5:
                     time.sleep(0.1)
                 for img in list(self.imgQueue):
+
                     self.eresults = self.classify.find(img)
                     result = self.eresults["showResult"]
                     print 'get result', result
                     results.append(result)
                 self._emitCVShowResult(AvgResult(results))
+            except ClassCoreError as e:
+                print e,'class core error'
+                self.resultShowCV.emit('error')
+                return
+            except ValueError as e:
+                print e
+                self.resultShowCV.emit('error')
+                return
             except Exception as e:
                 logging.exception(e)
         Thread(target = _calcImg).start()
@@ -136,7 +147,7 @@ class ModelCV(Thread, QObject):
         waveMax = np.max(powers)
         waveMin = np.min(powers)
         waveAvg = np.average(powers)
-        print waveLimit, waveMax, waveMin, waveAvg
+        # print waveLimit, waveMax, waveMin, waveAvg
         text = [
             u'''波长范围：    {}\n'''.format('%0.2f' % waveLimit),
             u'''最大值：      {}\n'''.format('%0.2f' % waveMax),
@@ -161,6 +172,10 @@ class ModelCV(Thread, QObject):
             'concentricity': '%0.2f'%result[0],
             'fibertype':SETTING()["fiberType"],
             'sharpindex': sharp}
+            if None in result:
+                for i,v in enumerate(result):
+                    if not v:
+                        result[i] = '-1'
 
             self.pdfparameter.update(para)
 
@@ -170,12 +185,16 @@ class ModelCV(Thread, QObject):
                 u'''包层直径：    {}\n'''.format('%0.2f'%result[2]),
                 u'''纤芯不圆度：  {}\n'''.format('%0.2f'%result[3]),
                 u'''包层不圆度：  {}\n'''.format('%0.2f'%result[4]),
-                u'''芯包同心度：  {}'''.format('%0.2f'%result[0])
-                ]
+                u'''芯包同心度：  {}'''.format('%0.2f'%result[0])]
 
             text = u''.join(text)
+            logging.exception(text)
+
             self.resultShowCV.emit(text)
-            print 'emit result', text
+            sys.stdout.flush()
+        else:
+            self.resultShowCV.emit('error')
+            # print 'emit result', text
             # time.sleep(0.01)
             # self.resultShowCV.emit(text)
 
@@ -190,8 +209,10 @@ class ModelCV(Thread, QObject):
             self.green = green.sum() / 255
             self.blue = blue.sum() / 255
             self.allgreen = img[::, ::, 1].sum() / 255 - self.green
-            self.pdfparameter['lightindex'] = "%0.2f"%self.green
-            self.returnGreen.emit("%0.2f,%0.2f,%0.2f"%(self.blue,self.allgreen,self.allblue ))
+            self.pdfparameter['corelight'] = "%0.2f"%self.blue
+            self.pdfparameter['cladlight'] = "%0.2f" % self.allgreen
+            self.returnCoreLight.emit("%0.2f" % (self.blue), "%0.2f" % (self.allgreen))
+            # self.returnCladLight.emit()
 
     def fiberTypeMethod(self, key):
         SETTING().keyUpdates(key)

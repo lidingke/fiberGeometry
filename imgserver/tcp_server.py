@@ -33,13 +33,15 @@ class MyServer(TCPServer):
 
 
 class TCPConnection(object):
+
+    METHOD_PARA = {'function': 'randomImg', 'para': """\'IMG/G652/pk/\'"""}
+
     def __init__(self, stream, address, io_loop):
         self.io_loop = io_loop
         self.stream = stream
         self.address = address
         self.address_family = stream.socket.family
         self.EOF = '\n\r'
-        self.methodpara = {'function' : 'randomImg', 'para' : """\'IMG/G652/pk/\'"""}
         self._clear_request_state()
         self._message_callback = stack_context.wrap(self._on_message)
         self.stream.set_close_callback(self._on_connection_close)
@@ -64,17 +66,32 @@ class TCPConnection(object):
         data = data.strip()
         if data == 'getimg' :
             self._getImg()
+        elif data == 'getbigimg':
+            self._getBigImg()
+        elif data == 'getimgonce':
+            self._getImgOnce()
         elif data[:7] == 'change:':
-            self.methodpara = json.loads(data[7:])
-            print 'get change', self.methodpara
+            self.METHOD_PARA = json.loads(data[7:])
+            print 'get change', self.METHOD_PARA
         elif data == 'close':
             logging.info("close img sever")
             self.close()
             # self.io_loop.add_timeout(self.io_loop.time() + timeout, self._on_timeout)
 
+    def _getImgOnce(self):
+        img = randomImg("IMG\\G652\\pk\\")
+        img = img.tobytes() + b'\n\r'
+        print 'write img'
+        self.write(img)
+
+    def _getBigImg(self):
+        img = randomImg("IMG\\G652\\pk\\")
+        img = img.tobytes()
+        self.write(img)
+
     def _getImg(self):
-        img = self._getImgMethod(**self.methodpara)
-        print 'getImg', self.methodpara
+        img = self._getImgMethod(**self.METHOD_PARA)
+        print 'getImg', self.METHOD_PARA
         if isinstance(img, str):
             cmd = 'funnotfd'
             self.write(cmd)
@@ -85,7 +102,7 @@ class TCPConnection(object):
 
     def _writeimg(self,img):
         shape = img.shape
-        img = img.tostring()
+        img = img.tobytes()
         slicesize = shape[0]
         times = len(img)//slicesize
         emit = {'imgshape':shape,

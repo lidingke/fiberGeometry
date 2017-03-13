@@ -121,3 +121,478 @@ Traceback (most recent call last):
   File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
     raise ClassCoreError
 ClassCoreError
+2017-03-08 20:04:21,648-ERROR-_calcImg:'ascii' codec can't encode characters in position 0-5: ordinal not in range(128)
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 179, in _emitCVShowResult
+    print 'emit result', text
+UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-5: ordinal not in range(128)
+2017-03-08 20:04:29,055-ERROR-_calcImg:'ascii' codec can't encode characters in position 0-5: ordinal not in range(128)
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 179, in _emitCVShowResult
+    print 'emit result', text
+UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-5: ordinal not in range(128)
+2017-03-08 21:25:46,581-ERROR-_emitCVShowResult:清晰度指数：  12.13
+纤芯直径：    211.11
+包层直径：    287.65
+纤芯不圆度：  0.44
+包层不圆度：  0.55
+芯包同心度：  10.07
+None
+2017-03-08 21:29:06,744-ERROR-_emitCVShowResult:清晰度指数：  12.37
+纤芯直径：    77.07
+包层直径：    103.53
+纤芯不圆度：  0.15
+包层不圆度：  0.00
+芯包同心度：  5.81
+None
+2017-03-08 21:33:55,759-ERROR-_emitCVShowResult:清晰度指数：  12.08
+纤芯直径：    77.06
+包层直径：    103.53
+纤芯不圆度：  0.16
+包层不圆度：  0.06
+芯包同心度：  6.03
+None
+2017-03-08 21:34:08,036-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 96, in _calcImg
+    print 'get result', result
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:35:18,940-ERROR-_emitCVShowResult:清晰度指数：  11.98
+纤芯直径：    77.06
+包层直径：    103.55
+纤芯不圆度：  0.15
+包层不圆度：  0.14
+芯包同心度：  6.08
+None
+2017-03-08 21:35:26,786-ERROR-_emitCVShowResult:清晰度指数：  11.98
+纤芯直径：    77.07
+包层直径：    103.54
+纤芯不圆度：  0.17
+包层不圆度：  0.07
+芯包同心度：  6.02
+None
+2017-03-08 21:35:33,391-ERROR-_emitCVShowResult:清晰度指数：  12.13
+纤芯直径：    77.07
+包层直径：    103.52
+纤芯不圆度：  0.10
+包层不圆度：  0.00
+芯包同心度：  5.72
+None
+2017-03-08 21:39:19,161-ERROR-_emitCVShowResult:清晰度指数：  11.98
+纤芯直径：    77.05
+包层直径：    103.52
+纤芯不圆度：  0.18
+包层不圆度：  0.00
+芯包同心度：  5.74
+None
+2017-03-08 21:39:27,332-ERROR-_emitCVShowResult:清晰度指数：  12.69
+纤芯直径：    77.08
+包层直径：    103.52
+纤芯不圆度：  0.12
+包层不圆度：  0.00
+芯包同心度：  5.95
+None
+2017-03-08 21:40:44,982-ERROR-_emitCVShowResult:清晰度指数：  12.11
+纤芯直径：    77.03
+包层直径：    103.52
+纤芯不圆度：  0.09
+包层不圆度：  0.00
+芯包同心度：  5.61
+None
+2017-03-08 21:40:44,983-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:40:52,391-ERROR-_emitCVShowResult:清晰度指数：  12.44
+纤芯直径：    77.05
+包层直径：    103.52
+纤芯不圆度：  0.13
+包层不圆度：  0.00
+芯包同心度：  5.55
+None
+2017-03-08 21:40:52,391-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:40:59,176-ERROR-_emitCVShowResult:清晰度指数：  13.24
+纤芯直径：    77.09
+包层直径：    103.53
+纤芯不圆度：  0.11
+包层不圆度：  0.05
+芯包同心度：  5.68
+None
+2017-03-08 21:40:59,176-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:41:06,543-ERROR-_emitCVShowResult:清晰度指数：  12.44
+纤芯直径：    77.08
+包层直径：    103.54
+纤芯不圆度：  0.10
+包层不圆度：  0.10
+芯包同心度：  6.08
+None
+2017-03-08 21:41:06,543-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:41:16,654-ERROR-_emitCVShowResult:清晰度指数：  14.35
+纤芯直径：    77.07
+包层直径：    103.55
+纤芯不圆度：  0.12
+包层不圆度：  0.16
+芯包同心度：  6.12
+None
+2017-03-08 21:41:16,655-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:41:26,907-ERROR-_emitCVShowResult:清晰度指数：  12.69
+纤芯直径：    77.05
+包层直径：    103.54
+纤芯不圆度：  0.20
+包层不圆度：  0.08
+芯包同心度：  5.93
+None
+2017-03-08 21:41:26,907-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:41:40,407-ERROR-_emitCVShowResult:清晰度指数：  13.06
+纤芯直径：    77.04
+包层直径：    103.53
+纤芯不圆度：  0.13
+包层不圆度：  0.01
+芯包同心度：  5.91
+None
+2017-03-08 21:41:40,407-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:41:52,994-ERROR-_emitCVShowResult:清晰度指数：  11.98
+纤芯直径：    77.04
+包层直径：    103.53
+纤芯不圆度：  0.09
+包层不圆度：  0.02
+芯包同心度：  6.00
+None
+2017-03-08 21:41:52,994-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:42:00,730-ERROR-_emitCVShowResult:清晰度指数：  12.08
+纤芯直径：    77.06
+包层直径：    103.52
+纤芯不圆度：  0.15
+包层不圆度：  0.00
+芯包同心度：  5.87
+None
+2017-03-08 21:42:00,730-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:47:08,759-ERROR-_emitCVShowResult:清晰度指数：  12.69
+纤芯直径：    77.05
+包层直径：    103.53
+纤芯不圆度：  0.13
+包层不圆度：  0.05
+芯包同心度：  5.84
+None
+2017-03-08 21:47:08,762-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:47:16,618-ERROR-_emitCVShowResult:清晰度指数：  11.98
+纤芯直径：    77.05
+包层直径：    103.52
+纤芯不圆度：  0.16
+包层不圆度：  0.00
+芯包同心度：  5.58
+None
+2017-03-08 21:47:16,618-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:47:23,494-ERROR-_emitCVShowResult:清晰度指数：  11.87
+纤芯直径：    77.06
+包层直径：    103.53
+纤芯不圆度：  0.19
+包层不圆度：  0.07
+芯包同心度：  6.00
+None
+2017-03-08 21:47:23,494-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:47:32,470-ERROR-_emitCVShowResult:清晰度指数：  14.35
+纤芯直径：    77.07
+包层直径：    103.53
+纤芯不圆度：  0.12
+包层不圆度：  0.01
+芯包同心度：  5.84
+None
+2017-03-08 21:47:32,470-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:47:41,382-ERROR-_emitCVShowResult:清晰度指数：  12.11
+纤芯直径：    77.09
+包层直径：    103.52
+纤芯不圆度：  0.10
+包层不圆度：  0.00
+芯包同心度：  5.79
+None
+2017-03-08 21:47:41,382-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:47:48,742-ERROR-_emitCVShowResult:清晰度指数：  12.44
+纤芯直径：    77.03
+包层直径：    103.54
+纤芯不圆度：  0.12
+包层不圆度：  0.08
+芯包同心度：  6.05
+None
+2017-03-08 21:47:48,742-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:47:56,596-ERROR-_emitCVShowResult:清晰度指数：  12.10
+纤芯直径：    77.06
+包层直径：    103.53
+纤芯不圆度：  0.12
+包层不圆度：  0.05
+芯包同心度：  5.93
+None
+2017-03-08 21:47:56,596-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:48:16,759-ERROR-_emitCVShowResult:清晰度指数：  13.24
+纤芯直径：    77.06
+包层直径：    103.53
+纤芯不圆度：  0.15
+包层不圆度：  0.00
+芯包同心度：  5.89
+None
+2017-03-08 21:48:16,759-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:48:57,071-ERROR-_emitCVShowResult:清晰度指数：  13.24
+纤芯直径：    77.06
+包层直径：    103.53
+纤芯不圆度：  0.14
+包层不圆度：  0.07
+芯包同心度：  6.01
+None
+2017-03-08 21:48:57,071-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:50:40,174-ERROR-_emitCVShowResult:清晰度指数：  12.37
+纤芯直径：    77.08
+包层直径：    103.53
+纤芯不圆度：  0.12
+包层不圆度：  0.05
+芯包同心度：  6.02
+None
+2017-03-08 21:50:40,174-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:53:59,467-ERROR-_emitCVShowResult:清晰度指数：  11.98
+纤芯直径：    77.04
+包层直径：    103.53
+纤芯不圆度：  0.13
+包层不圆度：  0.06
+芯包同心度：  5.69
+None
+2017-03-08 21:53:59,467-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:54:06,586-ERROR-_emitCVShowResult:清晰度指数：  11.87
+纤芯直径：    77.04
+包层直径：    103.55
+纤芯不圆度：  0.17
+包层不圆度：  0.14
+芯包同心度：  6.00
+None
+2017-03-08 21:54:06,586-ERROR-_calcImg:[Errno 9] Bad file descriptor
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 98, in _calcImg
+    self._emitCVShowResult(AvgResult(results))
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 184, in _emitCVShowResult
+    sys.stdout.flush()
+IOError: [Errno 9] Bad file descriptor
+2017-03-08 21:59:43,456-ERROR-_calcImg:
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 94, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 237, in find
+    coreResult = PickCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
+    raise ClassCoreError
+ClassCoreError
+2017-03-08 22:02:28,382-ERROR-_calcImg:
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 94, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 237, in find
+    coreResult = PickCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
+    raise ClassCoreError
+ClassCoreError
+2017-03-08 22:03:11,095-ERROR-_calcImg:
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 94, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 237, in find
+    coreResult = PickCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
+    raise ClassCoreError
+ClassCoreError
+2017-03-08 22:04:08,447-ERROR-_calcImg:
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 94, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 239, in find
+    coreResult = PickCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
+    raise ClassCoreError
+ClassCoreError
+2017-03-08 22:04:33,088-ERROR-_calcImg:
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 94, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 239, in find
+    coreResult = PickCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
+    raise ClassCoreError
+ClassCoreError
+2017-03-08 22:04:56,084-ERROR-_calcImg:
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 94, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 239, in find
+    coreResult = PickCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
+    raise ClassCoreError
+ClassCoreError
+2017-03-08 22:05:16,612-ERROR-_calcImg:
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 94, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 239, in find
+    coreResult = PickCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
+    raise ClassCoreError
+ClassCoreError
+2017-03-08 22:06:07,209-ERROR-_calcImg:
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 95, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 239, in find
+    coreResult = PickCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
+    raise ClassCoreError
+ClassCoreError
+2017-03-08 22:07:05,216-ERROR-_calcImg:
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 95, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 240, in find
+    coreResult = PickCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
+    raise ClassCoreError
+ClassCoreError
+2017-03-08 22:07:25,355-ERROR-_calcImg:
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 95, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 240, in find
+    coreResult = PickCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
+    raise ClassCoreError
+ClassCoreError
+2017-03-08 22:07:49,463-ERROR-_calcImg:
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modecv.py", line 95, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 240, in find
+    coreResult = PickCircle().run(coreimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 29, in run
+    raise ClassCoreError
+ClassCoreError
+2017-03-09 11:33:20,572-ERROR-_emitCVShowResult:清晰度指数：  3.44
+纤芯直径：    8.97
+包层直径：    124.39
+纤芯不圆度：  0.03
+包层不圆度：  0.76
+芯包同心度：  0.29
+None

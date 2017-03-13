@@ -132,11 +132,11 @@ class PickOctagon(object):
         # print 'get blur index ', blurindex
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         tempPlots = np.ones(img.shape) * 255
-
+        print 'get contours len', len(contours)
         for contour in contours:
             cv2.drawContours(tempPlots, contour, -1, (0, 0, 255))
-        for contour in contours:
-            cv2.drawContours(tempPlots, contour, -1, (0, 0, 255))
+        # for contour in contours:
+        #     cv2.drawContours(tempPlots, contour, -1, (0, 0, 255))
         if len(contours) == 0:
             raise ClassCoreError
         elif len(contours) == 1:

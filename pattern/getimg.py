@@ -4,6 +4,7 @@ from random import choice
 import pdb
 import numpy as np
 from pattern.meta import CV2MethodSet
+import sys
 
 class GetImage(CV2MethodSet):
     """docstring for GetImage"""
@@ -44,11 +45,13 @@ class GetImage(CV2MethodSet):
     def _getColorImg(self,colour = 'colour'):
         if not self.colour:
             self.colour = colour
-            print '_get img colour', self.colour, self.suffix
+            # print '_get img colour', self.colour, self.suffix
+            # sys.stdout.flush()
         if self.colour in self.GRAY:
             self.img = cv2.cvtColor(self.img, cv2.COLOR_RGB2GRAY)
         elif (self.colour in self.COLOR) and self.suffix.upper() == 'BMP':
-            print 'get bgr 2 rbg'
+            # print 'get bgr 2 rbg'
+            # sys.stdout.flush()
             self.img = cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB)
         else:
             pass

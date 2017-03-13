@@ -40,8 +40,8 @@ def test_updateSets_Exception():
 
 def test_updatekeys():
     s = SETTING()
-    s.keyUpdates('20400')
-    assert s.get('fiberType') == "20400"
+    s.keyUpdates('20/400')
+    assert s.get('fiberType') == "20/400"
     s.keyUpdates('octagon')
     assert s.get('fiberType') == "octagon"
     s.keyUpdates('G652')

@@ -48,19 +48,23 @@ class ImgClient(QObject):
 
     def send_message(self):
         logging.info("Send message 1....")
-        self.stream.write(b"cmd:getimg" + self.EOF)
+        self.stream.write("getimgonce" + self.EOF)
         self.stream.read_until(self.EOF, self.on_receive)
+
         logging.info("After send 1....")
 
     def on_receive(self, data):
         assert isinstance(data, str)
         if data[-2:] == self.EOF:
             data = data[:-2]
-        img = np.fromstring(data, dtype=np.uint8)
+        img = np.frombuffer(data, dtype=np.uint8)
         print 'getimg size', img.shape
         if img.shape[0] == 15116544:
             img.shape = (1944, 2592, 3)
         self.returnImg.emit(img)
+
+        # cv2.imshow('img', img)
+        # cv2.waitKey()
             # self.imgs.append(img)
 
     def set_shutdown(self):

@@ -2,7 +2,7 @@ from collections import OrderedDict
 import json
 import pdb
 import traceback
-import sys
+import sys, os
 from util.load import  MetaDict, WriteReadJson, WRpickle
 
 
@@ -14,6 +14,10 @@ def singleton(class_):
                 raise ValueError('singleton line')
             except Exception:
                 print 'trace', sys._getframe(1).f_code
+        if "nostdout" in args:
+            os.system("del setting\\abc.txt")
+            sys.stdout = open('setting\\abc.txt', 'w')
+
         if class_ not in instance:
             instance[class_] = class_(*args,**kwargs)
             print 'singleton id', id(instance[class_]), len(instance)

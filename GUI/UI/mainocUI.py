@@ -79,7 +79,7 @@ class Ui_MainWindow(object):
         self.resultShowCV.setMinimumSize(QtCore.QSize(50, 90))
         self.resultShowCV.setObjectName(_fromUtf8("resultShowCV"))
         self.layoutWidget1 = QtGui.QWidget(self.centralwidget)
-        self.layoutWidget1.setGeometry(QtCore.QRect(1320, 350, 201, 222))
+        self.layoutWidget1.setGeometry(QtCore.QRect(1320, 380, 201, 222))
         self.layoutWidget1.setObjectName(_fromUtf8("layoutWidget1"))
         self.inputLayout = QtGui.QGridLayout(self.layoutWidget1)
         self.inputLayout.setObjectName(_fromUtf8("inputLayout"))
@@ -140,7 +140,7 @@ class Ui_MainWindow(object):
         self.coreMedian.setGeometry(QtCore.QRect(1600, 100, 72, 16))
         self.coreMedian.setObjectName(_fromUtf8("coreMedian"))
         self.widget = QtGui.QWidget(self.centralwidget)
-        self.widget.setGeometry(QtCore.QRect(1320, 280, 191, 61))
+        self.widget.setGeometry(QtCore.QRect(1321, 282, 191, 91))
         self.widget.setObjectName(_fromUtf8("widget"))
         self.gridLayout = QtGui.QGridLayout(self.widget)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
@@ -156,6 +156,12 @@ class Ui_MainWindow(object):
         self.coreLight = QtGui.QLabel(self.widget)
         self.coreLight.setObjectName(_fromUtf8("coreLight"))
         self.gridLayout.addWidget(self.coreLight, 1, 1, 1, 1)
+        self.label_3 = QtGui.QLabel(self.widget)
+        self.label_3.setObjectName(_fromUtf8("label_3"))
+        self.gridLayout.addWidget(self.label_3, 2, 0, 1, 1)
+        self.cladLight = QtGui.QLabel(self.widget)
+        self.cladLight.setObjectName(_fromUtf8("cladLight"))
+        self.gridLayout.addWidget(self.cladLight, 2, 1, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1533, 23))
@@ -169,7 +175,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(_translate("MainWindow", "八边形几何测试平台", None))
+        MainWindow.setWindowTitle(_translate("MainWindow", "有源光纤几何测试平台", None))
         self.reporterCV.setText(_translate("MainWindow", "输出报告", None))
         self.beginTestCV.setText(_translate("MainWindow", "开始测试", None))
         self.labelCV.setText(_translate("MainWindow", "几何：", None))
@@ -190,13 +196,13 @@ class Ui_MainWindow(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'SimSun\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">清晰度指数：</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">纤芯直径：</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">包层直径：</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">纤芯直径(um)：</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">包层直径(um)：</p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">纤芯不圆度：</p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">包层不圆度：</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">芯包同心度：</p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">芯包同心度(um)：</p></body></html>", None))
         self.labelFiberType.setText(_translate("MainWindow", "光纤规格：", None))
-        self.labelLength.setText(_translate("MainWindow", "光纤长度(km)：", None))
+        self.labelLength.setText(_translate("MainWindow", "光纤长度(m)：", None))
         self.labelFactory.setText(_translate("MainWindow", "生产厂家：", None))
         self.labelWorker.setText(_translate("MainWindow", "操作人员：", None))
         self.labelFiberNumber.setText(_translate("MainWindow", "光纤编号：", None))
@@ -209,6 +215,8 @@ class Ui_MainWindow(object):
         self.coreMedian.setText(_translate("MainWindow", "纤芯滤波值：", None))
         self.label_2.setText(_translate("MainWindow", "清晰度：", None))
         self.dynamicSharp.setText(_translate("MainWindow", "0.0", None))
-        self.label.setText(_translate("MainWindow", "纤芯亮度：", None))
+        self.label.setText(_translate("MainWindow", "纤芯饱和度：", None))
         self.coreLight.setText(_translate("MainWindow", "0.0", None))
+        self.label_3.setText(_translate("MainWindow", "包层饱和度：", None))
+        self.cladLight.setText(_translate("MainWindow", "0.0", None))
 

@@ -27,7 +27,8 @@ originHTML =  '''
     </p>
     <h2 id="_3">测 试 参 数</h2>
     <p>清 晰 度 指 数：{sharpindex}
-        <br /> 纤 芯 亮 度 指数：{lightindex}
+        <br /> 纤 芯 饱 和 度 指数：{corelight}
+        <br /> 包 层 饱 和 度 指数：{cladlight}
         <br /></p>
 </body>
 </html>'''
@@ -47,7 +48,8 @@ htmlpara = {
     'cladroundness': '',
     'concentricity': '',
     'sharpindex': '',
-    'lightindex': '',
+    'corelight': '',
+    'cladlight': '',
     'date': '',
     'fiberLength': '',
     'mystyle':mystyle

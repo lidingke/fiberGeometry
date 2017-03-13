@@ -12,8 +12,11 @@ import json
 #     except WindowsError:
 #         import MindPy as mdp
 from setting.orderset import SETTING
+from PyQt4.QtCore import QObject
 import SDK.MindPy as mdp
 import socket
+import tornado
+from imgserver.tcp_client import ImgClient
 
 class GetRawImg(object):
     """docstring for getRawImg"""
@@ -62,7 +65,7 @@ def getSerialNumber():
     mdp.getCameraSerial()
 
 
-class DynamicGetRawImgTest(GetRawImg):
+class DynamicGetRawImgTest(GetRawImg, QObject):
     """docstring for getRawImg"""
     def __init__(self, port = 5110):
         # super(GetRawImgTest, self).__init__()
@@ -70,9 +73,17 @@ class DynamicGetRawImgTest(GetRawImg):
         import socket
         self.EOF = '\n\r'
         self.port = port
-
         self.host = 'localhost'
+        io_loop = tornado.ioloop.IOLoop.instance()
+        self.imgclient = ImgClient(self.host, self.port, io_loop)
 
+
+    def getBigImg(self):
+        self.ser = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.ser.connect((self.host, self.port))
+        self.ser.sendall("getbigimg\n\r")
+        img = self.ser.recv(15116544)
+        print len(img)
 
     def get(self):
         self.ser = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -86,14 +97,23 @@ class DynamicGetRawImgTest(GetRawImg):
         times = jsonget['imgtimes']
         slicesize = jsonget['slicesize']
         imgs = []
+        print time.time()
         for i in range(0,times):
-            imgs.append(self.ser.recv(slicesize))
-        imgs = ''.join(imgs)
-        img = np.fromstring(imgs,dtype='uint8')
+            recved = self.ser.recv(slicesize)
+            # assert slicesize == len(recved)
+            print 'recv', len(recved)
+            imgs.append(recved)
+        imgs = b''.join(imgs)
+        img = np.frombuffer(imgs,dtype='uint8')
         if img.shape[0] == 15116544:
             img.shape = (1944, 2592, 3)
         print img.shape
         return img
+
+    def getImgOnce(self):
+        self.imgclient.get_img()
+        # io_loop.start()
+
 
     def changeImgFunction(self,kwargs):
         self.ser = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -119,6 +139,8 @@ class GetRawImgTest(GetRawImg):
 
     def get(self):
         img = randomImg("IMG\\G652\\pk\\")
+        # img = randomImg("IMG\\105125\\OC\\")
+        # img = randomImg("IMG\\10130\\nonecore\\")
         return img
 
     def unInitCamera(self):
