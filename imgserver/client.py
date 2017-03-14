@@ -23,6 +23,9 @@ def send_message():
     rawdata = np.fromstring(data.strip(), dtype=np.uint8)
     # rawdata =
     print("Response from server:", len(rawdata))
+    # getresult = rawdata
+    raise gen.Return(("rawdata"))
+    # yield rawdata
     # rawdata.shape = (1944, 2592, 3)
     # cv2.imshow('img', rawdata[::4,::4])
     # cv2.waitKey()
@@ -43,10 +46,13 @@ def close_server():
     stream = yield TCPClient().connect("localhost", port)
     yield stream.write(("close" + "\n\r").encode())
 
-
+# @gen.coroutine
 def clientmain():
 #     options.parse_command_line()
-    IOLoop.current().run_sync(send_message)
+#     getresult=False
+    result = IOLoop.current().run_sync(send_message)
+    # print(getresult)
+    print('get result',result)
     IOLoop.current().run_sync(get_change)
     IOLoop.current().run_sync(send_message)
     # IOLoop.current().run_sync(close_server)

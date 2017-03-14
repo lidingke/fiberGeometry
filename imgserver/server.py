@@ -82,10 +82,10 @@ class ImgServer(TCPServer):
             return getImage(para)
 
     def _close(self, stream):
-        stream.close()
+        # stream.close()
         self.IS_RUNNING = False
-        self.io_loop.stop()
-        self.io_loop.close()
+        # self.io_loop.stop()
+        # self.io_loop.close()
 
 
 def servermain():
