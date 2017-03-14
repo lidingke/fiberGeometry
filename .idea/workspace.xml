@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bfb64c9-d5b9-4173-a8c5-446b26e779e2" name="Default" comment="asynchronous server and client bugs">
+    <list default="true" id="0bfb64c9-d5b9-4173-a8c5-446b26e779e2" name="Default" comment="a right server">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/test_img_server2.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SDK/mdpy.py" afterPath="$PROJECT_DIR$/SDK/mdpy.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imgserver/tcp_client.py" afterPath="$PROJECT_DIR$/imgserver/tcp_client.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imgserver/tcp_server.py" afterPath="$PROJECT_DIR$/imgserver/tcp_server.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pattern/getimg.py" afterPath="$PROJECT_DIR$/pattern/getimg.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_img_server.py" afterPath="$PROJECT_DIR$/tests/test_img_server.py" />
     </list>
     <list id="9732f8de-254e-466a-a582-2b9002fc28a3" name="New changelist" comment="" />
@@ -90,11 +87,11 @@
           <splitter split-orientation="horizontal" split-proportion="0.48476562">
             <split-first>
               <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-                <file leaf-file-name="tcp_server.py" pinned="false" current-in-tab="true">
+                <file leaf-file-name="tcp_server.py" pinned="false" current-in-tab="false">
                   <entry file="file://$PROJECT_DIR$/imgserver/tcp_server.py">
                     <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="1152">
-                        <caret line="91" column="28" lean-forward="false" selection-start-line="91" selection-start-column="17" selection-end-line="91" selection-end-column="28" />
+                      <state relative-caret-position="2484">
+                        <caret line="80" column="42" lean-forward="false" selection-start-line="80" selection-start-column="42" selection-end-line="80" selection-end-column="42" />
                         <folding>
                           <element signature="e#49#92#0" expanded="true" />
                           <element signature="e#2864#2887#0" expanded="false" />
@@ -104,15 +101,27 @@
                     </provider>
                   </entry>
                 </file>
+                <file leaf-file-name="client.py" pinned="false" current-in-tab="true">
+                  <entry file="file://$PROJECT_DIR$/imgserver/client.py">
+                    <provider selected="true" editor-type-id="text-editor">
+                      <state relative-caret-position="1872">
+                        <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+                        <folding>
+                          <element signature="e#0#37#0" expanded="true" />
+                        </folding>
+                      </state>
+                    </provider>
+                  </entry>
+                </file>
               </leaf>
             </split-first>
             <split-second>
               <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-                <file leaf-file-name="tcp_client.py" pinned="false" current-in-tab="true">
+                <file leaf-file-name="tcp_client.py" pinned="false" current-in-tab="false">
                   <entry file="file://$PROJECT_DIR$/imgserver/tcp_client.py">
                     <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="1044">
-                        <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+                      <state relative-caret-position="2232">
+                        <caret line="71" column="25" lean-forward="false" selection-start-line="71" selection-start-column="25" selection-end-line="71" selection-end-column="25" />
                         <folding>
                           <element signature="e#49#92#0" expanded="true" />
                         </folding>
@@ -120,11 +129,33 @@
                     </provider>
                   </entry>
                 </file>
+                <file leaf-file-name="server.py" pinned="false" current-in-tab="true">
+                  <entry file="file://$PROJECT_DIR$/imgserver/server.py">
+                    <provider selected="true" editor-type-id="text-editor">
+                      <state relative-caret-position="2327">
+                        <caret line="87" column="27" lean-forward="false" selection-start-line="87" selection-start-column="27" selection-end-line="87" selection-end-column="27" />
+                        <folding>
+                          <element signature="e#0#14#0" expanded="true" />
+                        </folding>
+                      </state>
+                    </provider>
+                  </entry>
+                </file>
+                <file leaf-file-name="getimg.py" pinned="false" current-in-tab="false">
+                  <entry file="file://$PROJECT_DIR$/pattern/getimg.py">
+                    <provider selected="true" editor-type-id="text-editor">
+                      <state relative-caret-position="1260">
+                        <caret line="41" column="35" lean-forward="false" selection-start-line="41" selection-start-column="35" selection-end-line="41" selection-end-column="35" />
+                        <folding />
+                      </state>
+                    </provider>
+                  </entry>
+                </file>
                 <file leaf-file-name="mdpy.py" pinned="false" current-in-tab="false">
                   <entry file="file://$PROJECT_DIR$/SDK/mdpy.py">
                     <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="1247">
-                        <caret line="126" column="46" lean-forward="true" selection-start-line="126" selection-start-column="46" selection-end-line="126" selection-end-column="46" />
+                      <state relative-caret-position="3456">
+                        <caret line="126" column="8" lean-forward="false" selection-start-line="126" selection-start-column="8" selection-end-line="126" selection-end-column="46" />
                         <folding>
                           <element signature="e#0#10#0" expanded="true" />
                           <element signature="e#2092#2114#0" expanded="false" />
@@ -150,7 +181,7 @@
       <file leaf-file-name="modecv.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GUI/model/modecv.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
+            <state relative-caret-position="936">
               <caret line="35" column="10" lean-forward="false" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
               <folding />
             </state>
@@ -180,7 +211,7 @@
       <file leaf-file-name="pickmethod.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pattern/pickmethod.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1059">
+            <state relative-caret-position="4716">
               <caret line="141" column="25" lean-forward="false" selection-start-line="141" selection-start-column="25" selection-end-line="141" selection-end-column="25" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
@@ -189,13 +220,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_img_server.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/tests/test_img_server.py">
+      <file leaf-file-name="test_img_server2.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/test_img_server2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+            <state relative-caret-position="396">
+              <caret line="11" column="30" lean-forward="false" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
               <folding>
-                <element signature="e#24#50#0" expanded="true" />
+                <element signature="e#0#53#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -217,11 +248,13 @@
       <find>ImgClient</find>
       <find>methods</find>
       <find>close_server</find>
-      <find>_getImgMethod</find>
       <find>_writeimg</find>
       <find>object</find>
+      <find>portc</find>
       <find>IMG/G652</find>
       <find>returnImg</find>
+      <find>port</find>
+      <find>_getImgMethod</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -230,9 +263,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/tests/sets/test_set_double.py" />
-        <option value="$PROJECT_DIR$/tests/sets/test_set.py" />
-        <option value="$PROJECT_DIR$/util/loadimg.py" />
         <option value="$PROJECT_DIR$/report.html" />
         <option value="$PROJECT_DIR$/GUI/UI/mainocUI.py" />
         <option value="$PROJECT_DIR$/GUI/view/reporter.py" />
@@ -281,6 +311,9 @@
         <option value="$PROJECT_DIR$/SDK/mdpy.py" />
         <option value="$PROJECT_DIR$/imgserver/tcp_client.py" />
         <option value="$PROJECT_DIR$/tests/test_img_server.py" />
+        <option value="$PROJECT_DIR$/imgserver/server.py" />
+        <option value="$PROJECT_DIR$/tests/test_img_server2.py" />
+        <option value="$PROJECT_DIR$/imgserver/client.py" />
       </list>
     </option>
   </component>
@@ -333,8 +366,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -349,11 +380,13 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/imgserver/tcp_server.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/imgserver/client.py" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="prop_add_unversioned_files" value="true" />
   </component>
@@ -526,13 +559,13 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="C:\Anaconda3\envs\cv2\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/imgserver" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="cv" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/imgserver/tcp_server.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/imgserver/server.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -543,14 +576,14 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Program Files (x86)\Anaconda3\envs\Anaconda2\python.exe" />
+      <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="cv" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/imgserver/tcp_client.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/imgserver/client.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -627,7 +660,7 @@
       <option name="TEST_TYPE" value="TEST_SCRIPT" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
-      <option name="testToRun" value="D:\MyProjects\WorkProject\opencv4fiber\geomety\tests\test_img_server.py" />
+      <option name="testToRun" value="D:\MyProjects\WorkProject\opencv4fiber\geomety\tests\test_img_server2.py" />
       <option name="keywords" value="" />
       <option name="params" value="" />
       <option name="USE_PARAM" value="false" />
@@ -1082,38 +1115,45 @@
       <option name="project" value="LOCAL" />
       <updated>1489365736777</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="asynchronous server and client bugs">
+      <created>1489471584258</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1489471584258</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="test_server - 2017.03.14 at 13h 16m 47s.xml">
+    <history-entry file="test_server - 2017.03.14 at 15h 14m 54s.xml">
       <configuration name="test_server" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_server - 2017.03.14 at 13h 16m 53s.xml">
+    <history-entry file="test_server - 2017.03.14 at 15h 20m 43s.xml">
       <configuration name="test_server" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_server - 2017.03.14 at 13h 32m 33s.xml">
+    <history-entry file="test_server - 2017.03.14 at 15h 21m 47s.xml">
       <configuration name="test_server" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_server - 2017.03.14 at 13h 36m 47s.xml">
+    <history-entry file="test_server - 2017.03.14 at 15h 30m 37s.xml">
       <configuration name="test_server" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_server - 2017.03.14 at 13h 37m 45s.xml">
+    <history-entry file="test_server - 2017.03.14 at 15h 30m 42s.xml">
       <configuration name="test_server" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_server - 2017.03.14 at 13h 39m 15s.xml">
+    <history-entry file="test_server - 2017.03.14 at 15h 32m 10s.xml">
       <configuration name="test_server" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_server - 2017.03.14 at 13h 39m 44s.xml">
+    <history-entry file="test_server - 2017.03.14 at 19h 16m 00s.xml">
       <configuration name="test_server" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_server - 2017.03.14 at 13h 41m 27s.xml">
+    <history-entry file="test_server - 2017.03.14 at 19h 24m 47s.xml">
       <configuration name="test_server" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_server - 2017.03.14 at 13h 41m 43s.xml">
+    <history-entry file="test_server - 2017.03.14 at 19h 25m 11s.xml">
       <configuration name="test_server" configurationId="tests" />
     </history-entry>
-    <history-entry file="test_server - 2017.03.14 at 13h 49m 08s.xml">
+    <history-entry file="test_server - 2017.03.14 at 19h 25m 21s.xml">
       <configuration name="test_server" configurationId="tests" />
     </history-entry>
   </component>
@@ -1128,15 +1168,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-13" y="-13" width="2586" height="1386" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21171875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21171875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18487395" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27403846" sideWeight="0.5212922" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19659574" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6970199" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294702" sideWeight="0.4969651" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4519149" sideWeight="0.4787078" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4025532" sideWeight="0.4787078" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962063" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294702" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1147,6 +1186,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19659574" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295711" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -1205,7 +1245,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="core detect" />
     <MESSAGE value="color camera" />
     <MESSAGE value="update SETTING" />
     <MESSAGE value="green light index" />
@@ -1230,7 +1269,8 @@
     <MESSAGE value="update img server" />
     <MESSAGE value="before clad method change" />
     <MESSAGE value="asynchronous server and client" />
-    <option name="LAST_COMMIT_MESSAGE" value="asynchronous server and client" />
+    <MESSAGE value="asynchronous server and client bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="asynchronous server and client bugs" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.88757396" />
   </component>
   <component name="XDebuggerManager">
@@ -1240,28 +1280,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tests/data/light.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-350">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_repeat.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="22" column="41" lean-forward="false" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/t.html" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="10" column="6" lean-forward="false" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_sharp.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="891">
@@ -1509,7 +1527,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="227">
           <caret line="829" column="0" lean-forward="false" selection-start-line="829" selection-start-column="0" selection-end-line="829" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1517,29 +1534,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="46" lean-forward="false" selection-start-line="0" selection-start-column="46" selection-end-line="0" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://C:/Anaconda3/envs/cv2/Lib/site-packages/tornado/gen.py">
+    <entry file="file://$PROJECT_DIR$/GUI/model/modecv.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="1228" column="0" lean-forward="false" selection-start-line="1228" selection-start-column="0" selection-end-line="1228" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pattern/getimg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="69" column="64" lean-forward="false" selection-start-line="69" selection-start-column="64" selection-end-line="69" selection-end-column="64" />
+        <state relative-caret-position="936">
+          <caret line="35" column="10" lean-forward="false" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pattern/pickmethod.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1059">
+        <state relative-caret-position="4716">
           <caret line="141" column="25" lean-forward="false" selection-start-line="141" selection-start-column="25" selection-end-line="141" selection-end-column="25" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
@@ -1547,10 +1555,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/Anaconda3/envs/cv2/Lib/site-packages/tornado/options.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="124" column="0" lean-forward="false" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_img_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-336">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="30" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Anaconda3/envs/cv2/Lib/site-packages/tornado/gen.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="1228" column="0" lean-forward="false" selection-start-line="1228" selection-start-column="0" selection-end-line="1228" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/imgserver/tcp_server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1152">
-          <caret line="91" column="28" lean-forward="false" selection-start-line="91" selection-start-column="17" selection-end-line="91" selection-end-column="28" />
+        <state relative-caret-position="2484">
+          <caret line="80" column="42" lean-forward="false" selection-start-line="80" selection-start-column="42" selection-end-line="80" selection-end-column="42" />
           <folding>
             <element signature="e#49#92#0" expanded="true" />
             <element signature="e#2864#2887#0" expanded="false" />
@@ -1559,18 +1588,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GUI/model/modecv.py">
+    <entry file="file://$PROJECT_DIR$/pattern/getimg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="35" column="10" lean-forward="false" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+        <state relative-caret-position="1260">
+          <caret line="41" column="35" lean-forward="false" selection-start-line="41" selection-start-column="35" selection-end-line="41" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SDK/mdpy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1247">
-          <caret line="126" column="46" lean-forward="true" selection-start-line="126" selection-start-column="46" selection-end-line="126" selection-end-column="46" />
+        <state relative-caret-position="3456">
+          <caret line="126" column="8" lean-forward="false" selection-start-line="126" selection-start-column="8" selection-end-line="126" selection-end-column="46" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
             <element signature="e#2092#2114#0" expanded="false" />
@@ -1581,20 +1610,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/imgserver/tcp_client.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1044">
-          <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+        <state relative-caret-position="2232">
+          <caret line="71" column="25" lean-forward="false" selection-start-line="71" selection-start-column="25" selection-end-line="71" selection-end-column="25" />
           <folding>
             <element signature="e#49#92#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_img_server.py">
+    <entry file="file://$PROJECT_DIR$/imgserver/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+        <state relative-caret-position="2327">
+          <caret line="87" column="27" lean-forward="false" selection-start-line="87" selection-start-column="27" selection-end-line="87" selection-end-column="27" />
           <folding>
-            <element signature="e#24#50#0" expanded="true" />
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imgserver/client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1872">
+          <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_img_server2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="11" column="30" lean-forward="false" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#53#0" expanded="true" />
           </folding>
         </state>
       </provider>

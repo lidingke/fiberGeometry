@@ -25,7 +25,7 @@ def Server():
 
     print 'start get img client'
 
-def test_getImgOnceMore():
+def ttest_getImgOnceMore():
     init_logging()
     Thread(target = Server).start()
     # multiprocessing.Process(target=Server).start()
@@ -56,42 +56,20 @@ def ttest_getImgOncethread():
     # DyIMG.close()
 
 
-# def test_getImgOnce():
-#     init_logging()
-#     Thread(target = Server).start()
-#     # multiprocessing.Process(target=Server).start()
-#     # time.sleep(1)
-#     DyIMG = DynamicGetRawImgTest(PORT)
-#     DyIMG.getImgOnce()
-#     time.sleep(1)
-#     # DyIMG.closeSever()
-#     # host = "localhost"
-#     # port = 5113
-#     # io_loop = ioloop.IOLoop.instance()
-#     # logging.debug('get start')
-#     # imgclient = ImgClient(host, port, io_loop)
-#     # imgclient.get_img()
-#     #
-#     # imgclient.close_server()
-#     DyIMG.io_loop.start()
-#     time.sleep(1)
-#     DyIMG.closeSever()
-#     DyIMG.imgclient.on_close()
-#     ioloop.IOLoop.instance().stop()
-#     ioloop.IOLoop.instance().close()
 
-# class ATestCase(AsyncTestCase):
-#
-#     def Sever(self):
-#         server = MyServer(io_loop=self.io_loop)
-#         server.listen(PORT)
-#
-#     @gen_test
-#     def test_imgOnce(self):
-#         init_logging()
-#         Thread(target = Server).start()
-#         client = ImgClient('localhost', PORT, self.io_loop)
-#         yield client.get_img()
-#         # ioloop.IOLoop.instance().start()
-#         self.wait()
+
+class ATestCase(AsyncTestCase):
+
+    def Sever(self):
+        server = MyServer(io_loop=self.io_loop)
+        server.listen(PORT)
+
+    # @gen_test
+    def test_imgOnce(self):
+        init_logging()
+        Thread(target = Server).start()
+        client = ImgClient('localhost', PORT, self.io_loop)
+        client.get_img()
+        ioloop.IOLoop.instance().start()
+        self.wait()
 
