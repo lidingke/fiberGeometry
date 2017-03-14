@@ -6,12 +6,12 @@ from tornado.tcpserver import TCPServer
 import pdb, time, logging
 from tornado import stack_context
 from tornado.escape import native_str
-from pattern.getimg import randomImg,getImage
+from imgserver.methods import randomImg,getImage
 import json
 import numpy as np
 import cv2
 import copy
-from . import methods
+from imgserver import methods
 #Init logging
 def init_logging():
     logger = logging.getLogger()
@@ -25,6 +25,7 @@ def init_logging():
 class MyServer(TCPServer):
     def __init__(self, io_loop=None, **kwargs):
         TCPServer.__init__(self, io_loop=io_loop, **kwargs)
+
     def handle_stream(self, stream, address):
         self.con = TCPConnection(stream, address, io_loop=self.io_loop)
 
@@ -34,7 +35,7 @@ class MyServer(TCPServer):
 
 class TCPConnection(object):
 
-    METHOD_PARA = {'function': 'randomImg', 'para': """\'IMG/G652/pk/\'"""}
+    METHOD_PARA = {'function': 'randomImg', 'para': 'IMG/G652/pk/'}
 
     def __init__(self, stream, address, io_loop):
         self.io_loop = io_loop
@@ -51,72 +52,91 @@ class TCPConnection(object):
         logging.info("Send message..")
         self.write("Hello client! time out" + self.EOF)
 
-    def _getImgMethod(self, function = 'randomImg', para = """\'IMG\\G652\\pk\\\''"""):
-        if function not in dir(methods):
-            return 'function not found'
-        cmd = function+"({})".format(para)
+    # def _getImgMethod(self, function = 'randomImg', para = """\'IMG\\G652\\pk\\\''"""):
+    #
+    #     print 'mehtods', function, para, function in dir(methods)
+    #     if function not in dir(methods):
+    #         return 'function not found'
+    #     cmd = function+"({})".format(para)
+    #     # logging.info('cmd:',str(cmd))
+    #     print 'method:', cmd
+    #     return eval(cmd)
+    def _getImgMethod(self, function = 'randomImg', para = 'IMG/G652/pk/'):
+
+        print 'mehtods', function, para, function in dir(methods)
+        # if function not in dir(methods):
+        #     return 'function not found'
+        if function == 'randomImg':
+            return randomImg(para)
+        elif function == 'getImage':
+            return getImage(para)
+        # cmd = function+"({})".format(para)
         # logging.info('cmd:',str(cmd))
-        print 'cmd:', cmd
-        return eval(cmd)
+        # print 'method:', cmd
+        # return eval(cmd)
 
     def _on_message(self, data):
         print data
         data = native_str(data.decode('latin1'))
         logging.info("Received: %s", data)
         data = data.strip()
-        if data == 'getimg' :
-            self._getImg()
-        elif data == 'getbigimg':
-            self._getBigImg()
-        elif data == 'getimgonce':
+        # if data == 'getimg' :
+        #     self._getImg()
+        # elif data == 'getbigimg':
+        #     self._getBigImg()
+        if data == 'getimgonce':
             self._getImgOnce()
         elif data[:7] == 'change:':
-            self.METHOD_PARA = json.loads(data[7:])
-            print 'get change', self.METHOD_PARA
+            loads = json.loads(data[7:])
+            print 'get changed',loads, type(loads)
+            self.METHOD_PARA = loads
         elif data == 'close':
             logging.info("close img sever")
             self.close()
             # self.io_loop.add_timeout(self.io_loop.time() + timeout, self._on_timeout)
 
+    # @gen.coroutine
     def _getImgOnce(self):
-        img = randomImg("IMG\\G652\\pk\\")
+        # self.METHOD_PARA = {'function': 'getImage', 'para': """\'IMG/midoc.bmp\'"""}
+        img = self._getImgMethod(self.METHOD_PARA['function'],self.METHOD_PARA['para'])
+        # img = randomImg('IMG/G652/pk/')
         img = img.tobytes() + b'\n\r'
         print 'write img'
         self.write(img)
 
-    def _getBigImg(self):
-        img = randomImg("IMG\\G652\\pk\\")
-        img = img.tobytes()
-        self.write(img)
+    # def _getBigImg(self):
+    #     img = randomImg("IMG\\G652\\pk\\")
+    #     img = img.tobytes()
+    #     self.write(img)
+    #
+    # def _getImg(self):
+    #     img = self._getImgMethod(**self.METHOD_PARA)
+    #     print 'getImg', self.METHOD_PARA
+    #     if isinstance(img, str):
+    #         cmd = 'funnotfd'
+    #         self.write(cmd)
+    #     elif isinstance(img, np.ndarray):
+    #         self._writeimg(img)
+    #     else:
+    #         raise ValueError(len(img),type(img))
 
-    def _getImg(self):
-        img = self._getImgMethod(**self.METHOD_PARA)
-        print 'getImg', self.METHOD_PARA
-        if isinstance(img, str):
-            cmd = 'funnotfd'
-            self.write(cmd)
-        elif isinstance(img, np.ndarray):
-            self._writeimg(img)
-        else:
-            raise ValueError(len(img),type(img))
-
-    def _writeimg(self,img):
-        shape = img.shape
-        img = img.tobytes()
-        slicesize = shape[0]
-        times = len(img)//slicesize
-        emit = {'imgshape':shape,
-                'imglen':len(img),
-                'imgtimes':times,
-                'slicesize':slicesize
-        }
-        jsonemit = json.dumps(emit)
-        print jsonemit
-        self.write("img:%04d"%len(jsonemit))
-        self.write(jsonemit)
-        for i in range(0,times):
-            cmd = img[i*slicesize:(i + 1)*slicesize]
-            self.write(cmd)
+    # def _writeimg(self,img):
+    #     shape = img.shape
+    #     img = img.tobytes()
+    #     slicesize = shape[0]
+    #     times = len(img)//slicesize
+    #     emit = {'imgshape':shape,
+    #             'imglen':len(img),
+    #             'imgtimes':times,
+    #             'slicesize':slicesize
+    #     }
+    #     jsonemit = json.dumps(emit)
+    #     print jsonemit
+    #     self.write("img:%04d"%len(jsonemit))
+    #     self.write(jsonemit)
+    #     for i in range(0,times):
+    #         cmd = img[i*slicesize:(i + 1)*slicesize]
+    #         self.write(cmd)
 
 
     def _clear_request_state(self):
@@ -157,7 +177,7 @@ class TCPConnection(object):
 def main():
     init_logging()
     server = MyServer()
-    server.listen(5110)
+    server.listen(5115)
     ioloop.IOLoop.instance().start()
 if __name__ == "__main__":
     try:

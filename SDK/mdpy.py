@@ -65,7 +65,7 @@ def getSerialNumber():
     mdp.getCameraSerial()
 
 
-class DynamicGetRawImgTest(GetRawImg, QObject):
+class DynamicGetRawImgTest(GetRawImg):
     """docstring for getRawImg"""
     def __init__(self, port = 5110):
         # super(GetRawImgTest, self).__init__()
@@ -74,62 +74,72 @@ class DynamicGetRawImgTest(GetRawImg, QObject):
         self.EOF = '\n\r'
         self.port = port
         self.host = 'localhost'
-        io_loop = tornado.ioloop.IOLoop.instance()
-        self.imgclient = ImgClient(self.host, self.port, io_loop)
+        self.io_loop = tornado.ioloop.IOLoop.current()
+        # self.io_loop = tornado.ioloop.IOLoop.current()
+
+        self.img = None
 
 
-    def getBigImg(self):
-        self.ser = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.ser.connect((self.host, self.port))
-        self.ser.sendall("getbigimg\n\r")
-        img = self.ser.recv(15116544)
-        print len(img)
-
-    def get(self):
-        self.ser = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.ser.connect((self.host, self.port))
-        self.ser.sendall("getimg\n\r")
-        length = self.ser.recv(8).strip()
-        if length[:4] != 'img:':
-            raise ValueError('error',length)
-        jsonget = self.ser.recv(int(length[4:]))
-        jsonget = json.loads(jsonget)
-        times = jsonget['imgtimes']
-        slicesize = jsonget['slicesize']
-        imgs = []
-        print time.time()
-        for i in range(0,times):
-            recved = self.ser.recv(slicesize)
-            # assert slicesize == len(recved)
-            print 'recv', len(recved)
-            imgs.append(recved)
-        imgs = b''.join(imgs)
-        img = np.frombuffer(imgs,dtype='uint8')
-        if img.shape[0] == 15116544:
-            img.shape = (1944, 2592, 3)
-        print img.shape
-        return img
+    # def getBigImg(self):
+    #     self.ser = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    #     self.ser.connect((self.host, self.port))
+    #     self.ser.sendall("getbigimg\n\r")
+    #     img = self.ser.recv(15116544)
+    #     print len(img)
+    #
+    # def get(self):
+    #     self.ser = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    #     self.ser.connect((self.host, self.port))
+    #     self.ser.sendall("getimg\n\r")
+    #     length = self.ser.recv(8).strip()
+    #     if length[:4] != 'img:':
+    #         raise ValueError('error',length)
+    #     jsonget = self.ser.recv(int(length[4:]))
+    #     jsonget = json.loads(jsonget)
+    #     times = jsonget['imgtimes']
+    #     slicesize = jsonget['slicesize']
+    #     imgs = []
+    #     print time.time()
+    #     for i in range(0,times):
+    #         recved = self.ser.recv(slicesize)
+    #         # assert slicesize == len(recved)
+    #         print 'recv', len(recved)
+    #         imgs.append(recved)
+    #     imgs = b''.join(imgs)
+    #     img = np.frombuffer(imgs,dtype='uint8')
+    #     if img.shape[0] == 15116544:
+    #         img.shape = (1944, 2592, 3)
+    #     print img.shape
+    #     return img
 
     def getImgOnce(self):
-        self.imgclient.get_img()
+        imgclient = ImgClient(self.host, self.port, self.io_loop)
+        imgclient.get_img()
         # io_loop.start()
 
 
     def changeImgFunction(self,kwargs):
-        self.ser = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.ser.connect((self.host, self.port))
+        imgclient = ImgClient(self.host, self.port, self.io_loop)
+        # self.ser = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # self.ser.connect((self.host, self.port))
         cmd = 'change:'
         # para = {'function' : 'randomImg', 'para' : """\'IMG/G652/pk/\'"""}
         cmd = cmd+json.dumps(kwargs) +self.EOF
-        self.ser.sendall(cmd)
+        # self.ser.sendall(cmd)
+        print 'write cmd ', cmd
+        imgclient.change_method(cmd)
 
     def unInitCamera(self):
         pass
 
-    def closeSever(self):
-        self.ser = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.ser.connect((self.host, self.port))
-        self.ser.sendall("close\n\r")
+    # def close(self):
+    #     self.imgclient.close_server()
+    #     self.imgclient.on_close()
+    #     self.io_loop.stop()
+    #     self.io_loop.close()
+        # self.ser = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # self.ser.connect((self.host, self.port))
+        # self.ser.sendall("close\n\r")
 
 class GetRawImgTest(GetRawImg):
     """docstring for getRawImg"""
