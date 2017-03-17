@@ -41,7 +41,7 @@ def test_imgserver():
     IOLoop.current().run_sync(Client(port=port).close_server)
 
 
-def test_getimg_while_loop():
+def test_getimg_multi_connect():
     port = 9881
     # port = 9801
     img = getImage('IMG/midoc.BMP')

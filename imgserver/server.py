@@ -88,7 +88,7 @@ class ImgServer(TCPServer):
 
 
             except StreamClosedError:
-                logger.warning("Lost client at host %s", address[0])
+                logger.info("Lost client at host %s", address[0])
                 break
             except Exception as e:
                 raise e

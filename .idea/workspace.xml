@@ -2,17 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0bfb64c9-d5b9-4173-a8c5-446b26e779e2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SDK/mdpytest.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/startserver.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/test_img_server2.py" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/imgserver/cmd.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.cache/v/cache/lastfailed" afterPath="$PROJECT_DIR$/.cache/v/cache/lastfailed" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GUI/model/modecv.py" afterPath="$PROJECT_DIR$/GUI/model/modecv.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SDK/mdpy.py" afterPath="$PROJECT_DIR$/SDK/mdpy.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imgserver/client.py" afterPath="$PROJECT_DIR$/imgserver/client.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imgserver/methods.py" afterPath="$PROJECT_DIR$/imgserver/methods.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imgserver/server.py" afterPath="$PROJECT_DIR$/imgserver/server.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pattern/sharper.py" afterPath="$PROJECT_DIR$/pattern/sharper.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pattern/getimg.py" afterPath="$PROJECT_DIR$/pattern/getimg.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setting/modelog.txt" afterPath="$PROJECT_DIR$/setting/modelog.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test_img_server.py" afterPath="$PROJECT_DIR$/tests/test_img_server.py" />
     </list>
@@ -34,14 +29,14 @@
     <SUITE FILE_PATH="coverage/octagon$staticgui.coverage" NAME="staticgui Coverage Results" MODIFIED="1486476898670" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/octagon$bayer.coverage" NAME="bayer Coverage Results" MODIFIED="1482666702063" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/octagon$octagon.coverage" NAME="octagon Coverage Results" MODIFIED="1481254426025" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/geomety$static.coverage" NAME="static Coverage Results" MODIFIED="1489626293305" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/geomety$static.coverage" NAME="static Coverage Results" MODIFIED="1489730688400" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/octagon$testset.coverage" NAME="test_set Coverage Results" MODIFIED="1485247850472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/octagon$test_classmethod.coverage" NAME="test_classmethod Coverage Results" MODIFIED="1485239517488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/octagon$test_set.coverage" NAME="test_set Coverage Results" MODIFIED="1486099124722" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/octagon$dgui.coverage" NAME="dgui Coverage Results" MODIFIED="1484030435865" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/octagon$g652.coverage" NAME="g652 Coverage Results" MODIFIED="1485141199921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/octagon$test_class.coverage" NAME="test_class Coverage Results" MODIFIED="1484788877702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/geomety$test_server.coverage" NAME="test_server Coverage Results" MODIFIED="1489728239323" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/geomety$test_server.coverage" NAME="test_server Coverage Results" MODIFIED="1489730831566" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/octagon$test_octagon.coverage" NAME="test_octagon Coverage Results" MODIFIED="1484378912289" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/cv$reporter.coverage" NAME="reporter Coverage Results" MODIFIED="1479273467818" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/GUI/view" />
     <SUITE FILE_PATH="coverage/geomety$20400.coverage" NAME="20400 Coverage Results" MODIFIED="1486605596739" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -85,7 +80,7 @@
     <SUITE FILE_PATH="coverage/cv$testAlgorithm.coverage" NAME="testAlgorithm Coverage Results" MODIFIED="1477404088596" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/geomety$test_load.coverage" NAME="test_load Coverage Results" MODIFIED="1487302962978" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/geomety$test_pdf.coverage" NAME="test_pdf Coverage Results" MODIFIED="1488329599085" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/geomety$pytests.coverage" NAME="pytests Coverage Results" MODIFIED="1489547580629" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/geomety$pytests.coverage" NAME="pytests Coverage Results" MODIFIED="1489728444082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -112,8 +107,8 @@
                 <file leaf-file-name="client.py" pinned="false" current-in-tab="true">
                   <entry file="file://$PROJECT_DIR$/imgserver/client.py">
                     <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="1499">
-                        <caret line="47" column="22" selection-start-line="47" selection-start-column="22" selection-end-line="47" selection-end-column="22" />
+                      <state relative-caret-position="1103">
+                        <caret line="57" column="22" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="22" />
                         <folding>
                           <element signature="e#0#37#0" expanded="true" />
                         </folding>
@@ -150,8 +145,8 @@
                 <file leaf-file-name="server.py" pinned="false" current-in-tab="true">
                   <entry file="file://$PROJECT_DIR$/imgserver/server.py">
                     <provider selected="true" editor-type-id="text-editor">
-                      <state relative-caret-position="851">
-                        <caret line="72" column="16" selection-start-line="72" selection-start-column="16" selection-end-line="72" selection-end-column="16" />
+                      <state relative-caret-position="-72">
+                        <caret line="64" column="27" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
                         <folding>
                           <element signature="e#0#14#0" expanded="true" />
                         </folding>
@@ -218,11 +213,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_img_server.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_img_server.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_img_server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-232">
-              <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+            <state relative-caret-position="416">
+              <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="40" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -233,18 +228,30 @@
       <file leaf-file-name="methods.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/imgserver/methods.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1764">
-              <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
+            <state relative-caret-position="0">
+              <caret line="0" column="42" selection-start-line="0" selection-start-column="42" selection-end-line="0" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="getimg.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="cmd.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/imgserver/cmd.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="getimg.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pattern/getimg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="28" column="46" selection-start-line="0" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+            <state relative-caret-position="1139">
+              <caret line="79" column="62" selection-start-line="79" selection-start-column="62" selection-end-line="79" selection-end-column="62" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -308,7 +315,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/setting/osets.json" />
         <option value="$PROJECT_DIR$/tests/json2pickle.py" />
         <option value="$PROJECT_DIR$/util/load.py" />
         <option value="$PROJECT_DIR$/dynamicgui.py" />
@@ -344,7 +350,6 @@
         <option value="$PROJECT_DIR$/setting/oset.json" />
         <option value="$PROJECT_DIR$/report/origin.py" />
         <option value="$PROJECT_DIR$/tests/test_set.py" />
-        <option value="$PROJECT_DIR$/pattern/getimg.py" />
         <option value="$PROJECT_DIR$/imgserver/tcp_server.py" />
         <option value="$PROJECT_DIR$/imgserver/tcp_client.py" />
         <option value="$PROJECT_DIR$/tests/test_img_server2.py" />
@@ -353,12 +358,14 @@
         <option value="$PROJECT_DIR$/SDK/mdpytest.py" />
         <option value="$PROJECT_DIR$/util/startserver.py" />
         <option value="C:/Anaconda3/envs/cv2/Lib/site-packages/tornado/netutil.py" />
-        <option value="$PROJECT_DIR$/imgserver/server.py" />
         <option value="$PROJECT_DIR$/pattern/sharper.py" />
         <option value="$PROJECT_DIR$/startserver.py" />
-        <option value="$PROJECT_DIR$/imgserver/methods.py" />
         <option value="$PROJECT_DIR$/imgserver/client.py" />
         <option value="$PROJECT_DIR$/tests/test_img_server.py" />
+        <option value="$PROJECT_DIR$/imgserver/cmd.py" />
+        <option value="$PROJECT_DIR$/imgserver/methods.py" />
+        <option value="$PROJECT_DIR$/pattern/getimg.py" />
+        <option value="$PROJECT_DIR$/imgserver/server.py" />
       </list>
     </option>
   </component>
@@ -1357,21 +1364,19 @@
       <option name="project" value="LOCAL" />
       <updated>1489503734874</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="server test ready">
+      <created>1489728338762</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1489728338762</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="test_server - 2017.03.17 at 13h 03m 22s.xml">
-      <configuration name="test_server" configurationId="tests" />
-    </history-entry>
-    <history-entry file="test_server - 2017.03.17 at 13h 03m 36s.xml">
-      <configuration name="test_server" configurationId="tests" />
-    </history-entry>
-    <history-entry file="test_server - 2017.03.17 at 13h 04m 06s.xml">
-      <configuration name="test_server" configurationId="tests" />
-    </history-entry>
-    <history-entry file="test_server - 2017.03.17 at 13h 04m 54s.xml">
-      <configuration name="test_server" configurationId="tests" />
+    <history-entry file="pytests - 2017.03.17 at 13h 28m 59s.xml">
+      <configuration name="pytests" configurationId="tests" />
     </history-entry>
     <history-entry file="test_server - 2017.03.17 at 13h 09m 36s.xml">
       <configuration name="test_server" configurationId="tests" />
@@ -1391,6 +1396,15 @@
     <history-entry file="test_server - 2017.03.17 at 13h 25m 07s.xml">
       <configuration name="test_server" configurationId="tests" />
     </history-entry>
+    <history-entry file="test_server - 2017.03.17 at 14h 06m 35s.xml">
+      <configuration name="test_server" configurationId="tests" />
+    </history-entry>
+    <history-entry file="test_server - 2017.03.17 at 14h 06m 54s.xml">
+      <configuration name="test_server" configurationId="tests" />
+    </history-entry>
+    <history-entry file="test_server - 2017.03.17 at 14h 08m 26s.xml">
+      <configuration name="test_server" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -1403,7 +1417,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-13" y="-13" width="2586" height="1386" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21171875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18487395" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1411,7 +1425,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6970199" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294702" sideWeight="0.4969651" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27148935" sideWeight="0.4787078" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46297872" sideWeight="0.4787078" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962063" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294702" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1480,7 +1494,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="update SETTING" />
     <MESSAGE value="green light index" />
     <MESSAGE value="before checkout 2 20400" />
     <MESSAGE value="20/400 get" />
@@ -1505,7 +1518,8 @@
     <MESSAGE value="asynchronous server and client" />
     <MESSAGE value="asynchronous server and client bugs" />
     <MESSAGE value="a right server" />
-    <option name="LAST_COMMIT_MESSAGE" value="a right server" />
+    <MESSAGE value="server test ready" />
+    <option name="LAST_COMMIT_MESSAGE" value="server test ready" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.88757396" />
   </component>
   <component name="XDebuggerManager">
@@ -1515,13 +1529,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/setting/modelog.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GUI/model/modelop.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1814,40 +1821,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pattern/getimg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="28" column="46" selection-start-line="0" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imgserver/methods.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1764">
-          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/startserver.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imgserver/server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="851">
-          <caret line="72" column="16" selection-start-line="72" selection-start-column="16" selection-end-line="72" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1870,6 +1849,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_img_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imgserver/cmd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imgserver/methods.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="42" selection-start-line="0" selection-start-column="42" selection-end-line="0" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imgserver/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-72">
+          <caret line="64" column="27" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/imgserver/client.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="721">
@@ -1880,12 +1897,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_img_server.py">
+    <entry file="file://$PROJECT_DIR$/pattern/getimg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-232">
-          <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+        <state relative-caret-position="1139">
+          <caret line="79" column="62" selection-start-line="79" selection-start-column="62" selection-end-line="79" selection-end-column="62" />
           <folding>
-            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>

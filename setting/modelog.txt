@@ -659,3 +659,66 @@ None
 包层不圆度：  0.76
 芯包同心度：  0.29
 None
+2017-03-17 13:29:57,569-ERROR-_emitCVShowResult:清晰度指数：  3.46
+纤芯直径：    9.00
+包层直径：    124.30
+纤芯不圆度：  0.05
+包层不圆度：  0.72
+芯包同心度：  0.27
+None
+2017-03-17 13:32:37,210-ERROR-_emitCVShowResult:清晰度指数：  3.45
+纤芯直径：    8.98
+包层直径：    124.39
+纤芯不圆度：  0.01
+包层不圆度：  0.76
+芯包同心度：  0.29
+None
+2017-03-17 13:32:44,538-ERROR-_emitCVShowResult:清晰度指数：  3.46
+纤芯直径：    9.00
+包层直径：    124.30
+纤芯不圆度：  0.06
+包层不圆度：  0.72
+芯包同心度：  0.27
+None
+2017-03-17 13:32:52,776-ERROR-_emitCVShowResult:清晰度指数：  3.49
+纤芯直径：    8.97
+包层直径：    124.38
+纤芯不圆度：  0.02
+包层不圆度：  0.76
+芯包同心度：  0.29
+None
+2017-03-17 13:36:37,753-ERROR-_emitCVShowResult:清晰度指数：  3.44
+纤芯直径：    8.97
+包层直径：    124.40
+纤芯不圆度：  0.03
+包层不圆度：  0.76
+芯包同心度：  0.29
+None
+2017-03-17 13:53:15,190-ERROR-__del__:Future exception was never retrieved: Traceback (most recent call last):
+  File "C:\Anaconda3\envs\cv2\lib\site-packages\tornado\gen.py", line 1024, in run
+    yielded = self.gen.send(value)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\imgserver\server.py", line 99, in _getImgOnce
+    img = img.tobytes() + b'\n\r\n\r'
+AttributeError: 'NoneType' object has no attribute 'tobytes'
+2017-03-17 14:04:46,653-ERROR-__del__:Future exception was never retrieved: Traceback (most recent call last):
+  File "C:\Anaconda3\envs\cv2\lib\site-packages\tornado\gen.py", line 1021, in run
+    yielded = self.gen.throw(*exc_info)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\imgserver\server.py", line 98, in _getImgOnce
+    img = yield self._getImgMethod(self.PARA[0],self.PARA[1])
+  File "C:\Anaconda3\envs\cv2\lib\site-packages\tornado\gen.py", line 1015, in run
+    value = future.result()
+  File "C:\Anaconda3\envs\cv2\lib\site-packages\tornado\concurrent.py", line 237, in result
+    raise_exc_info(self._exc_info)
+  File "C:\Anaconda3\envs\cv2\lib\site-packages\tornado\gen.py", line 270, in wrapper
+    result = func(*args, **kwargs)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\imgserver\server.py", line 106, in _getImgMethod
+    return randomImg(para)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\imgserver\methods.py", line 71, in randomImg
+    img = GetImage().get(choice(dirlist),colour='color')
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\imgserver\methods.py", line 21, in get
+    self.singleFileFind(dir_,colour)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\imgserver\methods.py", line 41, in singleFileFind
+    self._getColorImg(colour = colour)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\imgserver\methods.py", line 53, in _getColorImg
+    self.img = cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB)
+error: ..\..\..\src\opencv\modules\imgproc\src\color.cpp:3346: error: (-215) scn == 3 || scn == 4
