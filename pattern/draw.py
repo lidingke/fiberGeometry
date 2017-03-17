@@ -100,7 +100,6 @@ def decorateMethod(obj):
 
 
 def drawCoreCircle(img):
-    img = img.copy()
     SET = SETTING()
     corecore = SET.get("corepoint",(1296,972))
     core = [corecore,1]
@@ -124,7 +123,6 @@ def drawCoreCircle(img):
     cv2.line(img, (x1,y1), (x2,y2), (255,255,255), 4)
 
     # minRange, maxRange = SET.get("cladRange")
-    #
     # cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(maxRange), (0, 0, 0), 4)
     # cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), 4)
     return img

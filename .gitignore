@@ -8,6 +8,7 @@
 *.pdf
 *.dll
 *.pdf
+t.html
 *.pickle
 *.VC.db
 *.lib

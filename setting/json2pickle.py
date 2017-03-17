@@ -7,5 +7,8 @@ def convert(name = 'setting\\oset'):
     wrp = WRpickle(name + '.pickle')
     wrp.savePick(load)
 
+
+
 if __name__ == '__main__':
     convert()
+    convert('setting\\userdata')

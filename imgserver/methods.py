@@ -1,0 +1,1 @@
+from pattern.getimg import getImage, randomImg

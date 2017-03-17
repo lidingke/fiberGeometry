@@ -2,12 +2,13 @@
 import collections
 import time
 from threading import Thread
-
 import cv2
+import copy
 import numpy as np
 from PyQt4.QtCore import QObject, pyqtSignal
 
 from setting.orderset import SETTING
+from pattern.exception import ClassCoreError, ClassOctagonError
 
 Set = SETTING('octagon')
 setGet = Set.get('ifcamera', False)
@@ -16,12 +17,9 @@ print 'fibertype',fiberType,'setget', setGet
 if setGet:
     from SDK.mdpy import GetRawImg
 else:
-    if fiberType == "20400":
-        from SDK.mdpy import GetRawImgTest20400 as GetRawImg
-    elif fiberType == "G652":
-        from SDK.mdpy import GetRawImgTestg652 as GetRawImg
-    else:
-        from SDK.mdpy import GetRawImgTest as GetRawImg
+    # from SDK.mdpy import DynamicGetRawImgTest as GetRawImg
+    from SDK.mdpytest import DynamicGetRawImgTest as GetRawImg
+    # from SDK.mdpy import GetRawImgTest as GetRawImg
     print 'script don\'t open camera'
 
 from pattern.edge import ExtractEdge
@@ -34,7 +32,9 @@ from SDK.oceanoptics import OceanOpticsTest
 from util.toolkit import Cv2ImShow, Cv2ImSave
 import logging
 from util.timing import timing
+from util.filter import AvgResult
 from util.loadimg import sliceImg
+import sys
 
 
 class ModelCV(Thread, QObject):
@@ -43,8 +43,7 @@ class ModelCV(Thread, QObject):
     returnATImg = pyqtSignal(object, object)
     resultShowCV = pyqtSignal(object)
     resultShowAT = pyqtSignal(object)
-    returnGreen = pyqtSignal(object)
-    # returnFiberResult = pyqtSignal(object)
+    returnCoreLight = pyqtSignal(object, object)
 
     def __init__(self, ):
         Thread.__init__(self)
@@ -58,49 +57,177 @@ class ModelCV(Thread, QObject):
         self.show = Cv2ImShow()
         self.save = Cv2ImSave()
         self.eresults = False
-        self.result = False
+        self.result2Show = {}
         self.decorateMethod = decorateMethod("G652")
         self.getRawImg = GetRawImg()
-        self.imgQueue = collections.deque(maxlen = 1)
+        self.imgmaxlen = 5
+        self.imgQueue = collections.deque(maxlen = self.imgmaxlen)
         self.fiberResult = {}
         self.Oceanoptics = OceanOpticsTest()
         self.classify = classifyObject('G652')
         self.pdfparameter = SETTING()['pdfpara']
 
 
+
+
     def run(self):
         while self.IS_RUN:
-            img = self._getImg()
-
+            img = self.getRawImg.get()
+            if not isinstance(img, np.ndarray):
+                break
+            self.img = img.copy()
+            self.imgQueue.append(self.img)
             # self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
-            self.sharp = "%0.2f" % self.isSharp.issharpla(self.img)
+            self.sharp = "%0.2f" % self.isSharp.issharpla(img)
             # plotResults = (self.ellipses, self.result)
-            self._greenLight(img[::, ::, 1])
+            self._greenLight(img)
             colorImg = self._decorateImg(img)
             self.returnImg.emit(colorImg[::2,::2].copy(), self.sharp)
 
 
-    def _getImg(self):
-        img = self.getRawImg.get()
-        # img = self.getRawImg.bayer2BGR(img)
-        self.img = img.copy()
-        # self.imgQueue.append(img)
-        # print 'imgqueue', len(self.imgQueue)
-        # self.sharpQueue.append(img)
-        return img
-
     def mainCalculate(self):
+        #
         def _calcImg():
             try:
                 # img.tofile("tests\\data\\tests\\midimg{}.bin".format(str(int(time.time()))[-3:]))
-                self.eresults = self.classify.find(self.img)
-                self.result = self.eresults["showResult"]
-                self._emitCVShowResult()
+                self.imgQueue.clear()
+                results = []
+                while len(self.imgQueue) != 5:
+                    time.sleep(0.1)
+                for img in list(self.imgQueue):
+                    self.eresults = self.classify.find(img)
+                    result = self.eresults["showResult"]
+                    print 'get result', result
+                    results.append(result)
+                self._emitCVShowResult(AvgResult(results))
+            except ClassCoreError as e:
+                print e,'class core error'
+                self.resultShowCV.emit('error')
+                return
+            except ValueError as e:
+                print e
+                self.resultShowCV.emit('error')
+                return
             except Exception as e:
                 logging.exception(e)
         Thread(target = _calcImg).start()
 
 
+    def updateClassifyObject(self, obj = 'G652'):
+        self.classify = classifyObject(obj)
+        self.eresults = False
+        self.result2Show = False
+        self.decorateMethod = decorateMethod(obj)
+
+
+    def _decorateImg(self,img):
+        """"mark the circle and size parameter"""
+        img = drawCoreCircle(img)
+        # print 'decorate in ',not (ellipses  or self.decorateMethod), ellipses , result , self.decorateMethod
+        if self.result2Show:
+            img = self.decorateMethod(img, self.result2Show)
+        return img
+
+
+    def exit(self):
+        print "unInit"
+        self.IS_RUN = False
+        time.sleep(0.5)
+        self.getRawImg.unInitCamera()
+
+    def initGUI(self):
+        existence = {}
+
+
+    def attenuationTest(self, length):
+        wave, powers = self.Oceanoptics.getData(length)
+        self._emitATShowResult(wave, powers)
+        self.returnATImg.emit(wave, powers)
+
+    def _emitATShowResult(self, wave, powers):
+        waveLimit = wave[-1] - wave[0]
+        waveMax = np.max(powers)
+        waveMin = np.min(powers)
+        waveAvg = np.average(powers)
+        # print waveLimit, waveMax, waveMin, waveAvg
+        text = [
+            u'''波长范围：    {}\n'''.format('%0.2f' % waveLimit),
+            u'''最大值：      {}\n'''.format('%0.2f' % waveMax),
+            u'''最小值：      {}\n'''.format('%0.2f' % waveMin),
+            u'''平均值：      {}\n'''.format('%0.2f' % waveAvg)
+        ]
+        text = u''.join(text)
+        self.resultShowAT.emit(text)
+
+
+    def _emitCVShowResult(self, result):
+        # result = self.result
+        sharp = self.sharp
+        self.result2Show = copy.deepcopy(self.eresults)
+        self.result2Show["showResult"] = result
+        if isinstance(result, tuple) or isinstance(result, list):
+            # print 'get result', result
+            para = {'corediameter': '%0.2f'%result[1],
+            'claddiameter': '%0.2f'%result[2],
+            'coreroundness': '%0.2f'%result[3],
+            'cladroundness': '%0.2f'%result[4],
+            'concentricity': '%0.2f'%result[0],
+            'fibertype':SETTING()["fiberType"],
+            'sharpindex': sharp}
+            if None in result:
+                for i,v in enumerate(result):
+                    if not v:
+                        result[i] = '-1'
+
+            self.pdfparameter.update(para)
+
+            text = [
+                u'''清晰度指数：  {}\n'''.format(sharp),
+                u'''纤芯直径：    {}\n'''.format('%0.2f'%result[1]),
+                u'''包层直径：    {}\n'''.format('%0.2f'%result[2]),
+                u'''纤芯不圆度：  {}\n'''.format('%0.2f'%result[3]),
+                u'''包层不圆度：  {}\n'''.format('%0.2f'%result[4]),
+                u'''芯包同心度：  {}'''.format('%0.2f'%result[0])]
+
+            text = u''.join(text)
+            logging.exception(text)
+
+            self.resultShowCV.emit(text)
+            sys.stdout.flush()
+        else:
+            self.resultShowCV.emit('error')
+            # print 'emit result', text
+            # time.sleep(0.01)
+            # self.resultShowCV.emit(text)
+
+    def _greenLight(self, img):
+        if isinstance(img, np.ndarray):
+            corey, corex = SETTING()["corepoint"]
+            minRange, maxRange = SETTING()["coreRange"]
+            green = sliceImg(img[::, ::, 1], (corex, corey), maxRange)
+            blue = sliceImg(img[::, ::, 2], (corex, corey), maxRange)
+            self.allblue = img[::,::,2].sum()/255
+
+            self.green = green.sum() / 255
+            self.blue = blue.sum() / 255
+            self.allgreen = img[::, ::, 1].sum() / 255 - self.green
+            self.pdfparameter['corelight'] = "%0.2f"%self.blue
+            self.pdfparameter['cladlight'] = "%0.2f" % self.allgreen
+            self.returnCoreLight.emit("%0.2f" % (self.blue), "%0.2f" % (self.allgreen))
+            # self.returnCladLight.emit()
+
+    def fiberTypeMethod(self, key):
+        SETTING().keyUpdates(key)
+
+    #
+    # def _getImg(self):
+    #     img = self.getRawImg.get()
+    #     # img = self.getRawImg.bayer2BGR(img)
+    #     self.img = img.copy()
+    #     # self.imgQueue.append(img)
+    #     # print 'imgqueue', len(self.imgQueue)
+    #     # self.sharpQueue.append(img)
+    #     return img
 
     # @timing
     # def _getDifferImg(self):
@@ -123,90 +250,5 @@ class ModelCV(Thread, QObject):
     #         SETTING()['tempLight'].append([int(self.green), float(self.result[1])])
     #
     #     return self.result
-
-    def updateClassifyObject(self, obj = 'G652'):
-        self.classify = classifyObject(obj)
-        self.eresults = False
-        self.decorateMethod = decorateMethod(obj)
-
-    def _decorateImg(self,img):
-        """"mark the circle and size parameter"""
-        img = drawCoreCircle(img)
-
-        # print 'decorate in ',not (ellipses  or self.decorateMethod), ellipses , result , self.decorateMethod
-        if not self.eresults:
-            return img
-        # img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
-        img = self.decorateMethod(img, self.eresults)
-        return img
-
-
-    def exit(self):
-        print "unInit"
-        self.IS_RUN = False
-        time.sleep(0.5)
-        self.getRawImg.unInitCamera()
-
-    def attenuationTest(self, length):
-        wave, powers = self.Oceanoptics.getData(length)
-        self._emitATShowResult(wave, powers)
-        self.returnATImg.emit(wave, powers)
-
-    def _emitATShowResult(self, wave, powers):
-        waveLimit = wave[-1] - wave[0]
-        waveMax = np.max(powers)
-        waveMin = np.min(powers)
-        waveAvg = np.average(powers)
-        print waveLimit, waveMax, waveMin, waveAvg
-        text = [
-            u'''波长范围：    {}\n'''.format('%0.2f' % waveLimit),
-            u'''最大值：      {}\n'''.format('%0.2f' % waveMax),
-            u'''最小值：      {}\n'''.format('%0.2f' % waveMin),
-            u'''平均值：      {}\n'''.format('%0.2f' % waveAvg)
-        ]
-        text = u''.join(text)
-        self.resultShowAT.emit(text)
-
-
-    def _emitCVShowResult(self):
-        result = self.result
-        sharp = self.sharp
-
-        if isinstance(result, tuple):
-            # print 'get result', result
-            para = {'corediameter': '%0.2f'%result[1],
-            'claddiameter': '%0.2f'%result[2],
-            'coreroundness': '%0.2f'%result[2],
-            'cladroundness': '%0.2f'%result[4],
-            'concentricity': '%0.2f'%result[0],
-            'sharpindex': sharp}
-            self.pdfparameter.update(para)
-
-            text = [
-                u'''清晰度指数：  {}\n'''.format(sharp),
-                u'''纤芯直径：    {}\n'''.format('%0.2f'%result[1]),
-                u'''包层直径：    {}\n'''.format('%0.2f'%result[2]),
-                u'''纤芯不圆度：  {}\n'''.format('%0.2f'%result[3]),
-                u'''包层不圆度：  {}\n'''.format('%0.2f'%result[4]),
-                u'''芯包同心度：  {}'''.format('%0.2f'%result[0])
-                ]
-
-            text = u''.join(text)
-            self.resultShowCV.emit(text)
-            print 'emit result', text
-
-    def _greenLight(self, green):
-        if isinstance(green, np.ndarray):
-            corey, corex = SETTING()["corepoint"]
-            minRange, maxRange = SETTING()["coreRange"]
-            green = sliceImg(green, (corex, corey), maxRange)
-            self.green = green.sum()/2550
-            self.pdfparameter['lightindex'] = "%0.2f"%self.green
-            self.returnGreen.emit("%0.2f"%self.green)
-
-    def fiberTypeMethod(self, key):
-        SETTING().keyUpdates(key)
-
-
 
 

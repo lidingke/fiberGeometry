@@ -4,6 +4,7 @@ from random import choice
 import pdb
 import numpy as np
 from pattern.meta import CV2MethodSet
+import sys
 
 class GetImage(CV2MethodSet):
     """docstring for GetImage"""
@@ -13,6 +14,8 @@ class GetImage(CV2MethodSet):
         self.img = False
         self.colour = None
         self.suffix = ''
+        self.GRAY = ('gray', 'black')
+        self.COLOR = ('colour', 'color')
 
     def get(self, dir_='', colour = 'colour'):
         if dir_.find('.') > 0:
@@ -32,23 +35,24 @@ class GetImage(CV2MethodSet):
             # pdb.set_trace()
             self.suffix = dir_.split('.')[-1]
             self.img = cv2.imread(dir_ + "\\" + file)
-            self.origin = self.img.copy()
             self._getColorImg(colour = colour)
 
 
     def singleFileFind(self, dir_,colour):
         self.img = cv2.imread(dir_)
-        self.origin = self.img.copy()
         self._getColorImg(colour = colour)
 
     def _getColorImg(self,colour = 'colour'):
         if not self.colour:
             self.colour = colour
-            print '_get img colour', self.colour, self.suffix
-        if self.colour in ('gray', 'black'):
+            # print '_get img colour', self.colour, self.suffix
+            # sys.stdout.flush()
+        if self.colour in self.GRAY:
             self.img = cv2.cvtColor(self.img, cv2.COLOR_RGB2GRAY)
-        elif self.colour == 'colour' and self.suffix.upper() == 'BMP':
-            self.img = cv2.cvtColor(self.img, cv2.COLOR_RGB2BGR)
+        elif (self.colour in self.COLOR) and self.suffix.upper() == 'BMP':
+            # print 'get bgr 2 rbg'
+            # sys.stdout.flush()
+            self.img = cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB)
         else:
             pass
 
@@ -62,9 +66,10 @@ def yieldImg(dirs):
         yield  img
 
 def randomImg(dirs):
-    if dirs[-4:].find('.') > 0:
-        raise ValueError('input para is not a folder, a file')
-
+    # if dirs[-4:].find('.') > 0:
+    #     raise ValueError('input para is not a folder, a file')
+    if dirs[-1] != '/':
+        dirs = dirs + '/'
     dirlist = os.listdir(dirs)
     dirlist = [dirs + x for x in dirlist]
     img = GetImage().get(choice(dirlist),colour='color')

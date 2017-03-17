@@ -3,7 +3,7 @@ from setting.orderset import SETTING
 SETTING("test")
 from SDK.mdpy import GetRawImg, releaseCamera, getSerialNumber
 import uuid
-from util.load import  MetaDict, WriteReadJson
+from util.load import  MetaDict, WriteReadJson, WRpickle
 from PyQt4.QtGui import QPalette, QColor,QApplication, QMessageBox, QWidget
 import sys
 import time
@@ -23,8 +23,14 @@ class InitCorrect(object):
         # return
 
     def readJson(self):
-        wrJson = WriteReadJson("setting\\userdata.json")
-        self.json = wrJson.load()
+        # wrJson = WriteReadJson("setting\\userdata.json")
+        wrp = WRpickle("setting\\userdata.pickle")
+        try:
+            load = wrp.loadPick()
+        except IOError:
+            wrJson = WriteReadJson("setting\\userdata.json")
+            load = wrJson.load()
+        self.json = load
         # print jsonLoad
 
     def rightCamera(self):
@@ -44,7 +50,7 @@ class InitCorrect(object):
     def rightMac(self):
         macid = uuid.UUID(int=uuid.getnode()).hex[-12:].upper()
         # macid = macid
-        # print macid , self.json["mac"]
+        print macid , self.json["mac"]
         if macid not in self.json["mac"]:
             raise ValueError("device information error")
         # return

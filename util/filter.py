@@ -1,6 +1,6 @@
 from __future__ import  division
 import  collections
-
+import numpy as np
 
 class MedianFilter(object):
 
@@ -26,6 +26,23 @@ class MedianFilter(object):
             return round(sumResult, digits)
         else:
             return int(round(sumResult))
+
+
+def AvgResult(result):
+    def medianavg(que):
+        que.sort()
+        que = que[1:-1]
+        result = sum(que) / que.shape
+        return result[0]
+    if not isinstance(result, list):
+        raise ValueError('get avg result error', type(result))
+    result = np.array(result)
+    shape = result.shape
+    newResult = []
+    for i in range(0, shape[1]):
+        _ = medianavg(result[:, i].copy())
+        newResult.append(_)
+    return newResult
 
 class MedianLimitFilter(object):
 

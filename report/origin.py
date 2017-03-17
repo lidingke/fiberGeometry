@@ -5,78 +5,36 @@ originHTML =  '''
 
 <head>
     <meta charset="utf-8">
-    <style>
-    body {{
-        overflow-y:scroll;
-        width: 45em;
-        border: 1px solid #ddd;
-        outline: 1300px solid #fff;
-        margin: 16px auto;
-        font-family: 'Microsoft YaHei', freesans, sans-serif;
-
-    }}
-
-    h1 {{
-        border-bottom: 1px solid #eee;
-        margin-top: 1em;
-        margin-bottom: 16px;
-        margin-left: 30px;
-        margin: 0.67em 0;
-        padding-left: 8px;
-        padding-bottom: 0.3em;
-        font-size: 50px;
-        font-weight: bold;
-        color: #283c51;
-        text-align: center;
-    }}
-
-    h2 {{
-        border-bottom: 1px solid #eee;
-        padding-bottom: 0.3em;
-        margin-left: 30px;
-        padding-left: 20px;
-        font-size: 40px;
-        font-weight: bold;
-        color: #2EA9DF;
-
-    }}
-
-    p {{
-        padding-left: 20px;
-        margin-left: 45px;
-        font-size: 20px;
-    }}
-
-    img {{
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-
-    }}
-    </style>
+    <style>{mystyle}</style>
     <title>{title}</title>
 </head>
 <body>
     <h1 id="_1">{title}</h1>
-    <p>日期：{date}
-        <br /> 操作人：{worker}
-        <br /> 光纤型号：{fibertype}
-        <br /> 生产厂家：{producer}
-        <br /> 光纤编号：{fiberNo}
-        <br /> 光纤长度：{fiberLength}
+    <h2 id="_2">测 试 人 员</h2>
+    <p>日 期：{date}
+        <br /> 操 作 人：{worker}
+        <br /> 光 纤 型 号：{fibertype}
+        <br /> 生 产 厂 家：{producer}
+        <br /> 光 纤 编 号：{fiberNo}
+        <br /> 光 纤 长 度：{fiberLength}
     </p>
-    <h2 id="_2">测试结果</h2>
-    <p> 纤芯直径：{corediameter}
-        <br /> 包层直径：{claddiameter}
-        <br /> 纤芯不圆度：{coreroundness}
-        <br /> 包层不圆度：{cladroundness}
-        <br /> 芯包同心度: {concentricity}
+    <h2 id="_2">测 试 结 果</h2>
+    <p> 纤 芯 直 径：{corediameter}
+        <br /> 包 层 直 径：{claddiameter}
+        <br /> 纤 芯 不 圆 度：{coreroundness}
+        <br /> 包 层 不 圆 度：{cladroundness}
+        <br /> 芯 包 同 心 度: {concentricity}
     </p>
-    <h2 id="_3">测试参数</h2>
-    <p>清晰度指数：{sharpindex}
-        <br /> 纤芯亮度指数：{lightindex}
+    <h2 id="_3">测 试 参 数</h2>
+    <p>清 晰 度 指 数：{sharpindex}
+        <br /> 纤 芯 饱 和 度 指数：{corelight}
+        <br /> 包 层 饱 和 度 指数：{cladlight}
         <br /></p>
 </body>
 </html>'''
+with open('report\\my.css') as f:
+    mystyle = f.readlines()
+mystyle = ''.join(mystyle)
 
 htmlpara = {
     'title': '标题',
@@ -90,7 +48,10 @@ htmlpara = {
     'cladroundness': '',
     'concentricity': '',
     'sharpindex': '',
-    'lightindex': '',
+    'corelight': '',
+    'cladlight': '',
     'date': '',
-    'fiberLength': ''
+    'fiberLength': '',
+    'mystyle':mystyle
 }
+
