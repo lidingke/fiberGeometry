@@ -1,75 +1,69 @@
-# -*- coding: utf-8 -*-
-from tornado import ioloop
-# import tornado
-from imgserver.tcp_server import MyServer, init_logging
-from imgserver.tcp_client import ImgClient
-from SDK.mdpy import DynamicGetRawImgTest
-import cv2
-import numpy as np
-import multiprocessing
-import time
-from pattern.getimg import randomImg
-import json
-import logging
+from imgserver.client import Client
+from imgserver.server import ImgServer, SeverMain, SharpSever
 from threading import Thread
-from tornado.testing import AsyncTestCase,gen_test
+import multiprocessing
+from tornado.ioloop import IOLoop
+from functools import partial
+from imgserver.methods import getImage
+import logging
+logger = logging.getLogger(__name__)
+from tornado.iostream import StreamClosedError
+import time
 
-# server = MyServer()
-PORT = 5115
 
-def Server():
+def test_sharpserver():
+    ss = SharpSever()
+    ss.getAll()
 
-    # ioloop.IOLoop.instance().start()
-    server = MyServer()
-    server.listen(PORT)
 
-    print 'start get img client'
-
-def ttest_getImgOnceMore():
-    init_logging()
-    Thread(target = Server).start()
-    # multiprocessing.Process(target=Server).start()
-    DyIMG = DynamicGetRawImgTest(PORT)
-    DyIMG.getImgOnce()
-    DyIMG.getImgOnce()
-    DyIMG.io_loop.start()
-
-def ttest_getImgOncethread():
-    init_logging()
-    Thread(target=Server).start()
-    # multiprocessing.Process(target=Server).start()
+def test_imgserver():
+    port = 9880
+    # port = 9801
+    Thread(target = SeverMain, args=(port,)).start()
+    # multiprocessing.Process(target=servermain).start()
     # time.sleep(1)
-    # DyIMG = DynamicGetRawImgTest(PORT)
-    # DyIMG.getImgOnce()
-    # DyIMG.io_loop.start()
+    img = getImage('IMG/midoc.BMP')
+    imgstr = img.tobytes()
+    result = IOLoop.current().run_sync(Client(port=port).get_img_once)
+    assert len(result) == len(imgstr)
+    assert imgstr != result
+    print len(result)
+    para = ('getImage', 'IMG/midoc.BMP')
+    IOLoop.current().run_sync(partial(Client(port=port).get_change,para))
+    result = IOLoop.current().run_sync(Client(port=port).get_img_once)
+    assert len(result) == len(imgstr)
+    assert imgstr == result
+    para = ('randomImg', 'IMG/G652/pk/')
+    IOLoop.current().run_sync(partial(Client(port=port).get_change, para))
+    result = IOLoop.current().run_sync(Client(port=port).get_img_once)
+    assert len(result) == len(imgstr)
+    assert imgstr != result
+    IOLoop.current().run_sync(Client(port=port).close_server)
+
+
+def test_getimg_while_loop():
+    port = 9881
+    # port = 9801
+    img = getImage('IMG/midoc.BMP')
+    imgstr = img.tobytes()
+    Thread(target = SeverMain, args=(port,)).start()
+    # multiprocessing.Process(target=SeverMain, args=(port,)).start()
+    for x in range(0,300):
+        try:
+            # time.sleep(0.5)
+            result = IOLoop.current().run_sync(Client(port=port).get_img_once)
+            assert len(result) == len(imgstr)
+        except StreamClosedError:
+            logger.warning("Lost host at client %s")
+            return
+        except Exception as e:
+            print 'range time', x
+            raise e
+    IOLoop.current().run_sync(Client(port=port).close_server)
+
+
+
+# def test_imgserver():
+#     Thread(target = SeverMain).start()
+    # multiprocessing.Process(target=servermain).start()
     # time.sleep(1)
-    para = {'function': 'getImage', 'para': 'IMG/midoc.bmp'}
-    # DyIMG.changeImgFunction(para)
-    tchange = Thread(target=DynamicGetRawImgTest(PORT).changeImgFunction, args=(para))
-    timg = Thread(target=DynamicGetRawImgTest(PORT).getImgOnce)
-    time.sleep(1)
-    # DyIMG.io_loop.start()
-    DyIMG.getImgOnce()
-    # time.sleep(1)
-    # DyIMG.getImgOnce()
-    DyIMG.io_loop.start()
-    # DyIMG.close()
-
-
-
-
-class ATestCase(AsyncTestCase):
-
-    def Sever(self):
-        server = MyServer(io_loop=self.io_loop)
-        server.listen(PORT)
-
-    # @gen_test
-    def test_imgOnce(self):
-        init_logging()
-        Thread(target = Server).start()
-        client = ImgClient('localhost', PORT, self.io_loop)
-        client.get_img()
-        ioloop.IOLoop.instance().start()
-        self.wait()
-

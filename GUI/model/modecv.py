@@ -18,7 +18,8 @@ if setGet:
     from SDK.mdpy import GetRawImg
 else:
     # from SDK.mdpy import DynamicGetRawImgTest as GetRawImg
-    from SDK.mdpy import GetRawImgTest as GetRawImg
+    from SDK.mdpytest import DynamicGetRawImgTest as GetRawImg
+    # from SDK.mdpy import GetRawImgTest as GetRawImg
     print 'script don\'t open camera'
 
 from pattern.edge import ExtractEdge
@@ -72,6 +73,8 @@ class ModelCV(Thread, QObject):
     def run(self):
         while self.IS_RUN:
             img = self.getRawImg.get()
+            if not isinstance(img, np.ndarray):
+                break
             self.img = img.copy()
             self.imgQueue.append(self.img)
             # self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
@@ -92,7 +95,6 @@ class ModelCV(Thread, QObject):
                 while len(self.imgQueue) != 5:
                     time.sleep(0.1)
                 for img in list(self.imgQueue):
-
                     self.eresults = self.classify.find(img)
                     result = self.eresults["showResult"]
                     print 'get result', result

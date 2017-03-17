@@ -7,9 +7,27 @@ class Focuser(object):
     def __init__(self):
         super(Focuser, self).__init__()
         self.issharp = IsSharp().issharpla
+        self.step = 0
+        self.oldsharp = 0
+        self.motor = Motor()
+        self.RUNNING = True
+
+    def get(self, img):
+        sharp = self.issharp(img)
+        if self.oldsharp < sharp:
+            return -1
+        elif self.oldsharp > sharp:
+            return 1
+        elif self.oldsharp == sharp:
+            return 0
+
+    def getImg(self):
+        return None
 
     def run(self):
-        pass
+        while self.RUNNING:
+            img = self.get()
+            self.motor.move(self.get(img))
 
 
 
@@ -21,24 +39,3 @@ class Motor(object):
     def move(self, step):
         raise NotImplementedError
 
-class TestMotor(Motor):
-
-    def __init__(self):
-        super(TestMotor, self).__init__()
-
-    def move(self, step):
-        print  'move', step
-
-class TestImgGet(object):
-
-    def __init__(self):
-        super(TestImgGet, self).__init__()
-        self.getimg = GetImage().get
-        self.dir_ = "IMG\\sharp\\oc1"
-        self.getimgs()
-
-
-    def getimgs(self):
-        os.sys
-
-    def get(self):
