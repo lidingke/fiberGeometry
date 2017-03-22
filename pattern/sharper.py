@@ -1,6 +1,14 @@
 from .sharp import IsSharp
 from .getimg import GetImage
 import os, sys
+from collections import deque
+
+
+def Midfilter(que):
+    assert isinstance(que, list)
+    que.sort()
+    que = que[1:-1]
+    return sum(que) / len(que)
 
 class Focuser(object):
 
@@ -8,26 +16,43 @@ class Focuser(object):
         super(Focuser, self).__init__()
         self.issharp = IsSharp().issharpla
         self.step = 0
-        self.oldsharp = 0
+        self.sharps = deque(maxlen=15)
         self.motor = Motor()
+        self.getImg = GetImage().get
         self.RUNNING = True
 
-    def get(self, img):
-        sharp = self.issharp(img)
-        if self.oldsharp < sharp:
-            return -1
-        elif self.oldsharp > sharp:
-            return 1
-        elif self.oldsharp == sharp:
-            return 0
 
-    def getImg(self):
-        return None
+    def getSharp(self):
+        img = self.getImg()
+        sharp = self.issharp(img)
+        return sharp
 
     def run(self):
+        self.motor.start()
+        RUNNING = True
+        while RUNNING:
+            sharp = self.getSharp()
+            self.sharps.append(sharp)
+            if len(self.sharps) >= 15:
+                sharps = list(self.sharps)
+                begin = Midfilter(sharps[:5])
+                end = Midfilter(sharps[-5:])
+                if begin < end :
+                    self.motor.moveback()
+                RUNNING = False
         while self.RUNNING:
-            img = self.get()
-            self.motor.move(self.get(img))
+            sharp = self.getSharp()
+            self.sharps.append(sharp)
+            sharps = list(self.sharps)
+            begin = Midfilter(sharps[:5])
+            mid = Midfilter(sharps[5:-5])
+            end = Midfilter(sharps[-5:])
+            if (begin > mid) and (end > mid):
+                self.RUNNING=False
+
+            # self.motor.move(self.get(img))
+
+
 
 
 
@@ -37,5 +62,11 @@ class Motor(object):
         super(Motor, self).__init__()
 
     def move(self, step):
+        raise NotImplementedError
+
+    def start(self):
+        raise NotImplementedError
+
+    def moveback(self):
         raise NotImplementedError
 

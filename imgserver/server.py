@@ -100,6 +100,12 @@ class ImgServer(TCPServer):
         yield stream.write(img)
 
     @gen.coroutine
+    def _getImgDistance(self, stream, distance):
+        img = yield self.sharpSever.img_distance(stream,distance)
+        img = img.tobytes() + b'\n\r\n\r'
+        yield stream.write(img)
+
+    @gen.coroutine
     def _getImgMethod(self, function = 'randomImg', para = 'IMG/G652/pk/'):
         # print 'getImgMehtods', function, para
         if function == 'randomImg':

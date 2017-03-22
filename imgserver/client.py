@@ -49,6 +49,13 @@ class Client(object):
 
     def get_distance(self):
         stream = yield TCPClient().connect(self.host, self.port)
+        logging.info('img connect')
+        yield stream.write(("getimgonce" + "\n\r").encode())
+        logging.info('img send')
+        data = yield stream.read_until(b"\n\r\n\r")
+        stream.close()
+        # rawdata = np.frombuffer(data.strip(), dtype=np.uint8)
+        raise gen.Return(data[:-4])
 
 # @gen.coroutine
 def clientmain():

@@ -5,11 +5,10 @@ import multiprocessing
 from tornado.ioloop import IOLoop
 from functools import partial
 from imgserver.methods import getImage
-import logging
-logger = logging.getLogger(__name__)
 from tornado.iostream import StreamClosedError
 import time
-
+import logging
+logger = logging.getLogger(__name__)
 
 def test_sharpserver():
     ss = SharpSever()
@@ -48,6 +47,7 @@ def test_getimg_multi_connect():
     imgstr = img.tobytes()
     Thread(target = SeverMain, args=(port,)).start()
     # multiprocessing.Process(target=SeverMain, args=(port,)).start()
+    print 'start multi connect'
     for x in range(0,300):
         try:
             # time.sleep(0.5)
@@ -59,6 +59,8 @@ def test_getimg_multi_connect():
         except Exception as e:
             print 'range time', x
             raise e
+        if x%50 == 0:
+            print 'create times',x, time.time()
     IOLoop.current().run_sync(Client(port=port).close_server)
 
 
