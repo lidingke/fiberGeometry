@@ -11,6 +11,8 @@ import os
 import cv2
 import numpy as np
 from imgserver.methods import randomImg, getImage
+import time
+from threading import Thread
 # port = 9880
 # define("port", default=9888, help="TCP port to listen on")
 logger = logging.getLogger(__name__)
@@ -131,6 +133,56 @@ class ImgServer(TCPServer):
         self.IS_RUNNING = False
         # self.io_loop.stop()
         # self.io_loop.close()
+
+class CameraMotorSever(TCPServer):
+    IS_RUNNING = True
+    MOTOR_RUNNING = True
+
+    @gen.coroutine
+    def handle_stream(self, stream, address):
+        while self.IS_RUNNING:
+            try:
+                data = yield stream.read_until("\n\r")
+                logger.info("Received bytes: %s", data)
+                data = data.strip()
+                if data == 'getsharp:':
+                    self._getImgOnce(stream)
+                elif data == 'back:':
+                    self.back = not self.back
+                elif data == 'start:':
+                    self._getStart()
+                elif data =='close':
+                    self._close()
+            except StreamClosedError:
+                logger.info("Lost client at host %s", address[0])
+                break
+            except Exception as e:
+                raise e
+
+    def timer_thread(self):
+        while self.MOTOR_RUNNING:
+            time.sleep(0.1)
+            if self.back:
+                self.sharp = self.sharp + 0.5
+            else:
+                self.sharp = self.sharp - 0.5
+
+    def _getStart(self):
+        self.sharp = 100
+        self.back = True
+        self.timer = Thread(self.timer_thread)
+        self.timer.start()
+
+
+    @gen.coroutine
+    def _getImgOnce(self, stream):
+        cmd = str(self.sharp) + '\n\r\n\r'
+        yield stream.write(cmd)
+
+
+    def _close(self):
+        self.IS_RUNNING = False
+        self.MOTOR_RUNNING = False
 
 
 def SeverMain(port):
