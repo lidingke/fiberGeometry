@@ -146,6 +146,7 @@ class CameraMotorSever(TCPServer):
                 logger.info("Received bytes: %s", data)
                 data = data.strip()
                 if data == 'getsharp:':
+                    print 'getsharp'
                     self._getImgOnce(stream)
                 elif data == 'back:':
                     self.back = not self.back
@@ -177,6 +178,8 @@ class CameraMotorSever(TCPServer):
     @gen.coroutine
     def _getImgOnce(self, stream):
         cmd = str(self.sharp) + '\n\r\n\r'
+        cmdlen = len(cmd)
+        yield stream.write('{:0>4}'.format(cmdlen))
         yield stream.write(cmd)
 
 

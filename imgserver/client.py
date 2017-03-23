@@ -12,6 +12,7 @@ from functools import partial
 import logging
 logger = logging.getLogger(__name__)
 
+
 define("host", default="localhost", help="TCP server host")
 define("portc", default=9888, help="TCP port to connect to")
 define("message", default="getimgonce", help="Message to send")
@@ -47,6 +48,11 @@ class Client(object):
         yield stream.write(("close" + "\n\r").encode())
         stream.close()
 
+class SharpClient(object):
+    def __init__(self, host='localhost', port=9880):
+        self.host = host
+        self.port = port
+
     @gen.coroutine
     def get_sharp(self):
         stream = yield TCPClient().connect(self.host, self.port)
@@ -57,6 +63,17 @@ class Client(object):
         stream.close()
         # rawdata = np.frombuffer(data.strip(), dtype=np.uint8)
         raise gen.Return(data)
+
+    def get_sharp_sys(self):
+        stream = TCPClient().connect(self.host, self.port)
+        logging.info('img connect')
+        stream.write(("getsharp:" + "\n\r").encode())
+        logging.info('img send')
+        data = stream.read_until("\n\r\n\r")
+        stream.close()
+        # rawdata = np.frombuffer(data.strip(), dtype=np.uint8)
+        # raise gen.Return(data)
+        return data
 
     @gen.coroutine
     def start_motor(self):
@@ -69,6 +86,15 @@ class Client(object):
         stream = yield TCPClient().connect(self.host,self.port)
         yield stream.write(("back:" + "\n\r").encode())
         stream.close()
+
+    @gen.coroutine
+    def send_close(self):
+        stream = yield TCPClient().connect(self.host,self.port)
+        yield stream.write(("close" + "\n\r").encode())
+        stream.close()
+
+
+
 
 
 # @gen.coroutine
