@@ -73,9 +73,10 @@ class Motortest(Motor):
 # def get_img(port):
 #     IOLoop.current().run_sync(SharpClient(port=port).get_sharp)
 
-def get_img_sys(port):
-    _ = IOLoop.current().run_sync(SharpClient(port=port).get_sharp)
-    return _
+    def get_img_sys(self):
+        time.sleep(0.05)
+        _ = IOLoop.current().run_sync(SharpClient(port=self.port).get_sharp)
+        return abs(float(_.strip()))
 
 def camer_server(port):
     print 'listening on port', port
@@ -84,20 +85,24 @@ def camer_server(port):
     logger.info("Listening on TCP port %d", port)
     # IOLoop.instance().start()
 
-def test_motor_camera():
-    # logger.setLevel('INFO')
-
+def ttest_motor_camera_once():
     port = 9811
     _ = threading.Thread(target=camer_server, args=(port,))
-    # camer_server(port)
     _.start()
     focus = Focuser()
-
     focus.motor = Motortest(port)
+    focus.getSharp = Motortest(port).get_img_sys
+    focus.motor.start()
+    sharp = focus.getSharp()
+    assert 100.0 == sharp
 
-    # focus.getSharp = partial(get_img, port)
-    # focus.run()
-    focus.getSharp = partial(get_img_sys, port)
-    focus.get()
 
-
+def test_motor_camera():
+    port = 9812
+    _ = threading.Thread(target=camer_server, args=(port,))
+    _.start()
+    focus = Focuser()
+    focus.motor = Motortest(port)
+    focus.getSharp = Motortest(port).get_img_sys
+    # assert '100' == focus.get()
+    focus.run()

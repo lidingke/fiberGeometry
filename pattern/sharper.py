@@ -3,13 +3,14 @@ from .getimg import GetImage
 import os, sys
 from collections import deque
 import logging
+import time
 logger = logging.getLogger(__name__)
 
 def Midfilter(que):
     assert isinstance(que, list)
     que.sort()
     que = que[1:-1]
-    print que
+    # print que
     return sum(que) / len(que)
 
 class Focuser(object):
@@ -27,7 +28,6 @@ class Focuser(object):
     def getSharp(self):
         img = self.getImg()
         sharp = self.issharp(img)
-
         return sharp
 
     def run(self):
@@ -39,27 +39,34 @@ class Focuser(object):
             logging.info(sharp)
             if len(self.sharps) >= 15:
                 sharps = list(self.sharps)
+                print sharps
                 begin = Midfilter(sharps[:5])
                 end = Midfilter(sharps[-5:])
-                if begin < end :
+                if begin <= end :
                     self.motor.moveback()
                 RUNNING = False
         while self.RUNNING:
+
             sharp = self.getSharp()
             self.sharps.append(sharp)
             sharps = list(self.sharps)
+            print
             begin = Midfilter(sharps[:5])
             mid = Midfilter(sharps[5:-5])
             end = Midfilter(sharps[-5:])
             if (begin > mid) and (end > mid):
                 self.RUNNING=False
+        self.motor.moveback()
+        time.sleep(0.2)
+        print 'end', self.getSharp()
         self.motor.close()
 
-    def get(self):
-        self.motor.start()
-        print self.motor, self.getSharp
-        sharp = self.getSharp()
-        print 'getsharp',sharp
+    # def get(self):
+    #     self.motor.start()
+    #     print self.motor, self.getSharp
+    #     sharp = self.getSharp()
+    #     print 'getsharp',sharp
+        # return sharp
         # self.motor.close()
             # self.motor.move(self.get(img))
 

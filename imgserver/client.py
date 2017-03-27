@@ -87,24 +87,3 @@ class SharpClient(object):
 
 
 
-# @gen.coroutine
-# def clientmain():
-# #     options.parse_command_line()
-# #     getresult=False
-#     IOLoop.current().run_sync(get_img_once)
-#     # print(getresult)
-#     IOLoop.current().run_sync(get_change)
-#     IOLoop.current().run_sync(get_img_once)
-#     IOLoop.current().run_sync(get_img_once)
-#     IOLoop.current().run_sync(close_server)
-
-# if __name__ == "__main__":
-#     options.parse_command_line()
-#     IOLoop.current().run_sync(get_img_once)
-#
-#     IOLoop.current().run_sync(get_change)
-#     # change = Thread(target=clientmain)
-#     # change.start()
-#     # change.join()
-#     # time.sleep(1)
-#     IOLoop.current().run_sync(get_img_once)

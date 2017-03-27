@@ -146,13 +146,12 @@ class CameraMotorSever(TCPServer):
                 logger.info("Received bytes: %s", data)
                 data = data.strip()
                 if data == 'getsharp:':
-                    print 'getsharp'
                     self._get_sharp(stream)
                 elif data == 'back:':
                     self.back = not self.back
                 elif data == 'start:':
                     print 'get start'
-                    self._getStart()
+                    self._get_start_timer()
                 elif data =='close':
                     self._close()
             except StreamClosedError:
@@ -162,23 +161,27 @@ class CameraMotorSever(TCPServer):
                 raise e
 
     def timer_thread(self):
+
+        print 'get in timer'
         while self.MOTOR_RUNNING:
-            time.sleep(0.1)
+            time.sleep(0.01)
+            print 'start sharp loop', self.sharp
             if self.back:
                 self.sharp = self.sharp + 0.5
             else:
                 self.sharp = self.sharp - 0.5
 
-    def _getStart(self):
+    def _get_start_timer(self):
         self.sharp = 100
         self.back = True
-        self.timer = Thread(self.timer_thread)
-        self.timer.start()
+        timer = Thread(target=self.timer_thread)
+        timer.start()
 
 
     @gen.coroutine
     def _get_sharp(self, stream):
         cmd = str(self.sharp) + '\n\r\n\r'
+        # print 'sharp', cmd.strip()
         yield stream.write(cmd)
 
 
