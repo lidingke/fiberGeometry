@@ -59,7 +59,8 @@ class Focuser(object):
         self.motor.start()
         print self.motor, self.getSharp
         sharp = self.getSharp()
-        print sharp
+        print 'getsharp',sharp
+        # self.motor.close()
             # self.motor.move(self.get(img))
 
 

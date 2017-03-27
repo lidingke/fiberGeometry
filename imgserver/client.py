@@ -64,16 +64,6 @@ class SharpClient(object):
         # rawdata = np.frombuffer(data.strip(), dtype=np.uint8)
         raise gen.Return(data)
 
-    def get_sharp_sys(self):
-        stream = TCPClient().connect(self.host, self.port)
-        logging.info('img connect')
-        stream.write(("getsharp:" + "\n\r").encode())
-        logging.info('img send')
-        data = stream.read_until("\n\r\n\r")
-        stream.close()
-        # rawdata = np.frombuffer(data.strip(), dtype=np.uint8)
-        # raise gen.Return(data)
-        return data
 
     @gen.coroutine
     def start_motor(self):

@@ -51,6 +51,7 @@ from imgserver.server import CameraMotorSever
 from tornado.ioloop import IOLoop
 from functools import partial
 import socket
+import threading
 
 class Motortest(Motor):
     def __init__(self, port):
@@ -69,16 +70,11 @@ class Motortest(Motor):
     def close(self):
         IOLoop.current().run_sync(SharpClient(port=self.port).send_close)
 
-def get_img(port):
-    IOLoop.current().run_sync(SharpClient(port=port).get_sharp)
+# def get_img(port):
+#     IOLoop.current().run_sync(SharpClient(port=port).get_sharp)
 
 def get_img_sys(port):
-    # SharpClient(port=port).get_sharp_sys()
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.connect(("127.0.0.1",port))
-    sock.sendall('getsharp:\n\r')
-    _ = sock.recv(4)
-    _ = sock.recv(int(_))
+    _ = IOLoop.current().run_sync(SharpClient(port=port).get_sharp)
     return _
 
 def camer_server(port):
@@ -86,14 +82,19 @@ def camer_server(port):
     server = CameraMotorSever()
     server.listen(port)
     logger.info("Listening on TCP port %d", port)
-    IOLoop.instance().start()
+    # IOLoop.instance().start()
 
 def test_motor_camera():
     # logger.setLevel('INFO')
+
     port = 9811
-    camer_server(port)
+    _ = threading.Thread(target=camer_server, args=(port,))
+    # camer_server(port)
+    _.start()
     focus = Focuser()
+
     focus.motor = Motortest(port)
+
     # focus.getSharp = partial(get_img, port)
     # focus.run()
     focus.getSharp = partial(get_img_sys, port)

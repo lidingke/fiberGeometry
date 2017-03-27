@@ -103,7 +103,7 @@ class ImgServer(TCPServer):
 
     @gen.coroutine
     def _getImgDistance(self, stream, distance):
-        img = yield self.sharpSever.img_distance(stream,distance)
+        img = yield self.sharpSever.img_distance(stream, distance)
         img = img.tobytes() + b'\n\r\n\r'
         yield stream.write(img)
 
@@ -147,10 +147,11 @@ class CameraMotorSever(TCPServer):
                 data = data.strip()
                 if data == 'getsharp:':
                     print 'getsharp'
-                    self._getImgOnce(stream)
+                    self._get_sharp(stream)
                 elif data == 'back:':
                     self.back = not self.back
                 elif data == 'start:':
+                    print 'get start'
                     self._getStart()
                 elif data =='close':
                     self._close()
@@ -176,10 +177,8 @@ class CameraMotorSever(TCPServer):
 
 
     @gen.coroutine
-    def _getImgOnce(self, stream):
+    def _get_sharp(self, stream):
         cmd = str(self.sharp) + '\n\r\n\r'
-        cmdlen = len(cmd)
-        yield stream.write('{:0>4}'.format(cmdlen))
         yield stream.write(cmd)
 
 
