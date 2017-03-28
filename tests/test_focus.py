@@ -47,7 +47,7 @@ def ttest_focus():
 
 from pattern.sharper import Motor, Focuser
 from imgserver.client import SharpClient
-from imgserver.server import CameraMotorSever
+from imgserver.server import CameraMotorSever, CameraMotorSeverRadom
 from tornado.ioloop import IOLoop
 from functools import partial
 import socket
@@ -57,6 +57,7 @@ class Motortest(Motor):
     def __init__(self, port):
         super(Motortest, self).__init__()
         self.port = port
+        self.sharp = False
 
     def move(self):
         pass
@@ -76,16 +77,24 @@ class Motortest(Motor):
     def get_img_sys(self):
         time.sleep(0.05)
         _ = IOLoop.current().run_sync(SharpClient(port=self.port).get_sharp)
-        return abs(float(_.strip()))
+        self.sharp = abs(float(_.strip()))
+        return self.sharp
 
 def camer_server(port):
     print 'listening on port', port
     server = CameraMotorSever()
     server.listen(port)
+    # server.bind(port)
+    # server.start(0)
     logger.info("Listening on TCP port %d", port)
     # IOLoop.instance().start()
 
-def ttest_motor_camera_once():
+# def camer_server_random(port):
+#     print 'listening on port', port
+#     server = CameraMotorSeverRadom()
+#     server.listen(port)
+
+def test_motor_camera_once():
     port = 9811
     _ = threading.Thread(target=camer_server, args=(port,))
     _.start()
@@ -94,7 +103,8 @@ def ttest_motor_camera_once():
     focus.getSharp = Motortest(port).get_img_sys
     focus.motor.start()
     sharp = focus.getSharp()
-    assert 100.0 == sharp
+    focus.motor.close()
+    assert abs(100.0 - sharp) < 5.0
 
 
 def test_motor_camera():
@@ -106,3 +116,19 @@ def test_motor_camera():
     focus.getSharp = Motortest(port).get_img_sys
     # assert '100' == focus.get()
     focus.run()
+    assert focus.motor.sharp < 5
+
+def test_motor_camera_random():
+    port = 9813
+    def random_sever():
+        print 'listening on port', port
+        server = CameraMotorSeverRadom()
+        server.listen(port)
+    _ = threading.Thread(target=random_sever)
+    _.start()
+    focus = Focuser()
+    focus.motor = Motortest(port)
+    focus.getSharp = Motortest(port).get_img_sys
+    # assert '100' == focus.get()
+    focus.run()
+    assert focus.motor.sharp < 5
