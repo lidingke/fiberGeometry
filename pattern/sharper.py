@@ -32,7 +32,7 @@ class Focuser(object):
     def getSharp(self):
         img = self.getImg()
         st = str(int(time.time()))
-        cv2.imwrite("IMG\\emptytuple\\sharpa\\"+st+".BMP",img)
+        # cv2.imwrite("IMG\\emptytuple\\sharpa\\"+st+".BMP",img)
         sharp = self.issharp(img)
         # time.sleep(3)
         print 'get sharp',sharp
@@ -78,6 +78,46 @@ class Focuser(object):
         # return sharp
         # self.motor.close()
             # self.motor.move(self.get(img))
+
+class LiveFocuser(object):
+
+    def __init__(self,):
+        super(LiveFocuser, self).__init__()
+        self.sharps = deque(maxlen=15)
+        self.motor = SerialMotor(port='com4')
+        self.IS_START = False
+
+    def get_sharps(self,sharp):
+        if self.IS_START:
+            if isinstance(sharp, str):
+                sharp = float(sharp)
+            else:
+            # if not isinstance(sharps, list):
+                raise ValueError('sharp not str number')
+
+            print 'get sharp', sharp
+            self.sharps.append(sharp)
+            if len(self.sharps) != 15:
+                return
+            sharps = list(self.sharps)
+            begin = Midfilter(sharps[:5])
+            mid = Midfilter(sharps[5:-5])
+            end = Midfilter(sharps[-5:])
+            # end = Midfilter(sharps[-5:])
+            if begin <= end:
+                self.motor.moveback()
+            elif (begin > mid) and (end > mid):
+                self.IS_START = False
+                self.motor.moveback()
+                time.sleep(1)
+                self.motor.close()
+                self.sharps.clear()
+
+    def start(self):
+        self.motor.start()
+        time.sleep(0.1)
+        self.IS_START = True
+
 
 
 class Motor(object):

@@ -31,7 +31,7 @@ from pattern.draw import DecorateImg, drawCoreCircle, decorateMethod
 from SDK.oceanoptics import OceanOpticsTest
 from util.toolkit import Cv2ImShow, Cv2ImSave
 import logging
-from pattern.sharper import Focuser
+from pattern.sharper import LiveFocuser
 from util.timing import timing
 from util.filter import AvgResult
 from util.loadimg import sliceImg
@@ -67,7 +67,15 @@ class ModelCV(Thread, QObject):
         self.Oceanoptics = OceanOpticsTest()
         self.classify = classifyObject('G652')
         self.pdfparameter = SETTING()['pdfpara']
-        self.focuser = Focuser()
+        # self.sharps = collections.deque(maxlen=15)
+        try:
+            self.focuser = LiveFocuser()
+            # self.focuser.start()
+        except Exception as e:
+            print e
+
+
+
 
 
 
@@ -81,6 +89,7 @@ class ModelCV(Thread, QObject):
             self.imgQueue.append(self.img)
             # self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
             self.sharp = "%0.2f" % self.isSharp.issharpla(img)
+            self.focuser.get_sharps(self.sharp)
             # plotResults = (self.ellipses, self.result)
             self._greenLight(img)
             colorImg = self._decorateImg(img)
@@ -222,7 +231,8 @@ class ModelCV(Thread, QObject):
         SETTING().keyUpdates(key)
 
     def focus(self):
-        self.focuser.run()
+        print 'get focuser start'
+        self.focuser.start()
 
     #
     # def _getImg(self):

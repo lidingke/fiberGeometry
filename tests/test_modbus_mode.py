@@ -35,7 +35,7 @@ class Slave(Thread):
 
 
 """test port com15 connect cm16"""
-def ttest_mode():
+def test_mode():
     slave = Slave()
     slave.start()
     mod = ModBusMode('com13')
@@ -54,12 +54,12 @@ def ttest_mode():
     # mod.close()
 
 
-def ttest_print():
+def test_print():
     for k,cmd in cmds.items():
         print " ".join("{:02x}".format(ord(c)) for c in cmd)
 
 
-def ttest_get_crc():
+def test_get_crc():
     if Iscrcmod:
         crc16 = crcmod.predefined.mkCrcFun('modbus')
         for k,v in cmds.items():
@@ -84,7 +84,7 @@ def ttest_move():
     md.run('x', 'release', '1')
 
 
-def test_focuser():
+def ttest_focuser():
     focus = Focuser()
     focus.run()
 
