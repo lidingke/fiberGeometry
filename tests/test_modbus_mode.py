@@ -3,6 +3,7 @@ from threading import Thread
 import serial
 import time
 from SDK.cmd import cmds, cmdscrc
+from pattern.sharper import Focuser
 try:
     import crcmod
 except ImportError as e:
@@ -34,7 +35,7 @@ class Slave(Thread):
 
 
 """test port com15 connect cm16"""
-def test_mode():
+def ttest_mode():
     slave = Slave()
     slave.start()
     mod = ModBusMode('com13')
@@ -53,12 +54,12 @@ def test_mode():
     # mod.close()
 
 
-def test_print():
+def ttest_print():
     for k,cmd in cmds.items():
         print " ".join("{:02x}".format(ord(c)) for c in cmd)
 
 
-def test_get_crc():
+def ttest_get_crc():
     if Iscrcmod:
         crc16 = crcmod.predefined.mkCrcFun('modbus')
         for k,v in cmds.items():
@@ -71,14 +72,19 @@ def test_get_crc():
             assert "".join("{:02x}".format(ord(c)) for c in cmdscrc[k][-2:]) == crccode[-2:]+crccode[-4:-2]
 
 
-def Ttest_move():
+def ttest_move():
     md = ModBusMode('com4')
     print 'send'
     md.run('x', 'clicked', '0')
-    time.sleep(3)
+    time.sleep(30)
     md.run('x', 'release', '0')
     time.sleep(1)
     md.run('x', 'clicked', '1')
-    time.sleep(3)
+    time.sleep(30)
     md.run('x', 'release', '1')
+
+
+def test_focuser():
+    focus = Focuser()
+    focus.run()
 

@@ -210,7 +210,7 @@ p, li { white-space: pre-wrap; }
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>1320</x>
@@ -393,6 +393,19 @@ p, li { white-space: pre-wrap; }
       </layout>
      </item>
     </layout>
+   </widget>
+   <widget class="QPushButton" name="focuser">
+    <property name="geometry">
+     <rect>
+      <x>1330</x>
+      <y>770</y>
+      <width>150</width>
+      <height>46</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>对焦</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

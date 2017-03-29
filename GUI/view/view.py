@@ -4,12 +4,12 @@ import cv2
 from GUI.UI.mainUI import Ui_MainWindow
 import logging
 fibertype = SETTING().get("fiberType", "G652")
-if fibertype == "octagon":
-    from GUI.UI.mainocUI import Ui_MainWindow as new_MainWindow
-elif fibertype in ("20400","G652"):
-    from GUI.UI.mainocUI import Ui_MainWindow as new_MainWindow
-else:
-    from GUI.UI.mainUI import Ui_MainWindow as new_MainWindow
+# if fibertype == "octagon":
+from GUI.UI.mainocUI import Ui_MainWindow as new_MainWindow
+# elif fibertype in ("20400","G652"):
+#     from GUI.UI.mainocUI import Ui_MainWindow as new_MainWindow
+# else:
+#     from GUI.UI.mainUI import Ui_MainWindow as new_MainWindow
 from util.load import WriteReadJson
 from GUI.view.opplot import OpticalPlot
 from .reporter import Reporter

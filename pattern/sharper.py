@@ -1,10 +1,14 @@
 from .sharp import IsSharp
 from .getimg import GetImage
 import os, sys
+import cv2
 from collections import deque
 import logging
 import time
+import serial
 logger = logging.getLogger(__name__)
+from SDK.modbussdk import ModBusMode
+from SDK.mdpy import GetRawImg
 
 def Midfilter(que):
     assert isinstance(que, list)
@@ -20,19 +24,24 @@ class Focuser(object):
         self.issharp = IsSharp().issharpla
         self.step = 0
         self.sharps = deque(maxlen=15)
-        self.motor = Motor()
-        self.getImg = GetImage().get
+        self.motor = SerialMotor(port='com4')
+        self.getImg = GetRawImg().get
         self.RUNNING = True
 
 
     def getSharp(self):
         img = self.getImg()
+        st = str(int(time.time()))
+        cv2.imwrite("IMG\\emptytuple\\sharpa\\"+st+".BMP",img)
         sharp = self.issharp(img)
+        # time.sleep(3)
+        print 'get sharp',sharp
         return sharp
 
     def run(self):
         self.motor.start()
         RUNNING = True
+        time.sleep(1)
         while RUNNING:
             sharp = self.getSharp()
             self.sharps.append(sharp)
@@ -57,7 +66,7 @@ class Focuser(object):
             if (begin > mid) and (end > mid):
                 self.RUNNING=False
         self.motor.moveback()
-        time.sleep(0.2)
+        time.sleep(0.1)
         print 'end', self.getSharp()
         self.motor.close()
 
@@ -87,5 +96,35 @@ class Motor(object):
 
     def close(self):
         raise NotImplementedError
+
+
+class SerialMotor(Motor):
+
+    def __init__(self, port = "com13", baudrate = 19200):
+        super(SerialMotor, self).__init__()
+        self.mod = ModBusMode(port=port, baudrate=baudrate, )
+        self.direct = 'x'
+        self.status = 'clicked'
+        self.forward = '0'
+
+    def move(self):
+        pass
+
+    def start(self):
+        self.mod.run(self.direct, 'clicked', self.forward)
+
+    def moveback(self):
+        self.mod.run(self.direct, 'release', self.forward)
+        if self.forward == '0':
+            self.forward = '1'
+        else:
+            self.forward = '0'
+        self.mod.run(self.direct, 'clicked', self.forward)
+
+    def close(self):
+        self.mod.run(self.direct, 'release', self.forward)
+
+
+
 
 

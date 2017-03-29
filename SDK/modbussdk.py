@@ -29,11 +29,11 @@ class ModBusMode(object):
                 raise ValueError('cmd error',cmd,type(cmd))
             # try:
             send = cmds[cmd]
-            print 'send cmd'," ".join("{:02x}".format(ord(c)) for c in send)
+            # print 'send cmd'," ".join("{:02x}".format(ord(c)) for c in send)
             self.ser.write(send)
             try:
                 self.data = self.ser.read(8)
-                print 'getcmd'," ".join("{:02x}".format(ord(c)) for c in self.data)
+                # print 'getcmd'," ".join("{:02x}".format(ord(c)) for c in self.data)
             except serial.SerialException as e:
                 print e
             self.IsWriting = True

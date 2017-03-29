@@ -4,7 +4,10 @@ from pattern.sharp import IsSharp
 from pattern.edge import ExtractEdge, EdgeFuncs
 import numpy as np
 from util.loadimg import yieldImg
+from pattern.getimg import getImage
 import cv2
+import os
+import sys
 import pdb
 import pytest
 
@@ -86,6 +89,21 @@ def n_test_sharp_Laplacian():
         # cv2.waitKey()
         # img = cv2.Canny(img, 120, 150)
         img = sharpobject._doSharpRange(img)
+        sharp = cv2.Laplacian(img, cv2.CV_64F).var()
+
+        print 'get sharp', sharp
+
+def test_sharp_Laplacian():
+    imgs = yieldImg("IMG\\emptytuple\\sharp\\")
+
+    sharpobject = IsSharp()
+    for img in imgs:
+        if len(img.shape) > 2:
+            img = img[:,:,0]
+        # cv2.imshow('img', img[::4,::4])
+        # cv2.waitKey()
+        # img = cv2.Canny(img, 120, 150)
+        # img = sharpobject._doSharpRange(img)
         sharp = cv2.Laplacian(img, cv2.CV_64F).var()
 
         print 'get sharp', sharp

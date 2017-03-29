@@ -31,6 +31,7 @@ from pattern.draw import DecorateImg, drawCoreCircle, decorateMethod
 from SDK.oceanoptics import OceanOpticsTest
 from util.toolkit import Cv2ImShow, Cv2ImSave
 import logging
+from pattern.sharper import Focuser
 from util.timing import timing
 from util.filter import AvgResult
 from util.loadimg import sliceImg
@@ -66,6 +67,7 @@ class ModelCV(Thread, QObject):
         self.Oceanoptics = OceanOpticsTest()
         self.classify = classifyObject('G652')
         self.pdfparameter = SETTING()['pdfpara']
+        self.focuser = Focuser()
 
 
 
@@ -218,6 +220,9 @@ class ModelCV(Thread, QObject):
 
     def fiberTypeMethod(self, key):
         SETTING().keyUpdates(key)
+
+    def focus(self):
+        self.focuser.run()
 
     #
     # def _getImg(self):
