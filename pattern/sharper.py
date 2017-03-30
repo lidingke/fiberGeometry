@@ -31,7 +31,6 @@ class Focuser(object):
 
     def getSharp(self):
         img = self.getImg()
-        st = str(int(time.time()))
         # cv2.imwrite("IMG\\emptytuple\\sharpa\\"+st+".BMP",img)
         sharp = self.issharp(img)
         # time.sleep(3)

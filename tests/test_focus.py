@@ -51,7 +51,11 @@ from imgserver.server import CameraMotorSever, CameraMotorSeverRadom
 from tornado.ioloop import IOLoop
 from functools import partial
 import socket
+from pattern.sharp import IsSharp
 import threading
+import mock
+
+
 
 class Motortest(Motor):
     def __init__(self, port):
@@ -94,6 +98,37 @@ def camer_server(port):
 #     server = CameraMotorSeverRadom()
 #     server.listen(port)
 
+def replace_init(port):
+    def init(self):
+        super(Focuser, self).__init__()
+        self.issharp = IsSharp().issharpla
+        self.step = 0
+        self.sharps = deque(maxlen=15)
+        self.motor = Motortest(port)
+        self.getImg = None
+        self.RUNNING = True
+        print __name__
+    return init
+
+def replace_mode(fun):
+    def inner():
+        def replaced(port):
+            pass
+
+        class Replace(object):
+            def get(self):
+                pass
+
+        import pattern.sharper
+        if hasattr(pattern.sharper, 'SerialMotor'):
+            pattern.sharper.SerialMotor = replaced
+        if hasattr(pattern.sharper, 'GetRawImg'):
+            pattern.sharper.GetRawImg = Replace
+            fun()
+    return inner
+
+
+@replace_mode
 def test_motor_camera_once():
     port = 9811
     _ = threading.Thread(target=camer_server, args=(port,))
@@ -106,11 +141,12 @@ def test_motor_camera_once():
     focus.motor.close()
     assert abs(100.0 - sharp) < 5.0
 
-
+@replace_mode
 def test_motor_camera():
     port = 9812
     _ = threading.Thread(target=camer_server, args=(port,))
     _.start()
+    # Focuser.__init__ = replace_init(port)
     focus = Focuser()
     focus.motor = Motortest(port)
     focus.getSharp = Motortest(port).get_img_sys
@@ -118,6 +154,7 @@ def test_motor_camera():
     focus.run()
     assert focus.motor.sharp < 5
 
+@replace_mode
 def test_motor_camera_random():
     port = 9813
     def random_sever():
@@ -126,6 +163,7 @@ def test_motor_camera_random():
         server.listen(port)
     _ = threading.Thread(target=random_sever)
     _.start()
+    # Focuser.__init__ = replace_init(port)
     focus = Focuser()
     focus.motor = Motortest(port)
     focus.getSharp = Motortest(port).get_img_sys

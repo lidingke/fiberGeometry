@@ -14,9 +14,6 @@ def singleton(class_):
                 raise ValueError('singleton line')
             except Exception:
                 print 'trace', sys._getframe(1).f_code
-        if "nostdout" in args:
-            os.system("del setting\\abc.txt")
-            sys.stdout = open('setting\\abc.txt', 'w')
 
         if class_ not in instance:
             instance[class_] = class_(*args,**kwargs)
