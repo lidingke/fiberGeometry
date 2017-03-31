@@ -121,10 +121,17 @@ def replace_mode(fun):
 
         import pattern.sharper
         if hasattr(pattern.sharper, 'SerialMotor'):
+            temp1 = pattern.sharper.SerialMotor
             pattern.sharper.SerialMotor = replaced
         if hasattr(pattern.sharper, 'GetRawImg'):
+            temp2 = pattern.sharper.GetRawImg
             pattern.sharper.GetRawImg = Replace
-            fun()
+        fun()
+        if hasattr(pattern.sharper, 'SerialMotor'):
+            pattern.sharper.SerialMotor = temp1
+        if hasattr(pattern.sharper, 'GetRawImg'):
+            pattern.sharper.GetRawImg = temp2
+
     return inner
 
 

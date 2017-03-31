@@ -89,7 +89,8 @@ class ModelCV(Thread, QObject):
             self.imgQueue.append(self.img)
             # self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
             self.sharp = "%0.2f" % self.isSharp.issharpla(img)
-            self.focuser.get_sharps(self.sharp)
+            if hasattr(self,'focuser'):
+                self.focuser.get_sharps(self.sharp)
             # plotResults = (self.ellipses, self.result)
             self._greenLight(img)
             colorImg = self._decorateImg(img)

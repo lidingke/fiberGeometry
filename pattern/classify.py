@@ -298,7 +298,39 @@ class DoubleCircleClassify(MetaClassify):
         cv2.circle(origin, (int(core[0]), int(core[1])), int(minRange), 255, -1)
 
         return origin
-    
+
+
+class Capillary(DoubleCircleClassify):
+
+    def __init__(self):
+        super(Capillary, self).__init__()
+
+
+    def _difcore(self, img):
+        corecore = self.SET["corepoint"]
+        minRange, maxRange = self.SET["cladRange"]
+        # cv2.imshow("redimg", img[::4,::4,0])
+        # cv2.waitKey()
+        # cv2.imshow("redimg", img[::4,::4,1])
+        # cv2.waitKey()
+        # cv2.imshow("redimg", img[::4,::4,2])
+        # cv2.waitKey()
+        redimg =img[::,::,0].copy()
+
+        redimg = cv2.bitwise_not(redimg)
+
+        cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
+        # print 'get clad img ?'
+        # cv2.imshow("clad", cladimg[::4,::4])
+        # cv2.waitKey()
+        minRange, maxRange = self.SET["coreRange"]
+        # coreimg = cv2.bitwise_not(img.copy())
+        # coreimg = self._getFilterImgCore(corecore, img[::,::,1], minRange, maxRange)
+        # coreimg = self._getFilterImgCoreRange(corecore, img, minRange, maxRange)
+        coreimg = img[::,::,1].copy()
+        cv2.imshow("core", img[::4, ::4, 1])
+        cv2.waitKey()
+        return coreimg, cladimg
 # class NewG652Classify(Big20400Classify):
 #
 #     def __init__(self):
