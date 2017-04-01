@@ -16,7 +16,7 @@ from PyQt4.QtCore import QObject
 import SDK.MindPy as mdp
 import socket
 import tornado
-from imgserver.tcp_client import ImgClient
+# from imgserver.tcp_client import ImgClient
 
 class GetRawImg(object):
     """docstring for getRawImg"""

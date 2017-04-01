@@ -137,19 +137,29 @@
           "cladfilter": 11
         }
   },
-        "20/130(oc)":{
-    "fiberType":"capillary",
-    "thresholdSize":{"core":40},
-    "imgsize":[1944,2592],
-    "coreRange":[20,140],
-    "cladRange":[500,700],
+  "capillary": {
+    "fiberType": "capillary",
+    "thresholdSize": {
+      "core": 40
+    },
+    "imgsize": [
+      1944,
+      2592
+    ],
+    "coreRange": [
+      20,
+      140
+    ],
+    "cladRange": [
+      500,
+      700
+    ],
     "ampPixSize": 0.10753,
-    "enlarge": [20,3],
-        "medianBlur": {
-          "ErodeDilateKsize": 9,
-          "corefilter": 11,
-          "cladfilter": 11
-        }
-
+    "diff_radius": 420,
+    "enlarge": [
+      20,
+      3
+    ]
+  }
 }
 

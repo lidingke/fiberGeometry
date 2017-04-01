@@ -17,9 +17,7 @@ print 'fibertype',fiberType,'setget', setGet
 if setGet:
     from SDK.mdpy import GetRawImg
 else:
-    # from SDK.mdpy import DynamicGetRawImgTest as GetRawImg
     from SDK.mdpytest import DynamicGetRawImgTest as GetRawImg
-    # from SDK.mdpy import GetRawImgTest as GetRawImg
     print 'script don\'t open camera'
 
 from pattern.edge import ExtractEdge
@@ -73,11 +71,6 @@ class ModelCV(Thread, QObject):
             # self.focuser.start()
         except Exception as e:
             print e
-
-
-
-
-
 
 
     def run(self):

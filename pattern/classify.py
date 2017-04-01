@@ -3,7 +3,7 @@ import numpy as np
 from setting.orderset import SETTING
 from pickmethod import PickCircle, PickOctagon
 from pattern.meta import CV2MethodSet
-
+from pattern.sizefilter import inner_fill, outer_fill
 from pattern.edge import ExtractEdge
 from util.filter import MedianLimitFilter, MedianFilter
 
@@ -307,30 +307,19 @@ class Capillary(DoubleCircleClassify):
 
 
     def _difcore(self, img):
-        corecore = self.SET["corepoint"]
-        minRange, maxRange = self.SET["cladRange"]
-        # cv2.imshow("redimg", img[::4,::4,0])
-        # cv2.waitKey()
-        # cv2.imshow("redimg", img[::4,::4,1])
-        # cv2.waitKey()
-        # cv2.imshow("redimg", img[::4,::4,2])
-        # cv2.waitKey()
-        redimg =img[::,::,0].copy()
 
-        redimg = cv2.bitwise_not(redimg)
+        diff_radius = self.SET.get("diff_radius",False)
+        if not diff_radius:
+            raise KeyError("no diff_radius")
+        coreimg =img[::,::,0].copy()
+        coreimg = outer_fill(coreimg, radius = diff_radius)
 
-        cladimg = self._getFilterImgClad(corecore, redimg, minRange, maxRange)
-        # print 'get clad img ?'
-        # cv2.imshow("clad", cladimg[::4,::4])
+        cladimg = img[::,::,0].copy()
+        cladimg = inner_fill(cladimg, radius = diff_radius)
+        # cv2.imshow("core", cladimg[::4, ::4])
         # cv2.waitKey()
-        minRange, maxRange = self.SET["coreRange"]
-        # coreimg = cv2.bitwise_not(img.copy())
-        # coreimg = self._getFilterImgCore(corecore, img[::,::,1], minRange, maxRange)
-        # coreimg = self._getFilterImgCoreRange(corecore, img, minRange, maxRange)
-        coreimg = img[::,::,1].copy()
-        cv2.imshow("core", img[::4, ::4, 1])
-        cv2.waitKey()
         return coreimg, cladimg
+
 # class NewG652Classify(Big20400Classify):
 #
 #     def __init__(self):
@@ -344,6 +333,9 @@ def classifyObject(fiberType):
     print 'get fiber type', fiberType
     if fiberType in ["octagon","10/130(oc)"]:
         return OctagonClassify()
+    elif fiberType in ["capillary"]:
+        print 'return Capillary',
+        return Capillary()
     else:
         # import DoubleCircleClassify as Classify
         return DoubleCircleClassify()
