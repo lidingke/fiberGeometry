@@ -12,6 +12,7 @@ from functools import partial
 import logging
 logger = logging.getLogger(__name__)
 
+
 define("host", default="localhost", help="TCP server host")
 define("portc", default=9888, help="TCP port to connect to")
 define("message", default="getimgonce", help="Message to send")
@@ -47,27 +48,42 @@ class Client(object):
         yield stream.write(("close" + "\n\r").encode())
         stream.close()
 
-    def get_distance(self):
+class SharpClient(object):
+    def __init__(self, host='localhost', port=9880):
+        self.host = host
+        self.port = port
+
+    @gen.coroutine
+    def get_sharp(self):
         stream = yield TCPClient().connect(self.host, self.port)
+        logging.info('img connect')
+        yield stream.write(("getsharp:" + "\n\r").encode())
+        logging.info('img send')
+        data = yield stream.read_until("\n\r\n\r")
+        stream.close()
+        # rawdata = np.frombuffer(data.strip(), dtype=np.uint8)
+        raise gen.Return(data)
 
-# @gen.coroutine
-def clientmain():
-#     options.parse_command_line()
-#     getresult=False
-    IOLoop.current().run_sync(get_img_once)
-    # print(getresult)
-    IOLoop.current().run_sync(get_change)
-    IOLoop.current().run_sync(get_img_once)
-    IOLoop.current().run_sync(get_img_once)
-    IOLoop.current().run_sync(close_server)
 
-if __name__ == "__main__":
-    options.parse_command_line()
-    IOLoop.current().run_sync(get_img_once)
+    @gen.coroutine
+    def start_motor(self):
+        stream = yield TCPClient().connect(self.host,self.port)
+        yield stream.write(("start:" + "\n\r").encode())
+        stream.close()
 
-    IOLoop.current().run_sync(get_change)
-    # change = Thread(target=clientmain)
-    # change.start()
-    # change.join()
-    # time.sleep(1)
-    IOLoop.current().run_sync(get_img_once)
+    @gen.coroutine
+    def turn_back(self):
+        stream = yield TCPClient().connect(self.host,self.port)
+        yield stream.write(("back:" + "\n\r").encode())
+        stream.close()
+
+    @gen.coroutine
+    def send_close(self):
+        stream = yield TCPClient().connect(self.host,self.port)
+        yield stream.write(("close" + "\n\r").encode())
+        stream.close()
+
+
+
+
+

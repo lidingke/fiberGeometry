@@ -11,6 +11,9 @@ import os
 import cv2
 import numpy as np
 from imgserver.methods import randomImg, getImage
+import time
+from random import randint, uniform
+from threading import Thread
 # port = 9880
 # define("port", default=9888, help="TCP port to listen on")
 logger = logging.getLogger(__name__)
@@ -57,15 +60,10 @@ class SharpSever(object):
         return self.imgs[distance][2]
 
 
-
-
-        
-
-
 class ImgServer(TCPServer):
     PARA = ('randomImg', 'IMG/G652/pk/')
     IS_RUNNING = True
-    sharpSever = SharpSever()
+    # sharpSever = SharpSever()
 
     @gen.coroutine
     def handle_stream(self, stream, address):
@@ -84,7 +82,7 @@ class ImgServer(TCPServer):
                     distance = int(data[9:])
                     print 'get distance', distance
                 elif data =='close':
-                    self._close()
+                    self._close(stream)
 
 
             except StreamClosedError:
@@ -99,6 +97,12 @@ class ImgServer(TCPServer):
         img = img.tobytes() + b'\n\r\n\r'
         yield stream.write(img)
 
+    # @gen.coroutine
+    # def _getImgDistance(self, stream, distance):
+    #     img = yield self.sharpSever.img_distance(stream, distance)
+    #     img = img.tobytes() + b'\n\r\n\r'
+    #     yield stream.write(img)
+
     @gen.coroutine
     def _getImgMethod(self, function = 'randomImg', para = 'IMG/G652/pk/'):
         # print 'getImgMehtods', function, para
@@ -107,24 +111,98 @@ class ImgServer(TCPServer):
         elif function == 'getImage':
             return getImage(para)
 
-    @gen.coroutine
-    def _getDistanceImg(self, stream, distance):
-        img = self.sharpSever.img_distance(distance)
-        if isinstance(img, np.ndarray):
-            img = img.tobytes()+ b'\n\r\n\r'
-            yield stream.write(img)
-        elif isinstance(img, str):
-            cmd = 'error:' + distance + b'\n\r\n\r'
-            yield stream.write(cmd)
-        else:
-            raise ValueError('img not array')
+    # @gen.coroutine
+    # def _getDistanceImg(self, stream, distance):
+    #     img = self.sharpSever.img_distance(distance)
+    #     if isinstance(img, np.ndarray):
+    #         img = img.tobytes()+ b'\n\r\n\r'
+    #         yield stream.write(img)
+    #     elif isinstance(img, str):
+    #         cmd = 'error:' + distance + b'\n\r\n\r'
+    #         yield stream.write(cmd)
+    #     else:
+    #         raise ValueError('img not array')
 
 
-    def _close(self, ):
-        # stream.close()
+    def _close(self, stream):
+
         self.IS_RUNNING = False
+        stream.close()
         # self.io_loop.stop()
         # self.io_loop.close()
+
+class CameraMotorSever(TCPServer):
+    IS_RUNNING = True
+    MOTOR_RUNNING = True
+
+    @gen.coroutine
+    def handle_stream(self, stream, address):
+        while self.IS_RUNNING:
+            try:
+                data = yield stream.read_until("\n\r")
+                logger.info("Received bytes: %s", data)
+                data = data.strip()
+                if data == 'getsharp:':
+                    self._send_sharp(stream)
+                elif data == 'back:':
+                    self.back = not self.back
+                elif data == 'start:':
+                    print 'get start'
+                    self._get_start_timer()
+                elif data =='close':
+                    self._close(stream)
+            except StreamClosedError:
+                logger.info("Lost client at host %s", address[0])
+                break
+            except Exception as e:
+                raise e
+
+    def timer_thread(self):
+
+        print 'get in timer'
+        while self.MOTOR_RUNNING:
+            time.sleep(0.01)
+            print 'start sharp loop', self.sharp
+            if self.back:
+                self.sharp = self.sharp + 0.5
+            else:
+                self.sharp = self.sharp - 0.5
+
+    def _get_start_timer(self):
+        self.sharp = 100
+        self.back = True
+        timer = Thread(target=self.timer_thread)
+        timer.start()
+
+
+    @gen.coroutine
+    def _send_sharp(self, stream):
+        cmd = '{:.4f}\n\r\n\r'.format(self.sharp)
+        # print 'sharp', cmd.strip()
+        yield stream.write(cmd)
+
+
+    def _close(self,stream):
+        self.IS_RUNNING = False
+        self.MOTOR_RUNNING = False
+        stream.close()
+
+
+
+class CameraMotorSeverRadom(CameraMotorSever):
+
+
+    def timer_thread(self):
+        print 'get in timer'
+        while self.MOTOR_RUNNING:
+            time.sleep(0.01)
+            print 'start sharp loop {:.2f}'.format(self.sharp)
+            if self.back:
+                self.sharp = self.sharp + uniform(0.3,0.6)
+            else:
+                self.sharp = self.sharp - uniform(0.3,0.6)
+
+
 
 
 def SeverMain(port):

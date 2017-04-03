@@ -3,7 +3,7 @@ import numpy as np
 from setting.orderset import SETTING
 from pickmethod import PickCircle, PickOctagon
 from pattern.meta import CV2MethodSet
-
+from pattern.sizefilter import inner_fill, outer_fill
 from pattern.edge import ExtractEdge
 from util.filter import MedianLimitFilter, MedianFilter
 
@@ -298,7 +298,28 @@ class DoubleCircleClassify(MetaClassify):
         cv2.circle(origin, (int(core[0]), int(core[1])), int(minRange), 255, -1)
 
         return origin
-    
+
+
+class Capillary(DoubleCircleClassify):
+
+    def __init__(self):
+        super(Capillary, self).__init__()
+
+
+    def _difcore(self, img):
+
+        diff_radius = self.SET.get("diff_radius",False)
+        if not diff_radius:
+            raise KeyError("no diff_radius")
+        coreimg =img[::,::,0].copy()
+        coreimg = outer_fill(coreimg, radius = diff_radius)
+
+        cladimg = img[::,::,0].copy()
+        cladimg = inner_fill(cladimg, radius = diff_radius)
+        # cv2.imshow("core", cladimg[::4, ::4])
+        # cv2.waitKey()
+        return coreimg, cladimg
+
 # class NewG652Classify(Big20400Classify):
 #
 #     def __init__(self):
@@ -312,6 +333,9 @@ def classifyObject(fiberType):
     print 'get fiber type', fiberType
     if fiberType in ["octagon","10/130(oc)"]:
         return OctagonClassify()
+    elif fiberType in ["capillary"]:
+        print 'return Capillary',
+        return Capillary()
     else:
         # import DoubleCircleClassify as Classify
         return DoubleCircleClassify()

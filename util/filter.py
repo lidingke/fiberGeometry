@@ -76,7 +76,7 @@ class MedianLimitFilter(object):
             return self.oldbeforcounter
         self.queue.append(data)
         get_ = self._medianMean(self.queue)
-        if abs(get_ - self.oldbeforcounter)/self.oldbeforcounter > 0.01:
+        if abs(get_ - self.oldbeforcounter) / self.oldbeforcounter > 0.01:
             self.oldbeforcounter = get_
         else:
             self.counter = self.counter + 1

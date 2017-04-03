@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 class DynamicGetRawImgTest(GetRawImg):
     """docstring for getRawImg"""
-    def __init__(self, host = 'localhost', port = 9880):
+    def __init__(self, host = '127.0.0.1', port = 9880):
         # super(GetRawImgTest, self).__init__()
         self.host, self.port = host, port
         Thread(target=SeverMain, args=(self.port,)).start()
@@ -25,9 +25,6 @@ class DynamicGetRawImgTest(GetRawImg):
             return
         except ValueError as e:
             print e
-            # IOLoop.current().run_sync(Client().close_server)
-            # Thread(target=SeverMain, args=(self.port,)).start()
-            # logger.info("select number full")
             return
         if len(result) == 15116544:
             img = np.frombuffer(result, dtype = 'uint8')
