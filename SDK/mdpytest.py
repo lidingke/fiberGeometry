@@ -25,9 +25,6 @@ class DynamicGetRawImgTest(GetRawImg):
             return
         except ValueError as e:
             print e
-            # IOLoop.current().run_sync(Client().close_server)
-            # Thread(target=SeverMain, args=(self.port,)).start()
-            # logger.info("select number full")
             return
         if len(result) == 15116544:
             img = np.frombuffer(result, dtype = 'uint8')

@@ -29,6 +29,7 @@ from pattern.draw import DecorateImg, drawCoreCircle, decorateMethod
 from SDK.oceanoptics import OceanOpticsTest
 from util.toolkit import Cv2ImShow, Cv2ImSave
 import logging
+import serial
 from pattern.sharper import LiveFocuser
 from util.timing import timing
 from util.filter import AvgResult
@@ -69,7 +70,7 @@ class ModelCV(Thread, QObject):
         try:
             self.focuser = LiveFocuser()
             # self.focuser.start()
-        except Exception as e:
+        except serial.serialutil.SerialException as e:
             print e
 
 
