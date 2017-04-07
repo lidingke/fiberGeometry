@@ -180,7 +180,6 @@ class CVPainterWidget(QWidget):
     #         pass
 
     def getPixmap(self, mapArray):
-        #todo: image format error
         # self.ellipses, self.result = plotResults
         if not isinstance(mapArray, np.ndarray):
             raise ValueError('get Pixmap ERROR input')

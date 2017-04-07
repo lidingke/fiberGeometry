@@ -1,3 +1,4 @@
+#encoding:utf-8
 from SDK.modbussdk import ModBusMode
 from threading import Thread
 import serial
