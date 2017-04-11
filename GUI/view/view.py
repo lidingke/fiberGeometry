@@ -9,7 +9,7 @@ from util.load import WriteReadJson
 from GUI.view.opplot import OpticalPlot
 from .reporter import Reporter
 from pattern.sharp import MaxSharp
-from PyQt4.QtCore import QRect, Qt
+from PyQt4.QtCore import QRect, Qt, QRectF
 from PyQt4.QtGui import QWidget, QMainWindow, QPainter, QFont,\
     QPixmap, QImage, QColor, QFileDialog, QMessageBox, QPalette,\
     QGraphicsWidget, QGraphicsScene
@@ -24,7 +24,7 @@ class View(QMainWindow, new_MainWindow):
         super(View, self).__init__()
         self.setupUi(self)
         # self.painterWidget = CVPainterWidget(self.canvas)
-        self.scence = QGraphicsScene()
+        self.scence = MyQGraphicsScene()
         self.graphicsView.setScene(self.scence)
         self.axisWidget = OpticalPlot(parent=self.axis)
         self.IS_INIT_PAINTER = False
@@ -44,6 +44,7 @@ class View(QMainWindow, new_MainWindow):
         self._initItems()
         self.reporterCV.clicked.connect(self.writeReporterCV)
         self.initGUI()
+        self.focuser.hide()#todo focuser if hide
 
     def _initItems(self):
         # wrJson = WriteReadJson("setting\\userdata.json")
@@ -156,4 +157,34 @@ class View(QMainWindow, new_MainWindow):
         img = QImage(mapArray.data, width, height, bytesPerLine, QImage.Format_RGB888)# img = QImage(mapArray.flatten(), self.height, self.width, QImage.Format_Indexed8)
         return QPixmap.fromImage(img)
         # self.update()
+
+
+
+class MyQGraphicsScene(QGraphicsScene):
+
+    def __init__(self):
+        super(MyQGraphicsScene, self).__init__()
+        self.rect_pos = [False,False]
+
+    def mousePressEvent(self,event):
+        if event.button() == Qt.LeftButton:
+            self.rect_pos[0] = event.scenePos()
+
+
+    def mouseMoveEvent(self, event):
+        self.rect_pos[1] = event.scenePos()
+        self._paint_event()
+
+
+    def mouseReleaseEvent(self, event):
+        print 'init', self.rect_pos, 'end', event.scenePos()
+        # print self.rect_pos[0].toPoints()
+        # print dir(self.rect_pos[0])
+
+    def _paint_event(self):
+        if self.rect_pos[1]:
+            top_left, bottom_right = self.rect_pos
+            rect = QRectF(top_left, bottom_right)
+            self.addRect(rect)
+
 

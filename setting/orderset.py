@@ -28,10 +28,6 @@ class SETTING(MetaDict):
     def __init__(self, *args, **kwargs):
         MetaDict.__init__(self)
 
-        # if isinstance(args[0], dict):
-        #     args = args[0].values()
-        # self.store = self._mergeDict(args)
-        # print self.store.keys()
         self.store = OrderedDict()
         self.jsonLoad = self._readJson()
         self.store.update(self.jsonLoad["Default"])

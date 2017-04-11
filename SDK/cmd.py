@@ -38,14 +38,13 @@ direction = {
     'xstart':     "\x00\xc8",
     'xforward':   "\x00\xc9",
     'xpulse':     "\x00\xca",
-    'xfrequence': "\x00\xcc",
+    'xfrequency': "\x00\xcc",
     'ystart':     "\x00\xd2",
     'yforward':   "\x00\xd3",
     'ypulse':     "\x00\xd4",
-    'yfrequence': "\x00\xd6",
+    'yfrequency': "\x00\xd6",
     'zstart':     "\x00\xdc",
     'zforward':   "\x00\xdd",
     'zpulse':     "\x00\xde",
-    'zfrequence': "\x00\xe0",
-
+    'zfrequency': "\x00\xe0"
 }

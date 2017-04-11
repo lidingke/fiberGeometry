@@ -51,6 +51,10 @@ def test_mode():
     assert mod.data != ""
     assert mod.data == cmdscrc['xclicked1']
     assert mod.data == slave.data
+    try:
+        mod.run('0', 'clicked', '1')
+    except ValueError:
+        pass
     slave.close()
     # mod.close()
 
@@ -58,6 +62,11 @@ def test_mode():
 def test_print():
     for k,cmd in cmds.items():
         print " ".join("{:02x}".format(ord(c)) for c in cmd)
+
+def test_movement_right_block():
+    pass
+
+
 
 
 def test_get_crc():

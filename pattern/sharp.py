@@ -75,7 +75,6 @@ class IsSharp(CV2MethodSet):
         dilate = cv2.dilate(img,kernel)
         img = cv2.absdiff(dilate,erode)
         # img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 17, 7)
-
         return img
 
     def _midSize(self,sizecoup = (100,100), rato = 0.1):
@@ -86,10 +85,15 @@ class IsSharp(CV2MethodSet):
         return (x00, x01, x10 ,x11)
 
     def issharpla(self,img):
+
         if isinstance(img, list):
             img = img[0]
-        sharp = cv2.Laplacian(img, cv2.CV_64F).var()
-        return sharp
+        if isinstance(img, np.ndarray):
+            sharp = cv2.Laplacian(img, cv2.CV_64F).var()
+            return sharp
+        else:
+            cmd = (str(type(img)), img)
+            raise ValueError(cmd)
 
 
 class MaxSharp(object):
@@ -110,8 +114,7 @@ class MaxSharp(object):
         else:
             return False
 
-def issharp():
-    pass
+
 
 
 

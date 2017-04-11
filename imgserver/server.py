@@ -94,6 +94,7 @@ class ImgServer(TCPServer):
     @gen.coroutine
     def _getImgOnce(self, stream):
         img = yield self._getImgMethod(self.PARA[0],self.PARA[1])
+        gen.sleep(0.1)
         img = img.tobytes() + b'\n\r\n\r'
         yield stream.write(img)
 
