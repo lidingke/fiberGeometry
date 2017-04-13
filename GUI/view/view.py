@@ -24,8 +24,11 @@ class View(QMainWindow, new_MainWindow):
         super(View, self).__init__()
         self.setupUi(self)
         # self.painterWidget = CVPainterWidget(self.canvas)
-        self.scence = MyQGraphicsScene()
+        # self.scence = MyQGraphicsScene()
+        self.scence = QGraphicsScene()
+        print dir(self.scence)
         self.graphicsView.setScene(self.scence)
+        # self.graphicsView.setCacheMode()
         self.axisWidget = OpticalPlot(parent=self.axis)
         self.IS_INIT_PAINTER = False
         self.__initUI__()
@@ -61,6 +64,7 @@ class View(QMainWindow, new_MainWindow):
         if not self.IS_INIT_PAINTER:
             self.IS_INIT_PAINTER = True
         img = self._getPixmap(arr)
+        self.scence.clear()
         self.scence.addPixmap(img)
         # self.painterWidget.getPixmap(arr)
         if hasattr(self, 'dynamicSharp'):
@@ -163,12 +167,15 @@ class View(QMainWindow, new_MainWindow):
 class MyQGraphicsScene(QGraphicsScene):
 
     def __init__(self):
-        super(MyQGraphicsScene, self).__init__()
+        QGraphicsScene.__init__(self)
+        # super(MyQGraphicsScene, self).__init__()
         self.rect_pos = [False,False]
+        # self.setBspTreeDepth(1)
 
     def mousePressEvent(self,event):
         if event.button() == Qt.LeftButton:
             self.rect_pos[0] = event.scenePos()
+
 
 
     def mouseMoveEvent(self, event):
@@ -176,10 +183,10 @@ class MyQGraphicsScene(QGraphicsScene):
         self._paint_event()
 
 
-    def mouseReleaseEvent(self, event):
-        print 'init', self.rect_pos, 'end', event.scenePos()
-        # print self.rect_pos[0].toPoints()
-        # print dir(self.rect_pos[0])
+    # def mouseReleaseEvent(self, event):
+    #     print 'init', self.rect_pos, 'end', event.scenePos()
+    #     # print self.rect_pos[0].toPoints()
+    #     # print dir(self.rect_pos[0])
 
     def _paint_event(self):
         if self.rect_pos[1]:

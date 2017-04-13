@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1622</width>
-    <height>1018</height>
+    <width>1618</width>
+    <height>1084</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -396,15 +396,30 @@ p, li { white-space: pre-wrap; }
      <rect>
       <x>20</x>
       <y>10</y>
-      <width>1297</width>
-      <height>927</height>
+      <width>1296</width>
+      <height>972</height>
      </rect>
+    </property>
+    <property name="cursor" stdset="0">
+     <cursorShape>CrossCursor</cursorShape>
+    </property>
+    <property name="midLineWidth">
+     <number>0</number>
     </property>
     <property name="verticalScrollBarPolicy">
      <enum>Qt::ScrollBarAlwaysOff</enum>
     </property>
     <property name="horizontalScrollBarPolicy">
      <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="interactive">
+     <bool>true</bool>
+    </property>
+    <property name="dragMode">
+     <enum>QGraphicsView::NoDrag</enum>
+    </property>
+    <property name="cacheMode">
+     <set>QGraphicsView::CacheBackground</set>
     </property>
    </widget>
   </widget>
@@ -413,7 +428,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1622</width>
+     <width>1618</width>
      <height>38</height>
     </rect>
    </property>

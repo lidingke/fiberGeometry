@@ -7,11 +7,11 @@ def mode(x):
     if x<0:
         return 100.0
     elif x<50:
-        return 100.0-2*x
+        return 100.0 - 2*x
     elif x<55:
         return 0.0
     elif x<105:
-        return 2*x-110.0
+        return 2*x - 110.0
     else:
         return 100.0
 

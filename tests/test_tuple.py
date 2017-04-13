@@ -32,8 +32,6 @@ def test_classify_tuple():
     ratio = core['shortAxisLen'] / core['longAxisLen']
     assert ratio > 0.9
 
-    # cv2.imshow("clad", clad['plot'][::4,::4])
-    # cv2.waitKey()
     assert clad['longAxisLen'] > 0.5
     assert clad['shortAxisLen'] > 0.5
     assert clad['longAxisLen'] > clad['shortAxisLen']

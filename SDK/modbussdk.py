@@ -1,7 +1,7 @@
 #encoding:utf-8
 import serial
 from .cmd import cmdscrc as  cmds
-from .cmd import direction
+from .cmd import direction, read_direction
 import crcmod
 import struct
 from collections import OrderedDict
@@ -9,7 +9,7 @@ from util.load import MetaDict
 from functools import wraps
 
 
-def unwrite(func):
+def mutex_lock(func):
     IS_RUNNING = [True,]
     @wraps(func)
     def inner(*args, **kwargs):
@@ -17,11 +17,12 @@ def unwrite(func):
         if IS_RUNNING[0]:
             IS_RUNNING[0] = False
             try:
-                func(*args, **kwargs)
+                result = func(*args, **kwargs)
             except Exception as e:
                 IS_RUNNING[0] = True
                 raise e
             IS_RUNNING[0] = True
+            return result
     return inner
 
 
@@ -37,7 +38,7 @@ class ModBusMode(object):
         self.data = ""
 
 
-    @unwrite
+    @mutex_lock
     def run(self, No = 'x', click = 'clicked',forward = '0'):
 
         if No not in self.axies:
@@ -66,7 +67,7 @@ class ModBusMode(object):
 
 
 # class DyModeBusMode(object):
-class Translater(object):
+class SendTranslater(object):
     def __init__(self):
         self.axies = ('x', 'y', 'z')
         self.move = OrderedDict([('start',''),
@@ -97,7 +98,7 @@ class Translater(object):
         cmdline = ''.join(['\x01\x10', dir0, num, byte, value])
         crc = struct.pack('>H',self.crc16(cmdline))
         cmdline = cmdline + crc[1:] + crc[:1]
-        print '\n'+" ".join("{:02x}".format(ord(c)) for c in cmdline)
+        # print '\n'+" ".join("{:02x}".format(ord(c)) for c in cmdline)
         return cmdline
 
     def _cmd_len_right(self, axis, move_items):
@@ -138,6 +139,26 @@ class Translater(object):
         value = "".join(value)
         return value, num, byte
 
+class ReadTranslater(object):
+    def __init__(self):
+        self.axies = ('x', 'y', 'z')
+        self.crc16 = crcmod.predefined.mkCrcFun('modbus')
+
+    def __call__(self, axis):
+
+        if axis not in self.axies:
+            raise KeyError('axis input error')
+
+        cmdline = '\x01\x03' \
+              + read_direction[axis]\
+              + '\x00\x02'
+        crc = struct.pack('>H',self.crc16(cmdline))
+        cmdline = cmdline + crc[1:] + crc[:1]
+        return cmdline
+
+
+
+
 
 class DyModeBusMode(MetaDict):
 
@@ -145,10 +166,11 @@ class DyModeBusMode(MetaDict):
         super(DyModeBusMode, self).__init__()
         self.IsWriting = True
         self.ser = serial.Serial(port, baudrate, timeout=0.05, parity='E')
-        self.data = None
-        self.forward = True
+        self.data_buffer = None
+        # self.forward = False
         self.axis = axis
-        self.translater = Translater()
+        self.send_translater = SendTranslater()
+        self.read_translater = ReadTranslater()
         self.store = {'start': "True",
                  'forward': "False",
                  'pulse': 1000,
@@ -166,23 +188,61 @@ class DyModeBusMode(MetaDict):
         self._write()
 
     def reversed(self):
-        self.forward = not self.forward
-        if self.forward:
-            self.store['start'] = "True"
-        else:
-            self.store['start'] = "False"
+        print  self.store
+        # self.forward = not self.forward
+        self.store['forward'] = self._str_bool(self.store['forward'])
+        # print 'revent', self.forward, self.store
+        # if self.forward:
+        #     self.store['forward'] = "True"
+        # else:
+        #     self.store['forward'] = "False"
+        print 'revent',  self.store
         self._write()
 
-    @unwrite
+    def _str_bool(self,boolstr):
+        if boolstr == 'True':
+            return 'False'
+        elif boolstr == 'False':
+            return 'True'
+
+    @mutex_lock
     def _write(self):
-        send = self.translater(axis = self.axis, **self.store)
+        send = self.send_translater(axis = self.axis, **self.store)
+        print 'send cmd', " ".join("{:02x}".format(ord(c)) for c in send)
         self.ser.write(send)
         len_ = len(send)
-        print 'len', len_
         try:
-            self.data = self.ser.read(len_)
+            self.data_buffer = self.ser.read(len_)
             # print 'getcmd'," ".join("{:02x}".format(ord(c)) for c in self.data)
         except serial.SerialException as e:
+            #01 10 00 c8 00 06 c1 f5 right
+            #01 90 .. error
             raise e
 
         # return self.data
+
+    @mutex_lock
+    def read(self):
+        read = self.read_translater(self.axis)
+        print 'read cmd', " ".join("{:02x}".format(ord(c)) for c in read)
+        self.ser.write(read)
+        len_ = len(read)
+        try:
+            self.data_buffer = self.ser.read(len_+2)
+
+            if self.data_buffer:
+                if len(self.data_buffer) < 6:
+                    raise ModbusConnectionException
+                print 'master get cmd', " ".join("{:02x}".format(ord(c)) for c in self.data_buffer)
+                return self.data_buffer[3:-2]
+
+        except serial.SerialException as e:
+            #01 10 00 c8 00 06 c1 f5 right
+            #01 90 .. error
+            raise e
+
+
+
+class ModbusConnectionException(Exception):
+    def __init__(self):
+        super(ModbusConnectionException, self).__init__()

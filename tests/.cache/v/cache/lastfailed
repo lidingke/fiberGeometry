@@ -1,1 +1,3 @@
-{}
+{
+  "test_dynamic_modbus.py::TestUnit::()::test_move_mode": true
+}

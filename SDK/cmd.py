@@ -48,3 +48,9 @@ direction = {
     'zpulse':     "\x00\xde",
     'zfrequency': "\x00\xe0"
 }
+
+read_direction = {
+    'x': "\x40\xaa",
+    'y': "\x40\xad",
+    'z': "\x40\xb0"
+}
