@@ -1,6 +1,6 @@
 #encoding:utf-8
 import serial
-from .cmd import cmdscrc as  cmds
+from .cmd import cmdscrc
 from .cmd import direction, read_direction
 import crcmod
 import struct
@@ -49,10 +49,10 @@ class ModBusMode(object):
             raise ValueError('forward error', forward, type(forward))
 
         cmd = No + click + forward
-        if cmd not in cmds.keys():
+        if cmd not in cmdscrc.keys():
             raise ValueError('cmd error',cmd,type(cmd))
         # try:
-        send = cmds[cmd]
+        send = cmdscrc[cmd]
         # print 'send cmd'," ".join("{:02x}".format(ord(c)) for c in send)
         self.ser.write(send)
         try:
@@ -178,7 +178,6 @@ class DyModeBusMode(MetaDict):
         if store:
             self.store.update(store)
 
-
     def start(self, bool_):
         if bool_:
             self.store['start'] = "True"
@@ -208,7 +207,7 @@ class DyModeBusMode(MetaDict):
     @mutex_lock
     def _write(self):
         send = self.send_translater(axis = self.axis, **self.store)
-        print 'send cmd', " ".join("{:02x}".format(ord(c)) for c in send)
+        print 'mode send cmd', " ".join("{:02x}".format(ord(c)) for c in send)
         self.ser.write(send)
         len_ = len(send)
         try:
@@ -222,27 +221,26 @@ class DyModeBusMode(MetaDict):
         # return self.data
 
     @mutex_lock
-    def read(self):
+    def read_pulse(self):
         read = self.read_translater(self.axis)
-        print 'read cmd', " ".join("{:02x}".format(ord(c)) for c in read)
+        print 'mode read cmd', " ".join("{:02x}".format(ord(c)) for c in read)
         self.ser.write(read)
         len_ = len(read)
         try:
             self.data_buffer = self.ser.read(len_+2)
-
-            if self.data_buffer:
-                if len(self.data_buffer) < 6:
-                    raise ModbusConnectionException
-                print 'master get cmd', " ".join("{:02x}".format(ord(c)) for c in self.data_buffer)
-                return self.data_buffer[3:-2]
-
-        except serial.SerialException as e:
-            #01 10 00 c8 00 06 c1 f5 right
-            #01 90 .. error
+        except Exception as e:
             raise e
+        if self.data_buffer:
+            if len(self.data_buffer) < 6:
+                raise ModbusConnectionException("data buffer length error")
+            print 'master get cmd', " ".join("{:02x}".format(ord(c)) for c in self.data_buffer)
+            reversed = self.data_buffer[3:-2]
+            if reversed:
+                _ = struct.unpack('>I', reversed[2:] + reversed[:2])[0]
+                return _
+        return None
 
 
-
-class ModbusConnectionException(Exception):
+class ModbusConnectionException(ValueError):
     def __init__(self):
         super(ModbusConnectionException, self).__init__()

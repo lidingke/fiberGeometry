@@ -1,4 +1,6 @@
 from pattern.hist import CounterDict,getHist
+import matplotlib
+matplotlib.use("Qt4Agg")
 import matplotlib.pylab as plt
 
 

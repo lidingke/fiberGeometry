@@ -7,6 +7,8 @@ import time
 from random import randint
 import crcmod
 from util.function import hex2str
+from SDK.modbusabs import SendTranslater as AbsSendTranslater
+from SDK.modbusabs import AbsModeBusMode
 
 class Slave(Thread):
     def __init__(self):
@@ -50,7 +52,7 @@ class Slave(Thread):
         print 'get slave close'
         self.RUNNING = False
 
-class TestUnit():
+class tTestUnit():
 
     def test_send_translater(self):
         d = SendTranslater()
@@ -112,40 +114,58 @@ class TestUnit():
         assert slave.data_buffer[7:9] == '\x00\x00'
         for x in range(10):
             time.sleep(0.1)
-            forrevers = mod.read()
-            forrevers = forrevers[2:] + forrevers[:2]
-            gets = struct.unpack('>I',forrevers)[0]
-            print 'read get no.',x, hex2str(forrevers), gets
-            assert gets < 1000
-            assert gets > 10
+            gets = mod.read_pulse()
+            if gets:
+
+                print 'read get no.',x,  gets
+                assert gets < 1000
+                assert gets > 10
 
 
         slave.close()
 
 
-def Ttest_live_move():
-    d = DyModeBusMode('x', port='com4')
-    keys = {'start':"True",
-            'forward':"True",
-            'pulse':10000,
-            'frequency':200}
-    d.update(keys)
-    d.start(True)
-    print 'start'
-    time.sleep(30)
-    print '10s'
-    # d.start(False)
-    # time.sleep(1)
-    keys = {'start':"True",
-            'forward':"False",
-            'pulse':10000,
-            'frequency':200}
-    d.update(keys)
-    print 'rev'
-    # d.start(True)
-    time.sleep(30)
-    # d.reversed()
-    # time.sleep(10)
-    print 'stop'
-    d.start(False)
+class tTestUnitDynamic():
 
+    def read_sleep(self,d,times = 30):
+        for x in range(30):
+            time.sleep(1)
+            get = d.read_pulse()
+            print 'sleep time', x, get
+
+    def test_live_move(self,):
+        d = DyModeBusMode('x', port='com4')
+        keys = {'start':"True",
+                'forward':"True",
+                'pulse':10000,
+                'frequency':200}
+        d.update(keys)
+        d.start(True)
+        print 'start'
+        # time.sleep(10)
+        self.read_sleep(d,10)
+        print '10s'
+        d.start(False)
+        # time.sleep(1)
+        keys = {'start':"True",
+                'forward':"False",
+                'pulse':10000,
+                'frequency':200}
+        d.update(keys)
+        print 'rev'
+        d.start(True)
+
+        d.reversed()
+        self.read_sleep(d, 10)
+        # time.sleep(10)
+        print 'stop'
+        d.start(False)
+
+class tTestAbs():
+
+
+    def test_translate(self):
+        S = Slave()
+        S.start()
+        s = AbsSendTranslater()
+        cmdline = s('x',3000)

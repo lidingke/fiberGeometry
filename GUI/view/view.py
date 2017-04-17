@@ -5,7 +5,6 @@ import cv2
 import logging
 from GUI.UI.mainUI import Ui_MainWindow as new_MainWindow
 
-from util.load import WriteReadJson
 from GUI.view.opplot import OpticalPlot
 from .reporter import Reporter
 from pattern.sharp import MaxSharp
@@ -19,6 +18,7 @@ from datetime import datetime
 
 class View(QMainWindow, new_MainWindow):
     """docstring for View"""
+    # __slot__ = ("scence","pximapimg")
 
     def __init__(self,):
         super(View, self).__init__()
@@ -26,10 +26,10 @@ class View(QMainWindow, new_MainWindow):
         # self.painterWidget = CVPainterWidget(self.canvas)
         # self.scence = MyQGraphicsScene()
         self.scence = QGraphicsScene()
-        print dir(self.scence)
+        # print dir(self.scence)
         self.graphicsView.setScene(self.scence)
         # self.graphicsView.setCacheMode()
-        self.axisWidget = OpticalPlot(parent=self.axis)
+        # self.axisWidget = OpticalPlot(parent=self.axis)
         self.IS_INIT_PAINTER = False
         self.__initUI__()
         # self.reporterCV.clicked.connect(self.writeReporterCV)
@@ -63,9 +63,9 @@ class View(QMainWindow, new_MainWindow):
     def updatePixmap(self, arr, sharp):
         if not self.IS_INIT_PAINTER:
             self.IS_INIT_PAINTER = True
-        img = self._getPixmap(arr)
+        self.pximapimg = self._getPixmap(arr)
         self.scence.clear()
-        self.scence.addPixmap(img)
+        self.scence.addPixmap(self.pximapimg)
         # self.painterWidget.getPixmap(arr)
         if hasattr(self, 'dynamicSharp'):
             self.dynamicSharp.setText(sharp)

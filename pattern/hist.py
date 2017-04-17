@@ -1,5 +1,7 @@
 from collections import  MutableMapping, deque, MutableSequence
 import pdb
+import matplotlib
+matplotlib.use("Qt4Agg")
 import matplotlib.pyplot as plt
 
 class CounterDict(MutableMapping):
