@@ -15,12 +15,12 @@ if __name__ == '__main__':
     # SETTING('MindVision500', 'Online')
     SETTING()['tempLight'] = []
     app = QApplication(sys.argv)
-    msg = InitCorrect().run()
-    if msg:
-        print 'get error msg', msg
-        QMessageBox.information(QWidget(), "error", str(msg),
-                                QMessageBox.NoButton, QMessageBox.NoButton)
-        sys.exit(app.exec_())
+    # msg = InitCorrect().run()
+    # if msg:
+    #     print 'get error msg', msg
+    #     QMessageBox.information(QWidget(), "error", str(msg),
+    #                             QMessageBox.NoButton, QMessageBox.NoButton)
+    #     sys.exit(app.exec_())
     app.setStyleSheet(loadStyleSheet('main'))
     pt = QPalette()
     pt.setColor(QPalette.Background , QColor(4,159,241))

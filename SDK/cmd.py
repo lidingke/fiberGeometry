@@ -49,6 +49,12 @@ direction = {
     'zfrequency': "\x00\xe0"
 }
 
+abs_direction = {
+    'x':     "\x00\xc8",
+    'y':     "\x00\xd2",
+    'z':     "\x00\xdc",
+}
+
 read_direction = {
     'x': "\x40\xaa",
     'y': "\x40\xad",

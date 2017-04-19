@@ -1,6 +1,8 @@
 #coding:utf-8
 from SDK.modbussdk import SendTranslater, DyModeBusMode, ReadTranslater
+
 from threading import Thread
+import multiprocessing
 import serial
 import struct
 import time
@@ -9,6 +11,9 @@ import crcmod
 from util.function import hex2str
 from SDK.modbusabs import SendTranslater as AbsSendTranslater
 from SDK.modbusabs import AbsModeBusMode
+import logging
+
+logger = logging.getLogger(__name__)
 
 class Slave(Thread):
     def __init__(self):
@@ -125,6 +130,63 @@ class tTestUnit():
         slave.close()
 
 
+class AbsSlave(Thread):
+    def __init__(self):
+        super(AbsSlave, self).__init__()
+        self.ser = serial.Serial('com14', 19200, timeout=0.05, parity= 'E')
+        self.RUNNING = True
+        self.data_buffer = ""
+        self.crc16 = crcmod.predefined.mkCrcFun('modbus')
+        print self.ser.parity
+        self.direction = 3000
+
+    def run(self):
+        while self.RUNNING:
+            try:
+                readed = self.ser.read(21)
+
+            except Exception as e:
+                raise e
+            if readed:
+                self.data_buffer = readed
+                info = 'slave get buffer ' + " ".join("{:02x}".format(ord(c)) for c in readed)
+                logging.info(info)
+                if readed[1:2] == '\x10':
+                    cmdline = readed[:8]
+                    crc = struct.pack('>H', self.crc16(cmdline))
+                    cmdline = cmdline + crc[1:] + crc[:1]
+                    # print 'get write'," ".join("{:02x}".format(ord(c)) for c in result)
+                    self.ser.write(cmdline)
+                    value = readed[9:11]
+                    # print  " ".join("{:02x}".format(ord(c)) for c in value)
+                    # value = value[1:] + value[:1]
+                    # print " ".join("{:02x}".format(ord(c)) for c in value)
+                    value = struct.unpack('>H',value)[0]
+                    # self._goto_direction(value)
+
+                elif readed[1:2] == '\x03':
+                    sendneed = self.direction
+                    for_invert = struct.pack('>I', sendneed)
+                    value =  for_invert[2:] + for_invert[:2]
+                    readed = '\x01\x03\x04' + value
+                    crc = struct.pack('>H', self.crc16(readed))
+                    readed = readed + crc[1:] + crc[:1]
+                    logger.info('slave write'+hex2str(readed))
+                    self.ser.write(readed)
+
+    def _goto_direction(self, dist):
+        def _to_dist(self):
+            start = self.direction
+            for x in range(start, dist):
+
+                time.sleep(0.1)
+                self.direction = x
+        Thread(target=_to_dist, args=(self,)).start()
+
+    def close(self):
+        print 'get slave close'
+        self.RUNNING = False
+
 class tTestUnitDynamic():
 
     def read_sleep(self,d,times = 30):
@@ -161,11 +223,25 @@ class tTestUnitDynamic():
         print 'stop'
         d.start(False)
 
-class tTestAbs():
+class TestAbs():
 
 
     def test_translate(self):
-        S = Slave()
-        S.start()
+
         s = AbsSendTranslater()
-        cmdline = s('x',3000)
+        cmdline = s('x',35000)
+        cmdline = " ".join("{:02x}".format(ord(c)) for c in cmdline)
+        assert cmdline.upper() == "01 10 00 C8 00 02 04 00 01 88 B8 C9 EB"
+        cmdline = s('x',False)
+        cmdline = " ".join("{:02x}".format(ord(c)) for c in cmdline)
+        assert cmdline.upper() == "01 10 00 C8 00 01 02 00 00 B6 18"
+
+    def test_live_mode(self):
+        # logger.setLevel('info')
+        slave = AbsSlave()
+        slave.start()
+        a = AbsModeBusMode('x', 'com13')
+        print 'init direction', a.direction
+        a.goto(1000)
+
+        slave.close()
