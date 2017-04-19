@@ -6,7 +6,7 @@ import serial
 import struct
 import logging
 from util.function import hex2str
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
 
 
@@ -59,51 +59,36 @@ class AbsModeBusMode(object):
         self.read_translater = ReadTranslater()
         self.direction = self.read_pulse() or 3000
 
-    def goto(self, direction):
-        logger = logging.getLogger("goto")
-        self.direction = direction
-        logger.info('start goto '+str(direction))
-        self._write_direction(self.direction)
-        logger.info('start read')
-        readed = self.read_pulse()
-        logger.info('get readed ' + str(readed))
-        # while abs(readed-direction) < 100:
-        time.sleep(0.5)
-        readed = self.read_pulse()
-        logger.info('get readed ' + str(readed))
-        time.sleep(0.5)
-        readed = self.read_pulse()
-        logger.info('get readed ' + str(readed))
-
-    # readed = self.read_pulse()
-        # print 'get readed',readed
-        # readed = self.read_pulse()
-        # print 'get readed',readed
-
-
     @mutex_lock
-    def _write_direction(self, send):
+    def goto(self, direction):
+        self.direction = direction
         send = self.send_translater(self.axis, self.direction)
         logger.info('mode send cmd'+" ".join("{:02x}".format(ord(c)) for c in send))
         self.ser.write(send)
-        # len_ = len(send)
-        try:
-            self.data_buffer = self.ser.read(20)
-            # print 'getcmd'," ".join("{:02x}".format(ord(c)) for c in self.data)
-        except serial.SerialException as e:
-            #01 10 00 c8 00 06 c1 f5 right
-            #01 90 .. error
-            raise e
+        self.data_buffer = self._read_untill_data_in('\x10')
 
+        readed = self.read_pulse()
+        while abs(readed-direction) > 100:
+            time.sleep(0.1)
+            readed = self.read_pulse()
+            logger.info('get readed ' + str(readed))
 
     # @mutex_lock
+    # def _write_direction(self, send):
+    #     send = self.send_translater(self.axis, self.direction)
+    #     logger.info('mode send cmd'+" ".join("{:02x}".format(ord(c)) for c in send))
+    #     self.ser.write(send)
+    #     self.data_buffer = self._read_untill_data_in('\x10')
+
+
+    @mutex_lock
     def read_pulse(self):
         read = self.read_translater(self.axis)
         info = 'mode send cmd '+" ".join("{:02x}".format(ord(c)) for c in read)
         logger.info(info)
         self.ser.write(read)
 
-        self.data_buffer = self._read_by_length()
+        self.data_buffer = self._read_untill_data_in('\x03')
         info = 'mode get cmd '+" ".join("{:02x}".format(ord(c)) for c in self.data_buffer)
         logger.info(info)
         if len(self.data_buffer) < 6:
@@ -117,16 +102,32 @@ class AbsModeBusMode(object):
             return _
         # return None
 
-    def _read_by_length(self):
-        head = self.ser.read(3)
-        if not head:
-            return None
-        length = struct.unpack('>b', head[2:3])[0]
-        readed = self.ser.read(length*2 + 2)
-        result = head + readed
-        logger.info('read by length'+hex2str(result))
-        return result
+    # def _read_by_length(self):
+    #     head = self.ser.read(3)
+    #     if not head:
+    #         return None
+    #     length = struct.unpack('>b', head[2:3])[0]
+    #     readed = self.ser.read(length*2 + 2)
+    #     result = head + readed
+    #     logger.info('read by length'+hex2str(result))
+    #     return result
 
+    def _read_untill_data_in(self, mode = '\x03'):
+        IS = True
+        while IS:
+            _0 = self.ser.read(1)
+            if _0 != '\x01':
+                continue
+            _1 = self.ser.read(1)
+            if _1 == '\x03':
+                _2 = self.ser.read(1)
+                length = struct.unpack('>b', _2)[0]
+                readed = self.ser.read(length * 2 + 2)
+                return '\x01\x03' + _2 + readed
+            elif _1 == '\x10':
+                return '\x01\x03'+self.ser.read(6)
+            else:
+                raise ValueError('bad input data')
 
 
 
