@@ -5,6 +5,7 @@ import time
 import serial
 import struct
 import logging
+from collections import deque
 from util.function import hex2str
 logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
@@ -57,7 +58,8 @@ class AbsModeBusMode(object):
         self.axis = axis
         self.send_translater = SendTranslater()
         self.read_translater = ReadTranslater()
-        self.direction = self.read_pulse() or 3000
+        self.direction = self.location() or 3000
+        self.queue = deque(maxlen=15)
 
     @mutex_lock
     def goto(self, direction):
@@ -67,11 +69,11 @@ class AbsModeBusMode(object):
         self.ser.write(send)
         self.data_buffer = self._read_untill_data_in('\x10')
 
-        readed = self.read_pulse()
-        while abs(readed-direction) > 100:
-            time.sleep(0.1)
-            readed = self.read_pulse()
-            logger.info('get readed ' + str(readed))
+        # readed = self.location()
+        # while abs(readed-direction) > 100:
+        #     time.sleep(0.1)
+        #     readed = self.location()
+        #     logger.info('get readed ' + str(readed))
 
     # @mutex_lock
     # def _write_direction(self, send):
@@ -80,9 +82,14 @@ class AbsModeBusMode(object):
     #     self.ser.write(send)
     #     self.data_buffer = self._read_untill_data_in('\x10')
 
+    def scram(self):
+        send = self.send_translater(self.axis, False)
+        logger.info('send stop cmd'+" ".join("{:02x}".format(ord(c)) for c in send))
+        self.ser.write(send)
+        self.data_buffer = self._read_untill_data_in('\x10')
 
     @mutex_lock
-    def read_pulse(self):
+    def location(self):
         read = self.read_translater(self.axis)
         info = 'mode send cmd '+" ".join("{:02x}".format(ord(c)) for c in read)
         logger.info(info)

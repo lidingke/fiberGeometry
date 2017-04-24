@@ -134,7 +134,7 @@ class tTestUnitDynamic():
     def read_sleep(self,d,times = 30):
         for x in range(30):
             time.sleep(1)
-            get = d.read_pulse()
+            get = d.location()
             print 'sleep time', x, get
 
     def test_live_move(self,):
@@ -242,6 +242,11 @@ class TestAbs():
         slave.start()
         a = AbsModeBusMode('x', 'com13')
         print 'init direction', a.direction
-        a.goto(2500)
-
+        direction = 2500
+        a.goto(direction)
+        readed = a.location()
+        while abs(readed-direction) > 100:
+            time.sleep(0.01)
+            readed = a.location()
+            logger.info('get readed ' + str(readed))
         slave.close()

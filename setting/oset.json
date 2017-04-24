@@ -21,7 +21,8 @@
       "fiberType":"G652",
       "corepoint":[1296,972],
       "ampPixSize": 0.218,
-      "pdfpara":{}
+      "pdfpara":{},
+      "modbusport":"com4"
   },
   "MindVision500":{
     "ifcamera": true

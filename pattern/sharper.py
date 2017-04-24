@@ -2,12 +2,14 @@ from .sharp import IsSharp
 from .getimg import GetImage
 import os, sys
 import cv2
+import random
 from collections import deque
 import logging
 import time
 import serial
 logger = logging.getLogger(__name__)
 from SDK.modbussdk import ModBusMode
+from SDK.modbusabs import AbsModeBusMode
 from SDK.mdpy import GetRawImg
 
 def Midfilter(que):
@@ -118,6 +120,79 @@ class LiveFocuser(object):
         self.IS_START = True
 
 
+class AbsFocuser(object):
+
+    def __init__(self,port = "com4"):
+        super(AbsFocuser, self).__init__()
+        self.mode = AbsModeBusMode('x', port)
+        self.BORDER = (0,25000,50000)
+        self.forward = {True:0, False:50000}
+        self.queue = deque(maxlen=15)
+        self.new_sharp = [0,0]
+
+    def run(self):
+        direction = self.go_on_random_for_init_forward()
+        finall = self.live_focus_with_abs_direction(direction)
+        self.move_direct(finall)
+
+    def go_on_random_for_init_forward(self):
+        now = self.mode.location()
+        forward = True if now - self.BORDER[1] > 0 else False
+        direction = self.forward[forward]
+        self.mode.goto(direction)
+
+        self.queue.clear()
+        while len(self.queue) < 15:
+            time.sleep(0.1)
+            while True:
+                if self.new_sharp[0] == self.new_sharp[1]:
+                    time.sleep(0.01)
+                else:
+                    self.new_sharp[0] = self.new_sharp[1]
+                    continue
+            self.queue.append((self.new_sharp[0],self.mode.location()))
+
+        self.mode.scram()
+        sharps = [x[0]  for x in list(self.queue)]
+        begin = Midfilter(sharps[:5])
+        mid = Midfilter(sharps[5:-5])
+        end = Midfilter(sharps[-5:])
+        if begin <= end:
+            forward = not forward
+
+        return self.forward[forward]
+        # logger.info('get readed ' + str(readed))
+
+    def get_sharp(self, sharp):
+        self.new_sharp[1] = sharp
+
+    def live_focus_with_abs_direction(self, direction):
+        self.mode.goto(direction)
+
+        self.queue.clear()
+        while True:
+            time.sleep(0.1)
+            while True:
+                if self.new_sharp[0] == self.new_sharp[1]:
+                    time.sleep(0.01)
+                else:
+                    self.new_sharp[0] = self.new_sharp[1]
+                    continue
+            self.queue.append((self.new_sharp[0],self.mode.location()))
+
+            sharps = [x[0]  for x in list(self.queue)]
+            begin = Midfilter(sharps[:5])
+            mid = Midfilter(sharps[5:-5])
+            end = Midfilter(sharps[-5:])
+            if (begin > mid) and (end > mid):
+                self.mode.scram()
+                continue
+        return list(self.queue)[-1][1]
+
+
+
+    def move_direct(self):
+        pass
 
 class Motor(object):
 

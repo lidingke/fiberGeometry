@@ -10,8 +10,6 @@ from PyQt4.QtCore import QCoreApplication, QFile
 from GUI.view.view import View
 from GUI.controller import Controller
 from util.load import loadStyleSheet
-import matplotlib
-matplotlib.use("Qt4Agg")
 
 
 if __name__ == '__main__':
