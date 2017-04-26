@@ -45,8 +45,6 @@ class SendTranslater(object):
             raise ValueError('input parameter error')
 
 
-
-
 class AbsModeBusMode(object):
 
     def __init__(self, axis, port = None, baudrate = 19200, store = None):
@@ -106,6 +104,7 @@ class AbsModeBusMode(object):
         reversed = self.data_buffer[3:-2]
         if reversed:
             _ = struct.unpack('>I', reversed[2:] + reversed[:2])[0]
+            print 'get _', _
             return _
         # return None
 
