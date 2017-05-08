@@ -12,9 +12,8 @@ from util.function import hex2str
 from SDK.modbusabs import SendTranslater as AbsSendTranslater
 from SDK.modbusabs import AbsModeBusMode
 import logging
-
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.ERROR)
+
 class Slave(Thread):
     def __init__(self):
         super(Slave, self).__init__()
@@ -128,6 +127,8 @@ class tTestUnit():
 
 
         slave.close()
+        slave.ser.close()
+        mod.ser.close()
 
 class tTestUnitDynamic():
 

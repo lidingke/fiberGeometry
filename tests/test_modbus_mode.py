@@ -29,6 +29,7 @@ class Slave(Thread):
                 print 'get write'," ".join("{:02x}".format(ord(c)) for c in readed)
                 self.ser.write(readed)
                 self.data = readed
+        self.ser.close()
 
     def close(self):
         print 'get slave close'
@@ -56,6 +57,7 @@ def test_mode():
     except ValueError:
         pass
     slave.close()
+    mod.ser.close()
     # mod.close()
 
 

@@ -47,7 +47,7 @@ class View(QMainWindow, new_MainWindow):
         self._initItems()
         self.reporterCV.clicked.connect(self.writeReporterCV)
         self.initGUI()
-        self.focuser.hide()#todo focuser if hide
+
 
     def _initItems(self):
         # wrJson = WriteReadJson("setting\\userdata.json")

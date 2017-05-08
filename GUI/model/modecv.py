@@ -31,7 +31,7 @@ from SDK.oceanoptics import OceanOpticsTest
 from util.toolkit import Cv2ImShow, Cv2ImSave
 import logging
 import serial
-from pattern.sharper import LiveFocuser
+from pattern.sharper import LiveFocuser,AbsFocuser
 from util.timing import timing
 from util.filter import AvgResult
 from util.loadimg import sliceImg
@@ -69,7 +69,8 @@ class ModelCV(Thread, QObject):
         self.pdfparameter = SETTING()['pdfpara']
         # self.sharps = collections.deque(maxlen=15)
         try:
-            self.focuser = LiveFocuser()
+            # self.focuser = LiveFocuser()
+            self.focuser = AbsFocuser()
             # self.focuser.start()
         except serial.serialutil.SerialException as e:
             print e

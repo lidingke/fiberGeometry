@@ -1,3 +1,6 @@
+import logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 import threading
 import random
@@ -5,28 +8,18 @@ import serial
 import crcmod
 import struct
 from util.function import hex2str
+from util.observer import MySignal
 from  threading import Thread
 import time
 from SDK.modbusabs import AbsModeBusMode
 from pattern.sharper import AbsFocuser
 import sys
-import logging
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-# logging.basicConfig(level=logging.INFO)
-# h1 = logging.StreamHandler(sys.stdout)
-# h1.setLevel(logging.DEBUG)
-# h2 = logging.StreamHandler()
-# h2.setLevel(logging.DEBUG)
-#
-# logger.addHandler(h1)
-# logger.addHandler(h2)
 
 class Slave(threading.Thread):
 
-
-    def __init__(self):
+    sharp_return = MySignal()
+    def __init__(self, ):
         super(Slave, self).__init__()
         self.ser = serial.Serial('com14', 19200, timeout=0.05, parity='E')
         self.RUNNING = True
@@ -34,11 +27,13 @@ class Slave(threading.Thread):
         self.crc16 = crcmod.predefined.mkCrcFun('modbus')
         self.direction = 30000
         self.get_direction = 0
-        self.midpoint = random.randint(30, 80)
+        self.midpoint = 25000#random.randint(30, 80)
+        logger.warning("dist = " + str(self.midpoint))
 
 
     def run(self):
         Thread(target=self._to_dist).start()
+        Thread(target=self.emit_sharp).start()
         while self.RUNNING:
             try:
                 readed = self.ser.read(21)
@@ -71,24 +66,35 @@ class Slave(threading.Thread):
                     readed = readed + crc[1:] + crc[:1]
                     logger.info('slave write' + hex2str(readed))
                     self.ser.write(readed)
+                    warning = "get direct {} {}".format( self.direction, self.get_direction)
+                    logger.warning(warning)
+        self.ser.close()
 
     # def _goto_direction(self, dist):
     def _to_dist(self):
         while self.RUNNING:
-            time.sleep(0.01)
+            time.sleep(0.001)
             if self.direction > self.get_direction:
                 next_ = -1
             elif self.direction == self.get_direction:
                 next_ = 0
             else:
                 next_ = 1
+            # warning = "get nex_ {} {} {}".format(next_,self.direction,self.get_direction)
+            # logger.warning(warning)
             self.direction = self.direction + next_
         #
+
+    def emit_sharp(self):
+        while self.RUNNING:
+            time.sleep(1)
+            self.sharp_return.emit(self.get_sharp_direction())
+
 
     def close(self):
         print 'get slave close'
         self.RUNNING = False
-        self.ser.close()
+        # self.ser.close()
 
 
     def get_sharp_direction(self):
@@ -99,26 +105,51 @@ class Slave(threading.Thread):
             x = 50000
         return (x - self.midpoint) ** 2
 
+class TestOnline():
+    def test_abs_mode(self):
+        logger.setLevel(logging.DEBUG)
+        print 'goto direction'
+        a = AbsModeBusMode('x', 'com4')
+        direction = 35000
 
-def ttest_abs_mode():
-    slave = Slave()
-    slave.start()
-    logger.setLevel(logging.WARN)
-    a = AbsModeBusMode('x', 'com13')
-    direction = 30500
-    a.goto(direction)
-    readed = a.location()
-    while abs(readed - direction) > 100:
-        time.sleep(0.01)
+        a.goto(direction)
         readed = a.location()
-        logger.info('get readed ' + str(readed))
-    slave.close()
+        while abs(readed - direction) > 3:
+            time.sleep(0.01)
+            readed = a.location()
+            logger.info('get readed ' + str(readed))
+
+    def ttest_abs_sharper(self):
+        a = AbsFocuser('x','com4')
+        # slave.sharp_return.connect(a.get_sharp)
+        a.run()
+        # slave.close()
+
+class TTestOffline():
+
+    def test_abs_mode(self):
+        slave = Slave()
+        slave.start()
+        logger.setLevel(logging.WARN)
+        a = AbsModeBusMode('x', 'com13')
+        direction = 35000
+        a.goto(direction)
+        readed = a.location()
+        while abs(readed - direction) > 100:
+            time.sleep(0.01)
+            readed = a.location()
+            logger.info('get readed ' + str(readed))
+        slave.ser.close()
+        a.ser.close()
+        slave.close()
 
 
-def test_abs_sharper():
+    def Ttest_abs_sharper(self):
 
-    slave = Slave()
-    slave.start()
-
-    a = AbsFocuser('x','com13')
-    a.run()
+        slave = Slave()
+        slave.start()
+        a = AbsFocuser('x','com13')
+        slave.sharp_return.connect(a.get_sharp)
+        a.run()
+        a.mode.ser.close()
+        slave.close()

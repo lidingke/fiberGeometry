@@ -7,7 +7,6 @@ import struct
 import logging
 from collections import deque
 from util.function import hex2str
-logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
 
 
@@ -58,8 +57,9 @@ class AbsModeBusMode(object):
         self.read_translater = ReadTranslater()
         self.direction = self.location() or 3000
         self.queue = deque(maxlen=15)
+        print 'init'
 
-    @mutex_lock
+    # @mutex_lock
     def goto(self, direction):
         self.direction = direction
         send = self.send_translater(self.axis, self.direction)
@@ -86,25 +86,26 @@ class AbsModeBusMode(object):
         self.ser.write(send)
         self.data_buffer = self._read_untill_data_in('\x10')
 
-    @mutex_lock
+    # @mutex_lock
     def location(self):
+        logger.debug("lod ing location")
         read = self.read_translater(self.axis)
         info = 'mode send cmd '+" ".join("{:02x}".format(ord(c)) for c in read)
-        logger.info(info)
+        logger.debug(info)
         self.ser.write(read)
 
         self.data_buffer = self._read_untill_data_in('\x03')
-        info = 'mode get cmd '+" ".join("{:02x}".format(ord(c)) for c in self.data_buffer)
-        logger.info(info)
+        # info = 'mode get cmd '+" ".join("{:02x}".format(ord(c)) for c in self.data_buffer)
+        logger.debug(info)
         if len(self.data_buffer) < 6:
             debug = "error " + " ".join("{:02x}".format(ord(c)) for c in self.data_buffer)
             logger.debug(debug)
             raise ModbusConnectionException("data buffer length error")
-        print 'master get cmd ', " ".join("{:02x}".format(ord(c)) for c in self.data_buffer)
+        # print 'master get cmd ', " ".join("{:02x}".format(ord(c)) for c in self.data_buffer)
         reversed = self.data_buffer[3:-2]
         if reversed:
             _ = struct.unpack('>I', reversed[2:] + reversed[:2])[0]
-            print 'get _', _
+            # print 'get _', _
             return _
         # return None
 
@@ -138,5 +139,4 @@ class AbsModeBusMode(object):
 
 
 class ModbusConnectionException(ValueError):
-    def __init__(self,*args,**kwargs):
-        super(ModbusConnectionException, self).__init__()
+    pass

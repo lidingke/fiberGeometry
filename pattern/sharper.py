@@ -13,7 +13,6 @@ from SDK.modbusabs import AbsModeBusMode
 from SDK.mdpy import GetRawImg
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
 
 def Midfilter(que):
     assert isinstance(que, list)
@@ -125,37 +124,40 @@ class LiveFocuser(object):
 
 class AbsFocuser(object):
 
-    def __init__(self,axis='x',port = "com4"):
+    def __init__(self,axis = 'x',port = "com4"):
         super(AbsFocuser, self).__init__()
-        self.mode = AbsModeBusMode('x', port)
+        self.mode = AbsModeBusMode(axis, port)
         self.BORDER = (0,25000,50000)
-        self.forward = {True:0, False:50000}
+        self.forward = {True:1, False:50000}
         self.queue = deque(maxlen=15)
         self.new_sharp = [0,0]
 
     def run(self):
-        logger.info('go_on_random_for_init_forward')
+
+        logger.error('go_on_random_for_init_forward')
         direction = self.go_on_random_for_init_forward()
-        logger.info('live_focus_with_abs_direction')
+        logger.error('live_focus_with_abs_direction '+str(direction))
         finall = self.live_focus_with_abs_direction(direction)
-        logger.info('move_direct')
+        logger.error('move_direct'+ str(finall))
         self.move_direct(finall)
 
     def go_on_random_for_init_forward(self):
         now = self.mode.location()
         forward = True if now - self.BORDER[1] > 0 else False
         direction = self.forward[forward]
+
         self.mode.goto(direction)
         self.queue.clear()
         while len(self.queue) < 15:
+            logger.debug('15 len queue'+str(len(self.queue)))
             time.sleep(0.1)
             while True:
-
+                logger.debug('15 len queue'+str(self.new_sharp)+str(len(self.queue)))
                 if self.new_sharp[0] == self.new_sharp[1]:
-                    time.sleep(0.01)
+                    time.sleep(0.1)
                 else:
                     self.new_sharp[0] = self.new_sharp[1]
-                    continue
+                    break
             self.queue.append((self.new_sharp[0],self.mode.location()))
 
         self.mode.scram()
@@ -163,6 +165,8 @@ class AbsFocuser(object):
         begin = Midfilter(sharps[:5])
         mid = Midfilter(sharps[5:-5])
         end = Midfilter(sharps[-5:])
+        cmd = "begin,mid,end {} {} {}".format(begin,mid,end)
+        logger.warning(cmd)
         if begin <= end:
             forward = not forward
 
@@ -173,8 +177,8 @@ class AbsFocuser(object):
         self.new_sharp[1] = sharp
 
     def live_focus_with_abs_direction(self, direction):
+        print direction
         self.mode.goto(direction)
-
         self.queue.clear()
         while True:
             time.sleep(0.1)
@@ -183,20 +187,33 @@ class AbsFocuser(object):
                     time.sleep(0.01)
                 else:
                     self.new_sharp[0] = self.new_sharp[1]
-                    continue
+                    break
             self.queue.append((self.new_sharp[0],self.mode.location()))
-
-            sharps = [x[0]  for x in list(self.queue)]
-            begin = Midfilter(sharps[:5])
-            mid = Midfilter(sharps[5:-5])
-            end = Midfilter(sharps[-5:])
-            if (begin > mid) and (end > mid):
-                self.mode.scram()
-                continue
+            if len(self.queue) == 15:
+                sharps = [x[0]  for x in list(self.queue)]
+                begin = Midfilter(sharps[:5])
+                mid = Midfilter(sharps[5:-5])
+                end = Midfilter(sharps[-5:])
+                cmd = "BME {} {} {}".format(begin, mid, end)
+                logger.warning(cmd)
+                if (begin > mid) and (end > mid):
+                    cmd = "return backe begin,mid,end {} {} {}".format(begin, mid, end)
+                    logger.warning(cmd)
+                    self.mode.scram()
+                    break
         return list(self.queue)[-1][1]
 
-    def move_direct(self):
-        pass
+    def move_direct(self,finall):
+        self.mode.goto(finall)
+        readed = self.mode.location()
+        while abs(readed - finall) > 10:
+            time.sleep(0.01)
+            readed = self.mode.location()
+            logger.info('get readed ' + str(readed))
+
+
+
+
 
 
 class Motor(object):

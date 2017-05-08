@@ -381,8 +381,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="focuser">
     <property name="geometry">
      <rect>
-      <x>1330</x>
-      <y>770</y>
+      <x>1320</x>
+      <y>750</y>
       <width>150</width>
       <height>46</height>
      </rect>
