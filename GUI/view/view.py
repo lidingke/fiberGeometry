@@ -64,6 +64,7 @@ class View(QMainWindow, new_MainWindow):
         if not self.IS_INIT_PAINTER:
             self.IS_INIT_PAINTER = True
         self.pximapimg = self._getPixmap(arr)
+
         self.scence.clear()
         self.scence.addPixmap(self.pximapimg)
         # self.painterWidget.getPixmap(arr)
@@ -181,12 +182,6 @@ class MyQGraphicsScene(QGraphicsScene):
     def mouseMoveEvent(self, event):
         self.rect_pos[1] = event.scenePos()
         self._paint_event()
-
-
-    # def mouseReleaseEvent(self, event):
-    #     print 'init', self.rect_pos, 'end', event.scenePos()
-    #     # print self.rect_pos[0].toPoints()
-    #     # print dir(self.rect_pos[0])
 
     def _paint_event(self):
         if self.rect_pos[1]:

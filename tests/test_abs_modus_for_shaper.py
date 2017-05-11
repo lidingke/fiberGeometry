@@ -105,7 +105,7 @@ class Slave(threading.Thread):
             x = 50000
         return (x - self.midpoint) ** 2
 
-class TestOnline():
+class tTestOnline():
     def test_abs_mode(self):
         logger.setLevel(logging.DEBUG)
         print 'goto direction'
@@ -125,9 +125,9 @@ class TestOnline():
         a.run()
         # slave.close()
 
-class TTestOffline():
+class TestOffline():
 
-    def test_abs_mode(self):
+    def ttest_abs_mode(self):
         slave = Slave()
         slave.start()
         logger.setLevel(logging.WARN)
@@ -139,17 +139,18 @@ class TTestOffline():
             time.sleep(0.01)
             readed = a.location()
             logger.info('get readed ' + str(readed))
+        slave.close()
         slave.ser.close()
         a.ser.close()
-        slave.close()
 
 
-    def Ttest_abs_sharper(self):
 
+    def test_abs_sharper(self):
         slave = Slave()
         slave.start()
         a = AbsFocuser('x','com13')
         slave.sharp_return.connect(a.get_sharp)
+        logger.info('start absfocuse')
         a.run()
         a.mode.ser.close()
         slave.close()

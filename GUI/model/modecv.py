@@ -31,7 +31,7 @@ from SDK.oceanoptics import OceanOpticsTest
 from util.toolkit import Cv2ImShow, Cv2ImSave
 import logging
 import serial
-from pattern.sharper import LiveFocuser,AbsFocuser
+from pattern.sharper import AbsFocuser
 from util.timing import timing
 from util.filter import AvgResult
 from util.loadimg import sliceImg
@@ -86,7 +86,7 @@ class ModelCV(Thread, QObject):
             # self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
             self.sharp = "%0.2f" % self.isSharp.issharpla(img)
             if hasattr(self,'focuser'):
-                self.focuser.get_sharps(self.sharp)
+                self.focuser.get_sharp(self.sharp)
             # plotResults = (self.ellipses, self.result)
             self._greenLight(img)
             colorImg = self._decorateImg(img)
@@ -94,7 +94,6 @@ class ModelCV(Thread, QObject):
 
 
     def mainCalculate(self):
-        #
         def _calcImg():
             try:
                 # img.tofile("tests\\data\\tests\\midimg{}.bin".format(str(int(time.time()))[-3:]))

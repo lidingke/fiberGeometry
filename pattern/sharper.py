@@ -7,6 +7,7 @@ from collections import deque
 import logging
 import time
 import serial
+import threading
 
 from SDK.modbussdk import ModBusMode
 from SDK.modbusabs import AbsModeBusMode
@@ -124,16 +125,21 @@ class LiveFocuser(object):
 
 class AbsFocuser(object):
 
-    def __init__(self,axis = 'x',port = "com4"):
+    def __init__(self,axis = 'x',port = "com4", sharp=0):
         super(AbsFocuser, self).__init__()
         self.mode = AbsModeBusMode(axis, port)
         self.BORDER = (0,25000,50000)
         self.forward = {True:1, False:50000}
         self.queue = deque(maxlen=15)
         self.new_sharp = [0,0]
+        self.sharps = deque(maxlen=2)
+
+    def start(self):
+        _ = threading.Thread(target=self.run)
+        _.start()
+        # self.run()
 
     def run(self):
-
         logger.error('go_on_random_for_init_forward')
         direction = self.go_on_random_for_init_forward()
         logger.error('live_focus_with_abs_direction '+str(direction))
@@ -174,7 +180,8 @@ class AbsFocuser(object):
         # logger.info('get readed ' + str(readed))
 
     def get_sharp(self, sharp):
-        self.new_sharp[1] = sharp
+        # self.new_sharp[1] = list(self.sharp
+        self.new_sharp[1] = float(sharp)
 
     def live_focus_with_abs_direction(self, direction):
         print direction
@@ -210,11 +217,6 @@ class AbsFocuser(object):
             time.sleep(0.01)
             readed = self.mode.location()
             logger.info('get readed ' + str(readed))
-
-
-
-
-
 
 class Motor(object):
 

@@ -151,12 +151,13 @@
       20,
       140
     ],
+    "draw_clad":false,
     "cladRange": [
       500,
       700
     ],
     "ampPixSize": 0.10753,
-    "diff_radius": 420,
+    "diff_radius": 500,
     "enlarge": [
       20,
       3

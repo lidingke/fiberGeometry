@@ -3,7 +3,6 @@ from setting.orderset import SETTING
 from GUI.model.modecv import ModelCV
 from GUI.model.modelop import ModelOp
 from PyQt4.QtCore import QObject, pyqtSignal
-# from SDK.mindpy import IsInitCamera
 
 class Controller(QObject):
     """docstring for Controller"""
