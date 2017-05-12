@@ -151,7 +151,6 @@ class AbsFocuser(object):
         now = self.mode.location()
         forward = True if now - self.BORDER[1] > 0 else False
         direction = self.forward[forward]
-
         self.mode.goto(direction)
         self.queue.clear()
         while len(self.queue) < 15:
@@ -165,7 +164,6 @@ class AbsFocuser(object):
                     self.new_sharp[0] = self.new_sharp[1]
                     break
             self.queue.append((self.new_sharp[0],self.mode.location()))
-
         self.mode.scram()
         sharps = [x[0]  for x in list(self.queue)]
         begin = Midfilter(sharps[:5])
@@ -184,7 +182,6 @@ class AbsFocuser(object):
         self.new_sharp[1] = float(sharp)
 
     def live_focus_with_abs_direction(self, direction):
-        print direction
         self.mode.goto(direction)
         self.queue.clear()
         while True:

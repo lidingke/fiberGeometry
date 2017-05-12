@@ -69,3 +69,8 @@ def test_getimg_multi_connect():
 #     Thread(target = SeverMain).start()
     # multiprocessing.Process(target=servermain).start()
     # time.sleep(1)
+
+if __name__ == "__main__":
+    port = 9880
+    para = ('randomImg', 'IMG/emptytuple/eptlight2')
+    IOLoop.current().run_sync(partial(Client(port=port).get_change, para))

@@ -1,6 +1,7 @@
 #coding:utf-8
 from PyQt4.QtCore import pyqtSignal, QObject
-
+from collections import deque
+from threading import Lock
 class QTypeSignal(QObject):
     sendmsg = pyqtSignal(object)#定义一个信号槽，传入一个参数位参数
 
@@ -21,14 +22,18 @@ class QTypeSlot(object):
 class MySignal(object):
 
     def __init__(self):
-        self.collection = []#定义一个列表保存槽函数
+        self.collection = deque()
+        self.lock = Lock()
 
     def connect(self, fun):
-        self.collection.append(fun)#添加槽函数
+        if fun not in self.collection:
+            self.collection.append(fun)
 
     def emit(self, *args, **kwargs):
-        for fun in self.collection:
-            fun(*args, **kwargs)#遍历执行槽函数
+        self.lock.acquire()
+        for fun in set(self.collection):
+            fun(*args, **kwargs)
+        self.lock.release()
 
 class MyTypeSignal(object):
     sendmsg = MySignal()#实例化

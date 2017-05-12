@@ -9,6 +9,8 @@ from pattern.edge import ExtractEdge, EdgeFuncs
 from pattern.exception import ClassCoreError, ClassOctagonError
 from setting.orderset import SETTING
 from util.timing import timing
+import logging
+logger = logging.getLogger(__name__)
 
 
 class PickCircle(object):
@@ -46,6 +48,34 @@ class PickCircle(object):
         result['corePoint'] = np.array([ellipse[0]])
         return result
 
+class PickHullCircle(PickCircle):
+
+    def __init__(self):
+        super(PickHullCircle, self).__init__()
+
+    def run(self, img):
+        blurindex = SETTING()["medianBlur"].get("corefilter", 3)
+        img = cv2.medianBlur(img, blurindex)
+        # cv2.imshow("img", img[::4, ::4])
+        # cv2.waitKey()
+        contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+        tempPlots = np.ones(img.shape) * 255
+        print 'get contours len', len(contours)
+        if len(contours) == 0:
+            raise ClassCoreError
+        elif len(contours) == 1:
+            mergedpoints =contours[0]
+        else:
+            mergedpoints = np.concatenate(contours[1:])
+        logger.warning("method -> convex hull")
+        hull = cv2.convexHull(mergedpoints)
+        ellipse = cv2.fitEllipse(hull)
+        result = self._getResult(ellipse)
+        result['ellipese'] = ellipse
+        cv2.ellipse(tempPlots, ellipse, (0,255,255))
+        result['plot'] = tempPlots
+        result['contour'] = mergedpoints
+        return result
 
 
 
