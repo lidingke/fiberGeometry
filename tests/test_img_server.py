@@ -8,6 +8,7 @@ from imgserver.methods import getImage
 from tornado.iostream import StreamClosedError
 import time
 import logging
+logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger(__name__)
 
 def test_sharpserver():

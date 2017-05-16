@@ -30,7 +30,6 @@ class Slave(threading.Thread):
         self.midpoint = 25000#random.randint(30, 80)
         logger.warning("dist = " + str(self.midpoint))
 
-
     def run(self):
         Thread(target=self._to_dist).start()
         Thread(target=self.emit_sharp).start()
@@ -131,6 +130,34 @@ class TestOffline():
         slave = Slave()
         slave.start()
         a = AbsFocuser('x','com13')
+        slave.sharp_return.connect(a.get_sharp)
+        logger.info('start absfocuse')
+        a.run()
+        a.mode.ser.close()
+        slave.close()
+
+class tTestYieldOffline():
+    # def test_abs_mode(self):
+    #     slave = Slave()
+    #     slave.start()
+    #     logger.setLevel(logging.WARN)
+    #     a = AbsModeBusMode('x', 'com13')
+    #     direction = 35000
+    #     a.goto(direction)
+    #     readed = a.location()
+    #     while abs(readed - direction) > 100:
+    #         time.sleep(0.01)
+    #         readed = a.location()
+    #         logger.info('get readed ' + str(readed))
+    #     slave.close()
+    #     slave.ser.close()
+    #     a.ser.close()
+
+
+    def test_abs_sharper(self):
+        slave = Slave()
+        slave.start()
+        a = AbsFocuser('x', 'com13')
         slave.sharp_return.connect(a.get_sharp)
         logger.info('start absfocuse')
         a.run()
