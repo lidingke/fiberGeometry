@@ -5,11 +5,11 @@ from SDK.modbusabs import AbsModeBusMode
 from pattern.sharper import AbsFocuser
 import time
 
-class tTestOnline():
+class TestOnline():
     def test_abs_mode(self):
         logger.setLevel(logging.DEBUG)
         print 'goto direction'
-        a = AbsModeBusMode('x', 'com4')
+        a = AbsModeBusMode('x', 'com5')
         direction = 35000
 
         a.goto(direction)

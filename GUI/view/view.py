@@ -1,4 +1,5 @@
 #coding:utf-8
+#branch dev
 from setting.orderset import SETTING
 import cv2
 # from GUI.UI.mainUI import Ui_MainWindow
@@ -41,8 +42,8 @@ class View(QMainWindow, new_MainWindow):
     def __initUI__(self):
         # items = ['G652']
         # self.fiberType.addItems(items)
-        self.setWindowFlags(Qt.WindowMaximizeButtonHint)
-        self.setFixedSize(self.width(),self.height())
+        # self.setWindowFlags(Qt.WindowMaximizeButtonHint)
+        # self.setFixedSize(self.width(),self.height())
         self.beginTestCV.clicked.connect(self._disableCVButton)
         self._initItems()
         self.reporterCV.clicked.connect(self.writeReporterCV)
@@ -149,8 +150,10 @@ class View(QMainWindow, new_MainWindow):
             self.coreMedianIndex.valueChanged.connect(changeCoreIndex)
 
     def getCoreLight(self, coreLight, cladLight):
-        self.coreLight.setText(coreLight)
-        self.cladLight.setText(cladLight)
+        if hasattr(self, "coreLight"):
+            self.coreLight.setText(coreLight)
+        if hasattr(self, "cladLight"):
+            self.cladLight.setText(cladLight)
 
 
     def _getPixmap(self, mapArray):

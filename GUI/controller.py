@@ -23,11 +23,12 @@ class Controller(QObject):
         self._modelcv.returnImg.connect(self._view.updatePixmap)
         self._modelcv.returnATImg.connect(self._view.updateOpticalview)
         self._view.beginTestCV.clicked.connect(self._modelcv.mainCalculate)
-        self._view.beginTestAT.clicked.connect(self._getAttenuation)
+        # self._view.beginTestAT.clicked.connect(self._getAttenuation)
         self._modelcv.resultShowCV.connect(self._view.updateCVShow)
         self._modelcv.resultShowAT.connect(self._view.updateATShow)
         self._modelcv.returnCoreLight.connect(self._view.getCoreLight)
-        self._view.focuser.clicked.connect(self._modelcv.focus)
+        if hasattr(self._view, "focuser"):
+            self._view.focuser.clicked.connect(self._modelcv.focus)
         self._view.fiberTypeBox.currentIndexChanged.connect(self._changeFiberType)
 
         # self._tempMedianIndex()

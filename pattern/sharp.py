@@ -4,7 +4,8 @@ import numpy as np
 from pattern.edge import ExtractEdge
 from pattern.meta import CV2MethodSet
 from setting.orderset import SETTING
-
+import logging
+logger = logging.getLogger(__name__)
 
 class IsSharp(CV2MethodSet):
     """docstring for IsSharp"""
@@ -89,6 +90,7 @@ class IsSharp(CV2MethodSet):
         if isinstance(img, list):
             img = img[0]
         if isinstance(img, np.ndarray):
+            # logger.debug("shapr:{}".format(img.shape))
             sharp = cv2.Laplacian(img, cv2.CV_64F).var()
             return sharp
         else:

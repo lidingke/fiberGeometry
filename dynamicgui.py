@@ -1,5 +1,7 @@
 from setting.orderset import SETTING
 SETTING('MindVision500', 'Online', "G652", "centerImg")
+import logging
+logging.basicConfig(level=logging.INFO)
 import sys
 import os
 import pdb

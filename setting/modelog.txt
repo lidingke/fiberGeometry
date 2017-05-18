@@ -1899,3 +1899,6 @@ None
 包层不圆度：  0.17
 芯包同心度：  0.13
 None
+2017-05-17 10:31:57,016-ERROR-run:go_on_random_for_init_forward
+2017-05-17 10:32:01,753-ERROR-run:live_focus_with_abs_direction 50000
+2017-05-17 10:32:09,068-ERROR-run:move_direct30759
