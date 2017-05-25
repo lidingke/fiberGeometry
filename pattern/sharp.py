@@ -1,6 +1,7 @@
 import collections
 import cv2
 import numpy as np
+import pdb
 from pattern.edge import ExtractEdge
 from pattern.meta import CV2MethodSet
 from setting.orderset import SETTING
@@ -90,7 +91,7 @@ class IsSharp(CV2MethodSet):
         if isinstance(img, list):
             img = img[0]
         if isinstance(img, np.ndarray):
-            # logger.debug("shapr:{}".format(img.shape))
+            logger.debug("laplacian sharp:{}".format(img.shape))
             sharp = cv2.Laplacian(img, cv2.CV_64F).var()
             return sharp
         else:

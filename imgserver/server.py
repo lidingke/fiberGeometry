@@ -1,4 +1,5 @@
 import logging
+logger = logging.getLogger(__name__)
 from tornado.ioloop import IOLoop
 from tornado import gen
 from tornado.iostream import StreamClosedError
@@ -16,7 +17,7 @@ from random import randint, uniform
 from threading import Thread
 # port = 9880
 # define("port", default=9888, help="TCP port to listen on")
-logger = logging.getLogger(__name__)
+
 
 
 # class EchoServer(TCPServer):

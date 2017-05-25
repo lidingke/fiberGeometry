@@ -84,7 +84,7 @@ class ModelCV(Thread, QObject):
             self.img = img.copy()
             self.imgQueue.append(self.img)
             # self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
-            self.sharp = "%0.2f" % self.isSharp.issharpla(img)
+            self.sharp = "%0.2f" % self.isSharp.issharpla(img[::,::,0])
             if hasattr(self,'focuser'):
                 self.focuser.get_sharp(self.sharp)
             # plotResults = (self.ellipses, self.result)
