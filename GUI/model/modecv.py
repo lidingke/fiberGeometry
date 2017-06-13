@@ -6,7 +6,7 @@ import cv2
 import copy
 import numpy as np
 from PyQt4.QtCore import QObject, pyqtSignal
-
+from .datahand import session_add,ResultSheet
 from setting.orderset import SETTING
 from pattern.exception import ClassCoreError, ClassOctagonError
 
@@ -201,6 +201,13 @@ class ModelCV(Thread, QObject):
 
             self.resultShowCV.emit(text)
             sys.stdout.flush()
+            result_sheet = ResultSheet(
+                core_diameter=result[1],
+                clad_diameter = result[2],
+                core_roundness = result[3],
+                clad_roundness = result[4],
+                concentricity = result[0])
+            session_add(result_sheet)
         else:
             self.resultShowCV.emit('error')
             # print 'emit result', text
