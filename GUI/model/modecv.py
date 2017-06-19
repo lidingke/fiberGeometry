@@ -200,14 +200,14 @@ class ModelCV(Thread, QObject):
             logging.exception(text)
 
             self.resultShowCV.emit(text)
-            sys.stdout.flush()
-            result_sheet = ResultSheet(
-                core_diameter=result[1],
-                clad_diameter = result[2],
-                core_roundness = result[3],
-                clad_roundness = result[4],
-                concentricity = result[0])
-            session_add(result_sheet)
+            # sys.stdout.flush()
+            # result_sheet = ResultSheet(
+            #     core_diameter=result[1],
+            #     clad_diameter = result[2],
+            #     core_roundness = result[3],
+            #     clad_roundness = result[4],
+            #     concentricity = result[0])
+            # session_add(result_sheet)
         else:
             self.resultShowCV.emit('error')
             # print 'emit result', text
@@ -225,7 +225,7 @@ class ModelCV(Thread, QObject):
             self.green = green.sum() / 255
             self.blue = blue.sum() / 255
             self.allgreen = img[::, ::, 1].sum() / 255 - self.green
-            self.pdfparameter['corelight'] = "%0.2f"%self.blue
+            self.pdfparameter['corelight'] = "%0.2f" % self.blue
             self.pdfparameter['cladlight'] = "%0.2f" % self.allgreen
             self.returnCoreLight.emit("%0.2f" % (self.blue), "%0.2f" % (self.allgreen))
             # self.returnCladLight.emit()

@@ -133,6 +133,7 @@ class View(QMainWindow, new_MainWindow):
         para['date'] = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
         para['title'] = para['fibertype']+'光纤端面几何测试报告'
         SETTING()['pdfpara'].update(para)
+        print SETTING()['pdfpara'].keys()
         SETTING()['olddata'] = para
         Reporter(self)
 
