@@ -1,11 +1,21 @@
 import logging
+
+import serial
+
+
+
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
+from setting.orderset import SETTING
+# SETTING().update('Online')
 from SDK.modbusabs import AbsModeBusMode
 from pattern.sharper import AbsFocuser
 import time
 
-class TestOnline():
+# is_online = SETTING()['ifcarmera']
+
+
+class tTestOnline():
     def test_abs_mode(self):
         logger.setLevel(logging.DEBUG)
         print 'goto direction'

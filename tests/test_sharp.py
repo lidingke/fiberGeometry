@@ -126,10 +126,10 @@ def test_sharp_laplacian_list(dir_):
     dosharp = IsSharp().issharpla
     imgs = (getImage(dir_+d) for d in dirs)
     sharps = [dosharp(img[::,::,2]) for img in imgs]
-    plt.figure(len(dir_))
-    plt.plot(range(len(sharps)),sharps)
-    plt.title(dir_)
-    plt.show()
+    # plt.figure(len(dir_))
+    # plt.plot(range(len(sharps)),sharps)
+    # plt.title(dir_)
+    # plt.show()
 
 @pytest.mark.parametrize(
     "dir_", (

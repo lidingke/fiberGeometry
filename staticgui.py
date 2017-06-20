@@ -1,4 +1,7 @@
 #coding:utf-8
+import logging
+logging.basicConfig(level=logging.WARNING)
+logger = logging.getLogger(__name__)
 import sys
 import os
 import pdb
@@ -10,9 +13,7 @@ from PyQt4.QtCore import QCoreApplication, QFile
 from GUI.view.view import View
 from GUI.controller import Controller
 from util.load import loadStyleSheet
-import logging
-logging.basicConfig(level=logging.WARNING)
-logger = logging.getLogger(__name__)
+
 
 if __name__ == '__main__':
     # sys.stdout = open('setting\\abc.txt', 'w')

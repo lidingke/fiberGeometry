@@ -38,6 +38,8 @@ from util.loadimg import sliceImg
 import sys
 
 
+from collections import Iterable
+
 class ModelCV(Thread, QObject):
     """docstring for Model"""
     returnImg = pyqtSignal(object, object)
@@ -67,6 +69,7 @@ class ModelCV(Thread, QObject):
         self.Oceanoptics = OceanOpticsTest()
         self.classify = classifyObject('G652')
         self.pdfparameter = SETTING()['pdfpara']
+        self.dbparameter = SETTING()['dbpara']
         # self.sharps = collections.deque(maxlen=15)
         try:
             # self.focuser = LiveFocuser()
@@ -168,51 +171,37 @@ class ModelCV(Thread, QObject):
 
 
     def _emitCVShowResult(self, result):
-        # result = self.result
         sharp = self.sharp
         self.result2Show = copy.deepcopy(self.eresults)
         self.result2Show["showResult"] = result
-        if isinstance(result, tuple) or isinstance(result, list):
-            # print 'get result', result
-            para = {'corediameter': '%0.2f'%result[1],
-            'claddiameter': '%0.2f'%result[2],
-            'coreroundness': '%0.2f'%result[3],
-            'cladroundness': '%0.2f'%result[4],
-            'concentricity': '%0.2f'%result[0],
-            'fibertype':SETTING()["fiberType"],
-            'sharpindex': sharp}
-            if None in result:
-                for i,v in enumerate(result):
-                    if not v:
-                        result[i] = '-1'
-
-            self.pdfparameter.update(para)
-
-            text = [
-                u'''清晰度指数：  {}\n'''.format(sharp),
-                u'''纤芯直径：    {}\n'''.format('%0.2f'%result[1]),
-                u'''包层直径：    {}\n'''.format('%0.2f'%result[2]),
-                u'''纤芯不圆度：  {}\n'''.format('%0.2f'%result[3]),
-                u'''包层不圆度：  {}\n'''.format('%0.2f'%result[4]),
-                u'''芯包同心度：  {}'''.format('%0.2f'%result[0])]
-
-            text = u''.join(text)
-            logging.exception(text)
-
-            self.resultShowCV.emit(text)
-            # sys.stdout.flush()
-            # result_sheet = ResultSheet(
-            #     core_diameter=result[1],
-            #     clad_diameter = result[2],
-            #     core_roundness = result[3],
-            #     clad_roundness = result[4],
-            #     concentricity = result[0])
-            # session_add(result_sheet)
-        else:
+        if not hasattr(result, '__getitem__'):
             self.resultShowCV.emit('error')
-            # print 'emit result', text
-            # time.sleep(0.01)
-            # self.resultShowCV.emit(text)
+            return
+        result = result[1:]+result[:1]
+        keys = ('corediameter','claddiameter','coreroundness',
+                'cladroundness','concentricity')
+        str_pdf_para_from_result = {k: '%0.2f'%r for k,r in zip(keys,result)}
+        str_pdf_para_from_result.update({'sharpindex': sharp})
+        self.pdfparameter.update(str_pdf_para_from_result)
+
+        raw_db_data_from_result = {k: r for k,r in zip(keys,result)}
+        raw_db_data_from_result.update({'sharpindex': sharp})
+        # if None in result:
+        #     for i,v in enumerate(result):
+        #         if not v:
+        #             result[i] = '-1'
+        self.dbparameter.update(raw_db_data_from_result)
+        text = (u'''纤芯直径：    {:0.2f}\n'''
+            u'''包层直径：    {:0.2f}\n'''
+            u'''纤芯不圆度：  {:0.2f}\n'''
+            u'''包层不圆度：  {:0.2f}\n'''
+            u'''芯包同心度：  {:0.2f}''')
+        text = text.format(*result)
+        logging.exception(text)
+        self.resultShowCV.emit(text)
+
+
+
 
     def _greenLight(self, img):
         if isinstance(img, np.ndarray):

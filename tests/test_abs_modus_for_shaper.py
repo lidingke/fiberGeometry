@@ -113,7 +113,7 @@ class TestOffline():
         slave.start()
         logger.setLevel(logging.WARN)
         a = AbsModeBusMode('x', 'com13')
-        direction = 35000
+        direction = 31000
         a.goto(direction)
         readed = a.location()
         while abs(readed - direction) > 100:

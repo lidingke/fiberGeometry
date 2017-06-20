@@ -46,15 +46,15 @@ class Result(Base):
 
 engine = create_engine(SQLALCHEMY_DIR)
 DBSession = sessionmaker(bind=engine)
+logger.warning("creat db by "+SQLALCHEMY_DIR)
 
 def session_add_by_account(result):
-
     session = DBSession()
     is_exit = session.query(Account).filter(Account.name == result['worker']).count()
-
     if 0 == is_exit:
-        logger.info('user not exit '+ result['worker'] +' '+str(is_exit))
+        logger.warning('user not exit '+ result['worker'] +' '+str(is_exit))
         return
+    logger.warning('add data to db by user '+result['worker'])
     results = {k:v for k,v in result.items() if k in Result.EXIT_KEYS}
     session.add(Result(**results))
     session.commit()

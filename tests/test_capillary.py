@@ -30,12 +30,12 @@ def test_classify_tuple():
     assert core['shortAxisLen'] > 0.5
     assert core['longAxisLen'] > core['shortAxisLen']
     ratio = core['shortAxisLen'] / core['longAxisLen']
-    assert ratio > 0.9
+    assert ratio > 0.8
 
     assert clad['longAxisLen'] > 0.5
     assert clad['shortAxisLen'] > 0.5
     assert clad['longAxisLen'] > clad['shortAxisLen']
     ratio = clad['shortAxisLen'] / clad['longAxisLen']
-    assert ratio > 0.9
+    assert ratio > 0.8
 
 

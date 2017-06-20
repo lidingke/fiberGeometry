@@ -134,10 +134,12 @@ class View(QMainWindow, new_MainWindow):
         para['date'] = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
         para['title'] = para['fibertype']+'光纤端面几何测试报告'
         SETTING()['pdfpara'].update(para)
-        print SETTING()['pdfpara'].keys()
         SETTING()['olddata'] = para
         Reporter(self)
-        session_add_by_account(para)
+        # print 'get in session'
+        SETTING()['dbpara'].update(para)
+        dbpara = SETTING()['dbpara']
+        session_add_by_account(dbpara)
 
     def _tempMedianIndex(self):
         def changeCoreIndex():
