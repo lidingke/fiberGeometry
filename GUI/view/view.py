@@ -1,5 +1,6 @@
 #coding:utf-8
 #branch dev
+from GUI.model.models import session_add_by_account
 from setting.orderset import SETTING
 import cv2
 # from GUI.UI.mainUI import Ui_MainWindow
@@ -136,7 +137,7 @@ class View(QMainWindow, new_MainWindow):
         print SETTING()['pdfpara'].keys()
         SETTING()['olddata'] = para
         Reporter(self)
-
+        session_add_by_account(para)
 
     def _tempMedianIndex(self):
         def changeCoreIndex():

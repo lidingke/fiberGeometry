@@ -5,6 +5,9 @@ import traceback
 import sys, os
 from util.load import  MetaDict, WriteReadJson, WRpickle
 
+import os
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+SQLALCHEMY_DIR = "sqlite:///setting/cv_result.db"
 
 def singleton(class_):
     instance = {}
