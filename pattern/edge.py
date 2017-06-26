@@ -57,6 +57,11 @@ class ExtractEdge(CV2MethodSet):
         size, img = cv2.threshold(img, hight, 255, cv2.THRESH_BINARY)
         return img
 
+    def convexHull(self, img):
+        if len(img.shape) > 2:
+            img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+
+
 class EdgeFuncs(object):
     """docstring for CloseOpen"""
     def __init__(self, ):

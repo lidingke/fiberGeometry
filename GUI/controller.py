@@ -3,7 +3,6 @@ from setting.orderset import SETTING
 from GUI.model.modecv import ModelCV
 from GUI.model.modelop import ModelOp
 from PyQt4.QtCore import QObject, pyqtSignal
-# from SDK.mindpy import IsInitCamera
 
 class Controller(QObject):
     """docstring for Controller"""
@@ -24,11 +23,12 @@ class Controller(QObject):
         self._modelcv.returnImg.connect(self._view.updatePixmap)
         self._modelcv.returnATImg.connect(self._view.updateOpticalview)
         self._view.beginTestCV.clicked.connect(self._modelcv.mainCalculate)
-        self._view.beginTestAT.clicked.connect(self._getAttenuation)
+        # self._view.beginTestAT.clicked.connect(self._getAttenuation)
         self._modelcv.resultShowCV.connect(self._view.updateCVShow)
         self._modelcv.resultShowAT.connect(self._view.updateATShow)
         self._modelcv.returnCoreLight.connect(self._view.getCoreLight)
-        self._view.focuser.clicked.connect(self._modelcv.focus)
+        if hasattr(self._view, "focuser"):
+            self._view.focuser.clicked.connect(self._modelcv.focus)
         self._view.fiberTypeBox.currentIndexChanged.connect(self._changeFiberType)
 
         # self._tempMedianIndex()

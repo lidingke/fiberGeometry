@@ -4,11 +4,15 @@ from pattern.sharp import IsSharp
 from pattern.edge import ExtractEdge, EdgeFuncs
 import numpy as np
 from util.loadimg import yieldImg
-from pattern.getimg import getImage
+from pattern.getimg import getImage, randomImg
 import cv2
 import os
 import sys
 import pdb
+import matplotlib
+matplotlib.use("Qt4Agg")
+import matplotlib.pyplot as plt
+
 import pytest
 
 def _getFilterImg(core, origin, minRange, maxRange):
@@ -93,7 +97,7 @@ def n_test_sharp_Laplacian():
 
         print 'get sharp', sharp
 
-def test_sharp_Laplacian():
+def ttest_sharp_Laplacian():
     imgs = yieldImg("IMG\\emptytuple\\sharp\\")
 
     sharpobject = IsSharp()
@@ -109,7 +113,42 @@ def test_sharp_Laplacian():
         print 'get sharp', sharp
 
 
+@pytest.mark.parametrize(
+    "dir_",(
+            ("IMG\\sharp\\gammamid\\"),
+            ("IMG\\sharp\\gammafull\\"),
+            ("IMG\\sharp\\gammafull2\\"),
+            ("IMG\\sharp\\oc1\\"),
+    ))
+def test_sharp_laplacian_list(dir_):
+    print dir_
+    dirs = sorted(os.listdir(dir_))
+    dosharp = IsSharp().issharpla
+    imgs = (getImage(dir_+d) for d in dirs)
+    sharps = [dosharp(img[::,::,2]) for img in imgs]
+    # plt.figure(len(dir_))
+    # plt.plot(range(len(sharps)),sharps)
+    # plt.title(dir_)
+    # plt.show()
+
+@pytest.mark.parametrize(
+    "dir_", (
+            ("IMG\\sharp\\gammamid\\"),
+    ))
+def ttest_sharp_fft_list(dir_):
+    print dir_
+    dirs = sorted(os.listdir(dir_))
+    def fft(img):
+        get = np.fft.fft2(img)
+        return np.abs(np.sum(get))
+
+    imgs = (getImage(dir_+d) for d in dirs)
+    for img in imgs:
+        sharps = fft(img)
+        print sharps
+
+
 if __name__ == "__main__":
-    n_test_sharp_canny()
-    pass
+    img = randomImg("IMG\\sharp\\gammamid\\")
+    sharp = IsSharp().issharpla(img)
 

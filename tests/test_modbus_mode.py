@@ -1,3 +1,4 @@
+#encoding:utf-8
 from SDK.modbussdk import ModBusMode
 from threading import Thread
 import serial
@@ -28,6 +29,7 @@ class Slave(Thread):
                 print 'get write'," ".join("{:02x}".format(ord(c)) for c in readed)
                 self.ser.write(readed)
                 self.data = readed
+        self.ser.close()
 
     def close(self):
         print 'get slave close'
@@ -50,13 +52,23 @@ def test_mode():
     assert mod.data != ""
     assert mod.data == cmdscrc['xclicked1']
     assert mod.data == slave.data
+    try:
+        mod.run('0', 'clicked', '1')
+    except ValueError:
+        pass
     slave.close()
+    mod.ser.close()
     # mod.close()
 
 
 def test_print():
     for k,cmd in cmds.items():
         print " ".join("{:02x}".format(ord(c)) for c in cmd)
+
+def test_movement_right_block():
+    pass
+
+
 
 
 def test_get_crc():

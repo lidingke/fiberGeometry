@@ -1,11 +1,10 @@
 from setting.orderset import SETTING
-SETTING('MindVision500', 'Online', "G652", "centerImg")
-import logging
-logging.basicConfig(level=logging.INFO)
+SETTING('MindVision500', 'Online', "capillary", "centerImg")
 import sys
 import os
 import pdb
-
+import logging
+logging.basicConfig(level=logging.INFO)
 from PyQt4.QtGui import QPalette, QColor,QApplication, QMessageBox, QWidget
 from GUI.view.view import View
 from GUI.controller import Controller

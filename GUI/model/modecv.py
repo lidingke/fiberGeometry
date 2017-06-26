@@ -6,7 +6,7 @@ import cv2
 import copy
 import numpy as np
 from PyQt4.QtCore import QObject, pyqtSignal
-
+from .datahand import session_add,ResultSheet
 from setting.orderset import SETTING
 from pattern.exception import ClassCoreError, ClassOctagonError
 
@@ -18,6 +18,7 @@ if setGet:
     from SDK.mdpy import GetRawImg
 else:
     from SDK.mdpytest import DynamicGetRawImgTest as GetRawImg
+    # from  SDK.mdpy import GetRawImgTest as GetRawImg
     print 'script don\'t open camera'
 
 from pattern.edge import ExtractEdge
@@ -30,12 +31,14 @@ from SDK.oceanoptics import OceanOpticsTest
 from util.toolkit import Cv2ImShow, Cv2ImSave
 import logging
 import serial
-from pattern.sharper import LiveFocuser
+from pattern.sharper import AbsFocuser
 from util.timing import timing
 from util.filter import AvgResult
 from util.loadimg import sliceImg
 import sys
 
+
+from collections import Iterable
 
 class ModelCV(Thread, QObject):
     """docstring for Model"""
@@ -66,9 +69,11 @@ class ModelCV(Thread, QObject):
         self.Oceanoptics = OceanOpticsTest()
         self.classify = classifyObject('G652')
         self.pdfparameter = SETTING()['pdfpara']
+        self.dbparameter = SETTING()['dbpara']
         # self.sharps = collections.deque(maxlen=15)
         try:
-            self.focuser = LiveFocuser()
+            # self.focuser = LiveFocuser()
+            self.focuser = AbsFocuser()
             # self.focuser.start()
         except serial.serialutil.SerialException as e:
             print e
@@ -82,9 +87,9 @@ class ModelCV(Thread, QObject):
             self.img = img.copy()
             self.imgQueue.append(self.img)
             # self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
-            self.sharp = "%0.2f" % self.isSharp.issharpla(img)
+            self.sharp = "%0.2f" % self.isSharp.issharpla(img[::,::,0])
             if hasattr(self,'focuser'):
-                self.focuser.get_sharps(self.sharp)
+                self.focuser.get_sharp(self.sharp)
             # plotResults = (self.ellipses, self.result)
             self._greenLight(img)
             colorImg = self._decorateImg(img)
@@ -92,7 +97,6 @@ class ModelCV(Thread, QObject):
 
 
     def mainCalculate(self):
-        #
         def _calcImg():
             try:
                 # img.tofile("tests\\data\\tests\\midimg{}.bin".format(str(int(time.time()))[-3:]))
@@ -156,55 +160,46 @@ class ModelCV(Thread, QObject):
         waveMin = np.min(powers)
         waveAvg = np.average(powers)
         # print waveLimit, waveMax, waveMin, waveAvg
-        text = [
-            u'''波长范围：    {}\n'''.format('%0.2f' % waveLimit),
-            u'''最大值：      {}\n'''.format('%0.2f' % waveMax),
-            u'''最小值：      {}\n'''.format('%0.2f' % waveMin),
-            u'''平均值：      {}\n'''.format('%0.2f' % waveAvg)
-        ]
-        text = u''.join(text)
+        text = (u'''波长范围：    {:%0.2f}\n'''
+            u'''最大值：      {:%0.2f}\n'''
+            u'''最小值：      {:%0.2f}\n'''
+            u'''平均值：      {:%0.2f}\n''')
+        text = text.format(waveLimit,waveMax,waveMin,waveAvg)
         self.resultShowAT.emit(text)
 
 
     def _emitCVShowResult(self, result):
-        # result = self.result
         sharp = self.sharp
         self.result2Show = copy.deepcopy(self.eresults)
         self.result2Show["showResult"] = result
-        if isinstance(result, tuple) or isinstance(result, list):
-            # print 'get result', result
-            para = {'corediameter': '%0.2f'%result[1],
-            'claddiameter': '%0.2f'%result[2],
-            'coreroundness': '%0.2f'%result[3],
-            'cladroundness': '%0.2f'%result[4],
-            'concentricity': '%0.2f'%result[0],
-            'fibertype':SETTING()["fiberType"],
-            'sharpindex': sharp}
-            if None in result:
-                for i,v in enumerate(result):
-                    if not v:
-                        result[i] = '-1'
-
-            self.pdfparameter.update(para)
-
-            text = [
-                u'''清晰度指数：  {}\n'''.format(sharp),
-                u'''纤芯直径：    {}\n'''.format('%0.2f'%result[1]),
-                u'''包层直径：    {}\n'''.format('%0.2f'%result[2]),
-                u'''纤芯不圆度：  {}\n'''.format('%0.2f'%result[3]),
-                u'''包层不圆度：  {}\n'''.format('%0.2f'%result[4]),
-                u'''芯包同心度：  {}'''.format('%0.2f'%result[0])]
-
-            text = u''.join(text)
-            logging.exception(text)
-
-            self.resultShowCV.emit(text)
-            sys.stdout.flush()
-        else:
+        if not hasattr(result, '__getitem__'):
             self.resultShowCV.emit('error')
-            # print 'emit result', text
-            # time.sleep(0.01)
-            # self.resultShowCV.emit(text)
+            return
+        result = result[1:]+result[:1]
+        keys = ('corediameter','claddiameter','coreroundness',
+                'cladroundness','concentricity')
+        str_pdf_para_from_result = {k: '%0.2f'%r for k,r in zip(keys,result)}
+        str_pdf_para_from_result.update({'sharpindex': sharp})
+        self.pdfparameter.update(str_pdf_para_from_result)
+
+        raw_db_data_from_result = {k: r for k,r in zip(keys,result)}
+        raw_db_data_from_result.update({'sharpindex': sharp})
+        # if None in result:
+        #     for i,v in enumerate(result):
+        #         if not v:
+        #             result[i] = '-1'
+        self.dbparameter.update(raw_db_data_from_result)
+        text = (u'''纤芯直径：    {:0.2f}\n'''
+            u'''包层直径：    {:0.2f}\n'''
+            u'''纤芯不圆度：  {:0.2f}\n'''
+            u'''包层不圆度：  {:0.2f}\n'''
+            u'''芯包同心度：  {:0.2f}''')
+        text = text.format(*result)
+        logging.exception(text)
+        self.resultShowCV.emit(text)
+
+
+
 
     def _greenLight(self, img):
         if isinstance(img, np.ndarray):
@@ -217,7 +212,7 @@ class ModelCV(Thread, QObject):
             self.green = green.sum() / 255
             self.blue = blue.sum() / 255
             self.allgreen = img[::, ::, 1].sum() / 255 - self.green
-            self.pdfparameter['corelight'] = "%0.2f"%self.blue
+            self.pdfparameter['corelight'] = "%0.2f" % self.blue
             self.pdfparameter['cladlight'] = "%0.2f" % self.allgreen
             self.returnCoreLight.emit("%0.2f" % (self.blue), "%0.2f" % (self.allgreen))
             # self.returnCladLight.emit()

@@ -1,3 +1,6 @@
+import sys
+sys.dont_write_bytecode = True
+
 cmds ={
     'xclicked0': "\x01\x05\x00\x0A\xFF\x00",#\x38\xAC
     'xrelease0': "\x01\x05\x00\x0A\x00\x00",
@@ -28,4 +31,32 @@ cmdscrc = {
     'zclicked1': "\x01\x05\x00\x0F\xFF\x00\xbc\x39",
     'zrelease1': "\x01\x05\x00\x0F\x00\x00\xfd\xc9",
     'reset':     "\x01\x05\x00\x10\xFF\x00\x8D\xFF"
+}
+
+
+direction = {
+    'xstart':     "\x00\xc8",
+    'xforward':   "\x00\xc9",
+    'xpulse':     "\x00\xca",
+    'xfrequency': "\x00\xcc",
+    'ystart':     "\x00\xd2",
+    'yforward':   "\x00\xd3",
+    'ypulse':     "\x00\xd4",
+    'yfrequency': "\x00\xd6",
+    'zstart':     "\x00\xdc",
+    'zforward':   "\x00\xdd",
+    'zpulse':     "\x00\xde",
+    'zfrequency': "\x00\xe0"
+}
+
+abs_direction = {
+    'x':     "\x00\xc8",
+    'y':     "\x00\xd2",
+    'z':     "\x00\xdc",
+}
+
+read_direction = {
+    'x': "\x40\xaa",
+    'y': "\x40\xad",
+    'z': "\x40\xb0"
 }

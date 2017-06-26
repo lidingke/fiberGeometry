@@ -8,6 +8,7 @@ from imgserver.methods import getImage
 from tornado.iostream import StreamClosedError
 import time
 import logging
+logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger(__name__)
 
 def test_sharpserver():
@@ -69,3 +70,8 @@ def test_getimg_multi_connect():
 #     Thread(target = SeverMain).start()
     # multiprocessing.Process(target=servermain).start()
     # time.sleep(1)
+
+if __name__ == "__main__":
+    port = 9880
+    para = ('randomImg', 'IMG/emptytuple/eptlight2')
+    IOLoop.current().run_sync(partial(Client(port=port).get_change, para))

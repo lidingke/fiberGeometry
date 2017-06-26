@@ -105,7 +105,6 @@ def drawCoreCircle(img):
     core = [corecore,1]
     # print "corecorex, corecorey", corecorex, corecorey
     minRange, maxRange = SET.get("coreRange")
-
     # cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(maxRange), (255, 255, 255), 4)
     cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(minRange), (0,0,0), 4)
     x0,y0 = corecore
@@ -121,8 +120,8 @@ def drawCoreCircle(img):
     x1, y1 = x0, y0 - minRange
     x2, y2 = x0, y0 - maxRange
     cv2.line(img, (x1,y1), (x2,y2), (255,255,255), 4)
-
-    # minRange, maxRange = SET.get("cladRange")
-    # cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(maxRange), (0, 0, 0), 4)
-    # cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), 4)
+    if SET.get("draw_clad",False):
+        minRange, maxRange = SET.get("cladRange")
+        cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(maxRange), (0, 0, 0), 4)
+        cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), 4)
     return img

@@ -1,15 +1,18 @@
+#coding:utf-8
+import logging
+logging.basicConfig(level=logging.WARNING)
+logger = logging.getLogger(__name__)
 import sys
 import os
 import pdb
 from setting.orderset import SETTING
-Set = SETTING("test", "octagon", "centerImg")#, "nostdout")
+Set = SETTING("test", "octagon", "centerImg")
 Set['ifcamera'] = False
 from PyQt4.QtGui import QPalette, QColor,QApplication
 from PyQt4.QtCore import QCoreApplication, QFile
 from GUI.view.view import View
 from GUI.controller import Controller
 from util.load import loadStyleSheet
-
 
 
 if __name__ == '__main__':

@@ -5,6 +5,9 @@ import traceback
 import sys, os
 from util.load import  MetaDict, WriteReadJson, WRpickle
 
+import os
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+SQLALCHEMY_DIR = "sqlite:///setting/cv_result.db"
 
 def singleton(class_):
     instance = {}
@@ -28,10 +31,6 @@ class SETTING(MetaDict):
     def __init__(self, *args, **kwargs):
         MetaDict.__init__(self)
 
-        # if isinstance(args[0], dict):
-        #     args = args[0].values()
-        # self.store = self._mergeDict(args)
-        # print self.store.keys()
         self.store = OrderedDict()
         self.jsonLoad = self._readJson()
         self.store.update(self.jsonLoad["Default"])
