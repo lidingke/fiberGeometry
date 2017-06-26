@@ -160,13 +160,11 @@ class ModelCV(Thread, QObject):
         waveMin = np.min(powers)
         waveAvg = np.average(powers)
         # print waveLimit, waveMax, waveMin, waveAvg
-        text = [
-            u'''波长范围：    {}\n'''.format('%0.2f' % waveLimit),
-            u'''最大值：      {}\n'''.format('%0.2f' % waveMax),
-            u'''最小值：      {}\n'''.format('%0.2f' % waveMin),
-            u'''平均值：      {}\n'''.format('%0.2f' % waveAvg)
-        ]
-        text = u''.join(text)
+        text = (u'''波长范围：    {:%0.2f}\n'''
+            u'''最大值：      {:%0.2f}\n'''
+            u'''最小值：      {:%0.2f}\n'''
+            u'''平均值：      {:%0.2f}\n''')
+        text = text.format(waveLimit,waveMax,waveMin,waveAvg)
         self.resultShowAT.emit(text)
 
 
