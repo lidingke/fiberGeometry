@@ -205,8 +205,6 @@ class CameraMotorSeverRadom(CameraMotorSever):
                 self.sharp = self.sharp - uniform(0.3,0.6)
 
 
-
-
 def SeverMain(port):
     # options.parse_command_line()
     print 'listening on port', port

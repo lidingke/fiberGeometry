@@ -1,30 +1,17 @@
-def yieldfun():
-    print ('get in yield')
-    yield
-    print ('get out yield')
-
-def w(gen):
-    gen.__next__()
+#python3.5
+def consumer():
     while True:
-        if gen:
-            print(gen)
+        n = yield
+        if not n:
+            break
+        print('[CONSUMER]Consuming %s...' % n)
 
-def w2():
-    while True:
-        print ('get in yield')
-        yield
-        print ('get out yield')
+def produce(c):
+    next(c)
+    for n in range(1, 5):
+        print('[PRODUCER]Producing %s...' % n)
+        c.send(n)
+    c.close()
 
-import time
-import pdb
-
-import threading
-
-gen = w2()
-
-# threading.Thread(target=w, args=(gen)).start()
-next(gen)
-time.sleep(1)
-gen.send(1)
-time.sleep(1)
-gen.send(2)
+c = consumer()
+produce(c)
