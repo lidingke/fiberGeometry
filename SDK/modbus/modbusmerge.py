@@ -2,6 +2,7 @@ import struct
 from collections import deque, OrderedDict
 
 import serial
+import crcmod
 
 from SDK.modbus.directions import HEAD_DIR, MOTOR_GROUP, START_STOP, UP_DOWN
 from SDK.modbusabs import ModbusConnectionException
@@ -12,10 +13,12 @@ logger = logging.getLogger(__name__)
 
 class SendTranslater(object):
     def __init__(self):
-        pass
+        self.crc16 = crcmod.predefined.mkCrcFun('modbus')
 
     def __call__(self, station, head_dir, move):
         station = self._get_station(station)
+        if head_dir not in HEAD_DIR.keys():
+            raise ValueError("head direction error")
         head_dir = HEAD_DIR[head_dir]
 
         if isinstance(move, str):
@@ -24,18 +27,24 @@ class SendTranslater(object):
             elif move in ('up', 'down'):
                 result = self._up_down_motor(station, head_dir, move)
             elif move == 'rest':
-                result = self._rest_motor()
+                result = self._rest_motor(station, head_dir, move)
             else:
                 raise ValueError("error move command")
         elif isinstance(move, int):
             result = self._dimension_motor_by_int(station, head_dir, move)
+        else:
+            raise ValueError('error command type')
+        crc = struct.pack('>H', self.crc16(result))
+        result = result + crc[1:] + crc[:1]
         return result
 
     def _get_station(self, station):
         if station in MOTOR_GROUP[0]:
             return '\x01'
-        else:
+        elif station in MOTOR_GROUP[1]:
             return '\x02'
+        else:
+            raise ValueError("station code error")
 
     def _dimension_motor_by_str(self, station, head_dir, move):
         if move == 'start':
@@ -46,7 +55,8 @@ class SendTranslater(object):
         return cmd
 
     def _dimension_motor_by_int(self, station, head_dir, move):
-        move = struct.pack('>I', move)
+        for_invert = struct.pack('>I', move)
+        move = for_invert[2:]
         cmd = station + '\x10' + head_dir + '\x00\x02\x04' + START_STOP[0] + move
         return cmd
 
@@ -59,8 +69,25 @@ class SendTranslater(object):
         return cmd
 
     def _rest_motor(self, station, head_dir, move):
-        cmd = station + '\x10' + head_dir + '\x00\x01\x02' + '\x00\x02'
+        cmd = station + '\x10' + HEAD_DIR['rest'] + '\x00\x01\x02' + '\x00\x02'
         return cmd
+
+class ReadTranslater(object):
+    def __init__(self):
+        self.axies = ('x', 'y', 'z')
+        self.crc16 = crcmod.predefined.mkCrcFun('modbus')
+
+    def __call__(self, axis):
+
+        if axis not in self.axies:
+            raise KeyError('axis input error')
+
+        cmdline = '\x01\x03' \
+              + HEAD_DIR[axis]\
+              + '\x00\x02'
+        crc = struct.pack('>H',self.crc16(cmdline))
+        cmdline = cmdline + crc[1:] + crc[:1]
+        return cmdline
 
 
 class AbsModeBusModeByAxis(object):
@@ -74,7 +101,7 @@ class AbsModeBusModeByAxis(object):
         self.read_translater = ReadTranslater()
         self.direction = self.location() or 3000
         self.queue = deque(maxlen=15)
-        print 'init'
+        print('init')
 
     # @mutex_lock
     def goto(self, direction, axis='x'):

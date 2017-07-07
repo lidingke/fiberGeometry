@@ -1,6 +1,6 @@
 from time import sleep
 
-from SDK.modbusabs import AbsModeBusMode, AbsModeBusModeByAxis
+from SDK.modbusabs import AbsModeBusMode
 from util.observer import MySignal
 from collections import namedtuple
 

@@ -14,9 +14,9 @@ HEAD_DIR = {
 }
 
 MOTOR_GROUP = (
-    ('x1','y1','z1'),
+    ('x1','y1','z1','up1','up2','up3'),
     ('x2','y2','z2')
 )
 
-START_STOP = ('\x00\x01','\x00\x01')
+START_STOP = ('\x00\x01','\x00\x00')
 UP_DOWN = ('\x00\x01','\x00\x02')

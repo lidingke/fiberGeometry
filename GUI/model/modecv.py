@@ -29,7 +29,7 @@ from pattern.sharp import IsSharp
 from pattern.draw import DecorateImg, drawCoreCircle, decorateMethod
 from SDK.oceanoptics import OceanOpticsTest
 from util.toolkit import Cv2ImShow, Cv2ImSave
-import logging
+
 import serial
 from pattern.sharper import AbsFocuser
 from util.timing import timing
@@ -39,6 +39,9 @@ import sys
 
 
 from collections import Iterable
+
+import logging
+logger = logging.getLogger(__name__)
 
 class ModelCV(Thread, QObject):
     """docstring for Model"""
@@ -53,8 +56,6 @@ class ModelCV(Thread, QObject):
         QObject.__init__(self)
         super(ModelCV, self).__init__()
         self.setDaemon(True)
-        logging.basicConfig(filename="setting\\modelog.txt", filemode='a', level=logging.ERROR,
-                            format="%(asctime)s-%(levelname)s-%(funcName)s:%(message)s")
         self.IS_RUN = True
         self.isSharp = IsSharp()
         self.show = Cv2ImShow()
@@ -119,7 +120,7 @@ class ModelCV(Thread, QObject):
                 self.resultShowCV.emit('error')
                 return
             except Exception as e:
-                logging.exception(e)
+                logger.exception(e)
         Thread(target = _calcImg).start()
 
 
@@ -195,7 +196,7 @@ class ModelCV(Thread, QObject):
             u'''包层不圆度：  {:0.2f}\n'''
             u'''芯包同心度：  {:0.2f}''')
         text = text.format(*result)
-        logging.exception(text)
+        logger.exception(text)
         self.resultShowCV.emit(text)
 
 
