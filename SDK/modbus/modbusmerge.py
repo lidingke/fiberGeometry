@@ -4,7 +4,7 @@ from collections import deque, OrderedDict
 import serial
 import crcmod
 
-from SDK.modbus.directions import HEAD_DIR, MOTOR_GROUP, START_STOP, UP_DOWN
+from SDK.modbus.directions import HEAD_DIR, MOTOR_GROUP, START_STOP, UP_DOWN, MOTOR_STATE
 from SDK.modbusabs import ModbusConnectionException
 import logging
 
@@ -93,66 +93,85 @@ class ReadTranslater(object):
 class AbsModeBusModeByAxis(object):
     def __init__(self, port=None, baudrate=19200, store=None):
         super(AbsModeBusModeByAxis, self).__init__()
-        self.IsWriting = True
         self.ser = serial.Serial(port, baudrate, timeout=0.05, parity='E')
-        self.data_buffer = None
         # self.forward = False
         self.send_translater = SendTranslater()
         self.read_translater = ReadTranslater()
-        self.direction = self.location() or 3000
-        self.queue = deque(maxlen=15)
-        print('init')
+        self._platform_state = None
 
-    # @mutex_lock
-    def goto(self, direction, axis='x'):
-        self.direction = direction
-        send = self.send_translater(axis, self.direction)
-        logger.info('mode send cmd' + " ".join("{:02x}".format(ord(c)) for c in send))
-        self.ser.write(send)
-        self.data_buffer = self._read_untill_data_in('\x10')
+    def plat_motor_goto(self, state, station, head_dir, move):
+        # state = self._platform_state
+        assert station in MOTOR_STATE[state]
+        cmd = self.send_translater(station, head_dir, move)
+        logger.info('mode send cmd' + " ".join("{:02x}".format(ord(c)) for c in cmd))
+        self.ser.write(cmd)
 
-    def scram(self, axis):
-        send = self.send_translater(axis, False)
-        logger.info('send stop cmd' + " ".join("{:02x}".format(ord(c)) for c in send))
-        self.ser.write(send)
-        self.data_buffer = self._read_untill_data_in('\x10')
+    def plat_motor_stop(self, state, station, head_dir):
+        cmd = self.send_translater(station, head_dir, "stop")
+        logger.info('mode send cmd' + " ".join("{:02x}".format(ord(c)) for c in cmd))
+        self.ser.write(cmd)
 
-    # @mutex_lock
-    def location(self, axis):
-        logger.debug("lod ing location")
-        read = self.read_translater(axis)
-        info = 'mode send cmd ' + " ".join("{:02x}".format(ord(c)) for c in read)
-        logger.debug(info)
-        self.ser.write(read)
+    def motor_up_down(self,move="up_up_down"):
+        sequence = MOTOR_STATE["UP_DOWN"]
+        moves = move.split("_")
+        assert len(sequence) == len(moves)
+        for station,m in zip(sequence, moves):
+            cmd = self.send_translater(station,station,m)
+            logger.info('mode send cmd' + " ".join("{:02x}".format(ord(c)) for c in cmd))
+            self.ser.write(cmd)
 
-        self.data_buffer = self._read_untill_data_in('\x03')
-        # info = 'mode get cmd '+" ".join("{:02x}".format(ord(c)) for c in self.data_buffer)
-        logger.debug(info)
-        if len(self.data_buffer) < 6:
-            debug = "error " + " ".join("{:02x}".format(ord(c)) for c in self.data_buffer)
-            logger.debug(debug)
-            raise ModbusConnectionException("data buffer length error")
-        # print 'master get cmd ', " ".join("{:02x}".format(ord(c)) for c in self.data_buffer)
-        reversed = self.data_buffer[3:-2]
-        if reversed:
-            _ = struct.unpack('>I', reversed[2:] + reversed[:2])[0]
-            # print 'get _', _
-            return _
-            # return None
 
-    def _read_untill_data_in(self, mode='\x03'):
-        IS = True
-        while IS:
-            _0 = self.ser.read(1)
-            if _0 != '\x01':
-                continue
-            _1 = self.ser.read(1)
-            if _1 == '\x03':
-                _2 = self.ser.read(1)
-                length = struct.unpack('>b', _2)[0]
-                readed = self.ser.read(length * 2 + 2)
-                return '\x01\x03' + _2 + readed
-            elif _1 == '\x10':
-                return '\x01\x03' + self.ser.read(6)
-            else:
-                raise ValueError('bad input data')
+
+
+    # def goto(self, direction, axis='x'):
+    #     self.direction = direction
+    #     send = self.send_translater(axis, self.direction)
+    #     logger.info('mode send cmd' + " ".join("{:02x}".format(ord(c)) for c in send))
+    #     self.ser.write(send)
+    #     self.data_buffer = self._read_untill_data_in('\x10')
+    #
+    # def scram(self, axis):
+    #     send = self.send_translater(axis, False)
+    #     logger.info('send stop cmd' + " ".join("{:02x}".format(ord(c)) for c in send))
+    #     self.ser.write(send)
+    #     self.data_buffer = self._read_untill_data_in('\x10')
+    #
+    # # @mutex_lock
+    # def location(self, axis):
+    #     logger.debug("lod ing location")
+    #     read = self.read_translater(axis)
+    #     info = 'mode send cmd ' + " ".join("{:02x}".format(ord(c)) for c in read)
+    #     logger.debug(info)
+    #     self.ser.write(read)
+    #
+    #     self.data_buffer = self._read_untill_data_in('\x03')
+    #     # info = 'mode get cmd '+" ".join("{:02x}".format(ord(c)) for c in self.data_buffer)
+    #     logger.debug(info)
+    #     if len(self.data_buffer) < 6:
+    #         debug = "error " + " ".join("{:02x}".format(ord(c)) for c in self.data_buffer)
+    #         logger.debug(debug)
+    #         raise ModbusConnectionException("data buffer length error")
+    #     # print 'master get cmd ', " ".join("{:02x}".format(ord(c)) for c in self.data_buffer)
+    #     reversed = self.data_buffer[3:-2]
+    #     if reversed:
+    #         _ = struct.unpack('>I', reversed[2:] + reversed[:2])[0]
+    #         # print 'get _', _
+    #         return _
+    #         # return None
+    #
+    # def _read_untill_data_in(self, mode='\x03'):
+    #     IS = True
+    #     while IS:
+    #         _0 = self.ser.read(1)
+    #         if _0 != '\x01':
+    #             continue
+    #         _1 = self.ser.read(1)
+    #         if _1 == '\x03':
+    #             _2 = self.ser.read(1)
+    #             length = struct.unpack('>b', _2)[0]
+    #             readed = self.ser.read(length * 2 + 2)
+    #             return '\x01\x03' + _2 + readed
+    #         elif _1 == '\x10':
+    #             return '\x01\x03' + self.ser.read(6)
+    #         else:
+    #             raise ValueError('bad input data')

@@ -20,3 +20,9 @@ MOTOR_GROUP = (
 
 START_STOP = ('\x00\x01','\x00\x00')
 UP_DOWN = ('\x00\x01','\x00\x02')
+
+MOTOR_STATE = {
+    "UP_DOWN":('up1','up2','up3'),
+    "PLAT1":('x1','y1','z1'),
+    "PLAT2":('x2','y2','z2')
+}

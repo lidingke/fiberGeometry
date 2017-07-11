@@ -91,7 +91,7 @@ class Slave(threading.Thread):
 
 
     def close(self):
-        print 'get slave close'
+        print('get slave close')
         self.RUNNING = False
         # self.ser.close()
 

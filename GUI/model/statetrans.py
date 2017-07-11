@@ -1,32 +1,19 @@
 from time import sleep
 
+from SDK.modbus.directions import MOTOR_STATE
 from SDK.modbusabs import AbsModeBusMode
 from util.observer import MySignal
 from collections import namedtuple
+from collections import OrderedDict
 
-
-def state_number():
-    while True:
-        for i in xrange(0, 5):
-            yield i
-
-
-def ex1():
-    print 'state1'
-
-
-def ex2():
-    print 'state2'
-
-
-def ex3():
-    print 'state3'
+STATE_TRANSFORM =  OrderedDict()
 
 
 class StateTransform(object):
     def __init__(self):
         self.state_number = state_number()
         self.state_operate = StateApi.STATE_OPERATE
+        self._platform_state = None
 
     def next_state(self):
         operater = self.state_operate[next(self.state_number)]
@@ -36,6 +23,19 @@ class StateTransform(object):
     def previous_state(self):
         pass
 
+    @property
+    def platform_state(self):
+        return self._platform_state
+
+    @platform_state.setter
+    def platform_state(self,value):
+        assert value in MOTOR_STATE.keys()
+        self._platform_state = value
+
+def platform_state_transform(self,*args,**kwargs):
+    self.update(**kwargs)
+
+STATES = {"_platform_state":"PLAT1"}
 
 class StateApi(object):
     emit_state = MySignal()

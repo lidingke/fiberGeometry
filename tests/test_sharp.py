@@ -115,21 +115,20 @@ def ttest_sharp_Laplacian():
 
 @pytest.mark.parametrize(
     "dir_",(
-            ("IMG\\sharp\\gammamid\\"),
-            ("IMG\\sharp\\gammafull\\"),
-            ("IMG\\sharp\\gammafull2\\"),
-            ("IMG\\sharp\\oc1\\"),
+            ("IMG\\sharp\\02\\"),
+            ("IMG\\sharp\\03\\"),
+
     ))
 def test_sharp_laplacian_list(dir_):
     print dir_
     dirs = sorted(os.listdir(dir_))
     dosharp = IsSharp().issharpla
     imgs = (getImage(dir_+d) for d in dirs)
-    sharps = [dosharp(img[::,::,2]) for img in imgs]
-    # plt.figure(len(dir_))
-    # plt.plot(range(len(sharps)),sharps)
-    # plt.title(dir_)
-    # plt.show()
+    sharps = [dosharp(img[::,::,0]) for img in imgs]
+    plt.figure(len(dir_))
+    plt.plot(range(len(sharps)),sharps)
+    plt.title(dir_)
+    plt.show()
 
 @pytest.mark.parametrize(
     "dir_", (
@@ -149,6 +148,14 @@ def ttest_sharp_fft_list(dir_):
 
 
 if __name__ == "__main__":
-    img = randomImg("IMG\\sharp\\gammamid\\")
-    sharp = IsSharp().issharpla(img)
+    dir_ = "IMG\\sharp\\03\\"
+    print dir_
+    dirs = sorted(os.listdir(dir_))
+    dosharp = IsSharp().issharpla
+    imgs = (getImage(dir_+d) for d in dirs)
+    sharps = [dosharp(img[::,::,0]) for img in imgs]
+    plt.figure(len(dir_))
+    plt.plot(range(len(sharps)),sharps)
+    plt.title(dir_)
+    plt.show()
 
