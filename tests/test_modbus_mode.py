@@ -8,7 +8,7 @@ from pattern.sharper import Focuser
 try:
     import crcmod
 except ImportError as e:
-    print e
+    print(e)
     Iscrcmod = False
 else:
     Iscrcmod = True
@@ -20,19 +20,19 @@ class Slave(Thread):
         self.ser = serial.Serial('com14', 19200, timeout=0.05, parity= 'E')
         self.RUNNING = True
         self.data = ""
-        print self.ser.parity
+        print(self.ser.parity)
 
     def run(self):
         while self.RUNNING:
             readed = self.ser.read(8)
             if readed:
-                print 'get write'," ".join("{:02x}".format(ord(c)) for c in readed)
+                print('get write'," ".join("{:02x}".format(ord(c)) for c in readed))
                 self.ser.write(readed)
                 self.data = readed
         self.ser.close()
 
     def close(self):
-        print 'get slave close'
+        print('get slave close')
         self.RUNNING = False
 
 
@@ -63,7 +63,7 @@ def test_mode():
 
 def test_print():
     for k,cmd in cmds.items():
-        print " ".join("{:02x}".format(ord(c)) for c in cmd)
+        print(" ".join("{:02x}".format(ord(c)) for c in cmd))
 
 def test_movement_right_block():
     pass
