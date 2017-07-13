@@ -1,14 +1,17 @@
 import struct
 from collections import deque, OrderedDict
+from time import sleep
 
 import serial
 import crcmod
 
-from SDK.modbus.directions import HEAD_DIR, MOTOR_GROUP, START_STOP, UP_DOWN, MOTOR_STATE, STATION_DIR
+from SDK.modbus.directions import HEAD_DIR, MOTOR_GROUP, START_STOP,\
+    UP_DOWN, MOTOR_STATE, STATION_DIR
 from SDK.modbusabs import ModbusConnectionException
 import logging
 
 from util.function import hex2str
+from util.threadlock import mutex
 
 logger = logging.getLogger(__name__)
 
@@ -36,17 +39,17 @@ class SendTranslater(object):
             result = self._dimension_motor_by_int(station, head_dir, move)
         else:
             raise ValueError('error command type')
-        crc = struct.pack('>H', self.crc16(result))
-        result = result + crc[1:] + crc[:1]
+
+        result += struct.pack('<H', self.crc16(result))
         return result
 
-    def _get_station(self, station):
-        if station in MOTOR_GROUP[0]:
-            return '\x01'
-        elif station in MOTOR_GROUP[1]:
-            return '\x02'
-        else:
-            raise ValueError("station code error")
+    # def _get_station(self, station):
+    #     if station in MOTOR_GROUP[0]:
+    #         return '\x01'
+    #     elif station in MOTOR_GROUP[1]:
+    #         return '\x02'
+    #     else:
+    #         raise ValueError("station code error")
 
     def _dimension_motor_by_str(self, station, head_dir, move):
         if move == 'start':
@@ -63,8 +66,7 @@ class SendTranslater(object):
         return cmd
 
     def _up_down_motor(self, station, head_dir, move):
-        move = struct.pack('>I', int(move))[-2:]
-        print 'move', move
+        move = struct.pack('>H', int(move))
         cmd = station + '\x10' + '\x00\xdc' + '\x00\x01\x02' + move
         return cmd
 
@@ -75,19 +77,28 @@ class SendTranslater(object):
 
 class ReadTranslater(object):
     def __init__(self):
-        self.axies = ('x', 'y', 'z')
         self.crc16 = crcmod.predefined.mkCrcFun('modbus')
 
-    def __call__(self, axis):
-        if axis not in self.axies:
-            raise KeyError('axis input error')
-
-        cmdline = '\x01\x03' \
-                  + HEAD_DIR[axis] \
-                  + '\x00\x02'
-        crc = struct.pack('>H', self.crc16(cmdline))
-        cmdline = cmdline + crc[1:] + crc[:1]
+    def __call__(self, head_dir, size=1):
+        assert head_dir in HEAD_DIR.keys()
+        size = struct.pack('>H', size)
+        cmdline = '\x01\x03' + HEAD_DIR[head_dir] + size
+        crc = struct.pack('<H', self.crc16(cmdline))
+        cmdline = cmdline + crc
         return cmdline
+
+class ReturnParse(object):
+
+    def __init__(self):
+        self.crc16 = crcmod.predefined.mkCrcFun('modbus')
+
+    def __call__(self, method ,cmd):
+        if method == "up_down_state":
+            return self._up_down_state(cmd)
+
+    def _up_down_state(self, cmd):
+        cmd = struct.unpack('>H',cmd[3:5])[0]
+        return cmd
 
 
 class AbsModeBusModeByAxis(object):
@@ -97,7 +108,9 @@ class AbsModeBusModeByAxis(object):
         # self.forward = False
         self.send_translater = SendTranslater()
         self.read_translater = ReadTranslater()
+        self.return_parse = ReturnParse()
         self._platform_state = None
+        self.RUNNING = True
 
     def plat_motor_goto(self, station, head_dir, move):
         # state = self._platform_state
@@ -119,14 +132,30 @@ class AbsModeBusModeByAxis(object):
         logger.info('mode send cmd' + hex2str(cmd))
         self.ser.write(cmd)
 
+    @mutex
     def motor_up_down(self, move='1'):
         assert isinstance(move, str)
-        print 'get move ', move, type(move)
         cmd = self.send_translater('UP_DOWN', 'xstart', move)
         logger.info('mode send cmd' + hex2str(cmd))
         self.ser.write(cmd)
+        while self.RUNNING:
+            sleep(0.5)
+            self.ser.write(self.read_translater('up1'))
+            sleep(0.1)
+            readed = self.ser.read(7)
+            if readed:
+                if len(readed) == 7:
+                    result = self.return_parse('up_down_state', readed)
+                    if result == 1:
+                        logger.info("finished motor")
+                        break
+                else:
+                    self.ser.flushInput()
+
 
     def close(self):
+        self.RUNNING = False
+        sleep(0.5)
         self.ser.close()
 
         # def goto(self, direction, axis='x'):

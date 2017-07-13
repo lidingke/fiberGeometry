@@ -1,3 +1,4 @@
+#coding:utf-8
 # from view import View
 from setting.orderset import SETTING
 from GUI.model.modecv import ModelCV
@@ -6,6 +7,7 @@ from PyQt4.QtCore import QObject, pyqtSignal
 
 class Controller(QObject):
     """docstring for Controller"""
+    #todo: state manager 放在这一层
     def __init__(self,view):
         super(Controller, self).__init__()
         self._view = view
@@ -30,6 +32,7 @@ class Controller(QObject):
         if hasattr(self._view, "focuser"):
             self._view.focuser.clicked.connect(self._modelcv.focus)
         self._view.fiberTypeBox.currentIndexChanged.connect(self._changeFiberType)
+        self.state_connect()
 
         # self._tempMedianIndex()
 
@@ -47,4 +50,7 @@ class Controller(QObject):
         # self._view.fiberTypeLabel.setText(newKey)
         self._modelcv.updateClassifyObject(newKey)
 
+    def state_connect(self):
+        if hasattr(self._view, "next_state"):
+            self._view.next_state.clicked.connect(self)
 

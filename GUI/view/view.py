@@ -1,6 +1,7 @@
 #coding:utf-8
 #branch dev
 from GUI.model.models import session_add_by_account
+from GUI.model.stateconf import state_number
 from setting.orderset import SETTING
 import cv2
 # from GUI.UI.mainUI import Ui_MainWindow
@@ -37,8 +38,9 @@ class View(QMainWindow, new_MainWindow):
         # self.reporterCV.clicked.connect(self.writeReporterCV)
         self._tempMedianIndex()
         self.isMaxSharp = MaxSharp()
-        logging.basicConfig(filename="setting\\modelog.txt", filemode='a', level=logging.ERROR,
-                            format="%(asctime)s-%(levelname)s-%(funcName)s:%(message)s")
+        # logging.basicConfig(filename="setting\\modelog.txt", filemode='a', level=logging.ERROR,
+        #                     format="%(asctime)s-%(levelname)s-%(funcName)s:%(message)s")
+        self.state_4_next = state_number()
 
     def __initUI__(self):
         # items = ['G652']

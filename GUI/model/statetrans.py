@@ -9,7 +9,7 @@ from collections import OrderedDict
 
 
 class StateTransform(object):
-    def __init__(self):
+    def __init__(self,view):
         self.state_number = state_number()
         self.state_operate = StateApi.STATE_OPERATE
         self._platform_state = None
@@ -23,17 +23,17 @@ class StateTransform(object):
         for fun in operater:
             fun(self)
 
-    @property
-    def platform_state(self):
-        return self._platform_state
+    # @property
+    # def platform_state(self):
+    #     return self._platform_state
+    #
+    # @platform_state.setter
+    # def platform_state(self,value):
+    #     assert value in MOTOR_STATE.keys()
+    #     self._platform_state = value
 
-    @platform_state.setter
-    def platform_state(self,value):
-        assert value in MOTOR_STATE.keys()
-        self._platform_state = value
-
-def platform_state_transform(self,*args,**kwargs):
-    self.update(**kwargs)
+# def platform_state_transform(self,*args,**kwargs):
+#     self.update(**kwargs)
 
 class StateApi(object):
     emit_state = MySignal()

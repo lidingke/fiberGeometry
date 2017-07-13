@@ -1,4 +1,5 @@
-from SDK.modbus.modbusmerge import SendTranslater, AbsModeBusModeByAxis
+from SDK.modbus.modbusmerge import SendTranslater, AbsModeBusModeByAxis, ReadTranslater
+from util.function import hex2str
 
 
 def test_send_translater():
@@ -18,3 +19,6 @@ def test_send_translater():
     print(sendsstr)
     assert sendsstr.upper() == "01 10 00 E6 00 01 02 00 02 31 97"
 
+    read = ReadTranslater()
+    readstr = hex2str(read('up1'))
+    assert readstr.upper() == "01 03 00 F0 00 01 84 39"

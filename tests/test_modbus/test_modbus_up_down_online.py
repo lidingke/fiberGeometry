@@ -45,16 +45,15 @@ def ttest_modebusmerge_x1_runs():
     sleep(3)
     mode.plat_motor_goto("PLAT2", 'zstart', 'stop')
 
-
 def test_modebusmerge_up_down_state_trans():
     logging.basicConfig(level=logging.INFO)
     mode = AbsModeBusModeByAxis(port='com4')
     state = state_number()
-    for i in xrange(6):
+    for i in xrange(3):
         s = str(next(state)+1)
         logger.info("state get "+s)
         mode.motor_up_down(str(s))
-        sleep(10)
+
 
 def Ttest_modebusmerge_x1_runs_on_slave():
     logging.basicConfig(level=logging.INFO)
