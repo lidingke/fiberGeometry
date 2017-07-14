@@ -12,7 +12,6 @@ class StateTransform(object):
     def __init__(self,view):
         self.state_number = state_number()
         self.state_operate = StateApi.STATE_OPERATE
-        self._platform_state = None
 
 
     def next_state(self):

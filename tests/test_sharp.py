@@ -113,6 +113,7 @@ def ttest_sharp_Laplacian():
         print 'get sharp', sharp
 
 
+
 @pytest.mark.parametrize(
     "dir_",(
             ("IMG\\sharp\\02\\"),
@@ -146,16 +147,8 @@ def ttest_sharp_fft_list(dir_):
         sharps = fft(img)
         print sharps
 
+def fun():
+    pass
 
 if __name__ == "__main__":
-    dir_ = "IMG\\sharp\\03\\"
-    print dir_
-    dirs = sorted(os.listdir(dir_))
-    dosharp = IsSharp().issharpla
-    imgs = (getImage(dir_+d) for d in dirs)
-    sharps = [dosharp(img[::,::,0]) for img in imgs]
-    plt.figure(len(dir_))
-    plt.plot(range(len(sharps)),sharps)
-    plt.title(dir_)
-    plt.show()
-
+    fun()

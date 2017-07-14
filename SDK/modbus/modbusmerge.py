@@ -132,7 +132,7 @@ class AbsModeBusModeByAxis(object):
         logger.info('mode send cmd' + hex2str(cmd))
         self.ser.write(cmd)
 
-    @mutex
+    # @mutex
     def motor_up_down(self, move='1'):
         assert isinstance(move, str)
         cmd = self.send_translater('UP_DOWN', 'xstart', move)

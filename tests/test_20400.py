@@ -22,6 +22,5 @@ def test_class_rough():
     assert ratio > 0.9
 
 
-
 if __name__ == "__main__":
     test_class_rough()

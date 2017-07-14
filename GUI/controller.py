@@ -1,17 +1,54 @@
 #coding:utf-8
 # from view import View
+from functools import partial
+
+from GUI.model.stateconf import state_number, CONTEXT
+from SDK.modbus.modbusmerge import AbsModeBusModeByAxis
 from setting.orderset import SETTING
 from GUI.model.modecv import ModelCV
 from GUI.model.modelop import ModelOp
 from PyQt4.QtCore import QObject, pyqtSignal
 
-class Controller(QObject):
+import logging
+logger = logging.getLogger(__name__)
+
+class StateMixin(object):
+
+    def state_1(self):
+        pass
+
+    def state_2(self):
+        pass
+
+
+    def state_3(self):
+        pass
+
+
+    def state_4(self):
+        pass
+
+
+    def state_5(self):
+        pass
+
+    def state_all(self):
+        # self.modbus_up_down(self.squence_number)
+        self.modbus.motor_up_down(str(self.sequence_number+1))
+
+
+class Controller(QObject, StateMixin):
     """docstring for Controller"""
     #todo: state manager 放在这一层
     def __init__(self,view):
         super(Controller, self).__init__()
+        QObject.__init__(self)
         self._view = view
         self._startModel()
+        self._start_modbus()
+        self.state_number = state_number()
+        self.sequence_number = None
+
 
     def show(self):
         self._modelcv.start()
@@ -32,11 +69,13 @@ class Controller(QObject):
         if hasattr(self._view, "focuser"):
             self._view.focuser.clicked.connect(self._modelcv.focus)
         self._view.fiberTypeBox.currentIndexChanged.connect(self._changeFiberType)
-        self.state_connect()
-
+        # self.state_connect()
         # self._tempMedianIndex()
-
         # self._view.multiTest.clicked.connect(self._model.multiTest)
+
+    def _start_modbus(self):
+        self.modbus = AbsModeBusModeByAxis(port='com14')
+        self.state_connect()
 
     def _getAttenuation(self,):
         length = self._view.fiberLength.text()
@@ -51,6 +90,16 @@ class Controller(QObject):
         self._modelcv.updateClassifyObject(newKey)
 
     def state_connect(self):
+        def state_change(self):
+            print(self)
+            self.sequence_number = next(self.state_number)
+            self.state_all()
+            logger.warning("next state"+str(self.sequence_number))
         if hasattr(self._view, "next_state"):
-            self._view.next_state.clicked.connect(self)
+            self._view.next_state.clicked.connect(partial(state_change,self))
+
+
+
+
+
 

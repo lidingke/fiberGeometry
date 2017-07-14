@@ -1,6 +1,6 @@
 #coding:utf-8
 import logging
-logging.basicConfig(level=logging.WARNING)
+logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
 import sys
 import os

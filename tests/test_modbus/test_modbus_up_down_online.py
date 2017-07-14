@@ -55,6 +55,7 @@ def test_modebusmerge_up_down_state_trans():
         mode.motor_up_down(str(s))
 
 
+
 def Ttest_modebusmerge_x1_runs_on_slave():
     logging.basicConfig(level=logging.INFO)
     slave = Slave()
@@ -69,3 +70,4 @@ def Ttest_modebusmerge_x1_runs_on_slave():
     mode.plat_motor_goto("PLAT1", 'xstart', 'stop')
     mode.close()
     slave.close()
+

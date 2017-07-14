@@ -2,6 +2,7 @@ from SDK.modbus.modbusmerge import SendTranslater, AbsModeBusModeByAxis, ReadTra
 from util.function import hex2str
 
 
+
 def test_send_translater():
     send = SendTranslater()
     sends = send('PLAT1', 'xstart', 35000)
