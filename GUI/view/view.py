@@ -1,5 +1,7 @@
 #coding:utf-8
 #branch dev
+from PyQt4.QtCore import pyqtSignal
+
 from GUI.model.models import session_add_by_account
 from GUI.model.stateconf import state_number
 from setting.orderset import SETTING
@@ -22,6 +24,7 @@ from datetime import datetime
 class View(QMainWindow, new_MainWindow):
     """docstring for View"""
     # __slot__ = ("scence","pximapimg")
+    emit_close_event = pyqtSignal()
 
     def __init__(self,):
         super(View, self).__init__()
@@ -89,8 +92,8 @@ class View(QMainWindow, new_MainWindow):
         # WriteReadJson('tests/data/light.json').save(result)
         if 'olddata' in SETTING().keys():
             self.olddata.save(SETTING()['olddata'])
-
-        self.model.exit()
+        self.emit_close_event.emit()
+        # self.model.exit()
 
     def updateOpticalview(self, wave, powers):
         self.axisWidget.XYaxit(wave, powers)

@@ -1,5 +1,6 @@
 import struct
 from collections import deque, OrderedDict
+from threading import Thread
 from time import sleep
 
 import serial
@@ -111,6 +112,7 @@ class AbsModeBusModeByAxis(object):
         self.return_parse = ReturnParse()
         self._platform_state = None
         self.RUNNING = True
+        self.timeout_times = 0
 
     def plat_motor_goto(self, station, head_dir, move):
         # state = self._platform_state
@@ -119,13 +121,6 @@ class AbsModeBusModeByAxis(object):
         cmd = self.send_translater(station, head_dir, move)
         logger.info('mode send cmd' + hex2str(cmd))
         self.ser.write(cmd)
-
-    # def plat_motor_stop(self, state, station, head_dir):
-    #     assert station in MOTOR_STATE[state]
-    #     cmd = self.send_translater(station, head_dir, "stop")
-    #     logger.info('mode send cmd' + hex2str(cmd))
-    #     self.ser.write(cmd)
-
 
     def plat_motor_reset(self):
         cmd = self.send_translater('PLAT1', 'xstart', 'rest')
@@ -136,18 +131,25 @@ class AbsModeBusModeByAxis(object):
     def motor_up_down(self, move='1'):
         assert isinstance(move, str)
         cmd = self.send_translater('UP_DOWN', 'xstart', move)
-        logger.info('mode send cmd' + hex2str(cmd))
+        logger.error('mode send cmd' + hex2str(cmd))
         self.ser.write(cmd)
+        self.timeout_times = 0
         while self.RUNNING:
             sleep(0.5)
             self.ser.write(self.read_translater('up1'))
             sleep(0.1)
             readed = self.ser.read(7)
+            self.timeout_times +=1
+            if self.timeout_times == 20:
+                logger.debug("modbus recieved time out")
+                self.timeout_times = 0
+                break
             if readed:
                 if len(readed) == 7:
                     result = self.return_parse('up_down_state', readed)
                     if result == 1:
-                        logger.info("finished motor")
+                        logger.error("finished motor")
+                        self.timeout_times = 0
                         break
                 else:
                     self.ser.flushInput()
@@ -210,3 +212,27 @@ class AbsModeBusModeByAxis(object):
         #             return '\x01\x03' + self.ser.read(6)
         #         else:
         #             raise ValueError('bad input data')
+
+class ModbusWorker(Thread):
+
+    mode = False
+
+    def __init__(self,port):
+        super(ModbusWorker, self).__init__()
+        self.mode = AbsModeBusModeByAxis(port)
+        self.RUNNING = True
+        self.gens = self.gen()
+        next(self.gens)
+
+    def run(self):
+
+        self.gen()
+
+    def gen(self):
+        while self.RUNNING:
+            fun = yield
+            fun()
+
+    def plat_motor_goto(self,*args,**kwargs):
+        pass
+
