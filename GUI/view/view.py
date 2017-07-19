@@ -51,6 +51,7 @@ class View(QMainWindow, new_MainWindow):
         # self.setWindowFlags(Qt.WindowMaximizeButtonHint)
         # self.setFixedSize(self.width(),self.height())
         self.beginTestCV.clicked.connect(self._disableCVButton)
+
         self._initItems()
         self.reporterCV.clicked.connect(self.writeReporterCV)
         self.initGUI()

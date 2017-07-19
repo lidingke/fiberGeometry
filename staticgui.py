@@ -2,6 +2,8 @@
 import logging
 logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
+from setting import config
+config.MODBUS_PORT = 'com14'
 import sys
 import os
 import pdb

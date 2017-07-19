@@ -1,7 +1,7 @@
 # coding:utf-8
 # from view import View
 from functools import partial
-
+from setting.config import MODBUS_PORT
 from GUI.model.stateconf import state_number, CONTEXT
 from SDK.modbus.modbusmerge import AbsModeBusModeByAxis
 from setting.orderset import SETTING
@@ -17,43 +17,53 @@ logger = logging.getLogger(__name__)
 
 
 class StateMixin(object):
-    def state_1(self):
+
+
+    def context_transform_1(self):
         pass
 
-    def state_2(self):
+    def context_transform_2(self):
+        """"switch to PLAT2"""
+        self._modbus.platform_state = "PLAT2"
+        self.platform_number = "2"
+
+    def context_transform_3(self):
         pass
 
-    def state_3(self):
+    def context_transform_4(self):
+        """"switch to PLAT1"""
+        self._modbus.platform_state = "PLAT1"
+        self.platform_number = "1"
+
+
+    def context_transform_5(self):
         pass
 
-    def state_4(self):
-        pass
-
-    def state_5(self):
-        pass
-
-    def state_all(self):
+    def state_all(self, number):
         # self.modbus_up_down(self.squence_number)
         # self.modbus.motor_up_down(str(self.sequence_number + 1))
-        self.worker.append(self.modbus.motor_up_down,str(self.sequence_number + 1))
+        self._worker.append(self._modbus.motor_up_down, str(number + 1))
+        fun = getattr(self,"context_transform_"+str(number+1))
+        fun()
 
 
 class Controller(QObject, StateMixin):
     """docstring for Controller"""
 
-    # todo: state manager 放在这一层
     def __init__(self, view):
         super(Controller, self).__init__()
         QObject.__init__(self)
         self._view = view
+        self.platform_number = "1"
         self._startModel()
         self._start_modbus()
         self.state_number = state_number()
         self.sequence_number = None
-        self.worker = WorkerQueue()
-        self.worker.start()
+        self._worker = WorkerQueue()
+
 
     def show(self):
+        self._worker.start()
         self._modelcv.start()
         # self._modelop.start()
         self._view.show()
@@ -66,6 +76,7 @@ class Controller(QObject, StateMixin):
         self._modelcv.returnImg.connect(self._view.updatePixmap)
         self._modelcv.returnATImg.connect(self._view.updateOpticalview)
         self._view.beginTestCV.clicked.connect(self._modelcv.mainCalculate)
+
         # self._view.beginTestAT.clicked.connect(self._getAttenuation)
         self._modelcv.resultShowCV.connect(self._view.updateCVShow)
         self._modelcv.resultShowAT.connect(self._view.updateATShow)
@@ -78,7 +89,7 @@ class Controller(QObject, StateMixin):
         # self._view.multiTest.clicked.connect(self._model.multiTest)
 
     def _start_modbus(self):
-        self.modbus = AbsModeBusModeByAxis(port='com14')
+        self._modbus = AbsModeBusModeByAxis(port=MODBUS_PORT)
         self.state_connect()
 
     def _getAttenuation(self, ):
@@ -96,14 +107,35 @@ class Controller(QObject, StateMixin):
     def state_connect(self):
         def state_change():
             self.sequence_number = next(self.state_number)
-            self.state_all()
+            self.state_all(self.sequence_number)
+
             logger.warning("next state" + str(self.sequence_number))
 
         if hasattr(self._view, "next_state"):
             self._view.next_state.clicked.connect(state_change)
+        # move up button connection
+        _ = partial(self._modbus.plat_motor_goto, *("PLAT" + self.platform_number, "xstart", 50000))
+        self._view.move_up.pressed.connect(_)
+        _ = partial(self._modbus.plat_motor_goto, *("PLAT" + self.platform_number, "xstart", "stop"))
+        self._view.move_up.released.connect(_)
+        # move down button connection
+        _ = partial(self._modbus.plat_motor_goto, *("PLAT" + self.platform_number, "xstart", 0))
+        self._view.move_down.pressed.connect(_)
+        _ = partial(self._modbus.plat_motor_goto, *("PLAT" + self.platform_number, "xstart", "stop"))
+        self._view.move_down.released.connect(_)
+        # move right button connection
+        _ = partial(self._modbus.plat_motor_goto, *("PLAT" + self.platform_number, "ystart", 50000))
+        self._view.move_right.pressed.connect(_)
+        _ = partial(self._modbus.plat_motor_goto, *("PLAT" + self.platform_number, "ystart", "stop"))
+        self._view.move_right.released.connect(_)
+        # move left button connection
+        _ = partial(self._modbus.plat_motor_goto, *("PLAT" + self.platform_number, "ystart", 0))
+        self._view.move_left.pressed.connect(_)
+        _ = partial(self._modbus.plat_motor_goto, *("PLAT" + self.platform_number, "ystart", "stop"))
+        self._view.move_left.released.connect(_)
 
     def close(self):
         print("close")
         self._modelcv.exit()
-        self.worker.close()
-        self.modbus.close()
+        self._worker.close()
+        self._modbus.close()

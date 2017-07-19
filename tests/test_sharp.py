@@ -27,6 +27,7 @@ def _getFilterImg(core, origin, minRange, maxRange):
 
 def n_test_new_sharp():
     imgs = yieldImg("IMG\\midoctagon\\sharp\\")
+    # cv2.GaussianBlur()
     for img in imgs:
         if len(img.shape) > 2:
             img = img[:,:,2]

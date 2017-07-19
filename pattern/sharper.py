@@ -91,6 +91,7 @@ class LiveFocuser(object):
         self.sharps = deque(maxlen=15)
         self.motor = SerialMotor(port='com4')
         self.IS_START = False
+        self.fun = 1
 
     def get_sharps(self,sharp):
         if self.IS_START:

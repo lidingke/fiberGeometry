@@ -126,31 +126,10 @@ p, li { white-space: pre-wrap; }
         </item>
         <item>
          <layout class="QGridLayout" name="inputLayout">
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="fiberLength">
-            <property name="text">
-             <string>24</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QLineEdit" name="factory">
-            <property name="text">
-             <string>yofc</string>
-            </property>
-           </widget>
-          </item>
           <item row="4" column="1">
            <widget class="QLineEdit" name="Worker">
             <property name="text">
              <string>12345</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="labelFiberNumber">
-            <property name="text">
-             <string>光纤编号：</string>
             </property>
            </widget>
           </item>
@@ -161,10 +140,24 @@ p, li { white-space: pre-wrap; }
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="labelFiberType">
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="factory">
             <property name="text">
-             <string>光纤规格：</string>
+             <string>yofc</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="labelFiberNumber">
+            <property name="text">
+             <string>光纤编号：</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="fiberNumber">
+            <property name="text">
+             <string>123456</string>
             </property>
            </widget>
           </item>
@@ -182,38 +175,18 @@ p, li { white-space: pre-wrap; }
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
-           <widget class="QLineEdit" name="fiberNumber">
+          <item row="0" column="0">
+           <widget class="QLabel" name="labelFiberType">
             <property name="text">
-             <string>123456</string>
+             <string>光纤规格：</string>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
            <widget class="QComboBox" name="fiberTypeBox"/>
           </item>
-          <item row="5" column="0">
-           <spacer name="verticalSpacer">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="5" column="1">
+          <item row="7" column="1">
            <layout class="QGridLayout" name="gridLayout_3">
-            <item row="0" column="1">
-             <widget class="QPushButton" name="next_state">
-              <property name="text">
-               <string>next</string>
-              </property>
-             </widget>
-            </item>
             <item row="1" column="1">
              <widget class="QPushButton" name="move_up">
               <property name="text">
@@ -242,13 +215,54 @@ p, li { white-space: pre-wrap; }
               </property>
              </widget>
             </item>
+            <item row="1" column="2">
+             <widget class="QPushButton" name="reset">
+              <property name="text">
+               <string>reset</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QPushButton" name="next_state">
+              <property name="text">
+               <string>next</string>
+              </property>
+             </widget>
+            </item>
            </layout>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="fiberLength">
+            <property name="text">
+             <string>24</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0">
+           <widget class="QLabel" name="state">
+            <property name="text">
+             <string>state</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
        </layout>
       </item>
      </layout>
+    </item>
+    <item row="2" column="0">
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
     </item>
    </layout>
   </widget>

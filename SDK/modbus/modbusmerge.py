@@ -13,8 +13,8 @@ import logging
 
 from util.function import hex2str
 from util.threadlock import mutex
-
-logger = logging.getLogger(__name__)
+from setting.config import MODBUS_PORT
+logger = logging.getLogger(__name__+":"+MODBUS_PORT)
 
 
 class SendTranslater(object):
@@ -115,9 +115,12 @@ class AbsModeBusModeByAxis(object):
         self.timeout_times = 0
 
     def plat_motor_goto(self, station, head_dir, move):
+        if self._platform_state:
+            station = self._platform_state
         # state = self._platform_state
         # station = STATION_DIR[state]
         # assert station in MOTOR_STATE[state]
+        print station, head_dir, move
         cmd = self.send_translater(station, head_dir, move)
         logger.info('mode send cmd' + hex2str(cmd))
         self.ser.write(cmd)
@@ -159,6 +162,16 @@ class AbsModeBusModeByAxis(object):
         self.RUNNING = False
         sleep(0.5)
         self.ser.close()
+
+    @property
+    def platform_state(self):
+        return self._platform_state
+
+    @platform_state.setter
+    def platform_state(self,value):
+        assert value in MOTOR_STATE.keys()
+        print "plat", value, MOTOR_STATE.keys()
+        self._platform_state = value
 
         # def goto(self, direction, axis='x'):
         #     self.direction = direction

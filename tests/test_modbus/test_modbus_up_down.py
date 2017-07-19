@@ -5,6 +5,7 @@ from util.function import hex2str
 
 def test_send_translater():
     send = SendTranslater()
+
     sends = send('PLAT1', 'xstart', 35000)
     sendsstr = " ".join("{:02x}".format(ord(c)) for c in sends)
     print(sendsstr)
