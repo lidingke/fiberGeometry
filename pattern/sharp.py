@@ -92,8 +92,27 @@ class IsSharp(CV2MethodSet):
             img = img[0]
         if isinstance(img, np.ndarray):
             logger.debug("laplacian sharp:{}".format(img.shape))
+
             sharp = cv2.Laplacian(img, cv2.CV_64F).var()
+
             return sharp
+        else:
+            cmd = (str(type(img)), img)
+            raise ValueError(cmd)
+
+    def issharplaall(self, img):
+
+        if isinstance(img, list):
+            img = img[0]
+        if isinstance(img, np.ndarray):
+            logger.debug("laplacian sharp:{}".format(img.shape))
+            byimg = ExtractEdge().runMax(img)
+            byimg = cv2.bitwise_not(byimg)
+            sum_ = byimg.sum()
+            sharp = cv2.Laplacian(img, cv2.CV_64F).var()
+            # sharp = sharp / sum_
+            print 'all_sharp',sum_,sharp
+            return sharp, sum_
         else:
             cmd = (str(type(img)), img)
             raise ValueError(cmd)

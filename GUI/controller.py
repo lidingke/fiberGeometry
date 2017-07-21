@@ -3,7 +3,7 @@
 from functools import partial
 from setting.config import MODBUS_PORT
 from GUI.model.stateconf import state_number, CONTEXT
-from SDK.modbus.modbusmerge import AbsModeBusModeByAxis
+from SDK.modbus.modbusmerge import AbsModeBusModeByAxis, MODENABLE_SIGNAL
 from setting.orderset import SETTING
 from GUI.model.modecv import ModelCV
 from GUI.model.modelop import ModelOp
@@ -17,8 +17,6 @@ logger = logging.getLogger(__name__)
 
 
 class StateMixin(object):
-
-
     def context_transform_1(self):
         pass
 
@@ -35,7 +33,6 @@ class StateMixin(object):
         self._modbus.platform_state = "PLAT1"
         self.platform_number = "1"
 
-
     def context_transform_5(self):
         pass
 
@@ -43,7 +40,7 @@ class StateMixin(object):
         # self.modbus_up_down(self.squence_number)
         # self.modbus.motor_up_down(str(self.sequence_number + 1))
         self._worker.append(self._modbus.motor_up_down, str(number + 1))
-        fun = getattr(self,"context_transform_"+str(number+1))
+        fun = getattr(self, "context_transform_" + str(number + 1))
         fun()
 
 
@@ -60,7 +57,6 @@ class Controller(QObject, StateMixin):
         self.state_number = state_number()
         self.sequence_number = None
         self._worker = WorkerQueue()
-
 
     def show(self):
         self._worker.start()
@@ -133,6 +129,9 @@ class Controller(QObject, StateMixin):
         self._view.move_left.pressed.connect(_)
         _ = partial(self._modbus.plat_motor_goto, *("PLAT" + self.platform_number, "ystart", "stop"))
         self._view.move_left.released.connect(_)
+        # rest button connection
+        self._view.reset.clicked.connect(self._modbus.plat_motor_reset)
+        MODENABLE_SIGNAL.connect(self._view.enable_move_button)
 
     def close(self):
         print("close")

@@ -12,6 +12,7 @@ from SDK.modbusabs import ModbusConnectionException
 import logging
 
 from util.function import hex2str
+from util.observer import MySignal
 from util.threadlock import mutex
 from setting.config import MODBUS_PORT
 logger = logging.getLogger(__name__+":"+MODBUS_PORT)
@@ -101,6 +102,16 @@ class ReturnParse(object):
         cmd = struct.unpack('>H',cmd[3:5])[0]
         return cmd
 
+MODENABLE_SIGNAL = MySignal()
+
+def enable_move(fun):
+
+    def inner(*args,**kwargs):
+        MODENABLE_SIGNAL.emit(False)
+        result = fun(*args,**kwargs)
+        MODENABLE_SIGNAL.emit(True)
+        return result
+    return inner
 
 class AbsModeBusModeByAxis(object):
     def __init__(self, port=None, baudrate=19200, store=None):
@@ -114,6 +125,7 @@ class AbsModeBusModeByAxis(object):
         self.RUNNING = True
         self.timeout_times = 0
 
+    @enable_move
     def plat_motor_goto(self, station, head_dir, move):
         if self._platform_state:
             station = self._platform_state
@@ -124,13 +136,14 @@ class AbsModeBusModeByAxis(object):
         cmd = self.send_translater(station, head_dir, move)
         logger.info('mode send cmd' + hex2str(cmd))
         self.ser.write(cmd)
-
+    @enable_move
     def plat_motor_reset(self):
         cmd = self.send_translater('PLAT1', 'xstart', 'rest')
         logger.info('mode send cmd' + hex2str(cmd))
         self.ser.write(cmd)
 
     # @mutex
+    @enable_move
     def motor_up_down(self, move='1'):
         assert isinstance(move, str)
         cmd = self.send_translater('UP_DOWN', 'xstart', move)

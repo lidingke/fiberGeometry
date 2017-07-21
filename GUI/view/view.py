@@ -83,6 +83,14 @@ class View(QMainWindow, new_MainWindow):
             else:
                 self.dynamicSharp.setStyleSheet("color:white")
 
+    def enable_move_button(self, is_move = True):
+        print "set move", is_move
+        collections = ("move_down","move_up", "next_state",
+                       "move_right","move_left","reset")
+        moves = {getattr(self,c) for c in collections}
+        for move in moves:
+            move.setEnabled(is_move)
+
 
     def getModel(self, model):
         self.model = model

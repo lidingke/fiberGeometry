@@ -98,7 +98,7 @@ def n_test_sharp_Laplacian():
 
         print 'get sharp', sharp
 
-def ttest_sharp_Laplacian():
+def test_sharp_Laplacian():
     imgs = yieldImg("IMG\\emptytuple\\sharp\\")
 
     sharpobject = IsSharp()
@@ -109,6 +109,7 @@ def ttest_sharp_Laplacian():
         # cv2.waitKey()
         # img = cv2.Canny(img, 120, 150)
         # img = sharpobject._doSharpRange(img)
+
         sharp = cv2.Laplacian(img, cv2.CV_64F).var()
 
         print 'get sharp', sharp
@@ -121,7 +122,7 @@ def ttest_sharp_Laplacian():
             ("IMG\\sharp\\03\\"),
 
     ))
-def test_sharp_laplacian_list(dir_):
+def ttest_sharp_laplacian_list(dir_):
     print dir_
     dirs = sorted(os.listdir(dir_))
     dosharp = IsSharp().issharpla
@@ -130,6 +131,30 @@ def test_sharp_laplacian_list(dir_):
     plt.figure(len(dir_))
     plt.plot(range(len(sharps)),sharps)
     plt.title(dir_)
+    plt.show()
+
+@pytest.mark.parametrize(
+    "dir_",(
+            ("IMG\\sharp\\02\\"),
+            ("IMG\\sharp\\03\\"),
+
+    ))
+def test_sharp_laplacian_all_list(dir_):
+    print dir_
+    dirs = sorted(os.listdir(dir_))
+    dosharp = IsSharp().issharplaall
+    imgs = (getImage(dir_+d) for d in dirs)
+    sharps = [dosharp(img[::,::,0]) for img in imgs]
+    sums = [sharp[0] for sharp in sharps]
+    sharps = [sharp[1] for sharp in sharps]
+    # sums = [dosharp(img[::,::,0])[1] for img in imgs]
+    print sharps
+    fig = plt.figure(len(dir_))
+    ax1 = fig.add_subplot(111)
+    ax1.plot(range(len(sharps)),sharps)
+    ax2 = ax1.twinx()
+    ax2.plot(range(len(sharps)),sums)
+    # ax2.title(dir_)
     plt.show()
 
 @pytest.mark.parametrize(
@@ -148,8 +173,13 @@ def ttest_sharp_fft_list(dir_):
         sharps = fft(img)
         print sharps
 
-def fun():
-    pass
+
 
 if __name__ == "__main__":
-    fun()
+    img = getImage("IMG\\204001.bmp")[0]
+    thresh, byimg = cv2.Canny(img, 170, 1, cv2.THRESH_BINARY)
+    pdb.set_trace()
+    sum_ = byimg.sum()
+    sharp = cv2.Laplacian(img, cv2.CV_64F).var()
+    sharp = sharp / sum_
+    print sharp
