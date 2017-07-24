@@ -1,4 +1,7 @@
 from __future__ import print_function
+
+import socket
+
 from tornado.ioloop import IOLoop
 from tornado import gen
 from tornado.tcpclient import TCPClient
@@ -47,6 +50,8 @@ class Client(object):
         stream = yield TCPClient().connect(self.host,self.port)
         yield stream.write(("close" + "\n\r").encode())
         stream.close()
+
+
 
 class SharpClient(object):
     def __init__(self, host='localhost', port=9880):

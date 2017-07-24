@@ -46,42 +46,42 @@ logger = logging.getLogger(__name__)
 class ModelCV(Thread, QObject):
     """docstring for Model"""
     returnImg = pyqtSignal(object, object)
-    returnATImg = pyqtSignal(object, object)
+    # returnATImg = pyqtSignal(object, object)
     resultShowCV = pyqtSignal(object)
-    resultShowAT = pyqtSignal(object)
+    # resultShowAT = pyqtSignal(object)
     returnCoreLight = pyqtSignal(object, object)
 
     def __init__(self, ):
-        Thread.__init__(self)
-        QObject.__init__(self)
         super(ModelCV, self).__init__()
+        QObject.__init__(self)
         self.setDaemon(True)
-        self.IS_RUN = True
+        self.IS_RUNNING = True
         self.isSharp = IsSharp()
-        self.show = Cv2ImShow()
-        self.save = Cv2ImSave()
         self.eresults = False
         self.result2Show = {}
         self.decorateMethod = decorateMethod("G652")
         self.getRawImg = GetRawImg()
         self.imgmaxlen = 5
-        self.imgQueue = collections.deque(maxlen = self.imgmaxlen)
-        self.fiberResult = {}
-        self.Oceanoptics = OceanOpticsTest()
+        self.imgQueue = collections.deque(maxlen = 5)
+        # self.fiberResult = {}
+
         self.classify = classifyObject('G652')
         self.pdfparameter = SETTING()['pdfpara']
         self.dbparameter = SETTING()['dbpara']
+        # self.show = Cv2ImShow()
+        # self.save = Cv2ImSave()
+        # self.Oceanoptics = OceanOpticsTest()
         # self.sharps = collections.deque(maxlen=15)
-        try:
-            # self.focuser = LiveFocuser()
-            self.focuser = AbsFocuser()
-            # self.focuser.start()
-        except serial.serialutil.SerialException as e:
-            print e
+        # try:
+        #     # self.focuser = LiveFocuser()
+        #     self.focuser = AbsFocuser()
+        #     # self.focuser.start()
+        # except serial.serialutil.SerialException as e:
+        #     print e
 
 
     def run(self):
-        while self.IS_RUN:
+        while self.IS_RUNNING:
             img = self.getRawImg.get()
             if not isinstance(img, np.ndarray):
                 break
@@ -89,8 +89,8 @@ class ModelCV(Thread, QObject):
             self.imgQueue.append(self.img)
             # self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
             self.sharp = "%0.2f" % self.isSharp.issharpla(img[::,::,0])
-            if hasattr(self,'focuser'):
-                self.focuser.get_sharp(self.sharp)
+            # if hasattr(self,'focuser'):
+            #     self.focuser.get_sharp(self.sharp)
             # plotResults = (self.ellipses, self.result)
             self._greenLight(img)
             colorImg = self._decorateImg(img)
@@ -142,31 +142,28 @@ class ModelCV(Thread, QObject):
 
     def exit(self):
         print "unInit"
-        self.IS_RUN = False
+        self.IS_RUNNING = False
         time.sleep(0.5)
         self.getRawImg.unInitCamera()
 
-    def initGUI(self):
-        existence = {}
 
+    # def attenuationTest(self, length):
+    #     wave, powers = self.Oceanoptics.getData(length)
+    #     self._emitATShowResult(wave, powers)
+    #     self.returnATImg.emit(wave, powers)
 
-    def attenuationTest(self, length):
-        wave, powers = self.Oceanoptics.getData(length)
-        self._emitATShowResult(wave, powers)
-        self.returnATImg.emit(wave, powers)
-
-    def _emitATShowResult(self, wave, powers):
-        waveLimit = wave[-1] - wave[0]
-        waveMax = np.max(powers)
-        waveMin = np.min(powers)
-        waveAvg = np.average(powers)
-        # print waveLimit, waveMax, waveMin, waveAvg
-        text = (u'''波长范围：    {:%0.2f}\n'''
-            u'''最大值：      {:%0.2f}\n'''
-            u'''最小值：      {:%0.2f}\n'''
-            u'''平均值：      {:%0.2f}\n''')
-        text = text.format(waveLimit,waveMax,waveMin,waveAvg)
-        self.resultShowAT.emit(text)
+    # def _emitATShowResult(self, wave, powers):
+    #     waveLimit = wave[-1] - wave[0]
+    #     waveMax = np.max(powers)
+    #     waveMin = np.min(powers)
+    #     waveAvg = np.average(powers)
+    #     # print waveLimit, waveMax, waveMin, waveAvg
+    #     text = (u'''波长范围：    {:%0.2f}\n'''
+    #         u'''最大值：      {:%0.2f}\n'''
+    #         u'''最小值：      {:%0.2f}\n'''
+    #         u'''平均值：      {:%0.2f}\n''')
+    #     text = text.format(waveLimit,waveMax,waveMin,waveAvg)
+    #     self.resultShowAT.emit(text)
 
 
     def _emitCVShowResult(self, result):
@@ -199,9 +196,6 @@ class ModelCV(Thread, QObject):
         logger.exception(text)
         self.resultShowCV.emit(text)
 
-
-
-
     def _greenLight(self, img):
         if isinstance(img, np.ndarray):
             corey, corex = SETTING()["corepoint"]
@@ -221,9 +215,9 @@ class ModelCV(Thread, QObject):
     def fiberTypeMethod(self, key):
         SETTING().keyUpdates(key)
 
-    def focus(self):
-        print 'get focuser start'
-        self.focuser.start()
+    # def focus(self):
+    #     print 'get focuser start'
+    #     self.focuser.start()
 
     #
     # def _getImg(self):

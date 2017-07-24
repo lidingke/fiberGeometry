@@ -3,7 +3,6 @@
 from PyQt4.QtCore import pyqtSignal
 
 from GUI.model.models import session_add_by_account
-from GUI.model.stateconf import state_number
 from setting.orderset import SETTING
 import cv2
 # from GUI.UI.mainUI import Ui_MainWindow
@@ -15,50 +14,50 @@ from .reporter import Reporter
 from pattern.sharp import MaxSharp
 from PyQt4.QtCore import QRect, Qt, QRectF
 from PyQt4.QtGui import QWidget, QMainWindow, QPainter, QFont,\
-    QPixmap, QImage, QColor, QFileDialog, QMessageBox, QPalette,\
-    QGraphicsWidget, QGraphicsScene
+    QPixmap, QImage, QGraphicsScene
 import numpy as np
 from util.load import WriteReadJson, WRpickle
 from datetime import datetime
 
+logger = logging.getLogger(__name__)
+
 class View(QMainWindow, new_MainWindow):
     """docstring for View"""
-    # __slot__ = ("scence","pximapimg")
     emit_close_event = pyqtSignal()
 
     def __init__(self,):
         super(View, self).__init__()
         self.setupUi(self)
+        self.scence = QGraphicsScene()
+        self.graphicsView.setScene(self.scence)
+        self.isMaxSharp = MaxSharp()
+        self.beginTestCV.clicked.connect(self._disableCVButton)
+        self.reporterCV.clicked.connect(self.writeReporterCV)
+        self._last_data_init()
         # self.painterWidget = CVPainterWidget(self.canvas)
         # self.scence = MyQGraphicsScene()
-        self.scence = QGraphicsScene()
-        # print dir(self.scence)
-        self.graphicsView.setScene(self.scence)
+
         # self.graphicsView.setCacheMode()
         # self.axisWidget = OpticalPlot(parent=self.axis)
-        self.IS_INIT_PAINTER = False
-        self.__initUI__()
+        # self.IS_INIT_PAINTER = False
+        # self.__initUI__()
         # self.reporterCV.clicked.connect(self.writeReporterCV)
-        self._tempMedianIndex()
-        self.isMaxSharp = MaxSharp()
+        # self._tempMedianIndex()
+
         # logging.basicConfig(filename="setting\\modelog.txt", filemode='a', level=logging.ERROR,
         #                     format="%(asctime)s-%(levelname)s-%(funcName)s:%(message)s")
-        self.state_4_next = state_number()
+        # self.state_4_next = state_number()
 
-    def __initUI__(self):
+
+
+    # def __initUI__(self):
         # items = ['G652']
         # self.fiberType.addItems(items)
         # self.setWindowFlags(Qt.WindowMaximizeButtonHint)
         # self.setFixedSize(self.width(),self.height())
-        self.beginTestCV.clicked.connect(self._disableCVButton)
-
-        self._initItems()
-        self.reporterCV.clicked.connect(self.writeReporterCV)
-        self.initGUI()
 
 
-    def _initItems(self):
-        # wrJson = WriteReadJson("setting\\userdata.json")
+    def _last_data_init(self):
         wrp = WRpickle("setting\\userdata.pickle")
         try:
             load = wrp.loadPick()
@@ -68,14 +67,25 @@ class View(QMainWindow, new_MainWindow):
         types = load.get("fiberTypes")
         self.fiberTypeBox.addItems(types)
 
-    def updatePixmap(self, arr, sharp):
-        if not self.IS_INIT_PAINTER:
-            self.IS_INIT_PAINTER = True
-        self.pximapimg = self._getPixmap(arr)
+        try:
+            self.olddata = WriteReadJson('setting\\old.json')
+            para = self.olddata.load()
+        except ValueError:
+            return
+        if para:
+            self.fiberLength.setText(para['fiberLength'])
+            self.Worker.setText(para['worker'])
+            self.factory.setText(para['producer'])
+            self.fiberNumber.setText(para['fiberNo'])
 
+    def updatePixmap(self, arr, sharp):
+        # if not self.IS_INIT_PAINTER:
+        #     self.IS_INIT_PAINTER = True
+        # self.painterWidget.getPixmap(arr)
+        self.pximapimg = self._getPixmap(arr)
         self.scence.clear()
         self.scence.addPixmap(self.pximapimg)
-        # self.painterWidget.getPixmap(arr)
+
         if hasattr(self, 'dynamicSharp'):
             self.dynamicSharp.setText(sharp)
             if self.isMaxSharp.isRight(sharp):
@@ -92,20 +102,21 @@ class View(QMainWindow, new_MainWindow):
             move.setEnabled(is_move)
 
 
-    def getModel(self, model):
-        self.model = model
+
 
     def closeEvent(self, *args, **kwargs):
-        # result = SETTING()['tempLight']
-        # print 'get light result', result
-        # WriteReadJson('tests/data/light.json').save(result)
         if 'olddata' in SETTING().keys():
             self.olddata.save(SETTING()['olddata'])
         self.emit_close_event.emit()
-        # self.model.exit()
+        # result = SETTING()['tempLight']
+        # print 'get light result', result
+        # WriteReadJson('tests/data/light.json').save(result)
 
-    def updateOpticalview(self, wave, powers):
-        self.axisWidget.XYaxit(wave, powers)
+        # self.model.exit()
+    # def getModel(self, model):
+    #     self.model = model
+    # def updateOpticalview(self, wave, powers):
+    #     self.axisWidget.XYaxit(wave, powers)
 
     # def attenuationTest(self):
     #     length = self.fiberLength.getText()
@@ -120,20 +131,11 @@ class View(QMainWindow, new_MainWindow):
     def _disableCVButton(self, bool = False):
         self.beginTestCV.setEnabled(bool)
 
-    def updateATShow(self,str_):
-        self.resultShowAT.setText(str_)
+    # def updateATShow(self,str_):
+    #     self.resultShowAT.setText(str_)
 
-    def initGUI(self):
-        try:
-            self.olddata = WriteReadJson('setting\\old.json')
-            para = self.olddata.load()
-        except ValueError:
-            return
-        if para:
-            self.fiberLength.setText(para['fiberLength'])
-            self.Worker.setText(para['worker'])
-            self.factory.setText(para['producer'])
-            self.fiberNumber.setText(para['fiberNo'])
+    # def initGUI(self):
+
             # print para['fibertypeindex'], int(para['fibertypeindex'])
             # self.fiberTypeBox.setCurrentIndex(int(para['fibertypeindex']))
 
@@ -155,17 +157,17 @@ class View(QMainWindow, new_MainWindow):
         dbpara = SETTING()['dbpara']
         session_add_by_account(dbpara)
 
-    def _tempMedianIndex(self):
-        def changeCoreIndex():
-            index = self.coreMedianIndex.value()
-            SETTING()["medianBlur"]["corefilter"] = index
-        def changeCladIndex():
-            index = self.cladMedianIndex.value()
-            SETTING()["medianBlur"]["cladfilter"] = index
-        if hasattr(self, "cladMedianIndex"):
-            self.cladMedianIndex.valueChanged.connect(changeCladIndex)
-        if hasattr(self, "coreMedianIndex"):
-            self.coreMedianIndex.valueChanged.connect(changeCoreIndex)
+    # def _tempMedianIndex(self):
+    #     def changeCoreIndex():
+    #         index = self.coreMedianIndex.value()
+    #         SETTING()["medianBlur"]["corefilter"] = index
+    #     def changeCladIndex():
+    #         index = self.cladMedianIndex.value()
+    #         SETTING()["medianBlur"]["cladfilter"] = index
+    #     if hasattr(self, "cladMedianIndex"):
+    #         self.cladMedianIndex.valueChanged.connect(changeCladIndex)
+    #     if hasattr(self, "coreMedianIndex"):
+    #         self.coreMedianIndex.valueChanged.connect(changeCoreIndex)
 
     def getCoreLight(self, coreLight, cladLight):
         if hasattr(self, "coreLight"):
@@ -175,12 +177,12 @@ class View(QMainWindow, new_MainWindow):
 
 
     def _getPixmap(self, mapArray):
-        # self.ellipses, self.result = plotResults
         if not isinstance(mapArray, np.ndarray):
             raise ValueError('get Pixmap ERROR input')
         height, width, bytesPerComponent = mapArray.shape
         bytesPerLine = bytesPerComponent * width
-        img = QImage(mapArray.data, width, height, bytesPerLine, QImage.Format_RGB888)# img = QImage(mapArray.flatten(), self.height, self.width, QImage.Format_Indexed8)
+        img = QImage(mapArray.data, width, height, bytesPerLine, QImage.Format_RGB888)
+        # img = QImage(mapArray.flatten(), self.height, self.width, QImage.Format_Indexed8)
         return QPixmap.fromImage(img)
         # self.update()
 

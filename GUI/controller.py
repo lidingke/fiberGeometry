@@ -70,12 +70,12 @@ class Controller(QObject, StateMixin):
         # self._view.getModel(self._modelcv)
         self._view.emit_close_event.connect(self.close)
         self._modelcv.returnImg.connect(self._view.updatePixmap)
-        self._modelcv.returnATImg.connect(self._view.updateOpticalview)
+        # self._modelcv.returnATImg.connect(self._view.updateOpticalview)
         self._view.beginTestCV.clicked.connect(self._modelcv.mainCalculate)
 
         # self._view.beginTestAT.clicked.connect(self._getAttenuation)
         self._modelcv.resultShowCV.connect(self._view.updateCVShow)
-        self._modelcv.resultShowAT.connect(self._view.updateATShow)
+        # self._modelcv.resultShowAT.connect(self._view.updateATShow)
         self._modelcv.returnCoreLight.connect(self._view.getCoreLight)
         if hasattr(self._view, "focuser"):
             self._view.focuser.clicked.connect(self._modelcv.focus)

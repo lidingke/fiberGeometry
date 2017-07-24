@@ -71,7 +71,7 @@ class ImgServer(TCPServer):
         while self.IS_RUNNING:
             try:
                 data = yield stream.read_until("\n\r")
-                logger.error("Received bytes: %s", data)
+                logger.info("Received bytes: %s", data)
                 data = data.strip()
                 if data == 'getimgonce':
                     self._getImgOnce(stream)
