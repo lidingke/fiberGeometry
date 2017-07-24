@@ -17,7 +17,6 @@ class DynamicGetRawImgTest(GetRawImg):
         Thread(target=SeverMain, args=(self.port,)).start()
 
     def get(self):
-        # time.sleep(0.01)
         try:
             result = IOLoop.current().run_sync(Client().get_img_once)
         except StreamClosedError:

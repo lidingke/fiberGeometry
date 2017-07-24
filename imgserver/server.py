@@ -71,7 +71,7 @@ class ImgServer(TCPServer):
         while self.IS_RUNNING:
             try:
                 data = yield stream.read_until("\n\r")
-                logger.warning("Received bytes: %s", data)
+                logger.error("Received bytes: %s", data)
                 data = data.strip()
                 if data == 'getimgonce':
                     self._getImgOnce(stream)
@@ -142,7 +142,7 @@ class CameraMotorSever(TCPServer):
         while self.IS_RUNNING:
             try:
                 data = yield stream.read_until("\n\r")
-                logger.info("Received bytes: %s", data)
+                logger.error("Received bytes: %s", data)
                 data = data.strip()
                 if data == 'getsharp:':
                     self._send_sharp(stream)
@@ -216,7 +216,7 @@ def SeverMain(port):
     # server.add_socket(sock)
     server.listen(port)
 
-    logger.info("Listening on TCP port %d", port)
+    logger.error("Listening on TCP port %d", port)
 
     # IOLoop.instance().start()
 
