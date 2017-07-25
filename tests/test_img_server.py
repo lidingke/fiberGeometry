@@ -1,10 +1,10 @@
-from imgserver.client import Client
-from imgserver.server import ImgServer, SeverMain, SharpSever
+from simulator.client import Client
+from simulator.server import ImgServer, SeverMain, SharpSever
 from threading import Thread
 import multiprocessing
 from tornado.ioloop import IOLoop
 from functools import partial
-from imgserver.methods import getImage
+from simulator.methods import getImage
 from tornado.iostream import StreamClosedError
 import time
 import logging

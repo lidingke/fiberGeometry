@@ -11,7 +11,7 @@ import sys
 import os
 import cv2
 import numpy as np
-from imgserver.methods import randomImg, getImage
+from simulator.methods import randomImg, getImage
 import time
 from random import randint, uniform
 from threading import Thread

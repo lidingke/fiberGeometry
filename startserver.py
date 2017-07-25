@@ -1,5 +1,5 @@
 from threading import Thread
-from imgserver.server import SeverMain, ImgServer
+from simulator.server import SeverMain, ImgServer
 from tornado.ioloop import IOLoop
 port = 9801
 print 'listening on port', port

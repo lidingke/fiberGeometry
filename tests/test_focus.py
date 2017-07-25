@@ -46,8 +46,8 @@ def ttest_focus():
                     RUNNING = False
 
 from pattern.sharper import Motor, Focuser
-from imgserver.client import SharpClient
-from imgserver.server import CameraMotorSever, CameraMotorSeverRadom
+from simulator.client import SharpClient
+from simulator.server import CameraMotorSever, CameraMotorSeverRadom
 from tornado.ioloop import IOLoop
 from functools import partial
 import socket

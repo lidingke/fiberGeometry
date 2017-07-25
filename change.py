@@ -1,6 +1,6 @@
 import pdb
-# from imgserver import client
-from imgserver.client import Client
+# from simulator import client
+from simulator.client import Client
 from tornado.ioloop import IOLoop
 from functools import partial
 import sys
