@@ -177,5 +177,5 @@ class Ui_MainWindow(object):
         self.reset.setText(_translate("MainWindow", "reset", None))
         self.next_state.setText(_translate("MainWindow", "next", None))
         self.fiberLength.setText(_translate("MainWindow", "24", None))
-        self.state.setText(_translate("MainWindow", "TextLabel", None))
+        self.state.setText(_translate("MainWindow", "state", None))
 

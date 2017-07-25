@@ -1,5 +1,4 @@
 #coding:utf-8
-from util.reporter.reportcontext import PickContext
 import re
 from datetime import datetime as dt
 from PyQt4.QtGui import QWidget, QFileDialog, QMessageBox

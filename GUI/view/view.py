@@ -1,8 +1,13 @@
 #coding:utf-8
 #branch dev
+from functools import partial
+
+from PyQt4.QtCore import QObject
 from PyQt4.QtCore import pyqtSignal
 
 from GUI.model.models import session_add_by_account
+from GUI.view.uiview import ManualCVForm, AutomaticCVForm
+from setting.config import VIEW_LABEL
 from setting.orderset import SETTING
 import cv2
 # from GUI.UI.mainUI import Ui_MainWindow
@@ -10,6 +15,7 @@ import logging
 from GUI.UI.mainUI import Ui_MainWindow as new_MainWindow
 
 from GUI.view.opplot import OpticalPlot
+from util.observer import MySignal
 from .reporter import Reporter
 from pattern.sharp import MaxSharp
 from PyQt4.QtCore import QRect, Qt, QRectF
@@ -21,19 +27,19 @@ from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
-class View(QMainWindow, new_MainWindow):
+class CVViewModel(QObject):
     """docstring for View"""
-    emit_close_event = pyqtSignal()
 
     def __init__(self,):
-        super(View, self).__init__()
-        self.setupUi(self)
+        # super(CVViewModel, self).__init__()
+        # self.setupUi(self)
         self.scence = QGraphicsScene()
         self.graphicsView.setScene(self.scence)
         self.isMaxSharp = MaxSharp()
         self.beginTestCV.clicked.connect(self._disableCVButton)
         self.reporterCV.clicked.connect(self.writeReporterCV)
         self._last_data_init()
+        self.emit_close_event = MySignal()
         # self.painterWidget = CVPainterWidget(self.canvas)
         # self.scence = MyQGraphicsScene()
 
@@ -190,6 +196,7 @@ class View(QMainWindow, new_MainWindow):
 
 class MyQGraphicsScene(QGraphicsScene):
 
+
     def __init__(self):
         QGraphicsScene.__init__(self)
         # super(MyQGraphicsScene, self).__init__()
@@ -211,5 +218,47 @@ class MyQGraphicsScene(QGraphicsScene):
             top_left, bottom_right = self.rect_pos
             rect = QRectF(top_left, bottom_right)
             self.addRect(rect)
+
+
+
+# class View(AutomaticCVForm,CVViewModel):
+#     def __init__(self):
+#         AutomaticCVForm.__init__(self)
+#         CVViewModel.__init__(self)
+#         self.print_mro()
+#
+#     @classmethod
+#     def print_mro(cls):
+#         print cls.__mro__
+
+class AutomaticCV(object):
+
+    fathers = (AutomaticCVForm,CVViewModel,)
+
+    @staticmethod
+    def inits(self):
+        AutomaticCVForm.__init__(self)
+        CVViewModel.__init__(self)
+
+
+class ManualCV(object):
+    fathers = (ManualCVForm, CVViewModel,)
+
+    @staticmethod
+    def inits(self):
+        ManualCVForm.__init__(self)
+        CVViewModel.__init__(self)
+
+def get_view(label):
+    print label
+    if label == "AutomaticCV":
+        view = type("View", AutomaticCV.fathers, {"__init__":AutomaticCV.inits})
+    elif label == "ManualCV":
+        view = type("View", ManualCV.fathers, dict(__init__=ManualCV.inits))
+    else:
+        raise TypeError("no view label correct")
+    return view
+
+View = get_view(VIEW_LABEL)
 
 

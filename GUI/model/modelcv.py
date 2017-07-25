@@ -57,8 +57,6 @@ class ModelCV(Thread, QObject):
         self.getRawImg = GetRawImg()
         self.imgmaxlen = 5
         self.imgQueue = collections.deque(maxlen = 5)
-        # self.fiberResult = {}
-
         self.classify = classifyObject('G652')
         self.pdfparameter = SETTING()['pdfpara']
         self.dbparameter = SETTING()['dbpara']
@@ -81,14 +79,16 @@ class ModelCV(Thread, QObject):
                 break
             self.img = img.copy()
             self.imgQueue.append(self.img)
-            # self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
             self.sharp = "%0.2f" % self.isSharp.issharpla(img[::,::,0])
-            # if hasattr(self,'focuser'):
-            #     self.focuser.get_sharp(self.sharp)
-            # plotResults = (self.ellipses, self.result)
             self._greenLight(img)
             colorImg = self._decorateImg(img)
             self.returnImg.emit(colorImg[::2,::2].copy(), self.sharp)
+
+
+            # self.sharp = "%0.2f"%self.isSharp.isSharpDiff(list(self.imgQueue))
+            # if hasattr(self,'focuser'):
+            #     self.focuser.get_sharp(self.sharp)
+            # plotResults = (self.ellipses, self.result)
 
 
     def mainCalculate(self):
@@ -102,15 +102,15 @@ class ModelCV(Thread, QObject):
                 for img in list(self.imgQueue):
                     self.eresults = self.classify.find(img)
                     result = self.eresults["showResult"]
-                    print 'get result', result
+                    logger.info('get result'+str(result))
                     results.append(result)
                 self._emitCVShowResult(AvgResult(results))
             except ClassCoreError as e:
-                print e,'class core error'
+                logger.error('class core error')
                 self.resultShowCV.emit('error')
                 return
             except ValueError as e:
-                print e
+                logger.error(str(e))
                 self.resultShowCV.emit('error')
                 return
             except Exception as e:
@@ -128,16 +128,14 @@ class ModelCV(Thread, QObject):
     def _decorateImg(self,img):
         """"mark the circle and size parameter"""
         img = drawCoreCircle(img)
-        # print 'decorate in ',not (ellipses  or self.decorateMethod), ellipses , result , self.decorateMethod
         if self.result2Show:
             img = self.decorateMethod(img, self.result2Show)
         return img
 
 
-    def exit(self):
-        print "unInit"
+    def close(self):
         self.IS_RUNNING = False
-        time.sleep(0.5)
+        time.sleep(0.3)
         self.getRawImg.unInitCamera()
 
 

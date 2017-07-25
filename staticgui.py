@@ -2,8 +2,10 @@
 import logging
 logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
+
 from setting import config
 config.MODBUS_PORT = 'com14'
+config.VIEW_LABEL = "AutomaticCV"
 import sys
 import os
 import pdb
@@ -17,8 +19,10 @@ from GUI.controller import Controller
 from util.load import loadStyleSheet
 
 
+
 if __name__ == '__main__':
     # sys.stdout = open('setting\\abc.txt', 'w')
+
     print ('len set', len(Set))
     app = QApplication(sys.argv)
     app.setStyleSheet(loadStyleSheet('main'))
