@@ -1,23 +1,25 @@
-#coding:utf-8
+# coding:utf-8
 import logging
+
 logging.basicConfig(level=logging.ERROR)
 logger = logging.getLogger(__name__)
 
 from setting import config
+
 config.MODBUS_PORT = 'com14'
-config.VIEW_LABEL = "AutomaticCV"#ManualCV AutomaticCV
+config.VIEW_LABEL = "AutomaticCV"  # ManualCV AutomaticCV
 import sys
 import os
 import pdb
 from setting.orderset import SETTING
+
 Set = SETTING("test", "octagon", "centerImg")
 Set['ifcamera'] = False
-from PyQt4.QtGui import QPalette, QColor,QApplication
+from PyQt4.QtGui import QPalette, QColor, QApplication
 from PyQt4.QtCore import QCoreApplication, QFile
 from GUI.view.view import View, get_view
 from GUI.controller import ManualCVController, get_controller
 from util.load import loadStyleSheet
-
 
 if __name__ == '__main__':
     # sys.stdout = open('setting\\abc.txt', 'w')
@@ -26,12 +28,12 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     app.setStyleSheet(loadStyleSheet('main'))
     pt = QPalette()
-    pt.setColor(QPalette.Background , QColor(4,159,241))
+    pt.setColor(QPalette.Background, QColor(4, 159, 241))
     app.setPalette(pt)
     label = config.VIEW_LABEL
     controller = get_controller(label)
     view = get_view(label)
-    print view.__dict__,type(view)
+    print view.__dict__, type(view)
     c = controller(view())
     c.show()
     # sys.stdout = sys.__stdout__

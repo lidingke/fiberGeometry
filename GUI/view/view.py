@@ -1,10 +1,5 @@
-#coding:utf-8
-#branch dev
-import threading
-from functools import partial
-
-from PyQt4.QtCore import QObject
-from PyQt4.QtCore import pyqtSignal
+# coding:utf-8
+# branch dev
 
 from GUI.model.models import session_add_by_account
 from GUI.view.uiview import ManualCVForm, AutomaticCVForm
@@ -13,26 +8,35 @@ from setting.orderset import SETTING
 import cv2
 # from GUI.UI.mainUI import Ui_MainWindow
 import logging
-from GUI.UI.mainUI import Ui_MainWindow as new_MainWindow
 
-from GUI.view.opplot import OpticalPlot
 from util.observer import MySignal
 from .reporter import Reporter
 from pattern.sharp import MaxSharp
 from PyQt4.QtCore import QRect, Qt, QRectF
-from PyQt4.QtGui import QWidget, QMainWindow, QPainter, QFont,\
-    QPixmap, QImage, QGraphicsScene
+from PyQt4.QtGui import QPixmap, QImage, QGraphicsScene
 import numpy as np
 from util.load import WriteReadJson, WRpickle
 from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
+
+def init_form_first(fun):
+    def init(self):
+        mro = type(self).mro()
+        for m in mro:
+            if m.__name__.endswith('Form'):
+                print 'class name:',m.__name__
+                m.__init__(self)
+        fun(self)
+    return init
+
 class CVViewModel(object):
     """docstring for View"""
 
-    def __init__(self,):
-        # super(CVViewModel, self).__init__()
+    @init_form_first
+    def __init__(self, ):
+        super(CVViewModel, self).__init__()
         # self.setupUi(self)
         print "init cv view"
         self.scence = QGraphicsScene()
@@ -42,8 +46,6 @@ class CVViewModel(object):
         self.reporterCV.clicked.connect(self.writeReporterCV)
         self._last_data_init()
         self.emit_close_event = MySignal()
-
-
 
     def _last_data_init(self):
         wrp = WRpickle("setting\\userdata.pickle")
@@ -79,38 +81,34 @@ class CVViewModel(object):
             else:
                 self.dynamicSharp.setStyleSheet("color:white")
 
-    def enable_move_button(self, is_move = True):
+    def enable_move_button(self, is_move=True):
         print "set move", is_move
-        collections = ("move_down","move_up", "next_state",
-                       "move_right","move_left","reset")
-        moves = {getattr(self,c) for c in collections}
+        collections = ("move_down", "move_up", "next_state",
+                       "move_right", "move_left", "reset")
+        moves = {getattr(self, c) for c in collections}
         for move in moves:
             move.setEnabled(is_move)
-
-
-
 
     def closeEvent(self, *args, **kwargs):
         if 'olddata' in SETTING().keys():
             self.olddata.save(SETTING()['olddata'])
         self.emit_close_event.emit()
 
-
-    def updateCVShow(self,str_):
+    def updateCVShow(self, str_):
         if str_:
             self.resultShowCV.setText(str_)
         self._disableCVButton(True)
 
-    def _disableCVButton(self, bool = False):
+    def _disableCVButton(self, bool=False):
         self.beginTestCV.setEnabled(bool)
 
-    # def updateATShow(self,str_):
-    #     self.resultShowAT.setText(str_)
+        # def updateATShow(self,str_):
+        #     self.resultShowAT.setText(str_)
 
-    # def initGUI(self):
+        # def initGUI(self):
 
-            # print para['fibertypeindex'], int(para['fibertypeindex'])
-            # self.fiberTypeBox.setCurrentIndex(int(para['fibertypeindex']))
+        # print para['fibertypeindex'], int(para['fibertypeindex'])
+        # self.fiberTypeBox.setCurrentIndex(int(para['fibertypeindex']))
 
     def writeReporterCV(self):
         para = {}
@@ -121,7 +119,7 @@ class CVViewModel(object):
         para['fibertype'] = str(self.fiberTypeBox.currentText())
         para['fibertypeindex'] = str(self.fiberTypeBox.currentIndex())
         para['date'] = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
-        para['title'] = para['fibertype']+'光纤端面几何测试报告'
+        para['title'] = para['fibertype'] + '光纤端面几何测试报告'
         SETTING()['pdfpara'].update(para)
         SETTING()['olddata'] = para
         Reporter(self)
@@ -130,13 +128,11 @@ class CVViewModel(object):
         dbpara = SETTING()['dbpara']
         session_add_by_account(dbpara)
 
-
     def getCoreLight(self, coreLight, cladLight):
         if hasattr(self, "coreLight"):
             self.coreLight.setText(coreLight)
         if hasattr(self, "cladLight"):
             self.cladLight.setText(cladLight)
-
 
     def _getPixmap(self, mapArray):
         if not isinstance(mapArray, np.ndarray):
@@ -149,21 +145,16 @@ class CVViewModel(object):
         # self.update()
 
 
-
 class MyQGraphicsScene(QGraphicsScene):
-
-
     def __init__(self):
         QGraphicsScene.__init__(self)
         # super(MyQGraphicsScene, self).__init__()
-        self.rect_pos = [False,False]
+        self.rect_pos = [False, False]
         # self.setBspTreeDepth(1)
 
-    def mousePressEvent(self,event):
+    def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
             self.rect_pos[0] = event.scenePos()
-
-
 
     def mouseMoveEvent(self, event):
         self.rect_pos[1] = event.scenePos()
@@ -176,7 +167,6 @@ class MyQGraphicsScene(QGraphicsScene):
             self.addRect(rect)
 
 
-
 # class View(AutomaticCVForm,CVViewModel):
 #     def __init__(self):
 #         AutomaticCVForm.__init__(self)
@@ -187,34 +177,21 @@ class MyQGraphicsScene(QGraphicsScene):
 #     def print_mro(cls):
 #         print cls.__mro__
 
-class AutomaticCV(object):
+automatic_fathers = (AutomaticCVForm, CVViewModel,)
 
-    fathers = (AutomaticCVForm,CVViewModel,)
-
-    @staticmethod
-    def init(self):
-        AutomaticCVForm.__init__(self)
-        CVViewModel.__init__(self)
+manual_fathers = (ManualCVForm, CVViewModel,)
 
 
-class ManualCV(object):
-    fathers = (ManualCVForm, CVViewModel,)
-
-    @staticmethod
-    def init(self):
-        ManualCVForm.__init__(self)
-        CVViewModel.__init__(self)
 
 def get_view(label):
-    print label
+    print("get view label "+label)
     if label == "AutomaticCV":
-        view = type("View", AutomaticCV.fathers, {"__init__":AutomaticCV.init})
+        view = type("View", automatic_fathers,{})
     elif label == "ManualCV":
-        view = type("View", ManualCV.fathers, {"__init__":ManualCV.init})
+        view = type("View", manual_fathers,{})
     else:
         raise TypeError("no view label correct")
     return view
 
+
 View = get_view(VIEW_LABEL)
-
-

@@ -1,7 +1,6 @@
 # coding:utf-8
 # from view import View
 from functools import partial
-
 from GUI.view.monkey import MonkeyServer
 from setting.config import MODBUS_PORT
 from GUI.model.stateconf import state_number, CONTEXT
@@ -19,6 +18,12 @@ logger = logging.getLogger(__name__)
 
 
 class StateMixin(object):
+
+    def _start_state(self):
+        self.state_number = state_number()
+        self._worker = WorkerQueue()
+        self.state_connect()
+
     def state_connect(self):
         def state_change():
             sequence_number = next(self.state_number)
@@ -28,28 +33,7 @@ class StateMixin(object):
         if hasattr(self._view, "next_state"):
             self._view.next_state.clicked.connect(state_change)
         # move up button connection
-        _ = partial(self._modbus.plat_motor_goto, *("PLAT" + self.platform_number, "xstart", 50000))
-        self._view.move_up.pressed.connect(_)
-        _ = partial(self._modbus.plat_motor_goto, *("PLAT" + self.platform_number, "xstart", "stop"))
-        self._view.move_up.released.connect(_)
-        # move down button connection
-        _ = partial(self._modbus.plat_motor_goto, *("PLAT" + self.platform_number, "xstart", 0))
-        self._view.move_down.pressed.connect(_)
-        _ = partial(self._modbus.plat_motor_goto, *("PLAT" + self.platform_number, "xstart", "stop"))
-        self._view.move_down.released.connect(_)
-        # move right button connection
-        _ = partial(self._modbus.plat_motor_goto, *("PLAT" + self.platform_number, "ystart", 50000))
-        self._view.move_right.pressed.connect(_)
-        _ = partial(self._modbus.plat_motor_goto, *("PLAT" + self.platform_number, "ystart", "stop"))
-        self._view.move_right.released.connect(_)
-        # move left button connection
-        _ = partial(self._modbus.plat_motor_goto, *("PLAT" + self.platform_number, "ystart", 0))
-        self._view.move_left.pressed.connect(_)
-        _ = partial(self._modbus.plat_motor_goto, *("PLAT" + self.platform_number, "ystart", "stop"))
-        self._view.move_left.released.connect(_)
-        # rest button connection
-        self._view.reset.clicked.connect(self._modbus.plat_motor_reset)
-        MODENABLE_SIGNAL.connect(self._view.enable_move_button)
+
 
     def context_transform_1(self):
         pass
@@ -79,10 +63,35 @@ class StateMixin(object):
         function_for_transform()
 
 
+
 class ModbusControllerMixin(object):
     def _start_modbus(self):
         self._modbus = AbsModeBusModeByAxis(port=MODBUS_PORT)
-        self.state_connect()
+        self._modbus_connect()
+
+    def _modbus_connect(self):
+        _ = partial(self._modbus.plat_motor_goto, *("PLAT1", "xstart", 50000))
+        self._view.move_up.pressed.connect(_)
+        _ = partial(self._modbus.plat_motor_goto, *("PLAT1", "xstart", "stop"))
+        self._view.move_up.released.connect(_)
+        # move down button connection
+        _ = partial(self._modbus.plat_motor_goto, *("PLAT1" , "xstart", 0))
+        self._view.move_down.pressed.connect(_)
+        _ = partial(self._modbus.plat_motor_goto, *("PLAT1", "xstart", "stop"))
+        self._view.move_down.released.connect(_)
+        # move right button connection
+        _ = partial(self._modbus.plat_motor_goto, *("PLAT1", "ystart", 50000))
+        self._view.move_right.pressed.connect(_)
+        _ = partial(self._modbus.plat_motor_goto, *("PLAT1", "ystart", "stop"))
+        self._view.move_right.released.connect(_)
+        # move left button connection
+        _ = partial(self._modbus.plat_motor_goto, *("PLAT1", "ystart", 0))
+        self._view.move_left.pressed.connect(_)
+        _ = partial(self._modbus.plat_motor_goto, *("PLAT1", "ystart", "stop"))
+        self._view.move_left.released.connect(_)
+        # rest button connection
+        self._view.reset.clicked.connect(self._modbus.plat_motor_reset)
+        MODENABLE_SIGNAL.connect(self._view.enable_move_button)
 
 
 class ModelCVControllerMixin(object):
@@ -113,11 +122,9 @@ class AutomaticCVController(ModelCVControllerMixin,
         super(AutomaticCVController, self).__init__()
         # QObject.__init__(self)
         self._view = view
-        self.platform_number = "1"
         self._start_modelcv()
         self._start_modbus()
-        self.state_number = state_number()
-        self._worker = WorkerQueue()
+        self._start_state()
         self._monkey = MonkeyServer(self)
 
     def show(self):
