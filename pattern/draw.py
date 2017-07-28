@@ -92,7 +92,7 @@ def DecorateImg(origin, ellipses, result = False):
         return oldDecorateImg(origin, ellipses, result)
 
 def decorateMethod(obj):
-    if obj in ('octagon'):
+    if obj in ('octagon',):
         return decorateOctagon
     else:
         return decorateDoubleCircle

@@ -6,6 +6,8 @@ from threading import Thread
 import copy
 import numpy as np
 from PyQt4.QtCore import QObject, pyqtSignal
+
+from setting.config import PDF_PARAMETER, DB_PARAMETER
 from setting.orderset import SETTING
 from pattern.exception import ClassCoreError, ClassOctagonError
 
@@ -47,13 +49,12 @@ class ModelCV(Thread, QObject):
         self.isSharp = IsSharp()
         self.eresults = False
         self.result2Show = {}
-        self.decorateMethod = decorateMethod("G652")
         self.getRawImg = GetRawImg()
-        self.imgmaxlen = 5
         self.imgQueue = collections.deque(maxlen=5)
-        self.classify = classifyObject('G652')
-        self.pdfparameter = SETTING()['pdfpara']
-        self.dbparameter = SETTING()['dbpara']
+        self.classify = classifyObject("G652")
+        self.decorateMethod = decorateMethod("G652")
+        self.pdfparameter = PDF_PARAMETER # SETTING()['pdfpara']
+        self.dbparameter = DB_PARAMETER #SETTING()['dbpara']
 
     def run(self):
         while self.IS_RUNNING:
@@ -94,11 +95,6 @@ class ModelCV(Thread, QObject):
 
         Thread(target=_calcImg).start()
 
-    def updateClassifyObject(self, obj='G652'):
-        self.classify = classifyObject(obj)
-        self.eresults = False
-        self.result2Show = False
-        self.decorateMethod = decorateMethod(obj)
 
     def _decorateImg(self, img):
         """"mark the circle and size parameter"""
@@ -158,8 +154,14 @@ class ModelCV(Thread, QObject):
             self.returnCoreLight.emit("%0.2f" % (self.blue), "%0.2f" % (self.allgreen))
             # self.returnCladLight.emit()
 
-    def fiberTypeMethod(self, key):
-        SETTING().keyUpdates(key)
+
+    def updateClassifyObject(self, obj='G652'):
+        self.classify = classifyObject(obj)
+        self.eresults = False
+        self.result2Show = False
+        # self.decorateMethod = decorateMethod(obj)
+        self.decorateMethod = decorateMethod(obj)
+
 
 
 import pdb

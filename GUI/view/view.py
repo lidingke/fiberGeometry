@@ -8,7 +8,7 @@ from PyQt4.QtCore import pyqtSignal
 
 from GUI.model.models import session_add_by_account
 from GUI.view.uiview import ManualCVForm, AutomaticCVForm
-from setting.config import VIEW_LABEL
+from setting.config import VIEW_LABEL, PDF_PARAMETER, DB_PARAMETER
 from setting.orderset import SETTING
 import cv2
 # from GUI.UI.mainUI import Ui_MainWindow
@@ -40,6 +40,7 @@ class CVViewModel(object):
         self.isMaxSharp = MaxSharp()
         self.beginTestCV.clicked.connect(self._disableCVButton)
         self.reporterCV.clicked.connect(self.writeReporterCV)
+        self.emit_fibertype_in_items = MySignal()
         self._last_data_init()
         self.emit_close_event = MySignal()
 
@@ -54,6 +55,8 @@ class CVViewModel(object):
             load = wrJson.load()
         types = load.get("fiberTypes")
         self.fiberTypeBox.addItems(types)
+        # now = self.fiberTypeBox.currentText()
+        self.emit_fibertype_in_items.emit()
 
         try:
             self.olddata = WriteReadJson('setting\\old.json')
@@ -122,13 +125,13 @@ class CVViewModel(object):
         para['fibertypeindex'] = str(self.fiberTypeBox.currentIndex())
         para['date'] = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
         para['title'] = para['fibertype']+'光纤端面几何测试报告'
-        SETTING()['pdfpara'].update(para)
+        PDF_PARAMETER.update(para)
         SETTING()['olddata'] = para
         Reporter(self)
         # print 'get in session'
-        SETTING()['dbpara'].update(para)
-        dbpara = SETTING()['dbpara']
-        session_add_by_account(dbpara)
+        DB_PARAMETER.update(para)
+        # dbpara = SETTING()['dbpara']
+        session_add_by_account(DB_PARAMETER)
 
 
     def getCoreLight(self, coreLight, cladLight):
@@ -195,6 +198,7 @@ class AutomaticCV(object):
     def init(self):
         AutomaticCVForm.__init__(self)
         CVViewModel.__init__(self)
+
 
 
 class ManualCV(object):

@@ -101,6 +101,7 @@ class ModelCVControllerMixin(object):
         self._view.emit_close_event.connect(self.close)
         self._view.beginTestCV.clicked.connect(self._modelcv.mainCalculate)
         self._view.fiberTypeBox.currentIndexChanged.connect(self._changeFiberType)
+        self._view.emit_fibertype_in_items.connect(self._changeFiberType)
 
         self._modelcv.returnImg.connect(self._view.updatePixmap)
         self._modelcv.resultShowCV.connect(self._view.updateCVShow)

@@ -1,4 +1,5 @@
 #coding:utf-8
+from setting.config import PDF_PARAMETER
 from .origin import *
 from setting.orderset import SETTING
 import sys
@@ -18,7 +19,7 @@ def writePdf(dir_):
     # sys.exit(0)
 
 def writePdfabs(dir_):
-    updates = SETTING().get('pdfpara')
+    updates = PDF_PARAMETER
     htmlpara.update(updates)
     newbody = originHTML.format(**htmlpara)
     # with open('t.html', 'wb') as f:
