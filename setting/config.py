@@ -9,4 +9,8 @@ VIEW_LABEL = False
 PDF_PARAMETER = {}
 DB_PARAMETER = {}
 
+#todo:error old data save
+
 SAVED_VIEW_ITEMS = {}
+
+DYNAMIC_CAMERA = True

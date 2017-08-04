@@ -5,23 +5,23 @@ from functools import partial
 
 from PyQt4.QtCore import QObject
 from PyQt4.QtCore import pyqtSignal
+from GUI.UI.mainUI import Ui_MainWindow as new_MainWindow
+from GUI.view.opplot import OpticalPlot
+import cv2
 
 from GUI.model.models import session_add_by_account
 from GUI.view.uiview import ManualCVForm, AutomaticCVForm
 from setting.config import VIEW_LABEL, PDF_PARAMETER, DB_PARAMETER
 from setting.orderset import SETTING
-import cv2
+
 # from GUI.UI.mainUI import Ui_MainWindow
 import logging
-from GUI.UI.mainUI import Ui_MainWindow as new_MainWindow
 
-from GUI.view.opplot import OpticalPlot
 from util.observer import MySignal
 from .reporter import Reporter
 from pattern.sharp import MaxSharp
 from PyQt4.QtCore import QRect, Qt, QRectF
-from PyQt4.QtGui import QWidget, QMainWindow, QPainter, QFont,\
-    QPixmap, QImage, QGraphicsScene
+from PyQt4.QtGui import QPixmap, QImage, QGraphicsScene
 import numpy as np
 from util.load import WriteReadJson, WRpickle
 from datetime import datetime

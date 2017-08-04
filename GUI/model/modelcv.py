@@ -7,21 +7,21 @@ import copy
 import numpy as np
 from PyQt4.QtCore import QObject, pyqtSignal
 
-from setting.config import PDF_PARAMETER, DB_PARAMETER
+from setting.config import PDF_PARAMETER, DB_PARAMETER, DYNAMIC_CAMERA
 from setting.orderset import SETTING
 from pattern.exception import ClassCoreError, ClassOctagonError
 
 Set = SETTING('octagon')
-setGet = Set.get('ifcamera', False)
-fiberType = Set.get('fiberType', "G652")
-print 'fibertype', fiberType, 'setget', setGet
-if setGet:
+# setGet = Set.get('ifcamera', False)
+# fiberType = Set.get('fiberType', "G652")
+# print 'fibertype', fiberType, 'setget', setGet
+if DYNAMIC_CAMERA:
     from SDK.mdpy import GetRawImg
 else:
     from SDK.mdpytest import DynamicGetRawImgTest as GetRawImg
 
     # from  SDK.mdpy import GetRawImgTest as GetRawImg
-    print 'script don\'t open camera'
+    # print 'script don\'t open camera'
 from pattern.classify import classifyObject
 from pattern.sharp import IsSharp
 from pattern.draw import DecorateImg, drawCoreCircle, decorateMethod
@@ -140,6 +140,7 @@ class ModelCV(Thread, QObject):
 
     def _greenLight(self, img):
         if isinstance(img, np.ndarray):
+            #TODO:SETTING
             corey, corex = SETTING()["corepoint"]
             minRange, maxRange = SETTING()["coreRange"]
             green = sliceImg(img[::, ::, 1], (corex, corey), maxRange)
