@@ -9,8 +9,8 @@ import numpy as np
 
 from SDK.mdpy import GetRawImg
 from threading import Thread
-from imgserver.server import SeverMain
-from imgserver.client import Client
+from simulator.server import SeverMain
+from simulator.client import Client
 import time
 import logging
 logger = logging.getLogger(__name__)

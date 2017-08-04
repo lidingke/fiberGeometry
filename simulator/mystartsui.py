@@ -11,7 +11,5 @@ if __name__ == '__main__':#tcp/ip更换预读取的图像文件
     c = Controllers()
     c.show()
 
-
-
     sys.exit(app.exec_())
 
