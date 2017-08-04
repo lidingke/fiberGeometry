@@ -8,7 +8,7 @@ from setting.orderset import SETTING
 import logging
 logger = logging.getLogger(__name__)
 
-class IsSharp(CV2MethodSet):
+class IsSharp(object):
     """docstring for IsSharp"""
     def __init__(self):
         super(IsSharp, self).__init__()

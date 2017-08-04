@@ -8,6 +8,7 @@ from setting import config
 
 config.MODBUS_PORT = 'com14'
 config.VIEW_LABEL = "AutomaticCV"  # ManualCV AutomaticCV
+config.DYNAMIC_CAMERA = False
 import sys
 import os
 import pdb

@@ -128,10 +128,10 @@ def ttest_sharp_laplacian_list(dir_):
     dosharp = IsSharp().issharpla
     imgs = (getImage(dir_+d) for d in dirs)
     sharps = [dosharp(img[::,::,0]) for img in imgs]
-    plt.figure(len(dir_))
-    plt.plot(range(len(sharps)),sharps)
-    plt.title(dir_)
-    plt.show()
+    # plt.figure(len(dir_))
+    # plt.plot(range(len(sharps)),sharps)
+    # plt.title(dir_)
+    # plt.show()
 
 @pytest.mark.parametrize(
     "dir_",(
@@ -155,7 +155,7 @@ def test_sharp_laplacian_all_list(dir_):
     ax2 = ax1.twinx()
     ax2.plot(range(len(sharps)),sums)
     # ax2.title(dir_)
-    plt.show()
+    # plt.show()
 
 @pytest.mark.parametrize(
     "dir_", (
