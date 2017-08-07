@@ -225,67 +225,67 @@ class DoubleCircleClassify(MetaClassify):
         return origin
 
 
+# class Capillary(DoubleCircleClassify):
+#
+#     def __init__(self):
+#         super(Capillary, self).__init__()
+#
+#
+#     def _difcore(self, img):
+#
+#         diff_radius = self.SET.get("diff_radius",False)
+#         if not diff_radius:
+#             raise KeyError("no diff_radius")
+#         coreimg =img[::,::,0].copy()
+#         coreimg = outer_fill(coreimg, radius = diff_radius)
+#
+#
+#         cladimg = img[::,::,0].copy()
+#         cladimg = inner_fill(cladimg, radius = diff_radius)
+#         # cv2.imshow("core", cladimg[::4, ::4])
+#         # cv2.waitKey()
+#         return coreimg, cladimg
+#
+#     def find(self, img):
+#         self.img = img
+#
+#         coreimg, cladimg = self._difcore(img)
+#         # cv2.imshow("clad edge", cladimg[::4,::4])
+#         # cv2.waitKey()
+#         sets = SETTING()
+#         if 'thresholdSize' in sets.keys():
+#             hight = sets['thresholdSize'].get("core")
+#             coreimg = ExtractEdge().directThr(coreimg,hight)
+#         else:
+#             coreimg = ExtractEdge().directThr(coreimg)
+#         # coreimg = ExtractEdge().run(coreimg)
+#         # cladimg = ExtractEdge().run(cladimg)
+#
+#         if 'thresholdSize' in sets.keys():
+#             hight = sets['thresholdSize'].get("clad",40)
+#             cladimg = ExtractEdge().directThr(cladimg,hight)
+#         else:
+#             cladimg = ExtractEdge().directThr(cladimg)
+#         # cladimg = cv2.bilateralFilter(cladimg, 20, 80, 75)
+#         # cv2.imshow("cladimg edge", cladimg[::4,::4])
+#         # cv2.waitKey()
+#
+#         coreResult = PickCircle().run(coreimg)
+#         # print 'get diff'
+#         cladResult = PickCircle().run(cladimg)
+#
+#         print 'amp',self.SET['ampPixSize'], self.SET['fiberType']
+#         self.result['core'] = coreResult['ellipese']
+#         self.result['coreResult'] = coreResult
+#         self.result['clad'] = cladResult['ellipese']
+#         self.result['cladResult'] = cladResult
+#         self.result['showResult'] = self.getResult()
+#         return self.result
+
 class Capillary(DoubleCircleClassify):
 
-    def __init__(self):
-        super(Capillary, self).__init__()
-
-
-    def _difcore(self, img):
-
-        diff_radius = self.SET.get("diff_radius",False)
-        if not diff_radius:
-            raise KeyError("no diff_radius")
-        coreimg =img[::,::,0].copy()
-        coreimg = outer_fill(coreimg, radius = diff_radius)
-
-
-        cladimg = img[::,::,0].copy()
-        cladimg = inner_fill(cladimg, radius = diff_radius)
-        # cv2.imshow("core", cladimg[::4, ::4])
-        # cv2.waitKey()
-        return coreimg, cladimg
-
-    def find(self, img):
-        self.img = img
-
-        coreimg, cladimg = self._difcore(img)
-        # cv2.imshow("clad edge", cladimg[::4,::4])
-        # cv2.waitKey()
-        sets = SETTING()
-        if 'thresholdSize' in sets.keys():
-            hight = sets['thresholdSize'].get("core")
-            coreimg = ExtractEdge().directThr(coreimg,hight)
-        else:
-            coreimg = ExtractEdge().directThr(coreimg)
-        # coreimg = ExtractEdge().run(coreimg)
-        # cladimg = ExtractEdge().run(cladimg)
-
-        if 'thresholdSize' in sets.keys():
-            hight = sets['thresholdSize'].get("clad",40)
-            cladimg = ExtractEdge().directThr(cladimg,hight)
-        else:
-            cladimg = ExtractEdge().directThr(cladimg)
-        # cladimg = cv2.bilateralFilter(cladimg, 20, 80, 75)
-        # cv2.imshow("cladimg edge", cladimg[::4,::4])
-        # cv2.waitKey()
-
-        coreResult = PickCircle().run(coreimg)
-        # print 'get diff'
-        cladResult = PickCircle().run(cladimg)
-
-        print 'amp',self.SET['ampPixSize'], self.SET['fiberType']
-        self.result['core'] = coreResult['ellipese']
-        self.result['coreResult'] = coreResult
-        self.result['clad'] = cladResult['ellipese']
-        self.result['cladResult'] = cladResult
-        self.result['showResult'] = self.getResult()
-        return self.result
-
-class CapillaryTest(DoubleCircleClassify):
-
         def __init__(self):
-            super(CapillaryTest, self).__init__()
+            super(Capillary, self).__init__()
 
         def _difcore(self, img):
 
@@ -351,7 +351,7 @@ def classifyObject(fiberType):
     elif fiberType in ["capillary"]:
         print 'return Capillary',
         # return Capillary()
-        return CapillaryTest()
+        return Capillary()
     else:
         # import DoubleCircleClassify as Classify
         return DoubleCircleClassify()

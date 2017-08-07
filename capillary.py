@@ -6,7 +6,7 @@ import pdb
 import logging
 logging.basicConfig(level=logging.INFO)
 from PyQt4.QtGui import QPalette, QColor,QApplication, QMessageBox, QWidget
-from GUI.view.view import View
+from GUI.view.view import CVViewModel
 from GUI.controller import Controller
 from setting.initcorrect import InitCorrect
 from util.load import loadStyleSheet
@@ -26,6 +26,6 @@ if __name__ == '__main__':
     pt = QPalette()
     pt.setColor(QPalette.Background , QColor(4,159,241))
     app.setPalette(pt)
-    c = Controller(View())
+    c = Controller(CVViewModel())
     c.show()
     sys.exit(app.exec_())

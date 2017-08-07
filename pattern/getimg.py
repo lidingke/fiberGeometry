@@ -6,7 +6,7 @@ import numpy as np
 from pattern.meta import CV2MethodSet
 import sys
 
-class GetImage(CV2MethodSet):
+class GetImage(object):
     """docstring for GetImage"""
     def __init__(self, ):
         super(GetImage, self).__init__()

@@ -1,60 +1,49 @@
 #coding:utf-8
 #branch dev
+import threading
+from functools import partial
+
+from PyQt4.QtCore import QObject
 from PyQt4.QtCore import pyqtSignal
+from GUI.UI.mainUI import Ui_MainWindow as new_MainWindow
+from GUI.view.opplot import OpticalPlot
+import cv2
 
 from GUI.model.models import session_add_by_account
+from GUI.view.uiview import ManualCVForm, AutomaticCVForm
+from setting.config import VIEW_LABEL, PDF_PARAMETER, DB_PARAMETER
 from setting.orderset import SETTING
-import cv2
+
 # from GUI.UI.mainUI import Ui_MainWindow
 import logging
-from GUI.UI.mainUI import Ui_MainWindow as new_MainWindow
 
-from GUI.view.opplot import OpticalPlot
+from util.observer import MySignal
 from .reporter import Reporter
 from pattern.sharp import MaxSharp
 from PyQt4.QtCore import QRect, Qt, QRectF
-from PyQt4.QtGui import QWidget, QMainWindow, QPainter, QFont,\
-    QPixmap, QImage, QGraphicsScene
+from PyQt4.QtGui import QPixmap, QImage, QGraphicsScene
 import numpy as np
 from util.load import WriteReadJson, WRpickle
 from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
-class View(QMainWindow, new_MainWindow):
+class CVViewModel(object):
     """docstring for View"""
-    emit_close_event = pyqtSignal()
 
     def __init__(self,):
-        super(View, self).__init__()
-        self.setupUi(self)
+        # super(CVViewModel, self).__init__()
+        # self.setupUi(self)
+        print "init cv view"
         self.scence = QGraphicsScene()
         self.graphicsView.setScene(self.scence)
         self.isMaxSharp = MaxSharp()
         self.beginTestCV.clicked.connect(self._disableCVButton)
         self.reporterCV.clicked.connect(self.writeReporterCV)
+        self.emit_fibertype_in_items = MySignal()
         self._last_data_init()
-        # self.painterWidget = CVPainterWidget(self.canvas)
-        # self.scence = MyQGraphicsScene()
+        self.emit_close_event = MySignal()
 
-        # self.graphicsView.setCacheMode()
-        # self.axisWidget = OpticalPlot(parent=self.axis)
-        # self.IS_INIT_PAINTER = False
-        # self.__initUI__()
-        # self.reporterCV.clicked.connect(self.writeReporterCV)
-        # self._tempMedianIndex()
-
-        # logging.basicConfig(filename="setting\\modelog.txt", filemode='a', level=logging.ERROR,
-        #                     format="%(asctime)s-%(levelname)s-%(funcName)s:%(message)s")
-        # self.state_4_next = state_number()
-
-
-
-    # def __initUI__(self):
-        # items = ['G652']
-        # self.fiberType.addItems(items)
-        # self.setWindowFlags(Qt.WindowMaximizeButtonHint)
-        # self.setFixedSize(self.width(),self.height())
 
 
     def _last_data_init(self):
@@ -66,6 +55,8 @@ class View(QMainWindow, new_MainWindow):
             load = wrJson.load()
         types = load.get("fiberTypes")
         self.fiberTypeBox.addItems(types)
+        # now = self.fiberTypeBox.currentText()
+        self.emit_fibertype_in_items.emit()
 
         try:
             self.olddata = WriteReadJson('setting\\old.json')
@@ -79,9 +70,7 @@ class View(QMainWindow, new_MainWindow):
             self.fiberNumber.setText(para['fiberNo'])
 
     def updatePixmap(self, arr, sharp):
-        # if not self.IS_INIT_PAINTER:
-        #     self.IS_INIT_PAINTER = True
-        # self.painterWidget.getPixmap(arr)
+
         self.pximapimg = self._getPixmap(arr)
         self.scence.clear()
         self.scence.addPixmap(self.pximapimg)
@@ -108,20 +97,7 @@ class View(QMainWindow, new_MainWindow):
         if 'olddata' in SETTING().keys():
             self.olddata.save(SETTING()['olddata'])
         self.emit_close_event.emit()
-        # result = SETTING()['tempLight']
-        # print 'get light result', result
-        # WriteReadJson('tests/data/light.json').save(result)
 
-        # self.model.exit()
-    # def getModel(self, model):
-    #     self.model = model
-    # def updateOpticalview(self, wave, powers):
-    #     self.axisWidget.XYaxit(wave, powers)
-
-    # def attenuationTest(self):
-    #     length = self.fiberLength.getText()
-    #     threading.Thread
-    # def attenuationGetThread(self, length):
 
     def updateCVShow(self,str_):
         if str_:
@@ -149,25 +125,14 @@ class View(QMainWindow, new_MainWindow):
         para['fibertypeindex'] = str(self.fiberTypeBox.currentIndex())
         para['date'] = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
         para['title'] = para['fibertype']+'光纤端面几何测试报告'
-        SETTING()['pdfpara'].update(para)
+        PDF_PARAMETER.update(para)
         SETTING()['olddata'] = para
         Reporter(self)
         # print 'get in session'
-        SETTING()['dbpara'].update(para)
-        dbpara = SETTING()['dbpara']
-        session_add_by_account(dbpara)
+        DB_PARAMETER.update(para)
+        # dbpara = SETTING()['dbpara']
+        session_add_by_account(DB_PARAMETER)
 
-    # def _tempMedianIndex(self):
-    #     def changeCoreIndex():
-    #         index = self.coreMedianIndex.value()
-    #         SETTING()["medianBlur"]["corefilter"] = index
-    #     def changeCladIndex():
-    #         index = self.cladMedianIndex.value()
-    #         SETTING()["medianBlur"]["cladfilter"] = index
-    #     if hasattr(self, "cladMedianIndex"):
-    #         self.cladMedianIndex.valueChanged.connect(changeCladIndex)
-    #     if hasattr(self, "coreMedianIndex"):
-    #         self.coreMedianIndex.valueChanged.connect(changeCoreIndex)
 
     def getCoreLight(self, coreLight, cladLight):
         if hasattr(self, "coreLight"):
@@ -190,6 +155,7 @@ class View(QMainWindow, new_MainWindow):
 
 class MyQGraphicsScene(QGraphicsScene):
 
+
     def __init__(self):
         QGraphicsScene.__init__(self)
         # super(MyQGraphicsScene, self).__init__()
@@ -211,5 +177,48 @@ class MyQGraphicsScene(QGraphicsScene):
             top_left, bottom_right = self.rect_pos
             rect = QRectF(top_left, bottom_right)
             self.addRect(rect)
+
+
+
+# class View(AutomaticCVForm,CVViewModel):
+#     def __init__(self):
+#         AutomaticCVForm.__init__(self)
+#         CVViewModel.__init__(self)
+#         self.print_mro()
+#
+#     @classmethod
+#     def print_mro(cls):
+#         print cls.__mro__
+
+class AutomaticCV(object):
+
+    fathers = (AutomaticCVForm,CVViewModel,)
+
+    @staticmethod
+    def init(self):
+        AutomaticCVForm.__init__(self)
+        CVViewModel.__init__(self)
+
+
+
+class ManualCV(object):
+    fathers = (ManualCVForm, CVViewModel,)
+
+    @staticmethod
+    def init(self):
+        ManualCVForm.__init__(self)
+        CVViewModel.__init__(self)
+
+def get_view(label):
+    print label
+    if label == "AutomaticCV":
+        view = type("View", AutomaticCV.fathers, {"__init__":AutomaticCV.init})
+    elif label == "ManualCV":
+        view = type("View", ManualCV.fathers, {"__init__":ManualCV.init})
+    else:
+        raise TypeError("no view label correct")
+    return view
+
+View = get_view(VIEW_LABEL)
 
 

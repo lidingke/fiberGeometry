@@ -2,11 +2,14 @@ import cv2
 from pattern.meta import CV2MethodSet
 import numpy as np
 
+from setting.orderset import SETTING
 
-class ExtractEdge(CV2MethodSet):
+
+class ExtractEdge(object):
     """docstring for ExtractEdge"""
     def __init__(self, ):
         super(ExtractEdge, self).__init__()
+        self.SET = SETTING()
 
     # @timing
     def run(self, img):
