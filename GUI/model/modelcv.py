@@ -12,6 +12,7 @@ from setting.orderset import SETTING
 from pattern.exception import ClassCoreError, ClassOctagonError
 
 Set = SETTING('octagon')
+
 # setGet = Set.get('ifcamera', False)
 # fiberType = Set.get('fiberType', "G652")
 # print 'fibertype', fiberType, 'setget', setGet
@@ -65,7 +66,7 @@ class ModelCV(Thread, QObject):
             self.imgQueue.append(self.img)
             # self.sharp = "%0.2f" % self.isSharp.issharpla(img[::, ::, 0])
             self._greenLight(img)
-            self.sharp = "%0.2f" % self.green
+            self.sharp = "%0.2f" % self.red
             colorImg = self._decorateImg(img)
             self.returnImg.emit(colorImg[::2, ::2].copy(), self.sharp)
 
@@ -109,6 +110,8 @@ class ModelCV(Thread, QObject):
         time.sleep(0.3)
         self.getRawImg.unInitCamera()
 
+
+
     def _emitCVShowResult(self, result):
         sharp = self.sharp
         self.result2Show = copy.deepcopy(self.eresults)
@@ -147,6 +150,7 @@ class ModelCV(Thread, QObject):
             green = sliceImg(img[::, ::, 1], (corex, corey), maxRange)
             blue = sliceImg(img[::, ::, 2], (corex, corey), maxRange)
             self.allblue = img[::, ::, 2].sum() / 255
+            self.red = img[::,::,0].sum()/255
 
             self.green = green.sum() / 255
             self.blue = blue.sum() / 255

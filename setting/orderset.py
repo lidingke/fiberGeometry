@@ -12,11 +12,11 @@ SQLALCHEMY_DIR = "sqlite:///setting/cv_result.db"
 def singleton(class_):
     instance = {}
     def getinstance(*args,**kwargs):
-        if "printline" in args:
-            try:
-                raise ValueError('singleton line')
-            except Exception:
-                print 'trace', sys._getframe(1).f_code
+        # if "printline" in args:
+        #     try:
+        #         raise ValueError('singleton line')
+        #     except Exception:
+        #         print 'trace', sys._getframe(1).f_code
 
         if class_ not in instance:
             instance[class_] = class_(*args,**kwargs)

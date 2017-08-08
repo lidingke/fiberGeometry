@@ -37,6 +37,9 @@ class Model(Thread,QObject):
     def closeContact(self):
         self.slave.close()
 
+    def close(self):
+        print 'close slave'
+        self.slave.close()
 
 #接受串口com14发送的消息并显示到窗口上
 class Slave(Thread,QObject):

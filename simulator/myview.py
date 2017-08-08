@@ -8,11 +8,12 @@ from PyQt4.QtGui import QWidget, QMainWindow, QPainter, QFont,\
     QGraphicsWidget, QGraphicsScene
 
 from simulator.model import Model, Slave
-from simulator.myframeUI import Ui_Form as new_MainWindow
+from simulator.myframeUI import Ui_Form
 
 
-class Frame(QMainWindow, new_MainWindow,QObject):
+class Frame(QMainWindow, Ui_Form,QObject):
     emit_dir = pyqtSignal(object)#信号槽
+    emit_close = pyqtSignal()
     def __init__(self, ):
         super(Frame, self).__init__()
         self.setupUi(self)#初始化ui文件
@@ -31,7 +32,6 @@ class Frame(QMainWindow, new_MainWindow,QObject):
         self.fileName=QtGui.QFileDialog.getExistingDirectory(self,"Open IMG ",'',)
 
         for f in os.listdir(self.fileName):
-
            if f.endswith('.BMP'):
                self.inputLine.setText(self.fileName)
            else:
@@ -47,6 +47,8 @@ class Frame(QMainWindow, new_MainWindow,QObject):
     def closeContact(self):
         QtGui.QMessageBox.information(self,"get slave close","get slave close")
 
+    def closeEvent(self, *args, **kwargs):
+        self.emit_close.emit()
 
 
 class Controllers(object):
@@ -58,7 +60,7 @@ class Controllers(object):
         self.view.emit_dir.connect(self.mode.okContact)#将信号槽内容发送到mode里的确认操作
         self.mode.emitinfodao_dir.connect(self.view.getInfo)# 将信号槽内容发送到窗口的text当中
         self.view.closeButton.clicked.connect(self.mode.closeContact)
-
+        self.view.emit_close.connect(self.close)
 
     def show(self):
         # self.mode.start()
