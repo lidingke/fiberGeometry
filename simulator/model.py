@@ -34,7 +34,7 @@ class Model(Thread,QObject):
     def info(self,mystr):#接受slave中的信息并传到myview中
         self.emitinfodao_dir.emit(mystr)
 
-    def closeContact(self):
+    def close(self):
         self.slave.close()
 
 

@@ -1,3 +1,4 @@
+#coding=utf-8
 import threading
 import logging
 from time import sleep
@@ -14,9 +15,9 @@ from util.function import hex2str
 
 def test_set_online():
     logging.basicConfig(level=logging.INFO)
-    mode = LEDMode('com4')
+    mode = LEDMode('com13')#光端口
     # for i in range(10):
-    mode.set_current(c1st=800, c2st=500, c3st=100, savemode=True)
+    mode.set_current(c1st=800, c2st=500, c3st=100, savemode=True)#当前红光光强800
         # sleep(3)
         # mode.set_current(c1st=300, c2st=100, c3st=100)
         # sleep(3)
