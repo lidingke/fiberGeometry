@@ -1,7 +1,7 @@
 import cv2
 import os
 from random import choice
-import pdb
+# import pdb
 import numpy as np
 from pattern.meta import CV2MethodSet
 import sys
