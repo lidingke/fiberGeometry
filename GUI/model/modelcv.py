@@ -63,8 +63,9 @@ class ModelCV(Thread, QObject):
                 break
             self.img = img.copy()
             self.imgQueue.append(self.img)
-            self.sharp = "%0.2f" % self.isSharp.issharpla(img[::, ::, 0])
+            # self.sharp = "%0.2f" % self.isSharp.issharpla(img[::, ::, 0])
             self._greenLight(img)
+            self.sharp = "%0.2f" % self.green
             colorImg = self._decorateImg(img)
             self.returnImg.emit(colorImg[::2, ::2].copy(), self.sharp)
 
