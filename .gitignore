@@ -1,3 +1,4 @@
+IMGold
 *.db
 *.jpg
 .cache
@@ -39,3 +40,4 @@ tests/RI
 SDK/MindPyScript/test
 *.pickle
 
+/IMGold/

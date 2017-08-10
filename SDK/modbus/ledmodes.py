@@ -46,3 +46,7 @@ class LEDMode(object):
         cmd = set_current_cmd(**self.currents)
         logger.info('set current ' + hex2str(cmd))
         self.ser.write(cmd)
+
+
+    def set_current_by_colour(self,red,green,savemode = False):
+        self.set_current(c1st=red,c3st=green)
