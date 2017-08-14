@@ -35,7 +35,7 @@ logger = logging.getLogger(__name__)
 
 class ModelCV(Thread, QObject):
     """docstring for Model"""
-    returnImg = pyqtSignal(object, object)
+    returnImg = pyqtSignal(object, object,object)
     # returnATImg = pyqtSignal(object, object)
     resultShowCV = pyqtSignal(object)
     # resultShowAT = pyqtSignal(object)
@@ -63,11 +63,12 @@ class ModelCV(Thread, QObject):
                 break
             self.img = img.copy()
             self.imgQueue.append(self.img)
-            # self.sharp = "%0.2f" % self.isSharp.issharpla(img[::, ::, 0])
+            self.sharp = "%0.2f" % self.isSharp.issharpla(img[::, ::, 0])
             self._greenLight(img)
-            self.sharp = "%0.2f" % self.green
+            # self.sharp = "%0.2f" % self.red
+            self.lights="%0.2f" % self.red
             colorImg = self._decorateImg(img)
-            self.returnImg.emit(colorImg[::2, ::2].copy(), self.sharp)
+            self.returnImg.emit(colorImg[::4, ::4].copy(), self.sharp,self.lights)
 
     def mainCalculate(self):
         def _calcImg():
@@ -146,10 +147,13 @@ class ModelCV(Thread, QObject):
             minRange, maxRange = SETTING()["coreRange"]
             green = sliceImg(img[::, ::, 1], (corex, corey), maxRange)
             blue = sliceImg(img[::, ::, 2], (corex, corey), maxRange)
+            red=img[::,::,0]
             self.allblue = img[::, ::, 2].sum() / 255
 
             self.green = green.sum() / 255
             self.blue = blue.sum() / 255
+            self.red=red.sum()/(255*1544*3)
+
             self.allgreen = img[::, ::, 1].sum() / 255 - self.green
             self.pdfparameter['corelight'] = "%0.2f" % self.blue
             self.pdfparameter['cladlight'] = "%0.2f" % self.allgreen

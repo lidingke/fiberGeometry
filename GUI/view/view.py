@@ -69,7 +69,7 @@ class CVViewModel(object):
             self.factory.setText(para['producer'])
             self.fiberNumber.setText(para['fiberNo'])
 
-    def updatePixmap(self, arr, sharp):
+    def updatePixmap(self, arr, sharp,light):
 
         self.pximapimg = self._getPixmap(arr)
         self.scence.clear()
@@ -77,6 +77,7 @@ class CVViewModel(object):
 
         if hasattr(self, 'dynamicSharp'):
             self.dynamicSharp.setText(sharp)
+            self.light.setText(light)
             if self.isMaxSharp.isRight(sharp):
                 self.dynamicSharp.setStyleSheet("color:red")
             else:

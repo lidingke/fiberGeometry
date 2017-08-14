@@ -9,15 +9,19 @@ import numpy as np
 
 from SDK.mdpy import GetRawImg
 from threading import Thread
+
+from SDK.modbus.ledmodes import LEDMode
 from simulator.server import SeverMain
 from simulator.client import Client
 import time
 import logging
+
 logger = logging.getLogger(__name__)
 
 #通过tcp/ip协议传输指令修改预读取的图像
 class Model(Thread,QObject):
     emitinfodao_dir = pyqtSignal(object)# 新建信号槽，为接受slave中的信息
+
     def __init__(self):
         QObject.__init__(self)
         self.sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -34,8 +38,15 @@ class Model(Thread,QObject):
     def info(self,mystr):#接受slave中的信息并传到myview中
         self.emitinfodao_dir.emit(mystr)
 
+    def led_test(self,port,redlight,greenlight):
+        logging.basicConfig(level=logging.INFO)
+        mode = LEDMode(port)  # 光端口
+        mode.set_current(c1st=redlight, c2st=500, c3st=greenlight, savemode=True)  # 当前红光光强800
+
     def close(self):
         self.slave.close()
+
+
 
 
 #接受串口com14发送的消息并显示到窗口上

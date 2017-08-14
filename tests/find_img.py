@@ -1,7 +1,7 @@
 import re
 import os
 
-filepath = "E:/Python/newwork/tests"
+filepath = "E:\Python//fiberwmx//fiberGeometry//tests"
 
 pathDir = os.listdir(filepath)
 # pathlist=[]
@@ -11,7 +11,7 @@ for filename in pathDir:
         try:
             read = file.read()
             # print read
-            way = r"IMG.+[\\/]"
+            way = r"IMG[\\/].+[\\/]"
             img_way= re.compile(way)
             imgname = img_way.findall(read)
 
