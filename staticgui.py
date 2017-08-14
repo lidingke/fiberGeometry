@@ -1,7 +1,10 @@
 # coding:utf-8
 import logging
 
-logging.basicConfig(level=logging.ERROR)
+logging.basicConfig(filename="testlog.log",
+                    filemode="a", format="%(asctime)s-%(name)s-%(levelname)s-%(message)s",
+                    level=logging.WARNING)
+
 logger = logging.getLogger(__name__)
 
 from setting import config

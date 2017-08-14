@@ -1,6 +1,10 @@
 # coding:utf-8
 # from view import View
+import traceback
 from functools import partial
+
+import sys
+
 from GUI.view.monkey import MonkeyServer
 from setting.config import MODBUS_PORT
 from GUI.model.stateconf import state_number, CONTEXT
@@ -159,6 +163,8 @@ class ManualCVController(ModelCVControllerMixin, StateMixin):
     def close(self):
         logger.error("close controller")
         self._modelcv.close()
+        logger.error(traceback.format_exception(*sys.exc_info()))
+
 
 
 def get_controller(label):

@@ -20,7 +20,7 @@ class PickCircle(object):
     # @timing
     def run(self,img):
         blurindex = SETTING()["medianBlur"].get("corefilter", 3)
-
+        # raise ValueError("abc")
         img = cv2.medianBlur(img, blurindex)
         # cv2.imshow("img", img[::4, ::4])
         # cv2.waitKey()

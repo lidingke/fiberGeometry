@@ -2,9 +2,11 @@
 import collections
 import pdb
 import time
+import traceback
 from threading import Thread
 import copy
 import numpy as np
+import sys
 from PyQt4.QtCore import QObject, pyqtSignal
 
 from setting.config import PDF_PARAMETER, DB_PARAMETER, DYNAMIC_CAMERA
@@ -100,6 +102,7 @@ class ModelCV(Thread, QObject):
 
     def _decorateImg(self, img):
         """"mark the circle and size parameter"""
+        # raise  ValueError()
         img = drawCoreCircle(img)
         if self.result2Show:
             img = self.decorateMethod(img, self.result2Show)

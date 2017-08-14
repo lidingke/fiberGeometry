@@ -151,7 +151,7 @@ class DoubleCircleClassify(MetaClassify):
             coreimg = ExtractEdge().directThr(coreimg)
         # coreimg = ExtractEdge().run(coreimg)
         cladimg = ExtractEdge().run(cladimg)
-
+        # raise ValueError()
         # if 'thresholdSize' in sets.keys():
         #     hight = sets['thresholdSize'].get("clad",40)
         #
