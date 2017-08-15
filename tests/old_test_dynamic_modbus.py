@@ -8,7 +8,7 @@ import struct
 import time
 from random import randint
 import crcmod
-from util.function import hex2str
+from util.hexs import hex2str
 from SDK.modbusabs import SendTranslater as AbsSendTranslater
 from SDK.modbusabs import AbsModeBusMode
 import logging

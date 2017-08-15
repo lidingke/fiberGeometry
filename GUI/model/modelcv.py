@@ -102,7 +102,6 @@ class ModelCV(Thread, QObject):
 
     def _decorateImg(self, img):
         """"mark the circle and size parameter"""
-        # raise  ValueError()
         img = drawCoreCircle(img)
         if self.result2Show:
             img = self.decorateMethod(img, self.result2Show)
@@ -173,21 +172,3 @@ class ModelCV(Thread, QObject):
 
 
 
-import pdb
-class first():
-    def __init__(self):
-        print('first')
-
-class next():
-    def __init__(self):
-        print('next')
-
-class END(first,next):
-    def __init__(self):
-        mro = type(self).mro()
-        for m in mro:
-            m.__name__.endswith('first')
-            m.__init(self)
-        # pdb.set_trace()
-
-# END()

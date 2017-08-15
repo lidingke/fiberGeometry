@@ -7,7 +7,7 @@ import serial
 from GUI.model.stateconf import state_number
 from SDK.modbus.directions import MOTOR_STATE
 from SDK.modbus.modbusmerge import AbsModeBusModeByAxis
-from util.function import hex2str
+from util.hexs import hex2str
 import logging
 
 logger = logging.getLogger(__name__)

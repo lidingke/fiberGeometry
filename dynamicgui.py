@@ -4,7 +4,9 @@ config.DYNAMIC_CAMERA = True
 from setting.orderset import SETTING
 SETTING('MindVision500', 'Online', "G652", "centerImg")
 import logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(filename="setting\\testlog.log",
+                    filemode="a", format="%(asctime)s-%(name)s-%(levelname)s-%(message)s",
+                    level=logging.WARNING)
 import sys
 import os
 import pdb

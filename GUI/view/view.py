@@ -23,7 +23,7 @@ from pattern.sharp import MaxSharp
 from PyQt4.QtCore import QRect, Qt, QRectF
 from PyQt4.QtGui import QPixmap, QImage, QGraphicsScene
 import numpy as np
-from util.load import WriteReadJson, WRpickle
+from util.load import WriteReadJson, WRpickle, load_pickle_nor_json
 from datetime import datetime
 
 logger = logging.getLogger(__name__)
@@ -37,22 +37,17 @@ class CVViewModel(object):
         print "init cv view"
         self.scence = QGraphicsScene()
         self.graphicsView.setScene(self.scence)
-        self.isMaxSharp = MaxSharp()
+        # self.isMaxSharp = MaxSharp()
         self.beginTestCV.clicked.connect(self._disableCVButton)
         self.reporterCV.clicked.connect(self.writeReporterCV)
         self.emit_fibertype_in_items = MySignal()
+        self.last_save = {}
         self._last_data_init()
         self.emit_close_event = MySignal()
 
 
-
     def _last_data_init(self):
-        wrp = WRpickle("setting\\userdata.pickle")
-        try:
-            load = wrp.loadPick()
-        except IOError:
-            wrJson = WriteReadJson("setting\\userdata.json")
-            load = wrJson.load()
+        load = load_pickle_nor_json("setting\\userdata")
         types = load.get("fiberTypes")
         self.fiberTypeBox.addItems(types)
         # now = self.fiberTypeBox.currentText()
@@ -60,27 +55,32 @@ class CVViewModel(object):
 
         try:
             self.olddata = WriteReadJson('setting\\old.json')
-            para = self.olddata.load()
+            self.last_save = self.olddata.load()
         except ValueError:
             return
-        if para:
-            self.fiberLength.setText(para['fiberLength'])
-            self.Worker.setText(para['worker'])
-            self.factory.setText(para['producer'])
-            self.fiberNumber.setText(para['fiberNo'])
+        if self.last_save:
+            self.fiberLength.setText(self.last_save['fiberLength'])
+            self.Worker.setText(self.last_save['worker'])
+            self.factory.setText(self.last_save['producer'])
+            self.fiberNumber.setText(self.last_save['fiberNo'])
+
+
 
     def updatePixmap(self, arr, sharp):
-
-        self.pximapimg = self._getPixmap(arr)
+        if not isinstance(arr, np.ndarray):
+            raise ValueError('get Pixmap ERROR input')
+        height, width, bytesPerComponent = arr.shape
+        bytesPerLine = bytesPerComponent * width
+        img = QImage(arr.data, width, height, bytesPerLine, QImage.Format_RGB888)
+        # img = QImage(mapArray.flatten(), self.height, self.width, QImage.Format_Indexed8)
+        pximapimg = QPixmap.fromImage(img)
+         # = self._getPixmap(arr)
         self.scence.clear()
-        self.scence.addPixmap(self.pximapimg)
+        self.scence.addPixmap(pximapimg)
 
-        if hasattr(self, 'dynamicSharp'):
-            self.dynamicSharp.setText(sharp)
-            if self.isMaxSharp.isRight(sharp):
-                self.dynamicSharp.setStyleSheet("color:red")
-            else:
-                self.dynamicSharp.setStyleSheet("color:white")
+        # if hasattr(self, 'dynamicSharp'):
+        self.dynamicSharp.setText(sharp)
+
 
     def enable_move_button(self, is_move = True):
         print "set move", is_move
@@ -90,12 +90,12 @@ class CVViewModel(object):
         for move in moves:
             move.setEnabled(is_move)
 
-
-
-
     def closeEvent(self, *args, **kwargs):
-        if 'olddata' in SETTING().keys():
-            self.olddata.save(SETTING()['olddata'])
+        # if 'olddata' in SETTING().keys():
+        #     self.olddata.save(SETTING()['olddata'])
+        print('get last save')
+        print(self.last_save)
+        self.olddata.save(self.last_save)
         self.emit_close_event.emit()
 
 
@@ -126,7 +126,7 @@ class CVViewModel(object):
         para['date'] = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
         para['title'] = para['fibertype']+'光纤端面几何测试报告'
         PDF_PARAMETER.update(para)
-        SETTING()['olddata'] = para
+        self.last_save.update(para)
         Reporter(self)
         # print 'get in session'
         DB_PARAMETER.update(para)
@@ -134,22 +134,14 @@ class CVViewModel(object):
         session_add_by_account(DB_PARAMETER)
 
 
-    def getCoreLight(self, coreLight, cladLight):
-        if hasattr(self, "coreLight"):
-            self.coreLight.setText(coreLight)
-        if hasattr(self, "cladLight"):
-            self.cladLight.setText(cladLight)
+    # def getCoreLight(self, coreLight, cladLight):
+    #     if hasattr(self, "coreLight"):
+    #         self.coreLight.setText(coreLight)
+    #     if hasattr(self, "cladLight"):
+    #         self.cladLight.setText(cladLight)
 
 
-    def _getPixmap(self, mapArray):
-        if not isinstance(mapArray, np.ndarray):
-            raise ValueError('get Pixmap ERROR input')
-        height, width, bytesPerComponent = mapArray.shape
-        bytesPerLine = bytesPerComponent * width
-        img = QImage(mapArray.data, width, height, bytesPerLine, QImage.Format_RGB888)
-        # img = QImage(mapArray.flatten(), self.height, self.width, QImage.Format_Indexed8)
-        return QPixmap.fromImage(img)
-        # self.update()
+
 
 
 

@@ -1,5 +1,5 @@
 from SDK.modbus.modbusmerge import SendTranslater, AbsModeBusModeByAxis, ReadTranslater
-from util.function import hex2str
+from util.hexs import hex2str
 
 
 
