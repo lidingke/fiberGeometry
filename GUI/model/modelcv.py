@@ -21,7 +21,9 @@ Set = SETTING('octagon')
 if DYNAMIC_CAMERA:
     from SDK.mdpy import GetRawImg
 else:
-    from SDK.mdpytest import DynamicGetRawImgTest as GetRawImg
+    # from SDK.mdpytest import DynamicGetRawImgTest as GetRawImg
+    # 当摄像头关闭时，图像从文件夹读取
+    from simulator.model import DynamicGetRawImgTest as GetRawImg
 
     # from  SDK.mdpy import GetRawImgTest as GetRawImg
     # print 'script don\'t open camera'
@@ -38,7 +40,7 @@ logger = logging.getLogger(__name__)
 
 class ModelCV(Thread, QObject):
     """docstring for Model"""
-    returnImg = pyqtSignal(object, object)
+    returnImg = pyqtSignal(object, object,object)
     # returnATImg = pyqtSignal(object, object)
     resultShowCV = pyqtSignal(object)
     # resultShowAT = pyqtSignal(object)
@@ -56,8 +58,8 @@ class ModelCV(Thread, QObject):
         self.imgQueue = collections.deque(maxlen=5)
         self.classify = classifyObject("G652")
         self.decorateMethod = decorateMethod("G652")
-        self.pdfparameter = PDF_PARAMETER # SETTING()['pdfpara']
-        self.dbparameter = DB_PARAMETER #SETTING()['dbpara']
+        self.pdfparameter = PDF_PARAMETER  # SETTING()['pdfpara']
+        self.dbparameter = DB_PARAMETER  # SETTING()['dbpara']
 
     def run(self):
         while self.IS_RUNNING:
@@ -66,11 +68,13 @@ class ModelCV(Thread, QObject):
                 break
             self.img = img.copy()
             self.imgQueue.append(self.img)
-            # self.sharp = "%0.2f" % self.isSharp.issharpla(img[::, ::, 0])
+            self.sharp = "%0.2f" % self.isSharp.issharpla(img[::, ::, 0])
             self._greenLight(img)
-            self.sharp = "%0.2f" % self.red
+
+            self.sharp = "%0.2f" % self.sharp
+
             colorImg = self._decorateImg(img)
-            self.returnImg.emit(colorImg[::2, ::2].copy(), self.sharp)
+            self.returnImg.emit(colorImg[::4, ::4].copy(), self.sharp,self.lights)
 
     def mainCalculate(self):
         def _calcImg():
@@ -88,17 +92,16 @@ class ModelCV(Thread, QObject):
                 self._emitCVShowResult(AvgResult(results))
             except ClassCoreError as e:
                 logger.error('class core error')
-                self.resultShowCV.emit('error')
+                self.resultShowCV.emit('class core error')
                 return
             except ValueError as e:
                 logger.error(str(e))
-                self.resultShowCV.emit('error')
+                self.resultShowCV.emit(str(e))
                 return
             except Exception as e:
                 logger.exception(e)
 
         Thread(target=_calcImg).start()
-
 
     def _decorateImg(self, img):
         """"mark the circle and size parameter"""
@@ -111,8 +114,6 @@ class ModelCV(Thread, QObject):
         self.IS_RUNNING = False
         time.sleep(0.3)
         self.getRawImg.unInitCamera()
-
-
 
     def _emitCVShowResult(self, result):
         sharp = self.sharp
@@ -146,22 +147,23 @@ class ModelCV(Thread, QObject):
 
     def _greenLight(self, img):
         if isinstance(img, np.ndarray):
-            #TODO:SETTING
             corey, corex = SETTING()["corepoint"]
             minRange, maxRange = SETTING()["coreRange"]
             green = sliceImg(img[::, ::, 1], (corex, corey), maxRange)
             blue = sliceImg(img[::, ::, 2], (corex, corey), maxRange)
+            red=img[::,::,0]
             self.allblue = img[::, ::, 2].sum() / 255
-            self.red = img[::,::,0].sum()/255
+            self.red = img[::, ::, 0].sum() / 255
 
             self.green = green.sum() / 255
             self.blue = blue.sum() / 255
+            self.red=red.sum()/(255*1544*3)
+
             self.allgreen = img[::, ::, 1].sum() / 255 - self.green
             self.pdfparameter['corelight'] = "%0.2f" % self.blue
             self.pdfparameter['cladlight'] = "%0.2f" % self.allgreen
             self.returnCoreLight.emit("%0.2f" % (self.blue), "%0.2f" % (self.allgreen))
             # self.returnCladLight.emit()
-
 
     def updateClassifyObject(self, obj='G652'):
         self.classify = classifyObject(obj)
@@ -169,6 +171,3 @@ class ModelCV(Thread, QObject):
         self.result2Show = False
         # self.decorateMethod = decorateMethod(obj)
         self.decorateMethod = decorateMethod(obj)
-
-
-

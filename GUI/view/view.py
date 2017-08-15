@@ -1,5 +1,5 @@
-#coding:utf-8
-#branch dev
+# coding:utf-8
+# branch dev
 import threading
 from functools import partial
 
@@ -28,10 +28,11 @@ from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
+
 class CVViewModel(object):
     """docstring for View"""
 
-    def __init__(self,):
+    def __init__(self, ):
         # super(CVViewModel, self).__init__()
         # self.setupUi(self)
         print "init cv view"
@@ -44,7 +45,6 @@ class CVViewModel(object):
         self.last_save = {}
         self._last_data_init()
         self.emit_close_event = MySignal()
-
 
     def _last_data_init(self):
         load = load_pickle_nor_json("setting\\userdata")
@@ -65,7 +65,6 @@ class CVViewModel(object):
             self.fiberNumber.setText(self.last_save['fiberNo'])
 
 
-
     def updatePixmap(self, arr, sharp):
         if not isinstance(arr, np.ndarray):
             raise ValueError('get Pixmap ERROR input')
@@ -74,19 +73,20 @@ class CVViewModel(object):
         img = QImage(arr.data, width, height, bytesPerLine, QImage.Format_RGB888)
         # img = QImage(mapArray.flatten(), self.height, self.width, QImage.Format_Indexed8)
         pximapimg = QPixmap.fromImage(img)
-         # = self._getPixmap(arr)
+        # = self._getPixmap(arr)
+
         self.scence.clear()
         self.scence.addPixmap(pximapimg)
 
-        # if hasattr(self, 'dynamicSharp'):
+
         self.dynamicSharp.setText(sharp)
 
 
-    def enable_move_button(self, is_move = True):
+    def enable_move_button(self, is_move=True):
         print "set move", is_move
-        collections = ("move_down","move_up", "next_state",
-                       "move_right","move_left","reset")
-        moves = {getattr(self,c) for c in collections}
+        collections = ("move_down", "move_up", "next_state",
+                       "move_right", "move_left", "reset")
+        moves = {getattr(self, c) for c in collections}
         for move in moves:
             move.setEnabled(is_move)
 
@@ -98,22 +98,21 @@ class CVViewModel(object):
         self.olddata.save(self.last_save)
         self.emit_close_event.emit()
 
-
-    def updateCVShow(self,str_):
+    def updateCVShow(self, str_):
         if str_:
             self.resultShowCV.setText(str_)
         self._disableCVButton(True)
 
-    def _disableCVButton(self, bool = False):
+    def _disableCVButton(self, bool=False):
         self.beginTestCV.setEnabled(bool)
 
-    # def updateATShow(self,str_):
-    #     self.resultShowAT.setText(str_)
+        # def updateATShow(self,str_):
+        #     self.resultShowAT.setText(str_)
 
-    # def initGUI(self):
+        # def initGUI(self):
 
-            # print para['fibertypeindex'], int(para['fibertypeindex'])
-            # self.fiberTypeBox.setCurrentIndex(int(para['fibertypeindex']))
+        # print para['fibertypeindex'], int(para['fibertypeindex'])
+        # self.fiberTypeBox.setCurrentIndex(int(para['fibertypeindex']))
 
     def writeReporterCV(self):
         para = {}
@@ -124,7 +123,7 @@ class CVViewModel(object):
         para['fibertype'] = str(self.fiberTypeBox.currentText())
         para['fibertypeindex'] = str(self.fiberTypeBox.currentIndex())
         para['date'] = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
-        para['title'] = para['fibertype']+'光纤端面几何测试报告'
+        para['title'] = para['fibertype'] + '光纤端面几何测试报告'
         PDF_PARAMETER.update(para)
         self.last_save.update(para)
         Reporter(self)
@@ -134,31 +133,23 @@ class CVViewModel(object):
         session_add_by_account(DB_PARAMETER)
 
 
-    # def getCoreLight(self, coreLight, cladLight):
-    #     if hasattr(self, "coreLight"):
-    #         self.coreLight.setText(coreLight)
-    #     if hasattr(self, "cladLight"):
-    #         self.cladLight.setText(cladLight)
-
-
-
-
+        # def getCoreLight(self, coreLight, cladLight):
+        #     if hasattr(self, "coreLight"):
+        #         self.coreLight.setText(coreLight)
+        #     if hasattr(self, "cladLight"):
+        #         self.cladLight.setText(cladLight)
 
 
 class MyQGraphicsScene(QGraphicsScene):
-
-
     def __init__(self):
         QGraphicsScene.__init__(self)
         # super(MyQGraphicsScene, self).__init__()
-        self.rect_pos = [False,False]
+        self.rect_pos = [False, False]
         # self.setBspTreeDepth(1)
 
-    def mousePressEvent(self,event):
+    def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
             self.rect_pos[0] = event.scenePos()
-
-
 
     def mouseMoveEvent(self, event):
         self.rect_pos[1] = event.scenePos()
@@ -169,7 +160,6 @@ class MyQGraphicsScene(QGraphicsScene):
             top_left, bottom_right = self.rect_pos
             rect = QRectF(top_left, bottom_right)
             self.addRect(rect)
-
 
 
 # class View(AutomaticCVForm,CVViewModel):
@@ -183,14 +173,12 @@ class MyQGraphicsScene(QGraphicsScene):
 #         print cls.__mro__
 
 class AutomaticCV(object):
-
-    fathers = (AutomaticCVForm,CVViewModel,)
+    fathers = (AutomaticCVForm, CVViewModel,)
 
     @staticmethod
     def init(self):
         AutomaticCVForm.__init__(self)
         CVViewModel.__init__(self)
-
 
 
 class ManualCV(object):
@@ -201,16 +189,16 @@ class ManualCV(object):
         ManualCVForm.__init__(self)
         CVViewModel.__init__(self)
 
+
 def get_view(label):
     print label
     if label == "AutomaticCV":
-        view = type("View", AutomaticCV.fathers, {"__init__":AutomaticCV.init})
+        view = type("View", AutomaticCV.fathers, {"__init__": AutomaticCV.init})
     elif label == "ManualCV":
-        view = type("View", ManualCV.fathers, {"__init__":ManualCV.init})
+        view = type("View", ManualCV.fathers, {"__init__": ManualCV.init})
     else:
         raise TypeError("no view label correct")
     return view
 
+
 View = get_view(VIEW_LABEL)
-
-

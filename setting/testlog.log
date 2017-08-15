@@ -1,0 +1,19 @@
+2017-08-14 15:44:53,493-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-14 15:45:14,920-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-14 15:45:15,217-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-14 15:45:15,819-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-14 15:45:16,124-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-14 15:45:16,720-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-14 15:45:17,022-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-14 15:45:17,621-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-14 15:45:17,921-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-14 15:45:18,520-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-14 15:45:18,821-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-14 15:45:19,095-GUI.model.modelcv-ERROR-纤芯直径：    6.75
+包层直径：    13.99
+纤芯不圆度：  0.20
+包层不圆度：  0.03
+芯包同心度：  0.11
+None
+2017-08-14 15:45:58,693-GUI.controller-ERROR-close controller
+2017-08-14 15:45:59,303-GUI.controller-ERROR-['None\n']
