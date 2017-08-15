@@ -1,11 +1,15 @@
 #coding:utf-8
+import matplotlib;matplotlib.use("Qt4Agg")
+import matplotlib.pyplot as plt
 import socket
 import json
+
 import serial
 from PyQt4.QtCore import QString, pyqtSignal, QObject
 from tornado.ioloop import IOLoop
 from tornado.iostream import StreamClosedError
 import numpy as np
+
 
 from SDK.mdpy import GetRawImg
 from threading import Thread
@@ -24,11 +28,15 @@ class Model(Thread,QObject):
 
     def __init__(self):
         QObject.__init__(self)
-        self.sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-        self.sock.connect(("127.0.0.1", 9880))
+        # self.sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+        # self.sock.connect(("127.0.0.1", 9880))
         self.slave = Slave()  # 初始化Slave
         self.slave.start()  # 启动串口通信
         self.slave.emitinfo_dir.connect(self.info)
+        self.img_mode = GetRawImg()
+        self.input_list = []
+        self.output_list=[]
+        # self.dict={}
 
     def okContact(self,fileName):#接受信号槽的参数
         js=('randomImg',str(fileName))#qstring转化为string
@@ -43,8 +51,45 @@ class Model(Thread,QObject):
         mode = LEDMode(port)  # 光端口
         mode.set_current(c1st=redlight, c2st=500, c3st=greenlight, savemode=True)  # 当前红光光强800
 
+    def getIMGlight(self,redlight):
+
+        try:
+            self.img=self.img_mode.get()
+            self.red = (self.img[::, ::, 0]).sum()/(255*1544*3)
+            # self.dict[redlight]=self.red
+            print self.red
+            self.input_list.append(redlight)
+            self.output_list.append(self.red)
+            # print self.list
+            # print self.output_list
+        except Exception as e:
+            print "don't get img"
+            raise e
+
+    def plotlight(self):
+        # print self.list
+        # plt.plot(self.dict)
+
+        # d=sorted(self.dict.items())
+        # print d
+        # print self.dict
+        plt.plot(self.input_list,self.output_list)
+
+        # plt.plot(self.dict.keys(),self.dict.values())
+        plt.title("light")
+        plt.show()
+
+
+    def reset(self):
+        self.input_list=[]
+        self.output_list=[]
+
+
     def close(self):
+        # self.sock.close()
         self.slave.close()
+
+
 
 
 
@@ -84,7 +129,7 @@ class Slave(Thread,QObject):
         self.RUNNING = False
 
 
-#测试台窗口显示
+#测试台窗口显示静态图片
 class DynamicGetRawImgTest(GetRawImg):
     """docstring for getRawImg"""
     def __init__(self, host = '127.0.0.1', port = 9880):

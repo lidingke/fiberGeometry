@@ -18,7 +18,7 @@ class Frame(QMainWindow, new_MainWindow,QObject):
     emit_close=pyqtSignal()
     emit_Led=pyqtSignal(object,object,object)
     # emit_Led = pyqtSignal( object, object)
-    # emit_port=pyqtSignal(object)
+    emit_red=pyqtSignal(object)
     def __init__(self, ):
         super(Frame, self).__init__()
         self.setupUi(self)#初始化ui文件
@@ -27,15 +27,22 @@ class Frame(QMainWindow, new_MainWindow,QObject):
     def __initUI__(self):
         self.red_Slider.setMinimum(0)
         self.red_Slider.setMaximum(1000)
+        self.red_Slider.setPageStep(50)#鼠标点击步长
+
         self.green_Slider.setMinimum(0)
         self.green_Slider.setMaximum(1000)
+        self.green_Slider.setPageStep(50)
+
         self.connect(self.red_Slider, QtCore.SIGNAL('valueChanged(int)'),
                      self.getLight)#将滑块的valueChanged()信号与自定义的getlight()方法向连接
+
         self.connect(self.green_Slider, QtCore.SIGNAL('valueChanged(int)'),
                      self.getLight)  # 将滑块的valueChanged()信号与自定义的getlight()方法向连接
         self.connect(self.port, QtCore.SIGNAL('currentIndexChanged(int)'), self.getLight)
         self.loadButton.clicked.connect(self.loadContact)
         self.okButton.clicked.connect(self.okContact)
+
+
 
     def getInfo(self,mystr):
         self.textline.setText(mystr)
@@ -48,8 +55,7 @@ class Frame(QMainWindow, new_MainWindow,QObject):
         self.red_light.setText(str(red_light))
         self.green_light.setText(str(green_light))
         self.emit_Led.emit(str(port),red_light,green_light)
-        # self.emit_Led.emit(red_light,green_light)
-        # self.emit_port.emit(str(port))
+        self.emit_red.emit(red_light)
 
     def loadContact(self):
         self.fileName=QtGui.QFileDialog.getExistingDirectory(self,"Open IMG ",'',)
@@ -61,6 +67,7 @@ class Frame(QMainWindow, new_MainWindow,QObject):
            else:
                QtGui.QMessageBox.information(self, u"文件读取失败，不是BMP图像文件夹",
                                              u" \"%s\"不是BMP图像文件夹" % self.fileName)
+               self.inputLine.setText("")
                return
 
     def okContact(self):
@@ -82,6 +89,10 @@ class Controllers(object):
         self.mode.emitinfodao_dir.connect(self.view.getInfo)# 将信号槽内容发送到窗口的text当中
         self.view.emit_Led.connect(self.mode.led_test)
         self.view.emit_close.connect(self.close)
+        self.view.emit_red.connect(self.mode.getIMGlight)
+        self.view.red_Slider.valueChanged.connect(self.mode.getIMGlight)
+        self.view.light_collect.clicked.connect(self.mode.plotlight)
+        self.view.reset.clicked.connect(self.mode.reset)
 
 
     def show(self):

@@ -18,7 +18,9 @@ Set = SETTING('octagon')
 if DYNAMIC_CAMERA:
     from SDK.mdpy import GetRawImg
 else:
-    from SDK.mdpytest import DynamicGetRawImgTest as GetRawImg
+    # from SDK.mdpytest import DynamicGetRawImgTest as GetRawImg
+    # 当摄像头关闭时，图像从文件夹读取
+    from simulator.model import DynamicGetRawImgTest as GetRawImg
 
     # from  SDK.mdpy import GetRawImgTest as GetRawImg
     # print 'script don\'t open camera'

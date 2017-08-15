@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>591</width>
-    <height>390</height>
+    <height>392</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,174 +26,287 @@
     <string>请发送串口信息：</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>31</x>
-     <y>126</y>
-     <width>481</width>
-     <height>231</height>
+     <x>30</x>
+     <y>70</y>
+     <width>541</width>
+     <height>141</height>
     </rect>
    </property>
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>请选择文件夹：</string>
-      </property>
-     </widget>
+   <property name="title">
+    <string>静态显示：改变获取的图像文件夹</string>
+   </property>
+   <widget class="QPushButton" name="loadButton">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>30</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>选择</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="okButton">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>60</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>确认</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>84</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>请选择文件夹：</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="inputLine">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>30</y>
+      <width>221</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_4">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>220</y>
+     <width>541</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>动态显示：调整背景光亮度</string>
+   </property>
+   <widget class="QLabel" name="choose_light">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>84</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>请选择光串口：</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="port">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>30</y>
+      <width>201</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>com3</string>
+     </property>
     </item>
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="inputLine"/>
+    <item>
+     <property name="text">
+      <string>com1</string>
+     </property>
     </item>
-    <item row="0" column="2">
-     <widget class="QPushButton" name="loadButton">
-      <property name="text">
-       <string>选择</string>
-      </property>
-     </widget>
+    <item>
+     <property name="text">
+      <string>com2</string>
+     </property>
     </item>
-    <item row="1" column="2">
-     <widget class="QPushButton" name="okButton">
-      <property name="text">
-       <string>确认</string>
-      </property>
-     </widget>
+    <item>
+     <property name="text">
+      <string>com4</string>
+     </property>
     </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="choose_light">
-      <property name="text">
-       <string>请选择光串口：</string>
-      </property>
-     </widget>
+    <item>
+     <property name="text">
+      <string>com5</string>
+     </property>
     </item>
-    <item row="2" column="1">
-     <widget class="QComboBox" name="port">
-      <item>
-       <property name="text">
-        <string>com1</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>com2</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>com3</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>com4</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>com5</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>com6</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>com7</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>com8</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>com9</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>com10</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>com11</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>com12</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>com13</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>com14</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>com15</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>com16</string>
-       </property>
-      </item>
-     </widget>
+    <item>
+     <property name="text">
+      <string>com6</string>
+     </property>
     </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="change_red">
-      <property name="text">
-       <string>红光光强调节：</string>
-      </property>
-     </widget>
+    <item>
+     <property name="text">
+      <string>com7</string>
+     </property>
     </item>
-    <item row="3" column="1">
-     <widget class="QSlider" name="red_Slider">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
+    <item>
+     <property name="text">
+      <string>com8</string>
+     </property>
     </item>
-    <item row="3" column="2">
-     <widget class="QLabel" name="red_light">
-      <property name="text">
-       <string>0.0</string>
-      </property>
-     </widget>
+    <item>
+     <property name="text">
+      <string>com9</string>
+     </property>
     </item>
-    <item row="4" column="0">
-     <widget class="QLabel" name="change_green">
-      <property name="text">
-       <string>绿光光强调节：</string>
-      </property>
-     </widget>
+    <item>
+     <property name="text">
+      <string>com10</string>
+     </property>
     </item>
-    <item row="4" column="1">
-     <widget class="QSlider" name="green_Slider">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
+    <item>
+     <property name="text">
+      <string>com11</string>
+     </property>
     </item>
-    <item row="4" column="2">
-     <widget class="QLabel" name="green_light">
-      <property name="text">
-       <string>0.0</string>
-      </property>
-     </widget>
+    <item>
+     <property name="text">
+      <string>com12</string>
+     </property>
     </item>
-   </layout>
+    <item>
+     <property name="text">
+      <string>com13</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>com14</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>com15</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>com16</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="change_red">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>84</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>红光光强调节：</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="red_Slider">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>70</y>
+      <width>281</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="red_light">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>70</y>
+      <width>18</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0.0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="change_green">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>100</y>
+      <width>84</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>绿光光强调节：</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="green_Slider">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>100</y>
+      <width>281</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="green_light">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>100</y>
+      <width>18</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0.0</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="light_collect">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>30</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>背景光数据统计</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="reset">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>30</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>重测</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

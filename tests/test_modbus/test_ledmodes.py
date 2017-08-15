@@ -15,7 +15,7 @@ from util.function import hex2str
 
 def test_set_online(light):
     logging.basicConfig(level=logging.INFO)
-    mode = LEDMode('com3')#光端口
+    mode = LEDMode('com15')#光端口
     # for i in range(10):
 
     mode.set_current(c1st=600, c2st=500, c3st=100, savemode=True)#当前红光光强800
@@ -29,7 +29,7 @@ def test_set_current_cmd():
     assert hex2str(cmd).upper() == "01 10 00 01 00 04 08 00 00 00 00 00 00 00 00 4B B9"
 
 
-def ttest_LEDMode_offline():
+def test_LEDMode_offline():
     logging.basicConfig(level=logging.INFO)
     slave = SlaveByDelay()
     slave.start()
