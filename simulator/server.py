@@ -11,7 +11,7 @@ import sys
 import os
 import cv2
 import numpy as np
-from simulator.methods import randomImg, getImage
+from .methods import randomImg, getImage
 import time
 from random import randint, uniform
 from threading import Thread
@@ -226,3 +226,5 @@ if __name__ == "__main__":
     server.listen(port)
     logger.info("Listening on TCP port %d", port)
     IOLoop.current().start()
+    # port = 9880
+    # SeverMain(port)

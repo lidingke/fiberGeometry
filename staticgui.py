@@ -34,7 +34,7 @@ if __name__ == '__main__':
     pt = QPalette()
     pt.setColor(QPalette.Background, QColor(4, 159, 241))
     app.setPalette(pt)
-    label = config.VIEW_LABEL
+    label = config.VIEW_LABEL#label为AutomaticCV
     controller = get_controller(label)
     view = get_view(label)
     print view.__dict__, type(view)

@@ -64,6 +64,7 @@ class CVViewModel(object):
             self.factory.setText(self.last_save['producer'])
             self.fiberNumber.setText(self.last_save['fiberNo'])
 
+
     def updatePixmap(self, arr, sharp):
         if not isinstance(arr, np.ndarray):
             raise ValueError('get Pixmap ERROR input')
@@ -73,11 +74,13 @@ class CVViewModel(object):
         # img = QImage(mapArray.flatten(), self.height, self.width, QImage.Format_Indexed8)
         pximapimg = QPixmap.fromImage(img)
         # = self._getPixmap(arr)
+
         self.scence.clear()
         self.scence.addPixmap(pximapimg)
 
-        # if hasattr(self, 'dynamicSharp'):
+
         self.dynamicSharp.setText(sharp)
+
 
     def enable_move_button(self, is_move=True):
         print "set move", is_move
