@@ -1,5 +1,5 @@
-#coding:utf-8
-originHTML =  '''
+# coding:utf-8
+originHTML = '''
 <!DOCTYPE html>
 <html>
 

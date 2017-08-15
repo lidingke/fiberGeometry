@@ -56,8 +56,8 @@ class ModelCV(Thread, QObject):
         self.imgQueue = collections.deque(maxlen=5)
         self.classify = classifyObject("G652")
         self.decorateMethod = decorateMethod("G652")
-        self.pdfparameter = PDF_PARAMETER # SETTING()['pdfpara']
-        self.dbparameter = DB_PARAMETER #SETTING()['dbpara']
+        self.pdfparameter = PDF_PARAMETER  # SETTING()['pdfpara']
+        self.dbparameter = DB_PARAMETER  # SETTING()['dbpara']
 
     def run(self):
         while self.IS_RUNNING:
@@ -88,17 +88,16 @@ class ModelCV(Thread, QObject):
                 self._emitCVShowResult(AvgResult(results))
             except ClassCoreError as e:
                 logger.error('class core error')
-                self.resultShowCV.emit('error')
+                self.resultShowCV.emit('class core error')
                 return
             except ValueError as e:
                 logger.error(str(e))
-                self.resultShowCV.emit('error')
+                self.resultShowCV.emit(str(e))
                 return
             except Exception as e:
                 logger.exception(e)
 
         Thread(target=_calcImg).start()
-
 
     def _decorateImg(self, img):
         """"mark the circle and size parameter"""
@@ -111,8 +110,6 @@ class ModelCV(Thread, QObject):
         self.IS_RUNNING = False
         time.sleep(0.3)
         self.getRawImg.unInitCamera()
-
-
 
     def _emitCVShowResult(self, result):
         sharp = self.sharp
@@ -146,13 +143,12 @@ class ModelCV(Thread, QObject):
 
     def _greenLight(self, img):
         if isinstance(img, np.ndarray):
-            #TODO:SETTING
             corey, corex = SETTING()["corepoint"]
             minRange, maxRange = SETTING()["coreRange"]
             green = sliceImg(img[::, ::, 1], (corex, corey), maxRange)
             blue = sliceImg(img[::, ::, 2], (corex, corey), maxRange)
             self.allblue = img[::, ::, 2].sum() / 255
-            self.red = img[::,::,0].sum()/255
+            self.red = img[::, ::, 0].sum() / 255
 
             self.green = green.sum() / 255
             self.blue = blue.sum() / 255
@@ -162,13 +158,9 @@ class ModelCV(Thread, QObject):
             self.returnCoreLight.emit("%0.2f" % (self.blue), "%0.2f" % (self.allgreen))
             # self.returnCladLight.emit()
 
-
     def updateClassifyObject(self, obj='G652'):
         self.classify = classifyObject(obj)
         self.eresults = False
         self.result2Show = False
         # self.decorateMethod = decorateMethod(obj)
         self.decorateMethod = decorateMethod(obj)
-
-
-
