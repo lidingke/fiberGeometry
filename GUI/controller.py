@@ -109,7 +109,8 @@ class ModelCVControllerMixin(object):
 
         self._modelcv.returnImg.connect(self._view.updatePixmap)
         self._modelcv.resultShowCV.connect(self._view.updateCVShow)
-        self._modelcv.returnCoreLight.connect(self._view.getCoreLight)
+        self._modelcv.emit_relative_index.connect(self._view.relative_index_show)
+        # self._modelcv.returnCoreLight.connect(self._view.getCoreLight)
 
     def _changeFiberType(self):
         key = str(self._view.fiberTypeBox.currentText())

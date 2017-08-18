@@ -6,6 +6,8 @@ from pattern.meta import CV2MethodSet
 from pattern.sizefilter import inner_fill, outer_fill
 from pattern.edge import ExtractEdge
 from util.filter import MedianLimitFilter, MedianFilter
+import logging
+logger = logging.getLogger(__name__)
 
 class MetaClassify(CV2MethodSet):
     """docstring for MetaClassify"""
@@ -150,7 +152,10 @@ class DoubleCircleClassify(MetaClassify):
         else:
             coreimg = ExtractEdge().directThr(coreimg)
         # coreimg = ExtractEdge().run(coreimg)
+
+
         cladimg = ExtractEdge().run(cladimg)
+        # cladimg = cv2.medianBlur(cladimg,11)
         # raise ValueError()
         # if 'thresholdSize' in sets.keys():
         #     hight = sets['thresholdSize'].get("clad",40)
@@ -159,14 +164,16 @@ class DoubleCircleClassify(MetaClassify):
         # else:
         #     cladimg = ExtractEdge().directThr(cladimg)
         # cladimg = cv2.bilateralFilter(cladimg, 20, 80, 75)
-        # cv2.imshow("cladimg edge", cladimg[::4,::4])
+        # cv2.imshow("cladimg edge", coreimg[::4,::4])
         # cv2.waitKey()
 
         coreResult = PickCircle().run(coreimg)
-        # print 'get diff'
-        cladResult = PickCircle().run(cladimg)
+        # # print 'get diff'
+        # cladResult = PickCircle().run(cladimg)
+        # coreResult = PickHullCircle().run(coreimg)
+        cladResult = PickHullCircle().run(cladimg)
 
-        print 'amp',self.SET['ampPixSize'], self.SET['fiberType']
+        logger.info('amp:{}:{}'.format(self.SET['ampPixSize'], self.SET['fiberType']))
         self.result['core'] = coreResult['ellipese']
         self.result['coreResult'] = coreResult
         self.result['clad'] = cladResult['ellipese']

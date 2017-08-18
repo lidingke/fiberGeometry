@@ -29,7 +29,7 @@ else:
     # print 'script don\'t open camera'
 from pattern.classify import classifyObject
 from pattern.sharp import IsSharp
-from pattern.draw import DecorateImg, drawCoreCircle, decorateMethod
+from pattern.draw import DecorateImg, drawCoreCircle, decorateMethod, output_axies_plot_to_matplot
 from util.filter import AvgResult
 from util.loadimg import sliceImg
 
@@ -45,6 +45,7 @@ class ModelCV(Thread, QObject):
     resultShowCV = pyqtSignal(object)
     # resultShowAT = pyqtSignal(object)
     returnCoreLight = pyqtSignal(object, object)
+    emit_relative_index = pyqtSignal(object)
 
     def __init__(self, ):
         super(ModelCV, self).__init__()
@@ -71,10 +72,10 @@ class ModelCV(Thread, QObject):
             self.sharp = "%0.2f" % self.isSharp.issharpla(img[::, ::, 0])
             self._greenLight(img)
 
-            self.sharp = "%0.2f" % self.sharp
+            self.light = "%0.2f" % self.red
 
             colorImg = self._decorateImg(img)
-            self.returnImg.emit(colorImg[::4, ::4].copy(), self.sharp,self.lights)
+            self.returnImg.emit(colorImg[::2, ::2].copy(), self.sharp,self.light)
 
     def mainCalculate(self):
         def _calcImg():
@@ -89,7 +90,9 @@ class ModelCV(Thread, QObject):
                     result = self.eresults["showResult"]
                     logger.info('get result' + str(result))
                     results.append(result)
+                    last_result = (self.eresults['core'][0],img)
                 self._emitCVShowResult(AvgResult(results))
+                self.relaxtive_index_to_matplot(*last_result)
             except ClassCoreError as e:
                 logger.error('class core error')
                 self.resultShowCV.emit('class core error')
@@ -162,7 +165,7 @@ class ModelCV(Thread, QObject):
             self.allgreen = img[::, ::, 1].sum() / 255 - self.green
             self.pdfparameter['corelight'] = "%0.2f" % self.blue
             self.pdfparameter['cladlight'] = "%0.2f" % self.allgreen
-            self.returnCoreLight.emit("%0.2f" % (self.blue), "%0.2f" % (self.allgreen))
+            # self.returnCoreLight.emit("%0.2f" % (self.blue), "%0.2f" % (self.allgreen))
             # self.returnCladLight.emit()
 
     def updateClassifyObject(self, obj='G652'):
@@ -171,3 +174,10 @@ class ModelCV(Thread, QObject):
         self.result2Show = False
         # self.decorateMethod = decorateMethod(obj)
         self.decorateMethod = decorateMethod(obj)
+
+
+    def relaxtive_index_to_matplot(self,core,img):
+        print "relaxtive_index_to_matplot"
+        plots = output_axies_plot_to_matplot(core,img)
+        self.emit_relative_index.emit(plots)
+

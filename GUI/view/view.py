@@ -5,12 +5,15 @@ from functools import partial
 
 from PyQt4.QtCore import QObject
 from PyQt4.QtCore import pyqtSignal
+from PyQt4.QtGui import QWidget
+
 from GUI.UI.mainUI import Ui_MainWindow as new_MainWindow
 from GUI.view.opplot import OpticalPlot
 import cv2
 
 from GUI.model.models import session_add_by_account
 from GUI.view.uiview import ManualCVForm, AutomaticCVForm
+from GUI.view.mplqt4 import MyMplCanvas
 from setting.config import VIEW_LABEL, PDF_PARAMETER, DB_PARAMETER
 from setting.orderset import SETTING
 
@@ -41,6 +44,7 @@ class CVViewModel(object):
         # self.isMaxSharp = MaxSharp()
         self.beginTestCV.clicked.connect(self._disableCVButton)
         self.reporterCV.clicked.connect(self.writeReporterCV)
+        self.relative_index_canvas = MyMplCanvas(QWidget(self.RIShow), width=5, height=4, dpi=100)
         self.emit_fibertype_in_items = MySignal()
         self.last_save = {}
         self._last_data_init()
@@ -64,8 +68,7 @@ class CVViewModel(object):
             self.factory.setText(self.last_save['producer'])
             self.fiberNumber.setText(self.last_save['fiberNo'])
 
-
-    def updatePixmap(self, arr, sharp):
+    def updatePixmap(self, arr, sharp, light):
         if not isinstance(arr, np.ndarray):
             raise ValueError('get Pixmap ERROR input')
         height, width, bytesPerComponent = arr.shape
@@ -78,9 +81,8 @@ class CVViewModel(object):
         self.scence.clear()
         self.scence.addPixmap(pximapimg)
 
-
         self.dynamicSharp.setText(sharp)
-
+        self.light.setText(light)
 
     def enable_move_button(self, is_move=True):
         print "set move", is_move
@@ -98,10 +100,13 @@ class CVViewModel(object):
         self.olddata.save(self.last_save)
         self.emit_close_event.emit()
 
-    def updateCVShow(self, str_):
+    def updateCVShow(self, str_,):
+        print "get plots"
         if str_:
             self.resultShowCV.setText(str_)
         self._disableCVButton(True)
+
+        # self.relative_index_canvas.update_figure(*plots)
 
     def _disableCVButton(self, bool=False):
         self.beginTestCV.setEnabled(bool)
@@ -138,6 +143,11 @@ class CVViewModel(object):
         #         self.coreLight.setText(coreLight)
         #     if hasattr(self, "cladLight"):
         #         self.cladLight.setText(cladLight)
+
+    def relative_index_show(self, plots):
+        # x,h,y,v = plots
+        print "get in view show"
+        self.relative_index_canvas.update_figure(*plots)
 
 
 class MyQGraphicsScene(QGraphicsScene):

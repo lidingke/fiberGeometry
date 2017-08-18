@@ -11,7 +11,7 @@ from PyQt4.QtGui import QWidget, QMainWindow, QPainter, QFont,\
 
 
 from .model import Model, Slave
-from .myframeUI import Ui_Form as new_MainWindow
+from .myframeUI import Ui_Form
 
 
 class Frame(QMainWindow, Ui_Form,QObject):
@@ -91,10 +91,6 @@ class Controllers(object):
         self.mode = Model()#初始化Model
         self.view.emit_dir.connect(self.mode.okContact)#将信号槽内容发送到mode里的确认操作
         self.mode.emitinfodao_dir.connect(self.view.getInfo)# 将信号槽内容发送到窗口的text当中
-<<<<<<< HEAD
-        self.view.closeButton.clicked.connect(self.mode.closeContact)
-        self.view.emit_close.connect(self.close)
-=======
         self.view.emit_Led.connect(self.mode.led_test)
         self.view.emit_close.connect(self.close)
         self.view.emit_red.connect(self.mode.getIMGlight)
@@ -102,7 +98,6 @@ class Controllers(object):
         self.view.light_collect.clicked.connect(self.mode.plotlight)
         self.view.reset.clicked.connect(self.mode.reset)
 
->>>>>>> 721ef98ec86f0b0dfa6f4de8e6b5e458d2b6bf3d
 
     def show(self):
         # self.mode.start()

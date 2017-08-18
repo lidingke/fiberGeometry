@@ -17,3 +17,3242 @@
 None
 2017-08-14 15:45:58,693-GUI.controller-ERROR-close controller
 2017-08-14 15:45:59,303-GUI.controller-ERROR-['None\n']
+2017-08-16 09:06:12,108-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 09:06:54,832-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 09:07:04,608-GUI.controller-ERROR-close controller
+2017-08-16 09:07:05,483-GUI.controller-ERROR-['None\n']
+2017-08-16 09:07:31,676-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 09:08:19,924-GUI.controller-ERROR-close controller
+2017-08-16 09:08:20,763-GUI.controller-ERROR-['None\n']
+2017-08-16 09:08:22,890-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 09:09:00,388-GUI.controller-ERROR-close controller
+2017-08-16 09:09:00,858-GUI.controller-ERROR-['None\n']
+2017-08-16 09:09:03,394-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 09:09:07,671-GUI.controller-ERROR-close controller
+2017-08-16 09:09:08,029-GUI.controller-ERROR-['None\n']
+2017-08-16 09:10:13,724-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 09:10:24,882-GUI.controller-ERROR-close controller
+2017-08-16 09:10:25,398-GUI.controller-ERROR-['None\n']
+2017-08-16 09:12:53,214-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 09:12:58,414-GUI.controller-ERROR-close controller
+2017-08-16 09:12:58,900-GUI.controller-ERROR-['None\n']
+2017-08-16 09:13:11,959-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 09:13:26,464-GUI.model.modelcv-ERROR-纤芯直径：    7.63
+包层直径：    190.55
+纤芯不圆度：  0.09
+包层不圆度：  3.72
+芯包同心度：  0.77
+None
+2017-08-16 09:13:36,361-GUI.model.modelcv-ERROR-纤芯直径：    15.97
+包层直径：    375.23
+纤芯不圆度：  0.11
+包层不圆度：  7.25
+芯包同心度：  1.57
+None
+2017-08-16 09:13:55,875-GUI.model.modelcv-ERROR-纤芯直径：    15.96
+包层直径：    375.20
+纤芯不圆度：  0.15
+包层不圆度：  7.08
+芯包同心度：  1.60
+None
+2017-08-16 09:14:11,782-GUI.model.modelcv-ERROR-纤芯直径：    15.96
+包层直径：    375.26
+纤芯不圆度：  0.08
+包层不圆度：  7.60
+芯包同心度：  1.65
+None
+2017-08-16 09:14:18,088-GUI.model.modelcv-ERROR-纤芯直径：    15.97
+包层直径：    375.26
+纤芯不圆度：  0.14
+包层不圆度：  7.25
+芯包同心度：  1.63
+None
+2017-08-16 09:14:25,312-GUI.model.modelcv-ERROR-纤芯直径：    15.96
+包层直径：    375.24
+纤芯不圆度：  0.12
+包层不圆度：  7.22
+芯包同心度：  1.63
+None
+2017-08-16 09:14:41,492-GUI.model.modelcv-ERROR-纤芯直径：    269.30
+包层直径：    372.96
+纤芯不圆度：  144.37
+包层不圆度：  7.24
+芯包同心度：  100.05
+None
+2017-08-16 09:15:03,994-GUI.model.modelcv-ERROR-纤芯直径：    15.97
+包层直径：    375.26
+纤芯不圆度：  0.13
+包层不圆度：  8.69
+芯包同心度：  1.70
+None
+2017-08-16 09:15:12,401-GUI.model.modelcv-ERROR-纤芯直径：    15.97
+包层直径：    375.25
+纤芯不圆度：  0.14
+包层不圆度：  8.76
+芯包同心度：  1.72
+None
+2017-08-16 09:15:22,911-GUI.model.modelcv-ERROR-纤芯直径：    15.97
+包层直径：    375.18
+纤芯不圆度：  0.13
+包层不圆度：  8.27
+芯包同心度：  1.66
+None
+2017-08-16 09:15:29,516-GUI.model.modelcv-ERROR-纤芯直径：    15.96
+包层直径：    375.19
+纤芯不圆度：  0.07
+包层不圆度：  8.42
+芯包同心度：  1.73
+None
+2017-08-16 09:15:35,209-GUI.model.modelcv-ERROR-纤芯直径：    15.97
+包层直径：    375.20
+纤芯不圆度：  0.13
+包层不圆度：  8.69
+芯包同心度：  1.71
+None
+2017-08-16 09:15:40,907-GUI.model.modelcv-ERROR-纤芯直径：    15.97
+包层直径：    375.28
+纤芯不圆度：  0.10
+包层不圆度：  8.90
+芯包同心度：  1.72
+None
+2017-08-16 09:15:46,614-GUI.model.modelcv-ERROR-纤芯直径：    15.98
+包层直径：    375.19
+纤芯不圆度：  0.11
+包层不圆度：  8.47
+芯包同心度：  1.67
+None
+2017-08-16 09:16:37,630-GUI.model.modelcv-ERROR-纤芯直径：    15.97
+包层直径：    375.30
+纤芯不圆度：  0.10
+包层不圆度：  8.81
+芯包同心度：  1.74
+None
+2017-08-16 09:18:43,055-GUI.model.modelcv-ERROR-纤芯直径：    15.94
+包层直径：    377.14
+纤芯不圆度：  0.12
+包层不圆度：  2.73
+芯包同心度：  0.45
+None
+2017-08-16 09:18:48,349-GUI.controller-ERROR-close controller
+2017-08-16 09:18:48,881-GUI.controller-ERROR-['None\n']
+2017-08-16 09:25:07,892-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 09:25:14,654-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:25:14,967-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:25:15,265-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:25:15,562-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:25:15,858-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:25:16,174-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:25:16,467-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:25:16,763-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:25:17,075-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:25:17,361-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:25:17,423-GUI.model.modelcv-ERROR-纤芯直径：    7.71
+包层直径：    192.39
+纤芯不圆度：  0.07
+包层不圆度：  0.49
+芯包同心度：  0.18
+None
+2017-08-16 09:30:30,637-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:30:30,937-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:30:31,237-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:30:31,538-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:30:31,838-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:30:32,138-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:30:32,438-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:30:32,740-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:30:33,039-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:30:33,339-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:30:33,403-GUI.model.modelcv-ERROR-纤芯直径：    16.13
+包层直径：    378.81
+纤芯不圆度：  0.15
+包层不圆度：  0.99
+芯包同心度：  0.41
+None
+2017-08-16 09:31:34,849-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:31:35,151-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:31:35,450-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:31:35,750-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:31:36,052-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:31:36,351-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:31:36,651-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:31:36,953-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:31:37,262-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:31:37,562-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:31:37,608-GUI.model.modelcv-ERROR-纤芯直径：    16.14
+包层直径：    377.53
+纤芯不圆度：  0.16
+包层不圆度：  2.08
+芯包同心度：  0.52
+None
+2017-08-16 09:31:51,651-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:31:51,957-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:31:52,257-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:31:52,558-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:31:52,858-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:31:53,167-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:31:53,460-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:31:53,760-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:31:54,061-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:31:54,361-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:31:54,414-GUI.model.modelcv-ERROR-纤芯直径：    16.12
+包层直径：    378.77
+纤芯不圆度：  0.15
+包层不圆度：  1.01
+芯包同心度：  0.42
+None
+2017-08-16 09:33:24,384-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:24,686-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:24,986-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:25,286-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:25,586-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:25,887-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:26,187-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:26,486-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:26,786-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:27,086-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:27,134-GUI.model.modelcv-ERROR-纤芯直径：    16.13
+包层直径：    378.83
+纤芯不圆度：  0.15
+包层不圆度：  1.12
+芯包同心度：  0.40
+None
+2017-08-16 09:33:30,676-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:30,990-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:31,276-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:31,576-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:31,891-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:32,191-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:32,476-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:32,786-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:33,085-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:33,385-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:33,440-GUI.model.modelcv-ERROR-纤芯直径：    16.13
+包层直径：    378.75
+纤芯不圆度：  0.15
+包层不圆度：  1.15
+芯包同心度：  0.36
+None
+2017-08-16 09:33:49,584-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:49,884-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:50,180-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:50,486-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:50,786-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:51,086-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:51,387-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:51,687-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:51,989-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:52,289-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:33:52,342-GUI.model.modelcv-ERROR-纤芯直径：    16.12
+包层直径：    378.73
+纤芯不圆度：  0.15
+包层不圆度：  1.00
+芯包同心度：  0.71
+None
+2017-08-16 09:39:23,832-GUI.controller-ERROR-close controller
+2017-08-16 09:39:24,174-GUI.controller-ERROR-['None\n']
+2017-08-16 09:39:30,500-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 09:39:37,724-GUI.controller-ERROR-close controller
+2017-08-16 09:39:38,125-GUI.controller-ERROR-['None\n']
+2017-08-16 09:39:49,190-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 09:39:57,061-GUI.controller-ERROR-close controller
+2017-08-16 09:39:57,799-GUI.controller-ERROR-['None\n']
+2017-08-16 09:40:28,104-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 09:40:37,217-GUI.controller-ERROR-close controller
+2017-08-16 09:40:37,703-GUI.controller-ERROR-['None\n']
+2017-08-16 09:40:50,338-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 09:40:54,243-GUI.controller-ERROR-close controller
+2017-08-16 09:40:54,914-GUI.controller-ERROR-['None\n']
+2017-08-16 09:42:07,000-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 09:42:12,105-GUI.controller-ERROR-close controller
+2017-08-16 09:42:12,589-GUI.controller-ERROR-['None\n']
+2017-08-16 09:42:21,815-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 09:42:44,920-GUI.controller-ERROR-close controller
+2017-08-16 09:42:45,575-GUI.controller-ERROR-['None\n']
+2017-08-16 09:42:50,476-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 09:43:32,542-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:43:32,842-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:43:33,142-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:43:33,431-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:43:33,733-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:43:34,032-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:43:34,332-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:43:34,634-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:43:34,948-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:43:35,234-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:43:35,299-GUI.model.modelcv-ERROR-纤芯直径：    7.71
+包层直径：    192.44
+纤芯不圆度：  0.11
+包层不圆度：  0.34
+芯包同心度：  0.29
+None
+2017-08-16 09:46:23,880-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:46:24,181-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:46:24,480-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:46:24,780-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:46:25,081-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:46:25,382-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:46:25,678-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:46:25,973-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:46:26,273-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:46:26,575-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:46:26,628-GUI.model.modelcv-ERROR-纤芯直径：    16.13
+包层直径：    377.88
+纤芯不圆度：  0.17
+包层不圆度：  1.44
+芯包同心度：  0.32
+None
+2017-08-16 09:48:04,996-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:48:05,309-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:48:05,628-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:48:05,908-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:48:06,211-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:48:06,510-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:48:06,798-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:48:07,114-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:48:07,411-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:48:07,711-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:48:07,772-GUI.model.modelcv-ERROR-纤芯直径：    16.11
+包层直径：    378.73
+纤芯不圆度：  0.17
+包层不圆度：  0.83
+芯包同心度：  0.32
+None
+2017-08-16 09:48:34,716-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:48:35,016-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:48:35,316-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:48:35,617-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:48:35,917-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:48:36,214-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:48:36,516-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:48:36,803-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:48:37,105-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:48:37,423-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:48:37,473-GUI.model.modelcv-ERROR-纤芯直径：    16.12
+包层直径：    378.82
+纤芯不圆度：  0.20
+包层不圆度：  0.86
+芯包同心度：  0.35
+None
+2017-08-16 09:49:29,029-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:49:29,322-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:49:29,622-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:49:29,924-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:49:30,217-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:49:30,526-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:49:30,818-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:49:31,134-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:49:31,417-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:49:31,732-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:49:31,786-GUI.model.modelcv-ERROR-纤芯直径：    16.08
+包层直径：    379.78
+纤芯不圆度：  0.20
+包层不圆度：  1.24
+芯包同心度：  0.45
+None
+2017-08-16 09:50:20,351-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:50:20,634-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:50:20,940-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:50:21,230-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:50:21,532-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:50:21,835-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:50:22,132-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:50:22,433-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:50:22,733-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:50:23,043-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:50:23,101-GUI.model.modelcv-ERROR-纤芯直径：    16.08
+包层直径：    380.51
+纤芯不圆度：  0.19
+包层不圆度：  4.16
+芯包同心度：  0.65
+None
+2017-08-16 09:53:07,779-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:53:08,081-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:53:08,380-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:53:08,680-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:53:08,982-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:53:09,282-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:53:09,604-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:53:09,999-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:53:10,480-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:53:10,780-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:53:10,844-GUI.model.modelcv-ERROR-纤芯直径：    16.09
+包层直径：    379.81
+纤芯不圆度：  0.14
+包层不圆度：  1.30
+芯包同心度：  0.44
+None
+2017-08-16 09:53:21,884-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:53:22,184-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:53:22,484-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:53:22,790-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:53:23,084-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:53:23,387-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:53:23,694-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:53:23,992-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:53:24,290-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:53:24,595-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:53:24,657-GUI.model.modelcv-ERROR-纤芯直径：    16.09
+包层直径：    379.81
+纤芯不圆度：  0.16
+包层不圆度：  1.47
+芯包同心度：  0.45
+None
+2017-08-16 09:54:27,000-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:54:27,299-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:54:27,601-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:54:27,901-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:54:28,201-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:54:28,502-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:54:28,802-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:54:29,102-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:54:29,403-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:54:29,703-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:54:29,766-GUI.model.modelcv-ERROR-纤芯直径：    16.10
+包层直径：    378.49
+纤芯不圆度：  0.18
+包层不圆度：  2.07
+芯包同心度：  1.01
+None
+2017-08-16 09:57:08,140-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:57:08,440-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:57:08,740-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:57:09,042-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:57:09,342-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:57:09,641-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:57:09,941-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:57:10,242-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:57:10,542-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:57:10,842-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 09:57:10,890-GUI.model.modelcv-ERROR-纤芯直径：    16.06
+包层直径：    380.41
+纤芯不圆度：  0.20
+包层不圆度：  4.17
+芯包同心度：  0.55
+None
+2017-08-16 10:09:52,729-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:09:53,029-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:09:53,328-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:09:53,632-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:09:53,933-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:09:54,233-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:09:54,533-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:09:54,834-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:09:55,134-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:09:55,434-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:09:55,480-GUI.model.modelcv-ERROR-纤芯直径：    16.14
+包层直径：    378.75
+纤芯不圆度：  0.16
+包层不圆度：  0.56
+芯包同心度：  0.32
+None
+2017-08-16 10:10:44,938-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:10:45,239-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:10:45,539-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:10:45,839-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:10:46,140-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:10:46,440-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:10:46,740-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:10:47,049-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:10:47,335-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:10:47,650-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:10:47,701-GUI.model.modelcv-ERROR-纤芯直径：    16.13
+包层直径：    378.76
+纤芯不圆度：  0.22
+包层不圆度：  1.05
+芯包同心度：  0.26
+None
+2017-08-16 10:15:29,414-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:15:29,711-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:15:30,013-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:15:30,316-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:15:30,617-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:15:30,917-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:15:31,207-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:15:31,512-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:15:31,818-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:15:32,118-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:15:32,177-GUI.model.modelcv-ERROR-纤芯直径：    16.12
+包层直径：    378.77
+纤芯不圆度：  0.19
+包层不圆度：  0.73
+芯包同心度：  0.28
+None
+2017-08-16 10:19:32,470-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:19:32,770-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:19:33,072-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:19:33,371-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:19:33,671-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:19:33,973-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:19:34,273-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:19:34,573-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:19:34,872-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:19:35,171-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:19:35,226-GUI.model.modelcv-ERROR-纤芯直径：    16.17
+包层直径：    378.80
+纤芯不圆度：  0.05
+包层不圆度：  1.63
+芯包同心度：  0.10
+None
+2017-08-16 10:19:48,973-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:19:49,273-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:19:49,572-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:19:49,872-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:19:50,177-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:19:50,476-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:19:50,779-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:19:51,079-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:19:51,382-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:19:51,680-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:19:51,743-GUI.model.modelcv-ERROR-纤芯直径：    16.17
+包层直径：    379.40
+纤芯不圆度：  0.06
+包层不圆度：  1.53
+芯包同心度：  0.08
+None
+2017-08-16 10:23:44,240-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:23:44,532-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:23:44,832-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:23:45,132-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:23:45,433-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:23:45,733-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:23:46,032-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:23:46,332-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:23:46,632-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:23:46,933-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:23:46,986-GUI.model.modelcv-ERROR-纤芯直径：    16.12
+包层直径：    379.23
+纤芯不圆度：  0.07
+包层不圆度：  2.89
+芯包同心度：  1.31
+None
+2017-08-16 10:23:52,937-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:23:53,236-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:23:53,538-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:23:53,829-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:23:54,128-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:23:54,437-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:23:54,736-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:23:55,036-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:23:55,336-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:23:55,637-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:23:55,690-GUI.model.modelcv-ERROR-纤芯直径：    16.14
+包层直径：    379.41
+纤芯不圆度：  0.07
+包层不圆度：  3.08
+芯包同心度：  1.14
+None
+2017-08-16 10:24:01,331-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:24:01,638-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:24:01,938-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:24:02,240-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:24:02,539-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:24:02,841-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:24:03,141-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:24:03,441-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:24:03,743-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:24:04,042-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:24:04,089-GUI.model.modelcv-ERROR-纤芯直径：    16.14
+包层直径：    380.06
+纤芯不圆度：  0.07
+包层不圆度：  2.76
+芯包同心度：  0.62
+None
+2017-08-16 10:24:10,345-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:24:10,648-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:24:10,931-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:24:11,234-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:24:11,532-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:24:11,832-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:24:12,134-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:24:12,434-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:24:12,749-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:24:13,038-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:24:13,092-GUI.model.modelcv-ERROR-纤芯直径：    16.13
+包层直径：    379.55
+纤芯不圆度：  0.08
+包层不圆度：  3.01
+芯包同心度：  1.03
+None
+2017-08-16 10:26:46,084-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:26:46,384-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:26:46,668-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:26:46,980-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:26:47,279-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:26:47,579-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:26:47,880-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:26:48,180-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:26:48,480-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:26:48,780-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:26:48,844-GUI.model.modelcv-ERROR-纤芯直径：    206.69
+包层直径：    378.06
+纤芯不圆度：  121.66
+包层不圆度：  1.47
+芯包同心度：  119.25
+None
+2017-08-16 10:26:59,882-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:00,178-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:00,483-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:00,789-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:01,091-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:01,391-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:01,693-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:01,983-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:02,278-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:02,578-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:02,641-GUI.model.modelcv-ERROR-纤芯直径：    16.17
+包层直径：    379.51
+纤芯不圆度：  0.06
+包层不圆度：  0.99
+芯包同心度：  0.36
+None
+2017-08-16 10:27:06,782-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:07,082-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:07,382-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:07,683-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:07,983-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:08,283-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:08,584-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:08,884-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:09,184-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:09,486-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:09,548-GUI.model.modelcv-ERROR-纤芯直径：    16.17
+包层直径：    379.52
+纤芯不圆度：  0.05
+包层不圆度：  0.96
+芯包同心度：  0.35
+None
+2017-08-16 10:27:13,983-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:14,285-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:14,585-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:14,885-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:15,190-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:15,486-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:15,786-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:16,082-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:16,382-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:16,694-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:16,742-GUI.model.modelcv-ERROR-纤芯直径：    16.17
+包层直径：    379.51
+纤芯不圆度：  0.07
+包层不圆度：  8.58
+芯包同心度：  0.72
+None
+2017-08-16 10:27:22,380-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:22,684-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:22,984-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:23,286-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:23,585-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:23,885-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:24,193-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:24,483-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:24,783-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:25,084-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:27:25,153-GUI.model.modelcv-ERROR-纤芯直径：    16.18
+包层直径：    379.53
+纤芯不圆度：  0.06
+包层不圆度：  1.08
+芯包同心度：  0.34
+None
+2017-08-16 10:30:59,944-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:31:00,233-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:31:00,546-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:31:00,845-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:31:01,144-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:31:01,446-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:31:01,737-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:31:02,046-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:31:02,345-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:31:02,645-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:31:02,698-GUI.model.modelcv-ERROR-纤芯直径：    16.18
+包层直径：    378.72
+纤芯不圆度：  0.04
+包层不圆度：  1.17
+芯包同心度：  0.34
+None
+2017-08-16 10:31:35,654-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:31:35,956-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:31:36,256-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:31:36,555-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:31:36,855-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:31:37,157-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:31:37,457-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:31:37,757-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:31:38,062-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:31:38,358-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:31:38,405-GUI.model.modelcv-ERROR-纤芯直径：    16.16
+包层直径：    379.39
+纤芯不圆度：  0.06
+包层不圆度：  1.11
+芯包同心度：  0.37
+None
+2017-08-16 10:32:16,165-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:32:16,473-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:32:16,767-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:32:17,059-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:32:17,371-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:32:17,655-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:32:17,960-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:32:18,272-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:32:18,561-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:32:18,869-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:32:18,921-GUI.model.modelcv-ERROR-纤芯直径：    16.15
+包层直径：    379.77
+纤芯不圆度：  0.04
+包层不圆度：  1.15
+芯包同心度：  0.37
+None
+2017-08-16 10:32:59,085-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:32:59,378-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:32:59,677-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:32:59,974-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:00,273-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:00,572-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:00,874-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:01,178-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:01,476-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:01,773-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:01,828-GUI.model.modelcv-ERROR-纤芯直径：    16.14
+包层直径：    259.44
+纤芯不圆度：  0.05
+包层不圆度：  443.34
+芯包同心度：  134.81
+None
+2017-08-16 10:33:07,766-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:08,066-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:08,367-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:08,667-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:08,967-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:09,267-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:09,568-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:09,878-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:10,180-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:10,476-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:10,539-GUI.model.modelcv-ERROR-纤芯直径：    16.15
+包层直径：    228.85
+纤芯不圆度：  0.05
+包层不圆度：  394.59
+芯包同心度：  62.01
+None
+2017-08-16 10:33:24,868-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:25,186-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:25,484-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:25,786-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:26,085-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:26,384-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:26,687-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:26,990-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:27,270-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:27,586-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:33:27,641-GUI.model.modelcv-ERROR-纤芯直径：    16.16
+包层直径：    380.86
+纤芯不圆度：  0.04
+包层不圆度：  2.31
+芯包同心度：  0.54
+None
+2017-08-16 10:34:32,099-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:34:32,401-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:34:32,700-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:34:33,000-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:34:33,303-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:34:33,602-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:34:33,904-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:34:34,203-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:34:34,503-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:34:34,808-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:34:34,858-GUI.model.modelcv-ERROR-纤芯直径：    16.17
+包层直径：    379.85
+纤芯不圆度：  0.06
+包层不圆度：  1.14
+芯包同心度：  0.39
+None
+2017-08-16 10:36:23,115-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:36:23,414-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:36:23,717-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:36:24,019-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:36:24,331-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:36:24,619-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:36:24,917-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:36:25,230-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:36:25,523-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:36:25,822-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:36:25,884-GUI.model.modelcv-ERROR-纤芯直径：    16.18
+包层直径：    379.01
+纤芯不圆度：  0.06
+包层不圆度：  1.11
+芯包同心度：  0.41
+None
+2017-08-16 10:38:17,141-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:38:17,457-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:38:17,753-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:38:18,058-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:38:18,364-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:38:18,657-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:38:18,960-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:38:19,256-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:38:19,559-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:38:19,842-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:38:19,904-GUI.model.modelcv-ERROR-纤芯直径：    16.17
+包层直径：    379.47
+纤芯不圆度：  0.04
+包层不圆度：  0.97
+芯包同心度：  0.37
+None
+2017-08-16 10:41:08,792-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:41:09,092-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:41:09,391-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:41:09,693-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:41:09,992-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:41:10,292-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:41:10,604-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:41:10,903-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:41:11,196-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:41:11,496-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:41:11,543-GUI.model.modelcv-ERROR-纤芯直径：    16.16
+包层直径：    380.05
+纤芯不圆度：  0.07
+包层不圆度：  1.43
+芯包同心度：  0.41
+None
+2017-08-16 10:42:28,908-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:42:29,214-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:42:29,519-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:42:29,808-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:42:30,108-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:42:30,407-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:42:30,716-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:42:31,009-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:42:31,309-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:42:31,608-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:42:31,671-GUI.model.modelcv-ERROR-纤芯直径：    16.18
+包层直径：    379.32
+纤芯不圆度：  0.04
+包层不圆度：  0.92
+芯包同心度：  0.38
+None
+2017-08-16 10:52:14,654-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:52:14,956-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:52:15,259-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:52:15,555-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:52:15,855-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:52:16,155-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:52:16,457-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:52:16,757-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:52:17,058-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:52:17,358-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:52:17,411-GUI.model.modelcv-ERROR-纤芯直径：    16.40
+包层直径：    375.79
+纤芯不圆度：  0.11
+包层不圆度：  3.94
+芯包同心度：  0.57
+None
+2017-08-16 10:53:56,678-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:53:56,980-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:53:57,279-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:53:57,578-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:53:57,882-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:53:58,184-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:53:58,486-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:53:58,779-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:53:59,078-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:53:59,378-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:53:59,457-GUI.model.modelcv-ERROR-纤芯直径：    16.33
+包层直径：    377.13
+纤芯不圆度：  0.14
+包层不圆度：  4.80
+芯包同心度：  0.52
+None
+2017-08-16 10:55:15,299-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:55:15,599-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:55:15,908-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:55:16,210-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:55:16,509-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:55:16,809-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:55:17,109-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:55:17,411-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:55:17,707-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:55:18,002-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:55:18,065-GUI.model.modelcv-ERROR-纤芯直径：    16.26
+包层直径：    383.28
+纤芯不圆度：  0.10
+包层不圆度：  17.96
+芯包同心度：  3.00
+None
+2017-08-16 10:56:23,713-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:56:24,013-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:56:24,315-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:56:24,615-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:56:24,915-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:56:25,216-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:56:25,516-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:56:25,826-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:56:26,128-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:56:26,427-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:56:26,474-GUI.model.modelcv-ERROR-纤芯直径：    16.29
+包层直径：    383.13
+纤芯不圆度：  0.11
+包层不圆度：  17.23
+芯包同心度：  2.93
+None
+2017-08-16 10:56:36,318-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:56:36,618-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:56:36,918-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:56:37,223-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:56:37,529-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:56:37,829-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:56:38,115-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:56:38,421-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:56:38,721-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:56:39,029-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:56:39,076-GUI.model.modelcv-ERROR-纤芯直径：    16.36
+包层直径：    376.33
+纤芯不圆度：  0.10
+包层不圆度：  4.43
+芯包同心度：  0.58
+None
+2017-08-16 10:57:14,124-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:57:14,424-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:57:14,736-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:57:15,039-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:57:15,341-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:57:15,640-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:57:15,934-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:57:16,234-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:57:16,535-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:57:16,835-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:57:16,898-GUI.model.modelcv-ERROR-纤芯直径：    16.35
+包层直径：    376.36
+纤芯不圆度：  0.13
+包层不圆度：  4.33
+芯包同心度：  0.60
+None
+2017-08-16 10:59:59,473-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 10:59:59,773-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:00:00,075-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:00:00,375-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:00:00,676-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:00:00,976-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:00:01,276-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:00:01,578-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:00:01,878-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:00:02,167-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:00:02,232-GUI.model.modelcv-ERROR-纤芯直径：    16.38
+包层直径：    375.59
+纤芯不圆度：  0.13
+包层不圆度：  4.12
+芯包同心度：  0.56
+None
+2017-08-16 11:00:47,782-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:00:48,082-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:00:48,375-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:00:48,684-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:00:48,983-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:00:49,283-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:00:49,584-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:00:49,881-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:00:50,183-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:00:50,490-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:00:50,545-GUI.model.modelcv-ERROR-纤芯直径：    16.37
+包层直径：    375.65
+纤芯不圆度：  0.16
+包层不圆度：  3.99
+芯包同心度：  0.57
+None
+2017-08-16 11:03:44,528-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:03:44,828-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:03:45,128-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:03:45,428-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:03:45,729-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:03:46,029-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:03:46,329-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:03:46,630-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:03:46,930-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:03:47,233-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:03:47,280-GUI.model.modelcv-ERROR-纤芯直径：    16.42
+包层直径：    376.27
+纤芯不圆度：  0.11
+包层不圆度：  3.51
+芯包同心度：  0.46
+None
+2017-08-16 11:04:57,752-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:04:58,053-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:04:58,338-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:04:58,654-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:04:58,954-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:04:59,242-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:04:59,555-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:04:59,855-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:05:00,155-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:05:00,448-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 11:05:00,502-GUI.model.modelcv-ERROR-纤芯直径：    16.41
+包层直径：    376.27
+纤芯不圆度：  0.15
+包层不圆度：  3.53
+芯包同心度：  0.49
+None
+2017-08-16 11:43:49,668-GUI.controller-ERROR-close controller
+2017-08-16 11:43:50,555-GUI.controller-ERROR-['None\n']
+2017-08-16 11:56:13,319-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 12:02:51,569-GUI.controller-ERROR-close controller
+2017-08-16 12:02:52,871-GUI.controller-ERROR-['None\n']
+2017-08-16 14:05:16,163-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 14:05:59,466-GUI.controller-ERROR-close controller
+2017-08-16 14:06:00,038-GUI.controller-ERROR-['None\n']
+2017-08-16 14:06:22,415-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 14:06:26,691-GUI.controller-ERROR-close controller
+2017-08-16 14:06:27,029-GUI.controller-ERROR-['None\n']
+2017-08-16 14:23:29,674-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 14:24:04,029-GUI.controller-ERROR-close controller
+2017-08-16 14:24:04,410-GUI.controller-ERROR-['None\n']
+2017-08-16 14:24:06,714-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 14:24:17,903-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 14:24:18,503-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 14:24:19,104-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 14:24:19,704-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 14:24:20,305-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 14:24:20,358-GUI.model.modelcv-ERROR-纤芯直径：    16.63
+包层直径：    380.67
+纤芯不圆度：  0.16
+包层不圆度：  3.11
+芯包同心度：  0.50
+None
+2017-08-16 14:24:29,002-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 14:24:29,602-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 14:24:30,198-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 14:24:30,803-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 14:24:30,819-GUI.model.modelcv-ERROR-..\..\..\src\opencv\modules\imgproc\src\shapedescr.cpp:799: error: (-201) Number of points should be >= 5
+Traceback (most recent call last):
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\GUI\model\modelcv.py", line 88, in _calcImg
+    self.eresults = self.classify.find(img)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\classify.py", line 169, in find
+    cladResult = PickHullCircle().run(cladimg)
+  File "D:\MyProjects\WorkProject\opencv4fiber\geomety\pattern\pickmethod.py", line 72, in run
+    ellipse = cv2.fitEllipse(hull)
+error: ..\..\..\src\opencv\modules\imgproc\src\shapedescr.cpp:799: error: (-201) Number of points should be >= 5
+
+2017-08-16 14:25:19,734-GUI.controller-ERROR-close controller
+2017-08-16 14:25:20,704-GUI.controller-ERROR-['None\n']
+2017-08-16 14:47:29,894-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 14:48:43,493-GUI.controller-ERROR-close controller
+2017-08-16 14:48:44,130-GUI.controller-ERROR-['None\n']
+2017-08-16 14:48:46,548-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 14:48:55,618-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 14:48:56,213-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 14:48:56,822-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 14:48:57,414-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 14:48:58,022-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 14:48:58,075-GUI.model.modelcv-ERROR-纤芯直径：    8.82
+包层直径：    192.04
+纤芯不圆度：  0.02
+包层不圆度：  0.98
+芯包同心度：  0.49
+None
+2017-08-16 14:49:01,865-GUI.controller-ERROR-close controller
+2017-08-16 14:49:02,217-GUI.controller-ERROR-['None\n']
+2017-08-16 15:11:37,263-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-16 15:12:10,316-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:12:10,918-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:12:11,519-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:12:12,121-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:12:12,720-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:12:12,775-GUI.model.modelcv-ERROR-纤芯直径：    9.20
+包层直径：    193.80
+纤芯不圆度：  0.05
+包层不圆度：  1.39
+芯包同心度：  0.38
+None
+2017-08-16 15:12:20,214-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:12:20,826-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:12:21,430-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:12:22,019-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:12:22,618-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:12:22,673-GUI.model.modelcv-ERROR-纤芯直径：    18.65
+包层直径：    381.59
+纤芯不圆度：  0.09
+包层不圆度：  2.67
+芯包同心度：  0.75
+None
+2017-08-16 15:14:16,647-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:14:17,250-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:14:17,852-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:14:18,453-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:14:19,055-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:14:19,117-GUI.model.modelcv-ERROR-纤芯直径：    18.64
+包层直径：    381.51
+纤芯不圆度：  0.05
+包层不圆度：  2.69
+芯包同心度：  0.74
+None
+2017-08-16 15:14:23,851-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:14:24,450-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:14:25,051-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:14:25,653-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:14:26,253-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:14:26,306-GUI.model.modelcv-ERROR-纤芯直径：    18.64
+包层直径：    381.50
+纤芯不圆度：  0.07
+包层不圆度：  2.66
+芯包同心度：  0.75
+None
+2017-08-16 15:14:33,161-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:14:33,759-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:14:34,359-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:14:34,961-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:14:35,563-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:14:35,625-GUI.model.modelcv-ERROR-纤芯直径：    18.63
+包层直径：    381.52
+纤芯不圆度：  0.07
+包层不圆度：  2.67
+芯包同心度：  0.71
+None
+2017-08-16 15:14:39,453-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:14:40,053-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:14:40,664-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:14:41,265-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:14:41,865-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:14:41,913-GUI.model.modelcv-ERROR-纤芯直径：    18.63
+包层直径：    381.49
+纤芯不圆度：  0.10
+包层不圆度：  2.74
+芯包同心度：  0.75
+None
+2017-08-16 15:15:57,178-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:15:57,776-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:15:58,377-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:15:58,977-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:15:59,578-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:15:59,647-GUI.model.modelcv-ERROR-纤芯直径：    18.49
+包层直径：    380.69
+纤芯不圆度：  0.05
+包层不圆度：  2.77
+芯包同心度：  0.61
+None
+2017-08-16 15:16:04,684-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:05,286-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:05,885-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:06,486-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:07,088-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:07,148-GUI.model.modelcv-ERROR-纤芯直径：    18.49
+包层直径：    380.74
+纤芯不圆度：  0.04
+包层不圆度：  2.93
+芯包同心度：  0.61
+None
+2017-08-16 15:16:11,273-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:11,874-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:12,474-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:13,075-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:13,677-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:13,746-GUI.model.modelcv-ERROR-纤芯直径：    18.49
+包层直径：    472.74
+纤芯不圆度：  0.07
+包层不圆度：  163.31
+芯包同心度：  78.26
+None
+2017-08-16 15:16:21,783-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:22,390-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:22,986-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:23,588-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:24,181-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:24,253-GUI.model.modelcv-ERROR-纤芯直径：    18.48
+包层直径：    408.02
+纤芯不圆度：  0.07
+包层不圆度：  52.92
+芯包同心度：  23.92
+None
+2017-08-16 15:16:29,890-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:30,490-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:31,092-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:31,693-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:32,293-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:32,348-GUI.model.modelcv-ERROR-纤芯直径：    18.49
+包层直径：    407.65
+纤芯不圆度：  0.06
+包层不圆度：  53.73
+芯包同心度：  23.99
+None
+2017-08-16 15:16:36,795-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:37,394-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:37,996-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:38,595-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:39,181-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:39,249-GUI.model.modelcv-ERROR-纤芯直径：    18.50
+包层直径：    380.71
+纤芯不圆度：  0.04
+包层不圆度：  2.75
+芯包同心度：  0.60
+None
+2017-08-16 15:16:43,986-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:44,585-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:45,197-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:45,789-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:46,391-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:46,444-GUI.model.modelcv-ERROR-纤芯直径：    18.50
+包层直径：    380.68
+纤芯不圆度：  0.04
+包层不圆度：  2.89
+芯包同心度：  0.60
+None
+2017-08-16 15:16:50,895-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:51,496-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:52,096-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:52,697-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:53,298-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:16:53,351-GUI.model.modelcv-ERROR-纤芯直径：    18.49
+包层直径：    380.72
+纤芯不圆度：  0.06
+包层不圆度：  2.93
+芯包同心度：  0.61
+None
+2017-08-16 15:17:06,493-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:17:07,095-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:17:07,694-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:17:08,295-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:17:08,911-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:17:08,963-GUI.model.modelcv-ERROR-纤芯直径：    18.47
+包层直径：    380.68
+纤芯不圆度：  0.07
+包层不圆度：  2.78
+芯包同心度：  0.61
+None
+2017-08-16 15:17:53,911-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:17:54,512-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:17:55,114-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:17:55,713-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:17:56,315-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:17:56,368-GUI.model.modelcv-ERROR-纤芯直径：    18.48
+包层直径：    471.47
+纤芯不圆度：  0.11
+包层不圆度：  161.02
+芯包同心度：  76.97
+None
+2017-08-16 15:18:10,417-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:11,016-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:11,608-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:12,217-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:12,803-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:12,872-GUI.model.modelcv-ERROR-纤芯直径：    18.48
+包层直径：    380.66
+纤芯不圆度：  0.08
+包层不圆度：  2.89
+芯包同心度：  0.61
+None
+2017-08-16 15:18:17,611-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:18,217-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:18,812-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:19,413-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:20,013-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:20,082-GUI.model.modelcv-ERROR-纤芯直径：    18.48
+包层直径：    380.71
+纤芯不圆度：  0.10
+包层不圆度：  2.85
+芯包同心度：  0.61
+None
+2017-08-16 15:18:24,505-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:25,105-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:25,707-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:26,322-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:26,921-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:26,970-GUI.model.modelcv-ERROR-纤芯直径：    18.49
+包层直径：    409.73
+纤芯不圆度：  0.08
+包层不圆度：  52.32
+芯包同心度：  24.91
+None
+2017-08-16 15:18:31,723-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:32,308-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:32,927-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:33,523-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:34,124-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:34,173-GUI.model.modelcv-ERROR-纤芯直径：    18.48
+包层直径：    410.63
+纤芯不圆度：  0.11
+包层不圆度：  54.62
+芯包同心度：  25.74
+None
+2017-08-16 15:18:44,920-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:45,510-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:46,112-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:46,713-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:47,313-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:47,382-GUI.model.modelcv-ERROR-纤芯直径：    18.49
+包层直径：    410.72
+纤芯不圆度：  0.06
+包层不圆度：  55.05
+芯包同心度：  25.72
+None
+2017-08-16 15:18:53,322-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:53,924-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:54,525-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:55,127-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:55,726-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:55,789-GUI.model.modelcv-ERROR-纤芯直径：    18.49
+包层直径：    380.64
+纤芯不圆度：  0.08
+包层不圆度：  2.81
+芯包同心度：  0.61
+None
+2017-08-16 15:18:59,331-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:18:59,928-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:19:00,529-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:19:01,115-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:19:01,717-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:19:01,786-GUI.model.modelcv-ERROR-纤芯直径：    18.49
+包层直径：    410.89
+纤芯不圆度：  0.07
+包层不圆度：  56.07
+芯包同心度：  26.19
+None
+2017-08-16 15:19:47,039-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:19:47,640-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:19:48,224-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:19:48,842-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:19:49,433-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:19:49,496-GUI.model.modelcv-ERROR-纤芯直径：    18.49
+包层直径：    438.22
+纤芯不圆度：  0.06
+包层不圆度：  106.65
+芯包同心度：  49.72
+None
+2017-08-16 15:19:53,342-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:19:53,941-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:19:54,542-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:19:55,144-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:19:55,730-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:19:55,799-GUI.model.modelcv-ERROR-纤芯直径：    18.50
+包层直径：    380.70
+纤芯不圆度：  0.07
+包层不圆度：  2.67
+芯包同心度：  0.62
+None
+2017-08-16 15:20:00,835-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:01,437-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:02,038-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:02,638-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:03,233-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:03,293-GUI.model.modelcv-ERROR-纤芯直径：    18.50
+包层直径：    406.35
+纤芯不圆度：  0.07
+包层不圆度：  50.21
+芯包同心度：  22.70
+None
+2017-08-16 15:20:06,842-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:07,440-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:08,042-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:08,642-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:09,233-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:09,296-GUI.model.modelcv-ERROR-纤芯直径：    18.50
+包层直径：    409.77
+纤芯不圆度：  0.07
+包层不圆度：  53.84
+芯包同心度：  25.33
+None
+2017-08-16 15:20:32,637-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:33,252-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:33,852-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:34,453-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:35,039-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:35,108-GUI.model.modelcv-ERROR-纤芯直径：    18.47
+包层直径：    379.61
+纤芯不圆度：  0.03
+包层不圆度：  3.10
+芯包同心度：  0.88
+None
+2017-08-16 15:20:40,144-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:40,744-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:41,346-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:41,947-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:42,549-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:42,602-GUI.model.modelcv-ERROR-纤芯直径：    18.47
+包层直径：    379.56
+纤芯不圆度：  0.04
+包层不圆度：  3.10
+芯包同心度：  0.93
+None
+2017-08-16 15:20:47,052-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:47,655-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:48,257-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:48,858-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:49,450-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:49,512-GUI.model.modelcv-ERROR-纤芯直径：    18.48
+包层直径：    379.57
+纤芯不圆度：  0.04
+包层不圆度：  3.17
+芯包同心度：  0.90
+None
+2017-08-16 15:20:57,854-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:58,454-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:59,055-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:20:59,657-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:21:00,259-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:21:00,321-GUI.model.modelcv-ERROR-纤芯直径：    18.49
+包层直径：    379.54
+纤芯不圆度：  0.04
+包层不圆度：  3.11
+芯包同心度：  0.93
+None
+2017-08-16 15:21:25,753-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:21:26,351-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:21:26,954-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:21:27,555-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:21:28,155-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:21:28,224-GUI.model.modelcv-ERROR-纤芯直径：    18.48
+包层直径：    379.55
+纤芯不圆度：  0.06
+包层不圆度：  3.03
+芯包同心度：  0.91
+None
+2017-08-16 15:21:32,359-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:21:32,961-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:21:33,561-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:21:34,161-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:21:34,763-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:21:34,825-GUI.model.modelcv-ERROR-纤芯直径：    18.48
+包层直径：    379.57
+纤芯不圆度：  0.07
+包层不圆度：  3.09
+芯包同心度：  0.92
+None
+2017-08-16 15:54:52,359-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:54:52,960-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:54:53,561-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:54:54,154-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:54:54,752-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:54:54,821-GUI.model.modelcv-ERROR-纤芯直径：    17.65
+包层直径：    378.01
+纤芯不圆度：  0.04
+包层不圆度：  1.89
+芯包同心度：  1.16
+None
+2017-08-16 15:55:04,359-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:55:04,960-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:55:05,556-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:55:06,154-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:55:06,755-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:55:06,816-GUI.model.modelcv-ERROR-纤芯直径：    17.66
+包层直径：    378.18
+纤芯不圆度：  0.04
+包层不圆度：  1.71
+芯包同心度：  1.03
+None
+2017-08-16 15:55:10,355-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:55:10,957-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:55:11,558-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:55:12,170-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:55:12,759-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:55:12,828-GUI.model.modelcv-ERROR-纤芯直径：    17.66
+包层直径：    377.89
+纤芯不圆度：  0.04
+包层不圆度：  2.51
+芯包同心度：  1.21
+None
+2017-08-16 15:56:07,677-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:56:08,278-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:56:08,880-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:56:09,480-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:56:10,082-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:56:10,137-GUI.model.modelcv-ERROR-纤芯直径：    17.66
+包层直径：    470.63
+纤芯不圆度：  0.09
+包层不圆度：  178.01
+芯包同心度：  78.31
+None
+2017-08-16 15:56:43,687-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:56:44,289-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:56:44,891-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:56:45,493-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:56:46,075-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:56:46,138-GUI.model.modelcv-ERROR-纤芯直径：    17.66
+包层直径：    379.18
+纤芯不圆度：  0.06
+包层不圆度：  4.13
+芯包同心度：  1.08
+None
+2017-08-16 15:56:50,278-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:56:50,878-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:56:51,494-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:56:52,078-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:56:52,680-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:56:52,733-GUI.model.modelcv-ERROR-纤芯直径：    17.66
+包层直径：    378.94
+纤芯不圆度：  0.06
+包层不圆度：  4.77
+芯包同心度：  1.38
+None
+2017-08-16 15:57:33,790-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:57:34,391-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:57:34,993-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:57:35,594-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:57:36,190-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 15:57:36,263-GUI.model.modelcv-ERROR-纤芯直径：    17.66
+包层直径：    378.59
+纤芯不圆度：  0.05
+包层不圆度：  6.45
+芯包同心度：  1.54
+None
+2017-08-16 16:00:50,348-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:00:50,950-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:00:51,552-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:00:52,153-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:00:52,742-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:00:52,812-GUI.model.modelcv-ERROR-纤芯直径：    17.62
+包层直径：    379.24
+纤芯不圆度：  0.13
+包层不圆度：  0.49
+芯包同心度：  0.59
+None
+2017-08-16 16:01:01,753-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:01:02,355-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:01:02,956-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:01:03,556-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:01:04,157-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:01:04,204-GUI.model.modelcv-ERROR-纤芯直径：    17.63
+包层直径：    379.24
+纤芯不圆度：  0.12
+包层不圆度：  0.47
+芯包同心度：  0.57
+None
+2017-08-16 16:02:21,265-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:02:21,865-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:02:22,466-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:02:23,066-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:02:23,667-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:02:23,730-GUI.model.modelcv-ERROR-纤芯直径：    17.63
+包层直径：    379.41
+纤芯不圆度：  0.17
+包层不圆度：  0.82
+芯包同心度：  0.45
+None
+2017-08-16 16:02:38,378-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:02:38,979-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:02:39,581-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:02:40,180-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:02:40,779-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:02:40,829-GUI.model.modelcv-ERROR-纤芯直径：    17.61
+包层直径：    379.42
+纤芯不圆度：  0.12
+包层不圆度：  0.90
+芯包同心度：  0.49
+None
+2017-08-16 16:03:45,292-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:03:45,894-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:03:46,496-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:03:47,096-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:03:47,697-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:03:47,747-GUI.model.modelcv-ERROR-纤芯直径：    17.44
+包层直径：    377.01
+纤芯不圆度：  0.10
+包层不圆度：  1.06
+芯包同心度：  0.92
+None
+2017-08-16 16:04:07,786-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:04:08,387-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:04:08,987-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:04:09,589-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:04:10,190-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:04:10,260-GUI.model.modelcv-ERROR-纤芯直径：    17.52
+包层直径：    377.75
+纤芯不圆度：  0.13
+包层不圆度：  1.37
+芯包同心度：  0.86
+None
+2017-08-16 16:04:24,601-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:04:25,197-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:04:25,802-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:04:26,401-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:04:27,000-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:04:27,058-GUI.model.modelcv-ERROR-纤芯直径：    17.52
+包层直径：    377.79
+纤芯不圆度：  0.13
+包层不圆度：  1.27
+芯包同心度：  0.88
+None
+2017-08-16 16:06:42,933-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:06:43,533-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:06:44,134-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:06:44,736-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:06:45,336-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:06:45,401-GUI.model.modelcv-ERROR-纤芯直径：    17.55
+包层直径：    379.68
+纤芯不圆度：  0.25
+包层不圆度：  4.32
+芯包同心度：  0.70
+None
+2017-08-16 16:08:07,259-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:08:07,858-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:08:08,447-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:08:09,045-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:08:09,661-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:08:09,714-GUI.model.modelcv-ERROR-纤芯直径：    17.65
+包层直径：    379.26
+纤芯不圆度：  0.07
+包层不圆度：  1.09
+芯包同心度：  0.59
+None
+2017-08-16 16:08:16,849-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:08:17,450-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:08:18,052-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:08:18,653-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:08:19,253-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:08:19,315-GUI.model.modelcv-ERROR-纤芯直径：    17.65
+包层直径：    379.30
+纤芯不圆度：  0.08
+包层不圆度：  2.01
+芯包同心度：  0.51
+None
+2017-08-16 16:09:00,061-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:09:00,667-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:09:01,260-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:09:01,867-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:09:02,463-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:09:02,522-GUI.model.modelcv-ERROR-纤芯直径：    17.65
+包层直径：    379.29
+纤芯不圆度：  0.07
+包层不圆度：  1.04
+芯包同心度：  0.55
+None
+2017-08-16 16:10:51,989-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:10:52,588-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:10:53,188-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:10:53,790-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:10:54,394-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:10:54,460-GUI.model.modelcv-ERROR-纤芯直径：    17.66
+包层直径：    379.10
+纤芯不圆度：  0.09
+包层不圆度：  0.82
+芯包同心度：  0.46
+None
+2017-08-16 16:11:03,088-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:11:03,690-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:11:04,292-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:11:04,892-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:11:05,494-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:11:05,562-GUI.model.modelcv-ERROR-纤芯直径：    17.66
+包层直径：    379.05
+纤芯不圆度：  0.08
+包层不圆度：  0.81
+芯包同心度：  0.45
+None
+2017-08-16 16:11:10,598-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:11:11,203-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:11:11,799-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:11:12,401-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:11:13,002-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:11:13,055-GUI.model.modelcv-ERROR-纤芯直径：    17.65
+包层直径：    379.02
+纤芯不圆度：  0.12
+包层不圆度：  0.77
+芯包同心度：  0.48
+None
+2017-08-16 16:12:14,217-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:12:14,813-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:12:15,411-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:12:16,013-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:12:16,608-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:12:16,683-GUI.model.modelcv-ERROR-纤芯直径：    17.53
+包层直径：    378.81
+纤芯不圆度：  0.12
+包层不圆度：  1.89
+芯包同心度：  0.70
+None
+2017-08-16 16:12:26,221-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:12:26,813-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:12:27,417-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:12:28,015-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:12:28,617-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:12:28,686-GUI.model.modelcv-ERROR-纤芯直径：    17.52
+包层直径：    378.76
+纤芯不圆度：  0.13
+包层不圆度：  1.97
+芯包同心度：  0.74
+None
+2017-08-16 16:12:35,510-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:12:36,128-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:12:36,727-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:12:37,313-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:12:37,927-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:12:37,974-GUI.model.modelcv-ERROR-纤芯直径：    17.53
+包层直径：    378.72
+纤芯不圆度：  0.11
+包层不圆度：  1.88
+芯包同心度：  0.70
+None
+2017-08-16 16:12:53,525-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:12:54,125-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:12:54,726-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:12:55,329-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:12:55,928-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:12:55,983-GUI.model.modelcv-ERROR-纤芯直径：    17.51
+包层直径：    378.75
+纤芯不圆度：  0.14
+包层不圆度：  2.09
+芯包同心度：  0.71
+None
+2017-08-16 16:14:26,244-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:14:26,845-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:14:27,446-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:14:28,046-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:14:28,648-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:14:28,711-GUI.model.modelcv-ERROR-纤芯直径：    17.67
+包层直径：    379.77
+纤芯不圆度：  0.08
+包层不圆度：  1.17
+芯包同心度：  0.53
+None
+2017-08-16 16:14:34,352-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:14:34,953-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:14:35,555-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:14:36,157-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:14:36,757-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:14:36,805-GUI.model.modelcv-ERROR-纤芯直径：    17.66
+包层直径：    379.77
+纤芯不圆度：  0.09
+包层不圆度：  1.35
+芯包同心度：  0.51
+None
+2017-08-16 16:14:41,556-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:14:42,158-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:14:42,759-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:14:43,345-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:14:43,950-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:14:44,003-GUI.model.modelcv-ERROR-纤芯直径：    17.65
+包层直径：    379.72
+纤芯不圆度：  0.08
+包层不圆度：  1.42
+芯包同心度：  0.52
+None
+2017-08-16 16:16:31,381-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:16:31,983-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:16:32,585-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:16:33,187-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:16:33,772-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:16:33,842-GUI.model.modelcv-ERROR-纤芯直径：    17.45
+包层直径：    381.86
+纤芯不圆度：  0.15
+包层不圆度：  2.96
+芯包同心度：  1.78
+None
+2017-08-16 16:16:43,381-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:16:43,986-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:16:44,586-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:16:45,187-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:16:45,788-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:16:45,851-GUI.model.modelcv-ERROR-纤芯直径：    17.67
+包层直径：    379.77
+纤芯不圆度：  0.14
+包层不圆度：  1.43
+芯包同心度：  0.62
+None
+2017-08-16 16:16:57,180-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:16:57,779-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:16:58,380-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:16:58,980-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:16:59,581-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:16:59,650-GUI.model.modelcv-ERROR-纤芯直径：    17.69
+包层直径：    379.77
+纤芯不圆度：  0.16
+包层不圆度：  1.22
+芯包同心度：  0.65
+None
+2017-08-16 16:17:05,888-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:17:06,489-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:17:07,088-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:17:07,690-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:17:08,290-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:17:08,344-GUI.model.modelcv-ERROR-纤芯直径：    17.67
+包层直径：    379.73
+纤芯不圆度：  0.12
+包层不圆度：  1.46
+芯包同心度：  0.64
+None
+2017-08-16 16:17:54,494-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:17:55,094-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:17:55,696-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:17:56,296-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:17:56,897-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:17:56,960-GUI.model.modelcv-ERROR-纤芯直径：    17.69
+包层直径：    462.38
+纤芯不圆度：  0.14
+包层不圆度：  153.06
+芯包同心度：  69.57
+None
+2017-08-16 16:18:19,700-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:18:20,311-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:18:20,911-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:18:21,513-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:18:22,114-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:18:22,174-GUI.model.modelcv-ERROR-纤芯直径：    17.69
+包层直径：    458.52
+纤芯不圆度：  0.12
+包层不圆度：  148.11
+芯包同心度：  65.25
+None
+2017-08-16 16:19:04,121-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:04,721-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:05,322-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:05,921-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:06,519-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:06,575-GUI.model.modelcv-ERROR-纤芯直径：    17.64
+包层直径：    379.31
+纤芯不圆度：  0.07
+包层不圆度：  0.87
+芯包同心度：  1.22
+None
+2017-08-16 16:19:11,013-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:11,612-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:12,223-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:12,819-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:13,414-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:13,483-GUI.model.modelcv-ERROR-纤芯直径：    17.64
+包层直径：    379.38
+纤芯不圆度：  0.04
+包层不圆度：  0.17
+芯包同心度：  1.06
+None
+2017-08-16 16:19:16,421-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:17,022-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:17,622-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:18,223-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:18,823-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:18,887-GUI.model.modelcv-ERROR-纤芯直径：    17.65
+包层直径：    379.34
+纤芯不圆度：  0.04
+包层不圆度：  0.49
+芯包同心度：  1.13
+None
+2017-08-16 16:19:21,812-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:22,414-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:23,015-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:23,615-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:24,216-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:24,279-GUI.model.modelcv-ERROR-纤芯直径：    17.65
+包层直径：    379.29
+纤芯不圆度：  0.05
+包层不圆度：  0.73
+芯包同心度：  1.13
+None
+2017-08-16 16:19:31,723-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:32,325-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:32,926-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:33,526-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:34,127-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:34,190-GUI.model.modelcv-ERROR-纤芯直径：    17.66
+包层直径：    379.40
+纤芯不圆度：  0.07
+包层不圆度：  0.45
+芯包同心度：  1.03
+None
+2017-08-16 16:19:37,117-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:37,720-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:38,321-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:38,933-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:39,533-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:39,582-GUI.model.modelcv-ERROR-纤芯直径：    17.65
+包层直径：    379.39
+纤芯不圆度：  0.07
+包层不圆度：  0.73
+芯包同心度：  1.05
+None
+2017-08-16 16:19:43,130-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:43,730-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:44,331-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:44,930-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:45,532-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:19:45,594-GUI.model.modelcv-ERROR-纤芯直径：    17.64
+包层直径：    379.37
+纤芯不圆度：  0.06
+包层不圆度：  0.58
+芯包同心度：  1.08
+None
+2017-08-16 16:20:08,930-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:20:09,530-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:20:10,132-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:20:10,733-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:20:11,335-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:20:11,388-GUI.model.modelcv-ERROR-纤芯直径：    17.64
+包层直径：    379.70
+纤芯不圆度：  0.17
+包层不圆度：  2.31
+芯包同心度：  0.86
+None
+2017-08-16 16:20:15,239-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:20:15,839-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:20:16,438-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:20:17,036-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:20:17,637-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:20:17,690-GUI.model.modelcv-ERROR-纤芯直径：    17.63
+包层直径：    379.69
+纤芯不圆度：  0.17
+包层不圆度：  2.39
+芯包同心度：  0.85
+None
+2017-08-16 16:39:04,717-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:39:05,318-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:39:05,918-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:39:06,519-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:39:07,121-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-16 16:39:07,180-GUI.model.modelcv-ERROR-纤芯直径：    17.67
+包层直径：    379.64
+纤芯不圆度：  0.19
+包层不圆度：  1.93
+芯包同心度：  0.75
+None
+2017-08-16 16:44:20,997-GUI.controller-ERROR-close controller
+2017-08-16 16:44:22,253-GUI.controller-ERROR-['None\n']
+2017-08-17 14:07:38,062-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-17 14:08:34,400-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-17 14:08:45,217-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-17 14:08:49,005-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-17 14:08:57,740-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:08:58,335-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:08:58,940-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:08:59,538-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:09:00,145-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:09:00,191-GUI.model.modelcv-ERROR-纤芯直径：    8.85
+包层直径：    234.55
+纤芯不圆度：  0.06
+包层不圆度：  78.02
+芯包同心度：  32.69
+None
+2017-08-17 14:10:14,062-GUI.controller-ERROR-close controller
+2017-08-17 14:10:14,592-GUI.controller-ERROR-['None\n']
+2017-08-17 14:10:21,509-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-17 14:10:28,028-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:10:28,937-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:10:29,838-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:10:30,726-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:10:31,632-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:10:31,686-GUI.model.modelcv-ERROR-纤芯直径：    8.86
+包层直径：    192.98
+纤芯不圆度：  0.05
+包层不圆度：  0.50
+芯包同心度：  0.25
+None
+2017-08-17 14:10:37,628-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:10:38,529-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:10:39,430-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:10:40,335-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:10:41,233-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:10:41,296-GUI.model.modelcv-ERROR-纤芯直径：    8.85
+包层直径：    192.99
+纤芯不圆度：  0.06
+包层不圆度：  0.79
+芯包同心度：  0.27
+None
+2017-08-17 14:10:47,233-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:10:48,140-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:10:49,036-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:10:49,937-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:10:50,851-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:10:50,927-GUI.model.modelcv-ERROR-纤芯直径：    8.86
+包层直径：    192.99
+纤芯不圆度：  0.07
+包层不圆度：  0.55
+芯包同心度：  0.26
+None
+2017-08-17 14:11:01,632-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:11:02,546-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:11:03,436-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:11:04,345-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:11:05,233-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:11:05,280-GUI.model.modelcv-ERROR-纤芯直径：    18.70
+包层直径：    395.01
+纤芯不圆度：  0.11
+包层不圆度：  1.38
+芯包同心度：  0.54
+None
+2017-08-17 14:11:10,339-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:11:11,243-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:11:12,144-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:11:13,043-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:11:13,944-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:11:13,990-GUI.model.modelcv-ERROR-纤芯直径：    18.69
+包层直径：    394.99
+纤芯不圆度：  0.08
+包层不圆度：  1.67
+芯包同心度：  0.59
+None
+2017-08-17 14:11:17,536-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:11:18,441-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:11:19,336-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:11:20,239-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:11:21,144-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:11:21,206-GUI.model.modelcv-ERROR-纤芯直径：    18.69
+包层直径：    395.01
+纤芯不圆度：  0.09
+包层不圆度：  1.86
+芯包同心度：  0.49
+None
+2017-08-17 14:13:18,770-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:13:19,680-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:13:20,576-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:13:21,471-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:13:22,380-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:13:22,426-GUI.model.modelcv-ERROR-纤芯直径：    18.71
+包层直径：    394.91
+纤芯不圆度：  0.09
+包层不圆度：  0.99
+芯包同心度：  0.54
+None
+2017-08-17 14:13:42,778-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:13:43,686-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:13:44,592-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:13:45,482-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:13:46,378-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:13:46,440-GUI.model.modelcv-ERROR-纤芯直径：    18.68
+包层直径：    395.08
+纤芯不圆度：  0.11
+包层不圆度：  1.45
+芯包同心度：  0.59
+None
+2017-08-17 14:13:51,177-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:13:52,075-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:13:52,983-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:13:53,874-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:13:54,776-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:13:54,838-GUI.model.modelcv-ERROR-纤芯直径：    18.68
+包层直径：    394.94
+纤芯不圆度：  0.08
+包层不圆度：  1.34
+芯包同心度：  0.49
+None
+2017-08-17 14:13:59,592-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:14:00,483-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:14:01,382-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:14:02,279-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:14:03,184-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:14:03,246-GUI.model.modelcv-ERROR-纤芯直径：    18.69
+包层直径：    395.02
+纤芯不圆度：  0.08
+包层不圆度：  1.45
+芯包同心度：  0.48
+None
+2017-08-17 14:14:39,187-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:14:40,096-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:14:41,006-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:14:41,894-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:14:42,789-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:14:42,851-GUI.model.modelcv-ERROR-纤芯直径：    18.69
+包层直径：    395.10
+纤芯不圆度：  0.09
+包层不圆度：  1.29
+芯包同心度：  0.61
+None
+2017-08-17 14:15:09,526-GUI.controller-ERROR-close controller
+2017-08-17 14:15:10,826-GUI.controller-ERROR-['None\n']
+2017-08-17 14:15:13,244-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-17 14:15:19,381-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:19,967-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:20,960-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:21,779-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:22,677-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:22,723-GUI.model.modelcv-ERROR-纤芯直径：    8.86
+包层直径：    207.41
+纤芯不圆度：  0.07
+包层不圆度：  1.05
+芯包同心度：  0.36
+None
+2017-08-17 14:15:25,967-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:26,576-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:27,469-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:28,368-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:28,967-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:29,030-GUI.model.modelcv-ERROR-纤芯直径：    18.68
+包层直径：    454.21
+纤芯不圆度：  0.10
+包层不圆度：  109.31
+芯包同心度：  46.13
+None
+2017-08-17 14:15:40,967-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:41,872-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:42,776-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:43,683-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:44,578-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:44,625-GUI.model.modelcv-ERROR-纤芯直径：    18.69
+包层直径：    395.15
+纤芯不圆度：  0.09
+包层不圆度：  1.87
+芯包同心度：  0.60
+None
+2017-08-17 14:15:48,170-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:48,769-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:49,681-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:50,578-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:51,483-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:51,529-GUI.model.modelcv-ERROR-纤芯直径：    18.68
+包层直径：    453.77
+纤芯不圆度：  0.11
+包层不圆度：  111.62
+芯包同心度：  44.90
+None
+2017-08-17 14:15:55,983-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:56,621-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:57,479-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:58,092-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:59,640-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:15:59,710-GUI.model.modelcv-ERROR-纤芯直径：    18.69
+包层直径：    395.12
+纤芯不圆度：  0.08
+包层不圆度：  1.63
+芯包同心度：  0.54
+None
+2017-08-17 14:16:04,085-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:16:04,983-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:16:05,576-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:16:06,482-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:16:07,377-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:16:07,440-GUI.model.modelcv-ERROR-纤芯直径：    18.69
+包层直径：    424.20
+纤芯不圆度：  0.08
+包层不圆度：  50.58
+芯包同心度：  23.62
+None
+2017-08-17 14:16:16,723-GUI.controller-ERROR-close controller
+2017-08-17 14:16:17,467-GUI.controller-ERROR-['None\n']
+2017-08-17 14:16:20,029-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-17 14:16:29,446-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:16:35,737-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:16:42,638-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:16:51,651-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:16:54,943-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:16:54,990-GUI.model.modelcv-ERROR-纤芯直径：    8.86
+包层直径：    192.97
+纤芯不圆度：  0.06
+包层不圆度：  0.75
+芯包同心度：  0.22
+None
+2017-08-17 14:17:26,173-GUI.controller-ERROR-close controller
+2017-08-17 14:17:27,234-GUI.controller-ERROR-['None\n']
+2017-08-17 14:17:29,348-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-17 14:17:38,217-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:17:40,911-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:17:43,315-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:17:46,022-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:17:52,009-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:17:52,072-GUI.model.modelcv-ERROR-纤芯直径：    8.86
+包层直径：    192.86
+纤芯不圆度：  0.06
+包层不圆度：  0.75
+芯包同心度：  0.34
+None
+2017-08-17 14:18:10,927-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:18:13,016-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:18:14,819-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:18:16,615-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:18:18,122-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:18:18,170-GUI.model.modelcv-ERROR-纤芯直径：    18.70
+包层直径：    395.01
+纤芯不圆度：  0.09
+包层不圆度：  1.36
+芯包同心度：  0.48
+None
+2017-08-17 14:18:21,071-GUI.controller-ERROR-close controller
+2017-08-17 14:18:21,447-GUI.controller-ERROR-['None\n']
+2017-08-17 14:25:25,246-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-17 14:26:28,099-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:26:28,983-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:26:29,887-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:26:30,782-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:26:31,694-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:26:31,740-GUI.model.modelcv-ERROR-纤芯直径：    8.86
+包层直径：    192.99
+纤芯不圆度：  0.07
+包层不圆度：  0.68
+芯包同心度：  0.23
+None
+2017-08-17 14:26:41,891-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:26:42,782-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:26:43,694-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:26:44,594-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:26:45,483-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:26:45,529-GUI.model.modelcv-ERROR-纤芯直径：    18.70
+包层直径：    394.75
+纤芯不圆度：  0.16
+包层不圆度：  1.75
+芯包同心度：  0.51
+None
+2017-08-17 14:27:24,489-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:27:25,401-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:27:26,296-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:27:27,200-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:27:28,098-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:27:28,161-GUI.model.modelcv-ERROR-纤芯直径：    18.69
+包层直径：    394.29
+纤芯不圆度：  0.09
+包层不圆度：  1.62
+芯包同心度：  0.60
+None
+2017-08-17 14:28:45,818-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:28:46,713-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:28:47,621-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:28:48,510-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:28:49,421-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:28:49,469-GUI.model.modelcv-ERROR-纤芯直径：    18.69
+包层直径：    393.91
+纤芯不圆度：  0.16
+包层不圆度：  1.88
+芯包同心度：  0.70
+None
+2017-08-17 14:28:54,816-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:28:55,713-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:28:56,625-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:28:57,517-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:28:58,414-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:28:58,476-GUI.model.modelcv-ERROR-纤芯直径：    18.69
+包层直径：    394.30
+纤芯不圆度：  0.13
+包层不圆度：  1.44
+芯包同心度：  1.02
+None
+2017-08-17 14:29:02,619-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:29:03,525-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:29:04,421-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:29:05,335-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:29:06,220-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:29:06,282-GUI.model.modelcv-ERROR-纤芯直径：    18.69
+包层直径：    394.88
+纤芯不圆度：  0.13
+包层不圆度：  1.08
+芯包同心度：  0.50
+None
+2017-08-17 14:29:43,426-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:29:44,328-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:29:45,232-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:29:46,128-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:29:47,030-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:29:47,094-GUI.model.modelcv-ERROR-纤芯直径：    18.72
+包层直径：    394.93
+纤芯不圆度：  0.12
+包层不圆度：  1.35
+芯包同心度：  0.46
+None
+2017-08-17 14:30:49,753-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:30:50,655-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:30:51,545-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:30:52,457-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:30:53,344-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:30:53,405-GUI.model.modelcv-ERROR-纤芯直径：    18.70
+包层直径：    394.65
+纤芯不圆度：  0.15
+包层不圆度：  1.24
+芯包同心度：  0.93
+None
+2017-08-17 14:31:32,358-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:31:33,265-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:31:34,163-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:31:35,062-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:31:35,967-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:31:36,013-GUI.model.modelcv-ERROR-纤芯直径：    18.70
+包层直径：    394.59
+纤芯不圆度：  0.14
+包层不圆度：  1.70
+芯包同心度：  0.57
+None
+2017-08-17 14:32:19,164-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:32:20,078-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:32:20,967-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:32:21,878-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:32:22,775-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:32:22,822-GUI.model.modelcv-ERROR-纤芯直径：    18.70
+包层直径：    394.04
+纤芯不圆度：  0.10
+包层不圆度：  1.93
+芯包同心度：  0.85
+None
+2017-08-17 14:33:02,078-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:33:02,983-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:33:03,878-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:33:04,775-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:33:05,688-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:33:05,740-GUI.model.modelcv-ERROR-纤芯直径：    18.70
+包层直径：    394.71
+纤芯不圆度：  0.14
+包层不圆度：  1.41
+芯包同心度：  0.62
+None
+2017-08-17 14:33:41,983-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:33:42,894-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:33:43,792-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:33:44,693-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:33:45,592-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:33:45,654-GUI.model.modelcv-ERROR-纤芯直径：    18.71
+包层直径：    394.26
+纤芯不圆度：  0.14
+包层不圆度：  1.66
+芯包同心度：  0.78
+None
+2017-08-17 14:36:46,546-GUI.controller-ERROR-close controller
+2017-08-17 14:36:46,865-GUI.controller-ERROR-['None\n']
+2017-08-17 14:36:58,323-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-17 14:37:07,594-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:37:08,517-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:37:09,391-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:37:10,335-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:37:11,484-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:37:11,548-GUI.model.modelcv-ERROR-纤芯直径：    8.83
+包层直径：    192.90
+纤芯不圆度：  0.06
+包层不圆度：  1.01
+芯包同心度：  0.16
+None
+2017-08-17 14:37:20,188-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:37:21,105-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:37:22,051-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:37:23,206-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:37:24,111-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:37:24,174-GUI.model.modelcv-ERROR-纤芯直径：    8.79
+包层直径：    193.22
+纤芯不圆度：  0.08
+包层不圆度：  0.66
+芯包同心度：  0.18
+None
+2017-08-17 14:37:54,407-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:37:55,335-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:37:56,500-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:37:57,405-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:37:58,342-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:37:58,405-GUI.model.modelcv-ERROR-纤芯直径：    18.60
+包层直径：    395.56
+纤芯不圆度：  0.08
+包层不圆度：  1.32
+芯包同心度：  0.48
+None
+2017-08-17 14:40:41,250-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:40:42,174-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:40:43,072-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:40:43,970-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:40:44,905-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:40:45,109-GUI.model.modelcv-ERROR-纤芯直径：    18.70
+包层直径：    416.58
+纤芯不圆度：  0.08
+包层不圆度：  46.94
+芯包同心度：  20.50
+None
+2017-08-17 14:42:08,565-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:42:09,532-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:42:10,681-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:42:11,596-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:42:12,470-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:42:12,532-GUI.model.modelcv-ERROR-纤芯直径：    18.60
+包层直径：    395.32
+纤芯不圆度：  0.03
+包层不圆度：  2.33
+芯包同心度：  1.05
+None
+2017-08-17 14:42:18,769-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:42:19,727-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:42:20,862-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:42:21,775-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:42:22,701-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:42:22,765-GUI.model.modelcv-ERROR-纤芯直径：    18.62
+包层直径：    395.40
+纤芯不圆度：  0.09
+包层不圆度：  2.02
+芯包同心度：  1.10
+None
+2017-08-17 14:43:06,483-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:43:07,395-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:43:08,299-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:43:09,233-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:43:10,381-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:43:10,443-GUI.model.modelcv-ERROR-纤芯直径：    18.61
+包层直径：    395.01
+纤芯不圆度：  0.03
+包层不圆度：  2.30
+芯包同心度：  1.39
+None
+2017-08-17 14:43:16,686-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:43:17,596-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:43:18,532-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:43:19,687-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:43:20,609-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:43:20,680-GUI.model.modelcv-ERROR-纤芯直径：    18.62
+包层直径：    395.31
+纤芯不圆度：  0.04
+包层不圆度：  2.41
+芯包同心度：  1.01
+None
+2017-08-17 14:45:33,207-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:45:34,184-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:45:35,312-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:45:36,219-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:45:37,118-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:45:37,180-GUI.model.modelcv-ERROR-纤芯直径：    18.62
+包层直径：    395.34
+纤芯不圆度：  0.11
+包层不圆度：  2.29
+芯包同心度：  1.06
+None
+2017-08-17 14:46:56,943-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:46:57,855-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:46:58,766-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:46:59,627-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:47:00,546-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:47:00,594-GUI.model.modelcv-ERROR-纤芯直径：    18.72
+包层直径：    393.99
+纤芯不圆度：  0.10
+包层不圆度：  2.75
+芯包同心度：  0.98
+None
+2017-08-17 14:47:14,078-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:47:15,250-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:47:16,150-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:47:17,081-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:47:18,253-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:47:18,315-GUI.model.modelcv-ERROR-纤芯直径：    18.70
+包层直径：    430.17
+纤芯不圆度：  0.17
+包层不圆度：  66.94
+芯包同心度：  27.30
+None
+2017-08-17 14:47:23,940-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:47:24,852-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:47:25,828-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:47:26,937-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:47:27,911-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:47:28,130-GUI.model.modelcv-ERROR-纤芯直径：    18.70
+包层直径：    327.93
+纤芯不圆度：  0.16
+包层不圆度：  131.37
+芯包同心度：  11.42
+None
+2017-08-17 14:48:19,457-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:48:20,361-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:48:21,282-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:48:22,163-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:48:23,096-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:48:23,160-GUI.model.modelcv-ERROR-纤芯直径：    18.72
+包层直径：    394.90
+纤芯不圆度：  0.12
+包层不圆度：  1.30
+芯包同心度：  0.60
+None
+2017-08-17 14:50:44,096-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:50:45,036-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:50:46,197-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:50:47,111-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:50:48,016-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:50:48,079-GUI.model.modelcv-ERROR-纤芯直径：    18.68
+包层直径：    394.55
+纤芯不圆度：  0.13
+包层不圆度：  1.79
+芯包同心度：  0.41
+None
+2017-08-17 14:50:57,897-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:50:58,792-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:50:59,694-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:51:00,596-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:51:01,526-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:51:01,589-GUI.model.modelcv-ERROR-纤芯直径：    18.68
+包层直径：    394.46
+纤芯不圆度：  0.16
+包层不圆度：  1.94
+芯包同心度：  0.46
+None
+2017-08-17 14:52:48,023-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:52:48,967-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:52:50,128-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:52:51,020-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:52:51,948-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:52:52,026-GUI.model.modelcv-ERROR-纤芯直径：    18.71
+包层直径：    394.98
+纤芯不圆度：  0.07
+包层不圆度：  7.08
+芯包同心度：  0.70
+None
+2017-08-17 14:53:15,032-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:53:15,928-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:53:16,841-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:53:17,742-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:53:18,625-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:53:18,694-GUI.model.modelcv-ERROR-纤芯直径：    18.70
+包层直径：    394.93
+纤芯不圆度：  0.12
+包层不圆度：  5.53
+芯包同心度：  0.51
+None
+2017-08-17 14:53:35,726-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:53:36,641-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:53:37,539-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:53:38,453-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:53:39,354-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:53:39,415-GUI.model.modelcv-ERROR-纤芯直径：    18.72
+包层直径：    395.06
+纤芯不圆度：  0.08
+包层不圆度：  7.87
+芯包同心度：  0.73
+None
+2017-08-17 14:53:48,632-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:53:49,621-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:53:50,743-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:53:51,717-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:53:52,851-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:53:52,897-GUI.model.modelcv-ERROR-纤芯直径：    18.71
+包层直径：    395.07
+纤芯不圆度：  0.10
+包层不圆度：  6.98
+芯包同心度：  0.84
+None
+2017-08-17 14:55:18,392-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:55:19,266-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:55:20,174-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:55:21,183-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:55:22,266-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:55:22,328-GUI.model.modelcv-ERROR-纤芯直径：    18.63
+包层直径：    394.90
+纤芯不圆度：  0.04
+包层不圆度：  1.33
+芯包同心度：  0.60
+None
+2017-08-17 14:56:23,473-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:56:24,377-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:56:25,278-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:56:26,188-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:56:27,088-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:56:27,151-GUI.model.modelcv-ERROR-纤芯直径：    18.62
+包层直径：    394.62
+纤芯不圆度：  0.03
+包层不圆度：  1.53
+芯包同心度：  0.48
+None
+2017-08-17 14:57:14,789-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:57:15,710-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:57:16,585-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:57:17,500-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:57:18,390-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:57:18,453-GUI.model.modelcv-ERROR-纤芯直径：    18.63
+包层直径：    394.24
+纤芯不圆度：  0.10
+包层不圆度：  2.31
+芯包同心度：  1.09
+None
+2017-08-17 14:57:23,484-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:57:24,467-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:57:25,645-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:57:26,786-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:57:27,691-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:57:27,769-GUI.model.modelcv-ERROR-纤芯直径：    18.63
+包层直径：    394.01
+纤芯不圆度：  0.05
+包层不圆度：  1.34
+芯包同心度：  1.27
+None
+2017-08-17 14:58:39,704-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:58:40,611-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:58:41,519-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:58:42,454-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:58:43,328-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:58:43,390-GUI.model.modelcv-ERROR-纤芯直径：    18.63
+包层直径：    394.61
+纤芯不圆度：  0.04
+包层不圆度：  1.49
+芯包同心度：  0.49
+None
+2017-08-17 14:59:21,426-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:59:22,331-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:59:23,236-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:59:24,141-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:59:25,042-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:59:25,104-GUI.model.modelcv-ERROR-纤芯直径：    18.62
+包层直径：    394.81
+纤芯不圆度：  0.04
+包层不圆度：  1.73
+芯包同心度：  0.69
+None
+2017-08-17 14:59:58,934-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 14:59:59,890-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:00:01,039-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:00:01,953-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:00:02,834-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:00:02,890-GUI.model.modelcv-ERROR-纤芯直径：    18.64
+包层直径：    394.21
+纤芯不圆度：  0.05
+包层不圆度：  1.47
+芯包同心度：  1.04
+None
+2017-08-17 15:00:33,730-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:00:34,667-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:00:35,533-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:00:36,502-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:00:37,632-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:00:37,700-GUI.model.modelcv-ERROR-纤芯直径：    18.65
+包层直径：    392.76
+纤芯不圆度：  0.06
+包层不圆度：  3.25
+芯包同心度：  1.02
+None
+2017-08-17 15:00:48,451-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:00:49,611-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:00:50,548-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:00:51,451-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:00:52,364-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:00:52,427-GUI.model.modelcv-ERROR-纤芯直径：    18.64
+包层直径：    392.95
+纤芯不圆度：  0.04
+包层不圆度：  3.76
+芯包同心度：  0.82
+None
+2017-08-17 15:01:06,141-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:01:07,055-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:01:07,970-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:01:08,855-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:01:09,772-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:01:09,834-GUI.model.modelcv-ERROR-纤芯直径：    18.63
+包层直径：    394.10
+纤芯不圆度：  0.04
+包层不圆度：  2.75
+芯包同心度：  0.52
+None
+2017-08-17 15:01:37,355-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:01:38,312-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:01:39,451-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:01:40,380-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:01:41,253-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:01:41,315-GUI.model.modelcv-ERROR-纤芯直径：    18.63
+包层直径：    394.76
+纤芯不圆度：  0.08
+包层不圆度：  1.83
+芯包同心度：  0.36
+None
+2017-08-17 15:02:15,756-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:02:16,667-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:02:17,578-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:02:18,467-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:02:19,441-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:02:19,630-GUI.model.modelcv-ERROR-纤芯直径：    18.64
+包层直径：    394.71
+纤芯不圆度：  0.08
+包层不圆度：  1.71
+芯包同心度：  0.54
+None
+2017-08-17 15:03:57,187-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:03:58,150-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:03:59,301-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:04:00,207-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:04:01,130-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:04:01,193-GUI.model.modelcv-ERROR-纤芯直径：    18.63
+包层直径：    394.74
+纤芯不圆度：  0.03
+包层不圆度：  1.43
+芯包同心度：  0.55
+None
+2017-08-17 15:05:00,808-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:05:01,720-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:05:02,611-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:05:03,532-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:05:04,397-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:05:04,459-GUI.model.modelcv-ERROR-纤芯直径：    18.69
+包层直径：    393.33
+纤芯不圆度：  0.04
+包层不圆度：  3.41
+芯包同心度：  0.83
+None
+2017-08-17 15:05:34,704-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:05:35,627-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:05:36,516-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:05:37,427-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:05:38,331-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:05:38,392-GUI.model.modelcv-ERROR-纤芯直径：    18.67
+包层直径：    393.97
+纤芯不圆度：  0.05
+包层不圆度：  1.49
+芯包同心度：  1.37
+None
+2017-08-17 15:06:27,816-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:06:28,729-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:06:29,628-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:06:30,533-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:06:31,444-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:06:31,507-GUI.model.modelcv-ERROR-纤芯直径：    18.68
+包层直径：    394.52
+纤芯不圆度：  0.04
+包层不圆度：  1.31
+芯包同心度：  0.93
+None
+2017-08-17 15:08:50,665-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:08:51,565-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:08:52,461-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:08:53,394-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:08:54,266-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:08:54,313-GUI.model.modelcv-ERROR-纤芯直径：    18.71
+包层直径：    394.50
+纤芯不圆度：  0.13
+包层不圆度：  3.03
+芯包同心度：  0.31
+None
+2017-08-17 15:10:45,884-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:10:46,796-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:10:47,694-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:10:48,592-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:10:49,490-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:10:49,552-GUI.model.modelcv-ERROR-纤芯直径：    18.67
+包层直径：    394.19
+纤芯不圆度：  0.19
+包层不圆度：  2.81
+芯包同心度：  0.86
+None
+2017-08-17 15:12:33,325-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:12:34,237-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:12:35,187-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:12:36,312-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:12:37,223-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:12:37,286-GUI.model.modelcv-ERROR-纤芯直径：    18.59
+包层直径：    395.36
+纤芯不圆度：  0.13
+包层不圆度：  0.72
+芯包同心度：  0.95
+None
+2017-08-17 15:13:54,931-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:13:55,844-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:13:56,756-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:13:57,655-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:13:58,536-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:13:58,598-GUI.model.modelcv-ERROR-纤芯直径：    18.66
+包层直径：    394.00
+纤芯不圆度：  0.12
+包层不圆度：  3.06
+芯包同心度：  0.86
+None
+2017-08-17 15:16:49,905-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:16:50,788-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:16:51,684-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:16:52,584-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:16:53,532-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:16:53,594-GUI.model.modelcv-ERROR-纤芯直径：    18.66
+包层直径：    394.35
+纤芯不圆度：  0.15
+包层不圆度：  0.95
+芯包同心度：  1.28
+None
+2017-08-17 15:17:02,838-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:17:03,979-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:17:04,890-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:17:05,819-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:17:06,710-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:17:06,773-GUI.model.modelcv-ERROR-纤芯直径：    18.67
+包层直径：    394.39
+纤芯不圆度：  0.13
+包层不圆度：  1.03
+芯包同心度：  1.35
+None
+2017-08-17 15:17:47,188-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:17:48,105-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:17:49,005-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:17:49,885-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:17:50,805-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:17:50,861-GUI.model.modelcv-ERROR-纤芯直径：    18.68
+包层直径：    394.47
+纤芯不圆度：  0.11
+包层不圆度：  0.88
+芯包同心度：  1.39
+None
+2017-08-17 15:18:48,407-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:18:49,305-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:18:50,220-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:18:51,438-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:18:52,305-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:18:52,368-GUI.model.modelcv-ERROR-纤芯直径：    18.65
+包层直径：    394.32
+纤芯不圆度：  0.11
+包层不圆度：  1.09
+芯包同心度：  1.33
+None
+2017-08-17 15:19:28,312-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:19:29,239-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:19:30,128-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:19:31,025-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:19:31,934-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:19:31,989-GUI.model.modelcv-ERROR-纤芯直径：    18.65
+包层直径：    394.49
+纤芯不圆度：  0.10
+包层不圆度：  1.00
+芯包同心度：  1.42
+None
+2017-08-17 15:20:06,128-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:20:07,026-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:20:07,940-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:20:08,875-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:20:10,039-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:20:10,101-GUI.model.modelcv-ERROR-纤芯直径：    18.65
+包层直径：    394.41
+纤芯不圆度：  0.08
+包层不圆度：  1.03
+芯包同心度：  1.43
+None
+2017-08-17 15:20:41,237-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:20:42,144-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:20:43,043-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:20:43,956-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:20:44,938-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:20:45,157-GUI.model.modelcv-ERROR-纤芯直径：    18.66
+包层直径：    394.46
+纤芯不圆度：  0.12
+包层不圆度：  0.95
+芯包同心度：  1.43
+None
+2017-08-17 15:25:41,680-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:25:42,803-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:25:43,716-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:25:44,687-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:25:45,805-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:25:45,867-GUI.model.modelcv-ERROR-纤芯直径：    18.65
+包层直径：    390.56
+纤芯不圆度：  0.12
+包层不圆度：  5.80
+芯包同心度：  2.41
+None
+2017-08-17 15:26:01,430-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:26:02,329-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:26:03,220-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:26:04,196-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:26:05,346-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:26:05,410-GUI.model.modelcv-ERROR-纤芯直径：    18.66
+包层直径：    393.88
+纤芯不圆度：  0.12
+包层不圆度：  4.67
+芯包同心度：  1.41
+None
+2017-08-17 15:26:17,344-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:26:18,296-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:26:19,457-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:26:20,628-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:26:21,536-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:26:21,598-GUI.model.modelcv-ERROR-纤芯直径：    18.66
+包层直径：    389.80
+纤芯不圆度：  0.14
+包层不圆度：  6.59
+芯包同心度：  2.92
+None
+2017-08-17 15:29:22,762-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:29:23,697-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:29:24,565-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:29:25,539-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:29:26,674-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:29:26,729-GUI.model.modelcv-ERROR-纤芯直径：    18.66
+包层直径：    390.94
+纤芯不圆度：  0.13
+包层不圆度：  5.25
+芯包同心度：  2.22
+None
+2017-08-17 15:29:31,464-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:29:32,377-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:29:33,266-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:29:34,196-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:29:35,066-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:29:35,130-GUI.model.modelcv-ERROR-纤芯直径：    18.67
+包层直径：    392.84
+纤芯不圆度：  0.13
+包层不圆度：  4.93
+芯包同心度：  1.55
+None
+2017-08-17 15:29:59,680-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:30:00,611-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:30:01,476-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:30:02,391-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:30:03,298-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:30:03,361-GUI.model.modelcv-ERROR-纤芯直径：    18.68
+包层直径：    391.67
+纤芯不圆度：  0.11
+包层不圆度：  4.55
+芯包同心度：  1.64
+None
+2017-08-17 15:30:27,286-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:30:28,213-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:30:29,096-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:30:29,986-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:30:30,882-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:30:30,946-GUI.model.modelcv-ERROR-纤芯直径：    18.72
+包层直径：    393.47
+纤芯不圆度：  0.05
+包层不圆度：  3.42
+芯包同心度：  0.90
+None
+2017-08-17 15:32:07,211-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:08,114-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:09,068-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:10,213-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:11,114-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:11,176-GUI.model.modelcv-ERROR-纤芯直径：    18.74
+包层直径：    394.37
+纤芯不圆度：  0.04
+包层不圆度：  3.79
+芯包同心度：  0.90
+None
+2017-08-17 15:32:19,226-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:20,128-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:21,039-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:21,920-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:22,878-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:23,098-GUI.model.modelcv-ERROR-纤芯直径：    18.73
+包层直径：    394.22
+纤芯不圆度：  0.04
+包层不圆度：  2.39
+芯包同心度：  0.60
+None
+2017-08-17 15:32:29,457-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:30,315-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:31,226-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:32,144-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:33,035-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:33,096-GUI.model.modelcv-ERROR-纤芯直径：    18.73
+包层直径：    394.05
+纤芯不圆度：  0.04
+包层不圆度：  3.20
+芯包同心度：  0.85
+None
+2017-08-17 15:32:38,710-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:39,625-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:40,522-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:41,424-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:42,346-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:42,408-GUI.model.modelcv-ERROR-纤芯直径：    18.74
+包层直径：    393.18
+纤芯不圆度：  0.05
+包层不圆度：  3.63
+芯包同心度：  1.20
+None
+2017-08-17 15:32:53,413-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:54,321-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:55,217-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:56,112-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:57,049-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:32:57,112-GUI.model.modelcv-ERROR-纤芯直径：    18.74
+包层直径：    394.36
+纤芯不圆度：  0.03
+包层不圆度：  3.60
+芯包同心度：  0.59
+None
+2017-08-17 15:35:39,654-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:35:40,559-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:35:41,486-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:35:42,375-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:35:43,256-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:35:43,319-GUI.model.modelcv-ERROR-纤芯直径：    18.73
+包层直径：    393.77
+纤芯不圆度：  0.04
+包层不圆度：  3.03
+芯包同心度：  0.82
+None
+2017-08-17 15:36:21,677-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:36:22,588-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:36:23,473-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:36:24,394-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:36:25,273-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:36:25,351-GUI.model.modelcv-ERROR-纤芯直径：    18.73
+包层直径：    394.35
+纤芯不圆度：  0.06
+包层不圆度：  4.08
+芯包同心度：  0.98
+None
+2017-08-17 15:37:11,487-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:37:12,407-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:37:13,286-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:37:14,207-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:37:15,128-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:37:15,191-GUI.model.modelcv-ERROR-纤芯直径：    18.73
+包层直径：    395.70
+纤芯不圆度：  0.04
+包层不圆度：  4.07
+芯包同心度：  1.04
+None
+2017-08-17 15:37:57,392-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:37:58,305-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:37:59,207-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:38:00,115-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:38:00,987-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:38:01,051-GUI.model.modelcv-ERROR-纤芯直径：    18.74
+包层直径：    393.92
+纤芯不圆度：  0.04
+包层不圆度：  3.10
+芯包同心度：  0.84
+None
+2017-08-17 15:39:42,112-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:39:43,042-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:39:43,927-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:39:44,875-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:39:46,015-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:39:46,078-GUI.model.modelcv-ERROR-纤芯直径：    18.74
+包层直径：    392.80
+纤芯不圆度：  0.06
+包层不圆度：  3.05
+芯包同心度：  1.39
+None
+2017-08-17 15:39:52,927-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:39:53,878-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:39:55,028-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:39:55,927-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:39:56,836-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:39:56,908-GUI.model.modelcv-ERROR-纤芯直径：    18.73
+包层直径：    395.25
+纤芯不圆度：  0.05
+包层不圆度：  4.34
+芯包同心度：  1.31
+None
+2017-08-17 15:40:02,516-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:40:03,421-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:40:04,318-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:40:05,239-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:40:06,131-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:40:06,194-GUI.model.modelcv-ERROR-纤芯直径：    18.74
+包层直径：    393.22
+纤芯不圆度：  0.06
+包层不圆度：  2.62
+芯包同心度：  1.08
+None
+2017-08-17 15:42:13,043-GUI.controller-ERROR-close controller
+2017-08-17 15:42:13,802-GUI.controller-ERROR-['None\n']
+2017-08-17 15:42:31,628-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db
+2017-08-17 15:42:38,095-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:42:38,694-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:42:39,298-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:42:39,897-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:42:40,490-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:42:40,536-GUI.model.modelcv-ERROR-纤芯直径：    8.88
+包层直径：    192.74
+纤芯不圆度：  0.05
+包层不圆度：  1.10
+芯包同心度：  0.19
+None
+2017-08-17 15:42:50,696-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:42:51,299-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:42:51,898-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:42:52,492-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:42:53,096-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:42:53,144-GUI.model.modelcv-ERROR-纤芯直径：    18.74
+包层直径：    394.58
+纤芯不圆度：  0.05
+包层不圆度：  2.15
+芯包同心度：  0.38
+None
+2017-08-17 15:42:58,818-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:42:59,391-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:43:00,000-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:43:00,595-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:43:01,196-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:43:01,257-GUI.model.modelcv-ERROR-纤芯直径：    18.75
+包层直径：    394.48
+纤芯不圆度：  0.07
+包层不圆度：  2.06
+芯包同心度：  0.39
+None
+2017-08-17 15:43:06,063-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:43:06,898-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:43:07,492-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:43:08,095-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:43:08,694-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:43:08,757-GUI.model.modelcv-ERROR-纤芯直径：    18.76
+包层直径：    394.52
+纤芯不圆度：  0.07
+包层不圆度：  2.15
+芯包同心度：  0.40
+None
+2017-08-17 15:43:50,701-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:43:51,305-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:43:51,904-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:43:52,513-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:43:53,112-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:43:53,176-GUI.model.modelcv-ERROR-纤芯直径：    18.75
+包层直径：    394.54
+纤芯不圆度：  0.08
+包层不圆度：  2.12
+芯包同心度：  0.40
+None
+2017-08-17 15:45:02,726-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:45:03,328-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:45:03,927-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:45:04,522-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:45:05,130-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:45:05,177-GUI.model.modelcv-ERROR-纤芯直径：    18.75
+包层直径：    394.09
+纤芯不圆度：  0.06
+包层不圆度：  2.40
+芯包同心度：  0.22
+None
+2017-08-17 15:46:40,244-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:46:40,848-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:46:41,454-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:46:42,048-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:46:42,657-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:46:42,710-GUI.model.modelcv-ERROR-纤芯直径：    18.74
+包层直径：    394.13
+纤芯不圆度：  0.04
+包层不圆度：  2.56
+芯包同心度：  0.20
+None
+2017-08-17 15:46:49,247-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:46:49,846-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:46:50,457-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:46:51,049-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:46:51,644-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:46:51,711-GUI.model.modelcv-ERROR-纤芯直径：    18.73
+包层直径：    394.13
+纤芯不圆度：  0.05
+包层不圆度：  2.65
+芯包同心度：  0.20
+None
+2017-08-17 15:47:28,253-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:47:28,868-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:47:29,454-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:47:30,062-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:47:30,657-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:47:30,724-GUI.model.modelcv-ERROR-纤芯直径：    18.74
+包层直径：    394.14
+纤芯不圆度：  0.08
+包层不圆度：  2.59
+芯包同心度：  0.22
+None
+2017-08-17 15:48:28,871-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:48:29,473-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:48:30,082-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:48:30,681-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:48:31,276-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:48:31,338-GUI.model.modelcv-ERROR-纤芯直径：    18.75
+包层直径：    394.00
+纤芯不圆度：  0.13
+包层不圆度：  2.52
+芯包同心度：  0.30
+None
+2017-08-17 15:49:39,096-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:49:39,697-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:49:40,292-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:49:40,894-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:49:41,490-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:49:41,552-GUI.model.modelcv-ERROR-纤芯直径：    18.75
+包层直径：    394.13
+纤芯不圆度：  0.05
+包层不圆度：  2.46
+芯包同心度：  0.21
+None
+2017-08-17 15:49:57,395-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:49:58,010-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:49:58,605-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:49:59,204-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:49:59,805-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:49:59,864-GUI.model.modelcv-ERROR-纤芯直径：    18.75
+包层直径：    394.11
+纤芯不圆度：  0.07
+包层不圆度：  2.47
+芯包同心度：  0.19
+None
+2017-08-17 15:50:44,204-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:50:44,803-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:50:45,405-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:50:46,006-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:50:46,615-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:50:46,674-GUI.model.modelcv-ERROR-纤芯直径：    18.75
+包层直径：    394.05
+纤芯不圆度：  0.06
+包层不圆度：  2.55
+芯包同心度：  0.24
+None
+2017-08-17 15:52:48,141-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:52:48,742-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:52:49,335-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:52:49,940-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:52:50,549-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:52:50,612-GUI.model.modelcv-ERROR-纤芯直径：    18.75
+包层直径：    394.11
+纤芯不圆度：  0.07
+包层不圆度：  2.47
+芯包同心度：  0.23
+None
+2017-08-17 15:53:43,055-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:53:43,650-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:53:44,253-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:53:44,861-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:53:45,454-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:53:45,517-GUI.model.modelcv-ERROR-纤芯直径：    18.74
+包层直径：    393.95
+纤芯不圆度：  0.11
+包层不圆度：  3.11
+芯包同心度：  0.20
+None
+2017-08-17 15:53:49,361-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:53:49,957-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:53:50,644-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:53:51,457-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:53:52,056-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:53:52,118-GUI.model.modelcv-ERROR-纤芯直径：    18.74
+包层直径：    393.94
+纤芯不圆度：  0.13
+包层不圆度：  3.05
+芯包同心度：  0.18
+None
+2017-08-17 15:53:56,270-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:53:56,859-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:53:57,457-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:53:58,056-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:53:58,667-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:53:58,719-GUI.model.modelcv-ERROR-纤芯直径：    18.74
+包层直径：    393.98
+纤芯不圆度：  0.14
+包层不圆度：  2.95
+芯包同心度：  0.22
+None
+2017-08-17 15:54:02,549-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:03,157-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:03,757-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:04,367-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:04,956-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:05,019-GUI.model.modelcv-ERROR-纤芯直径：    18.74
+包层直径：    393.96
+纤芯不圆度：  0.08
+包层不圆度：  2.76
+芯包同心度：  0.22
+None
+2017-08-17 15:54:08,861-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:09,454-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:10,053-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:10,664-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:11,267-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:11,329-GUI.model.modelcv-ERROR-纤芯直径：    18.74
+包层直径：    394.02
+纤芯不圆度：  0.10
+包层不圆度：  3.20
+芯包同心度：  0.25
+None
+2017-08-17 15:54:15,782-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:16,361-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:16,957-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:17,566-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:18,160-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:18,221-GUI.model.modelcv-ERROR-纤芯直径：    18.74
+包层直径：    394.00
+纤芯不圆度：  0.04
+包层不圆度：  2.90
+芯包同心度：  0.21
+None
+2017-08-17 15:54:34,367-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:34,970-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:35,565-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:36,173-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:36,773-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:36,835-GUI.model.modelcv-ERROR-纤芯直径：    18.73
+包层直径：    275.99
+纤芯不圆度：  0.10
+包层不圆度：  523.87
+芯包同心度：  165.05
+None
+2017-08-17 15:54:41,269-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:41,864-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:42,473-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:43,072-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:43,676-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:54:43,734-GUI.model.modelcv-ERROR-纤芯直径：    18.72
+包层直径：    281.82
+纤芯不圆度：  0.13
+包层不圆度：  556.79
+芯包同心度：  159.85
+None
+2017-08-17 15:55:05,581-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:55:06,173-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:55:06,772-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:55:07,381-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:55:07,971-pattern.pickmethod-WARNING-method -> convex hull
+2017-08-17 15:55:08,033-GUI.model.modelcv-ERROR-纤芯直径：    18.74
+包层直径：    394.03
+纤芯不圆度：  0.14
+包层不圆度：  2.39
+芯包同心度：  0.27
+None
+2017-08-17 16:45:33,690-GUI.controller-ERROR-close controller
+2017-08-17 16:45:34,022-GUI.controller-ERROR-['None\n']
