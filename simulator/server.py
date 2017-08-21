@@ -71,7 +71,7 @@ class ImgServer(TCPServer):
         while self.IS_RUNNING:
             try:
                 data = yield stream.read_until("\n\r")
-                logger.info("Received bytes: %s", data)
+                logger.debug("Received bytes: %s", data)
                 data = data.strip()
                 if data == 'getimgonce':
                     self._getImgOnce(stream)
@@ -87,7 +87,7 @@ class ImgServer(TCPServer):
 
 
             except StreamClosedError:
-                logger.warning("Lost client at host %s", address[0])
+                logger.debug("Lost client at host %s", address[0])
                 break
             except Exception as e:
                 raise e

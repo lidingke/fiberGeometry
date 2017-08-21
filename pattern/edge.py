@@ -3,7 +3,8 @@ from pattern.meta import CV2MethodSet
 import numpy as np
 
 from setting.orderset import SETTING
-
+import logging
+logger = logging.getLogger(__name__)
 
 class ExtractEdge(object):
     """docstring for ExtractEdge"""
@@ -56,7 +57,7 @@ class ExtractEdge(object):
     def directThr(self, img, hight = 175):
         if len(img.shape) > 2:
             img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-        print 'thr', hight
+        logger.info('thr%s'%hight)
         size, img = cv2.threshold(img, hight, 255, cv2.THRESH_BINARY)
         return img
 

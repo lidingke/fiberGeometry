@@ -1,8 +1,7 @@
 # coding:utf-8
 import logging
 
-logging.basicConfig(filename="testlog.log",
-                    filemode="a", format="%(asctime)s-%(name)s-%(levelname)s-%(message)s",
+logging.basicConfig(format="%(asctime)s-%(name)s-%(levelname)s-%(message)s",
                     level=logging.WARNING)
 
 logger = logging.getLogger(__name__)

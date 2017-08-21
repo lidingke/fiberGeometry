@@ -226,7 +226,7 @@ class DoubleCircleClassify(MetaClassify):
     def _getFilterImgClad(self, core, origin, minRange, maxRange):
         # core = [
         # origin = origin.copy()
-        print 'get core inner', (int(core[0]), int(core[1])), int(minRange), origin.shape
+        logger.warning('get core inner{}-{}-{}'.format((int(core[0]), int(core[1])), int(minRange), origin.shape))
         cv2.circle(origin, (int(core[0]), int(core[1])), int(minRange), 255, -1)
 
         return origin

@@ -29,13 +29,13 @@ def test_output_axies_plot_to_matplot():
     core = result['core'][0]
     x,h,y,v = output_axies_plot_to_matplot(core,img)
     ax1 = fig.add_subplot(111)
-    ax1.plot(x,h)
-    ax1.set_ylabel('bit')
-    ax2 = ax1.twinx()
-    ax2.plot(y,v,'r')
-    ax2.set_ylabel('bit')
-    ax2.set_xlabel('pix')
-    plt.show()
+    # ax1.plot(x,h)
+    # ax1.set_ylabel('bit')
+    # ax2 = ax1.twinx()
+    # ax2.plot(y,v,'r')
+    # ax2.set_ylabel('bit')
+    # ax2.set_xlabel('pix')
+    # plt.show()
 
 
 if __name__ == '__main__':

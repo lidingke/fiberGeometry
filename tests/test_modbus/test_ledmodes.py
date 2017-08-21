@@ -13,11 +13,8 @@ from SDK.modbus.ledmodes import set_current_cmd, LEDMode
 from util.hexs import hex2str
 
 
-<<<<<<< HEAD
 def ttest_set_online():
-=======
-def test_set_online(light):
->>>>>>> 721ef98ec86f0b0dfa6f4de8e6b5e458d2b6bf3d
+
     logging.basicConfig(level=logging.INFO)
     mode = LEDMode('com15')#光端口
     # for i in range(10):

@@ -8,7 +8,6 @@ import crcmod
 
 from SDK.modbus.directions import HEAD_DIR, MOTOR_GROUP, START_STOP,\
     UP_DOWN, MOTOR_STATE, STATION_DIR
-from SDK.modbusabs import ModbusConnectionException
 import logging
 
 from util.hexs import hex2str

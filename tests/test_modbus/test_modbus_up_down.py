@@ -1,4 +1,4 @@
-from SDK.modbus.modbusmerge import SendTranslater, AbsModeBusModeByAxis, ReadTranslater
+from SDK.modbus.modbusmerge import SendTranslater, ReadTranslater
 from util.hexs import hex2str
 
 

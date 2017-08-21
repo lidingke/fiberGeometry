@@ -1,15 +1,9 @@
 # coding:utf-8
-# branch dev
 import threading
 from functools import partial
-
 from PyQt4.QtCore import QObject
 from PyQt4.QtCore import pyqtSignal
 from PyQt4.QtGui import QWidget
-
-from GUI.UI.mainUI import Ui_MainWindow as new_MainWindow
-from GUI.view.opplot import OpticalPlot
-import cv2
 
 from GUI.model.models import session_add_by_account
 from GUI.view.uiview import ManualCVForm, AutomaticCVForm
@@ -17,18 +11,15 @@ from GUI.view.mplqt4 import MyMplCanvas
 from setting.config import VIEW_LABEL, PDF_PARAMETER, DB_PARAMETER
 from setting.orderset import SETTING
 
-# from GUI.UI.mainUI import Ui_MainWindow
-import logging
-
 from util.observer import MySignal
 from .reporter import Reporter
 from pattern.sharp import MaxSharp
-from PyQt4.QtCore import QRect, Qt, QRectF
+from PyQt4.QtCore import Qt, QRectF
 from PyQt4.QtGui import QPixmap, QImage, QGraphicsScene
 import numpy as np
 from util.load import WriteReadJson, WRpickle, load_pickle_nor_json
 from datetime import datetime
-
+import logging
 logger = logging.getLogger(__name__)
 
 
@@ -38,7 +29,6 @@ class CVViewModel(object):
     def __init__(self, ):
         # super(CVViewModel, self).__init__()
         # self.setupUi(self)
-        print "init cv view"
         self.scence = QGraphicsScene()
         self.graphicsView.setScene(self.scence)
         # self.isMaxSharp = MaxSharp()
@@ -85,7 +75,6 @@ class CVViewModel(object):
         self.light.setText(light)
 
     def enable_move_button(self, is_move=True):
-        print "set move", is_move
         collections = ("move_down", "move_up", "next_state",
                        "move_right", "move_left", "reset")
         moves = {getattr(self, c) for c in collections}
@@ -101,12 +90,10 @@ class CVViewModel(object):
         self.emit_close_event.emit()
 
     def updateCVShow(self, str_,):
-        print "get plots"
         if str_:
             self.resultShowCV.setText(str_)
         self._disableCVButton(True)
 
-        # self.relative_index_canvas.update_figure(*plots)
 
     def _disableCVButton(self, bool=False):
         self.beginTestCV.setEnabled(bool)
@@ -145,8 +132,6 @@ class CVViewModel(object):
         #         self.cladLight.setText(cladLight)
 
     def relative_index_show(self, plots):
-        # x,h,y,v = plots
-        print "get in view show"
         self.relative_index_canvas.update_figure(*plots)
 
 
@@ -201,7 +186,6 @@ class ManualCV(object):
 
 
 def get_view(label):
-    print label
     if label == "AutomaticCV":
         view = type("View", AutomaticCV.fathers, {"__init__": AutomaticCV.init})
     elif label == "ManualCV":

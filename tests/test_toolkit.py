@@ -21,6 +21,15 @@ def test_counterdict():
 #     assert len(md) == 6
 #     assert md[3] == 3
 
+from GUI.controller import StateMixin
+from GUI.model.stateconf import state_number
+
+
+def test_state_number():
+    sn = state_number()
+    sns =  [next(sn)+1 for i in range(6)]
+    assert sns == [1,2,3,4,5,1]
+
 if __name__ == '__main__':
     mdlist = [1,2,2,3,4,3,3,4,5]
     # pdb.set_trace()

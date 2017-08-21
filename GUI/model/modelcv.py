@@ -92,7 +92,7 @@ class ModelCV(Thread, QObject):
                     results.append(result)
                     last_result = (self.eresults['core'][0],img)
                 self._emitCVShowResult(AvgResult(results))
-                self.relaxtive_index_to_matplot(*last_result)
+                self._relaxtive_index_to_matplot(*last_result)
             except ClassCoreError as e:
                 logger.error('class core error')
                 self.resultShowCV.emit('class core error')
@@ -176,8 +176,7 @@ class ModelCV(Thread, QObject):
         self.decorateMethod = decorateMethod(obj)
 
 
-    def relaxtive_index_to_matplot(self,core,img):
-        print "relaxtive_index_to_matplot"
+    def _relaxtive_index_to_matplot(self, core, img):
         plots = output_axies_plot_to_matplot(core,img)
         self.emit_relative_index.emit(plots)
 

@@ -55,11 +55,9 @@ class MyMplCanvas(FigureCanvas):
         # l = [random.randint(0, 10) for i in range(4)]
         # lastprices, yellowlines = LastPrice[::20].copy(), YellowLine[::20]
         # print 'plot len', len(numbers), len(lastprices), len(yellowlines)
-        print 'get in to plot'
         self.axes.plot(x,h,'y')
         self.axes_twinx.plot(y,v,'r')
         self.axes.set_facecolor('none')
-        print 'draw this', map(len ,(x,h,y,v))
         self.draw()
 
 
