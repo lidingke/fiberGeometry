@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 import pdb
 from pattern.edge import ExtractEdge
-from pattern.meta import CV2MethodSet
+# from pattern.meta import CV2MethodSet
 from setting.orderset import SETTING
 import logging
 logger = logging.getLogger(__name__)
@@ -139,6 +139,23 @@ class MaxSharp(object):
             return False
 
 
+def corner_noise(img,slice_point=300,dimension=0):
+    img = img[::,::,dimension].copy()
+    corner00 = img[:slice_point,:slice_point]
+    corner01 = img[-slice_point:,:slice_point]
+    corner10 = img[:slice_point,-slice_point:]
+    corner11 = img[-slice_point:,-slice_point:]
+    corners = (corner00,corner01,corner10,corner11)
+    laplacians = [cv2.Laplacian(corner, cv2.CV_64F).var() for corner in corners]
+    return sum(laplacians)
+
+def take_white_light_in_core(img,slice_point=800,dimension=2):
+    img = img[::,::,dimension].copy()
+    s = slice_point
+    core = img[s:-s,s:-s]
+    # cv2.imshow("core",core)
+    # cv2.waitKey()
+    return core.sum()//255
 
 
 

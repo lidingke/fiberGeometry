@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 import pdb
 from pattern.getimg import getImage
-from pattern.classify import OctagonClassify
+from pattern.classify import OctagonClassify, get_result
 
 
 def test_octagon_class_find_result():
@@ -32,7 +32,7 @@ def test_class_octagon_getResult():
     result = OctagonClassify().find(img)
     oca = OctagonClassify()
     oca.find(img)
-    result = oca.getResult()
+    result = get_result(result,0.1)
     assert len(result) == 5
 
 

@@ -3,7 +3,7 @@ import os
 from random import choice
 # import pdb
 import numpy as np
-from pattern.meta import CV2MethodSet
+# from pattern.meta import CV2MethodSet
 import sys
 
 class GetImage(object):

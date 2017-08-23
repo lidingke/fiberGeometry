@@ -55,6 +55,7 @@ class ModelCV(Thread, QObject):
         self.isSharp = IsSharp()
         self.eresults = False
         self.result2Show = {}
+        self.SET =SETTING()
         self.getRawImg = GetRawImg()
         self.imgQueue = collections.deque(maxlen=5)
         self.classify = classifyObject("G652")

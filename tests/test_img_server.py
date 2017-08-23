@@ -49,7 +49,7 @@ def test_getimg_multi_connect():
     Thread(target = SeverMain, args=(port,)).start()
     # multiprocessing.Process(target=SeverMain, args=(port,)).start()
     print 'start multi connect'
-    for x in range(0,300):
+    for x in range(0,100):
         try:
             # time.sleep(0.5)
             result = IOLoop.current().run_sync(Client(port=port).get_img_once)
