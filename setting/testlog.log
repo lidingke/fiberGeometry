@@ -6260,3 +6260,4 @@ None
 None
 2017-08-23 16:47:13,328-GUI.controller-ERROR-close controller
 2017-08-23 16:47:14,329-GUI.controller-ERROR-['None\n']
+2017-08-23 22:43:00,358-GUI.model.models-WARNING-creat db by sqlite:///setting/cv_result.db

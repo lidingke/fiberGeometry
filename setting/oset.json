@@ -288,6 +288,11 @@
       500,
       700
     ],
+        "medianBlur": {
+      "ErodeDilateKsize": 9,
+      "corefilter": 15,
+      "cladfilter": 15
+    },
     "ampPixSize": 0.01048,
     "diff_radius": 500,
     "enlarge": [

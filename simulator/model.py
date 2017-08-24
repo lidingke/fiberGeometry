@@ -35,8 +35,8 @@ class Model(Thread,QObject):
 
     def __init__(self):
         QObject.__init__(self)
-        # self.sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-        # self.sock.connect(("127.0.0.1", 9880))
+        self.sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+        self.sock.connect(("127.0.0.1", 9880))
         self.slave = Slave()  # 初始化Slave
         self.slave.start()  # 启动串口通信
         self.slave.emitinfo_dir.connect(self.info)
