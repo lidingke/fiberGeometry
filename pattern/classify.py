@@ -27,7 +27,14 @@ class MetaClassify(object):
 
         self.core_filter_index = self.SET["medianBlur"].get("corefilter", 3)
         self.clad_filter_index = self.SET["medianBlur"].get("cladfilter", 3)
-
+        meta_logger = "meta_logger-amp:{}-thr:{},{}-filter:{},{}".format(
+            self.amp_ratio,
+            self.core_thr_hight,
+            self.clad_thr_hight,
+            self.core_filter_index,
+            self.clad_filter_index
+        )
+        logger.error(meta_logger)
 
     def _difcore(self, img):
         corecore, core_range, clad_range = self.diff_range
@@ -38,7 +45,6 @@ class MetaClassify(object):
 
         redimg = img[::, ::, 0].copy()
 
-        # cladimg = self._getFilterImgClad()
         cladimg = cover_core_by_circle(corecore, redimg, diff_radius, 0)
 
         coreimg = img[::, ::, 1].copy()
@@ -158,7 +164,7 @@ def classifyObject(fiberType):
     logger.error('get fiber type{}'.format(fiberType))
     fiberType = str(fiberType)
     SETTING().keyUpdates(fiberType)
-    if fiberType in ["octagon", "10/130(oc)"]:
+    if fiberType in ["octagon", "10/130(oc)", "10/130(oc)"]:
         return OctagonClassify()
     elif fiberType in ["capillary"]:
         return Capillary()

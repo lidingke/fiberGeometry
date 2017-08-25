@@ -41,7 +41,7 @@ class Model(Thread,QObject):
         self.slave.start()  # 启动串口通信
         self.slave.emitinfo_dir.connect(self.info)
 
-        self.img_mode = GetRawImg()
+        # self.img_mode = GetRawImg()
         self.input_list = []
         self.output_list=[]
         # self.dict={}
@@ -60,19 +60,19 @@ class Model(Thread,QObject):
         mode.set_current(c1st=redlight, c2st=500, c3st=greenlight, savemode=True)  # 当前红光光强800
 
     def getIMGlight(self,redlight):
-
-        try:
-            self.img = self.img_mode.get()
-            self.red = (self.img[::, ::, 0]).sum()/(255*1544*3)
-            # self.dict[redlight]=self.red
-            print self.red
-            self.input_list.append(redlight)
-            self.output_list.append(self.red)
-            # print self.list
-            # print self.output_list
-        except Exception as e:
-            print "don't get img"
-            raise e
+        pass
+        # try:
+        #     self.img = self.img_mode.get()
+        #     self.red = (self.img[::, ::, 0]).sum()/(255*1544*3)
+        #     # self.dict[redlight]=self.red
+        #     print self.red
+        #     self.input_list.append(redlight)
+        #     self.output_list.append(self.red)
+        #     # print self.list
+        #     # print self.output_list
+        # except Exception as e:
+        #     print "don't get img"
+        #     raise e
 
     def plotlight(self):
         # print self.list
