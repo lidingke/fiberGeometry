@@ -1,6 +1,8 @@
 from __future__ import division
 
 import pdb
+from functools import wraps
+from time import sleep
 
 import numpy as np
 import cv2
@@ -199,3 +201,27 @@ def output_axies_plot_to_matplot(core, img):
     # pdb.set_trace()
 
     return (xlist, horizontal, ylist, vertical)
+
+# def show_imgs_to(dir_):
+#
+
+
+def show_temp_imgs(fun):
+    wraps(fun)
+    def inner(self,*args,**kwargs):
+        result = fun(self,*args,**kwargs)
+        imgs = self.temp_imgs
+        columns = []
+        for temps in imgs:
+            column_stack = np.column_stack(temps)
+            columns.append(column_stack)
+
+        img = np.row_stack(columns)
+        print img.shape
+        cv2.imwrite("tests\\data\\temp.png",img[::8,::8])
+        sleep(1)
+        # cv2.imshow("close",img[::4,::4])
+        # cv2.waitKey()
+        return result
+    return inner
+        # show_imgs_to(imgs,"tests\\data\\")
