@@ -56,8 +56,8 @@ class MyMplCanvas(FigureCanvas):
         # lastprices, yellowlines = LastPrice[::20].copy(), YellowLine[::20]
         # print 'plot len', len(numbers), len(lastprices), len(yellowlines)
         self.axes.cla()
-        self.axes.plot(x,h,'y')
-        self.axes_twinx.plot(y,v,'r')
+        self.axes.plot(x,h,'y')#yellow line
+        self.axes_twinx.plot(y,v,'r')#red line
         self.axes.set_facecolor('none')
         self.draw()
 

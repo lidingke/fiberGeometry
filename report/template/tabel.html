@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tabel</title>
+    <!--<style>-->
+        <!--table{-->
+        <!--border-collapse: collapse;-->
+        <!--}-->
+    <!--</style>-->
+
+</head>
+<body>
+
+<h1  align="center">{{title}}</h1>
+<div align="center">
+    <table width="100%"border="1"cellspacing="1"cellpadding="0">
+        <tr>
+            <th width="5%"rowspan="6"height="900"bgcolor="#e9faff"><h2>测试人员</h2></th>
+            <td width="20%">操作人员</td>
+            <td width="75%">{{worker}}</td>
+        </tr>
+        <tr>
+            <td width="20%">日期</td>
+            <td width="75%">{{date}}</td>
+        </tr>
+        <tr>
+            <td width="20%">光纤型号</td>
+            <td width="75%">{{fibertype}}</td>
+        </tr>
+        <tr>
+            <td width="20%">生产厂家</td>
+            <td width="75%">{{producer}}</td>
+        </tr>
+        <tr>
+            <td width="20%">光线编号</td>
+            <td width="75%">{{fiberNo}}</td>
+        </tr>
+        <tr>
+            <td width="20%">光纤长度</td>
+            <td width="75%">{{fiberLength}}</td>
+        </tr>
+        <tr >
+            <th width="5%"rowspan="5"height="900"bgcolor="#e9faff"><h2>测试结果</h2></th>
+            <td width="20%">纤芯直径</td>
+            <td width="75%">{{corediameter}}</td>
+        </tr>
+        <tr>
+            <td width="20%">包层直径</td>
+            <td width="75%">{{claddiameter}}</td>
+        </tr>
+        <tr >
+            <td width="20%">纤芯不圆度</td>
+            <td width="75%">{{coreroundness}}</td>
+        </tr>
+        <tr>
+            <td width="20%">包层不圆度</td>
+            <td width="75%">{{cladroundness}}</td>
+        </tr>
+        <tr >
+            <td width="20%">芯包同心度</td>
+            <td width="75%">{{concentricity}}</td>
+        </tr>
+        <tr>
+            <th width="5%"height="900"bgcolor="#e9faff"><h2>测试图片</h2></th>
+            <td align="center"colspan="2"><img src="{{src}}" alt="image"width="300"height="200"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

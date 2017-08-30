@@ -1,6 +1,8 @@
 # coding:utf-8
 import threading
 from functools import partial
+
+import cv2
 from PyQt4.QtCore import QObject
 from PyQt4.QtCore import pyqtSignal
 from PyQt4.QtGui import QWidget
@@ -21,7 +23,6 @@ from util.load import WriteReadJson, WRpickle, load_pickle_nor_json
 from datetime import datetime
 import logging
 logger = logging.getLogger(__name__)
-
 
 class CVViewModel(object):
     """docstring for View"""
@@ -133,7 +134,6 @@ class CVViewModel(object):
 
     def relative_index_show(self, plots):
         self.relative_index_canvas.update_figure(*plots)
-
 
 class MyQGraphicsScene(QGraphicsScene):
     def __init__(self):

@@ -1,4 +1,4 @@
-from report.pdf import writePdf, writePdfabs
+from report.pdf import writePdfabs, writePdf
 import os
 import sys
 import time

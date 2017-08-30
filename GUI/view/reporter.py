@@ -3,6 +3,8 @@ import re
 from datetime import datetime as dt
 from PyQt4.QtGui import QWidget, QFileDialog, QMessageBox
 from report.pdf import writePdfabs
+from setting.config import PDF_PARAMETER
+
 
 def Reporter(father):
     if not isinstance(father, QWidget):
