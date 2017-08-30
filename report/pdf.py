@@ -1,4 +1,5 @@
 #coding=utf-8
+import os
 from PyQt4.QtCore import QString
 
 from setting.config import PDF_PARAMETER
@@ -43,25 +44,12 @@ def writePdfabs(dir_):
         autoescape=select_autoescape(['html', 'xml'])
     )
 
-    template = env.get_template('tabel.html')
 
-    myhtml = template.render(
-        title=unicode(PDF_PARAMETER['title'],"utf-8"),
-        worker=PDF_PARAMETER['worker'],
-        fibertype=PDF_PARAMETER['fibertype'],
-        producer=PDF_PARAMETER['producer'],
-        fiberNo=PDF_PARAMETER['fiberNo'],
-        corediameter=PDF_PARAMETER['corediameter'],
-        claddiameter=PDF_PARAMETER['claddiameter'],
-        coreroundness=PDF_PARAMETER['coreroundness'],
-        cladroundness=PDF_PARAMETER['cladroundness'],
-        concentricity=PDF_PARAMETER['concentricity'],
-        sharpindex=PDF_PARAMETER['sharpindex'],
-        # lightindex=PDF_PARAMETER['lightindex'],
-        date=PDF_PARAMETER['date'],
-        fiberLength=unicode(PDF_PARAMETER['fiberLength'],"utf-8"),
-        # src="img\img.jpg"
-    )
+    template = env.get_template('tabel.html')
+    PDF_PARAMETER['title']=PDF_PARAMETER['title'].decode("utf-8")
+    PDF_PARAMETER['src']="E:\Python\\fiberwmx\\fiberGeometry\onefile\img.jpg"
+    myhtml = template.render(**PDF_PARAMETER)
+
     printer = QPrinter()
     printer.setOutputFormat(QPrinter.PdfFormat)
     printer.setOutputFileName(dir_)

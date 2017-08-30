@@ -1,3 +1,7 @@
+
+IMGold
+testlog.log
+setting/testlog.log
 *.db
 *.jpg
 .cache
@@ -39,3 +43,5 @@ tests/RI
 SDK/MindPyScript/test
 *.pickle
 
+/IMGold/
+/testlog.log

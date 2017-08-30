@@ -1,8 +1,12 @@
 # encoding:utf-8
+import cv2
+
 from setting.orderset import SETTING
 
+core_point = SETTING()['corepoint']
 
-def inner_fill(img, core=SETTING()['corepoint'], radius=0, value=0):
+
+def inner_fill(img, core=core_point, radius=0, value=0):
     if not radius: return img
     sharp = img.shape
     print sharp, core
@@ -25,7 +29,7 @@ def inner_fill(img, core=SETTING()['corepoint'], radius=0, value=0):
     return img
 
 
-def outer_fill(img, core=SETTING()['corepoint'], radius=0, value=0):
+def outer_fill(img, core=core_point, radius=0, value=0):
     if not radius:
         return img
     sharp = img.shape
@@ -51,4 +55,10 @@ def outer_fill(img, core=SETTING()['corepoint'], radius=0, value=0):
     # (x-x0)^2 +(y-y0)^2 = R^2
     # ±(R - (y-y0)^2)**0.5 +x0
 
+    return img
+
+
+def cover_core_by_circle(core, img, radius, value):
+    core = map(int, core)
+    cv2.circle(img, tuple(core), radius, value, -1)
     return img

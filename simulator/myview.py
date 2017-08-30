@@ -9,16 +9,19 @@ from PyQt4.QtGui import QWidget, QMainWindow, QPainter, QFont,\
     QGraphicsWidget, QGraphicsScene
 
 
+
 from .model import Model, Slave
-from .myframeUI import Ui_Form as new_MainWindow
+from .myframeUI import Ui_Form
 
 
-class Frame(QMainWindow, new_MainWindow,QObject):
+class Frame(QMainWindow, Ui_Form,QObject):
     emit_dir = pyqtSignal(object)#信号槽
+
     emit_close=pyqtSignal()
     emit_Led=pyqtSignal(object,object,object)
     # emit_Led = pyqtSignal( object, object)
     emit_red=pyqtSignal(object)
+
     def __init__(self, ):
         super(Frame, self).__init__()
         self.setupUi(self)#初始化ui文件
@@ -61,7 +64,6 @@ class Frame(QMainWindow, new_MainWindow,QObject):
         self.fileName=QtGui.QFileDialog.getExistingDirectory(self,"Open IMG ",'',)
 
         for f in os.listdir(self.fileName):
-
            if f.endswith('.BMP'):
                self.inputLine.setText(self.fileName)
            else:
@@ -77,6 +79,8 @@ class Frame(QMainWindow, new_MainWindow,QObject):
     def closeEvent(self, *args, **kwargs):
         self.emit_close.emit()
 
+    def closeEvent(self, *args, **kwargs):
+        self.emit_close.emit()
 
 
 class Controllers(object):

@@ -15,3 +15,4 @@ if __name__ == "__main__":
     sock.connect(("127.0.0.1", 9880))
     cmd = 'change:' + json.dumps(para) + '\n\r'
     sock.sendall(cmd)
+

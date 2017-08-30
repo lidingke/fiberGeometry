@@ -1,3 +1,4 @@
+
 from setting.orderset import SETTING, singleton
 SETTING().keyUpdates('G652')
 

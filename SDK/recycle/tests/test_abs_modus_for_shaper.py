@@ -7,7 +7,7 @@ import random
 import serial
 import crcmod
 import struct
-from util.function import hex2str
+from util.hexs import hex2str
 from util.observer import MySignal
 from  threading import Thread
 import time

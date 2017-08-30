@@ -15,6 +15,9 @@ import matplotlib.pyplot as plt
 
 import pytest
 
+
+
+
 def _getFilterImg(core, origin, minRange, maxRange):
     img = np.ones(origin.shape, dtype='uint8') * 255
     core = [core, 1]
@@ -148,12 +151,12 @@ def test_sharp_laplacian_all_list(dir_):
     sums = [sharp[0] for sharp in sharps]
     sharps = [sharp[1] for sharp in sharps]
     # sums = [dosharp(img[::,::,0])[1] for img in imgs]
-    print sharps
-    fig = plt.figure(len(dir_))
-    ax1 = fig.add_subplot(111)
-    ax1.plot(range(len(sharps)),sharps)
-    ax2 = ax1.twinx()
-    ax2.plot(range(len(sharps)),sums)
+    # print sharps
+    # fig = plt.figure(len(dir_))
+    # ax1 = fig.add_subplot(111)
+    # ax1.plot(range(len(sharps)),sharps)
+    # ax2 = ax1.twinx()
+    # ax2.plot(range(len(sharps)),sums)
     # ax2.title(dir_)
     # plt.show()
 

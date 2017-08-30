@@ -1,17 +1,19 @@
 import struct
 from functools import partial
-from collections import OrderedDict,defaultdict
+from collections import OrderedDict, defaultdict
 import crcmod
 import serial
 import logging
 
-from util.function import hex2str
+from util.hexs import hex2str
 
 logger = logging.getLogger(__name__)
 
 SAVE_MODES = {True: '\xFF\xFF',
               False: '\x00\x00'}
 crc16 = crcmod.predefined.mkCrcFun('modbus')
+
+
 # Currents = namedtuple('Currents', 'fst sec thd save')
 
 
@@ -31,19 +33,20 @@ class LEDMode(object):
         self.ser = serial.Serial(port, baudrate=19200, timeout=0.05, parity='E')
         self.currents = OrderedDict(c1st=1, c2st=1, c3st=1, savemode=False)
 
-
-    def set_current(self,**kwargs):
+    def set_current(self, **kwargs):
         """c1st: first current(INT), c2st:second current(INT), c3st:third current(INT), savemode:BOOL"""
-        #c1st=False, c2st=False, c3st=False,savemode=False
+        # c1st=False, c2st=False, c3st=False,savemode=False
         # defaults = defaultdict(False)
-        paras_key = ('c1st','c2st','c3st','savemode')
-        # paras = {k: False for k in paras_key}
-        # paras.update(**kwargs)
-        # self.currents.update(**paras)
-        for k,v in kwargs.items():
+        paras_key = ('c1st', 'c2st', 'c3st', 'savemode')
+
+        for k, v in kwargs.items():
             if k not in paras_key:
-                raise  ValueError("error input:"+str(k))
+                raise ValueError("error input:" + str(k))
             self.currents[k] = v
         cmd = set_current_cmd(**self.currents)
-        logger.info('set current '+hex2str(cmd))
+        logger.info('set current ' + hex2str(cmd))
         self.ser.write(cmd)
+
+
+    def set_current_by_colour(self,red,green,savemode = False):
+        self.set_current(c1st=red,c3st=green)

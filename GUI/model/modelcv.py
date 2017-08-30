@@ -2,9 +2,11 @@
 import collections
 import pdb
 import time
+import traceback
 from threading import Thread
 import copy
 import numpy as np
+import sys
 from PyQt4.QtCore import QObject, pyqtSignal
 
 from setting.config import PDF_PARAMETER, DB_PARAMETER, DYNAMIC_CAMERA
@@ -12,6 +14,7 @@ from setting.orderset import SETTING
 from pattern.exception import ClassCoreError, ClassOctagonError
 
 Set = SETTING('octagon')
+
 # setGet = Set.get('ifcamera', False)
 # fiberType = Set.get('fiberType', "G652")
 # print 'fibertype', fiberType, 'setget', setGet
@@ -26,7 +29,7 @@ else:
     # print 'script don\'t open camera'
 from pattern.classify import classifyObject
 from pattern.sharp import IsSharp
-from pattern.draw import DecorateImg, drawCoreCircle, decorateMethod
+from pattern.draw import DecorateImg, drawCoreCircle, decorateMethod, output_axies_plot_to_matplot
 from util.filter import AvgResult
 from util.loadimg import sliceImg
 
@@ -42,6 +45,7 @@ class ModelCV(Thread, QObject):
     resultShowCV = pyqtSignal(object)
     # resultShowAT = pyqtSignal(object)
     returnCoreLight = pyqtSignal(object, object)
+    emit_relative_index = pyqtSignal(object)
 
     def __init__(self, ):
         super(ModelCV, self).__init__()
@@ -51,12 +55,13 @@ class ModelCV(Thread, QObject):
         self.isSharp = IsSharp()
         self.eresults = False
         self.result2Show = {}
+        self.SET =SETTING()
         self.getRawImg = GetRawImg()
         self.imgQueue = collections.deque(maxlen=5)
         self.classify = classifyObject("G652")
         self.decorateMethod = decorateMethod("G652")
-        self.pdfparameter = PDF_PARAMETER # SETTING()['pdfpara']
-        self.dbparameter = DB_PARAMETER #SETTING()['dbpara']
+        self.pdfparameter = PDF_PARAMETER  # SETTING()['pdfpara']
+        self.dbparameter = DB_PARAMETER  # SETTING()['dbpara']
 
     def run(self):
         while self.IS_RUNNING:
@@ -67,10 +72,11 @@ class ModelCV(Thread, QObject):
             self.imgQueue.append(self.img)
             self.sharp = "%0.2f" % self.isSharp.issharpla(img[::, ::, 0])
             self._greenLight(img)
-            # self.sharp = "%0.2f" % self.red
-            self.lights="%0.2f" % self.red
+
+            self.light = "%0.2f" % self.red
+
             colorImg = self._decorateImg(img)
-            self.returnImg.emit(colorImg[::4, ::4].copy(), self.sharp,self.lights)
+            self.returnImg.emit(colorImg[::2, ::2].copy(), self.sharp,self.light)
 
     def mainCalculate(self):
         def _calcImg():
@@ -85,20 +91,21 @@ class ModelCV(Thread, QObject):
                     result = self.eresults["showResult"]
                     logger.info('get result' + str(result))
                     results.append(result)
+                    last_result = (self.eresults['core'][0],img)
                 self._emitCVShowResult(AvgResult(results))
+                self._relaxtive_index_to_matplot(*last_result)
             except ClassCoreError as e:
                 logger.error('class core error')
-                self.resultShowCV.emit('error')
+                self.resultShowCV.emit('class core error')
                 return
             except ValueError as e:
                 logger.error(str(e))
-                self.resultShowCV.emit('error')
+                self.resultShowCV.emit(str(e))
                 return
             except Exception as e:
                 logger.exception(e)
 
         Thread(target=_calcImg).start()
-
 
     def _decorateImg(self, img):
         """"mark the circle and size parameter"""
@@ -144,13 +151,13 @@ class ModelCV(Thread, QObject):
 
     def _greenLight(self, img):
         if isinstance(img, np.ndarray):
-            #TODO:SETTING
             corey, corex = SETTING()["corepoint"]
             minRange, maxRange = SETTING()["coreRange"]
             green = sliceImg(img[::, ::, 1], (corex, corey), maxRange)
             blue = sliceImg(img[::, ::, 2], (corex, corey), maxRange)
             red=img[::,::,0]
             self.allblue = img[::, ::, 2].sum() / 255
+            self.red = img[::, ::, 0].sum() / 255
 
             self.green = green.sum() / 255
             self.blue = blue.sum() / 255
@@ -159,9 +166,8 @@ class ModelCV(Thread, QObject):
             self.allgreen = img[::, ::, 1].sum() / 255 - self.green
             self.pdfparameter['corelight'] = "%0.2f" % self.blue
             self.pdfparameter['cladlight'] = "%0.2f" % self.allgreen
-            self.returnCoreLight.emit("%0.2f" % (self.blue), "%0.2f" % (self.allgreen))
+            # self.returnCoreLight.emit("%0.2f" % (self.blue), "%0.2f" % (self.allgreen))
             # self.returnCladLight.emit()
-
 
     def updateClassifyObject(self, obj='G652'):
         self.classify = classifyObject(obj)
@@ -171,22 +177,7 @@ class ModelCV(Thread, QObject):
         self.decorateMethod = decorateMethod(obj)
 
 
+    def _relaxtive_index_to_matplot(self, core, img):
+        plots = output_axies_plot_to_matplot(core,img)
+        self.emit_relative_index.emit(plots)
 
-import pdb
-class first():
-    def __init__(self):
-        print('first')
-
-class next():
-    def __init__(self):
-        print('next')
-
-class END(first,next):
-    def __init__(self):
-        mro = type(self).mro()
-        for m in mro:
-            m.__name__.endswith('first')
-            m.__init(self)
-        # pdb.set_trace()
-
-# END()

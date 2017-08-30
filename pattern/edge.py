@@ -1,9 +1,10 @@
 import cv2
-from pattern.meta import CV2MethodSet
+# from pattern.meta import CV2MethodSet
 import numpy as np
 
 from setting.orderset import SETTING
-
+import logging
+logger = logging.getLogger(__name__)
 
 class ExtractEdge(object):
     """docstring for ExtractEdge"""
@@ -28,41 +29,13 @@ class ExtractEdge(object):
             cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, blockSize, Constant)
         return img
 
-    def runMax(self, img):
-        """medianBlur consume 0.23s"""
-
-        if len(img.shape) > 2:
-            img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-        # cv2.imshow('max', img[::4,::4])
-        # cv2.waitKey()
-        kernelSize = self.SET["adaptiveTreshold"].get("kernelSize",3)
-        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (kernelSize, kernelSize))
-        erode = cv2.erode(img, kernel)
-        dilate = cv2.dilate(img, kernel)
-        img = cv2.absdiff(dilate, erode)
-        img = cv2.bitwise_not(img)
-        blockSize = self.SET["adaptiveTreshold"]["blockSize"]
-        Constant = self.SET["adaptiveTreshold"]["Constant"]
-        # img = cv2.adaptiveThreshold(img, 255,
-        #     cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, blockSize, Constant)
-        # img = cv2.adaptiveThreshold(img, 255,
-        #     cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, blockSize, Constant)
-        # img.tofile("tests\\data\\midcoreafterdif.bin")
-        size, img = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)
-        # cv2.imshow('max', img[::4,::4])
-        # cv2.waitKey()
-        return img
 
     def directThr(self, img, hight = 175):
         if len(img.shape) > 2:
             img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-        print 'thr', hight
+        logger.info('thr%s'%hight)
         size, img = cv2.threshold(img, hight, 255, cv2.THRESH_BINARY)
         return img
-
-    def convexHull(self, img):
-        if len(img.shape) > 2:
-            img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
 
 
 class EdgeFuncs(object):

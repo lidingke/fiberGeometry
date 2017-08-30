@@ -110,6 +110,17 @@ class MetaDict(MutableMapping):
     def __len__(self):
         return len(self.store)
 
+def load_pickle_nor_json(file_name):
+    """if pickle exist load pickle, nor json"""
+    wrp = WRpickle(file_name+".pickle")
+    try:
+        load = wrp.loadPick()
+    except IOError:
+        wrJson = WriteReadJson(file_name+".json")
+        load = wrJson.load()
+    return load
+
+
 if __name__ == '__main__':
     # m = ModelPump()
     # p = portGard()

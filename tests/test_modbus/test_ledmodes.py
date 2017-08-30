@@ -10,10 +10,11 @@ import crcmod
 import serial
 
 from SDK.modbus.ledmodes import set_current_cmd, LEDMode
-from util.function import hex2str
+from util.hexs import hex2str
 
 
-def test_set_online(light):
+def ttest_set_online():
+
     logging.basicConfig(level=logging.INFO)
     mode = LEDMode('com15')#光端口
     # for i in range(10):

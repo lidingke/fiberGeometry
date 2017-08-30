@@ -1,11 +1,13 @@
 from setting.orderset import SETTING
+from tests.test_pattern import assert_result
+
 SETTING().keyUpdates('octagon','centerImg')
 
 import cv2
 import numpy as np
 import pdb
 from pattern.getimg import getImage
-from pattern.classify import OctagonClassify
+from pattern.classify import OctagonClassify, get_show_result
 
 
 def test_octagon_class_find_result():
@@ -30,11 +32,20 @@ def test_octagon_class_find_result():
 def test_class_octagon_getResult():
     img = getImage("IMG\\midoctagon\\mid1.BMP")
     result = OctagonClassify().find(img)
-    oca = OctagonClassify()
-    oca.find(img)
-    result = oca.getResult()
-    assert len(result) == 5
-
+    # oca = OctagonClassify()
+    # oca.find(img)
+    # result = get_show_result(result, 0.1)
+    # assert len(result) == 5
+    #
+    #
+    assert_result(result,0.8)
+    # core, clad = result['coreResult'], result['cladResult']
+    # print core['ellipese'], clad['ellipese'], result['cladResult'].keys()
+    # assert core['longAxisLen'] > 0.5
+    # assert core['shortAxisLen'] > 0.5
+    # assert core['longAxisLen'] > core['shortAxisLen']
+    # ratio = core['shortAxisLen'] / core['longAxisLen']
+    # assert ratio > 0.8
 
 
 if __name__ == '__main__':

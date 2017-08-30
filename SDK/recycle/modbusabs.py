@@ -6,7 +6,7 @@ import serial
 import struct
 import logging
 from collections import deque
-from util.function import hex2str
+from util.hexs import hex2str
 
 logger = logging.getLogger(__name__)
 

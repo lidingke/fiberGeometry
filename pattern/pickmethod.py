@@ -18,15 +18,16 @@ class PickCircle(object):
         super(PickCircle, self).__init__()
 
     # @timing
-    def run(self,img):
-        blurindex = SETTING()["medianBlur"].get("corefilter", 3)
-
-        img = cv2.medianBlur(img, blurindex)
+    def run(self,img,blurindex=False):
+        # blurindex = SETTING()["medianBlur"].get("corefilter", 3)
+        # raise ValueError("abc")
+        if blurindex:
+            img = cv2.medianBlur(img, blurindex)
         # cv2.imshow("img", img[::4, ::4])
         # cv2.waitKey()
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         tempPlots = np.ones(img.shape) * 255
-        print 'get contours len', len(contours)
+        logger.info('get contours len %s'%len(contours))
         if len(contours) == 0:
             raise ClassCoreError
         elif len(contours) == 1:
@@ -53,14 +54,14 @@ class PickHullCircle(PickCircle):
     def __init__(self):
         super(PickHullCircle, self).__init__()
 
-    def run(self, img):
-        blurindex = SETTING()["medianBlur"].get("corefilter", 3)
-        img = cv2.medianBlur(img, blurindex)
+    def run(self, img, blurindex):
+        if blurindex:
+            img = cv2.medianBlur(img, blurindex)
         # cv2.imshow("img", img[::4, ::4])
         # cv2.waitKey()
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         tempPlots = np.ones(img.shape) * 255
-        print 'get contours len', len(contours)
+        logger.info('get contours len %s'%len(contours))
         if len(contours) == 0:
             raise ClassCoreError
         elif len(contours) == 1:
@@ -146,23 +147,22 @@ class PickOctagon(object):
             return list_
 
     @timing
-    def run(self, img):
+    def run(self, img, blurindex=False):
         """
         :findContours->convexHull->sortMaxPointsDistance
         ->calculateVerticalPoint->result: Long & short axis
         :param img:
         :return:
         """
-
-        blurindex = SETTING()["medianBlur"].get("cladfilter", 3)
-        img = cv2.medianBlur(img, blurindex)
+        if blurindex:
+            img = cv2.medianBlur(img, blurindex)
         # img = cv2.adaptiveBilateralFilter
         # img = cv2.bilateralFilter(img, 5, 80, 75)
         # img = EdgeFuncs().close(img,kernelLen=3)
         # print 'get blur index ', blurindex
         contours, hierarchys = cv2.findContours(img, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         tempPlots = np.ones(img.shape) * 255
-        print 'get contours len', len(contours)
+        logger.info('get contours len %s'%len(contours))
         for contour in contours:
             cv2.drawContours(tempPlots, contour, -1, (0, 0, 255))
         # for contour in contours:

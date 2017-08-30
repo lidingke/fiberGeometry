@@ -1,6 +1,10 @@
 # coding:utf-8
 # from view import View
+import traceback
 from functools import partial
+
+import sys
+
 from GUI.view.monkey import MonkeyServer
 from setting.config import MODBUS_PORT
 from GUI.model.stateconf import state_number, CONTEXT
@@ -105,7 +109,8 @@ class ModelCVControllerMixin(object):
 
         self._modelcv.returnImg.connect(self._view.updatePixmap)
         self._modelcv.resultShowCV.connect(self._view.updateCVShow)
-        self._modelcv.returnCoreLight.connect(self._view.getCoreLight)
+        self._modelcv.emit_relative_index.connect(self._view.relative_index_show)
+        # self._modelcv.returnCoreLight.connect(self._view.getCoreLight)
 
     def _changeFiberType(self):
         key = str(self._view.fiberTypeBox.currentText())
@@ -159,6 +164,8 @@ class ManualCVController(ModelCVControllerMixin, StateMixin):
     def close(self):
         logger.error("close controller")
         self._modelcv.close()
+        logger.error(traceback.format_exception(*sys.exc_info()))
+
 
 
 def get_controller(label):

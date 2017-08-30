@@ -14,22 +14,24 @@ def to_html():
 
     template = env.get_template('tabel.html')
     # d = {"title":unicode("ssx", "utf-8")}
-    myhtml = template.render(
-        title=unicode("ssx", "utf-8"),
-        worker="a",
-        fibertype="b",
-        producer="c",
-        fiberNo="d",
-        corediameter="e",
-        claddiameter="f",
-        coreroundness="g",
-        cladroundness="h",
-        concentricity="i",
-        sharpindex="j",
-        # lightindex=PDF_PARAMETER['lightindex'],
-        date="k",
-        fiberLength=unicode("l", "utf-8"),
-    )
+    para={'title':"xxx",
+    'worker':"a",
+    'fibertype':"b",
+    'producer':"c",
+    'fiberNo':"d",
+    'corediameter':"e",
+    'claddiameter':"f",
+    'coreroundness':"g",
+    'cladroundness':"h",
+    'concentricity':"i",
+    'sharpindex':"j",
+    # lightindex=PDF_PARAMETER['lightindex'],
+    'date':"k",
+    'fiberLength':"1",
+     "src":"E:\Python\\fiberwmx\\fiberGeometry\onefile\img.jpg"
+}
+    myhtml = template.render(**para)
+
     return myhtml
 
 def to_pdf(dir_,myhtml):

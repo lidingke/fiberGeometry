@@ -1,9 +1,16 @@
 #coding:utf-8
+from setting.config import DYNAMIC_CAMERA
 import matplotlib;matplotlib.use("Qt4Agg")
 import matplotlib.pyplot as plt
 import socket
 import json
-
+print 'get camera status', DYNAMIC_CAMERA
+if DYNAMIC_CAMERA:
+    from SDK.mdpy import GetRawImg
+else:
+    from SDK.mdpytest import DynamicGetRawImgTest as GetRawImg
+    # 当摄像头关闭时，图像从文件夹读取
+    # GetRawImg = DynamicGetRawImgTest
 import serial
 from PyQt4.QtCore import QString, pyqtSignal, QObject
 from tornado.ioloop import IOLoop
@@ -11,7 +18,7 @@ from tornado.iostream import StreamClosedError
 import numpy as np
 
 
-from SDK.mdpy import GetRawImg
+# from SDK.mdpy import GetRawImg
 from threading import Thread
 
 from SDK.modbus.ledmodes import LEDMode
@@ -28,12 +35,13 @@ class Model(Thread,QObject):
 
     def __init__(self):
         QObject.__init__(self)
-        # self.sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-        # self.sock.connect(("127.0.0.1", 9880))
+        self.sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+        self.sock.connect(("127.0.0.1", 9880))
         self.slave = Slave()  # 初始化Slave
         self.slave.start()  # 启动串口通信
         self.slave.emitinfo_dir.connect(self.info)
-        self.img_mode = GetRawImg()
+
+        # self.img_mode = GetRawImg()
         self.input_list = []
         self.output_list=[]
         # self.dict={}
@@ -52,19 +60,19 @@ class Model(Thread,QObject):
         mode.set_current(c1st=redlight, c2st=500, c3st=greenlight, savemode=True)  # 当前红光光强800
 
     def getIMGlight(self,redlight):
-
-        try:
-            self.img=self.img_mode.get()
-            self.red = (self.img[::, ::, 0]).sum()/(255*1544*3)
-            # self.dict[redlight]=self.red
-            print self.red
-            self.input_list.append(redlight)
-            self.output_list.append(self.red)
-            # print self.list
-            # print self.output_list
-        except Exception as e:
-            print "don't get img"
-            raise e
+        pass
+        # try:
+        #     self.img = self.img_mode.get()
+        #     self.red = (self.img[::, ::, 0]).sum()/(255*1544*3)
+        #     # self.dict[redlight]=self.red
+        #     print self.red
+        #     self.input_list.append(redlight)
+        #     self.output_list.append(self.red)
+        #     # print self.list
+        #     # print self.output_list
+        # except Exception as e:
+        #     print "don't get img"
+        #     raise e
 
     def plotlight(self):
         # print self.list
@@ -89,6 +97,9 @@ class Model(Thread,QObject):
         # self.sock.close()
         self.slave.close()
 
+    def close(self):
+        print 'close slave'
+        self.slave.close()
 
 
 
