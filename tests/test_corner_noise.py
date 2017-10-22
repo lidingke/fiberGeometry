@@ -1,10 +1,17 @@
 from pattern.getimg import randomImg, getImage
-from pattern.sharp import corner_noise, take_white_light_in_core
+from pattern.sharp import corner_noise, take_white_light_in_core, black_points
 
 
 def test_corner_noise():
     img = randomImg("IMG\\20400\\396\\")
     assert corner_noise(img,300) > 0
+
+def test_black_points():
+    img = randomImg("IMG\\20400\\396\\")
+    assert black_points(img) >10
+    img = randomImg("IMG\\200210\\nomid\\")
+    assert black_points(img)<10
+
 
 def test_take_white_light_in_core():
     img = getImage("IMG\\20400\\size1.bmp")

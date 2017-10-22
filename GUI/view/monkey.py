@@ -38,9 +38,10 @@ class MonkeyServer(threading.Thread):
         self.RUNNING = True
 
     def parser_cmd_in(self, cmd):
-        if cmd == 'test':
-            self.instance._view._disableCVButton(False)
-            logger.error("test")
+        pass
+        # if cmd == 'test':
+        #     self.instance._view._disableCVButton(False)
+        #     logger.error("test")
 
 
     def readline(self, socket, address):

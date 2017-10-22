@@ -6,4 +6,4 @@ print 'listening on port', port
 server = ImgServer()
 
 server.listen(port,address='127.0.0.1')
-IOLoop.instance().start()
+IOLoop.instance().start_coroutine()

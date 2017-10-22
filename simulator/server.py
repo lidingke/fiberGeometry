@@ -62,7 +62,7 @@ class SharpSever(object):
 
 
 class ImgServer(TCPServer):
-    PARA = ('randomImg', 'IMG/G652/pk/')
+    PARA = ('randomImg', 'IMG/G652/0912R/')
     IS_RUNNING = True
     # sharpSever = SharpSever()
 
@@ -225,6 +225,6 @@ if __name__ == "__main__":
     server = ImgServer()
     server.listen(port)
     logger.info("Listening on TCP port %d", port)
-    IOLoop.current().start()
+    IOLoop.current().start_coroutine()
     # port = 9880
     # SeverMain(port)

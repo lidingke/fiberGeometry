@@ -1,6 +1,9 @@
+from setting.config import CONFIGS_DIR
+from setting.configs.update import update_config_by_json, update_config_by_name
+from setting.parameter import SETTING, singleton, ClassifyParameter
+from setting import config
 
-from setting.orderset import SETTING, singleton
-SETTING().keyUpdates('G652')
+SETTING().update_by_key('G652')
 
 def test_other_set():
     s = SETTING('G652')
@@ -16,38 +19,63 @@ def test_get_new_value():
     s["newkey"] = True
     assert s.get("newkey")
 
-def test_updateSets_args():
-    s = SETTING("Default")
-    s.updates()
-    assert "set" not in s.keys()
-    assert "testsetdict" not in s.keys()
-    s.updates("set", {"testsetdict": "dict"})
-    assert s.get("testset") == ".json"
-    assert s.get("testsetdict") == "dict"
-
-def test_updateSets_kwargs():
-    s = SETTING("Default")
-    assert 'testkwargs' not in s.keys()
-    s.updates(testkwargs='get')
-    assert s.get('testkwargs') == 'get'
+# def test_updateSets_args():
+#     s = SETTING("Default")
+#     s.update_by_key()
+#     assert "set" not in s.keys()
+#     assert "testsetdict" not in s.keys()
+#     s.update_by_key("set", {"testsetdict": "dict"})
+#     assert s.get("testset") == ".json"
+#     assert s.get("testsetdict") == "dict"
+#
+# def test_updateSets_kwargs():
+#     s = SETTING("Default")
+#     assert 'testkwargs' not in s.keys()
+#     s.update_by_key(testkwargs='get')
+#     assert s.get('testkwargs') == 'get'
 
 def test_updateSets_Exception():
     s = SETTING("Default")
     try:
-        s.updates(1)
+        s.update_by_key(1)
     except Exception, e:
         assert isinstance(e, ValueError)
 
 
-def test_updatekeys():
-    s = SETTING()
-    s.keyUpdates('20/400')
-    assert s.get('fiberType') == "20/400"
-    s.keyUpdates('octagon')
-    assert s.get('fiberType') == "octagon"
-    s.keyUpdates('G652')
-    assert s.get('fiberType') == "G652"
+# def test_updatekeys():
+#     s = SETTING()
+#     s.update_by_key('20/400')
+#     assert s.get('fiberType') == "20/400"
+#     s.update_by_key('20/130(oc)')
+#     assert s.get('fiberType') == "20/130(oc)"
+#     s.update_by_key('G652')
+#     assert s.get('fiberType') == "G652"
 
+def test_update_config_by_json():
+    json_dir = CONFIGS_DIR+"static"+".json"
+    assert config.FOR_UNIT_TEST == False
+
+    update_config_by_json(config,json_dir)
+    assert config.FOR_UNIT_TEST == True
+
+
+def test_update_config_by_name():
+    config.FOR_UNIT_TEST = False
+    assert config.FOR_UNIT_TEST == False
+    update_config_by_name()
+    assert config.FOR_UNIT_TEST == True
+
+
+def test_classify_parameter():
+    fiberType = "G652"
+    sets = ClassifyParameter()
+    sets.update_by_key(fiberType)
+    assert fiberType == "G652"
+    index = sets['ampPixSize']
+    fiberType = "capillary"
+    sets.update_by_key(fiberType)
+    assert fiberType == "capillary"
+    assert index != sets['ampPixSize']
 
 
 if __name__ == '__main__':
@@ -57,4 +85,4 @@ if __name__ == '__main__':
     # del SETTING
     # import SETTING
     # from setting.orderset import SETTING
-    pass
+    test_update_config_by_name()

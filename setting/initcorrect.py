@@ -1,7 +1,7 @@
 
-from setting.orderset import SETTING
-SETTING("test")
-from SDK.mdpy import GetRawImg, releaseCamera, getSerialNumber
+from setting.parameter import SETTING
+# SETTING("test")
+from SDK.mdpy import GetRawImg, release_camera, get_camera_serial
 import uuid
 from util.load import  MetaDict, WriteReadJson, WRpickle
 from PyQt4.QtGui import QPalette, QColor,QApplication, QMessageBox, QWidget
@@ -36,14 +36,14 @@ class InitCorrect(object):
     def rightCamera(self):
         try:
             get = GetRawImg()
-            serialnumber = get.getSerialNumber()
+            serialnumber = get.get_camera_serial()
         except ValueError as e:
             print 'get e is ',e
             # releaseCamera()
             # time.sleep(0.1)
             raise e
         finally:
-            releaseCamera()
+            release_camera()
         if serialnumber not in self.json["camera"]:
             raise ValueError("Camera serial number error")
 

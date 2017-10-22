@@ -1,21 +1,6 @@
 {
+  "annotation": "light controller",
   "Default": {
-    "dip": "500W",
-    "adaptiveTreshold": {
-      "blockSize": 15,
-      "Constant": 7,
-      "kernelSize": 5
-    },
-    "medianBlur": {
-      "ErodeDilateKsize": 9,
-      "corefilter": 15,
-      "cladfilter": 17
-    },
-    "rect": {
-      "width": 2592,
-      "hight": 1944,
-      "dimension": 1
-    },
     "imgsize": [
       1944,
       2592
@@ -25,253 +10,64 @@
       80
     ],
     "cladRange": [
-      200,
-      400
+      600,
+      800
     ],
     "fiberType": "G652",
     "corepoint": [
       1296,
       972
     ],
-    "ampPixSize": 0.218,
     "pdfpara": {},
     "dbpara": {},
-    "modbusport": "com4"
-  },
-  "MindVision500": {
-    "ifcamera": true
-  },
-  "20X": {
-    "ampPixSize": 0.218
-  },
-  "Online": {
-    "ifcamera": true
-  },
-  "test": {
-    "ifcamera": false
-  },
-  "set": {
-    "testset": ".json"
-  },
-  "sjtRange": {
-    "coreRange": [
-      10,
-      30
-    ],
-    "cladRange": [
-      150,
-      300
-    ]
-  },
-  "centerImg": {
-    "centerImg": true
-  },
-  "octagon": {
-    "fiberType": "octagon",
-    "thresholdSize": {
-      "core": 40
+    "modbusport": "com4",
+    "light_current": {
+      "red": 50,
+      "green": 200
     },
-    "imgsize": [
-      1944,
-      2592
-    ],
-    "coreRange": [
-      20,
-      140
-    ],
-    "cladRange": [
-      650,
-      900
-    ],
-    "ampPixSize": 0.07963,
-    "enlarge": [
-      20,
-      3
-    ],
-    "medianBlur": {
-      "ErodeDilateKsize": 9,
-      "corefilter": 11,
-      "cladfilter": 11
+    "light_range": {
+      "red": [
+        100,
+        110
+      ],
+      "green": [
+        2,
+        10
+      ]
     }
   },
   "20/400": {
-    "fiberType": "20/400",
-    "thresholdSize": {
-      "core": 40
-    },
-    "imgsize": [
-      1944,
-      2592
-    ],
-    "coreRange": [
-      10,
-      100
-    ],
-    "cladRange": [
-      700,
-      1000
-    ],
-    "ampPixSize": 0.226244,
-    "enlarge": [
-      10,
-      3
-    ]
+    "light_range": {
+      "red": [
+        500,
+        520
+      ],
+      "green": [
+        2,
+        10
+      ]
+    }
   },
   "G652": {
-    "fiberType": "G652",
-    "thresholdSize": {
-      "core": 120
-    },
-    "imgsize": [
-      1944,
-      2592
-    ],
-    "coreRange": [
-      20,
-      140
-    ],
-    "cladRange": [
-      500,
-      650
-    ],
-    "ampPixSize": 0.11053,
-    "enlarge": [
-      20,
-      3
-    ]
   },
   "105/125": {
-    "fiberType": "105/125",
-    "thresholdSize": {
-      "core": 20
-    },
-    "imgsize": [
-      1944,
-      2592
-    ],
-    "coreRange": [
-      480,
-      530
-    ],
-    "cladRange": [
-      550,
-      600
-    ],
-    "ampPixSize": 0.10753,
-    "enlarge": [
-      20,
-      3
-    ]
   },
   "200/220": {
-    "fiberType": "200/220",
-    "thresholdSize": {
-      "core": 40
-    },
-    "imgsize": [
-      1944,
-      2592
-    ],
-    "coreRange": [
-      440,
-      470
-    ],
-    "cladRange": [
-      480,
-      500
-    ],
-    "medianBlur": {
-      "ErodeDilateKsize": 9,
-      "corefilter": 11,
-      "cladfilter": 11
-    },
-    "ampPixSize": 0.217627,
-    "enlarge": [
-      20,
-      3
-    ]
   },
   "10/130(oc)": {
-    "fiberType": "octagon",
-    "thresholdSize": {
-      "core": 120
-    },
-    "imgsize": [
-      1944,
-      2592
-    ],
-    "coreRange": [
-      20,
-      140
-    ],
-    "cladRange": [
-      500,
-      700
-    ],
-    "ampPixSize": 0.10753,
-    "enlarge": [
-      20,
-      3
-    ],
-    "medianBlur": {
-      "ErodeDilateKsize": 9,
-      "corefilter": 11,
-      "cladfilter": 11
-    }
   },
   "50/400": {
-    "fiberType": "20/400",
-    "thresholdSize": {
-      "core": 20
-    },
-    "imgsize": [
-      1944,
-      2592
-    ],
-    "coreRange": [
-      10,
-      200
-    ],
-    "cladRange": [
-      700,
-      1000
-    ],
-    "ampPixSize": 0.217627,
-    "enlarge": [
-      10,
-      3
-    ]
   },
   "20/130(oc)": {
-    "fiberType": "octagon",
     "thresholdSize": {
       "core": 40
     },
     "imgsize": [
       1944,
       2592
-    ],
-    "coreRange": [
-      20,
-      140
-    ],
-    "cladRange": [
-      500,
-      700
-    ],
-    "ampPixSize": 0.10753,
-    "enlarge": [
-      20,
-      3
-    ],
-    "medianBlur": {
-      "ErodeDilateKsize": 9,
-      "corefilter": 11,
-      "cladfilter": 11
-    }
+    ]
   },
   "capillary": {
-    "fiberType": "capillary",
     "thresholdSize": {
       "core": 40
     },
@@ -283,13 +79,11 @@
       20,
       140
     ],
-    "draw_clad": false,
     "cladRange": [
       500,
       700
     ],
-        "medianBlur": {
-      "ErodeDilateKsize": 9,
+    "medianBlur": {
       "corefilter": 15,
       "cladfilter": 15
     },

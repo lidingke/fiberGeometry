@@ -36,7 +36,11 @@ class Model(Thread,QObject):
     def __init__(self):
         QObject.__init__(self)
         self.sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-        self.sock.connect(("127.0.0.1", 9880))
+        try:
+            self.sock.connect(("127.0.0.1", 9880))
+            print "connect",9880
+        except Exception:
+            print("no init connect")
         self.slave = Slave()  # 初始化Slave
         self.slave.start()  # 启动串口通信
         self.slave.emitinfo_dir.connect(self.info)
@@ -57,7 +61,7 @@ class Model(Thread,QObject):
     def led_test(self,port,redlight,greenlight):
         logging.basicConfig(level=logging.INFO)
         mode = LEDMode(port)  # 光端口
-        mode.set_current(c1st=redlight, c2st=500, c3st=greenlight, savemode=True)  # 当前红光光强800
+        mode.set_current(c1st=redlight, c2st=500, c3st=greenlight, savemode=True)
 
     def getIMGlight(self,redlight):
         pass
@@ -162,7 +166,7 @@ class DynamicGetRawImgTest(GetRawImg):
             img.shape = img.shape = (1944, 2592, 3)
             return img
 
-    def unInitCamera(self):
+    def un_init_camera(self):
         pass
 
 

@@ -11,10 +11,10 @@ from SDK.modbus.directions import HEAD_DIR, MOTOR_GROUP, START_STOP,\
 import logging
 
 from util.hexs import hex2str
-from util.observer import MySignal
+from util.observer import PyTypeSignal
 from util.threadlock import mutex
 from setting.config import MODBUS_PORT
-logger = logging.getLogger(__name__+":"+MODBUS_PORT)
+logger = logging.getLogger(__name__+":"+str(MODBUS_PORT))
 
 
 class SendTranslater(object):
@@ -101,7 +101,7 @@ class ReturnParse(object):
         cmd = struct.unpack('>H',cmd[3:5])[0]
         return cmd
 
-MODENABLE_SIGNAL = MySignal()
+MODENABLE_SIGNAL = PyTypeSignal()
 
 def enable_move(fun):
 
@@ -115,6 +115,10 @@ def enable_move(fun):
 class AbsModeBusModeByAxis(object):
     def __init__(self, port=None, baudrate=19200, store=None):
         super(AbsModeBusModeByAxis, self).__init__()
+        # print port,type(port)
+        # if isinstance(port,unicode):
+        #     port = port.encode("utf-8")
+        logger.error("motor com:{} {}".format(port,baudrate))
         self.ser = serial.Serial(port, baudrate, timeout=0.05, parity='E')
         # self.forward = False
         self.send_translater = SendTranslater()
@@ -135,6 +139,7 @@ class AbsModeBusModeByAxis(object):
         cmd = self.send_translater(station, head_dir, move)
         logger.info('mode send cmd' + hex2str(cmd))
         self.ser.write(cmd)
+
     @enable_move
     def plat_motor_reset(self):
         cmd = self.send_translater('PLAT1', 'xstart', 'rest')
@@ -150,7 +155,7 @@ class AbsModeBusModeByAxis(object):
         self.ser.write(cmd)
         self.timeout_times = 0
         while self.RUNNING:
-            sleep(0.5)
+            sleep(0.1)
             self.ser.write(self.read_translater('up1'))
             sleep(0.1)
             readed = self.ser.read(7)
@@ -238,26 +243,26 @@ class AbsModeBusModeByAxis(object):
         #         else:
         #             raise ValueError('bad input data')
 
-class ModbusWorker(Thread):
-
-    mode = False
-
-    def __init__(self,port):
-        super(ModbusWorker, self).__init__()
-        self.mode = AbsModeBusModeByAxis(port)
-        self.RUNNING = True
-        self.gens = self.gen()
-        next(self.gens)
-
-    def run(self):
-
-        self.gen()
-
-    def gen(self):
-        while self.RUNNING:
-            fun = yield
-            fun()
-
-    def plat_motor_goto(self,*args,**kwargs):
-        pass
+# class ModbusWorker(Thread):
+#
+#     mode = False
+#
+#     def __init__(self,port):
+#         super(ModbusWorker, self).__init__()
+#         self.mode = AbsModeBusModeByAxis(port)
+#         self.RUNNING = True
+#         self.gens = self.gen()
+#         next(self.gens)
+#
+#     def run(self):
+#
+#         self.gen()
+#
+#     def gen(self):
+#         while self.RUNNING:
+#             fun = yield
+#             fun()
+#
+#     def plat_motor_goto(self,*args,**kwargs):
+        # pass
 

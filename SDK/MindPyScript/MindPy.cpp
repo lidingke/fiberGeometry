@@ -53,59 +53,21 @@ CameraSdkStatus MindPy::InitCamera()
 		return status;
 	}
 	pCameraInfo = &sCameraList[0];
-	std::cout << "pCameraInfo " << pCameraInfo->acSn << std::endl;
+	//std::cout << "pCameraInfo " << pCameraInfo->acSn << std::endl;
 	status = CameraPlay(m_hCamera);
 	funName = "CameraPlay";
 	IsCameraStatusSuccess(status, &funName);
 	if (status != CAMERA_STATUS_SUCCESS) { return status; }
 	return CAMERA_STATUS_SUCCESS;
 }
-//
-//CameraSdkStatus MindPy::AdaptInitCamera()
-//{
-//	int iCameraNums = 10;
-//	tSdkCameraDevInfo sCameraList[10];
-//	tSdkImageResolution *psCurImageResolution;
-//	//Enumerate camera
-//	status = CameraSdkInit(0);
-//	funName = "CameraSdkInit";
-//
-//	if (!IsCameraStatusSuccess(status, &funName))
-//	{
-//		return status;
-//	}
-//	//枚丼相机，最多返回10个相机的描述信息 
-//	status = CameraEnumerateDevice(sCameraList, &iCameraNums);
-//	if (status !=
-//		CAMERA_STATUS_SUCCESS || iCameraNums == 0)
-//	{
-//		return CAMERA_STATUS_NO_DEVICE_FOUND;
-//	}
-//	//如果只有一个相机，iCameraNums会被CameraEnumerateDevice内部修改为1。 
-//	if ((status = CameraInit(&sCameraList[0], -1, -1, &m_hCamera)) !=
-//		CAMERA_STATUS_SUCCESS)
-//	{
-//		return status;
-//	}
-//	pCameraInfo = &sCameraList[0];
-//	CameraGetImageResolution(m_hCamera, psCurImageResolution);
-//	u_imageResolution = psCurImageResolution->iHeight * psCurImageResolution->iWidth;
-//	std::cout << "u_imageResolution " << u_imageResolution << std::endl;
-//	status = CameraPlay(m_hCamera);
-//	funName = "CameraPlay";
-//	IsCameraStatusSuccess(status, &funName);
-//	if (status != CAMERA_STATUS_SUCCESS) { return status; }
-//	return CAMERA_STATUS_SUCCESS;
-//}
-
 
 
 CameraSdkStatus MindPy::GetRawImg() 
 {
 
-	tSdkFrameHead FrameInfo;
-	//	CameraSnapToBuffer抓拍一帧图像数据到缓冲区中，该缓冲区由SDK内部申请,成功调用后，需要
-	if ((status = CameraGetImageBuffer(m_hCamera, &FrameInfo, &pRawBuffer, 1000)) != CAMERA_STATUS_SUCCESS)
+	//tSdkFrameHead FrameInfo;
+	//	CameraSnapToBuffer抓拍一帧图像数据到缓冲区中，该缓冲区由SDK内部申请,成功调用后，需要释放
+	if ((status = CameraGetImageBuffer(m_hCamera, &m_sFrInfo, &pRawBuffer, 1000)) != CAMERA_STATUS_SUCCESS)
 	{
 		std::cout << "Snapshot failed,is camera in pause mode?" << status << std::endl;
 		return status;
@@ -115,7 +77,7 @@ CameraSdkStatus MindPy::GetRawImg()
 
 CameraSdkStatus MindPy::ReleaseRawImg()
 {
-	//	CameraSnapToBuffer抓拍一帧图像数据到缓冲区中，该缓冲区由SDK内部申请,成功调用后，需要
+	//	释放缓冲区
 	if ((status = CameraReleaseImageBuffer(m_hCamera, pRawBuffer)) != CAMERA_STATUS_SUCCESS)
 	{
 		std::cout << "release failed, error code " << status << std::endl;
@@ -148,10 +110,10 @@ static PyObject* GetRawImg(PyObject* self, PyObject* args)
 
 	CameraSdkStatus status;
 	// 1944*2052 dpi
-	npy_int limit = 5038848;
-	if (pMindpy->u_imageResolution != 0){
-		limit = pMindpy->u_imageResolution;
-	}
+	//npy_int limit = 5038848;
+	//if (pMindpy->u_imageResolution != 0){
+	//	limit = pMindpy->u_imageResolution;
+	//}
 	
 	//if (!PyArg_ParseTuple(args, "I", &limit))
 	//{
@@ -164,12 +126,17 @@ static PyObject* GetRawImg(PyObject* self, PyObject* args)
 		PyErr_Format(PyExc_ValueError, "get raw image error: %d", status);
 		return NULL;
 	}
+	//printf("frame,%d,%d,%d", pMindpy->m_sFrInfo.uBytes,
+	//	pMindpy->m_sFrInfo.iHeight, pMindpy->m_sFrInfo.iWidth);
+	//PyArrayObject * out = (PyArrayObject*)
+	//	PyArray_NewFromDescr(&PyArray_Type,
+	//		PyArray_DescrFromType(PyArray_UINT8),
+	//		1, &limit, NULL, NULL, NPY_F_CONTIGUOUS, NULL);
+	//memcpy(out->data, pMindpy->pRawBuffer, sizeof(npy_byte) * limit);
+	//dynamic get dims by frame info
+	npy_intp dims[] = { pMindpy->m_sFrInfo.iHeight, pMindpy->m_sFrInfo.iWidth };
 	PyArrayObject * out = (PyArrayObject*)
-		PyArray_NewFromDescr(&PyArray_Type,
-			PyArray_DescrFromType(PyArray_UINT8),
-			1, &limit, NULL, NULL, NPY_F_CONTIGUOUS, NULL);
-	memcpy(out->data, pMindpy->pRawBuffer, sizeof(npy_byte) * limit);
-	//return PyArray_Return(out);
+		PyArray_SimpleNewFromData(2, dims, NPY_UBYTE, pMindpy->pRawBuffer);
 
 	status = pMindpy->ReleaseRawImg();
 	if (status != CAMERA_STATUS_SUCCESS)
@@ -185,8 +152,6 @@ static PyObject* GetRawImg(PyObject* self, PyObject* args)
 
 static PyObject* GetCameraSerial(PyObject* self, PyObject* args)
 {
-	//char acSn[32] = { "0" };
-	//strcpy(acSn, pMindpy->pCameraInfo->acSn);
 	return Py_BuildValue("s", pMindpy->pCameraInfo->acSn);
 }
 
@@ -212,15 +177,23 @@ static PyObject* raiseError(PyObject* self, PyObject* args)
 	return NULL;
 }
 
-static PyObject* GetNdarray(PyObject* self, PyObject* args)
+static PyObject* GetTestArray(PyObject* self, PyObject* args)
 {
 
-	npy_byte da[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-	npy_intp dim = 9;
-
-	PyArrayObject * out = (PyArrayObject*)PyArray_NewFromDescr(&PyArray_Type, PyArray_DescrFromType(PyArray_BYTE), 1, &dim, NULL, NULL, NPY_C_CONTIGUOUS, NULL);
-
-	memcpy(out->data, da, sizeof(npy_byte) * 9);
+	npy_byte da[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	int limit = 9;
+	//npy_intp dim = 9;
+	npy_byte* outArray;
+	outArray = (npy_byte*)malloc(sizeof(npy_byte)*limit);
+	for (int i = 0; i<limit; i++)
+	{
+		outArray[i] = da[i];
+	}
+	//PyArrayObject * out = (PyArrayObject*)PyArray_NewFromDescr(&PyArray_Type, PyArray_DescrFromType(PyArray_BYTE), 1, &dim, NULL, NULL, NPY_C_CONTIGUOUS, NULL);
+	npy_intp dims[] = { 9 };
+	PyArrayObject * out = (PyArrayObject*)
+		PyArray_SimpleNewFromData(1, dims, NPY_UBYTE, outArray);
+	//memcpy(out->data, da, sizeof(npy_byte) * 9);
 	return PyArray_Return(out);
 
 }
@@ -228,12 +201,12 @@ static PyObject* GetNdarray(PyObject* self, PyObject* args)
 
 static PyMethodDef MindMethods[] =
 {
-	{ "initCamera", InitCameraPlay, METH_VARARGS, "init camera" },
-	{ "getRawImg", GetRawImg ,METH_VARARGS, "get raw image from camera"},
-	{ "uninitCamera", UninitCamera, METH_VARARGS, "release camera source" },
+	{ "init_camera", InitCameraPlay, METH_VARARGS, "init camera" },
+	{ "get_raw_img", GetRawImg ,METH_VARARGS, "get raw image from camera"},
+	{ "uninit_camera", UninitCamera, METH_VARARGS, "release camera source" },
 	{ "raise_error", raiseError, METH_VARARGS, "raise a simple error" },
-	{ "getNdarray", GetNdarray, METH_VARARGS, "get ndarray"},
-	{"getCameraSerial", GetCameraSerial, METH_VARARGS, "get camera serial number"},
+	{ "get_test_array", GetTestArray, METH_VARARGS, "get ndarray"},
+	{"get_camera_serial", GetCameraSerial, METH_VARARGS, "get camera serial number"},
 	{ NULL, NULL, 0, NULL }
 
 };

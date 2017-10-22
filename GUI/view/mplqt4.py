@@ -13,7 +13,7 @@ import sys
 import os
 import random
 from matplotlib.backends import qt_compat
-use_pyside = qt_compat.QT_API == qt_compat.QT_API_PYSIDE
+# use_pyside = qt_compat.QT_API == qt_compat.QT_API_PYSIDE
 
 from PyQt4 import QtGui, QtCore
 import matplotlib.mlab as mlab
@@ -27,16 +27,17 @@ progversion = "0.1"
 class MyMplCanvas(FigureCanvas):
     """Ultimately, this is a QWidget (as well as a FigureCanvasAgg, etc.)."""
 
-    def __init__(self, parent=None, width=4, height=4, dpi=100):
-        fig = Figure(figsize=(width, height), dpi=dpi, facecolor = 'none')
-        self.axes = fig.add_subplot(211)
-        self.axes_twinx = self.axes.twinx()
-        # self.hist = fig.add_subplot(212)
+    def __init__(self, parent=None, width=4, height=3, dpi=100):
+        self.fig = Figure(figsize=(width, height), dpi=dpi, facecolor = 'none')
+        self.axes = self.fig.add_subplot(111)
+        # self.fig.subplots_adjust(left=0.1, bottom=0.1, right=0.9, top=1)
+        # fig.tight_layout(True)
 
-        fig.set_tight_layout(True)
-        # fig.tight_layout(pad=1)
+
+        self.axes_twinx = self.axes.twinx()
         self.compute_initial_figure()
-        FigureCanvas.__init__(self, fig)
+        FigureCanvas.__init__(self, self.fig)
+
         self.setParent(parent)
 
         FigureCanvas.setSizePolicy(self,
@@ -47,6 +48,8 @@ class MyMplCanvas(FigureCanvas):
     def compute_initial_figure(self):
         self.axes.plot([], [], 'r')
         self.axes.set_facecolor('none')
+        # self.fig.tight_layout(rect=[0, 0, 0.5, 1])
+        # self.axes.subplots_adjust(left=0.2, bottom=0.2, right=0.8, top=0.8, hspace = 0.2, wspace = 0.3)
         # self.axes
         # self.hist.hist([0, 1, 2, 3])
 

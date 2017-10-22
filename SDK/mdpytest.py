@@ -30,6 +30,6 @@ class DynamicGetRawImgTest(GetRawImg):
             img.shape = img.shape = (1944, 2592, 3)
             return img
 
-    def unInitCamera(self):
+    def release_camera(self):
         pass
 

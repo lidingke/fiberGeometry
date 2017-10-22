@@ -1,0 +1,9 @@
+{
+  "MODBUS_PORT": "com14",
+  "LED_PORT": "com15",
+  "VIEW_LABEL": "OPCV",
+  "DYNAMIC_CAMERA": false,
+  "FOR_UNIT_TEST": true,
+  "SPEC_ONLINE": false,
+  "IMG_ZOOM" : 4
+}

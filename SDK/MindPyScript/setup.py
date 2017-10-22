@@ -10,7 +10,7 @@ module = Extension('MindPy', sources=['MindPy.cpp'],
         )#,
         # library_dirs
 setup(name= 'MindPyEx',
-      version= '1.0',
+      version= '2.0',
       # py_modules=['mindpyex'],
         ext_modules = [module])
 

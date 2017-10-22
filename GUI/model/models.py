@@ -1,6 +1,6 @@
 from sqlalchemy import ForeignKey
 from sqlalchemy import create_engine
-from setting.orderset import SQLALCHEMY_DIR
+from setting.parameter import SQLALCHEMY_DIR
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, DateTime, Float,Table
 from sqlalchemy.orm import relationship, backref

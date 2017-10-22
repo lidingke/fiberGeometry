@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1809</width>
-    <height>1129</height>
+    <width>1923</width>
+    <height>1179</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -52,7 +52,7 @@
        <layout class="QVBoxLayout" name="cvOperatorLayout">
         <item>
          <layout class="QGridLayout" name="operaLayout">
-          <item row="3" column="1">
+          <item row="4" column="1">
            <widget class="QPushButton" name="reporterCV">
             <property name="enabled">
              <bool>true</bool>
@@ -82,6 +82,13 @@
             </property>
            </widget>
           </item>
+          <item row="3" column="1">
+           <widget class="QPushButton" name="lightControl">
+            <property name="text">
+             <string>光照调节</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </item>
         <item>
@@ -103,16 +110,6 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'SimSun'; font-size:9pt;&quot;&gt;纤芯不圆度：&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'SimSun'; font-size:9pt;&quot;&gt;包层不圆度：&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'SimSun'; font-size:9pt;&quot;&gt;芯包同心度(um)：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QWidget" name="RIShow" native="true">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>200</height>
-           </size>
           </property>
          </widget>
         </item>
@@ -226,7 +223,7 @@ p, li { white-space: pre-wrap; }
           <property name="minimumSize">
            <size>
             <width>0</width>
-            <height>100</height>
+            <height>50</height>
            </size>
           </property>
          </widget>
@@ -255,7 +252,7 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1809</width>
+     <width>1923</width>
      <height>37</height>
     </rect>
    </property>

@@ -1,5 +1,6 @@
 # coding:utf-8
 import collections
+import inspect
 import pdb
 import time
 import traceback
@@ -9,27 +10,20 @@ import numpy as np
 import sys
 from PyQt4.QtCore import QObject, pyqtSignal
 
-from setting.config import PDF_PARAMETER, DB_PARAMETER, DYNAMIC_CAMERA
-from setting.orderset import SETTING
-from pattern.exception import ClassCoreError, ClassOctagonError
+from SDK.modbus.autolight import  LightController
+from setting.config import PDF_PARAMETER, DB_PARAMETER, DYNAMIC_CAMERA, FRAME_CORE, RAISE_EXCEPTION, IMG_ZOOM
 
-Set = SETTING('octagon')
-
-# setGet = Set.get('ifcamera', False)
-# fiberType = Set.get('fiberType', "G652")
-# print 'fibertype', fiberType, 'setget', setGet
 if DYNAMIC_CAMERA:
     from SDK.mdpy import GetRawImg
 else:
     # from SDK.mdpytest import DynamicGetRawImgTest as GetRawImg
-    # 当摄像头关闭时，图像从文件夹读取
     from simulator.model import DynamicGetRawImgTest as GetRawImg
 
     # from  SDK.mdpy import GetRawImgTest as GetRawImg
     # print 'script don\'t open camera'
 from pattern.classify import classifyObject
 from pattern.sharp import IsSharp
-from pattern.draw import DecorateImg, drawCoreCircle, decorateMethod, output_axies_plot_to_matplot
+from pattern.draw import drawCoreCircle, decorateMethod, output_axies_plot_to_matplot, duck_type_decorate
 from util.filter import AvgResult
 from util.loadimg import sliceImg
 
@@ -53,76 +47,95 @@ class ModelCV(Thread, QObject):
         self.setDaemon(True)
         self.IS_RUNNING = True
         self.isSharp = IsSharp()
-        self.eresults = False
-        self.result2Show = {}
-        self.SET =SETTING()
-        self.getRawImg = GetRawImg()
+        self.img_core_tag = (FRAME_CORE,20,80)
+        self.get_raw_img = GetRawImg()
         self.imgQueue = collections.deque(maxlen=5)
         self.classify = classifyObject("G652")
         self.decorateMethod = decorateMethod("G652")
         self.pdfparameter = PDF_PARAMETER  # SETTING()['pdfpara']
         self.dbparameter = DB_PARAMETER  # SETTING()['dbpara']
+        self.plots = None
+        self.init_light_controller()
+
+
+    def init_light_controller(self):
+        self.light = ""
+        self.light_controller = LightController()
+        self.light_controller_handle = False
+        self.light_controller.emit_dynamic_light.connect(self.get_light)
 
     def run(self):
         while self.IS_RUNNING:
-            img = self.getRawImg.get()
+            img = self.get_raw_img.get()
             if not isinstance(img, np.ndarray):
                 break
             self.img = img.copy()
             self.imgQueue.append(self.img)
+            if self.light_controller_handle :
+                try:
+                    self.light_controller_handle.send(img.copy())
+                except StopIteration:
+                    self.light_controller_handle = False
+
             self.sharp = "%0.2f" % self.isSharp.issharpla(img[::, ::, 0])
-            self._greenLight(img)
+            # self._greenLight(img)
 
-            self.light = "%0.2f" % self.red
+            # self.light = "%0.2f" % self.red
 
-            colorImg = self._decorateImg(img)
-            self.returnImg.emit(colorImg[::2, ::2].copy(), self.sharp,self.light)
+            img = self._decorateImg(img)
+            zoom_img = img[::IMG_ZOOM, ::IMG_ZOOM].copy()
+            self.returnImg.emit(zoom_img, self.sharp,self.light)
 
     def mainCalculate(self):
-        def _calcImg():
+        def _calcImg(self):
             try:
                 # img.tofile("tests\\data\\tests\\midimg{}.bin".format(str(int(time.time()))[-3:]))
                 self.imgQueue.clear()
                 results = []
                 while len(self.imgQueue) != 5:
-                    time.sleep(0.1)
+                    time.sleep(0.01)
                 for img in list(self.imgQueue):
-                    self.eresults = self.classify.find(img)
-                    result = self.eresults["showResult"]
+                    classify_result = self.classify.find(img)
+                    result = classify_result["showResult"]
                     logger.info('get result' + str(result))
                     results.append(result)
-                    last_result = (self.eresults['core'][0],img)
+                    core = classify_result["corecore"]
+                    last_result = (core,img)
+                self.plots = classify_result.get('plots',{})
                 self._emitCVShowResult(AvgResult(results))
                 self._relaxtive_index_to_matplot(*last_result)
-            except ClassCoreError as e:
-                logger.error('class core error')
-                self.resultShowCV.emit('class core error')
-                return
-            except ValueError as e:
-                logger.error(str(e))
-                self.resultShowCV.emit(str(e))
-                return
+            except ValueError as e :
+                msg = e.message
+                logger.error(msg)
+                self.resultShowCV.emit(msg)
             except Exception as e:
-                logger.exception(e)
+                raise e
 
-        Thread(target=_calcImg).start()
+
+        Thread(target=_calcImg,args=(self,)).start()
+
+    def light_controller_handle_start(self):
+        self.light_controller_handle = self.light_controller.start_coroutine()
 
     def _decorateImg(self, img):
         """"mark the circle and size parameter"""
-        img = drawCoreCircle(img)
-        if self.result2Show:
-            img = self.decorateMethod(img, self.result2Show)
+        img = drawCoreCircle(img,*self.img_core_tag)
+        if self.plots:
+            img = duck_type_decorate(img,self.plots)
+        # elif self.result2Show:
+        #     img = self.decorateMethod(img, self.result2Show)
         return img
 
     def close(self):
         self.IS_RUNNING = False
-        time.sleep(0.3)
-        self.getRawImg.unInitCamera()
+        self.light_controller.close()
+        # time.sleep(0.1)
+        self.get_raw_img.release_camera()
 
     def _emitCVShowResult(self, result):
         sharp = self.sharp
-        self.result2Show = copy.deepcopy(self.eresults)
-        self.result2Show["showResult"] = result
+        # self.result2Show = copy.deepcopy(self.eresults)
+        # self.result2Show["showResult"] = result
         if not hasattr(result, '__getitem__'):
             self.resultShowCV.emit('error')
             return
@@ -149,30 +162,33 @@ class ModelCV(Thread, QObject):
         logger.exception(text)
         self.resultShowCV.emit(text)
 
-    def _greenLight(self, img):
-        if isinstance(img, np.ndarray):
-            corey, corex = SETTING()["corepoint"]
-            minRange, maxRange = SETTING()["coreRange"]
-            green = sliceImg(img[::, ::, 1], (corex, corey), maxRange)
-            blue = sliceImg(img[::, ::, 2], (corex, corey), maxRange)
-            red=img[::,::,0]
-            self.allblue = img[::, ::, 2].sum() / 255
-            self.red = img[::, ::, 0].sum() / 255
+    # def _greenLight(self, img):
+    #     if isinstance(img, np.ndarray):
+    #         corey, corex = SETTING()["corepoint"]
+    #         minRange, maxRange = SETTING()["coreRange"]
+    #         green = sliceImg(img[::, ::, 1], (corex, corey), maxRange)
+    #         blue = sliceImg(img[::, ::, 2], (corex, corey), maxRange)
+    #         red=img[::,::,0]
+    #         self.allblue = img[::, ::, 2].sum() / 255
+    #         self.red = img[::, ::, 0].sum() / 255
+    #
+    #         self.green = green.sum() / 255
+    #         self.blue = blue.sum() / 255
+    #         self.red=red.sum()/(255*1544*3)
+    #
+    #         self.allgreen = img[::, ::, 1].sum() / 255 - self.green
+    #         self.pdfparameter['corelight'] = "%0.2f" % self.blue
+    #         self.pdfparameter['cladlight'] = "%0.2f" % self.allgreen
+    #         # self.returnCoreLight.emit("%0.2f" % (self.blue), "%0.2f" % (self.allgreen))
+    #         # self.returnCladLight.emit()
 
-            self.green = green.sum() / 255
-            self.blue = blue.sum() / 255
-            self.red=red.sum()/(255*1544*3)
-
-            self.allgreen = img[::, ::, 1].sum() / 255 - self.green
-            self.pdfparameter['corelight'] = "%0.2f" % self.blue
-            self.pdfparameter['cladlight'] = "%0.2f" % self.allgreen
-            # self.returnCoreLight.emit("%0.2f" % (self.blue), "%0.2f" % (self.allgreen))
-            # self.returnCladLight.emit()
+    def get_light(self,light):
+        self.light = light
 
     def updateClassifyObject(self, obj='G652'):
         self.classify = classifyObject(obj)
-        self.eresults = False
-        self.result2Show = False
+        # self.eresults = False
+        # self.result2Show = False
         # self.decorateMethod = decorateMethod(obj)
         self.decorateMethod = decorateMethod(obj)
 
