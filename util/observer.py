@@ -19,7 +19,7 @@ class QTypeSlot(object):
 
 
 
-class MySignal(object):
+class PyTypeSignal(object):
 
     def __init__(self):
         self.collection = deque()
@@ -36,14 +36,14 @@ class MySignal(object):
         self.lock.release()
 
 class MyTypeSignal(object):
-    sendmsg = MySignal()#实例化
+    sendmsg = PyTypeSignal()
 
     def run(self):
-        self.sendmsg.emit('send')#发送
+        self.sendmsg.emit('send')
 
 class MyTypeSlot(object):
 
-    def get(self, msg):#槽对象里的槽函数
+    def get(self, msg):
         print 'My slot get msg', msg
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 #coding:utf-8
 from setting.config import PDF_PARAMETER
 from .origin import *
-from setting.orderset import SETTING
+from setting.parameter import SETTING
 import sys
 from PyQt4.QtGui import QTextDocument, QPrinter, QApplication
 

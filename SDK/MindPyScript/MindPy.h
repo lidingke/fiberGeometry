@@ -15,7 +15,7 @@
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
 //#include "ndarraytypes.h"
 //#include "__multiarray_api.h"
-#include "ndarrayobject.h"
+#include <numpy/arrayobject.h>
 
 using std::string;
 

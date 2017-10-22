@@ -18,7 +18,6 @@ def ttest_set_online():
     logging.basicConfig(level=logging.INFO)
     mode = LEDMode('com15')#光端口
     # for i in range(10):
-
     mode.set_current(c1st=600, c2st=500, c3st=100, savemode=True)#当前红光光强800
         # sleep(3)
         # mode.set_current(c1st=300, c2st=100, c3st=100)

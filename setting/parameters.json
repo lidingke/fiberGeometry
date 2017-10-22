@@ -1,0 +1,152 @@
+{
+  "annotation":"median blur, threshold, core range, clad range",
+  "Default": {
+    "medianBlur": {
+      "corefilter": 15,
+      "cladfilter": false
+    },
+    "thresholdSize": {
+      "core": 60,
+      "clad":175
+    },
+    "imgsize": [
+      1944,
+      2592
+    ],
+    "coreRange": [
+      15,
+      80
+    ],
+    "cladRange": [
+      200,
+      900
+    ],
+    "corepoint": [
+      1296,
+      972
+    ],
+    "ampPixSize": 0.2551
+  },
+  "20/400": {
+    "thresholdSize": {
+      "core": 60,
+      "clad":128
+    },
+    "medianBlur": {
+      "corefilter": 15,
+      "cladfilter": 27
+    },
+    "coreRange": [
+      10,
+      100
+    ],
+    "cladRange": [
+      700,
+      900
+    ],
+    "ampPixSize": 0.2551
+  },
+  "G652": {
+    "coreRange": [
+      20,
+      140
+    ],
+    "cladRange": [
+      500,
+      900
+    ],
+    "ampPixSize": 0.0792393
+  },
+  "105/125": {
+    "coreRange": [
+      480,
+      530
+    ],
+    "cladRange": [
+      500,
+      900
+    ],
+    "ampPixSize": 0.0792393
+  },
+  "200/220": {
+    "coreRange": [
+      20,
+      140
+    ],
+    "cladRange": [
+      500,
+      900
+    ],
+    "medianBlur": {
+      "corefilter": 17,
+      "cladfilter": 17
+    },
+    "ampPixSize": 0.226244
+  },
+  "10/130(oc)": {
+    "thresholdSize": {
+      "core": 40,
+      "clad":200
+    },
+    "coreRange": [
+      20,
+      140
+    ],
+    "cladRange": [
+      500,
+      900
+    ],
+    "ampPixSize": 0.0792393
+  },
+  "20/130(oc)": {
+    "coreRange": [
+      20,
+      140
+    ],
+    "cladRange": [
+      500,
+      900
+    ],
+    "ampPixSize": 0.0792393
+  },
+  "50/400": {
+    "coreRange": [
+      10,
+      200
+    ],
+    "cladRange": [
+      700,
+      1000
+    ],
+    "ampPixSize": 0.2551
+  },
+  "capillary": {
+    "thresholdSize": {
+      "core": 40
+    },
+    "imgsize": [
+      1944,
+      2592
+    ],
+    "coreRange": [
+      20,
+      140
+    ],
+    "draw_clad": false,
+    "cladRange": [
+      500,
+      700
+    ],
+    "medianBlur": {
+      "corefilter": 15,
+      "cladfilter": 15
+    },
+    "ampPixSize": 0.01048,
+    "diff_radius": 500,
+    "enlarge": [
+      20,
+      3
+    ]
+  }
+}
+

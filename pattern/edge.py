@@ -2,7 +2,7 @@ import cv2
 # from pattern.meta import CV2MethodSet
 import numpy as np
 
-from setting.orderset import SETTING
+from setting.parameter import SETTING
 import logging
 logger = logging.getLogger(__name__)
 
@@ -10,31 +10,34 @@ class ExtractEdge(object):
     """docstring for ExtractEdge"""
     def __init__(self, ):
         super(ExtractEdge, self).__init__()
-        self.SET = SETTING()
+        # self.SET = SETTING()
 
     # @timing
-    def run(self, img):
-        """medianBlur consume 0.23s"""
-        if len(img.shape) > 2:
-            img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-        kernelSize = self.SET["adaptiveTreshold"].get("kernelSize",3)
-        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (kernelSize, kernelSize))
-        erode = cv2.erode(img, kernel)
-        dilate = cv2.dilate(img, kernel)
-        img = cv2.absdiff(dilate, erode)
-        img = cv2.bitwise_not(img)
-        blockSize = self.SET["adaptiveTreshold"]["blockSize"]
-        Constant = self.SET["adaptiveTreshold"]["Constant"]
-        img = cv2.adaptiveThreshold(img, 255,
-            cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, blockSize, Constant)
-        return img
+    # def run(self, img):
+    #     """medianBlur consume 0.23s"""
+    #     if len(img.shape) > 2:
+    #         img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+    #     kernelSize = self.SET["adaptiveTreshold"].get("kernelSize",3)
+    #     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (kernelSize, kernelSize))
+    #     erode = cv2.erode(img, kernel)
+    #     dilate = cv2.dilate(img, kernel)
+    #     img = cv2.absdiff(dilate, erode)
+    #     img = cv2.bitwise_not(img)
+    #     blockSize = self.SET["adaptiveTreshold"]["blockSize"]
+    #     Constant = self.SET["adaptiveTreshold"]["Constant"]
+    #     img = cv2.adaptiveThreshold(img, 255,
+    #         cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, blockSize, Constant)
+    #     return img
 
 
     def directThr(self, img, hight = 175):
         if len(img.shape) > 2:
             img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+        # hight = 40
         logger.info('thr%s'%hight)
         size, img = cv2.threshold(img, hight, 255, cv2.THRESH_BINARY)
+        # cv2.imshow("thr",img[::4,::4])
+        # cv2.waitKey()
         return img
 
 
@@ -81,3 +84,6 @@ class EdgeFuncs(object):
         return img
 
 
+
+def adaptivefilter(img):
+    return cv2.adaptiveBilateralFilter(img,11,20)

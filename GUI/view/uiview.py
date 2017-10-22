@@ -1,6 +1,8 @@
 #coding=utf-8
 from GUI.UI.modbusUI import Ui_Form as modbusUI
 from GUI.UI.cvUI import Ui_MainWindow as cvUI
+from GUI.UI.opcvUI import Ui_MainWindow as opcvUI
+
 
 import sys
 from PyQt4 import QtGui
@@ -16,9 +18,19 @@ class AutomaticCVForm(QtGui.QMainWindow, cvUI):
     def __init__(self, ):
         QtGui.QWidget.__init__(self)
         self.setupUi(self)
-        modbu_ui = modbusUI()#初始化串口发送面板
-        modbu_ui.setupUi(self.extendwidget)#将串口发送面板添加到cvUI面板中
-        self.__dict__.update(modbu_ui.__dict__)
+        self.modbus_ui = modbusUI()#初始化串口发送面板
+        self.modbus_ui.setupUi(self.extendwidget)#将串口发送面板添加到cvUI面板中
+        self.__dict__.update(self.modbus_ui.__dict__)
+
+
+class OPCVForm(QtGui.QMainWindow, opcvUI):
+    def __init__(self, ):
+        QtGui.QWidget.__init__(self)
+        self.setupUi(self)
+        self.modbus_ui = modbusUI()#初始化串口发送面板
+        self.modbus_ui.setupUi(self.extendwidget)#将串口发送面板添加到cvUI面板中
+        self.__dict__.update(self.modbus_ui.__dict__)
+
 
 
 if __name__ == "__main__":

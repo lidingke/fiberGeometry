@@ -1,7 +1,4 @@
-
-IMGold
 testlog.log
-setting/testlog.log
 *.db
 *.jpg
 .cache
@@ -12,7 +9,6 @@ setting/testlog.log
 *.pyc
 *.pdf
 *.dll
-*.pdf
 t.html
 *.pickle
 *.VC.db
@@ -22,26 +18,30 @@ t.html
 *.BMP
 *.vs
 *.exp
+VSProject
 *.vcxproj.filters
 *.vcxproj.user
 ipch/
 *.VC.VC.opendb
 tests/data
 *.xlsx
-SDK/MindPyScript/MindPyCEx/VSProject
+
 .idea/workspace.xml
 IMG
 SDK/Lib/
 SDK/MindPyScript/MindPyCEx/Lib/
-SDK/OceanOpticsScript/
-__pycache__/
-pattern/__pycache__/
-tests/__pycache__/
+SDK/OceanOpticsScript/VS
+build
+Release
+__pycache__
 util/reporter/
 tests/RI
-<<<<<<< HEAD
+
 SDK/MindPyScript/test
-*.pickle
 
 /IMGold/
 /testlog.log
+/simulator/tests/temp.csv
+
+
+/dist/

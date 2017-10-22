@@ -1,5 +1,5 @@
-from setting.orderset import SETTING
-SETTING('test')
+from setting.parameter import SETTING
+# SETTING('test')
 import cv2
 import numpy as np
 from pattern.getimg import getImage

@@ -6,14 +6,13 @@ from PyQt4.QtCore import pyqtSignal
 from PyQt4.QtGui import QWidget
 
 from GUI.model.models import session_add_by_account
-from GUI.view.uiview import ManualCVForm, AutomaticCVForm
+from GUI.view.opplot import OpticalPlot
+from GUI.view.uiview import ManualCVForm, AutomaticCVForm, OPCVForm
 from GUI.view.mplqt4 import MyMplCanvas
 from setting.config import VIEW_LABEL, PDF_PARAMETER, DB_PARAMETER
-from setting.orderset import SETTING
 
-from util.observer import MySignal
+from util.observer import PyTypeSignal
 from .reporter import Reporter
-from pattern.sharp import MaxSharp
 from PyQt4.QtCore import Qt, QRectF
 from PyQt4.QtGui import QPixmap, QImage, QGraphicsScene
 import numpy as np
@@ -27,18 +26,22 @@ class CVViewModel(object):
     """docstring for View"""
 
     def __init__(self, ):
-        # super(CVViewModel, self).__init__()
-        # self.setupUi(self)
         self.scence = QGraphicsScene()
         self.graphicsView.setScene(self.scence)
-        # self.isMaxSharp = MaxSharp()
-        self.beginTestCV.clicked.connect(self._disableCVButton)
+        self.beginTestCV.clicked.connect(
+            partial(self.beginTestCV.setEnabled,False))
         self.reporterCV.clicked.connect(self.writeReporterCV)
-        self.relative_index_canvas = MyMplCanvas(QWidget(self.RIShow), width=5, height=4, dpi=100)
-        self.emit_fibertype_in_items = MySignal()
+        self.insert_widgets()
+        self.emit_fibertype_in_items = PyTypeSignal()
         self.last_save = {}
         self._last_data_init()
-        self.emit_close_event = MySignal()
+        self.emit_close_event = PyTypeSignal()
+
+    def insert_widgets(self):
+        self.relative_index_canvas = MyMplCanvas(QWidget(self), width=5, height=2, dpi=100)
+        self.cvOperatorLayout.insertWidget(2,self.relative_index_canvas)
+
+
 
     def _last_data_init(self):
         load = load_pickle_nor_json("setting\\userdata")
@@ -59,14 +62,10 @@ class CVViewModel(object):
             self.fiberNumber.setText(self.last_save['fiberNo'])
 
     def updatePixmap(self, arr, sharp, light):
-        if not isinstance(arr, np.ndarray):
-            raise ValueError('get Pixmap ERROR input')
         height, width, bytesPerComponent = arr.shape
         bytesPerLine = bytesPerComponent * width
         img = QImage(arr.data, width, height, bytesPerLine, QImage.Format_RGB888)
-        # img = QImage(mapArray.flatten(), self.height, self.width, QImage.Format_Indexed8)
         pximapimg = QPixmap.fromImage(img)
-        # = self._getPixmap(arr)
 
         self.scence.clear()
         self.scence.addPixmap(pximapimg)
@@ -92,11 +91,13 @@ class CVViewModel(object):
     def updateCVShow(self, str_,):
         if str_:
             self.resultShowCV.setText(str_)
-        self._disableCVButton(True)
+        self.beginTestCV.setEnabled(True)
+
+    #
+    # def _disableCVButton(self, bool=False):
+    #     self.beginTestCV.setEnabled(bool)
 
 
-    def _disableCVButton(self, bool=False):
-        self.beginTestCV.setEnabled(bool)
 
         # def updateATShow(self,str_):
         #     self.resultShowAT.setText(str_)
@@ -135,26 +136,40 @@ class CVViewModel(object):
         self.relative_index_canvas.update_figure(*plots)
 
 
-class MyQGraphicsScene(QGraphicsScene):
+class OPCVViewModel(CVViewModel):
+
     def __init__(self):
-        QGraphicsScene.__init__(self)
-        # super(MyQGraphicsScene, self).__init__()
-        self.rect_pos = [False, False]
-        # self.setBspTreeDepth(1)
+        super(OPCVViewModel, self).__init__()
+        # self.mainLayout.addWidget(self.opplot)
 
-    def mousePressEvent(self, event):
-        if event.button() == Qt.LeftButton:
-            self.rect_pos[0] = event.scenePos()
+    def insert_widgets(self):
+        self.opplot = OpticalPlot(QWidget(self), width=5, height=2, dpi=100)
+        self.opLayout.insertWidget(0,self.opplot)
+        self.relative_index_canvas = MyMplCanvas(QWidget(self), width=5, height=2, dpi=100)
+        self.graphicsLayout.addWidget(self.relative_index_canvas)
 
-    def mouseMoveEvent(self, event):
-        self.rect_pos[1] = event.scenePos()
-        self._paint_event()
 
-    def _paint_event(self):
-        if self.rect_pos[1]:
-            top_left, bottom_right = self.rect_pos
-            rect = QRectF(top_left, bottom_right)
-            self.addRect(rect)
+# class MyQGraphicsScene(QGraphicsScene):
+#     def __init__(self):
+#         QGraphicsScene.__init__(self)
+#         # super(MyQGraphicsScene, self).__init__()
+#         self.rect_pos = [False, False]
+#         # self.setBspTreeDepth(1)
+#
+#     def mousePressEvent(self, event):
+#         if event.button() == Qt.LeftButton:
+#             self.rect_pos[0] = event.scenePos()
+#
+#     def mouseMoveEvent(self, event):
+#         self.rect_pos[1] = event.scenePos()
+#         self._paint_event()
+#
+#     def _paint_event(self):
+#         if self.rect_pos[1]:
+#             top_left, bottom_right = self.rect_pos
+#             rect = QRectF(top_left, bottom_right)
+#             rect = QRectF(top_left, bottom_right)
+#             self.addRect(rect)
 
 
 # class View(AutomaticCVForm,CVViewModel):
@@ -175,6 +190,14 @@ class AutomaticCV(object):
         AutomaticCVForm.__init__(self)
         CVViewModel.__init__(self)
 
+class OPCV(object):
+    fathers = (OPCVForm, OPCVViewModel,)
+
+    @staticmethod
+    def init(self):
+        OPCVForm.__init__(self)
+        OPCVViewModel.__init__(self)
+
 
 class ManualCV(object):
     fathers = (ManualCVForm, CVViewModel,)
@@ -190,6 +213,8 @@ def get_view(label):
         view = type("View", AutomaticCV.fathers, {"__init__": AutomaticCV.init})
     elif label == "ManualCV":
         view = type("View", ManualCV.fathers, {"__init__": ManualCV.init})
+    elif label == "OPCV":
+        view = type("View", OPCV.fathers, {"__init__": OPCV.init})
     else:
         raise TypeError("no view label correct")
     return view

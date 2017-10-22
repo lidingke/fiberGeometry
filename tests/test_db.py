@@ -1,8 +1,8 @@
 #coding:utf-8
 
-from setting import orderset
-REAL_SQLALCHEMY_DIR = orderset.SQLALCHEMY_DIR
-orderset.SQLALCHEMY_DIR = "sqlite:///tests/data/test.db"
+from setting import parameter
+REAL_SQLALCHEMY_DIR = parameter.SQLALCHEMY_DIR
+parameter.SQLALCHEMY_DIR = "sqlite:///tests/data/test.db"
 from GUI.model.models import *
 from sqlalchemy.orm import sessionmaker
 

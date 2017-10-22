@@ -74,6 +74,29 @@ class WriteReadJson(object):
             f.write(jsonBitBuffer)
 
 
+
+class WriteReadJsonNoB(object):
+    """docstring for WriteReadJson"""
+    def __init__(self, dir_):
+        super(WriteReadJsonNoB, self).__init__()
+        self.dir_ = dir_
+        self.store = {}
+
+    def load(self):
+        with open(self.dir_,'r') as f:
+            try:
+                bitFileRead2Str = f.read()
+                self.store = json.loads(bitFileRead2Str)
+            except Exception as e:
+                raise e
+        return self.store
+
+    def save(self , store):
+        with open(self.dir_,'w') as f:
+            jsonBitBuffer = json.dumps(store)
+            # print('json', jsonBitBuffer)
+            f.write(jsonBitBuffer)
+
 def loadStyleSheet(sheetName):
 #D:\MyProjects\WorkProject\opencv4fiber\cv\GUI\UI\qss\main.qss
     with open('GUI/UI/qss/{}.qss'.format(sheetName), 'rb') as f:

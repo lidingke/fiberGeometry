@@ -1,4 +1,4 @@
-from setting.orderset import SETTING
+from setting.parameter import SETTING
 SETTING("")
 import SDK.MindPy as mdp
 from SDK.mdpy import GetRawImg
@@ -19,14 +19,14 @@ def test_init_release_camera():
     except ValueError as e:
         assert str(e)[-2:] == '16'
     else:
-        get.unInitCamera()
+        get.release_camera()
     # time.sleep(0.3)
     try:
         get = GetRawImg()
     except ValueError as e:
         assert str(e)[-2:] == '16'
     else:
-        get.unInitCamera()
+        get.release_camera()
 
 def test_camera_get():
     try:
@@ -37,8 +37,8 @@ def test_camera_get():
     else:
         getnp = get.get()
         assert isinstance(getnp, np.ndarray)
-        assert getnp.shape == (1944, 2592)
-        number = get.getSerialNumber()
+        assert getnp.shape == (1944, 2592,3)
+        number = get.get_camera_serial()
         assert isinstance(number, str)
         assert len(number) == 12
 

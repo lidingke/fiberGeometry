@@ -21,7 +21,7 @@ import matplotlib.pylab as plt
 #     assert len(md) == 6
 #     assert md[3] == 3
 
-# from GUI.controller import StateMixin
+
 from GUI.model.stateconf import state_number
 
 
