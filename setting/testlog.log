@@ -1333,3 +1333,39 @@ D:/MyProjects/WorkProject/opencv4fiber/geomety/main.py
 芯包同心度：  0.32
 None
 2017-10-19 12:49:54,799-GUI.controller-ERROR-close controller
+2017-10-22 16:13:59,467-__main__-ERROR-setting\configs\cvoffline.json:
+    =>FOR_UNIT_TEST:True
+    =>SPEC_ONLINE:True
+    =>MODBUS_PORT:com14
+    =>LOG_LEVEL:ERROR
+    =>RAISE_EXCEPTION:True
+    =>DB_PARAMETER:{}
+    =>FRAME_CORE:(1296, 972)
+    =>LED_PORT:com15
+    =>CONFIGS_DIR:setting\configs\
+    =>THIN_FIBERS:('200/220', '105/125')
+    =>IMG_ZOOM:2
+    =>PDF_PARAMETER:{}
+    =>SAVE_TEMP_IMG:True
+    =>FRAME_SIZE:(1944, 2592)
+    =>VIEW_LABEL:ManualCV
+    =>OCTAGON_FIBERS:('10/130(oc)', '20/130(oc)')
+    =>CAPILLARY:('capillary',)
+    =>DYNAMIC_CAMERA:False
+    =>SAVED_VIEW_ITEMS:{}
+    =>BASE_DIR:D:\MyProjects\WorkProject\opencv4fiber\cvcx2_0
+2017-10-22 16:14:13,861-__main__-ERROR- main info: ManualCV cvoffline 
+D:/MyProjects/WorkProject/opencv4fiber/cvcx2_0/main.py
+2017-10-22 16:14:14,223-setting.parameter-ERROR-key update :
+    =>cladRange:[500, 900]
+    =>coreRange:[20, 140]
+    =>fiberType:G652
+    =>corepoint:[1296, 972]
+    =>thresholdSize:{u'core': 60, u'clad': 175}
+    =>ampPixSize:0.0792393
+    =>imgsize:[1944, 2592]
+    =>medianBlur:{u'corefilter': 15, u'cladfilter': False}
+2017-10-22 16:14:14,233-pattern.classify-ERROR-meta_logger-amp:0.0792-thr:60,175-filter:15,False
+2017-10-22 16:14:14,233-pattern.classify-ERROR-get fiber type: G652 - <pattern.classify.DoubleCircleClassify object at 0x0815FA10>
+2017-10-22 16:14:14,234-simulator.server-ERROR-Listening on TCP port 9880
+2017-10-22 16:14:19,062-GUI.controller-ERROR-close controller
