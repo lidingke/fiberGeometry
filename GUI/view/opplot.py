@@ -27,13 +27,10 @@ progversion = "0.1"
 
 
 class OpticalPlot(FigureCanvas):
-    """Ultimately, this is a QWidget (as well as a FigureCanvasAgg, etc.)."""
-
     def __init__(self, parent=None, width=6.48, height=4.84, dpi=100):
-        fig = Figure(figsize=(width, height), dpi=dpi, facecolor = 'none')
+        fig = Figure(figsize=(width, height), dpi=dpi, facecolor='none')
         self.axes = fig.add_subplot(111)
-        # We want the axes cleared every time plot() is called
-        self.axes.hold(False)
+
         self.compute_initial_figure()
         FigureCanvas.__init__(self, fig)
         self.setParent(parent)
@@ -43,26 +40,11 @@ class OpticalPlot(FigureCanvas):
                                    QtGui.QSizePolicy.Expanding)
         FigureCanvas.updateGeometry(self)
 
-
     def compute_initial_figure(self):
         self.axes.plot([], [], 'r')
         self.axes.set_facecolor('none')
 
-    def update_figure(self):
-        # self.axes.clf()
-        self.axes.plot(self.xlist, self.y1list, 'r')
+    def update_figure(self, x, y1):
+        self.axes.cla()
+        self.axes.plot(x, y1, 'r')
         self.draw()
-        # self.setStyleSheet("QWidget{border-radius: 50px}")
-
-    def XYaxit(self ,x ,y1):
-        self.xlist = x
-        self.y1list = y1
-        print 'get plot ', len(x), len(y1), self.xlist[-1], self.y1list[-1]
-        self.axes.set_facecolor('none')
-
-        self.update_figure()
-    #
-    # def savePlotFig(self):
-    #     def savefigThread(self):
-    #         self.fig.savefig("data\\plot.svg", format='svg')  # data\
-    #     # threading.Thread(target=savefigThread, daemon=True).start()

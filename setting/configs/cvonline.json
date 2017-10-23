@@ -1,6 +1,6 @@
 {
   "MODBUS_PORT":"None",
-  "LED_PORT":"com7",
+  "LED_PORT":"com14",
   "VIEW_LABEL":"ManualCV",
   "DYNAMIC_CAMERA":true,
   "FOR_UNIT_TEST" :false,

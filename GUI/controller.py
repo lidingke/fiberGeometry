@@ -128,7 +128,7 @@ class ModelOPControllerMixin(object):
 
     def _start_modelop(self):
         self._modelop = ModelOP()
-        self._modelop.emit_spect.connect(self._view.opplot.XYaxit)
+        self._modelop.emit_spect.connect(self._view.opplot.update_figure)
 
 
 class ModelCVControllerMixin(object):
