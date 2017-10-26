@@ -19,10 +19,12 @@ from PyQt4.QtCore import QObject, pyqtSignal
 
 import logging
 
+from util.observer import PyTypeSignal
 from util.threadlock import WorkerQueue
 
 logger = logging.getLogger(__name__)
 
+# QSpinBox
 
 class StateMixin(object):
 
@@ -54,17 +56,19 @@ class StateMixin(object):
 
     def context_transform_2(self):
         """"switch to PLAT2"""
-        self._view.modbus_ui.stateText.setText("state 2")
+        self._view.modbus_ui.stateText.setText("state 2:input dark current")
         self._modbus.platform_state = "PLAT2"
         # self._modelop.spect.new()
         self._modelop.get_zero()
+        self._view.modbus_ui.stateText.setText("state 2:get dark current")
         # self.platform_number = "2"
 
 
     def context_transform_3(self):
-        self._view.modbus_ui.stateText.setText("state 3")
-
+        self._view.modbus_ui.stateText.setText("state 3:input init current")
         self._modelop.get_before()
+        self._view.modbus_ui.stateText.setText("state 3:get init current")
+
 
     def context_transform_4(self):
         """"switch to PLAT1"""
@@ -129,6 +133,23 @@ class ModelOPControllerMixin(object):
     def _start_modelop(self):
         self._modelop = ModelOP()
         self._modelop.emit_spect.connect(self._view.opplot.update_figure)
+        self._spect_args_connect()
+
+    def _spect_args_connect(self):
+        self._emit_spect = PyTypeSignal()
+        self._emit_spect.connect(self._modelop.set_spect_args)
+
+        def get_spect_args(self):
+            spect_args = (self._view.spin_integral_times.value(),
+                          self._view.spin_integral_steps.value(),
+                          self._view.spin_smoothness.value(),)
+            self._emit_spect.emit(*spect_args)
+        get_spect_args(self)
+        self._view.spin_integral_times.valueChanged.connect(partial(get_spect_args,self))
+        self._view.spin_integral_steps.valueChanged.connect(partial(get_spect_args,self))
+        self._view.spin_smoothness.valueChanged.connect(partial(get_spect_args,self))
+
+
 
 
 class ModelCVControllerMixin(object):

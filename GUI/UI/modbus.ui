@@ -21,6 +21,9 @@
        <property name="text">
         <string>state</string>
        </property>
+       <property name="alignment">
+        <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
+       </property>
       </widget>
      </item>
      <item>

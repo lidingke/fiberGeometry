@@ -31,6 +31,7 @@ class Ui_Form(object):
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.stateText = QtGui.QLabel(Form)
+        self.stateText.setAlignment(QtCore.Qt.AlignBottom|QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing)
         self.stateText.setObjectName(_fromUtf8("stateText"))
         self.horizontalLayout.addWidget(self.stateText)
         self.gridLayout_4 = QtGui.QGridLayout()

@@ -9,12 +9,12 @@ data = pynir.get_darrat()
 # data = data.reshape((2,3))
 print(data)
 #
-data = pynir.get_spectrum(500000)
+data = pynir.get_spectrum(100000,1,0)
 # sleep(1)
 # print "1"
 len_data = len(data)
 # # data = data.reshape((2,len_data//2))
-pdb.set_trace()
+# pdb.set_trace()
 datal = data.tolist()
 # print data.shape
 # print data[:10][0]

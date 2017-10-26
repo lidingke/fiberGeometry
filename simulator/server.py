@@ -133,76 +133,76 @@ class ImgServer(TCPServer):
         # self.io_loop.stop()
         # self.io_loop.close()
 
-class CameraMotorSever(TCPServer):
-    IS_RUNNING = True
-    MOTOR_RUNNING = True
-
-    @gen.coroutine
-    def handle_stream(self, stream, address):
-        while self.IS_RUNNING:
-            try:
-                data = yield stream.read_until("\n\r")
-                logger.error("Received bytes: %s", data)
-                data = data.strip()
-                if data == 'getsharp:':
-                    self._send_sharp(stream)
-                elif data == 'back:':
-                    self.back = not self.back
-                elif data == 'start:':
-                    print 'get start'
-                    self._get_start_timer()
-                elif data =='close':
-                    self._close(stream)
-            except StreamClosedError:
-                logger.info("Lost client at host %s", address[0])
-                break
-            except Exception as e:
-                raise e
-
-    def timer_thread(self):
-
-        print 'get in timer'
-        while self.MOTOR_RUNNING:
-            time.sleep(0.01)
-            print 'start sharp loop', self.sharp
-            if self.back:
-                self.sharp = self.sharp + 0.5
-            else:
-                self.sharp = self.sharp - 0.5
-
-    def _get_start_timer(self):
-        self.sharp = 100
-        self.back = True
-        timer = Thread(target=self.timer_thread)
-        timer.start()
-
-
-    @gen.coroutine
-    def _send_sharp(self, stream):
-        cmd = '{:.4f}\n\r\n\r'.format(self.sharp)
-        # print 'sharp', cmd.strip()
-        yield stream.write(cmd)
-
-
-    def _close(self,stream):
-        self.IS_RUNNING = False
-        self.MOTOR_RUNNING = False
-        stream.close()
-
-
-
-class CameraMotorSeverRadom(CameraMotorSever):
+# class CameraMotorSever(TCPServer):
+#     IS_RUNNING = True
+#     MOTOR_RUNNING = True
+#
+#     @gen.coroutine
+#     def handle_stream(self, stream, address):
+#         while self.IS_RUNNING:
+#             try:
+#                 data = yield stream.read_until("\n\r")
+#                 logger.error("Received bytes: %s", data)
+#                 data = data.strip()
+#                 if data == 'getsharp:':
+#                     self._send_sharp(stream)
+#                 elif data == 'back:':
+#                     self.back = not self.back
+#                 elif data == 'start:':
+#                     print 'get start'
+#                     self._get_start_timer()
+#                 elif data =='close':
+#                     self._close(stream)
+#             except StreamClosedError:
+#                 logger.info("Lost client at host %s", address[0])
+#                 break
+#             except Exception as e:
+#                 raise e
+#
+#     def timer_thread(self):
+#
+#         print 'get in timer'
+#         while self.MOTOR_RUNNING:
+#             time.sleep(0.01)
+#             print 'start sharp loop', self.sharp
+#             if self.back:
+#                 self.sharp = self.sharp + 0.5
+#             else:
+#                 self.sharp = self.sharp - 0.5
+#
+#     def _get_start_timer(self):
+#         self.sharp = 100
+#         self.back = True
+#         timer = Thread(target=self.timer_thread)
+#         timer.start()
+#
+#
+#     @gen.coroutine
+#     def _send_sharp(self, stream):
+#         cmd = '{:.4f}\n\r\n\r'.format(self.sharp)
+#         # print 'sharp', cmd.strip()
+#         yield stream.write(cmd)
+#
+#
+#     def _close(self,stream):
+#         self.IS_RUNNING = False
+#         self.MOTOR_RUNNING = False
+#         stream.close()
 
 
-    def timer_thread(self):
-        print 'get in timer'
-        while self.MOTOR_RUNNING:
-            time.sleep(0.01)
-            print 'start sharp loop {:.2f}'.format(self.sharp)
-            if self.back:
-                self.sharp = self.sharp + uniform(0.3,0.6)
-            else:
-                self.sharp = self.sharp - uniform(0.3,0.6)
+
+# class CameraMotorSeverRadom(CameraMotorSever):
+#
+#
+#     def timer_thread(self):
+#         print 'get in timer'
+#         while self.MOTOR_RUNNING:
+#             time.sleep(0.01)
+#             print 'start sharp loop {:.2f}'.format(self.sharp)
+#             if self.back:
+#                 self.sharp = self.sharp + uniform(0.3,0.6)
+#             else:
+#                 self.sharp = self.sharp - uniform(0.3,0.6)
 
 
 def SeverMain(port):
