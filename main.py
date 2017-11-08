@@ -25,10 +25,8 @@ from util.load import loadStyleSheet
 
 if __name__ == '__main__':
     # sys.stdout = open('setting\\abc.txt', 'w')
-    # pass
     label = config.VIEW_LABEL  # label为AutomaticCV
     logger.error(" main info: {} {} \n{}".format(label, project_name, sys.argv[0]))
-    # print ('len set', len(Set))
     app = QApplication(sys.argv)
     app.setStyleSheet(loadStyleSheet('main'))
     pt = QPalette()

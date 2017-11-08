@@ -1,5 +1,5 @@
 from pattern.edge import ExtractEdge
-from pattern.getimg import GetImage
+from pattern.getimg import getImage
 import cv2
 import numpy as np
 import os

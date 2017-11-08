@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-from pattern.getimg import GetImage, randomImg
+from util.getimg import GetImage, randomImg
 
 import SDK.MindPy as mdp
 

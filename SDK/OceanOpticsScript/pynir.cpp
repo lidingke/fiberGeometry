@@ -2,7 +2,7 @@
 #include "Python.h"
 #include <numpy/arrayobject.h>
 #include "NIR_DLL.h"
-#pragma comment(lib,"NIR_DLL.lib")
+//#pragma comment(lib,"NIR_DLL.lib")
 
 static PyObject * get_spectrum(PyObject *self, PyObject *args)
 {

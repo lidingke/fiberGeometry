@@ -1,1 +1,1 @@
-from pattern.getimg import getImage, randomImg
+from util.getimg import getImage, randomImg
