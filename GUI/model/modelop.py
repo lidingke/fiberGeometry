@@ -32,17 +32,17 @@ class ModelOP():
         wave, data = self.spect.get_spectrograph(*self.spect_args)
         if len(wave) == len(self.wave):
             diff_zero = [z1 - z0 for z1, z0 in zip(data, self.zeros)]
-            self.wave, self.before = wave, diff_zero
             return (wave, diff_zero)
         else:
             raise ValueError("wavelength unmatched")
 
     def get_before(self):
-        wave, diff_zero = self.get_data()
-        self.emit_spect.emit(wave, diff_zero)
+        self.wave, self.before = self.get_data()
+        self.emit_spect.emit(self.wave, self.before)
 
     def get_after(self):
-        self.get_data()
+        self.wave, self.after = self.get_data()
+
 
     # def get_power(self):
     def calculate_power(self, length):

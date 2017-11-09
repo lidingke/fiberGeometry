@@ -29,10 +29,9 @@ if __name__ == '__main__':
     logger.error(" main info: {} {} \n{}".format(label, project_name, sys.argv[0]))
     app = QApplication(sys.argv)
     app.setStyleSheet(loadStyleSheet('main'))
-    pt = QPalette()
-    pt.setColor(QPalette.Background, QColor(4, 159, 241))
-    app.setPalette(pt)
-    # label = config.VIEW_LABEL  # label为AutomaticCV
+    # pt = QPalette()
+    # pt.setColor(QPalette.Background, QColor(4, 159, 241))
+    # app.setPalette(pt)
     controller = get_controller(label)
     view = get_view(label)
     # print view.__dict__, type(view)

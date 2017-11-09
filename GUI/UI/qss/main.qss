@@ -1,3 +1,12 @@
+QWidget{
+    background-color: #049ff1;
+    font-size: 25px;
+    font-family: "Microsoft YaHei";
+}
+QWidget#extendwidget{
+    background-color: #FFFFFF;
+}
+
 QLabel{
     color: white;
 }
@@ -138,6 +147,7 @@ QTextBrowser{
     padding: 3px;
     min-width: 9ex;
     min-height: 2.5ex;
+    /*font-family: "Microsoft YaHei";*/
 }
 
 /***********QSpinBox**********/

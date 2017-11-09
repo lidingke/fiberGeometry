@@ -45,6 +45,7 @@ class StateMixin(object):
 
         if hasattr(self._view, "next_state"):
             self._view.next_state.clicked.connect(state_change)
+            print "next_state connect"
         # move up button connection
 
 

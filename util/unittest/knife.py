@@ -5,7 +5,7 @@ from PyQt4.QtGui import QWidget
 import re
 
 
-class New(object):
+class SubNode(object):
     def __init__(self):
         self.funs = []
 
@@ -13,8 +13,7 @@ class New(object):
         self.__dict__[key] = value
 
     def __call__(self, *args, **kwargs):
-        for f in self.funs:
-            f()
+        [f() for f in self.funs]
 
 
 class Knife(object):
@@ -25,9 +24,9 @@ class Knife(object):
 
     def parser_slots(self, widget_instance):
         assert isinstance(widget_instance, QWidget)
-        fun_with_connect = widget_instance.__init__
-        assert "connect" in fun_with_connect.__code__.co_names
-        codes = inspect.getsource(fun_with_connect)
+        funs_has_connections = widget_instance.__init__
+        assert "connect" in funs_has_connections.__code__.co_names
+        codes = inspect.getsource(funs_has_connections)
         connect_lines = [x.strip() for x in codes.split("\n") if x.find('connect') > 1]
         signal_slot_par = []
         for line in connect_lines:
@@ -35,17 +34,12 @@ class Knife(object):
             slot = re.findall(".connect\((.*?)\)", line)[0].split('.')
             signal_slot_par.append((signal, slot))
         return signal_slot_par
-        # pdb.set_trace()
 
     def create_slots(self, pars):
-
-        # pdb.set_trace()
         def set_attrs(instance, attrs, fun):
             if attrs:
                 now_attrs = attrs[0]
-                # print "attrs", instance, now_attrs, New()
-                setattr(instance, now_attrs, New())
-                # instance.__dict__[now_attrs] =
+                setattr(instance, now_attrs, SubNode())
                 return set_attrs(getattr(instance, now_attrs), attrs[1:], fun)
             else:
                 instance.funs.append(fun)
@@ -53,9 +47,4 @@ class Knife(object):
         for signal, slot in pars:
             slot_fun = getattr(self.root, ".".join(slot[1:]))
             attrs_from = signal[1:]
-            # attrs = (self,("a",("b")))
             set_attrs(self, attrs_from, slot_fun)
-            # instance = slot_fun
-        # pdb.set_trace()
-
-        # def pars_to_dict(self,pars):

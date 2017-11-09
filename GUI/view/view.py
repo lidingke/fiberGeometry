@@ -38,7 +38,7 @@ class CVViewModel(object):
         self.emit_close_event = PyTypeSignal()
 
     def insert_widgets(self):
-        self.relative_index_canvas = MyMplCanvas(QWidget(self), width=5, height=2, dpi=100)
+        self.relative_index_canvas = MyMplCanvas(QWidget(self.extendwidget), width=5, height=2, dpi=100)
         self.cvOperatorLayout.insertWidget(2,self.relative_index_canvas)
 
 
@@ -83,29 +83,19 @@ class CVViewModel(object):
     def closeEvent(self, *args, **kwargs):
         # if 'olddata' in SETTING().keys():
         #     self.olddata.save(SETTING()['olddata'])
-        print('get last save')
-        print(self.last_save)
+        logger.info('get last save\n'+str(self.last_save))
+        # print(self.last_save)
         self.olddata.save(self.last_save)
         self.emit_close_event.emit()
 
     def updateCVShow(self, str_,):
         if str_:
+
             self.resultShowCV.setText(str_)
+            # self.resultShowCV.setStyleSheet("QTextBrowser{font-family: \"Microsoft YaHei\";}")
         self.beginTestCV.setEnabled(True)
 
-    #
-    # def _disableCVButton(self, bool=False):
-    #     self.beginTestCV.setEnabled(bool)
 
-
-
-        # def updateATShow(self,str_):
-        #     self.resultShowAT.setText(str_)
-
-        # def initGUI(self):
-
-        # print para['fibertypeindex'], int(para['fibertypeindex'])
-        # self.fiberTypeBox.setCurrentIndex(int(para['fibertypeindex']))
 
     def writeReporterCV(self):
         para = {}
@@ -143,44 +133,11 @@ class OPCVViewModel(CVViewModel):
         # self.mainLayout.addWidget(self.opplot)
 
     def insert_widgets(self):
-        self.opplot = OpticalPlot(QWidget(self), width=5, height=2, dpi=100)
+        self.opplot = OpticalPlot(QWidget(self.extendwidget), width=5, height=2, dpi=100)
         self.opLayout.insertWidget(0,self.opplot)
-        self.relative_index_canvas = MyMplCanvas(QWidget(self), width=5, height=2, dpi=100)
+        self.relative_index_canvas = MyMplCanvas(QWidget(self.extendwidget), width=5, height=2, dpi=100)
         self.graphicsLayout.addWidget(self.relative_index_canvas)
 
-
-# class MyQGraphicsScene(QGraphicsScene):
-#     def __init__(self):
-#         QGraphicsScene.__init__(self)
-#         # super(MyQGraphicsScene, self).__init__()
-#         self.rect_pos = [False, False]
-#         # self.setBspTreeDepth(1)
-#
-#     def mousePressEvent(self, event):
-#         if event.button() == Qt.LeftButton:
-#             self.rect_pos[0] = event.scenePos()
-#
-#     def mouseMoveEvent(self, event):
-#         self.rect_pos[1] = event.scenePos()
-#         self._paint_event()
-#
-#     def _paint_event(self):
-#         if self.rect_pos[1]:
-#             top_left, bottom_right = self.rect_pos
-#             rect = QRectF(top_left, bottom_right)
-#             rect = QRectF(top_left, bottom_right)
-#             self.addRect(rect)
-
-
-# class View(AutomaticCVForm,CVViewModel):
-#     def __init__(self):
-#         AutomaticCVForm.__init__(self)
-#         CVViewModel.__init__(self)
-#         self.print_mro()
-#
-#     @classmethod
-#     def print_mro(cls):
-#         print cls.__mro__
 
 class AutomaticCV(object):
     fathers = (AutomaticCVForm, CVViewModel,)
