@@ -26,7 +26,7 @@ def knife_into_demo(view_instance):
 def knife_into_main(view_instance):
     knife = Knife(view_instance)
     sleep(1)
-    print dir(knife._view)
+    # print dir(knife._view)
     # view_instance.input_line.setText("123")
     knife._view.beginTestCV.clicked()
 

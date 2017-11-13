@@ -1,6 +1,10 @@
 import inspect
 import re
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 class SubNode(object):
     def __init__(self):
         self.funs = []
@@ -11,10 +15,8 @@ class SubNode(object):
     def __call__(self, *args, **kwargs):
         [f() for f in self.funs]
 
-
 class FailAttr(ValueError):
     """ can't get attr correct"""
-
 
 class Knife(object):
     def __init__(self, widget_instance):
@@ -62,4 +64,4 @@ class Knife(object):
             if slot_fun:
                 attrs_from = signal[1:]
                 set_attrs(self, attrs_from, slot_fun)
-                print attrs_from, slot_fun
+                logger.error("{} {}".format(attrs_from, slot_fun))
