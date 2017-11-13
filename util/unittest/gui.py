@@ -10,7 +10,7 @@ from PyQt4.QtCore import QObject, SLOT, SIGNAL
 from sphinx.builders import changes
 
 from util.observer import PyTypeSignal
-from util.unittest.demo import knife_into
+from util.unittest.demo import knife_into_demo
 
 
 class View(QWidget):
@@ -34,6 +34,6 @@ class View(QWidget):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     view = View()
-    threading.Thread(target=knife_into, args=(view,)).start()#unittest thread insert
+    threading.Thread(target=knife_into_demo, args=(view,)).start()#unittest thread insert
     view.show()
     sys.exit(app.exec_())

@@ -160,8 +160,6 @@ class ModelCVControllerMixin(object):
         self._view.emit_close_event.connect(self.close)
         self._view.beginTestCV.clicked.connect(self._modelcv.mainCalculate)
         self._view.fiberTypeBox.currentIndexChanged.connect(self._changeFiberType)
-        # self._view.fiberTypeBox.currentIndexChanged.connect(
-        #     self._modelcv.light_controller.update_current)
 
         self._view.emit_fibertype_in_items.connect(self._changeFiberType)
         self._view.lightControl.clicked.connect(self._start_light_control)
@@ -169,8 +167,7 @@ class ModelCVControllerMixin(object):
         self._modelcv.returnImg.connect(self._view.updatePixmap)
         self._modelcv.resultShowCV.connect(self._view.updateCVShow)
         self._modelcv.emit_relative_index.connect(self._view.relative_index_show)
-        self._modelcv.light_controller.emit_light_ready.connect(
-            partial(self._view.lightControl.setEnabled,True))
+        self._modelcv.light_controller.emit_light_ready.connect(partial(self._view.lightControl.setEnabled,True))
 
         # self._modelcv.returnCoreLight.connect(self._view.getCoreLight)
 

@@ -3,9 +3,9 @@ QWidget{
     font-size: 25px;
     font-family: "Microsoft YaHei";
 }
-QWidget#extendwidget{
-    background-color: #FFFFFF;
-}
+/*QWidget#extendwidget{*/
+    /*background-color: #FFFFFF;*/
+/*}*/
 
 QLabel{
     color: white;

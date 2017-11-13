@@ -1,9 +1,5 @@
 import inspect
-import pdb
-
-from PyQt4.QtGui import QWidget
 import re
-
 
 class SubNode(object):
     def __init__(self):
@@ -16,35 +12,54 @@ class SubNode(object):
         [f() for f in self.funs]
 
 
+class FailAttr(ValueError):
+    """ can't get attr correct"""
+
+
 class Knife(object):
     def __init__(self, widget_instance):
-        self.root = widget_instance
         pars = self.parser_slots(widget_instance)
-        self.create_slots(pars)
+        self.create_slots(pars, widget_instance)
 
     def parser_slots(self, widget_instance):
-        assert isinstance(widget_instance, QWidget)
-        funs_has_connections = widget_instance.__init__
-        assert "connect" in funs_has_connections.__code__.co_names
-        codes = inspect.getsource(funs_has_connections)
-        connect_lines = [x.strip() for x in codes.split("\n") if x.find('connect') > 1]
+        dirs = dir(widget_instance)
+        dirs = [getattr(widget_instance, d) for d in dirs]
         signal_slot_par = []
-        for line in connect_lines:
-            signal = re.findall("(.*?)\.connect", line)[0].split('.')
-            slot = re.findall(".connect\((.*?)\)", line)[0].split('.')
-            signal_slot_par.append((signal, slot))
+        for d in dirs:
+            if hasattr(d, "__code__") and "connect" in d.__code__.co_names:
+                codes = inspect.getsource(d)
+                connect_lines = [x.strip() for x in codes.split("\n") if x.find('.connect') > 1]
+                for line in connect_lines:
+                    if line.strip()[0] == "#":
+                        continue
+                    signal = re.findall("(.*?)\.connect", line)[0].split('.')
+                    slot = re.findall(".connect\((.*?)\)", line)[0].split('.')
+                    signal_slot_par.append((signal, slot))
         return signal_slot_par
 
-    def create_slots(self, pars):
+    def create_slots(self, pars, widget_instance):
         def set_attrs(instance, attrs, fun):
             if attrs:
                 now_attrs = attrs[0]
-                setattr(instance, now_attrs, SubNode())
+                if not hasattr(instance, now_attrs):
+                    setattr(instance, now_attrs, SubNode())
                 return set_attrs(getattr(instance, now_attrs), attrs[1:], fun)
             else:
                 instance.funs.append(fun)
 
+        def get_attrs(instance, attrs):
+            if attrs:
+                try:
+                    attr = getattr(instance, attrs[0])
+                except Exception as e:
+                    return FailAttr
+                return get_attrs(attr, attrs[1:])
+            else:
+                return instance
+
         for signal, slot in pars:
-            slot_fun = getattr(self.root, ".".join(slot[1:]))
-            attrs_from = signal[1:]
-            set_attrs(self, attrs_from, slot_fun)
+            slot_fun = get_attrs(widget_instance, slot[1:])
+            if slot_fun:
+                attrs_from = signal[1:]
+                set_attrs(self, attrs_from, slot_fun)
+                print attrs_from, slot_fun
