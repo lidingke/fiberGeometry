@@ -2,7 +2,7 @@ import pdb
 import numpy as np
 import cv2
 from SDK.mdpy import GetRawImgTest as GetRawImg
-from pattern.getimg import GetImage
+from util.getimg import GetImage
 
 
 def test_origin_imgColor():

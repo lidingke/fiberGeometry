@@ -3,8 +3,8 @@ SETTING().update_by_key('test', 'octagon')
 from pattern.sharp import IsSharp
 from pattern.edge import ExtractEdge, EdgeFuncs
 import numpy as np
-from util.loadimg import yieldImg
-from pattern.getimg import getImage, randomImg
+# from util.getimg import
+from util.getimg import getImage, randomImg, yieldImg
 import cv2
 import os
 import sys
@@ -29,7 +29,7 @@ def _getFilterImg(core, origin, minRange, maxRange):
 
 
 def n_test_new_sharp():
-    imgs = yieldImg("IMG\\midoctagon\\sharp\\")
+    imgs = randomImg("IMG\\midoctagon\\sharp\\")
     # cv2.GaussianBlur()
     for img in imgs:
         if len(img.shape) > 2:
@@ -102,7 +102,7 @@ def n_test_sharp_Laplacian():
         print 'get sharp', sharp
 
 def test_sharp_Laplacian():
-    imgs = yieldImg("IMG\\emptytuple\\sharp\\")
+    imgs = randomImg("IMG\\emptytuple\\sharp\\")
 
     sharpobject = IsSharp()
     for img in imgs:

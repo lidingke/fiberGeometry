@@ -1,9 +1,11 @@
 import inspect
+import pdb
 import re
 
 import logging
 
 logger = logging.getLogger(__name__)
+
 
 class SubNode(object):
     def __init__(self):
@@ -15,8 +17,10 @@ class SubNode(object):
     def __call__(self, *args, **kwargs):
         [f() for f in self.funs]
 
+
 class FailAttr(ValueError):
     """ can't get attr correct"""
+
 
 class Knife(object):
     def __init__(self, widget_instance):
@@ -25,6 +29,7 @@ class Knife(object):
 
     def parser_slots(self, widget_instance):
         dirs = dir(widget_instance)
+        dirs = ["__init__"] + [d for d in dirs if d[:2] != "__"]
         dirs = [getattr(widget_instance, d) for d in dirs]
         signal_slot_par = []
         for d in dirs:

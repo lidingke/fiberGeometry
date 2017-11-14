@@ -1,7 +1,9 @@
-#coding:utf-8
+#!/usr/bin/env python
+# coding:utf-8
 # embedding_in_qt4.py --- Simple Qt4 application embedding matplotlib canvases
 #
-# Copyright (C) 2005 Florent Rougon#               2006 Darren Dale
+# Copyright (C) 2005 Florent Rougon
+#               2006 Darren Dale
 #
 # This file is an example program for matplotlib. It may be used and
 # modified with no restriction; raw copies as well as modified versions
@@ -13,10 +15,7 @@ import sys
 import os
 import random
 from matplotlib.backends import qt_compat
-# use_pyside = qt_compat.QT_API == qt_compat.QT_API_PYSIDE
-
 from PyQt4 import QtGui, QtCore
-import matplotlib.mlab as mlab
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 
@@ -24,20 +23,13 @@ progname = os.path.basename(sys.argv[0])
 progversion = "0.1"
 
 
-class MyMplCanvas(FigureCanvas):
-    """Ultimately, this is a QWidget (as well as a FigureCanvasAgg, etc.)."""
+class SpectrumCanvas(FigureCanvas):
+    def __init__(self, parent=None, width=6.48, height=4.84, dpi=100):
+        fig = Figure(figsize=(width, height), dpi=dpi, facecolor='none')
+        self.axes = fig.add_subplot(111)
 
-    def __init__(self, parent=None, width=4, height=3, dpi=100):
-        self.fig = Figure(figsize=(width, height), dpi=dpi, facecolor = 'none')
-        self.axes = self.fig.add_subplot(111)
-        # self.fig.subplots_adjust(left=0.1, bottom=0.1, right=0.9, top=1)
-        # fig.tight_layout(True)
-
-
-        self.axes_twinx = self.axes.twinx()
         self.initial_figure()
-        FigureCanvas.__init__(self, self.fig)
-
+        FigureCanvas.__init__(self, fig)
         self.setParent(parent)
 
         FigureCanvas.setSizePolicy(self,
@@ -48,17 +40,18 @@ class MyMplCanvas(FigureCanvas):
     def initial_figure(self):
         self.axes.plot([], [], 'r')
         self.axes.set_facecolor('none')
-        self.axes.set_title(u"折射率剖面模拟器", fontproperties='SimHei')
+        self.axes.set_title(u"待测光纤光谱", fontproperties='SimHei')
+        self.axes.set_xlabel(u"波长(nm)", fontproperties='SimHei')
+        self.axes.set_ylabel(u"强度(counts)", fontproperties='SimHei')
+        self.axes.set_xlim(900,1700)
+        self.axes.set_ylim(0,65000)
 
-    def update_figure(self, x, h,y,v):
+    def update_figure(self, x, y1):
         self.axes.cla()
-        self.axes.plot(x,h,'y')
-        self.axes_twinx.plot(y,v,'r')
-        self.axes.set_facecolor('none')
-        self.axes.set_title(u"折射率剖面模拟器", fontproperties='SimHei')
+        self.axes.plot(x, y1, 'r')
+        self.axes.set_title(u"待测光纤光谱", fontproperties='SimHei')
+        self.axes.set_xlabel(u"波长(nm)", fontproperties='SimHei')
+        self.axes.set_ylabel(u"强度(counts)", fontproperties='SimHei')
+        self.axes.set_xlim(900,1700)
+        self.axes.set_ylim(0,65000)
         self.draw()
-
-
-
-
-

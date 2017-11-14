@@ -11,9 +11,14 @@ from setting.configs.update import update_config_by_name
 project_name = sys.argv[1]
 config_info = update_config_by_name(project_name)
 log_level = getattr(logging, config.LOG_LEVEL, logging.ERROR)
-logging.basicConfig(  filename="setting\\testlog.log",
-    filemode="a", format="%(asctime)s-%(name)s-%(levelname)s-%(message)s",
-    level=logging.ERROR)
+log_dir = getattr(config,"LOG_DIR",False)
+if log_dir == "print":
+    logging.basicConfig(format="%(asctime)s-%(name)s-%(levelname)s-%(message)s",
+        level=logging.ERROR)
+else:
+    logging.basicConfig(filename="setting\\testlog.log",
+        filemode="a", format="%(asctime)s-%(name)s-%(levelname)s-%(message)s",
+        level=logging.ERROR)
 logger = logging.getLogger(__name__)
 logger.error(config_info)
 

@@ -4,7 +4,8 @@
   "VIEW_LABEL":"ManualCV",
   "DYNAMIC_CAMERA":true,
   "FOR_UNIT_TEST" :false,
-  "SAVE_TEMP_IMG":false,
+  "LOG_DIR":"print",
+  "SAVE_TEMP_IMG":true,
   "LOG_LEVEL" : "ERROR",
   "SPEC_ONLINE": false
 }

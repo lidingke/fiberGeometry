@@ -1,4 +1,4 @@
-from pattern.getimg import randomImg, getImage
+from util.getimg import randomImg, getImage
 from pattern.sharp import corner_noise, take_white_light_in_core, black_points
 
 

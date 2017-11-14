@@ -52,11 +52,9 @@ def outer_fill(img, core=core_point, radius=0, value=0):
     y0, x0 = core
     yranges = xrange(y0 - radius, y0 + radius)
 
-    print "yranges",yranges
     for y in yranges:
         x00, x01 = -(radius ** 2 - (y - y0) ** 2) ** 0.5 + x0, (radius ** 2 - (y - y0) ** 2) ** 0.5 + x0
         x00, x01 = int(x00), int(x01)
-        print x00,x01,y
         if x00 < x01:
             img[0:x00, y].fill(value)
             img[x01:xmax, y].fill(value)
@@ -109,3 +107,14 @@ def cover_core_by_circle_auto_value(core, img, radius, value=False):
         value = sum(values[1:-1]) // 6
     cv2.circle(img, tuple(core), radius, value, -1)
     return img
+
+
+def sliceImg(img, core, slice, split = 1):
+    corex, corey = core
+    maxRange = slice
+    begin = (corex - maxRange, corey - maxRange)
+    end = (corex + maxRange, corey + maxRange)
+    if len(img.shape) == 2:
+        return img[begin[0]:end[0]:split, begin[1]:end[1]:split]
+    else:
+        return img[begin[0]:end[0]:split, begin[1]:end[1]:split]

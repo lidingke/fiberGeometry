@@ -2,7 +2,7 @@ import cv2
 
 from pattern.adaptivefilter import adaptive_filter_by_median
 from pattern.classify import PolyClassify, classifyObject
-from pattern.getimg import get_img
+from util.getimg import get_img
 from pattern.sharp import corner_noise
 import logging
 #

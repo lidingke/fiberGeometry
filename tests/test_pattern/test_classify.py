@@ -2,7 +2,7 @@ from collections import Iterable
 import pytest
 import cv2
 from pattern.classify import classifyObject
-from pattern.getimg import random_img
+from util.getimg import random_img
 import logging
 
 

@@ -6,8 +6,8 @@ from pattern.picker import  PickCircle, PickHullCircle, PickPoly
 from pattern.edge import ExtractEdge
 import pytest
 import cv2
-from util.loadimg import yieldImg
-from pattern.getimg import GetImage
+# from util.loadimg import yieldImg
+from util.getimg import GetImage, yieldImg
 import numpy as np
 
 

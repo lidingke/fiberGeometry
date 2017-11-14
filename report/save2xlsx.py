@@ -8,7 +8,6 @@ def save2xlsx(file_name,datas):
     sheet_name = u"sheet{}".format(len(sheets)+1)
     print "sheet",sheet_name
     workbook = xlwt.Workbook()
-    #
     booksheet = workbook.add_sheet(sheet_name)
 
     for i, row in enumerate(datas):

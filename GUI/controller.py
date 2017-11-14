@@ -9,6 +9,7 @@ from PyQt4.QtGui import QLabel
 from PyQt4.QtGui import QPushButton
 
 from GUI.view.monkey import MonkeyServer
+from pattern.classify import classifyObject
 from setting.config import MODBUS_PORT
 from GUI.model.stateconf import state_number, CONTEXT
 from SDK.modbus.modbusmerge import AbsModeBusModeByAxis, MODENABLE_SIGNAL
@@ -264,6 +265,13 @@ class ManualCVController(ModelCVControllerMixin,
         self._modelcv.close()
         # logger.error(traceback.format_exception(*sys.exc_info()))
 
+class CapCVController(ManualCVController):
+
+    def __init__(self,*args,**kwargs):
+        super(CapCVController, self).__init__(*args,**kwargs)
+        self._modelcv.classify = classifyObject("capillary")
+
+
 
 
 def get_controller(label):
@@ -273,5 +281,7 @@ def get_controller(label):
         return ManualCVController
     if label == "OPCV":
         return OPCVController
+    if label == "CapCV":
+        return CapCVController
     else:
         raise TypeError("no view label correct")

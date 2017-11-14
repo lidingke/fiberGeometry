@@ -62,7 +62,8 @@ class SharpSever(object):
 
 
 class ImgServer(TCPServer):
-    PARA = ('randomImg', 'IMG/G652/0912R/')
+    # PARA = ('randomImg', 'IMG/G652/0912R/')
+    PARA = ('randomImg', 'IMG/emptytuple/171113/')
     IS_RUNNING = True
     # sharpSever = SharpSever()
 

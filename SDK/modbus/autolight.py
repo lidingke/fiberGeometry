@@ -10,7 +10,7 @@ from util.load import WriteReadJson, WriteReadJsonNoB
 from util.observer import PyTypeSignal
 import logging
 
-logger = logging.getLogger(__name__ + ":" + LED_PORT)
+logger = logging.getLogger(__name__ + ":" + str(LED_PORT))
 
 
 class RightCurrent(object):

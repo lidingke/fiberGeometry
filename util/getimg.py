@@ -100,3 +100,11 @@ def getImage(dir_):
 
 random_img = randomImg
 get_img = getImage
+
+
+def yieldImg(dirs):
+    dirlist = os.listdir(dirs)
+    dirlist = [dirs + x for x in dirlist]
+    for dir_ in dirlist:
+        img = GetImage().get(dir_, 'colour')
+        yield  img
