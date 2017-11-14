@@ -160,7 +160,7 @@
             "corefilter": 15,
             "cladfilter": 15
         },
-        "ampPixSize": 0.01048,
+        "ampPixSize": 0.001015,
         "diff_radius": 500,
         "enlarge": [
             20,

@@ -14,7 +14,7 @@ from GUI.view.spectcanvas import SpectrumCanvas
 from GUI.view.uiview import ManualCVForm, AutomaticCVForm, OPCVForm, CapCVForm
 from GUI.view.refractcanvas import RefractCanvas
 from report.pdf import write_txt
-from setting.config import VIEW_LABEL, PDF_PARAMETER, DB_PARAMETER
+from setting.config import  PDF_PARAMETER, DB_PARAMETER
 
 from util.observer import PyTypeSignal
 from GUI.view.reporter import ReporterPdfs
@@ -31,6 +31,7 @@ class CVViewModel(object):
     """docstring for View"""
 
     def __init__(self, ):
+        super(CVViewModel, self).__init__()
         self.scence = QGraphicsScene()
         self.graphicsView.setScene(self.scence)
         self.beginTestCV.clicked.connect(
@@ -133,7 +134,6 @@ class CVViewModel(object):
 
 class CapCVViewModel(CVViewModel):
 
-
     def __init__(self):
         super(CapCVViewModel, self).__init__()
         if hasattr(self,"lightControl"):
@@ -187,7 +187,7 @@ class OPCVViewModel(CVViewModel):
 
 
 class AutomaticCV(object):
-    fathers = (AutomaticCVForm, CVViewModel,)
+    fathers = (CVViewModel, AutomaticCVForm)
 
     @staticmethod
     def init(self):
@@ -195,7 +195,7 @@ class AutomaticCV(object):
         CVViewModel.__init__(self)
 
 class OPCV(object):
-    fathers = (OPCVForm, OPCVViewModel,)
+    fathers = (OPCVViewModel, OPCVForm, )
 
     @staticmethod
     def init(self):
@@ -204,33 +204,36 @@ class OPCV(object):
 
 
 class ManualCV(object):
-    fathers = (ManualCVForm, CVViewModel,)
+    fathers = (CVViewModel,ManualCVForm)
 
     @staticmethod
     def init(self):
         ManualCVForm.__init__(self)
         CVViewModel.__init__(self)
 
-
-class CapCV(object):
-    fathers = (CapCVForm, CapCVViewModel,)
-
-    @staticmethod
-    def init(self):
-        CapCVForm.__init__(self)
-        CapCVViewModel.__init__(self)
+#
+# class CapCV(object):
+#     fathers = (CapCVForm, CapCVViewModel,)
+# 
+#     @staticmethod
+#     def init(self):
+#         CapCVForm.__init__(self)
+#         CapCVViewModel.__init__(self)
+# 
+# class CapCV(CapCVViewModel,CapCVForm):
+# 
+#     def __init__(self):
+#         super(CapCV, self).__init__()
 
 
 # class MetaFormViewModel(object):
-#
-#
 #     def __new__(cls, *args, **kwargs):
 #         mro = cls.mro()
 #         print "mro",mro
 #         return type(cls)
-#
-# class CapCVT(CapCVForm, CapCVViewModel,MetaFormViewModel):
-#
+# 
+# class CapCVT(CapCVViewModel, CapCVForm, ):
+# 
 #     def __init__(self):
 #         super(CapCVT, self).__init__()
 #         # print "mro",self.mro()
@@ -240,11 +243,11 @@ def get_view(label):
     if label == "AutomaticCV":
         view = type("View", AutomaticCV.fathers, {"__init__": AutomaticCV.init})
     elif label == "ManualCV":
-        view = type("View", ManualCV.fathers, {"__init__": ManualCV.init})
+        view = type("View", (CVViewModel,ManualCVForm), {})
     elif label == "OPCV":
         view = type("View", OPCV.fathers, {"__init__": OPCV.init})
     elif label == "CapCV":
-        view = type("View", CapCV.fathers,{"__init__":CapCV.init})
+        view = type("View", (CapCVViewModel,CapCVForm),{})
     else:
         raise TypeError("no view label correct")
     return view
