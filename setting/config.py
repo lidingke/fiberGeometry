@@ -33,7 +33,7 @@ FOR_UNIT_TEST = False
 RAISE_EXCEPTION = True
 SAVE_TEMP_IMG = True
 
-OCTAGON_FIBERS = ("10/130(oc)", "20/130(oc)")
+OCTAGON_FIBERS = ("10/130(oc)", "20/130(oc)","20/400(oc)")
 CAPILLARY = ("capillary",)
 THIN_FIBERS = ("200/220","105/125")
 
