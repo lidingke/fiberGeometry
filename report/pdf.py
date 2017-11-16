@@ -1,7 +1,7 @@
 #coding:utf-8
 from report.captemplate import cap_template
 from setting.config import PDF_PARAMETER
-from .origin import *
+from .pdftemplate import *
 from setting.parameter import SETTING
 import sys
 from PyQt4.QtGui import QTextDocument, QPrinter, QApplication

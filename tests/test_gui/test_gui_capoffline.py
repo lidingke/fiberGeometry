@@ -7,10 +7,10 @@ import threading
 
 from setting import config
 from setting.configs.tool import update_config_by_name
-from tests.test_gui.testcases  import knife_into_demo, knife_into_cv, knife_into_cap
+from tests.test_gui.testcases import knife_into_demo, knife_into_cv, knife_into_cap
 from util.unittest.demogui import View
 
-project_name = "cvoffline"
+project_name = "capoffline"
 update_config_by_name(project_name)
 log_level = getattr(logging, config.LOG_LEVEL, logging.ERROR)
 logging.basicConfig(  filename="setting\\testlog.log",
@@ -23,22 +23,12 @@ from PyQt4.QtGui import QPalette, QColor, QApplication
 from GUI.view.view import get_view
 from GUI.controller import get_controller
 from util.load import loadStyleSheet
-
-
-def test_gui_demo():
-    try:
-        app = QApplication(sys.argv)
-        view = View()
-        threading.Thread(target=knife_into_demo, args=(view,app)).start()#unittest thread insert
-        view.show()
-        sys.exit(app.exec_())
-    except SystemExit:
-        pass
-
-
-def test_gui_cv():
+def test_gui_cap():
+    # project_name = "capoffline"
+    # update_config_by_name(project_name)
     try:
         label = config.VIEW_LABEL  # label为AutomaticCV
+        assert label == "CapCV"
         logger.error(" main info: {} {} \n{}".format(label, project_name, sys.argv[0]))
         app = QApplication(sys.argv)
         app.setStyleSheet(loadStyleSheet('main'))
@@ -49,13 +39,12 @@ def test_gui_cv():
         view = get_view(label)
         # print view.__dict__, type(view)
         c = controller(view())
-        threading.Thread(target=knife_into_cv, args=(c, app)).start()#unittest thread insert
+        threading.Thread(target=knife_into_cap, args=(c, app)).start()#unittest thread insert
 
         c.show()
         # sys.stdout = sys.__stdout__
 
         sys.exit(app.exec_())
 
-    except SystemExit:
+    except SystemExit as e:
         pass
-

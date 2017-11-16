@@ -1,4 +1,7 @@
 import logging
+
+from setting.config import SIMULATOR_IMG_DIR
+
 logger = logging.getLogger(__name__)
 from tornado.ioloop import IOLoop
 from tornado import gen
@@ -62,7 +65,7 @@ class SharpSever(object):
 
 
 class ImgServer(TCPServer):
-    PARA = ('randomImg', 'IMG/G652/0912R/')
+    PARA = SIMULATOR_IMG_DIR
     # PARA = ('randomImg', 'IMG/emptytuple/171113/')
     IS_RUNNING = True
     # sharpSever = SharpSever()

@@ -3,6 +3,7 @@
   "LED_PORT":null,
   "VIEW_LABEL":"CapCV",
   "DYNAMIC_CAMERA":false,
+  "SIMULATOR_IMG_DIR" : ["randomImg", "IMG/emptytuple/171113/"],
   "FOR_UNIT_TEST" :true,
   "LOG_DIR":"print",
   "SAVE_TEMP_IMG":true,

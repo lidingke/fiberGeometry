@@ -33,6 +33,8 @@ FOR_UNIT_TEST = False
 RAISE_EXCEPTION = True
 SAVE_TEMP_IMG = True
 
+SIMULATOR_IMG_DIR = ('randomImg', 'IMG/G652/0912R/')
+
 OCTAGON_FIBERS = ("10/130(oc)", "20/130(oc)","20/400(oc)")
 CAPILLARY = ("capillary",)
 THIN_FIBERS = ("200/220","105/125")
