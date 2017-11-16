@@ -5,7 +5,7 @@ matplotlib.use("Qt4Agg")
 import matplotlib.pyplot as plt
 from pattern.classify import classifyObject
 from pattern.draw import output_axies_plot_to_dir, output_axies_plot_to_matplot
-from pattern.getimg import randomImg
+from util.getimg import randomImg
 
 
 def ttest_output_axies_plot_to_dir():

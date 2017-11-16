@@ -9,6 +9,7 @@ from PyQt4.QtGui import QLabel
 from PyQt4.QtGui import QPushButton
 
 from GUI.view.monkey import MonkeyServer
+from pattern.classify import classifyObject
 from setting.config import MODBUS_PORT
 from GUI.model.stateconf import state_number, CONTEXT
 from SDK.modbus.modbusmerge import AbsModeBusModeByAxis, MODENABLE_SIGNAL
@@ -19,10 +20,12 @@ from PyQt4.QtCore import QObject, pyqtSignal
 
 import logging
 
+from util.observer import PyTypeSignal
 from util.threadlock import WorkerQueue
 
 logger = logging.getLogger(__name__)
 
+# QSpinBox
 
 class StateMixin(object):
 
@@ -43,6 +46,7 @@ class StateMixin(object):
 
         if hasattr(self._view, "next_state"):
             self._view.next_state.clicked.connect(state_change)
+            print "next_state connect"
         # move up button connection
 
 
@@ -54,17 +58,19 @@ class StateMixin(object):
 
     def context_transform_2(self):
         """"switch to PLAT2"""
-        self._view.modbus_ui.stateText.setText("state 2")
+        self._view.modbus_ui.stateText.setText("state 2:input dark current")
         self._modbus.platform_state = "PLAT2"
         # self._modelop.spect.new()
         self._modelop.get_zero()
+        self._view.modbus_ui.stateText.setText("state 2:get dark current")
         # self.platform_number = "2"
 
 
     def context_transform_3(self):
-        self._view.modbus_ui.stateText.setText("state 3")
-
+        self._view.modbus_ui.stateText.setText("state 3:input init current")
         self._modelop.get_before()
+        self._view.modbus_ui.stateText.setText("state 3:get init current")
+
 
     def context_transform_4(self):
         """"switch to PLAT1"""
@@ -128,7 +134,24 @@ class ModelOPControllerMixin(object):
 
     def _start_modelop(self):
         self._modelop = ModelOP()
-        self._modelop.emit_spect.connect(self._view.opplot.XYaxit)
+        self._modelop.emit_spect.connect(self._view.opplot.update_figure)
+        self._spect_args_connect()
+
+    def _spect_args_connect(self):
+        self._emit_spect = PyTypeSignal()
+        self._emit_spect.connect(self._modelop.set_spect_args)
+
+        def get_spect_args(self):
+            spect_args = (self._view.spin_integral_times.value(),
+                          self._view.spin_integral_steps.value(),
+                          self._view.spin_smoothness.value(),)
+            self._emit_spect.emit(*spect_args)
+        get_spect_args(self)
+        self._view.spin_integral_times.valueChanged.connect(partial(get_spect_args,self))
+        self._view.spin_integral_steps.valueChanged.connect(partial(get_spect_args,self))
+        self._view.spin_smoothness.valueChanged.connect(partial(get_spect_args,self))
+
+
 
 
 class ModelCVControllerMixin(object):
@@ -138,8 +161,6 @@ class ModelCVControllerMixin(object):
         self._view.emit_close_event.connect(self.close)
         self._view.beginTestCV.clicked.connect(self._modelcv.mainCalculate)
         self._view.fiberTypeBox.currentIndexChanged.connect(self._changeFiberType)
-        # self._view.fiberTypeBox.currentIndexChanged.connect(
-        #     self._modelcv.light_controller.update_current)
 
         self._view.emit_fibertype_in_items.connect(self._changeFiberType)
         self._view.lightControl.clicked.connect(self._start_light_control)
@@ -147,8 +168,7 @@ class ModelCVControllerMixin(object):
         self._modelcv.returnImg.connect(self._view.updatePixmap)
         self._modelcv.resultShowCV.connect(self._view.updateCVShow)
         self._modelcv.emit_relative_index.connect(self._view.relative_index_show)
-        self._modelcv.light_controller.emit_light_ready.connect(
-            partial(self._view.lightControl.setEnabled,True))
+        self._modelcv.light_controller.emit_light_ready.connect(partial(self._view.lightControl.setEnabled,True))
 
         # self._modelcv.returnCoreLight.connect(self._view.getCoreLight)
 
@@ -245,6 +265,13 @@ class ManualCVController(ModelCVControllerMixin,
         self._modelcv.close()
         # logger.error(traceback.format_exception(*sys.exc_info()))
 
+class CapCVController(ManualCVController):
+
+    def __init__(self,*args,**kwargs):
+        super(CapCVController, self).__init__(*args,**kwargs)
+        self._modelcv.classify = classifyObject("capillary")
+
+
 
 
 def get_controller(label):
@@ -254,5 +281,7 @@ def get_controller(label):
         return ManualCVController
     if label == "OPCV":
         return OPCVController
+    if label == "CapCV":
+        return CapCVController
     else:
         raise TypeError("no view label correct")

@@ -1,0 +1,11 @@
+{
+  "MODBUS_PORT":null,
+  "LED_PORT":null,
+  "VIEW_LABEL":"CapCV",
+  "DYNAMIC_CAMERA":true,
+  "FOR_UNIT_TEST" :true,
+  "LOG_DIR":"print",
+  "SAVE_TEMP_IMG":false,
+  "LOG_LEVEL" : "ERROR",
+    "SPEC_ONLINE": false
+}

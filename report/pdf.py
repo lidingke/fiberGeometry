@@ -1,4 +1,5 @@
 #coding:utf-8
+from report.captemplate import cap_template
 from setting.config import PDF_PARAMETER
 from .origin import *
 from setting.parameter import SETTING
@@ -32,3 +33,8 @@ def writePdfabs(dir_):
     text = QTextDocument()
     text.setHtml(newbody.decode('utf-8'))
     text.print_(printer)
+
+def write_txt(dir_,paras):
+    capstrings = cap_template.format(**paras)
+    with open("result.txt", "wb") as f:
+        f.write(capstrings)

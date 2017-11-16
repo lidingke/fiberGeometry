@@ -25,7 +25,7 @@ from pattern.classify import classifyObject
 from pattern.sharp import IsSharp
 from pattern.draw import drawCoreCircle, decorateMethod, output_axies_plot_to_matplot, duck_type_decorate
 from util.filter import AvgResult
-from util.loadimg import sliceImg
+from pattern.coverimg import sliceImg
 
 import logging
 
@@ -77,7 +77,7 @@ class ModelCV(Thread, QObject):
                 except StopIteration:
                     self.light_controller_handle = False
 
-            self.sharp = "%0.2f" % self.isSharp.issharpla(img[::, ::, 0])
+            self.sharp = "%0.2f" % self.isSharp.issharpla(self.img[::, ::, 0])
             # self._greenLight(img)
 
             # self.light = "%0.2f" % self.red

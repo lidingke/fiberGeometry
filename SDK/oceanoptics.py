@@ -9,8 +9,8 @@ class Spectrograph(object):
     def __init__(self):
         pass
 
-    def get_spectrograph(self):
-        data = pynir.get_spectrum(500000)
+    def get_spectrograph(self,*args):
+        data = pynir.get_spectrum(*args)
         # len_data = len(data)
         # data = data.reshape((2, len_data // 2))
         w, d = data.tolist()

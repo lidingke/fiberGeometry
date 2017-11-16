@@ -2,7 +2,7 @@ from collections import Iterable
 import pytest
 import cv2
 from pattern.classify import classifyObject
-from pattern.getimg import random_img
+from util.getimg import random_img
 import logging
 
 
@@ -30,7 +30,7 @@ def test_classify_capillary():
     classify = classifyObject("capillary")
     result = classify.find(img)
     print result
-    assert_result(result, 5, 10)
+    assert_result(result, 0.5, 1)
 
 
 @pytest.mark.parametrize(

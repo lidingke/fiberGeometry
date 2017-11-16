@@ -93,10 +93,8 @@ class IsSharp(object):
         if isinstance(img, list):
             img = img[0]
         if isinstance(img, np.ndarray):
-            logger.debug("laplacian sharp:{}".format(img.shape))
-
             sharp = cv2.Laplacian(img, cv2.CV_64F).var()
-
+            logger.debug("laplacian sharp:{}".format(img.shape))
             return sharp
         else:
             cmd = (str(type(img)), img)

@@ -1,3 +1,12 @@
+QWidget{
+    background-color: #049ff1;
+    font-size: 25px;
+    font-family: "Microsoft YaHei";
+}
+/*QWidget#extendwidget{*/
+    /*background-color: #FFFFFF;*/
+/*}*/
+
 QLabel{
     color: white;
 }
@@ -14,7 +23,7 @@ QPushButton {
     min-height: 2.5ex;
 }
 
-QPushButton:!enabled {
+QPushButton:disabled {
     background-color: #049ff1;
     color: gray;
     border-width: 2px;
@@ -71,7 +80,7 @@ QLineEdit:read-only, QLineEdit:read-only:hover{
     color: white;
 }
 
-QLineEdit:!read-only:hover {
+QLineEdit:hover {
     border-radius: 5px;
     border: 2px solid white;
     /*border-color:white;*/
@@ -88,7 +97,7 @@ QComboBox {
 QComboBox:enabled {
     color: white;
 }
-QComboBox:!enabled {
+QComboBox:disabled {
     color: gray;
 }
 QComboBox:enabled:hover {
@@ -126,14 +135,77 @@ QComboBox QAbstractItemView::scrollbar {
         background: black;
 }
 
+
+/***********QTextBrowser**********/
 QTextBrowser{
     background-color: #049ff1;
     color: white;
     border-width: 2px;
     border-color: white;
     border-style: solid;
-    border-radius: 5;
+    border-radius: 5px;
     padding: 3px;
     min-width: 9ex;
     min-height: 2.5ex;
+    /*font-family: "Microsoft YaHei";*/
 }
+
+/***********QSpinBox**********/
+QSpinBox {
+    border-radius: 4px;
+    border: 2px solid white;
+    color: white;
+    background:#049ff1;
+    }
+
+QSpinBox:hover {
+    color: black;
+    }
+/*QSpinBox::up-arrow {*/
+    /*border-radius: 1px;*/
+    /*border: 1px solid white;;*/
+    /*height: 0.5em;*/
+    /*width:0.5em;*/
+    /*background: transparent;*/
+    /*}*/
+/*QSpinBox::up-arrow:hover {*/
+    /*border-left: 2px solid white;*/
+    /*background: #FF6600;}*/
+QSpinBox::up-button {
+    subcontrol-position:right;
+    height: 2.2em;
+    border-left: 2px solid white;
+    background: transparent; }
+
+QSpinBox::up-button:hover {
+    subcontrol-position:right;
+    /*border-radius: 5px;*/
+    /*border: 2px solid white;*/
+    background:#72cf07;
+}
+/*QSpinBox::down-arrow {*/
+    /*border-radius: 1px;*/
+    /*border: 1px solid white;*/
+    /*height: 0.3em;*/
+    /*width:0.3em;*/
+    /*background: transparent;*/
+    /*}*/
+
+QSpinBox::down-button {
+    subcontrol-position:left;
+    height: 2.2em;
+    border-right: 2px solid white;
+    background: transparent; }
+
+QSpinBox::down-button:hover {
+    subcontrol-position:left;
+    background:#72cf07; }
+/*QSpinBox::up-button:hover {*/
+    /*background: #049ff1; }*/
+
+/*QSpinBox::down-arrow { border-left: 17px solid none;*/
+/*border-right: 17px solid none; border-top: 17px solid black; width: 0px; height: 0px; }*/
+/*QSpinBox::down-arrow:hover { border-left: 17px solid none;*/
+/*border-right: 17px solid none; border-top: 17px solid black; width: 0px; height: 0px; }*/
+/*QSpinBox::down-button { min-width: 80px; min-height: 77px; background-color: yellow; }*/
+/*QSpinBox::down-button:hover { min-width: 80px; min-height: 77px; background-color: yellow; }*/

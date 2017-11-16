@@ -1,5 +1,5 @@
 from setting.config import CONFIGS_DIR
-from setting.configs.update import update_config_by_json, update_config_by_name
+from setting.configs.tool import update_config_by_json, update_config_by_name
 from setting.parameter import SETTING, singleton, ClassifyParameter
 from setting import config
 
@@ -53,10 +53,16 @@ def test_updateSets_Exception():
 
 def test_update_config_by_json():
     json_dir = CONFIGS_DIR+"static"+".json"
-    assert config.FOR_UNIT_TEST == False
+    # assert config.FOR_UNIT_TEST == False
 
     update_config_by_json(config,json_dir)
-    assert config.FOR_UNIT_TEST == True
+    config_flag =  config.FOR_UNIT_TEST
+    config_flag_not = not config_flag
+    config.FOR_UNIT_TEST = config_flag_not
+    assert config_flag != config_flag_not
+    update_config_by_json(config,json_dir)
+    assert config.FOR_UNIT_TEST == config_flag
+
 
 
 def test_update_config_by_name():

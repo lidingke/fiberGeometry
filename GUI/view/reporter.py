@@ -3,20 +3,24 @@ import re
 from datetime import datetime as dt
 from PyQt4.QtGui import QWidget, QFileDialog, QMessageBox
 from report.pdf import writePdfabs
+import  logging
 
-def Reporter(father):
+logger = logging.getLogger(__name__)
+
+
+def ReporterPdfs(father):
     if not isinstance(father, QWidget):
         raise Exception('father widget is wrong', father)
     fileName = QFileDialog.getSaveFileName(father, "Save Report",
                                            '',
                                            " (*.pdf);;(*.html);;All Files (*)")
-    print 'file', fileName
+    logger.info('file {}'.format(fileName))
     fileName = str(fileName)
     if fileName.find('.') > 0:
         fileform = fileName.split('.')[-1]
     else:
         fileform = False
-    print('fileform', fileform)
+    logger.info('fileform{}'.format(fileform))
     if not (fileName and fileform):
         return
     try:
@@ -32,7 +36,6 @@ def Reporter(father):
             fileform = re.findall('\(*\.(.*?)\)', fileform)[-1]
         except IndexError:
             fileform = str(fileform)
-        print('fileform,', fileform)
         if fileform == 'pdf':
             # self.savePdf(fileName)
             writePdfabs(fileName)

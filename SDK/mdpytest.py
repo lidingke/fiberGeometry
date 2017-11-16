@@ -27,7 +27,7 @@ class DynamicGetRawImgTest(GetRawImg):
             return
         if len(result) == 15116544:
             img = np.frombuffer(result, dtype = 'uint8')
-            img.shape = img.shape = (1944, 2592, 3)
+            img.shape = (1944, 2592, 3)
             return img
 
     def release_camera(self):

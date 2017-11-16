@@ -5,7 +5,7 @@ import os
 import logging
 
 from setting import config
-from setting.configs.update import update_config_by_name
+from setting.configs.tool import update_config_by_name
 
 
 project_name = "cvonline"
@@ -23,17 +23,13 @@ from GUI.controller import get_controller
 from util.load import loadStyleSheet
 
 if __name__ == '__main__':
-    # sys.stdout = open('setting\\abc.txt', 'w')
-    # pass
     label = config.VIEW_LABEL  # label为AutomaticCV
     logger.error(" main info: {} {} \n{}".format(label, project_name, sys.argv[0]))
-    # print ('len set', len(Set))
     app = QApplication(sys.argv)
     app.setStyleSheet(loadStyleSheet('main'))
     pt = QPalette()
     pt.setColor(QPalette.Background, QColor(4, 159, 241))
     app.setPalette(pt)
-    # label = config.VIEW_LABEL  # label为AutomaticCV
     controller = get_controller(label)
     view = get_view(label)
     # print view.__dict__, type(view)

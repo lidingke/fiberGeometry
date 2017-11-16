@@ -7,10 +7,10 @@ import numpy as np
 
 def test_MindPy_pyd():
     print dir(mdp)
-    assert hasattr(mdp, "getCameraSerial")
-    assert hasattr(mdp, "getRawImg")
-    assert hasattr(mdp, "initCamera")
-    assert hasattr(mdp, "uninitCamera")
+    assert hasattr(mdp, "get_camera_serial")
+    assert hasattr(mdp, "get_raw_img")
+    assert hasattr(mdp, "init_camera")
+    assert hasattr(mdp, "uninit_camera")
 
 
 def test_init_release_camera():

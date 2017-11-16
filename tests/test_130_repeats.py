@@ -4,7 +4,7 @@ import os
 import pytest
 
 from pattern.classify import classifyObject
-from pattern.getimg import random_img, get_img
+from util.getimg import random_img, get_img
 
 
 @pytest.mark.parametrize(

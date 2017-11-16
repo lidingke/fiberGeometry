@@ -3,6 +3,7 @@
   "LED_PORT":"com15",
   "VIEW_LABEL":"ManualCV",
   "DYNAMIC_CAMERA":false,
-  "FOR_UNIT_TEST" :true
+  "FOR_UNIT_TEST" :true,
+  "OCTAGON_FIBERS" : ["10/130(oc)", "20/130(oc)","20/400(oc)"]
 
 }

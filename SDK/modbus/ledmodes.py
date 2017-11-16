@@ -30,6 +30,8 @@ def set_current_cmd(c1st=1, c2st=1, c3st=1, savemode=False):
 class LEDMode(object):
     def __init__(self, port):
         super(LEDMode, self).__init__()
+        if port == "None":
+            port = None
         self.ser = serial.Serial(port, baudrate=19200, timeout=0.05, parity='E')
         self.currents = OrderedDict(c1st=1, c2st=1, c3st=1, savemode=False)
 

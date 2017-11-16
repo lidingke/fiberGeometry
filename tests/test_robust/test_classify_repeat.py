@@ -1,7 +1,7 @@
 from __future__ import division
 import cv2
-from util.loadimg import  yieldImg
-from pattern.getimg import GetImage, randomImg
+# from util.loadimg import  yieldImg
+from util.getimg import GetImage, randomImg, yieldImg
 import numpy as np
 from SDK.mdpy import GetRawImgTest
 from pattern.classify import classifyObject

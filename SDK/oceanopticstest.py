@@ -9,7 +9,6 @@ class TestDataSheets(object):
         self.datas = self._getData()
 
     def _getData(self):
-        # print 'get data'
         data = xlrd.open_workbook('SDK\\OceanOpticsScript\\20160920.xlsx')
         # table = data.sheet_by_name(u'25公里 200um狭缝')
         table = data.sheets()[0]
@@ -17,8 +16,6 @@ class TestDataSheets(object):
         self.before = table.col_values(3)
         self.after = table.col_values(5)
         # return [(w,b,a) for w,b,a in zip(wave,before,after)]
-
-
 
     def get_wave(self):
         return self.wave
@@ -42,24 +39,18 @@ def get_next():
             yield i
 
 class SpectrographLikeTest(object):
-
-
     def __init__(self):
-
-
         self.number = get_next()
-        # next(self.number)
         self.datasheets = TestDataSheets()
         self.gets = [self.datasheets.get_zero,
                      self.datasheets.get_before,
                      self.datasheets.get_after]
-        # self.gets =
 
     def new(self):
         self.number = get_next()
-        # next(self.number)
 
-    def get_spectrograph(self):
+    def get_spectrograph(self, *args):
+        print args,type(args)
         w = self.datasheets.get_wave()
         d = self.gets[next(self.number)]()
         # r = [(w,l) for w,l in zip(w,d)]

@@ -9,5 +9,5 @@ module = Extension('pynir', sources=['pynir.cpp'],
         )#,
         # library_dirs
 setup(name= 'pynir',
-      version= '1.0',
+      version= '1.1',
         ext_modules = [module])
