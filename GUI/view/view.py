@@ -186,30 +186,30 @@ class OPCVViewModel(CVViewModel):
         self.graphicsLayout.addWidget(self.relative_index_canvas)
 
 
-class AutomaticCV(object):
-    fathers = (CVViewModel, AutomaticCVForm)
-
-    @staticmethod
-    def init(self):
-        AutomaticCVForm.__init__(self)
-        CVViewModel.__init__(self)
-
-class OPCV(object):
-    fathers = (OPCVViewModel, OPCVForm, )
-
-    @staticmethod
-    def init(self):
-        OPCVForm.__init__(self)
-        OPCVViewModel.__init__(self)
-
-
-class ManualCV(object):
-    fathers = (CVViewModel,ManualCVForm)
-
-    @staticmethod
-    def init(self):
-        ManualCVForm.__init__(self)
-        CVViewModel.__init__(self)
+# class AutomaticCV(object):
+#     fathers = (CVViewModel, AutomaticCVForm)
+#
+#     @staticmethod
+#     def init(self):
+#         AutomaticCVForm.__init__(self)
+#         CVViewModel.__init__(self)
+#
+# class OPCV(object):
+#     fathers = (OPCVViewModel, OPCVForm, )
+#
+#     @staticmethod
+#     def init(self):
+#         OPCVForm.__init__(self)
+#         OPCVViewModel.__init__(self)
+#
+#
+# class ManualCV(object):
+#     fathers = (CVViewModel,ManualCVForm)
+#
+#     @staticmethod
+#     def init(self):
+#         ManualCVForm.__init__(self)
+#         CVViewModel.__init__(self)
 
 #
 # class CapCV(object):
@@ -241,11 +241,11 @@ class ManualCV(object):
 
 def get_view(label):
     if label == "AutomaticCV":
-        view = type("View", AutomaticCV.fathers, {"__init__": AutomaticCV.init})
+        view = type("View", (CVViewModel, AutomaticCVForm), {})
     elif label == "ManualCV":
         view = type("View", (CVViewModel,ManualCVForm), {})
     elif label == "OPCV":
-        view = type("View", OPCV.fathers, {"__init__": OPCV.init})
+        view = type("View",  (OPCVViewModel, OPCVForm, ), {})
     elif label == "CapCV":
         view = type("View", (CapCVViewModel,CapCVForm),{})
     else:

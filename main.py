@@ -1,24 +1,27 @@
 # coding:utf-8
 """project names: cvoffline,cvonline,cvopoffline,cvoponline"""
+import pdb
 import sys
 import os
 import logging
 
 from setting import config
-from setting.configs.update import update_config_by_name
+from setting.configs.tool import update_config_by_name, SAFE_ARGVS
 
-
-project_name = sys.argv[1]
+if len(sys.argv) > 1:
+    project_name = sys.argv[1]
+else:
+    raise ValueError("input argv must be " + " ".join(SAFE_ARGVS))
 config_info = update_config_by_name(project_name)
 log_level = getattr(logging, config.LOG_LEVEL, logging.ERROR)
 log_dir = getattr(config,"LOG_DIR",False)
 if log_dir == "print":
     logging.basicConfig(format="%(asctime)s-%(name)s-%(levelname)s-%(message)s",
-        level=logging.ERROR)
+        level=log_level)
 else:
     logging.basicConfig(filename="setting\\testlog.log",
         filemode="a", format="%(asctime)s-%(name)s-%(levelname)s-%(message)s",
-        level=logging.ERROR)
+        level=log_level)
 logger = logging.getLogger(__name__)
 logger.error(config_info)
 

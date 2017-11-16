@@ -5,7 +5,7 @@ import os
 import logging
 
 from setting import config
-from setting.configs.update import update_config_by_name
+from setting.configs.tool import update_config_by_name
 
 
 project_name = "cvonline"

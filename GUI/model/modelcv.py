@@ -77,7 +77,7 @@ class ModelCV(Thread, QObject):
                 except StopIteration:
                     self.light_controller_handle = False
 
-            self.sharp = "%0.2f" % self.isSharp.issharpla(img[::, ::, 0])
+            self.sharp = "%0.2f" % self.isSharp.issharpla(self.img[::, ::, 0])
             # self._greenLight(img)
 
             # self.light = "%0.2f" % self.red
