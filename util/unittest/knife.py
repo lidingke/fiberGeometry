@@ -23,11 +23,17 @@ class FailAttr(ValueError):
 
 
 class Knife(object):
-    def __init__(self, widget_instance):
-        pars = self.parser_slots(widget_instance)
-        self.create_slots(pars, widget_instance)
+    # def __init__(self, widget_instance):
+    #     pars = self.parser_slots(widget_instance)
+    #     self.recover_slots(pars, widget_instance)
 
-    def parser_slots(self, widget_instance):
+    def __new__(cls, widget_instance):
+        pars = cls.parser_slots(widget_instance)
+        cls.recover_slots(pars, widget_instance)
+        return object.__new__(cls)
+
+    @staticmethod
+    def parser_slots(widget_instance):
         dirs = dir(widget_instance)
         dirs = ["__init__"] + [d for d in dirs if d[:2] != "__"]
         dirs = [getattr(widget_instance, d) for d in dirs]
@@ -44,15 +50,16 @@ class Knife(object):
                     signal_slot_par.append((signal, slot))
         return signal_slot_par
 
-    def create_slots(self, pars, widget_instance):
-        def set_attrs(instance, attrs, fun):
+    @classmethod
+    def recover_slots(cls, pars, widget_instance):
+        def set_attrs(cls, attrs, fun):
             if attrs:
                 now_attrs = attrs[0]
-                if not hasattr(instance, now_attrs):
-                    setattr(instance, now_attrs, SubNode())
-                return set_attrs(getattr(instance, now_attrs), attrs[1:], fun)
+                if not hasattr(cls, now_attrs):
+                    setattr(cls, now_attrs, SubNode())
+                return set_attrs(getattr(cls, now_attrs), attrs[1:], fun)
             else:
-                instance.funs.append(fun)
+                cls.funs.append(fun)
 
         def get_attrs(instance, attrs):
             if attrs:
@@ -68,5 +75,6 @@ class Knife(object):
             slot_fun = get_attrs(widget_instance, slot[1:])
             if slot_fun:
                 attrs_from = signal[1:]
-                set_attrs(self, attrs_from, slot_fun)
+                set_attrs(cls, attrs_from, slot_fun)
                 logger.error("{} {}".format(attrs_from, slot_fun))
+        return cls

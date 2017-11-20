@@ -3,7 +3,7 @@ from setting.parameter import SETTING
 # SETTING("test")
 from SDK.mdpy import GetRawImg, release_camera, get_camera_serial
 import uuid
-from util.load import  MetaDict, WriteReadJson, WRpickle
+from util.loadfile import  MetaDict, WriteReadJson, WRpickle
 from PyQt4.QtGui import QPalette, QColor,QApplication, QMessageBox, QWidget
 import sys
 import time

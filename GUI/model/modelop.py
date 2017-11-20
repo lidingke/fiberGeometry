@@ -14,7 +14,7 @@ if SPEC_ONLINE:
     from SDK.oceanoptics import Spectrograph
 else:
     from SDK.oceanopticstest import SpectrographLikeTest as Spectrograph
-from util.toolkit import Cv2ImShow, Cv2ImSave
+from util.patterntoolkit import Cv2ImShow, Cv2ImSave
 
 
 class ModelOP():

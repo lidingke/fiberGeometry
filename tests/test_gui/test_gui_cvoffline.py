@@ -22,18 +22,7 @@ logger = logging.getLogger(__name__)
 from PyQt4.QtGui import QPalette, QColor, QApplication
 from GUI.view.view import get_view
 from GUI.controller import get_controller
-from util.load import loadStyleSheet
-
-
-def test_gui_demo():
-    try:
-        app = QApplication(sys.argv)
-        view = View()
-        threading.Thread(target=knife_into_demo, args=(view,app)).start()#unittest thread insert
-        view.show()
-        sys.exit(app.exec_())
-    except SystemExit:
-        pass
+from util.loadfile import loadStyleSheet
 
 
 def test_gui_cv():
@@ -58,4 +47,7 @@ def test_gui_cv():
 
     except SystemExit:
         pass
+
+    except Exception as e:
+        raise e
 

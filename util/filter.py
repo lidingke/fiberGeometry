@@ -18,9 +18,7 @@ class MedianFilter(object):
         get = getlist[1:-1]
         lenget = len(get)
         if lenget < self.dequelen-2:
-            # print 'get len', lenget
             return self.store[-1]
-        # print 'get len', lenget
         sumResult = sum(get)/lenget
         if round:
             return round(sumResult, digits)

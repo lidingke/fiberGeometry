@@ -6,7 +6,7 @@ from SDK.modbus.ledmodes import LEDMode
 from pattern.sharp import corner_noise, take_white_light_in_core, black_points, black_points_not
 from setting.config import MODBUS_PORT, LED_PORT
 from setting.parameter import SETTING
-from util.load import WriteReadJson, WriteReadJsonNoB
+from util.loadfile import WriteReadJson, WriteReadJsonNoB
 from util.observer import PyTypeSignal
 import logging
 

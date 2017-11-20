@@ -21,7 +21,7 @@ from GUI.view.reporter import ReporterPdfs
 from PyQt4.QtCore import Qt, QRectF
 from PyQt4.QtGui import QPixmap, QImage, QGraphicsScene
 import numpy as np
-from util.load import WriteReadJson, WRpickle, load_pickle_nor_json
+from util.loadfile import WriteReadJson, WRpickle, load_pickle_nor_json
 from datetime import datetime
 import logging
 logger = logging.getLogger(__name__)

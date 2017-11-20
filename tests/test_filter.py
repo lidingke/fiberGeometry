@@ -1,7 +1,7 @@
 from pattern.coverimg import inner_fill_auto_value, outer_fill, sliceImg
 from util.getimg import randomImg, GetImage
 from setting.parameter import SETTING
-from util.load import WriteReadJson
+from util.loadfile import WriteReadJson
 from util.filter import MedianFilter, MedianLimitFilter, AvgResult
 import numpy as np
 

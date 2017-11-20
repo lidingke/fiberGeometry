@@ -29,7 +29,7 @@ logger.error(config_info)
 from PyQt4.QtGui import QPalette, QColor, QApplication
 from GUI.view.view import get_view
 from GUI.controller import get_controller
-from util.load import loadStyleSheet
+from util.loadfile import loadStyleSheet
 
 if __name__ == '__main__':
     # sys.stdout = open('setting\\abc.txt', 'w')

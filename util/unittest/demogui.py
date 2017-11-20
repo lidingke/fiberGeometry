@@ -10,7 +10,7 @@ from PyQt4.QtCore import QObject, SLOT, SIGNAL
 from sphinx.builders import changes
 
 from util.observer import PyTypeSignal
-from util.unittest.testcases import knife_into_demo
+from tests.test_gui.testcases import knife_into_demo
 
 
 class View(QWidget):

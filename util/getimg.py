@@ -90,6 +90,12 @@ def randomBin(dirs):
     img.shape = (1944, 2592)
     return img
 
+def yieldImg(dirs):
+    dirlist = os.listdir(dirs)
+    dirlist = [dirs + x for x in dirlist]
+    for dir_ in dirlist:
+        img = GetImage().get(dir_, 'colour')
+        yield  img
 
 """" interface """
 
@@ -102,9 +108,3 @@ random_img = randomImg
 get_img = getImage
 
 
-def yieldImg(dirs):
-    dirlist = os.listdir(dirs)
-    dirlist = [dirs + x for x in dirlist]
-    for dir_ in dirlist:
-        img = GetImage().get(dir_, 'colour')
-        yield  img

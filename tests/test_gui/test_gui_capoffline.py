@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 from PyQt4.QtGui import QPalette, QColor, QApplication
 from GUI.view.view import get_view
 from GUI.controller import get_controller
-from util.load import loadStyleSheet
+from util.loadfile import loadStyleSheet
 def test_gui_cap():
     # project_name = "capoffline"
     # update_config_by_name(project_name)

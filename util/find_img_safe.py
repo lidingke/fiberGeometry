@@ -15,7 +15,6 @@ def get_img_paths(init_path, path_to_search):
     paths.extend(init_path)
 
     filenames = os.listdir(path_to_search)
-    # pdb.set_trace()
     for filename in filenames:
         if filename.endswith(".py"):
             with  open(path_to_search + filename, 'rb') as file:
@@ -23,7 +22,6 @@ def get_img_paths(init_path, path_to_search):
                 way = r"\"IMG(.*?)\""
                 img_way = re.compile(way)
                 imgnames = img_way.findall(read)
-                # paths.extend(imgnames)
                 if imgnames:
                     for imgname in imgnames:
                         paths.append(imgname)
@@ -31,7 +29,6 @@ def get_img_paths(init_path, path_to_search):
 
 def files_form_dirs(img_paths, path_from):
     files = []
-    # paths = [img_path,os.path for img_path in img_paths]
     for path in img_paths:
         path = path.replace('\\\\', '\\')
         __ = [path_from] + path.split('\\')
@@ -68,5 +65,4 @@ if __name__ == '__main__':
     files = files_form_dirs(img_paths,IMG_PATH)
     files = all_dirs_to_full_file_path(files)
     safe_copy_file(files,TARGET_PATH)
-    # [(file,os.path.isdir(file),os.path.isfile(file)) for file in files]
     pdb.set_trace()
