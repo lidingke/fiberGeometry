@@ -6,7 +6,9 @@ import numpy as np
 # from pattern.meta import CV2MethodSet
 import sys
 
+import os
 
+# old
 class GetImage(object):
     """docstring for GetImage"""
 
@@ -97,13 +99,37 @@ def yieldImg(dirs):
         img = GetImage().get(dir_, 'colour')
         yield  img
 
+
+#new instance at 20171121
+def get_img_by_dir(dir_,colour='colour'):
+    assert os.path.isfile(dir_)
+    array = cv2.imread(dir_)
+    assert isinstance(array, np.ndarray)
+    if colour not in ('colour','color'):
+        array = cv2.cvtColor(array, cv2.COLOR_RGB2GRAY)
+        return array
+    if dir_[-3:].upper() == "BMP":
+        array = cv2.cvtColor(array, cv2.COLOR_BGR2RGB)
+        return array
+    return array
+
+def random_img_by_file(dirs):
+    # print "random"
+    assert os.path.isdir(dirs)
+    dirlist = os.listdir(dirs)
+    dirlist = [os.path.join(dirs , x) for x in dirlist]
+    img = get_img_by_dir(choice(dirlist), colour='colour')
+    return img
+
+
 """" interface """
 
 
 def getImage(dir_):
     return GetImage().get(dir_)
 
-
+getImage = get_img_by_dir
+randomImg = random_img_by_file
 random_img = randomImg
 get_img = getImage
 

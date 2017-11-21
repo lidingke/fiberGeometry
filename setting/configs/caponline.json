@@ -5,7 +5,7 @@
   "DYNAMIC_CAMERA":true,
   "FOR_UNIT_TEST" :true,
   "LOG_DIR":"print",
-  "SAVE_TEMP_IMG":false,
+  "SAVE_TEMP_IMG":true,
   "LOG_LEVEL" : "ERROR",
     "SPEC_ONLINE": false
 }

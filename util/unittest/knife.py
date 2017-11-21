@@ -52,15 +52,6 @@ class Knife(object):
 
     @classmethod
     def recover_slots(cls, pars, widget_instance):
-        def set_attrs(cls, attrs, fun):
-            if attrs:
-                now_attrs = attrs[0]
-                if not hasattr(cls, now_attrs):
-                    setattr(cls, now_attrs, SubNode())
-                return set_attrs(getattr(cls, now_attrs), attrs[1:], fun)
-            else:
-                cls.funs.append(fun)
-
         def get_attrs(instance, attrs):
             if attrs:
                 try:
@@ -70,6 +61,15 @@ class Knife(object):
                 return get_attrs(attr, attrs[1:])
             else:
                 return instance
+
+        def set_attrs(cls, attrs, fun):
+            if attrs:
+                now_attrs = attrs[0]
+                if not hasattr(cls, now_attrs):
+                    setattr(cls, now_attrs, SubNode())
+                return set_attrs(getattr(cls, now_attrs), attrs[1:], fun)
+            else:
+                cls.funs.append(fun)
 
         for signal, slot in pars:
             slot_fun = get_attrs(widget_instance, slot[1:])

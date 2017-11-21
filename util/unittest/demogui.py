@@ -4,12 +4,9 @@ import sys
 import threading
 
 from PyQt4.QtGui import QApplication
-from PyQt4.QtGui import QMainWindow, QHBoxLayout, QLineEdit, QLabel, QPushButton
+from PyQt4.QtGui import  QHBoxLayout, QLineEdit, QLabel, QPushButton
 from PyQt4.QtGui import QWidget
-from PyQt4.QtCore import QObject, SLOT, SIGNAL
-from sphinx.builders import changes
 
-from util.observer import PyTypeSignal
 from tests.test_gui.testcases import knife_into_demo
 
 

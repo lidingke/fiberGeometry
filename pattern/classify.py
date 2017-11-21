@@ -42,7 +42,6 @@ class MetaClassify(object):
         logger.error(meta_logger)
         self._cover_core_by_circle = cover_core_by_circle
 
-    #
     def _difcore(self, img):
         corecore, core_range, clad_range = self.diff_range
         mincore_range, maxcore_range = core_range
@@ -70,12 +69,11 @@ class MetaClassify(object):
         clad_result = self._pick_clad(edge_clad_img, self.clad_filter_index)
         logger.warning(
             "thr,filter {} {}, {} {}".format(self.core_thr_hight, self.clad_thr_hight,
-                                         self.core_filter_index, self.clad_filter_index))
+                                             self.core_filter_index, self.clad_filter_index))
         self.temp_imgs = ((diff_core_img, diff_clad_img), (edge_core_img, edge_clad_img))
         return self.convent_result(core_result, clad_result, self.amp_ratio)
 
-
-    def get_show_result(self,core, clad, ampRatio):
+    def get_show_result(self, core, clad, ampRatio):
         coreRadius = (core["longAxisLen"] + core["shortAxisLen"]) / 2
         cladRadius = (clad["longAxisLen"] + clad["shortAxisLen"]) / 2
 
@@ -91,7 +89,7 @@ class MetaClassify(object):
         cladRness = ampRatio * abs(clad["longAxisLen"] - clad["shortAxisLen"])
         return (concentricity, coreMidRadius, cladMidRadius, coreRness, cladRness)
 
-    def convent_result(self,core, clad, amp):
+    def convent_result(self, core, clad, amp):
         corecore = core['corePoint'][0]
         output_result = {}
         output_result['showResult'] = self.get_show_result(core, clad, amp)
@@ -160,7 +158,6 @@ class DoubleCircleClassify(MetaClassify):
         self._pick_clad = PickHullCircle().run
         self._out_fill_by_white_circle = out_fill_by_white_circle
 
-
     def _difcore(self, img):
         corecore, core_range, clad_range = self.diff_range
         mincore_range, maxcore_range = core_range
@@ -177,7 +174,6 @@ class DoubleCircleClassify(MetaClassify):
         coreimg = img[::, ::, 1].copy()
 
         return coreimg, cladimg
-
 
 
 class CapillaryClassify(MetaClassify):
@@ -203,6 +199,23 @@ class CapillaryClassify(MetaClassify):
         cladimg = self._inner_fill_by_value(cladimg, radius=self.diff_radius)
 
         return coreimg, cladimg
+
+    def get_show_result(self, core, clad, ampRatio):
+        # print "get cap result"
+        coreRadius = (core["longAxisLen"] + core["shortAxisLen"]) / 2
+        cladRadius = (clad["longAxisLen"] + clad["shortAxisLen"]) / 2
+
+        coreCore = core["corePoint"].tolist()[0]
+        cladCore = clad["corePoint"].tolist()[0]
+        concentricity = ((coreCore[0] - cladCore[0]) ** 2
+                         + (coreCore[1] - cladCore[1]) ** 2) ** 0.5
+        coreMidRadius = ampRatio * coreRadius
+        cladMidRadius = ampRatio * cladRadius
+        concentricity = ampRatio * concentricity
+
+        coreRness = abs(core["longAxisLen"] - core["shortAxisLen"]) / coreRadius
+        cladRness = abs(clad["longAxisLen"] - clad["shortAxisLen"]) / cladRadius
+        return (concentricity, coreMidRadius, cladMidRadius, coreRness, cladRness)
 
 
 class ThinClassify(MetaClassify):
