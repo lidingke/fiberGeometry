@@ -8,6 +8,7 @@ import sys
 
 import os
 
+
 # old
 class GetImage(object):
     """docstring for GetImage"""
@@ -28,7 +29,7 @@ class GetImage(object):
         self.singleFileFind(dir_, colour)
         # else:
         #     self.fileFind(dir_, colour)
-        assert isinstance(self.img,np.ndarray)
+        assert isinstance(self.img, np.ndarray)
         # if not isinstance(self.img, np.ndarray):
         #     raise ValueError('img not ndarray')
         if self.img.dtype != "uint8":
@@ -92,20 +93,21 @@ def randomBin(dirs):
     img.shape = (1944, 2592)
     return img
 
+
 def yieldImg(dirs):
     dirlist = os.listdir(dirs)
     dirlist = [dirs + x for x in dirlist]
     for dir_ in dirlist:
         img = GetImage().get(dir_, 'colour')
-        yield  img
+        yield img
 
 
-#new instance at 20171121
-def get_img_by_dir(dir_,colour='colour'):
+# new instance at 20171121
+def get_img_by_dir(dir_, colour='colour'):
     assert os.path.isfile(dir_)
     array = cv2.imread(dir_)
     assert isinstance(array, np.ndarray)
-    if colour not in ('colour','color'):
+    if colour not in ('colour', 'color'):
         array = cv2.cvtColor(array, cv2.COLOR_RGB2GRAY)
         return array
     if dir_[-3:].upper() == "BMP":
@@ -113,14 +115,28 @@ def get_img_by_dir(dir_,colour='colour'):
         return array
     return array
 
+
 def random_img_by_file(dirs):
-    # print "random"
     assert os.path.isdir(dirs)
     dirlist = os.listdir(dirs)
-    dirlist = [os.path.join(dirs , x) for x in dirlist]
+    dirlist = [os.path.join(dirs, x) for x in dirlist]
     img = get_img_by_dir(choice(dirlist), colour='colour')
     return img
 
+def list_img_by_file(dirs):
+    assert os.path.isdir(dirs)
+    files = os.listdir(dirs)
+    dirlist = [os.path.join(dirs, x) for x in files]
+    imgs = [get_img_by_dir(path, colour='colour') for path in dirlist]
+    return imgs
+
+def yield_img_by_file(dirs):
+    assert os.path.isdir(dirs)
+    files = os.listdir(dirs)
+    dirlist = [os.path.join(dirs, x) for x in files]
+    for path in dirlist:
+        img = get_img_by_dir(path, colour='colour')
+        yield img
 
 """" interface """
 
@@ -128,9 +144,8 @@ def random_img_by_file(dirs):
 def getImage(dir_):
     return GetImage().get(dir_)
 
+
 getImage = get_img_by_dir
 randomImg = random_img_by_file
 random_img = randomImg
 get_img = getImage
-
-

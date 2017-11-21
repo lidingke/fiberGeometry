@@ -15,13 +15,13 @@ def knife_into_demo(view_instance, app):
     knife.enter_button.clicked()
     sleep(1)
     text = view_instance.output_line.text()
-    assert text == "124"
+    assert text == "122"
     sleep(1)
     view_instance.input_line.setText("1234")
     sleep(1)
     knife.enter_button.clicked()
     text = view_instance.output_line.text()
-    assert text == "1235"
+    assert text == "1233"
     sleep(3)
     view_instance.close()
     # os._exit(0)

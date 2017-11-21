@@ -15,7 +15,7 @@ class View(QWidget):
         super(View, self).__init__()
         hlayout = QHBoxLayout()
         self.input_line = QLineEdit("123")
-        self.enter_button = QPushButton('enter')
+        self.enter_button = QPushButton('-1s')
         self.enter_button.clicked.connect(self.show_enter)
         self.output_line = QLabel("1234567")
         hlayout.addWidget(self.input_line)
@@ -24,7 +24,7 @@ class View(QWidget):
         self.setLayout(hlayout)
 
     def show_enter(self):
-        inputs = int(self.input_line.text()) + 1
+        inputs = int(self.input_line.text()) - 1
         self.output_line.setText(str(inputs))
 
 
