@@ -14,7 +14,7 @@ from GUI.view.spectcanvas import SpectrumCanvas
 from GUI.view.uiview import ManualCVForm, AutomaticCVForm, OPCVForm, CapCVForm
 from GUI.view.refractcanvas import RefractCanvas
 from report.pdf import write_txt
-from setting.config import  PDF_PARAMETER, DB_PARAMETER
+from setting.config import PDF_PARAMETER, DB_PARAMETER
 
 from util.observer import PyTypeSignal
 from GUI.view.reporter import ReporterPdfs
@@ -24,6 +24,7 @@ import numpy as np
 from util.loadfile import WriteReadJson, WRpickle, load_pickle_nor_json
 from datetime import datetime
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -35,7 +36,7 @@ class CVViewModel(object):
         self.scence = QGraphicsScene()
         self.graphicsView.setScene(self.scence)
         self.beginTestCV.clicked.connect(
-            partial(self.beginTestCV.setEnabled,False))
+            partial(self.beginTestCV.setEnabled, False))
         self.reporterCV.clicked.connect(self.writeReporterCV)
         self.insert_widgets()
         self.emit_fibertype_in_items = PyTypeSignal()
@@ -46,9 +47,7 @@ class CVViewModel(object):
 
     def insert_widgets(self):
         self.relative_index_canvas = RefractCanvas(QWidget(self.extendwidget), width=5, height=2, dpi=100)
-        self.cvOperatorLayout.insertWidget(2,self.relative_index_canvas)
-
-
+        self.cvOperatorLayout.insertWidget(2, self.relative_index_canvas)
 
     def _last_data_init(self):
         load = load_pickle_nor_json("setting\\userdata")
@@ -90,18 +89,16 @@ class CVViewModel(object):
     def closeEvent(self, *args, **kwargs):
         # if 'olddata' in SETTING().keys():
         #     self.olddata.save(SETTING()['olddata'])
-        logger.info('get last save\n'+str(self.last_save))
+        logger.info('get last save\n' + str(self.last_save))
         # print(self.last_save)
         self.olddata.save(self.last_save)
         self.emit_close_event.emit()
 
-    def updateCVShow(self, str_,):
+    def updateCVShow(self, str_, ):
         if str_:
             self.resultShowCV.setText(str_)
             # self.resultShowCV.setStyleSheet("QTextBrowser{font-family: \"Microsoft YaHei\";}")
         self.beginTestCV.setEnabled(True)
-
-
 
     def writeReporterCV(self):
         para = {}
@@ -133,10 +130,9 @@ class CVViewModel(object):
 
 
 class CapCVViewModel(CVViewModel):
-
     def __init__(self):
         super(CapCVViewModel, self).__init__()
-        if hasattr(self,"lightControl"):
+        if hasattr(self, "lightControl"):
             self.lightControl.hide()
             self.labelFiberType.hide()
             self.labelFactory.hide()
@@ -150,9 +146,10 @@ class CapCVViewModel(CVViewModel):
             self.fiberTypeBox.hide()
         self.to_report = write_txt
 
-            # self..hide()
-            # print dir(self.inputLayout)
-            # pdb.set_trace()
+        # self..hide()
+        # print dir(self.inputLayout)
+        # pdb.set_trace()
+
     def insert_widgets(self):
         pass
 
@@ -163,17 +160,15 @@ class CapCVViewModel(CVViewModel):
         para = {}
         para['cap_fibre'] = unicode(self.cap_fibre.text())
         para["cap_mc"] = unicode(self.cap_mc.currentText())
-        para["cap_bt"]= unicode(self.cap_bt.currentText())
+        para["cap_bt"] = unicode(self.cap_bt.currentText())
         para["cap_operator"] = unicode(self.cap_operator.text())
         para["cap_machine"] = unicode(self.cap_machine.text())
         para["cap_date"] = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
         PDF_PARAMETER.update(para)
-        self.to_report(".",PDF_PARAMETER)
-
+        self.to_report(".", PDF_PARAMETER)
 
 
 class OPCVViewModel(CVViewModel):
-
     def __init__(self):
         super(OPCVViewModel, self).__init__()
         # pdb.set_trace()
@@ -181,7 +176,7 @@ class OPCVViewModel(CVViewModel):
 
     def insert_widgets(self):
         self.opplot = SpectrumCanvas(QWidget(self.extendwidget), width=5, height=2, dpi=100)
-        self.opLayout.insertWidget(0,self.opplot)
+        self.opLayout.insertWidget(0, self.opplot)
         self.relative_index_canvas = RefractCanvas(QWidget(self.extendwidget), width=5, height=2, dpi=100)
         self.graphicsLayout.addWidget(self.relative_index_canvas)
 
@@ -241,20 +236,15 @@ class OPCVViewModel(CVViewModel):
 
 def get_view(label):
     if label == "AutomaticCV":
-        view = type("View", (CVViewModel, AutomaticCVForm), {})
+        return type("View", (CVViewModel, AutomaticCVForm), {})
     elif label == "ManualCV":
-        view = type("View", (CVViewModel,ManualCVForm), {})
+        return type("View", (CVViewModel, ManualCVForm), {})
     elif label == "OPCV":
-        view = type("View",  (OPCVViewModel, OPCVForm, ), {})
+        return type("View", (OPCVViewModel, OPCVForm,), {})
     elif label == "CapCV":
-        view = type("View", (CapCVViewModel,CapCVForm),{})
+        return type("View", (CapCVViewModel, CapCVForm), {})
     else:
         raise TypeError("no view label correct")
-    return view
-
-
-# View = get_view(VIEW_LABEL)
-
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

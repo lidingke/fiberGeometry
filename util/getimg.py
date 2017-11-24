@@ -108,8 +108,10 @@ def get_img_by_dir(dir_, colour='colour'):
     array = cv2.imread(dir_)
     assert isinstance(array, np.ndarray)
     if colour not in ('colour', 'color'):
+        # print "in colour"
         array = cv2.cvtColor(array, cv2.COLOR_RGB2GRAY)
         return array
+    # print dir_[-3:].upper(),dir_[-3:].upper() == "BMP"
     if dir_[-3:].upper() == "BMP":
         array = cv2.cvtColor(array, cv2.COLOR_BGR2RGB)
         return array
@@ -140,9 +142,9 @@ def yield_img_by_file(dirs):
 
 """" interface """
 
-
-def getImage(dir_):
-    return GetImage().get(dir_)
+#
+# def getImage(dir_):
+#     return GetImage().get(dir_)
 
 
 getImage = get_img_by_dir

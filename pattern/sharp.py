@@ -120,6 +120,19 @@ class IsSharp(object):
             raise ValueError(cmd)
 
 
+def is_sharp_laplacian(img):
+    assert isinstance(img, np.ndarray)
+    sharp = cv2.Laplacian(img, cv2.CV_64F).var()
+    logger.debug("laplacian sharp:{}".format(img.shape))
+    return sharp
+
+def is_sharp_canny(img):
+    assert isinstance(img, np.ndarray)
+    # size, imgb = cv2.threshold(img, 175, 255, cv2.THRESH_BINARY)
+    sharp = cv2.Canny(img,15,15).sum()/255
+    return sharp
+
+
 class MaxSharp(object):
     def __init__(self):
         super(MaxSharp, self).__init__()

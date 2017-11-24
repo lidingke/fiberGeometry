@@ -15,9 +15,6 @@ import matplotlib.pyplot as plt
 
 import pytest
 
-
-
-
 def _getFilterImg(core, origin, minRange, maxRange):
     img = np.ones(origin.shape, dtype='uint8') * 255
     core = [core, 1]

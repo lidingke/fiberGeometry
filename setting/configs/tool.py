@@ -19,7 +19,7 @@ def update_config_by_json(module,json_dir):
     # d = {"MODBUS_PORT":"com14",}
     j = WriteReadJson(json_dir)
     d = j.load()
-    [module.__setattr__(k.decode('utf-8'),v) for k,v in d.items()]
+    [setattr(module,k.decode('utf-8'),v)  for k,v in d.items()]
     # pdb.set_trace()
 
 

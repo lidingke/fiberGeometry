@@ -12,11 +12,10 @@ else:
     # 当摄像头关闭时，图像从文件夹读取
     # GetRawImg = DynamicGetRawImgTest
 import serial
-from PyQt4.QtCore import QString, pyqtSignal, QObject
+from PyQt4.QtCore import pyqtSignal, QObject
 from tornado.ioloop import IOLoop
 from tornado.iostream import StreamClosedError
 import numpy as np
-
 
 # from SDK.mdpy import GetRawImg
 from threading import Thread

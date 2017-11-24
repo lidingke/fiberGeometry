@@ -144,6 +144,14 @@ class PolyClassify(MetaClassify):
         cladimg = self._cover_core_by_circle_auto_value(corecore, redimg, diff_radius)
 
         coreimg = img[::, ::, 1].copy()
+
+        # cv2.imshow('r',redimg[::4,::4])
+        # cv2.waitKey()
+        # cv2.imshow('g',coreimg[::4,::4])
+        # cv2.waitKey()
+        # cv2.imshow('b',img[::, ::, 2].copy()[::4,::4])
+        # cv2.waitKey()
+
         return coreimg, cladimg
 
 
