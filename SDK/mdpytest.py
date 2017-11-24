@@ -1,4 +1,6 @@
 from .mdpy import GetRawImg
+from setting.config import SIMULATOR_IMG_SERVER_COFIG
+
 from threading import Thread
 from simulator.server import SeverMain
 from simulator.client import Client
@@ -11,10 +13,18 @@ logger = logging.getLogger(__name__)
 
 class DynamicGetRawImgTest(GetRawImg):
     """docstring for getRawImg"""
-    def __init__(self, host = '127.0.0.1', port = 9880):
+    def __init__(self, host = False, port = False):
         # super(GetRawImgTest, self).__init__()
-        self.host, self.port = host, port
-        Thread(target=SeverMain, args=(self.port,)).start()
+        # self.host, self.port = host, port
+        shost, sport, method, path = SIMULATOR_IMG_SERVER_COFIG
+        print "load", SIMULATOR_IMG_SERVER_COFIG
+        if not host:
+            host = shost
+        if not port:
+            port = sport
+        args = (host, port,method,path,)
+        # print args,type(args)
+        Thread(target=SeverMain, args=args).start()
 
     def get(self):
         try:

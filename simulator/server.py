@@ -1,6 +1,6 @@
 import logging
 
-from setting.config import SIMULATOR_IMG_DIR
+# from setting.config import SIMULATOR_IMG_DIR
 
 logger = logging.getLogger(__name__)
 from tornado.ioloop import IOLoop
@@ -65,10 +65,14 @@ class SharpSever(object):
 
 
 class ImgServer(TCPServer):
-    PARA = SIMULATOR_IMG_DIR
+    # PARA = SIMULATOR_IMG_DIR
     # PARA = ('randomImg', 'IMG/emptytuple/171113/')
     IS_RUNNING = True
     # sharpSever = SharpSever()
+
+    def __init__(self,path = ('randomImg', 'IMG/G652/0912R/')):
+        super(ImgServer, self).__init__()
+        self.PARA = path
 
     @gen.coroutine
     def handle_stream(self, stream, address):
@@ -209,16 +213,16 @@ class ImgServer(TCPServer):
 #                 self.sharp = self.sharp - uniform(0.3,0.6)
 
 
-def SeverMain(port):
+def SeverMain(host,port,method,path):
     # options.parse_command_line()
     print 'listening on port', port
-    server = ImgServer()
+    server = ImgServer(path=(method,path))
     # sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     # sock.bind(("localhost", port))
     # sock.listen(port)
     # sock.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1)
     # server.add_socket(sock)
-    server.listen(port)
+    server.listen(port,host)
 
     logger.error("Listening on TCP port %d", port)
 

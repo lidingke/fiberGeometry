@@ -1,3 +1,4 @@
+from setting.config import SIMULATOR_IMG_SERVER_COFIG
 from simulator.client import Client
 from simulator.server import ImgServer, SeverMain, SharpSever
 from threading import Thread
@@ -17,9 +18,11 @@ def test_sharpserver():
 
 
 def test_imgserver():
-    port = 9880
+    host, port, method, path = SIMULATOR_IMG_SERVER_COFIG
+
+    port = 9885
     # port = 9801
-    Thread(target = SeverMain, args=(port,)).start()
+    Thread(target = SeverMain, args=(host, port, method, path)).start()
     # multiprocessing.Process(target=servermain).start()
     # time.sleep(1)
     img = getImage('IMG/midoc.BMP')
@@ -42,11 +45,15 @@ def test_imgserver():
 
 
 def test_getimg_multi_connect():
-    port = 9881
+    host, port, method, path = SIMULATOR_IMG_SERVER_COFIG
+
+    port = 9883
     # port = 9801
     img = getImage('IMG/midoc.BMP')
     imgstr = img.tobytes()
-    Thread(target = SeverMain, args=(port,)).start()
+
+    # port = 9801
+    Thread(target = SeverMain, args=(host, port, method, path)).start()
     # multiprocessing.Process(target=SeverMain, args=(port,)).start()
     print 'start multi connect'
     for x in range(0,100):

@@ -17,7 +17,7 @@ if DYNAMIC_CAMERA:
     from SDK.mdpy import GetRawImg
 else:
     # from SDK.mdpytest import DynamicGetRawImgTest as GetRawImg
-    from simulator.model import DynamicGetRawImgTest as GetRawImg
+    from SDK.mdpytest import DynamicGetRawImgTest as GetRawImg
 
     # from  SDK.mdpy import GetRawImgTest as GetRawImg
     # print 'script don\'t open camera'

@@ -1,31 +1,42 @@
 # coding:utf-8
 """project names: cvoffline,cvonline,cvopoffline,cvoponline"""
-import sys
-import os
-import logging
-import threading
-
-from setting import config
-from setting.configs.tool import update_config_by_name
-from tests.test_gui.testcases  import knife_into_demo, knife_into_cv, knife_into_cap
-from util.unittest.demogui import View
-
-project_name = "cvoffline"
-update_config_by_name(project_name)
-log_level = getattr(logging, config.LOG_LEVEL, logging.ERROR)
-logging.basicConfig(  filename="setting\\testlog.log",
-    filemode="a", format="%(asctime)s-%(name)s-%(levelname)s-%(message)s",
-    level=logging.ERROR)
-logger = logging.getLogger(__name__)
-
-
-from PyQt4.QtGui import QPalette, QColor, QApplication
-from GUI.view.view import get_view
-from GUI.controller import get_controller
-from util.loadfile import loadStyleSheet
 
 
 def test_gui_cv():
+    import threading
+    import sys
+    import os
+    import logging
+
+    from setting import config
+    from setting.configs.tool import update_config_by_name, SAFE_ARGVS
+
+    project_name = "cvoffline"
+    config_info = update_config_by_name(project_name)
+    config.SIMULATOR_IMG_SERVER_COFIG = [
+        "127.0.0.1",
+        9883,
+        "randomImg",
+        "IMG/G652/0912R/"
+    ]
+    log_level = getattr(logging, config.LOG_LEVEL, logging.ERROR)
+    log_dir = getattr(config, "LOG_DIR", False)
+    if log_dir == "print":
+        logging.basicConfig(format="%(asctime)s-%(name)s-%(levelname)s-%(message)s",
+                            level=log_level)
+    else:
+        logging.basicConfig(filename="setting\\testlog.log",
+                            filemode="a", format="%(asctime)s-%(name)s-%(levelname)s-%(message)s",
+                            level=log_level)
+    logger = logging.getLogger(__name__)
+    logger.error(config_info)
+    from tests.test_gui.testcases import knife_into_cv
+
+    from PyQt4.QtGui import QPalette, QColor, QApplication
+    from GUI.view.view import get_view
+    from GUI.controller import get_controller
+    from util.loadfile import loadStyleSheet
+
     try:
         label = config.VIEW_LABEL  # label为AutomaticCV
         logger.error(" main info: {} {} \n{}".format(label, project_name, sys.argv[0]))
@@ -38,7 +49,7 @@ def test_gui_cv():
         view = get_view(label)
         # print view.__dict__, type(view)
         c = controller(view())
-        threading.Thread(target=knife_into_cv, args=(c, app)).start()#unittest thread insert
+        threading.Thread(target=knife_into_cv, args=(c, app)).start()  # unittest thread insert
 
         c.show()
         # sys.stdout = sys.__stdout__
@@ -50,4 +61,3 @@ def test_gui_cv():
 
     except Exception as e:
         raise e
-

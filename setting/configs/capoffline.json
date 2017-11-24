@@ -1,12 +1,16 @@
 {
-  "MODBUS_PORT":null,
-  "LED_PORT":null,
-  "VIEW_LABEL":"CapCV",
-  "DYNAMIC_CAMERA":false,
-  "SIMULATOR_IMG_DIR" : ["randomImg", "IMG/emptytuple/171113/"],
-  "FOR_UNIT_TEST" :true,
-  "LOG_DIR":"print",
-  "SAVE_TEMP_IMG":true,
-  "LOG_LEVEL" : "ERROR"
-
+  "MODBUS_PORT": null,
+  "LED_PORT": null,
+  "VIEW_LABEL": "CapCV",
+  "DYNAMIC_CAMERA": false,
+  "SIMULATOR_IMG_SERVER_COFIG": [
+    "127.0.0.1",
+    9882,
+    "randomImg",
+    "IMG/emptytuple/171113/"
+  ],
+  "FOR_UNIT_TEST": true,
+  "LOG_DIR": "print",
+  "SAVE_TEMP_IMG": true,
+  "LOG_LEVEL": "ERROR"
 }

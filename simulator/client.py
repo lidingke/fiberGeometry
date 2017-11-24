@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 import socket
-
+from setting.config import SIMULATOR_IMG_SERVER_COFIG
 from tornado.ioloop import IOLoop
 from tornado import gen
 from tornado.tcpclient import TCPClient
@@ -23,12 +23,19 @@ port = 9880
 
 class Client(object):
 
-    def __init__(self, host = 'localhost', port = 9880):
+    def __init__(self, host = False, port = False):
+        shost, sport, smethod, spath = SIMULATOR_IMG_SERVER_COFIG
+
+        if not host :
+            host = shost
+        if not port:
+            port = sport
         self.host = host
         self.port = port
 
     @gen.coroutine
     def get_img_once(self):
+        # print (self.host,self.port)
         stream = yield TCPClient().connect(self.host,self.port)
         logging.info('img connect')
         yield stream.write(("getimgonce" + "\n\r").encode())

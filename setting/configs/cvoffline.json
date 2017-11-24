@@ -1,9 +1,19 @@
 {
-  "MODBUS_PORT":"com14",
-  "LED_PORT":"com15",
-  "VIEW_LABEL":"ManualCV",
-  "DYNAMIC_CAMERA":false,
-  "FOR_UNIT_TEST" :true,
-  "OCTAGON_FIBERS" : ["10/130(oc)", "20/130(oc)","20/400(oc)"]
-
+  "MODBUS_PORT": null,
+  "LED_PORT": null,
+  "VIEW_LABEL": "ManualCV",
+  "DYNAMIC_CAMERA": false,
+  "FOR_UNIT_TEST": true,
+  "LOG_DIR": "print",
+  "OCTAGON_FIBERS": [
+    "10/130(oc)",
+    "20/130(oc)",
+    "20/400(oc)"
+  ],
+  "SIMULATOR_IMG_SERVER_COFIG": [
+    "127.0.0.1",
+    9883,
+    "randomImg",
+    "IMG/G652/0912R/"
+  ]
 }
