@@ -1,16 +1,17 @@
 # coding:utf-8
 import threading
 import time
-
+from setting import config
 from SDK.modbus.ledmodes import LEDMode
 from pattern.sharp import corner_noise, take_white_light_in_core, black_points, black_points_not
 from setting.config import MODBUS_PORT, LED_PORT
+
 from setting.parameter import SETTING
 from util.loadfile import WriteReadJson, WriteReadJsonNoB
 from util.observer import PyTypeSignal
 import logging
 
-logger = logging.getLogger(__name__ + ":" + str(LED_PORT))
+logger = logging.getLogger(__name__ + ":" + str(config.LED_PORT))
 
 
 class RightCurrent(object):
@@ -68,89 +69,12 @@ class RightCurrent(object):
         return result
 
 
-# class RightCurrentP(object):
-#     def __init__(self, current, ranges=(0, 10), call="red"):
-#         self.ranges = ranges
-#         self.target = sum(ranges) // 2
-#         self.current = current
-#         # if call == "red":
-#         #     self.call = 1
-#         # else:
-#         #     self.call = -1
-#
-#     def __call__(self, light):
-#         min_, max_ = self.ranges
-#         if light > max_:
-#             step = (light - self.target) // 100 + 1
-#             if step > 100:
-#                 step = 100
-#             self.current = self.current - step
-#
-#         elif light < min_:
-#             if light == 0:
-#                 step = 100
-#             else:
-#                 step = 1
-#             self.current = self.current + step
-#
-#         else:
-#             if self.current == 0:
-#                 self.current = 0
-#             if self.current >2000:
-#                 self.current = 2000
-#             return self.current
-#         if self.current == 0:
-#             self.current = 0
-#         if self.current > 2000:
-#             self.current = 2000
-#         return self.current
-#         print "current",self.current,type(self.current)
-#
-#     # def green(self, light):
-#     #
-#     #     min_, max_ = self.ranges
-#     #     if light > max_:
-#     #         step = (light - self.target) // 100 + 1
-#     #         if step > 100:
-#     #             step = 100
-#     #         self.current -= step
-#     #         if self.current == 0:
-#     #             self.current = 0
-#     #     elif light < min_:
-#     #         if light == 0:
-#     #             step = 100
-#     #         else:
-#     #             step = 1
-#     #         self.current += step
-#     #     else:
-#     #         return self.current
-#     #     return self.current
-#     #
-#     # def red(self, light):
-#     #     # return self.call(x)
-#     #     min_, max_ = self.ranges
-#     #     if light < min_:
-#     #         if light == 0:
-#     #             step = 100
-#     #         else:
-#     #             step = 1
-#     #         self.current -= step
-#     #         if self.current <= 0:
-#     #             self.current = 0
-#     #     elif light > max_:
-#     #         step = (light - self.target) // 100 + 1
-#     #         if step > 100:
-#     #             step = 100
-#     #         self.current += step
-#     #     else:
-#     #         return self.current
-
 
 class LightController(object):
     def __init__(self):
 
         self.SET = SETTING()
-        self.mode = LEDMode(LED_PORT)
+        self.mode = LEDMode(config.LED_PORT)
         self.emit_light_ready = PyTypeSignal()
         self.emit_dynamic_light = PyTypeSignal()
         self.IS_RUNNING = True

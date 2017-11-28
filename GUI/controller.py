@@ -10,7 +10,7 @@ from PyQt4.QtGui import QPushButton
 
 from GUI.view.monkey import MonkeyServer
 from pattern.classify import classifyObject
-from setting.config import MODBUS_PORT
+from setting import config
 from GUI.model.stateconf import state_number, CONTEXT
 from SDK.modbus.modbusmerge import AbsModeBusModeByAxis, MODENABLE_SIGNAL
 from setting.parameter import SETTING
@@ -102,7 +102,7 @@ class StateMixin(object):
 
 class ModbusControllerMixin(object):
     def _start_modbus(self):
-        self._modbus = AbsModeBusModeByAxis(port=MODBUS_PORT)
+        self._modbus = AbsModeBusModeByAxis(port=config.MODBUS_PORT)
         self._modbus_connect()
 
     def _modbus_connect(self):

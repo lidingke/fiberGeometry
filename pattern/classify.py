@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 
 class MetaClassify(object):
-    def __init__(self, fiberType):
+    def __init__(self, fiberType,):
         super(MetaClassify, self).__init__()
         self.result = {}
         self.sets = ClassifyParameter()
@@ -58,7 +58,7 @@ class MetaClassify(object):
 
     # @timing
     @show_temp_imgs
-    def find(self, img):
+    def find(self, img,amp_ratio=False):
         diff_core_img, diff_clad_img = self._difcore(img)
         edge_core_img = self._edge_core(diff_core_img, self.core_thr_hight)
         edge_clad_img = self._edge_clad(diff_clad_img, self.clad_thr_hight)
@@ -71,6 +71,8 @@ class MetaClassify(object):
             "thr,filter {} {}, {} {}".format(self.core_thr_hight, self.clad_thr_hight,
                                              self.core_filter_index, self.clad_filter_index))
         self.temp_imgs = ((diff_core_img, diff_clad_img), (edge_core_img, edge_clad_img))
+        if amp_ratio:
+            self.amp_ratio = amp_ratio
         return self.convent_result(core_result, clad_result, self.amp_ratio)
 
     def get_show_result(self, core, clad, ampRatio):

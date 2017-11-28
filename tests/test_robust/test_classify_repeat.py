@@ -15,7 +15,7 @@ def test_repeat_G652():
     resultget = []
     for img in yieldImg("IMG\\G652\\mid\\"):
         g = classifyObject('G652')
-        result = g.find(img)
+        result = g.find(img,amp_ratio=0.0792393)
         show = result['showResult']
         print show
         resultget.append(show)

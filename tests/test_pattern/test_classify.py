@@ -75,7 +75,7 @@ def test_class_thin():
 def test_class_doublecircle():
     big = classifyObject("G652")
     img = random_img("IMG\\G652\\mid\\")
-    result = big.find(img)
+    result = big.find(img,amp_ratio=0.0792393)
     assert_result(result, 10, 125)
 #
 # @pytest.mark.testpy
@@ -91,5 +91,5 @@ if __name__ == '__main__':
     result = octs.find(img)
     print result["showResult"]
 
-    test_class_poly10125("IMG\\10125\\dirty\\")
+    # test_class_poly10125("IMG\\10125\\dirty\\")
     # assert_result(result, 10, 125, ranges=(3, 3, 10, 2, 2))
