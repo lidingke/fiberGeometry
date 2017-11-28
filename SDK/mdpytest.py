@@ -1,5 +1,7 @@
-from .mdpy import GetRawImg
+from setting import config
 from setting.config import SIMULATOR_IMG_SERVER_COFIG
+
+from .mdpy import GetRawImg
 
 from threading import Thread
 from simulator.server import SeverMain
@@ -16,8 +18,8 @@ class DynamicGetRawImgTest(GetRawImg):
     def __init__(self, host = False, port = False):
         # super(GetRawImgTest, self).__init__()
         # self.host, self.port = host, port
-        shost, sport, method, path = SIMULATOR_IMG_SERVER_COFIG
-        print "load", SIMULATOR_IMG_SERVER_COFIG
+        shost, sport, method, path = config.SIMULATOR_IMG_SERVER_COFIG
+        print "load", config.SIMULATOR_IMG_SERVER_COFIG
         if not host:
             host = shost
         if not port:

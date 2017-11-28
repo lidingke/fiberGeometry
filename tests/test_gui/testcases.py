@@ -4,11 +4,12 @@ import pdb
 from time import sleep
 
 # from util.unittest.demogui import View
-from util.unittest.knife import Knife
 # from util.unittest.gui import View
 
 def knife_into_demo(view_instance, app):
     # sleep()
+    from util.unittest.knife import Knife
+
     knife = Knife(view_instance)
     # print dir(knife)
     view_instance.input_line.setText("123")
@@ -28,6 +29,8 @@ def knife_into_demo(view_instance, app):
 
 
 def knife_into_cv(view_instance, app):
+    from util.unittest.knife import Knife
+
     knife = Knife(view_instance)
     sleep(1)
     knife._view.beginTestCV.clicked()
@@ -46,6 +49,8 @@ def knife_into_cv(view_instance, app):
 
 
 def knife_into_cap(view_instance, app):
+    from util.unittest.knife import Knife
+
     knife = Knife(view_instance)
     sleep(1)
     # print dir(knife._view)

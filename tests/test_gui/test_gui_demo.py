@@ -1,5 +1,6 @@
 import sys
 import threading
+from time import sleep
 
 from PyQt4.QtGui import QApplication
 import logging
@@ -9,7 +10,7 @@ from tests.test_gui.testcases import knife_into_demo
 from util.unittest.demogui import View
 
 
-def test_gui_demo():
+def Ttest_gui_demo():
     try:
         app = QApplication(sys.argv)
         view = View()
@@ -17,4 +18,4 @@ def test_gui_demo():
         view.show()
         sys.exit(app.exec_())
     except SystemExit:
-        pass
+        sleep(1)

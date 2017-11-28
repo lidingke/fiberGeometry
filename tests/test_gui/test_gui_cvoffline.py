@@ -1,8 +1,10 @@
 # coding:utf-8
 """project names: cvoffline,cvonline,cvopoffline,cvoponline"""
+from time import sleep
 
 
 def test_gui_cv():
+    sleep(1)
     import threading
     import sys
     import os
@@ -57,7 +59,7 @@ def test_gui_cv():
         sys.exit(app.exec_())
 
     except SystemExit:
-        pass
+        sleep(3)
 
     except Exception as e:
         raise e
