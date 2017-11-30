@@ -8,14 +8,14 @@
 # This file is an example program for matplotlib. It may be used and
 # modified with no restriction; raw copies as well as modified versions
 # may be distributed without limitation.
-
-
 from __future__ import unicode_literals
+import csv
+import pdb
 import sys
 import os
 import random
 from matplotlib.backends import qt_compat
-from PyQt4 import QtGui, QtCore
+from PyQt4 import QtGui
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 
@@ -38,13 +38,21 @@ class SpectrumCanvas(FigureCanvas):
         FigureCanvas.updateGeometry(self)
 
     def initial_figure(self):
-        self.axes.plot([], [], 'r')
-        self.axes.set_facecolor('none')
-        self.axes.set_title(u"待测光纤光谱", fontproperties='SimHei')
-        self.axes.set_xlabel(u"波长(nm)", fontproperties='SimHei')
-        self.axes.set_ylabel(u"强度(counts)", fontproperties='SimHei')
-        self.axes.set_xlim(900,1700)
-        self.axes.set_ylim(0,65000)
+        with open('SDK\\OceanOpticsScript\\demodata.csv','r') as f:
+            csv_reader = csv.reader(f,)
+            xs,ys = [],[]
+            # pdb.set_trace()
+            for x,y in csv_reader:
+                xs.append(float(x.strip()))
+                ys.append(float(y.strip()))
+            # print xs,ys
+            self.axes.plot(xs, ys, 'r')
+            self.axes.set_facecolor('none')
+            self.axes.set_title(u"待测光纤光谱", fontproperties='SimHei')
+            self.axes.set_xlabel(u"波长(nm)", fontproperties='SimHei')
+            self.axes.set_ylabel(u"强度(counts)", fontproperties='SimHei')
+            # self.axes.set_xlim(900,1700)
+            # self.axes.set_ylim(0,65000)
 
     def update_figure(self, x, y1):
         self.axes.cla()

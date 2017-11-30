@@ -86,13 +86,15 @@ class CVViewModel(object):
         for move in moves:
             move.setEnabled(is_move)
 
-    def closeEvent(self, *args, **kwargs):
+    def closeEvent(self, event,*args, **kwargs):
         # if 'olddata' in SETTING().keys():
         #     self.olddata.save(SETTING()['olddata'])
         logger.info('get last save\n' + str(self.last_save))
         # print(self.last_save)
         self.olddata.save(self.last_save)
         self.emit_close_event.emit()
+        super(CVViewModel, self).closeEvent(event)
+
 
     def updateCVShow(self, str_, ):
         if str_:

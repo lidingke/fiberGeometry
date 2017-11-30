@@ -11,7 +11,7 @@ from PyQt4.QtGui import QPushButton
 from GUI.view.monkey import MonkeyServer
 from pattern.classify import classifyObject
 from setting import config
-from GUI.model.stateconf import state_number, CONTEXT
+from GUI.model.stateconf import state_number
 from SDK.modbus.modbusmerge import AbsModeBusModeByAxis, MODENABLE_SIGNAL
 from setting.parameter import SETTING
 from GUI.model.modelcv import ModelCV
@@ -270,8 +270,6 @@ class CapCVController(ManualCVController):
     def __init__(self,*args,**kwargs):
         super(CapCVController, self).__init__(*args,**kwargs)
         self._modelcv.classify = classifyObject("capillary")
-
-
 
 
 def get_controller(label):

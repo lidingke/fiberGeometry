@@ -43,5 +43,5 @@ class DynamicGetRawImgTest(GetRawImg):
             return img
 
     def release_camera(self):
-        pass
+        IOLoop.current().run_sync(Client().close_server)
 

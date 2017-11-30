@@ -12,12 +12,18 @@ def test_gui_cap():
 
     from setting import config
     from setting.configs.tool import update_config_by_name
-    from tests.test_gui.testcases import knife_into_demo, knife_into_cv, knife_into_cap
+    from tests.test_gui.testcases import knife_into_cap
     from util.unittest.demogui import View
 
     project_name = "capoffline"
     # project_name = "cvoffline"
     config_info = update_config_by_name(project_name)
+    config.SIMULATOR_IMG_SERVER_COFIG = [
+        "127.0.0.1",
+        9881,
+        "randomImg",
+        "IMG/emptytuple/171113/"
+    ]
     log_level = getattr(logging, config.LOG_LEVEL, logging.ERROR)
     log_dir = getattr(config, "LOG_DIR", False)
     if log_dir == "print":
@@ -29,7 +35,6 @@ def test_gui_cap():
                             level=log_level)
     logger = logging.getLogger(__name__)
     logger.error(config_info)
-    from tests.test_gui.testcases import knife_into_cv
 
     from PyQt4.QtGui import QPalette, QColor, QApplication
     from GUI.view.view import get_view

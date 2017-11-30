@@ -44,7 +44,7 @@ class ModelCV(Thread, QObject):
     def __init__(self, ):
         super(ModelCV, self).__init__()
         QObject.__init__(self)
-        self.setDaemon(True)
+        # self.setDaemon(True)
         self.IS_RUNNING = True
         self.isSharp = IsSharp()
         self.img_core_tag = (FRAME_CORE,20,80)
@@ -106,10 +106,11 @@ class ModelCV(Thread, QObject):
                 self._relaxtive_index_to_matplot(*last_result)
             except ValueError as e :
                 msg = e.message
-                logger.error(msg)
+                logger.error("calc error {}".format(msg))
+                logger.error("thread state - {}".format(self.IS_RUNNING))
                 self.resultShowCV.emit(msg)
-            except Exception as e:
-                raise e
+            # except Exception as e:
+            #     raise e
 
 
         Thread(target=_calcImg,args=(self,)).start()
@@ -159,7 +160,7 @@ class ModelCV(Thread, QObject):
                 u'''包层不圆度：  {:0.2f}\n'''
                 u'''芯包同心度：  {:0.2f}''')
         text = text.format(*result)
-        logger.exception(text)
+        logger.error(text)
         self.resultShowCV.emit(text)
 
     # def _greenLight(self, img):

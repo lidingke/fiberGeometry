@@ -10,7 +10,7 @@ from tests.test_gui.testcases import knife_into_demo
 from util.unittest.demogui import View
 
 
-def Ttest_gui_demo():
+def test_gui_demo():
     try:
         app = QApplication(sys.argv)
         view = View()

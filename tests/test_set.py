@@ -2,6 +2,7 @@ from setting.config import CONFIGS_DIR
 from setting.configs.tool import update_config_by_json, update_config_by_name
 from setting.parameter import SETTING, singleton, ClassifyParameter
 from setting import config
+from util.zombie import ZombieSingleton
 
 SETTING().update_by_key('G652')
 
@@ -19,6 +20,11 @@ def test_get_new_value():
     s["newkey"] = True
     assert s.get("newkey")
 
+
+def test_zombiesigleton():
+    a , b, c  = ZombieSingleton('a'), ZombieSingleton('b'), ZombieSingleton('a'),
+    assert id(a) != id(b)
+    assert id(a) == id(c)
 # def test_updateSets_args():
 #     s = SETTING("Default")
 #     s.update_by_key()

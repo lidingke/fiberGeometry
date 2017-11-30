@@ -12,6 +12,7 @@ def test_gui_cv():
 
     from setting import config
     from setting.configs.tool import update_config_by_name, SAFE_ARGVS
+    from tests.test_gui.testcases import knife_into_cv
 
     project_name = "cvoffline"
     config_info = update_config_by_name(project_name)
@@ -32,7 +33,6 @@ def test_gui_cv():
                             level=log_level)
     logger = logging.getLogger(__name__)
     logger.error(config_info)
-    from tests.test_gui.testcases import knife_into_cv
 
     from PyQt4.QtGui import QPalette, QColor, QApplication
     from GUI.view.view import get_view

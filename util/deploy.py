@@ -58,7 +58,7 @@ if __name__ == '__main__':
     paths = relative_full_path(".")
     for p in paths:
         print p
-    direction = "E:\\cvcx2_0"
+    direction = "G:\\cvcx2_0"
     copy_to_path(paths, direction)
 
 # pdb.set_trace()
