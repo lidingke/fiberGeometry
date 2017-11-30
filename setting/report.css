@@ -1,0 +1,60 @@
+    body {
+        margin: 16px auto;
+        font-family: 'Microsoft YaHei', freesans, sans-serif;
+        font-size: 10px;
+
+    }
+
+    h1 {
+        border-bottom: 1px solid #eee;
+        margin-left: 30px;
+        padding-left: 20px;
+        padding-bottom: 0.3em;
+        font-size: 60px;
+        color: #283c51;
+    }
+
+    h2 {
+        /*border-bottom: 1px solid #eee;*/
+        /*padding-bottom: 0.3em;*/
+        margin-left: 30px;
+        padding-left: 20px;
+        font-size: 40px;
+        /*font-weight: bold;*/
+        color: #2EA9DF;
+
+    }
+
+    p {
+        padding-left: 20px;
+        margin-left: 45px;
+        line-height: 50px;
+        font-size: 20px;
+        letter-spacing: 18px;
+        /*background-color: #049ff1;*/
+    }
+
+    img {
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+
+    }
+    /*#container{*/
+        /*width: 1000px;*/
+        /*margin: 0 auto;*/
+        /*background: #CF3;*/
+    /*}*/
+    /*#left{*/
+        /*height: 400px;*/
+        /*width: 200px;*/
+        /*margin: 20px;*/
+        /*float: left;*/
+        /*background: #90c;*/
+    /*}*/
+    /*#right{*/
+        /*height: 400px;*/
+        /*width: 720px;*/
+        /*margin: 20px;*/
+        /*float: left;*/
+
+    /*}*/
