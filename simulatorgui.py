@@ -4,7 +4,7 @@ from setting import config
 
 config.DYNAMIC_CAMERA = False
 print 'set dynamic camera', config.DYNAMIC_CAMERA, id(config.DYNAMIC_CAMERA)
-from simulator.simview import Controllers
+from SDK.simulator.simview import Controllers
 
 # from simulator.myview import  Controllers
 

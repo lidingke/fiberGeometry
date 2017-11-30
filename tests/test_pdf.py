@@ -1,4 +1,4 @@
-from report.pdf import writePdf, writePdfabs
+from GUI.model.report.pdf import writePdf, writePdfabs
 import os
 import sys
 import time

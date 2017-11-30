@@ -5,7 +5,7 @@ from threading import Thread
 import multiprocessing
 from tornado.ioloop import IOLoop
 from functools import partial
-from simulator.methods import getImage
+from util.getimg import getImage
 from tornado.iostream import StreamClosedError
 import time
 import logging

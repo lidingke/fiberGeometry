@@ -1,1 +1,0 @@
-from util.getimg import getImage, randomImg
