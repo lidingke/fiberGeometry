@@ -2,7 +2,7 @@
 import re
 from datetime import datetime as dt
 from PyQt4.QtGui import QWidget, QFileDialog, QMessageBox
-from report.pdf import writePdfabs
+from GUI.model.report.pdf import writePdfabs
 import  logging
 
 logger = logging.getLogger(__name__)

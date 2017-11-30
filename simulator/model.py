@@ -36,7 +36,7 @@ class Model(Thread,QObject):
         QObject.__init__(self)
         self.sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
         try:
-            self.sock.connect(("127.0.0.1", 9880))
+            self.sock.connect(("127.0.0.1", 9883))
             print "connect",9880
         except Exception:
             print("no init connect")
@@ -52,7 +52,7 @@ class Model(Thread,QObject):
     def okContact(self,fileName):#接受信号槽的参数
         js=('randomImg',str(fileName))#qstring转化为string
         cmd = 'change:' + json.dumps(js) + '\n\r'
-        self.sock.sendall(cmd)#Send a data string to the socket.
+        self.sock.sendall(cmd.encode('utf-8'))#Send a data string to the socket.
 
     def info(self,mystr):#接受slave中的信息并传到myview中
         self.emitinfodao_dir.emit(mystr)

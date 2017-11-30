@@ -13,7 +13,7 @@ from GUI.model.models import session_add_by_account
 from GUI.view.spectcanvas import SpectrumCanvas
 from GUI.view.uiview import ManualCVForm, AutomaticCVForm, OPCVForm, CapCVForm
 from GUI.view.refractcanvas import RefractCanvas
-from report.pdf import write_txt
+from GUI.model.report.pdf import write_txt
 from setting.config import PDF_PARAMETER, DB_PARAMETER
 
 from util.observer import PyTypeSignal
