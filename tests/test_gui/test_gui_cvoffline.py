@@ -52,13 +52,13 @@ def test_gui_cv():
         # print view.__dict__, type(view)
         c = controller(view())
         threading.Thread(target=knife_into_cv, args=(c, app)).start()  # unittest thread insert
-
         c.show()
         # sys.stdout = sys.__stdout__
 
         sys.exit(app.exec_())
 
     except SystemExit:
+        # print "system exit\n",sys._getframe(1).f_code
         sleep(3)
 
     except Exception as e:

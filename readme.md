@@ -3,15 +3,11 @@
 
 --/IMG#测试用图像
 
---/SDK#摄像头和光谱仪SDK
+--/SDK#摄像头和光谱仪SDK,下位机模拟器。
 
 --/pattern#图像处理模块
 
---/report#报表生成模块
-
 --/setting#配置模块
-
---/simulator#下位机模拟器
 
 --/tests#单元测试
 
@@ -60,9 +56,13 @@ UI界面采用PyQt库。
 
 其中，controler采用Mixin形式的多继承。这里这么做是为了分离各个具体的model。因为具体的model对应不同的硬件，应该根据参数来选择加载不同的model。
 
-view采取顺序VeiwModel和Form的方式，其中ViewModel保存具体的View需要的定制类控件以及逻辑，Form用来渲染.ui文件生成的UI.py文件。这样就分离了UI的生成和UI的定制。因为UI.py是脚本生成的，一般不应该改动，通过一个Form类去添加功能。
+```view```采取顺序VeiwModel和Form的方式，其中ViewModel保存具体的View需要的定制类控件以及逻辑，Form用来渲染.ui文件生成的UI.py文件。这样就分离了UI的生成和UI的定制。因为UI.py是脚本生成的，一般不应该改动，通过一个Form类去添加功能。
 
 界面的定制版QSS在GUI/UI/qss目录下。写qss的时候尽量用css兼容的语法，可以在pycharm中享受到css规则的代码提示。
+view应该采取QT designer来生成ui文件，然后用pyuic命令或脚本转换成name+UI.py的py文件。用生成类的setupUI来装饰出一个view类供使用。
+
+```report```
+用以生成输出报告。
 
 ## IMG
 保存待测图片，这部分不上传到GitHub，其中的md文件夹保存markdown需要的图片，需要上传至GitHub。
@@ -95,13 +95,19 @@ crcmod.predefined.mkCrcFun('modbus')
 
 SDK模块处理硬件实时控制模块，还有供测试用的测试模块，根据配置文件的不同，选择加载实时硬件模块或者虚拟测试模块。一般加载json文件的命令带online，即为加载实时硬件模块，如果加载命令是offline，即为加载虚拟测试模块。
 
+```simulator```
+这个模块用于控制部分硬件模块，其中有控制测试图片服务器的GUI工具，也有控制LED灯的功率的GUI测试工具。
+
+
 # pattern
 
 这个模块的主文件是classify.py，该文件中的classifyObject就是端面图像识别的工程函数，根据传入的光纤类型返回相应的识别方法。
 所有识别类都继承自MetaClassify，符合该父类的接口。
 
-# report
-用以生成输出报告。
+装饰在find函数上的装饰器show_temp_imgs负责将中间结果的图片缓存保存到test/data/temp.png文件供查看，这个装饰器的使能可以通过json配置。
+
+各种由外部引入的函数应该在__init__中配置，保证单一入口原则，set配置文件也应该在__init__处引入。
+引入的外部函数应该是纯函数。
 
 # setting
 setting模块负责所有的配置文件，原则上来说，配置文件变量应该是不可变的，当然，或者说，在初始化后，即在运行时不应该被随意更改。
@@ -113,10 +119,8 @@ setting模块负责所有的配置文件，原则上来说，配置文件变量�
 
 config模块在加载后会被动态更改一次，通过configs文件夹下的各个json文件来更改。该更改只应该在初始化时执行一次。动态更改用update_config_by_name函数。
 
-
-# simulator
-这个模块用于控制部分硬件模块，其中有控制测试图片服务器的GUI工具，也有控制LED灯的功率的GUI测试工具。
-
+```logging```模块应该按照getlogger的方式存在于每个子文件，在这个工程中，只应该在调试和单元测试中使用print，
+其他部分都应采用logging来打印日子，并配置好日志的level。
 
 # tests
 该模块包含所有的离线单元测试文件，部分在线的单元测试模块在simulator里，单元测试工具为py.test。

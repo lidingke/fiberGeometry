@@ -10,7 +10,7 @@ import numpy as np
 import sys
 from PyQt4.QtCore import QObject, pyqtSignal
 
-from SDK.modbus.autolight import  LightController
+from SDK.modbus.autolight import LightController
 from setting.config import PDF_PARAMETER, DB_PARAMETER, DYNAMIC_CAMERA, FRAME_CORE, RAISE_EXCEPTION, IMG_ZOOM
 
 if DYNAMIC_CAMERA:
@@ -19,11 +19,9 @@ else:
     # from SDK.mdpytest import DynamicGetRawImgTest as GetRawImg
     from SDK.mdpytest import DynamicGetRawImgTest as GetRawImg
 
-    # from  SDK.mdpy import GetRawImgTest as GetRawImg
-    # print 'script don\'t open camera'
 from pattern.classify import classifyObject
 from pattern.sharp import IsSharp
-from pattern.draw import drawCoreCircle, decorateMethod, output_axies_plot_to_matplot, duck_type_decorate
+from pattern.draw import drawCoreCircle, decorateMethod, output_axies_plot_to_matplot, duck_type_decorate, core_flag
 from util.filter import AvgResult
 from pattern.coverimg import sliceImg
 
@@ -34,7 +32,7 @@ logger = logging.getLogger(__name__)
 
 class ModelCV(Thread, QObject):
     """docstring for Model"""
-    returnImg = pyqtSignal(object, object,object)
+    returnImg = pyqtSignal(object, object, object)
     # returnATImg = pyqtSignal(object, object)
     resultShowCV = pyqtSignal(object)
     # resultShowAT = pyqtSignal(object)
@@ -47,16 +45,15 @@ class ModelCV(Thread, QObject):
         # self.setDaemon(True)
         self.IS_RUNNING = True
         self.isSharp = IsSharp()
-        self.img_core_tag = (FRAME_CORE,20,80)
+        # self.img_core_tag = (FRAME_CORE,20,80)
         self.get_raw_img = GetRawImg()
         self.imgQueue = collections.deque(maxlen=5)
         self.classify = classifyObject("G652")
-        self.decorateMethod = decorateMethod("G652")
+        # self.decorateMethod = decorateMethod("G652")
         self.pdfparameter = PDF_PARAMETER  # SETTING()['pdfpara']
         self.dbparameter = DB_PARAMETER  # SETTING()['dbpara']
-        self.plots = None
+        self.plots = core_flag()
         self.init_light_controller()
-
 
     def init_light_controller(self):
         self.light = ""
@@ -71,7 +68,7 @@ class ModelCV(Thread, QObject):
                 break
             self.img = img.copy()
             self.imgQueue.append(self.img)
-            if self.light_controller_handle :
+            if self.light_controller_handle:
                 try:
                     self.light_controller_handle.send(img.copy())
                 except StopIteration:
@@ -84,7 +81,7 @@ class ModelCV(Thread, QObject):
 
             img = self._decorateImg(img)
             zoom_img = img[::IMG_ZOOM, ::IMG_ZOOM].copy()
-            self.returnImg.emit(zoom_img, self.sharp,self.light)
+            self.returnImg.emit(zoom_img, self.sharp, self.light)
 
     def mainCalculate(self):
         def _calcImg(self):
@@ -100,29 +97,29 @@ class ModelCV(Thread, QObject):
                     logger.info('get result' + str(result))
                     results.append(result)
                     core = classify_result["corecore"]
-                    last_result = (core,img)
-                self.plots = classify_result.get('plots',{})
+                    last_result = (core, img)
+                plots = classify_result.get('plots', {})
+                self.plots.extend(plots)
                 self._emitCVShowResult(AvgResult(results))
                 self._relaxtive_index_to_matplot(*last_result)
-            except ValueError as e :
+            except ValueError as e:
                 msg = e.message
                 logger.error("calc error {}".format(msg))
                 logger.error("thread state - {}".format(self.IS_RUNNING))
                 self.resultShowCV.emit(msg)
-            # except Exception as e:
-            #     raise e
+                # except Exception as e:
+                #     raise e
 
-
-        Thread(target=_calcImg,args=(self,)).start()
+        Thread(target=_calcImg, args=(self,)).start()
 
     def light_controller_handle_start(self):
         self.light_controller_handle = self.light_controller.start_coroutine()
 
     def _decorateImg(self, img):
-        """"mark the circle and size parameter"""
-        img = drawCoreCircle(img,*self.img_core_tag)
+        """" mark the circle and size parameter """
+        # img = drawCoreCircle(img,*self.img_core_tag)
         if self.plots:
-            img = duck_type_decorate(img,self.plots)
+            img = duck_type_decorate(img, self.plots)
         # elif self.result2Show:
         #     img = self.decorateMethod(img, self.result2Show)
         return img
@@ -149,10 +146,7 @@ class ModelCV(Thread, QObject):
 
         raw_db_data_from_result = {k: r for k, r in zip(keys, result)}
         raw_db_data_from_result.update({'sharpindex': sharp})
-        # if None in result:
-        #     for i,v in enumerate(result):
-        #         if not v:
-        #             result[i] = '-1'
+
         self.dbparameter.update(raw_db_data_from_result)
         text = (u'''纤芯直径：    {:0.2f}\n'''
                 u'''包层直径：    {:0.2f}\n'''
@@ -163,27 +157,7 @@ class ModelCV(Thread, QObject):
         logger.error(text)
         self.resultShowCV.emit(text)
 
-    # def _greenLight(self, img):
-    #     if isinstance(img, np.ndarray):
-    #         corey, corex = SETTING()["corepoint"]
-    #         minRange, maxRange = SETTING()["coreRange"]
-    #         green = sliceImg(img[::, ::, 1], (corex, corey), maxRange)
-    #         blue = sliceImg(img[::, ::, 2], (corex, corey), maxRange)
-    #         red=img[::,::,0]
-    #         self.allblue = img[::, ::, 2].sum() / 255
-    #         self.red = img[::, ::, 0].sum() / 255
-    #
-    #         self.green = green.sum() / 255
-    #         self.blue = blue.sum() / 255
-    #         self.red=red.sum()/(255*1544*3)
-    #
-    #         self.allgreen = img[::, ::, 1].sum() / 255 - self.green
-    #         self.pdfparameter['corelight'] = "%0.2f" % self.blue
-    #         self.pdfparameter['cladlight'] = "%0.2f" % self.allgreen
-    #         # self.returnCoreLight.emit("%0.2f" % (self.blue), "%0.2f" % (self.allgreen))
-    #         # self.returnCladLight.emit()
-
-    def get_light(self,light):
+    def get_light(self, light):
         self.light = light
 
     def updateClassifyObject(self, obj='G652'):
@@ -191,10 +165,8 @@ class ModelCV(Thread, QObject):
         # self.eresults = False
         # self.result2Show = False
         # self.decorateMethod = decorateMethod(obj)
-        self.decorateMethod = decorateMethod(obj)
-
+        # self.decorateMethod = decorateMethod(obj)
 
     def _relaxtive_index_to_matplot(self, core, img):
-        plots = output_axies_plot_to_matplot(core,img)
+        plots = output_axies_plot_to_matplot(core, img)
         self.emit_relative_index.emit(plots)
-

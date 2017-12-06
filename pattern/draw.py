@@ -8,11 +8,13 @@ import cv2
 
 import matplotlib;
 
+from setting import config
+
 matplotlib.use("Qt4Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-from setting.config import SAVE_TEMP_IMG, OCTAGON_FIBERS
+from setting.config import SAVE_TEMP_IMG, OCTAGON_FIBERS, FRAME_CORE
 from setting.parameter import SETTING
 
 
@@ -68,33 +70,34 @@ def decorateDoubleCircle(origin, ellipses, result=False):
     return origin
 
 
-def oldDecorateImg(origin, ellipses, result=False):
-    if len(origin.shape) < 3:
-        print 'origin shape', origin.shape
-        origin = cv2.cvtColor(origin, cv2.COLOR_GRAY2RGB)
-    if not (ellipses or result):
-        return origin
-    result = ellipses['showResult']
-    cv2.ellipse(origin, ellipses['clad'], (131, 210, 253), 5, lineType=2)  # (162,183,0)(green, blue, red)
-    cv2.ellipse(origin, ellipses['core'], (0, 102, 255), 5, lineType=2)  # 255,102,0#FF6600
-    corex, corey = ellipses['core'][0]
-    radius = ellipses['core'][1]
-    radius = (radius[0] + radius[1]) / 4
-    core = (int(corex + radius * 0.7), int(corey - radius * 0.7))
-    coreR = "%4.2f" % result[1]
-    cv2.putText(origin, coreR, core,
-                cv2.FONT_HERSHEY_SIMPLEX, 2, (215, 207, 39), thickness=3)
-    # clad radius
-    corex, corey = ellipses['clad'][0]
-    radius = ellipses['clad'][1]
-    radius = (radius[0] + radius[1]) / 4
-    core = (int(corex + radius * 0.7), int(corey - radius * 0.7))
-    coreR = "%4.2f" % result[2]
-    # print ('clad', coreR, core)
-    cv2.putText(origin, coreR, core,
-                cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), thickness=3)
-    # corex, corey = result[0], result[1]
-    return origin
+#
+# def oldDecorateImg(origin, ellipses, result=False):
+#     if len(origin.shape) < 3:
+#         print 'origin shape', origin.shape
+#         origin = cv2.cvtColor(origin, cv2.COLOR_GRAY2RGB)
+#     if not (ellipses or result):
+#         return origin
+#     result = ellipses['showResult']
+#     cv2.ellipse(origin, ellipses['clad'], (131, 210, 253), 5, lineType=2)  # (162,183,0)(green, blue, red)
+#     cv2.ellipse(origin, ellipses['core'], (0, 102, 255), 5, lineType=2)  # 255,102,0#FF6600
+#     corex, corey = ellipses['core'][0]
+#     radius = ellipses['core'][1]
+#     radius = (radius[0] + radius[1]) / 4
+#     core = (int(corex + radius * 0.7), int(corey - radius * 0.7))
+#     coreR = "%4.2f" % result[1]
+#     cv2.putText(origin, coreR, core,
+#                 cv2.FONT_HERSHEY_SIMPLEX, 2, (215, 207, 39), thickness=3)
+#     # clad radius
+#     corex, corey = ellipses['clad'][0]
+#     radius = ellipses['clad'][1]
+#     radius = (radius[0] + radius[1]) / 4
+#     core = (int(corex + radius * 0.7), int(corey - radius * 0.7))
+#     coreR = "%4.2f" % result[2]
+#     # print ('clad', coreR, core)
+#     cv2.putText(origin, coreR, core,
+#                 cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 0), thickness=3)
+#     # corex, corey = result[0], result[1]
+#     return origin
 
 #
 # def DecorateImg(origin, ellipses, result=False):
@@ -106,7 +109,9 @@ def oldDecorateImg(origin, ellipses, result=False):
 #         return oldDecorateImg(origin, ellipses, result)
 #
 
-def duck_type_decorate(origin,methods):
+
+
+def duck_type_decorate(origin, methods):
     for m in methods:
         if len(m) == 2:
             fun_name, args, = m
@@ -114,10 +119,12 @@ def duck_type_decorate(origin,methods):
         elif len(m) == 3:
             fun_name, args, kwargs = m
         else:
-            raise ValueError("methods parameter error")
-        fun = getattr(cv2,fun_name)
-        fun(origin,*args,**kwargs)
+            # print m,len(m)
+            raise ValueError("methods parameter error {} {}",len(m),m)
+        fun = getattr(cv2, fun_name)
+        fun(origin, *args, **kwargs)
     return origin
+
 
 def decorateMethod(obj):
     if obj in OCTAGON_FIBERS:
@@ -144,6 +151,29 @@ def drawCoreCircle(img, core, minRange, maxRange):
     return img
 
 
+def core_flag():
+    lists = []
+    core, minRange, maxRange = (config.FRAME_CORE, 20, 80)
+    _ = ("circle", (core, int(minRange), (0, 0, 0), 4), {'lineType': 5})
+    lists.append(_)
+    x0, y0 = core
+    x1, y1 = x0 + minRange, y0
+    x2, y2 = x0 + maxRange, y0
+    _ = ("line", ((x1, y1), (x2, y2), (255, 255, 255), 4,), {'lineType': 5})
+    lists.append(_)
+    x1, y1 = x0, y0 + minRange
+    x2, y2 = x0, y0 + maxRange
+    _ = ("line", ((x1, y1), (x2, y2), (255, 255, 255), 4,), {'lineType': 5})
+    lists.append(_)
+    x1, y1 = x0 - minRange, y0
+    x2, y2 = x0 - maxRange, y0
+    _ = ("line", ((x1, y1), (x2, y2), (255, 255, 255), 4,), {'lineType': 5})
+    lists.append(_)
+    x1, y1 = x0, y0 - minRange
+    x2, y2 = x0, y0 - maxRange
+    _ = ("line", ((x1, y1), (x2, y2), (255, 255, 255), 4,), {'lineType': 5})
+    lists.append(_)
+    return lists
 
 
 def output_axies_plot_to_dir(core, img, dir_):

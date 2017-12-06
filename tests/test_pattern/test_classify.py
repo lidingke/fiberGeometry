@@ -77,7 +77,7 @@ def test_class_doublecircle():
     img = random_img("IMG\\G652\\mid\\")
     result = big.find(img,amp_ratio=0.0792393)
     assert_result(result, 10, 125)
-#
+
 # @pytest.mark.testpy
 # def test_mark():
 #     print "get in test mark"

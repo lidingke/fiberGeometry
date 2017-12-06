@@ -1,6 +1,4 @@
 import os
-import pdb
-
 from setting.config import CONFIGS_DIR
 from setting import config
 from util.loadfile import WriteReadJson
@@ -19,12 +17,9 @@ SAFE_ARGVS = safe_argvs()
 
 
 def update_config_by_json(module, json_dir):
-    # json_dir = CONFIGS_DIR+json_name+".json"
-    # d = {"MODBUS_PORT":"com14",}
     j = WriteReadJson(json_dir)
     d = j.load()
     [setattr(module, k.decode('utf-8'), v) for k, v in d.items()]
-    # pdb.set_trace()
 
 
 def update_config_by_name(name="static"):
@@ -37,6 +32,3 @@ def update_config_by_name(name="static"):
     strs = ["=>{}:{}".format(k, v) for k, v in str_dict.items()]
     strs_info = "\n" + json_dir + ":\n    " + "\n    ".join(strs)
     return strs_info
-
-# def warnning_input_parameters():
-#     raise ValueError("input argv must be "+" ".join(SAFE_ARGVS))

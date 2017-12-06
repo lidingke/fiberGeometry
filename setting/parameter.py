@@ -76,7 +76,6 @@ class SETTING(MetaDict):
 class ClassifyParameter(MetaDict):
     def __init__(self, *args, **kwargs):
         MetaDict.__init__(self)
-
         self.store = {}
         self.json_load = self._read_pickle_first()
         self.store.update(self.json_load["Default"])
@@ -109,4 +108,3 @@ class ClassifyParameter(MetaDict):
 
     def __del__(self):
         self.store.clear()
-
