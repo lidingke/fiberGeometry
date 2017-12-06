@@ -10,12 +10,13 @@ def assert_result(result, coreto=20, cladto=125, ranges=(2, 2, 5, 2, 2)):
     for i in ('corecore', 'plots', 'showResult'):
         assert i in result
     assert isinstance(result['plots'], Iterable)
-    for p in result['plots']:
-        a, b, c = p
-        assert a in dir(cv2)
-        assert isinstance(a, str)
-        assert isinstance(b, tuple)
-        assert isinstance(c, dict)
+    for k ,v in result['plots'].items():
+        for p in v:
+            a, b, c = p
+            assert a in dir(cv2)
+            assert isinstance(a, str)
+            assert isinstance(b, tuple)
+            assert isinstance(c, dict)
     co, core, clad, cor, clr = result["showResult"]
     rco, rcore, rclad, rcor, rclr = ranges
     assert co < rco

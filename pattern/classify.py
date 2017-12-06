@@ -95,7 +95,7 @@ class MetaClassify(object):
         corecore = core['corePoint'][0]
         output_result = {}
         output_result['showResult'] = self.get_show_result(core, clad, amp)
-        output_result['plots'] = core['plots'] + clad['plots']
+        output_result['plots'] = {"core":core['plots'] ,"clad": clad['plots']}
         output_result["corecore"] = corecore
         return output_result
 

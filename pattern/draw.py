@@ -109,9 +109,7 @@ def decorateDoubleCircle(origin, ellipses, result=False):
 #         return oldDecorateImg(origin, ellipses, result)
 #
 
-
-
-def duck_type_decorate(origin, methods):
+def duck_type_decorate_list(origin, methods):
     for m in methods:
         if len(m) == 2:
             fun_name, args, = m
@@ -125,35 +123,40 @@ def duck_type_decorate(origin, methods):
         fun(origin, *args, **kwargs)
     return origin
 
+def duck_type_decorate(origin,methods):
+    assert isinstance(methods,dict)
+    for k,v in methods.items():
+        duck_type_decorate_list(origin,v)
+    return origin
 
-def decorateMethod(obj):
-    if obj in OCTAGON_FIBERS:
-        return decorateOctagon
-    else:
-        return decorateDoubleCircle
-
-
-def drawCoreCircle(img, core, minRange, maxRange):
-    cv2.circle(img, core, int(minRange), (0, 0, 0), 4)
-    x0, y0 = core
-    x1, y1 = x0 + minRange, y0
-    x2, y2 = x0 + maxRange, y0
-    cv2.line(img, (x1, y1), (x2, y2), (255, 255, 255), 4)
-    x1, y1 = x0, y0 + minRange
-    x2, y2 = x0, y0 + maxRange
-    cv2.line(img, (x1, y1), (x2, y2), (255, 255, 255), 4)
-    x1, y1 = x0 - minRange, y0
-    x2, y2 = x0 - maxRange, y0
-    cv2.line(img, (x1, y1), (x2, y2), (255, 255, 255), 4)
-    x1, y1 = x0, y0 - minRange
-    x2, y2 = x0, y0 - maxRange
-    cv2.line(img, (x1, y1), (x2, y2), (255, 255, 255), 4)
-    return img
+# def decorateMethod(obj):
+#     if obj in OCTAGON_FIBERS:
+#         return decorateOctagon
+#     else:
+#         return decorateDoubleCircle
 
 
-def core_flag():
+# def drawCoreCircle(img, core, minRange, maxRange):
+#     cv2.circle(img, core, int(minRange), (0, 0, 0), 4)
+#     x0, y0 = core
+#     x1, y1 = x0 + minRange, y0
+#     x2, y2 = x0 + maxRange, y0
+#     cv2.line(img, (x1, y1), (x2, y2), (255, 255, 255), 4)
+#     x1, y1 = x0, y0 + minRange
+#     x2, y2 = x0, y0 + maxRange
+#     cv2.line(img, (x1, y1), (x2, y2), (255, 255, 255), 4)
+#     x1, y1 = x0 - minRange, y0
+#     x2, y2 = x0 - maxRange, y0
+#     cv2.line(img, (x1, y1), (x2, y2), (255, 255, 255), 4)
+#     x1, y1 = x0, y0 - minRange
+#     x2, y2 = x0, y0 - maxRange
+#     cv2.line(img, (x1, y1), (x2, y2), (255, 255, 255), 4)
+#     return img
+
+
+def core_cross_flag(core, minRange, maxRange):
     lists = []
-    core, minRange, maxRange = (config.FRAME_CORE, 20, 80)
+     # =
     _ = ("circle", (core, int(minRange), (0, 0, 0), 4), {'lineType': 5})
     lists.append(_)
     x0, y0 = core

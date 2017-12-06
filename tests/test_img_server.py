@@ -1,6 +1,6 @@
 from setting.config import SIMULATOR_IMG_SERVER_COFIG
-from simulator.client import Client
-from simulator.server import ImgServer, SeverMain, SharpSever
+from SDK.simulator.client import Client
+from SDK.simulator.server import ImgServer, SeverMain, SharpSever
 from threading import Thread
 import multiprocessing
 from tornado.ioloop import IOLoop

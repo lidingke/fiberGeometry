@@ -11,9 +11,10 @@ import sys
 from PyQt4.QtCore import QObject, pyqtSignal
 
 from SDK.modbus.autolight import LightController
-from setting.config import PDF_PARAMETER, DB_PARAMETER, DYNAMIC_CAMERA, FRAME_CORE, RAISE_EXCEPTION, IMG_ZOOM
+from setting import config
+# from setting.config import PDF_PARAMETER, DB_PARAMETER, DYNAMIC_CAMERA, FRAME_CORE, RAISE_EXCEPTION, IMG_ZOOM
 
-if DYNAMIC_CAMERA:
+if config.DYNAMIC_CAMERA:
     from SDK.mdpy import GetRawImg
 else:
     # from SDK.mdpytest import DynamicGetRawImgTest as GetRawImg
@@ -21,7 +22,7 @@ else:
 
 from pattern.classify import classifyObject
 from pattern.sharp import IsSharp
-from pattern.draw import drawCoreCircle, decorateMethod, output_axies_plot_to_matplot, duck_type_decorate, core_flag
+from pattern.draw import output_axies_plot_to_matplot, duck_type_decorate, core_cross_flag
 from util.filter import AvgResult
 from pattern.coverimg import sliceImg
 
@@ -49,11 +50,15 @@ class ModelCV(Thread, QObject):
         self.get_raw_img = GetRawImg()
         self.imgQueue = collections.deque(maxlen=5)
         self.classify = classifyObject("G652")
+        self.classigy_method = classifyObject
+        self._avg_result = AvgResult
         # self.decorateMethod = decorateMethod("G652")
-        self.pdfparameter = PDF_PARAMETER  # SETTING()['pdfpara']
-        self.dbparameter = DB_PARAMETER  # SETTING()['dbpara']
-        self.plots = core_flag()
+        self.pdfparameter = config.PDF_PARAMETER  # SETTING()['pdfpara']
+        self.dbparameter = config.DB_PARAMETER  # SETTING()['dbpara']
+        self.plots = {"cross": core_cross_flag(config.FRAME_CORE, 20, 80)}
+        self._decorateImg = duck_type_decorate
         self.init_light_controller()
+        self._output_axies_plot_to_matplot = output_axies_plot_to_matplot
 
     def init_light_controller(self):
         self.light = ""
@@ -79,8 +84,8 @@ class ModelCV(Thread, QObject):
 
             # self.light = "%0.2f" % self.red
 
-            img = self._decorateImg(img)
-            zoom_img = img[::IMG_ZOOM, ::IMG_ZOOM].copy()
+            img = self._decorateImg(img, self.plots)
+            zoom_img = img[::config.IMG_ZOOM, ::config.IMG_ZOOM].copy()
             self.returnImg.emit(zoom_img, self.sharp, self.light)
 
     def mainCalculate(self):
@@ -99,8 +104,8 @@ class ModelCV(Thread, QObject):
                     core = classify_result["corecore"]
                     last_result = (core, img)
                 plots = classify_result.get('plots', {})
-                self.plots.extend(plots)
-                self._emitCVShowResult(AvgResult(results))
+                self.plots.update(plots)
+                self._emitCVShowResult(self._avg_result(results))
                 self._relaxtive_index_to_matplot(*last_result)
             except ValueError as e:
                 msg = e.message
@@ -115,14 +120,14 @@ class ModelCV(Thread, QObject):
     def light_controller_handle_start(self):
         self.light_controller_handle = self.light_controller.start_coroutine()
 
-    def _decorateImg(self, img):
-        """" mark the circle and size parameter """
-        # img = drawCoreCircle(img,*self.img_core_tag)
-        if self.plots:
-            img = duck_type_decorate(img, self.plots)
-        # elif self.result2Show:
-        #     img = self.decorateMethod(img, self.result2Show)
-        return img
+    # def _decorateImg(self, img):
+    #     """" mark the circle and size parameter """
+    #     # img = drawCoreCircle(img,*self.img_core_tag)
+    #     # if self.plots:
+    #     img = duck_type_decorate(img, self.plots)
+    #     # elif self.result2Show:
+    #     #     img = self.decorateMethod(img, self.result2Show)
+    #     return img
 
     def close(self):
         self.IS_RUNNING = False
@@ -161,12 +166,12 @@ class ModelCV(Thread, QObject):
         self.light = light
 
     def updateClassifyObject(self, obj='G652'):
-        self.classify = classifyObject(obj)
+        self.classify = self.classigy_method(obj)
         # self.eresults = False
         # self.result2Show = False
         # self.decorateMethod = decorateMethod(obj)
         # self.decorateMethod = decorateMethod(obj)
 
     def _relaxtive_index_to_matplot(self, core, img):
-        plots = output_axies_plot_to_matplot(core, img)
+        plots = self._output_axies_plot_to_matplot(core, img)
         self.emit_relative_index.emit(plots)
