@@ -206,7 +206,7 @@ class CapillaryClassify(MetaClassify):
 
         self.frame_core = config.FRAME_CORE
         self.draw_core_cross = draw_core_cross
-        self.emit_return_plot = PyTypeSignal()
+        # self.emit_return_plot = PyTypeSignal()
 
 
     def _difcore(self, img):

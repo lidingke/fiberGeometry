@@ -64,6 +64,9 @@ view应该采取QT designer来生成ui文件，然后用pyuic命令或脚本转�
 ```report```
 用以生成输出报告。
 
+```cap```
+毛细管测试是在通用的几何模块中改出来的，view中hide已有的控件，动态的添加其他的控件。
+
 ## IMG
 保存待测图片，这部分不上传到GitHub，其中的md文件夹保存markdown需要的图片，需要上传至GitHub。
 

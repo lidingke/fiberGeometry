@@ -19,7 +19,7 @@ from setting.config import PDF_PARAMETER, DB_PARAMETER
 from util.observer import PyTypeSignal
 from GUI.view.reporter import ReporterPdfs
 from PyQt4.QtCore import Qt, QRectF
-from PyQt4.QtGui import QPixmap, QImage, QGraphicsScene,QComboBox,QSpinBox
+from PyQt4.QtGui import QPixmap, QImage, QGraphicsScene
 import numpy as np
 from util.loadfile import WriteReadJson, WRpickle, load_pickle_nor_json
 from datetime import datetime
@@ -86,7 +86,7 @@ class CVViewModel(object):
         for move in moves:
             move.setEnabled(is_move)
 
-    def closeEvent(self, event,*args, **kwargs):
+    def closeEvent(self, event, *args, **kwargs):
         # if 'olddata' in SETTING().keys():
         #     self.olddata.save(SETTING()['olddata'])
         logger.info('get last save\n' + str(self.last_save))
@@ -94,7 +94,6 @@ class CVViewModel(object):
         self.olddata.save(self.last_save)
         self.emit_close_event.emit()
         super(CVViewModel, self).closeEvent(event)
-
 
     def updateCVShow(self, str_, ):
         if str_:
@@ -169,10 +168,8 @@ class CapCVViewModel(CVViewModel):
         PDF_PARAMETER.update(para)
         self.to_report(".", PDF_PARAMETER)
 
-    # def diff_range_connect(self):
-    #     self.plots
-
-
+        # def diff_range_connect(self):
+        #     self.plots
 
 
 class OPCVViewModel(CVViewModel):
@@ -252,6 +249,7 @@ def get_view(label):
         return type("View", (CapCVViewModel, CapCVForm), {})
     else:
         raise TypeError("no view label correct")
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

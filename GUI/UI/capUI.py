@@ -72,6 +72,9 @@ class Ui_Form(object):
         self.cap_diffrange.setProperty("value", 500)
         self.cap_diffrange.setObjectName(_fromUtf8("cap_diffrange"))
         self.gridLayout.addWidget(self.cap_diffrange, 5, 1, 1, 1)
+        self.label = QtGui.QLabel(Form)
+        self.label.setObjectName(_fromUtf8("label"))
+        self.gridLayout.addWidget(self.label, 5, 0, 1, 1)
         self.gridLayout_2.addLayout(self.gridLayout, 0, 0, 1, 1)
 
         self.retranslateUi(Form)
@@ -92,4 +95,5 @@ class Ui_Form(object):
         self.cap_operator.setText(_translate("Form", "037", None))
         self.label_cap_machine.setText(_translate("Form", "Machine:", None))
         self.cap_machine.setText(_translate("Form", "001", None))
+        self.label.setText(_translate("Form", "diff radius (pix)", None))
 
