@@ -19,7 +19,7 @@ from setting.config import PDF_PARAMETER, DB_PARAMETER
 from util.observer import PyTypeSignal
 from GUI.view.reporter import ReporterPdfs
 from PyQt4.QtCore import Qt, QRectF
-from PyQt4.QtGui import QPixmap, QImage, QGraphicsScene
+from PyQt4.QtGui import QPixmap, QImage, QGraphicsScene,QComboBox,QSpinBox
 import numpy as np
 from util.loadfile import WriteReadJson, WRpickle, load_pickle_nor_json
 from datetime import datetime
@@ -168,6 +168,11 @@ class CapCVViewModel(CVViewModel):
         para["cap_date"] = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
         PDF_PARAMETER.update(para)
         self.to_report(".", PDF_PARAMETER)
+
+    # def diff_range_connect(self):
+    #     self.plots
+
+
 
 
 class OPCVViewModel(CVViewModel):

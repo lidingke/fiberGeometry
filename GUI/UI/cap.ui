@@ -106,6 +106,22 @@
        </property>
       </widget>
      </item>
+     <item row="5" column="1">
+      <widget class="QSpinBox" name="cap_diffrange">
+       <property name="minimum">
+        <number>10</number>
+       </property>
+       <property name="maximum">
+        <number>972</number>
+       </property>
+       <property name="singleStep">
+        <number>10</number>
+       </property>
+       <property name="value">
+        <number>500</number>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
   </layout>

@@ -118,16 +118,18 @@ def duck_type_decorate_list(origin, methods):
             fun_name, args, kwargs = m
         else:
             # print m,len(m)
-            raise ValueError("methods parameter error {} {}",len(m),m)
+            raise ValueError("methods parameter error {} {}", len(m), m)
         fun = getattr(cv2, fun_name)
         fun(origin, *args, **kwargs)
     return origin
 
-def duck_type_decorate(origin,methods):
-    assert isinstance(methods,dict)
-    for k,v in methods.items():
-        duck_type_decorate_list(origin,v)
+
+def duck_type_decorate(origin, methods):
+    assert isinstance(methods, dict)
+    for k, v in methods.items():
+        duck_type_decorate_list(origin, v)
     return origin
+
 
 # def decorateMethod(obj):
 #     if obj in OCTAGON_FIBERS:
@@ -153,10 +155,30 @@ def duck_type_decorate(origin,methods):
 #     cv2.line(img, (x1, y1), (x2, y2), (255, 255, 255), 4)
 #     return img
 
+def draw_core_cross(core, diffrange, line=10, line_type=5):
+    x0, y0 = core
+    lists = []
+    x1, y1 = x0 + line, y0 + diffrange
+    x2, y2 = x0 - line, y0 + diffrange
+    _ = ("line", ((x1, y1), (x2, y2), (255, 255, 255), 4,), {'lineType': line_type})
+    lists.append(_)
+    x1, y1 = x0 + line, y0 - diffrange
+    x2, y2 = x0 - line, y0 - diffrange
+    _ = ("line", ((x1, y1), (x2, y2), (255, 255, 255), 4,), {'lineType': line_type})
+    lists.append(_)
+    x1, y1 = x0 + diffrange, y0 + line
+    x2, y2 = x0 + diffrange, y0 - line
+    _ = ("line", ((x1, y1), (x2, y2), (255, 255, 255), 4,), {'lineType': line_type})
+    lists.append(_)
+    x1, y1 = x0 - diffrange, y0 + line
+    x2, y2 = x0 - diffrange, y0 - line
+    _ = ("line", ((x1, y1), (x2, y2), (255, 255, 255), 4,), {'lineType': line_type})
+    lists.append(_)
+    return lists
+
 
 def core_cross_flag(core, minRange, maxRange):
     lists = []
-     # =
     _ = ("circle", (core, int(minRange), (0, 0, 0), 4), {'lineType': 5})
     lists.append(_)
     x0, y0 = core

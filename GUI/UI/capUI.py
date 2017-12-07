@@ -65,6 +65,13 @@ class Ui_Form(object):
         self.cap_machine = QtGui.QLineEdit(Form)
         self.cap_machine.setObjectName(_fromUtf8("cap_machine"))
         self.gridLayout.addWidget(self.cap_machine, 4, 1, 1, 1)
+        self.cap_diffrange = QtGui.QSpinBox(Form)
+        self.cap_diffrange.setMinimum(10)
+        self.cap_diffrange.setMaximum(972)
+        self.cap_diffrange.setSingleStep(10)
+        self.cap_diffrange.setProperty("value", 500)
+        self.cap_diffrange.setObjectName(_fromUtf8("cap_diffrange"))
+        self.gridLayout.addWidget(self.cap_diffrange, 5, 1, 1, 1)
         self.gridLayout_2.addLayout(self.gridLayout, 0, 0, 1, 1)
 
         self.retranslateUi(Form)

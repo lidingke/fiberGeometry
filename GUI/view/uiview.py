@@ -22,9 +22,6 @@ class CapCVForm(QtGui.QMainWindow, cvUI):
         # print self.extendwidget.__dict__,cap_ui.__dict__
 
 
-
-
-
 class AutomaticCVForm(QtGui.QMainWindow, cvUI):
     def __init__(self, ):
         QtGui.QWidget.__init__(self)

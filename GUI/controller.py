@@ -10,6 +10,7 @@ from PyQt4.QtGui import QPushButton
 
 from GUI.view.monkey import MonkeyServer
 from pattern.classify import classifyObject
+from pattern.draw import draw_core_cross
 from setting import config
 from GUI.model.stateconf import state_number
 from SDK.modbus.modbusmerge import AbsModeBusModeByAxis, MODENABLE_SIGNAL
@@ -270,6 +271,20 @@ class CapCVController(ManualCVController):
     def __init__(self,*args,**kwargs):
         super(CapCVController, self).__init__(*args,**kwargs)
         self._modelcv.classify = classifyObject("capillary")
+        self._view.cap_diffrange.valueChanged.connect(
+            self._modelcv.classify.change_diff_radius
+        )
+
+        def model_plot_change(self,value):
+            # print self,value
+            core = self.classify.frame_core
+            plots = draw_core_cross(core, value)
+            self.plots.update({"diff_range": plots})
+        setattr(self._modelcv,"model_plot_change",partial(model_plot_change,self._modelcv))
+        self._view.cap_diffrange.valueChanged.connect(
+            self._modelcv.model_plot_change
+        )
+
 
 
 def get_controller(label):

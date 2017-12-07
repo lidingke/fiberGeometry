@@ -2,8 +2,9 @@ import cv2
 import numpy as np
 import time
 
+from setting import config
 from setting.config import OCTAGON_FIBERS, CAPILLARY, THIN_FIBERS
-from pattern.draw import show_temp_imgs
+from pattern.draw import show_temp_imgs, core_cross_flag, draw_core_cross
 from pattern.sharp import corner_noise
 from setting.parameter import ClassifyParameter
 from picker import PickHullCircle, PickPoly, PickCircle
@@ -11,13 +12,15 @@ from pattern.coverimg import outer_fill, cover_core_by_circle, inner_fill_by_val
     out_fill_by_white_circle
 from pattern.edge import ExtractEdge
 import logging
+
+from util.observer import PyTypeSignal
 from util.timing import timing
 
 logger = logging.getLogger(__name__)
 
 
 class MetaClassify(object):
-    def __init__(self, fiberType,):
+    def __init__(self, fiberType, ):
         super(MetaClassify, self).__init__()
         self.result = {}
         self.sets = ClassifyParameter()
@@ -58,7 +61,7 @@ class MetaClassify(object):
 
     # @timing
     @show_temp_imgs
-    def find(self, img,amp_ratio=False):
+    def find(self, img, amp_ratio=False):
         diff_core_img, diff_clad_img = self._difcore(img)
         edge_core_img = self._edge_core(diff_core_img, self.core_thr_hight)
         edge_clad_img = self._edge_clad(diff_clad_img, self.clad_thr_hight)
@@ -95,7 +98,7 @@ class MetaClassify(object):
         corecore = core['corePoint'][0]
         output_result = {}
         output_result['showResult'] = self.get_show_result(core, clad, amp)
-        output_result['plots'] = {"core":core['plots'] ,"clad": clad['plots']}
+        output_result['plots'] = {"core": core['plots'], "clad": clad['plots']}
         output_result["corecore"] = corecore
         return output_result
 
@@ -201,6 +204,11 @@ class CapillaryClassify(MetaClassify):
         self._outer_fill = outer_fill
         self._inner_fill_by_value = inner_fill_by_value
 
+        self.frame_core = config.FRAME_CORE
+        self.draw_core_cross = draw_core_cross
+        self.emit_return_plot = PyTypeSignal()
+
+
     def _difcore(self, img):
         coreimg = img[::, ::, 0].copy()
         coreimg = self._outer_fill(coreimg, radius=self.diff_radius)
@@ -209,6 +217,14 @@ class CapillaryClassify(MetaClassify):
         cladimg = self._inner_fill_by_value(cladimg, radius=self.diff_radius)
 
         return coreimg, cladimg
+
+    def change_diff_radius(self, value):
+        self.diff_radius = value
+    #
+    #     def return_plot_fun(value):
+    #         plots = draw_core_cross(self.frame_core,self.diff_radius)
+    #         self.emit_return_plot.emit(plots)
+    #     self.cap_diffrange.valueChanged.connect(return_plot_fun)
 
     def get_show_result(self, core, clad, ampRatio):
         # print "get cap result"
@@ -226,6 +242,13 @@ class CapillaryClassify(MetaClassify):
         coreRness = abs(core["longAxisLen"] - core["shortAxisLen"]) / coreRadius
         cladRness = abs(clad["longAxisLen"] - clad["shortAxisLen"]) / cladRadius
         return (concentricity, coreMidRadius, cladMidRadius, coreRness, cladRness)
+
+    def convent_result(self, core, clad, amp):
+        output_result = super(CapillaryClassify, self).convent_result(core, clad, amp)
+        output_result['plots'].update({
+            "diff_range": self.draw_core_cross(self.frame_core, self.diff_radius)
+        })
+        return output_result
 
 
 class ThinClassify(MetaClassify):
