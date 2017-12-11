@@ -40,9 +40,7 @@ class IsCircle(object):
     """docstring for IsCircle"""
     def __init__(self, ):
         super(IsCircle, self).__init__()
-        # self.arg = arg
 
-    # def run(self):
     def run(self, area, center, contours):
         # pdb.set_trace()
         forMaxNumber = []
@@ -92,7 +90,7 @@ class cv2CircleIndex(object):
         else:
             circleIndex = 0
 
-        return (area , circleIndex)
+        return (area, circleIndex)
 
 def circleIndex(x):
     area = cv2.contourArea(x)
@@ -125,14 +123,3 @@ class XlsWrite(object):
         print 'write xls ', self.filename
         self.workbook.save(self.filename)
 
-
-# import time
-# def timing(fun):
-#     def wrapper(*args, **kwargs):
-#         start = time.time()
-#         result = fun(*args, **kwargs)
-#         # pdb.set_trace()
-#         runtime = time.time()-start
-#         print fun.func_name, 'consume: ', runtime, 's'
-#         return result
-#     return wrapper

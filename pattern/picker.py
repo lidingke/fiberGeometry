@@ -65,13 +65,11 @@ class PickHullCircle(MetaPick):
 
     # @timing
     def run(self, img, blurindex=False):
-        # t1 = time.time()
-        if blurindex:
-            img = cv2.medianBlur(img, blurindex)
-        else:
-            img = self._adaptive_filter_by_median(img)
-        # t2 = time.time()
-        # print "{:0.3f}".format(t2-t1)
+        # if blurindex:
+        #     img = cv2.medianBlur(img, blurindex)
+        # else:
+        #     img = self._adaptive_filter_by_median(img)
+        img = cv2.medianBlur(img, 11)
         # img = out_fill_by_white_circle(img, [1296, 972], 1200)
 
         # cv2.imshow("img", img[::4, ::4])
@@ -90,9 +88,6 @@ class PickHullCircle(MetaPick):
         ellipse = cv2.fitEllipse(hull)
         result = self._getResult(ellipse)
         result['ellipese'] = ellipse
-
-        # cv2.ellipse(tempPlots, ellipse, (0,255,255))
-        # result['plot'] = tempPlots
         result['contour'] = mergedpoints
         return result
 
@@ -104,17 +99,16 @@ class PickPoly(MetaPick):
 
     def run(self, img, blurindex=False):
 
-        if blurindex:
-            img = cv2.medianBlur(img, blurindex)
-        else:
-            img = self._adaptive_filter_by_median(img)
+        # if blurindex:
+        #     img = cv2.medianBlur(img, blurindex)
+        # else:
+        #     img = self._adaptive_filter_by_median(img)
+        img = cv2.medianBlur(img, 11)
 
         # blurindex = 37
         # cv2.imshow("{}".format(blurindex), img[::4, ::4])
         # cv2.waitKey()
         contours, hierarchys = cv2.findContours(img.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
-        # cv2.imshow("1",img[::4,::4])
-        # cv2.waitKey()
         logger.info('get contours len %s' % len(contours))
         if len(contours) == 0:
             raise NoneContoursError("contours = 0")

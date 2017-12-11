@@ -26,8 +26,6 @@ from util.threadlock import WorkerQueue
 
 logger = logging.getLogger(__name__)
 
-# QSpinBox
-
 class StateMixin(object):
 
     def _start_state(self):

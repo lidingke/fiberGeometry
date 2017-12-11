@@ -4,7 +4,7 @@ import time
 
 from setting import config
 from setting.config import OCTAGON_FIBERS, CAPILLARY, THIN_FIBERS
-from pattern.draw import show_temp_imgs, core_cross_flag, draw_core_cross
+from pattern.draw import show_temp_imgs,  draw_core_cross
 from pattern.sharp import corner_noise
 from setting.parameter import ClassifyParameter
 from picker import PickHullCircle, PickPoly, PickCircle

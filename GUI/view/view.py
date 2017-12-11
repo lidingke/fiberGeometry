@@ -4,8 +4,6 @@ import threading
 from functools import partial
 
 import sys
-from PyQt4.QtCore import QObject
-from PyQt4.QtCore import pyqtSignal
 from PyQt4.QtGui import QApplication
 from PyQt4.QtGui import QWidget
 
@@ -18,10 +16,10 @@ from setting.config import PDF_PARAMETER, DB_PARAMETER
 
 from util.observer import PyTypeSignal
 from GUI.view.reporter import ReporterPdfs
-from PyQt4.QtCore import Qt, QRectF
+
 from PyQt4.QtGui import QPixmap, QImage, QGraphicsScene
-import numpy as np
-from util.loadfile import WriteReadJson, WRpickle, load_pickle_nor_json
+
+from util.loadfile import WriteReadJson, load_pickle_nor_json
 from datetime import datetime
 import logging
 

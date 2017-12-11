@@ -63,18 +63,8 @@ class GetImage(object):
             pass
 
 
-# def yieldImg(dirs):
-#     if dirs[-4:].find('.') > 0:
-#         raise ValueError('input para is not a folder, a file')
-#     dirlist = os.listdir(dirs)
-#     dirlist = [dirs + x for x in dirlist]
-#     for dir_ in dirlist:
-#         img = GetImage().get(dir_)
-#         yield  img
 
 def randomImg(dirs):
-    # if dirs[-4:].find('.') > 0:
-    #     raise ValueError('input para is not a folder, a file')
     if dirs[-1] != '/':
         dirs = dirs + '/'
     dirlist = os.listdir(dirs)
@@ -88,7 +78,6 @@ def randomBin(dirs):
         raise ValueError('input para is not a folder, a file')
     dirlist = os.listdir(dirs)
     dirlist = [dirs + x for x in dirlist]
-    # dir_ = "tests\\data\\imgforsharp{}.bin".format(i)
     img = np.fromfile(choice(dirlist), dtype="uint8")
     img.shape = (1944, 2592)
     return img

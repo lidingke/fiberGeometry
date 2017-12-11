@@ -170,5 +170,20 @@
       20,
       3
     ]
+  },
+  "GI50":{
+    "coreRange": [
+      20,
+      140
+    ],
+    "cladRange": [
+      500,
+      900
+    ],
+    "thresholdSize": {
+      "core": 20,
+      "clad": 60
+    },
+    "ampPixSize": 0.0919
   }
 }
