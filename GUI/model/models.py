@@ -1,3 +1,5 @@
+import pdb
+
 from sqlalchemy import ForeignKey
 from sqlalchemy import create_engine
 from setting.parameter import SQLALCHEMY_DIR
@@ -19,7 +21,7 @@ class Account(Base):
     password = Column(String(200), nullable=False)
     datetime = Column(DateTime, default=datetime.now())
     parameter_id = relationship("Result", backref = "account", cascade="all")
-
+    # ac = Account(name = "lidingke", password = "123456")
 
 
 class Result(Base):
@@ -36,8 +38,6 @@ class Result(Base):
     fiberLength = Column(String(50), nullable=False)
     producer = Column(String(50), nullable=False)
     fiberNo = Column(String(50), nullable=False)
-    # worker = Column(String(50), nullable=False)
-
     worker = Column(String(50), ForeignKey('account.name'))
 
     datetime = Column(DateTime, default=datetime.now())
@@ -49,13 +49,39 @@ DBSession = sessionmaker(bind=engine)
 logger.warning("creat db by "+SQLALCHEMY_DIR)
 
 def session_add_by_account(result):
+    logger.warning("error session_add_by_account")
     session = DBSession()
     is_exit = session.query(Account).filter(Account.name == result['worker']).count()
+    # pdb.set_trace()
     if 0 == is_exit:
         logger.warning('user not exit '+ result['worker'] +' '+str(is_exit))
-        return
+        ac = Account(name=result['worker'],password='123456')
+        session.add(ac)
+        session.commit()
     logger.warning('add data to db by user '+result['worker'])
     results = {k:v for k,v in result.items() if k in Result.EXIT_KEYS}
     session.add(Result(**results))
     session.commit()
     session.close()
+
+class AttResult(Base):
+    __tablename__ = 'attresult'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    fibertype = Column(String(50), nullable=False)
+    fiberLength = Column(String(50), nullable=False)
+    producer = Column(String(50), nullable=False)
+    fiberNo = Column(String(50), nullable=False)
+    worker = Column(String(50), ForeignKey('account.name'))
+    datetime = Column(DateTime, default=datetime.now())
+    columns = relationship("AttColumns", backref = "attresult", cascade="all")
+
+
+class AttColumns(Base):
+    __tablename__ = 'attcolumns'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    resultlist = Column(String(50), ForeignKey('attresult.id'))
+
+    wavelength = Column(Float, nullable=False)
+    value = Column(Float, nullable=False)
+

@@ -31,7 +31,7 @@ class Frame(QMainWindow, Ui_Form,QObject):
         self.red_Slider.setPageStep(50)#鼠标点击步长
 
         self.green_Slider.setMinimum(0)
-        self.green_Slider.setMaximum(2000)
+        self.green_Slider.setMaximum(3000)
         self.green_Slider.setPageStep(50)
 
         self.connect(self.red_Slider, QtCore.SIGNAL('valueChanged(int)'),

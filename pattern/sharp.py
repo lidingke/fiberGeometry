@@ -20,10 +20,7 @@ class IsSharp(object):
         # self.SET = SETTING()
 
     def isSharp(self, img):
-        # better than isSharpCanny
-        # midsize = self._midSize(sizecoup = img.shape)
-        # img = img[midsize[0]:midsize[1],midsize[2]:midsize[3]]
-        # img = cv2.GaussianBlur(img,(5, 5 ),0)
+
         img = self.erodeDilate(img)
         # self.Show.show("sharp", img[::4,::4])
         sumGrad2 = (img ** 2).sum()
@@ -88,11 +85,14 @@ class IsSharp(object):
         x11 = int(sizecoup[1] * (1 - rato))
         return (x00, x01, x10, x11)
 
+    @timing
     def issharpla(self, img):
 
         if isinstance(img, list):
             img = img[0]
         if isinstance(img, np.ndarray):
+            img = img[::4,::4].copy()
+            img = cv2.medianBlur(img, 7)
             sharp = cv2.Laplacian(img, cv2.CV_64F).var()
             logger.debug("laplacian sharp:{}".format(img.shape))
             return sharp
@@ -110,7 +110,7 @@ class IsSharp(object):
             # byimg = cv2.bitwise_not(byimg)
             # sum_ = byimg.sum()
             sharp = cv2.Laplacian(img, cv2.CV_64F).var()
-            imgfiltered = cv2.medianBlur(img, 21, )
+            imgfiltered = cv2.medianBlur(img, 7, )
             roundsharp = cv2.Laplacian(imgfiltered, cv2.CV_64F).var()
             # sharp = sharp / sum_
             print 'all_sharp', roundsharp, sharp
@@ -121,6 +121,12 @@ class IsSharp(object):
 
 
 def is_sharp_laplacian(img):
+    assert isinstance(img, np.ndarray)
+    sharp = cv2.Laplacian(img, cv2.CV_64F).var()
+    logger.debug("laplacian sharp:{}".format(img.shape))
+    return sharp
+
+def is_sharp_laplacian_tiny(img):
     assert isinstance(img, np.ndarray)
     sharp = cv2.Laplacian(img, cv2.CV_64F).var()
     logger.debug("laplacian sharp:{}".format(img.shape))

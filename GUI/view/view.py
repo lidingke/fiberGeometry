@@ -36,6 +36,7 @@ class CVViewModel(object):
         self.beginTestCV.clicked.connect(
             partial(self.beginTestCV.setEnabled, False))
         self.reporterCV.clicked.connect(self.writeReporterCV)
+        self.updateCVData.clicked.connect(self.write_result_to_db)
         self.insert_widgets()
         self.emit_fibertype_in_items = PyTypeSignal()
         self.last_save = {}
@@ -115,6 +116,19 @@ class CVViewModel(object):
         # print 'get in session'
         DB_PARAMETER.update(para)
         # dbpara = SETTING()['dbpara']
+
+    def write_result_to_db(self):
+        para = {}
+        para['fiberLength'] = str(self.fiberLength.text())
+        para['worker'] = str(self.Worker.text())
+        para['producer'] = str(self.factory.text())
+        para['fiberNo'] = str(self.fiberNumber.text())
+        para['fibertype'] = str(self.fiberTypeBox.currentText())
+        para['fibertypeindex'] = str(self.fiberTypeBox.currentIndex())
+        para['date'] = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
+        para['title'] = para['fibertype'] + '光纤端面几何测试报告'
+        DB_PARAMETER.update(para)
+
         session_add_by_account(DB_PARAMETER)
 
 

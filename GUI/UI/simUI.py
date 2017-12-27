@@ -104,7 +104,7 @@ class Ui_Form(object):
         self.change_green.setObjectName(_fromUtf8("change_green"))
         self.gridLayout.addWidget(self.change_green, 1, 0, 1, 1)
         self.green_Slider = QtGui.QSlider(self.groupBox_4)
-        self.green_Slider.setMaximum(1000)
+        self.green_Slider.setMaximum(3000)
         self.green_Slider.setOrientation(QtCore.Qt.Horizontal)
         self.green_Slider.setObjectName(_fromUtf8("green_Slider"))
         self.gridLayout.addWidget(self.green_Slider, 1, 1, 1, 1)

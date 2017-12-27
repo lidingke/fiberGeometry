@@ -62,6 +62,20 @@
             </property>
            </widget>
           </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="labelCV">
+            <property name="text">
+             <string>几何：</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QPushButton" name="lightControl">
+            <property name="text">
+             <string>光照调节</string>
+            </property>
+           </widget>
+          </item>
           <item row="2" column="1">
            <widget class="QPushButton" name="beginTestCV">
             <property name="minimumSize">
@@ -75,17 +89,10 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
-           <widget class="QLabel" name="labelCV">
+          <item row="5" column="1">
+           <widget class="QPushButton" name="updateCVData">
             <property name="text">
-             <string>几何：</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QPushButton" name="lightControl">
-            <property name="text">
-             <string>光照调节</string>
+             <string>保存数据库</string>
             </property>
            </widget>
           </item>

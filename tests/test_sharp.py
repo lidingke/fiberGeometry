@@ -1,10 +1,10 @@
 from setting.parameter import SETTING
 SETTING().update_by_key('test', 'octagon')
-from pattern.sharp import IsSharp
+from pattern.sharp import IsSharp, is_sharp_laplacian
 from pattern.edge import ExtractEdge, EdgeFuncs
 import numpy as np
 # from util.getimg import
-from util.getimg import getImage, randomImg, yieldImg
+from util.getimg import getImage, randomImg, yieldImg, list_img_by_file
 import cv2
 import os
 import sys
@@ -20,14 +20,12 @@ def _getFilterImg(core, origin, minRange, maxRange):
     core = [core, 1]
     cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(maxRange), (0, 0, 0), -1)
     cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
-    # origin = cv2.bitwise_not(origin)
     img = cv2.bitwise_or(img, origin)
     return img
 
 
 def n_test_new_sharp():
     imgs = randomImg("IMG\\midoctagon\\sharp\\")
-    # cv2.GaussianBlur()
     for img in imgs:
         if len(img.shape) > 2:
             img = img[:,:,2]
@@ -59,8 +57,6 @@ def n_test_new_sharp():
             areaSum = areaSum + area
         sharp = areaSum//len(contours)
         print 'get sharp', sharp
-        # cv2.imshow('img', img[::4,::4])
-        # cv2.waitKey()
 
 
 def n_test_sharp_canny():
@@ -87,12 +83,9 @@ def n_test_sharp_Laplacian():
     imgs = yieldImg("IMG\\midoctagon\\sharp\\")
     sharpobject = IsSharp()
     for img in imgs:
-        # pdb.set_trace()
         if len(img.shape) > 2:
             img = img[:,:,2]
-        # cv2.imshow('img', img[::4,::4])
-        # cv2.waitKey()
-        # img = cv2.Canny(img, 120, 150)
+
         img = sharpobject._doSharpRange(img)
         sharp = cv2.Laplacian(img, cv2.CV_64F).var()
 
@@ -103,15 +96,7 @@ def test_sharp_Laplacian():
 
     sharpobject = IsSharp()
     for img in imgs:
-        if len(img.shape) > 2:
-            img = img[:,:,0]
-        # cv2.imshow('img', img[::4,::4])
-        # cv2.waitKey()
-        # img = cv2.Canny(img, 120, 150)
-        # img = sharpobject._doSharpRange(img)
-
-        sharp = cv2.Laplacian(img, cv2.CV_64F).var()
-
+        sharp = sharpobject.issharpla(img)
         print 'get sharp', sharp
 
 
@@ -145,16 +130,14 @@ def test_sharp_laplacian_all_list(dir_):
     dosharp = IsSharp().issharplaall
     imgs = (getImage(dir_+d) for d in dirs)
     sharps = [dosharp(img[::,::,0]) for img in imgs]
-    sums = [sharp[0] for sharp in sharps]
-    sharps = [sharp[1] for sharp in sharps]
-    # sums = [dosharp(img[::,::,0])[1] for img in imgs]
-    # print sharps
+    origin = [sharp[0] for sharp in sharps]
+    roundsharp = [sharp[1] for sharp in sharps]
     # fig = plt.figure(len(dir_))
     # ax1 = fig.add_subplot(111)
-    # ax1.plot(range(len(sharps)),sharps)
+    # ax1.plot(range(len(sharps)),roundsharp)
     # ax2 = ax1.twinx()
-    # ax2.plot(range(len(sharps)),sums)
-    # ax2.title(dir_)
+    # ax2.plot(range(len(sharps)),origin,color='red')
+    # # ax2.title(dir_)
     # plt.show()
 
 @pytest.mark.parametrize(
@@ -176,10 +159,21 @@ def ttest_sharp_fft_list(dir_):
 
 
 if __name__ == "__main__":
-    img = getImage("IMG\\204001.bmp")[0]
-    thresh, byimg = cv2.Canny(img, 170, 1, cv2.THRESH_BINARY)
-    pdb.set_trace()
-    sum_ = byimg.sum()
-    sharp = cv2.Laplacian(img, cv2.CV_64F).var()
-    sharp = sharp / sum_
-    print sharp
+    dirs = "IMG\\sharp\\nonnoise2"
+
+    for i in list_img_by_file(dirs):
+        tiny = i[::4,::4].copy()
+        tiny = cv2.medianBlur(tiny,5)
+        print(is_sharp_laplacian(tiny))
+
+    sums = [sharp[0] for sharp in sharps]
+    sharps = [sharp[1] for sharp in sharps]
+    # sums = [dosharp(img[::,::,0])[1] for img in imgs]
+    # print sharps
+    # fig = plt.figure(len(dir_))
+    # ax1 = fig.add_subplot(111)
+    # ax1.plot(range(len(sharps)),sharps)
+    # ax2 = ax1.twinx()
+    # ax2.plot(range(len(sharps)),sums)
+    # ax2.title(dir_)
+    # plt.show()
