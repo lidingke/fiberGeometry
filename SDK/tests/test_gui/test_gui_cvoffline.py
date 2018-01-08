@@ -12,7 +12,7 @@ def test_gui_cv():
 
     from setting import config
     from setting.configs.tool import update_config_by_name, SAFE_ARGVS
-    from tests.test_gui.testcases import knife_into_cv
+    from .testcases import knife_into_cv
 
     project_name = "cvoffline"
     config_info = update_config_by_name(project_name)

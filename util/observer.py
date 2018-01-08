@@ -13,6 +13,7 @@ class QTypeSignal(QObject):
     def run(self):
         self.sendmsg.emit('send')  # 发信号
 
+
 class QTypeSlot(object):
     def get(self, msg):  # 槽对象里的槽函数
         print 'Qslot get msg', msg
@@ -53,7 +54,6 @@ if __name__ == "__main__":
     send.run()
 
     # >>get msg send
-
 
     send = QTypeSignal()
     slot = QTypeSlot()

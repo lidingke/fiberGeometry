@@ -6,7 +6,7 @@ from pattern.getimg import getImage
 import pdb
 
 
-def getFilterImg( core, origin, minRange, maxRange):
+def getFilterImg(core, origin, minRange, maxRange):
     img = np.ones(origin.shape, dtype='uint8') * 255
     core = [core, 1]
     cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(maxRange), (0, 0, 0), -1)
@@ -17,10 +17,11 @@ def getFilterImg( core, origin, minRange, maxRange):
     img = cv2.bitwise_or(img, origin)
     return img
 
-def getCircleMeans(circle,origin):
+
+def getCircleMeans(circle, origin):
     if len(circle) != 2:
         raise ValueError('circle length error')
-    core , radius = circle
+    core, radius = circle
     x, y = core
     x, y = int(x), int(y)
     getpoint = []
@@ -29,33 +30,34 @@ def getCircleMeans(circle,origin):
     getpoint.append((x + radius, y - radius))
     getpoint.append((x - radius, y - radius))
 
-    def getPoints(point, range_ = 3):
+    def getPoints(point, range_=3):
         points = []
         for i in range(0, range_):
             for j in range(0, range_):
-                points.append((point[0] + i,point[1] + j))
+                points.append((point[0] + i, point[1] + j))
         return points
+
     getedPoints = []
     for _ in getpoint:
         getedPoints.extend(getPoints(_))
     means = []
-    for x , y in getedPoints:
-        _ = origin[x,y]
+    for x, y in getedPoints:
+        _ = origin[x, y]
         means.append(_)
         print 'indexs', x, y, _
     means.sort()
     means = means[1:-1]
-    return int(sum(means)/len(means))
+    return int(sum(means) / len(means))
 
-def getFilterColorImg( core, origin, minRange, maxRange):
+
+def getFilterColorImg(core, origin, minRange, maxRange):
     outerCircle = [core, maxRange]
     innerCircle = [core, minRange]
     corex, corey = core
     outer = getCircleMeans(outerCircle, origin)
     inner = getCircleMeans(innerCircle, origin)
     img = np.ones(origin.shape, dtype='uint8') * outer
-    cv2.circle(img, corex, corey, maxRange, (0,0,0), -1)
-
+    cv2.circle(img, corex, corey, maxRange, (0, 0, 0), -1)
 
 
 def differCore():

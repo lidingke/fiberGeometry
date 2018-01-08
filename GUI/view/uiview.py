@@ -12,6 +12,7 @@ class ManualCVForm(QtGui.QMainWindow, cvUI):
         QtGui.QWidget.__init__(self)
         self.setupUi(self)
 
+
 class CapCVForm(QtGui.QMainWindow, cvUI):
     def __init__(self, ):
         QtGui.QWidget.__init__(self)

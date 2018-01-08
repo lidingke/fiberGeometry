@@ -38,11 +38,11 @@ class SpectrumCanvas(FigureCanvas):
         FigureCanvas.updateGeometry(self)
 
     def initial_figure(self):
-        with open('SDK\\OceanOpticsScript\\demodata.csv','r') as f:
-            csv_reader = csv.reader(f,)
-            xs,ys = [],[]
+        with open('SDK\\OceanOpticsScript\\demodata.csv', 'r') as f:
+            csv_reader = csv.reader(f, )
+            xs, ys = [], []
             # pdb.set_trace()
-            for x,y in csv_reader:
+            for x, y in csv_reader:
                 xs.append(float(x.strip()))
                 ys.append(float(y.strip()))
             # print xs,ys
@@ -60,6 +60,6 @@ class SpectrumCanvas(FigureCanvas):
         self.axes.set_title(u"待测光纤光谱", fontproperties='SimHei')
         self.axes.set_xlabel(u"波长(nm)", fontproperties='SimHei')
         self.axes.set_ylabel(u"强度(counts)", fontproperties='SimHei')
-        self.axes.set_xlim(900,1700)
-        self.axes.set_ylim(0,65000)
+        self.axes.set_xlim(900, 1700)
+        self.axes.set_ylim(0, 65000)
         self.draw()

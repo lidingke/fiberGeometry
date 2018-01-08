@@ -39,7 +39,7 @@ class ZombieSingleton(MetaDict):
             obj = super(ZombieSingleton, cls).__new__(cls, *args, **kwargs)
             # obj = object.__new__()
             obj.__name__ = 'ZombieSigleton_' + file_name
-            cls._instance[file_name] =  obj
+            cls._instance[file_name] = obj
             # print 'obj',id(obj)
             return obj
 
@@ -72,11 +72,10 @@ class ZombieSingleton(MetaDict):
         # super(ZombieSigleton, self).__exit__(self, exc_type, exc_val, exc_tb)
 
     @classmethod
-    def _del(cls,name):
-        print 'pop', cls,name
+    def _del(cls, name):
+        print 'pop', cls, name
         cls._instance.pop(name)
-        print 'pop cls instance',cls._instance
-
+        print 'pop cls instance', cls._instance
 
 
 class CallableItem(object):

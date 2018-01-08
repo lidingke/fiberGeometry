@@ -63,7 +63,6 @@ class GetImage(object):
             pass
 
 
-
 def randomImg(dirs):
     if dirs[-1] != '/':
         dirs = dirs + '/'
@@ -114,12 +113,14 @@ def random_img_by_file(dirs):
     img = get_img_by_dir(choice(dirlist), colour='colour')
     return img
 
+
 def list_img_by_file(dirs):
     assert os.path.isdir(dirs)
     files = os.listdir(dirs)
     dirlist = [os.path.join(dirs, x) for x in files]
     imgs = [get_img_by_dir(path, colour='colour') for path in dirlist]
     return imgs
+
 
 def yield_img_by_file(dirs):
     assert os.path.isdir(dirs)
@@ -128,6 +129,7 @@ def yield_img_by_file(dirs):
     for path in dirlist:
         img = get_img_by_dir(path, colour='colour')
         yield img
+
 
 """" interface """
 

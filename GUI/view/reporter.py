@@ -1,9 +1,9 @@
-#coding:utf-8
+# coding:utf-8
 import re
 from datetime import datetime as dt
 from PyQt4.QtGui import QWidget, QFileDialog, QMessageBox
 from GUI.model.report.pdf import writePdfabs
-import  logging
+import logging
 
 logger = logging.getLogger(__name__)
 

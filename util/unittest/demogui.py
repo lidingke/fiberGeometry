@@ -7,7 +7,7 @@ from PyQt4.QtGui import QApplication
 from PyQt4.QtGui import  QHBoxLayout, QLineEdit, QLabel, QPushButton
 from PyQt4.QtGui import QWidget
 
-from tests.test_gui.testcases import knife_into_demo
+from SDK.tests.test_gui.testcases import knife_into_demo
 
 
 class View(QWidget):

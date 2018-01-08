@@ -131,7 +131,6 @@ class CVViewModel(object):
 
         session_add_by_account(DB_PARAMETER)
 
-
         # def getCoreLight(self, coreLight, cladLight):
         #     if hasattr(self, "coreLight"):
         #         self.coreLight.setText(coreLight)

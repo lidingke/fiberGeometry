@@ -12,6 +12,7 @@ from PyQt4.QtCore import QObject, pyqtSignal
 
 from SDK.modbus.autolight import LightController
 from setting import config
+
 # from setting.config import PDF_PARAMETER, DB_PARAMETER, DYNAMIC_CAMERA, FRAME_CORE, RAISE_EXCEPTION, IMG_ZOOM
 
 if config.DYNAMIC_CAMERA:

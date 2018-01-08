@@ -5,7 +5,6 @@ import os
 
 para = ('randomImg', 'IMG/midoctagon/img/')
 
-
 if __name__ == "__main__":
     print sys.argv
     assert len(sys.argv) == 3
@@ -15,4 +14,3 @@ if __name__ == "__main__":
     sock.connect(("127.0.0.1", 9880))
     cmd = 'change:' + json.dumps(para) + '\n\r'
     sock.sendall(cmd)
-

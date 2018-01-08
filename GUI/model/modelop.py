@@ -43,7 +43,6 @@ class ModelOP():
     def get_after(self):
         self.wave, self.after = self.get_data()
 
-
     # def get_power(self):
     def calculate_power(self, length):
         wave, before, after, zeros = \
@@ -61,6 +60,6 @@ class ModelOP():
         self.emit_spect.emit(wave, powers)
         return (wave, powers)
 
-    def set_spect_args(self, integral_times_ms, integral_steps,smoothness):
-        integral_times_us = integral_times_ms*1000
-        self.spect_args = (integral_times_us, integral_steps,smoothness)
+    def set_spect_args(self, integral_times_ms, integral_steps, smoothness):
+        integral_times_us = integral_times_ms * 1000
+        self.spect_args = (integral_times_us, integral_steps, smoothness)

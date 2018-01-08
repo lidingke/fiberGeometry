@@ -24,6 +24,7 @@ def inner_fill_by_value(img, core=core_point, radius=0, value=0):
             img[x00:x01, y].fill(value)
     return img
 
+
 def inner_fill_auto_value(img, core=core_point, radius=0, value=0):
     """ (x-x0)^2 +(y-y0)^2 = R^2 ±(R - (y-y0)^2)**0.5 +x0"""
     if not radius: return img
@@ -71,19 +72,18 @@ def outer_fill(img, core=core_point, radius=0, value=0):
 
     return img
 
-def out_fill_by_white_circle(img,core,radius):
+
+def out_fill_by_white_circle(img, core, radius):
     img = img.copy()
     shape = img.shape
-    merge_img = np.ones(shape,dtype="uint8")*255
-    cv2.circle(merge_img,tuple(core),radius,0,-1)
+    merge_img = np.ones(shape, dtype="uint8") * 255
+    cv2.circle(merge_img, tuple(core), radius, 0, -1)
     # cv2.imshow("m",merge_img[::4,::4])
     # cv2.waitKey()
-    img = cv2.bitwise_or(img,merge_img)
+    img = cv2.bitwise_or(img, merge_img)
     # cv2.imshow("c",img[::4,::4])
     # cv2.waitKey()
     return img
-
-
 
 
 def cover_core_by_circle(core, img, radius, value):
@@ -109,7 +109,7 @@ def cover_core_by_circle_auto_value(core, img, radius, value=False):
     return img
 
 
-def sliceImg(img, core, slice, split = 1):
+def sliceImg(img, core, slice, split=1):
     corex, corey = core
     maxRange = slice
     begin = (corex - maxRange, corey - maxRange)

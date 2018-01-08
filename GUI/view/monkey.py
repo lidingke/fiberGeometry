@@ -4,7 +4,9 @@ import threading
 
 from gevent.server import StreamServer
 import logging
+
 logger = logging.getLogger(__name__)
+
 
 # this handler will be run for each incoming connection in a dedicated greenlet
 def echo(socket, address):
@@ -22,17 +24,15 @@ def echo(socket, address):
             break
         result = eval(line.strip())
         print(result)
-        echoline = str(result).encode('utf-8')+b'\r\n'
+        echoline = str(result).encode('utf-8') + b'\r\n'
         socket.sendall(echoline)
         print("echoed %r" % echoline)
     rfileobj.close()
 
 
-
-
 class MonkeyServer(threading.Thread):
 
-    def __init__(self,instance):
+    def __init__(self, instance):
         super(MonkeyServer, self).__init__()
         self.instance = instance
         self.RUNNING = True
@@ -42,7 +42,6 @@ class MonkeyServer(threading.Thread):
         # if cmd == 'test':
         #     self.instance._view._disableCVButton(False)
         #     logger.error("test")
-
 
     def readline(self, socket, address):
         logger.info('New connection from %s:%s' % address)
@@ -63,7 +62,6 @@ class MonkeyServer(threading.Thread):
         self.server = StreamServer(('0.0.0.0', 16000), self.readline)
         logger.error('Starting monkey server on port 16000')
         self.server.serve_forever()
-
 
     def close(self):
         self.RUNNING = False

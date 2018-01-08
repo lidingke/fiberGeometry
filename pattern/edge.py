@@ -4,10 +4,13 @@ import numpy as np
 
 from setting.parameter import SETTING
 import logging
+
 logger = logging.getLogger(__name__)
+
 
 class ExtractEdge(object):
     """docstring for ExtractEdge"""
+
     def __init__(self, ):
         super(ExtractEdge, self).__init__()
         # self.SET = SETTING()
@@ -29,12 +32,11 @@ class ExtractEdge(object):
     #         cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, blockSize, Constant)
     #     return img
 
-
-    def directThr(self, img, hight = 175):
+    def directThr(self, img, hight=175):
         if len(img.shape) > 2:
             img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         # hight = 40
-        logger.info('thr%s'%hight)
+        logger.info('thr%s' % hight)
         size, img = cv2.threshold(img, hight, 255, cv2.THRESH_BINARY)
         # cv2.imshow("thr",img[::4,::4])
         # cv2.waitKey()
@@ -43,47 +45,47 @@ class ExtractEdge(object):
 
 class EdgeFuncs(object):
     """docstring for CloseOpen"""
+
     def __init__(self, ):
         super(EdgeFuncs, self).__init__()
         # self.arg = arg
 
-    def open(self, img, time_ = 4, kernelLen = 3, ):
-        kernel = cv2.getStructuringElement(cv2.MORPH_RECT,(kernelLen, kernelLen))
-        for x in range(1,time_):
-            img = cv2.erode(img,kernel)
-            img = cv2.dilate(img,kernel)
+    def open(self, img, time_=4, kernelLen=3, ):
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (kernelLen, kernelLen))
+        for x in range(1, time_):
+            img = cv2.erode(img, kernel)
+            img = cv2.dilate(img, kernel)
         return img
 
-    def close(self, img, time_ = 4, kernelLen = 3):
-        kernel = cv2.getStructuringElement(cv2.MORPH_RECT,(kernelLen, kernelLen))
-        for x in range(1,time_):
-            img = cv2.dilate(img,kernel)
-            img = cv2.erode(img,kernel)
+    def close(self, img, time_=4, kernelLen=3):
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (kernelLen, kernelLen))
+        for x in range(1, time_):
+            img = cv2.dilate(img, kernel)
+            img = cv2.erode(img, kernel)
         return img
 
-    def topHat(self,img, kernelLen = 3):
-        img = cv2.absdiff(img,self.open(img, kernelLen))
+    def topHat(self, img, kernelLen=3):
+        img = cv2.absdiff(img, self.open(img, kernelLen))
         img = cv2.bitwise_not(img)
         return img
 
-    def blackHat(self,img, kernelLen = 3):
-        img = cv2.absdiff(self.close(img, kernelLen ), img)
+    def blackHat(self, img, kernelLen=3):
+        img = cv2.absdiff(self.close(img, kernelLen), img)
         img = cv2.bitwise_not(img)
         return img
 
-    def multiDilate(self, img, time_ = 4, kernelLen = 3):
-        kernel = cv2.getStructuringElement(cv2.MORPH_RECT,(kernelLen, kernelLen))
-        for x in range(1,time_):
-            img = cv2.dilate(img,kernel)
+    def multiDilate(self, img, time_=4, kernelLen=3):
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (kernelLen, kernelLen))
+        for x in range(1, time_):
+            img = cv2.dilate(img, kernel)
         return img
 
-    def multiErode(self, img, time_ = 4, kernelLen = 3):
-        kernel = cv2.getStructuringElement(cv2.MORPH_RECT,(kernelLen, kernelLen))
-        for x in range(1,time_):
-            img = cv2.erode(img,kernel)
+    def multiErode(self, img, time_=4, kernelLen=3):
+        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (kernelLen, kernelLen))
+        for x in range(1, time_):
+            img = cv2.erode(img, kernel)
         return img
-
 
 
 def adaptivefilter(img):
-    return cv2.adaptiveBilateralFilter(img,11,20)
+    return cv2.adaptiveBilateralFilter(img, 11, 20)

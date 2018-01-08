@@ -6,7 +6,7 @@ from PyQt4.QtGui import QApplication
 import logging
 logging.basicConfig(format="%(asctime)s-%(name)s-%(levelname)s-%(message)s",
                     level=logging.ERROR)
-from tests.test_gui.testcases import knife_into_demo
+from .testcases import knife_into_demo
 from util.unittest.demogui import View
 
 

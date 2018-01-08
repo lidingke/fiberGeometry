@@ -10,6 +10,7 @@
     "20/130(oc)",
     "20/400(oc)"
   ],
+  "SPEC_ONLINE": false,
   "SIMULATOR_IMG_SERVER_COFIG": [
     "127.0.0.1",
     9883,

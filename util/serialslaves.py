@@ -30,7 +30,6 @@ class SlaveByDelay(threading.Thread):
         self.RUNNING = False
         self.ser.close()
 
-
 # class Slave(threading.Thread):
 #     def __init__(self, port='com14'):
 #         super(Slave, self).__init__()
@@ -50,4 +49,3 @@ class SlaveByDelay(threading.Thread):
 #     def close(self):
 #         self.RUNNING = False
 #         self.ser.close()
-

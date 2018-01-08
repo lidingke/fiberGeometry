@@ -1,25 +1,26 @@
-from __future__ import  division
-import  collections
+from __future__ import division
+import collections
 import numpy as np
+
 
 class MedianFilter(object):
 
-    def __init__(self,maxlen=5):
+    def __init__(self, maxlen=5):
         super(MedianFilter, self).__init__()
         self.store = collections.deque(maxlen=maxlen)
         self.dequelen = maxlen
 
-    def append(self,data):
+    def append(self, data):
         self.store.append(data)
 
-    def get(self, digits = 2):
+    def get(self, digits=2):
         getlist = list(self.store)
         getlist.sort()
         get = getlist[1:-1]
         lenget = len(get)
-        if lenget < self.dequelen-2:
+        if lenget < self.dequelen - 2:
             return self.store[-1]
-        sumResult = sum(get)/lenget
+        sumResult = sum(get) / lenget
         if round:
             return round(sumResult, digits)
         else:
@@ -32,6 +33,7 @@ def AvgResult(result):
         que = que[1:-1]
         result = sum(que) / que.shape
         return result[0]
+
     if not isinstance(result, list):
         raise ValueError('get avg result error', type(result))
     result = np.array(result)
@@ -42,9 +44,10 @@ def AvgResult(result):
         newResult.append(_)
     return newResult
 
+
 class MedianLimitFilter(object):
 
-    def __init__(self,maxlen=5):
+    def __init__(self, maxlen=5):
         super(MedianLimitFilter, self).__init__()
         self.oldforrepet = 0
         self.oldbeforcounter = 0.0001
@@ -57,7 +60,7 @@ class MedianLimitFilter(object):
             return data
 
     def _medianMean(self, datas):
-        if isinstance(datas,collections.deque):
+        if isinstance(datas, collections.deque):
             datas = list(datas)
 
         if len(datas) < 5:
@@ -65,7 +68,7 @@ class MedianLimitFilter(object):
         datas.sort()
         datas = datas[1:-1]
         # pdb.set_trace()
-        result = sum(datas)/len(datas)
+        result = sum(datas) / len(datas)
         return result
 
     def run(self, data):

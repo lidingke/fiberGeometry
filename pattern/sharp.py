@@ -91,7 +91,7 @@ class IsSharp(object):
         if isinstance(img, list):
             img = img[0]
         if isinstance(img, np.ndarray):
-            img = img[::4,::4].copy()
+            img = img[::4, ::4].copy()
             img = cv2.medianBlur(img, 7)
             sharp = cv2.Laplacian(img, cv2.CV_64F).var()
             logger.debug("laplacian sharp:{}".format(img.shape))
@@ -126,16 +126,18 @@ def is_sharp_laplacian(img):
     logger.debug("laplacian sharp:{}".format(img.shape))
     return sharp
 
+
 def is_sharp_laplacian_tiny(img):
     assert isinstance(img, np.ndarray)
     sharp = cv2.Laplacian(img, cv2.CV_64F).var()
     logger.debug("laplacian sharp:{}".format(img.shape))
     return sharp
 
+
 def is_sharp_canny(img):
     assert isinstance(img, np.ndarray)
     # size, imgb = cv2.threshold(img, 175, 255, cv2.THRESH_BINARY)
-    sharp = cv2.Canny(img,15,15).sum()/255
+    sharp = cv2.Canny(img, 15, 15).sum() / 255
     return sharp
 
 
@@ -185,6 +187,7 @@ def black_points(img, slice_point=300, dimension=0):
     imgs = [cv2.bitwise_not(corner).sum() // 255 for corner in corners]
     return int(sum(imgs) // 255)
 
+
 def black_points_not(img, slice_point=300, dimension=0):
     """ avoid implicit conversion from np.int64 to int. """
     img = img[::, ::, dimension].copy()
@@ -198,7 +201,7 @@ def black_points_not(img, slice_point=300, dimension=0):
     # cornersbitwise =
     imgs = [corner.sum() for corner in corners]
 
-    return int(sum(imgs) // 255)#4*slice_point**2 -
+    return int(sum(imgs) // 255)  # 4*slice_point**2 -
 
 
 def take_white_light_in_core(img, slice_point=800, dimension=2):

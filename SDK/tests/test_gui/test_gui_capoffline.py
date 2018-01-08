@@ -12,7 +12,7 @@ def test_gui_cap():
 
     from setting import config
     from setting.configs.tool import update_config_by_name
-    from tests.test_gui.testcases import knife_into_cap
+    from .testcases import knife_into_cap
     from util.unittest.demogui import View
 
     project_name = "capoffline"

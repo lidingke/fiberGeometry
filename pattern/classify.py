@@ -4,7 +4,7 @@ import time
 
 from setting import config
 from setting.config import OCTAGON_FIBERS, CAPILLARY, THIN_FIBERS
-from pattern.draw import show_temp_imgs,  draw_core_cross
+from pattern.draw import show_temp_imgs, draw_core_cross
 from pattern.sharp import corner_noise
 from setting.parameter import ClassifyParameter
 from picker import PickHullCircle, PickPoly, PickCircle
@@ -208,7 +208,6 @@ class CapillaryClassify(MetaClassify):
         self.draw_core_cross = draw_core_cross
         # self.emit_return_plot = PyTypeSignal()
 
-
     def _difcore(self, img):
         coreimg = img[::, ::, 0].copy()
         coreimg = self._outer_fill(coreimg, radius=self.diff_radius)
@@ -220,6 +219,7 @@ class CapillaryClassify(MetaClassify):
 
     def change_diff_radius(self, value):
         self.diff_radius = value
+
     #
     #     def return_plot_fun(value):
     #         plots = draw_core_cross(self.frame_core,self.diff_radius)

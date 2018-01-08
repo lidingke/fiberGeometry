@@ -5,7 +5,7 @@ import time
 
 from pattern.adaptivefilter import adaptive_filter_by_median
 from pattern.coverimg import out_fill_by_white_circle
-from pattern.exception import  NoneContoursError, PolyPointsError
+from pattern.exception import NoneContoursError, PolyPointsError
 import logging
 
 from util.timing import timing
@@ -130,6 +130,7 @@ class PickPoly(MetaPick):
         """ellipse format: ((x,y),(s,l),0)"""
         plots = []
         epsilon = 100
+
         # img = img.copy()
         def dynamic_approx_poly(epsilon):
             for i in range(20):
@@ -153,12 +154,11 @@ class PickPoly(MetaPick):
             plot_kwarg = {"lineType": 10}
             plot = ("circle", plot_arg, plot_kwarg)
             plots.append(plot)
-            plot_arg = ((x, y), 5, (255, 255, 255),-1)
+            plot_arg = ((x, y), 5, (255, 255, 255), -1)
             plot_kwarg = {"lineType": 10}
             plot = ("circle", plot_arg, plot_kwarg)
             plots.append(plot)
         return ellipse, plots
-
 
 # class PickOctagon(object):
 #     def __init__(self):

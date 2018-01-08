@@ -2,12 +2,14 @@ import os
 import pdb
 import re
 import shutil
+
 IGNORE_RULE_STARTS = (".idea", "IMG", '.git',
-                      '.cache', "tests","dist","build","VSProject")
+                      '.cache', "tests", "dist", "build", "VSProject")
 IGNORE_RULE_ENDS = (".pyc", ".pdf")
 fulls = (("tests", "data"), ("SDK", "MindPyScript"), ("SDK", "OceanOpticsScript"))
 IGNORE_RULE_FULLS = {".".join(f) for f in fulls}
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 def relative_full_path(root):
     full_paths = []
@@ -58,7 +60,7 @@ if __name__ == '__main__':
     paths = relative_full_path(".")
     for p in paths:
         print p
-    direction = "G:\\cvcx2_0"
+    direction = "G:\\cvcx3_0"
     copy_to_path(paths, direction)
 
 # pdb.set_trace()

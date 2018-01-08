@@ -1,4 +1,4 @@
-#coding:utf-8
+# coding:utf-8
 # embedding_in_qt4.py --- Simple Qt4 application embedding matplotlib canvases
 #
 # Copyright (C) 2005 Florent Rougon#               2006 Darren Dale
@@ -28,11 +28,10 @@ class RefractCanvas(FigureCanvas):
     """Ultimately, this is a QWidget (as well as a FigureCanvasAgg, etc.)."""
 
     def __init__(self, parent=None, width=4, height=3, dpi=100):
-        self.fig = Figure(figsize=(width, height), dpi=dpi, facecolor = 'none')
+        self.fig = Figure(figsize=(width, height), dpi=dpi, facecolor='none')
         self.axes = self.fig.add_subplot(111)
         # self.fig.subplots_adjust(left=0.1, bottom=0.1, right=0.9, top=1)
         # fig.tight_layout(True)
-
 
         self.axes_twinx = self.axes.twinx()
         self.initial_figure()
@@ -50,15 +49,10 @@ class RefractCanvas(FigureCanvas):
         self.axes.set_facecolor('none')
         self.axes.set_title(u"折射率剖面模拟器", fontproperties='SimHei')
 
-    def update_figure(self, x, h,y,v):
+    def update_figure(self, x, h, y, v):
         self.axes.cla()
-        self.axes.plot(x,h,'y')
-        self.axes_twinx.plot(y,v,'r')
+        self.axes.plot(x, h, 'y')
+        self.axes_twinx.plot(y, v, 'r')
         self.axes.set_facecolor('none')
         self.axes.set_title(u"折射率剖面模拟器", fontproperties='SimHei')
         self.draw()
-
-
-
-
-
