@@ -7,11 +7,13 @@ import sys
 from PyQt4.QtGui import QApplication
 from PyQt4.QtGui import QWidget
 
+from GUI.model.datahand import update_cv_data, update_op_data
 from GUI.model.models import session_add_by_account
 from GUI.view.spectcanvas import SpectrumCanvas
 from GUI.view.uiview import ManualCVForm, AutomaticCVForm, OPCVForm, CapCVForm
 from GUI.view.refractcanvas import RefractCanvas
 from GUI.model.report.pdf import write_txt
+from setting import config
 from setting.config import PDF_PARAMETER, DB_PARAMETER
 
 from util.observer import PyTypeSignal
@@ -36,7 +38,12 @@ class CVViewModel(object):
         self.beginTestCV.clicked.connect(
             partial(self.beginTestCV.setEnabled, False))
         self.reporterCV.clicked.connect(self.writeReporterCV)
-        self.updateCVData.clicked.connect(self.write_result_to_db)
+        self.updateCVData.clicked.connect(self.write_cv_result_to_db)
+        # if hasattr(self,"updateOPData"):
+        # self.updateOPData.clicked.connect(self.write_cv_result_to_db)
+
+        self.updata_CV_method = update_cv_data
+        self.db_parameters,self.pdf_parameters = config.DB_PARAMETER,config.PDF_PARAMETER
         self.insert_widgets()
         self.emit_fibertype_in_items = PyTypeSignal()
         self.last_save = {}
@@ -110,14 +117,15 @@ class CVViewModel(object):
         para['fibertypeindex'] = str(self.fiberTypeBox.currentIndex())
         para['date'] = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
         para['title'] = para['fibertype'] + '光纤端面几何测试报告'
-        PDF_PARAMETER.update(para)
+        self.pdf_parameters.update(para)
+        # PDF_PARAMETER.update(para)
         self.last_save.update(para)
         self.to_report(self)
         # print 'get in session'
-        DB_PARAMETER.update(para)
+        self.db_parameters.update(para)
         # dbpara = SETTING()['dbpara']
 
-    def write_result_to_db(self):
+    def write_cv_result_to_db(self):
         para = {}
         para['fiberLength'] = str(self.fiberLength.text())
         para['worker'] = str(self.Worker.text())
@@ -126,16 +134,18 @@ class CVViewModel(object):
         para['fibertype'] = str(self.fiberTypeBox.currentText())
         para['fibertypeindex'] = str(self.fiberTypeBox.currentIndex())
         para['date'] = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
-        para['title'] = para['fibertype'] + '光纤端面几何测试报告'
-        DB_PARAMETER.update(para)
+        para['sharpindex'] = float(self.dynamicSharp.text())
+        self.db_parameters.update(para)
 
-        session_add_by_account(DB_PARAMETER)
+        # session_add_by_account(DB_PARAMETER)
+        self.updata_CV_method(self.db_parameters)
 
         # def getCoreLight(self, coreLight, cladLight):
         #     if hasattr(self, "coreLight"):
         #         self.coreLight.setText(coreLight)
         #     if hasattr(self, "cladLight"):
         #         self.cladLight.setText(cladLight)
+
 
     def relative_index_show(self, plots):
         self.relative_index_canvas.update_figure(*plots)
@@ -176,8 +186,9 @@ class CapCVViewModel(CVViewModel):
         para["cap_operator"] = unicode(self.cap_operator.text())
         para["cap_machine"] = unicode(self.cap_machine.text())
         para["cap_date"] = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
-        PDF_PARAMETER.update(para)
-        self.to_report(".", PDF_PARAMETER)
+        self.pdf_parameters.update(para)
+        # PDF_PARAMETER.update(para)
+        self.to_report(".", self.pdf_parameters)
 
         # def diff_range_connect(self):
         #     self.plots
@@ -186,6 +197,10 @@ class CapCVViewModel(CVViewModel):
 class OPCVViewModel(CVViewModel):
     def __init__(self):
         super(OPCVViewModel, self).__init__()
+
+        self.updateOPData.clicked.connect(self.write_op_result_to_db)
+
+        self.updata_OP_method = update_op_data
         # pdb.set_trace()
         # self.mainLayout.addWidget(self.opplot)
 
@@ -196,6 +211,18 @@ class OPCVViewModel(CVViewModel):
         self.graphicsLayout.addWidget(self.relative_index_canvas)
 
 
+    def write_op_result_to_db(self):
+        para = {}
+        para['fiberLength'] = str(self.fiberLength.text())
+        para['worker'] = str(self.Worker.text())
+        para['producer'] = str(self.factory.text())
+        para['fiberNo'] = str(self.fiberNumber.text())
+        para['fibertype'] = str(self.fiberTypeBox.currentText())
+        para['fibertypeindex'] = str(self.fiberTypeBox.currentIndex())
+        para['date'] = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
+        para['sharpindex'] = float(self.dynamicSharp.text())
+        self.db_parameters.update(para)
+        self.updata_OP_method(self.db_parameters)
 # class AutomaticCV(object):
 #     fathers = (CVViewModel, AutomaticCVForm)
 #

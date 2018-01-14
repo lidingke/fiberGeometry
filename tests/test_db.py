@@ -1,6 +1,8 @@
-#coding:utf-8
-
+# coding:utf-8
+from GUI.model.datahand import read_show_from_db
+from SDK.oceanopticstest import SpectrographLikeTest
 from setting import parameter
+
 REAL_SQLALCHEMY_DIR = parameter.SQLALCHEMY_DIR
 parameter.SQLALCHEMY_DIR = "sqlite:///tests/data/test.db"
 from GUI.model.models import *
@@ -8,13 +10,16 @@ from sqlalchemy.orm import sessionmaker
 
 from sqlalchemy import ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DateTime, Float,Table
+from sqlalchemy import Column, Integer, String, DateTime, Float, Table
 from sqlalchemy.orm import relationship, backref
 from datetime import datetime
+
 TestBase = declarative_base()
 import logging
+
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
+
 
 class Father(TestBase):
     __tablename__ = 'father'
@@ -22,7 +27,7 @@ class Father(TestBase):
     name = Column(String(50), nullable=False)
     password = Column(String(200), nullable=False)
     datetime = Column(DateTime, default=datetime.now())
-    children = relationship("Children", backref = "father", cascade="all")
+    children = relationship("Children", backref="father", cascade="all")
 
 
 class Children(TestBase):
@@ -50,17 +55,15 @@ para['concentricity'] = 1
 para['sharpindex'] = 1
 
 
-class Test_db():
-
+class tTest_db():
     engine = create_engine(SQLALCHEMY_DIR)
     Session = sessionmaker(bind=engine)
     session = Session()
+
     def test_create_test(self):
         Base.metadata.create_all(self.engine)
 
-
     def test_session(self):
-
         b = Children(name='liuqi2')
         self.session.add(b)
         self.session.commit()
@@ -68,17 +71,18 @@ class Test_db():
         self.session.commit()
 
     def test_Account(self):
-        exit_ = self.session.query(Account).filter(Account.name=='3780').count()
+        exit_ = self.session.query(Account).filter(Account.name == '3780').count()
         if not exit_:
-            _ = Account(name='3780',password='123456')
+            _ = Account(name='3780', password='123456')
             self.session.add(_)
             self.session.commit()
 
     def test_dict_in(self):
         session_add_by_account(para)
 
+
 def ttest_create_real():
-    logger.info("REAL_SQLALCHEMY_DIR "+REAL_SQLALCHEMY_DIR)
+    logger.info("REAL_SQLALCHEMY_DIR " + REAL_SQLALCHEMY_DIR)
     engine = create_engine(REAL_SQLALCHEMY_DIR)
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
@@ -89,10 +93,19 @@ def ttest_create_real():
         session.add(_)
         session.commit()
 
+# def test_op_save_to_static():
+#     sl = SpectrographLikeTest()
+#     # next(sl)
+#     wave,data = sl.get_spectrograph()
+#     import pickle
+#     waves = pickle.dumps(wave)
+#     datas = pickle.dumps(data)
+#     pdb.set_trace()
+
+def test_get_for_db():
+    read_show_from_db()
+
 class tTest_session():
 
     def test_dict_in(self):
-
         session_add_by_account(para)
-
-

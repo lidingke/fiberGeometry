@@ -3,12 +3,14 @@ from threading import Thread
 import numpy as np
 from PyQt4.QtCore import QObject, pyqtSignal
 
+from setting import config
 from setting.parameter import SETTING
 from util.observer import PyTypeSignal
 
 # Set = SETTING()
 # setGet = Set.get('ifcamera', False)
 from setting.config import SPEC_ONLINE
+import pickle
 
 if SPEC_ONLINE:
     from SDK.oceanoptics import Spectrograph
@@ -22,6 +24,8 @@ class ModelOP():
         self.spect = Spectrograph()
         self.emit_spect = PyTypeSignal()
         self.spect_args = (500000, 1, 0)
+        self.pdfparameter = config.PDF_PARAMETER  # SETTING()['pdfpara']
+        self.dbparameter = config.DB_PARAMETER  # SETTING()['dbpara']
 
     def get_zero(self):
         wave, zero = self.spect.get_spectrograph(*self.spect_args)
@@ -31,8 +35,9 @@ class ModelOP():
     def get_data(self):
         wave, data = self.spect.get_spectrograph(*self.spect_args)
         if len(wave) == len(self.wave):
-            diff_zero = [z1 - z0 for z1, z0 in zip(data, self.zeros)]
-            return (wave, diff_zero)
+            powers = [z1 - z0 for z1, z0 in zip(data, self.zeros)]
+            self.pickle_data(wave, powers)
+            return (wave, powers)
         else:
             raise ValueError("wavelength unmatched")
 
@@ -59,6 +64,11 @@ class ModelOP():
 
         self.emit_spect.emit(wave, powers)
         return (wave, powers)
+
+    def pickle_data(self,waves,powers):
+
+        self.dbparameter['attwaves'] = pickle.dumps(waves)
+        self.dbparameter['attpowers'] = pickle.dumps(powers)
 
     def set_spect_args(self, integral_times_ms, integral_steps, smoothness):
         integral_times_us = integral_times_ms * 1000

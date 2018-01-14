@@ -4,7 +4,7 @@ from sqlalchemy import ForeignKey
 from sqlalchemy import create_engine
 from setting.parameter import SQLALCHEMY_DIR
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, DateTime, Float, Table
+from sqlalchemy import Column, Integer, String, DateTime, Float, Table, Text
 from sqlalchemy.orm import relationship, backref
 from datetime import datetime
 
@@ -72,9 +72,11 @@ class OPResult(Base):
     __tablename__ = 'opresults'
     id = Column(Integer, primary_key=True, autoincrement=True)
     # wavelength = Column(Float, nullable=False)
-    path = Column(String(50), nullable=False)
+    waves = Column(Text(1000),nullable=False)
+    powers = Column(Text(1000),nullable=False)
+
     opresult_id  = Column(Integer, ForeignKey('resultcontext.id'))
     opcontext = relationship("ResultContext", back_populates="opresult")
 
     def __repr__(self):
-        return "{}".format(self.path)
+        return "save:{},{}".format(len(self.waves),len(self.powers))

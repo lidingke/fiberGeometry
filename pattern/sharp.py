@@ -85,7 +85,7 @@ class IsSharp(object):
         x11 = int(sizecoup[1] * (1 - rato))
         return (x00, x01, x10, x11)
 
-    @timing
+    # @timing
     def issharpla(self, img):
 
         if isinstance(img, list):
