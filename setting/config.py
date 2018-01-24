@@ -20,6 +20,7 @@ PDF_PARAMETER = {}
 DB_PARAMETER = {}
 
 SAVED_VIEW_ITEMS = {}
+SQLALCHEMY_DIR = "sqlite:///setting/relation_result.db"
 
 """ camera configs"""
 DYNAMIC_CAMERA = True
@@ -43,3 +44,9 @@ THIN_FIBERS = ("200/220", "105/125")
 SPEC_ONLINE = True
 
 LOG_LEVEL = "ERROR"
+
+SPECT_CONTINUE = (
+    (0,50000),
+    (20,100000),
+    (30,200000),
+    (40,300000))

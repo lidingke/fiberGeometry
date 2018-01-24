@@ -10,7 +10,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-SQLALCHEMY_DIR = "sqlite:///setting/cv_result.db"
+SQLALCHEMY_DIR = "sqlite:///setting/relation_result.db"
 
 
 def singleton(class_):

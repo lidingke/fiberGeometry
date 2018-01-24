@@ -4,6 +4,6 @@
   "VIEW_LABEL": "OPCV",
   "DYNAMIC_CAMERA": false,
   "FOR_UNIT_TEST": true,
-  "SPEC_ONLINE": false,
+  "SPEC_ONLINE": true,
   "IMG_ZOOM" : 4
 }

@@ -25,7 +25,7 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(1846, 868)
+        MainWindow.resize(1846, 969)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout_2 = QtGui.QGridLayout(self.centralwidget)
@@ -50,9 +50,6 @@ class Ui_MainWindow(object):
         self.cvOperatorLayout.setObjectName(_fromUtf8("cvOperatorLayout"))
         self.operaLayout = QtGui.QGridLayout()
         self.operaLayout.setObjectName(_fromUtf8("operaLayout"))
-        self.labelCV = QtGui.QLabel(self.centralwidget)
-        self.labelCV.setObjectName(_fromUtf8("labelCV"))
-        self.operaLayout.addWidget(self.labelCV, 0, 1, 1, 1)
         self.reporterCV = QtGui.QPushButton(self.centralwidget)
         self.reporterCV.setEnabled(True)
         self.reporterCV.setObjectName(_fromUtf8("reporterCV"))
@@ -61,6 +58,9 @@ class Ui_MainWindow(object):
         self.beginTestCV.setMinimumSize(QtCore.QSize(50, 0))
         self.beginTestCV.setObjectName(_fromUtf8("beginTestCV"))
         self.operaLayout.addWidget(self.beginTestCV, 2, 1, 1, 1)
+        self.labelCV = QtGui.QLabel(self.centralwidget)
+        self.labelCV.setObjectName(_fromUtf8("labelCV"))
+        self.operaLayout.addWidget(self.labelCV, 0, 1, 1, 1)
         self.lightControl = QtGui.QPushButton(self.centralwidget)
         self.lightControl.setObjectName(_fromUtf8("lightControl"))
         self.operaLayout.addWidget(self.lightControl, 3, 1, 1, 1)
@@ -70,6 +70,9 @@ class Ui_MainWindow(object):
         self.updateOPData = QtGui.QPushButton(self.centralwidget)
         self.updateOPData.setObjectName(_fromUtf8("updateOPData"))
         self.operaLayout.addWidget(self.updateOPData, 6, 1, 1, 1)
+        self.raw_spect = QtGui.QPushButton(self.centralwidget)
+        self.raw_spect.setObjectName(_fromUtf8("raw_spect"))
+        self.operaLayout.addWidget(self.raw_spect, 7, 1, 1, 1)
         self.cvOperatorLayout.addLayout(self.operaLayout)
         self.resultShowCV = QtGui.QTextBrowser(self.centralwidget)
         self.resultShowCV.setMinimumSize(QtCore.QSize(200, 200))
@@ -185,12 +188,13 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "光纤几何衰减综合测试平台", None))
-        self.labelCV.setText(_translate("MainWindow", "几何：", None))
         self.reporterCV.setText(_translate("MainWindow", "输出报告", None))
         self.beginTestCV.setText(_translate("MainWindow", "开始测试", None))
+        self.labelCV.setText(_translate("MainWindow", "几何：", None))
         self.lightControl.setText(_translate("MainWindow", "光照调节", None))
         self.updateCVData.setText(_translate("MainWindow", "保存数据库(几何)", None))
         self.updateOPData.setText(_translate("MainWindow", "保存数据库(衰减)", None))
+        self.raw_spect.setText(_translate("MainWindow", "raw_spect", None))
         self.resultShowCV.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

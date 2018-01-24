@@ -38,7 +38,7 @@ class SpectrumCanvas(FigureCanvas):
         FigureCanvas.updateGeometry(self)
 
     def initial_figure(self):
-        with open('SDK\\OceanOpticsScript\\demodata.csv', 'r') as f:
+        with open('setting\\demodata.csv', 'r') as f:
             csv_reader = csv.reader(f, )
             xs, ys = [], []
             # pdb.set_trace()

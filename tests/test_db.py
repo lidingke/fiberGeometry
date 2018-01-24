@@ -1,5 +1,5 @@
 # coding:utf-8
-from GUI.model.datahand import read_show_from_db
+from GUI.model.datahand import read_show_from_db,read_xlsx_from_db
 from SDK.oceanopticstest import SpectrographLikeTest
 from setting import parameter
 
@@ -103,7 +103,7 @@ def ttest_create_real():
 #     pdb.set_trace()
 
 def test_get_for_db():
-    read_show_from_db()
+    read_xlsx_from_db()
 
 class tTest_session():
 

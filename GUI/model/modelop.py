@@ -41,9 +41,16 @@ class ModelOP():
         else:
             raise ValueError("wavelength unmatched")
 
+    def get_raw_spectograph_data(self):
+        wave, data = self.spect.get_spectrograph(*self.spect_args)
+        self.emit_spect.emit(wave, data)
+        # return (wave,data)
+
     def get_before(self):
         self.wave, self.before = self.get_data()
         self.emit_spect.emit(self.wave, self.before)
+
+    # def get_raw_spectro
 
     def get_after(self):
         self.wave, self.after = self.get_data()
@@ -54,18 +61,15 @@ class ModelOP():
             self.wave, self.before, self.after, self.zeros
         powers = []
         for x, y, z in zip(before, after, zeros):
-            if y < 0:
-                power = 0.0
-            else:
-                if y == 0.0:
-                    y = 0.0000000001
-                power = 10 * np.log10(x / y) / length
+            if y <= 0 or x <= 0 or x / y <= 0:
+                continue
+            power = 10 * np.log10(x / y) / length
             powers.append(power)
 
         self.emit_spect.emit(wave, powers)
         return (wave, powers)
 
-    def pickle_data(self,waves,powers):
+    def pickle_data(self, waves, powers):
 
         self.dbparameter['attwaves'] = pickle.dumps(waves)
         self.dbparameter['attpowers'] = pickle.dumps(powers)

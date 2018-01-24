@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1846</width>
-    <height>868</height>
+    <height>969</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -63,13 +63,6 @@
       </property>
       <item>
        <layout class="QGridLayout" name="operaLayout">
-        <item row="0" column="1">
-         <widget class="QLabel" name="labelCV">
-          <property name="text">
-           <string>几何：</string>
-          </property>
-         </widget>
-        </item>
         <item row="4" column="1">
          <widget class="QPushButton" name="reporterCV">
           <property name="enabled">
@@ -93,6 +86,13 @@
           </property>
          </widget>
         </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="labelCV">
+          <property name="text">
+           <string>几何：</string>
+          </property>
+         </widget>
+        </item>
         <item row="3" column="1">
          <widget class="QPushButton" name="lightControl">
           <property name="text">
@@ -111,6 +111,13 @@
          <widget class="QPushButton" name="updateOPData">
           <property name="text">
            <string>保存数据库(衰减)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1">
+         <widget class="QPushButton" name="raw_spect">
+          <property name="text">
+           <string>raw_spect</string>
           </property>
          </widget>
         </item>

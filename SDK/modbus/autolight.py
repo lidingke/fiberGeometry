@@ -72,7 +72,6 @@ class RightCurrent(object):
 
 class LightController(object):
     def __init__(self):
-
         self.SET = SETTING()
         self.mode = LEDMode(config.LED_PORT)
         self.emit_light_ready = PyTypeSignal()
@@ -86,6 +85,8 @@ class LightController(object):
         # except ValueError:
         #     self.saved_light_currents= {}
         self.light_current = self._get_light_current()
+
+        self.red_led_illumination = 100#[0:300]
 
         self.light_range = self.SET["light_range"]
 
@@ -119,7 +120,7 @@ class LightController(object):
         green = self.light_current["green"]
         red_ranges_min, red_ranges_max = self.light_range["red"]
         green_ranges_min, green_ranges_max = self.light_range["green"]
-        self.mode.set_current(c1st=red, c2st=0, c3st=green, savemode=True)
+        self.mode.set_current(c1st=red, c2st=self.red_led_illumination, c3st=green, savemode=True)
         self.red_right_current = RightCurrent(
             red, (red_ranges_min, red_ranges_max), "red")
         self.green_right_current = RightCurrent(
@@ -127,7 +128,7 @@ class LightController(object):
         for i in range(100):
             img = yield
             red, green, noise, white = self._get_right_current(img)
-            self.mode.set_current(c1st=red, c2st=0, c3st=green, savemode=True)
+            self.mode.set_current(c1st=red, c2st=self.red_led_illumination, c3st=green, savemode=True)
             self.light_current["red"] = int(red)
             self.light_current["green"] = int(green)
             # self.emit_dynamic_light.emit()
@@ -165,7 +166,7 @@ class LightController(object):
         logger.error('set to {}'.format(current))
         self.fiber_type = fiber_type
         self.mode.set_current(
-            c1st=current['red'], c2st=0, c3st=current['green'], savemode=True)
+            c1st=current['red'], c2st=self.red_led_illumination, c3st=current['green'], savemode=True)
 
 
 # class Pid(object):

@@ -88,7 +88,6 @@ class StateMixin(object):
 
 
 
-
     def state_all(self, number):
         # self.modbus_up_down(self.squence_number)
         # self.modbus.motor_up_down(str(self.sequence_number + 1))
@@ -134,6 +133,7 @@ class ModelOPControllerMixin(object):
     def _start_modelop(self):
         self._modelop = ModelOP()
         self._modelop.emit_spect.connect(self._view.opplot.update_figure)
+        self._view.raw_spect.clicked.connect(self._modelop.get_raw_spectograph_data)
         self._spect_args_connect()
 
     def _spect_args_connect(self):

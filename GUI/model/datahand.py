@@ -1,12 +1,16 @@
 import pickle
+
+import xlwt
 from sqlalchemy import Column, String, create_engine, Float, Integer
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-
+from setting.config import SQLALCHEMY_DIR
 from GUI.model.relationmodel import Account, ResultContext, CVResult, OPResult
+from util.pltplot import figure_plot
 
 Base = declarative_base()
-
+relation_engine = create_engine(SQLALCHEMY_DIR)
+RDBSession = sessionmaker(bind=relation_engine)
 
 class ResultSheet(Base):
     __tablename__ = 'result_sheet'
@@ -19,19 +23,18 @@ class ResultSheet(Base):
     concentricity = Column(Float())
 
 
-engine = create_engine("sqlite:///setting/cv_result.db")
-# conn = engine.connect()
-DBSession = sessionmaker(bind=engine)
+# engine = create_engine("sqlite:///setting/cv_result.db")
+# # conn = engine.connect()
+# DBSession = sessionmaker(bind=engine)
+#
+#
+# def session_add(result):
+#     session = DBSession()
+#     session.add(result)
+#     session.commit()
+#     session.close()
 
 
-def session_add(result):
-    session = DBSession()
-    session.add(result)
-    session.commit()
-    session.close()
-
-relation_engine = create_engine("sqlite:///setting/test_relation_result.db")
-RDBSession = sessionmaker(bind=relation_engine)
 
 def update_cv_data(result):
     #todo:default user
@@ -90,20 +93,29 @@ def update_op_data(result):
 
 import matplotlib.pyplot as plt
 
-def read_show_from_db(pk=3):
+def read_from_db(pk=None):
     session = RDBSession()
-    num = session.query(ResultContext).count()
-    # last = session.query(ResultContext).filter_by(id = nums)
-    result = session.query(OPResult).filter_by(opresult_id=num).one()
+    if None == pk:
+        pk = session.query(ResultContext).count()
+    result = session.query(OPResult).filter_by(opresult_id=pk).one()
     waves = result.waves
     waves = pickle.loads(waves)
     powers = result.powers
     powers = pickle.loads(powers)
-    fig = plt.figure(len(powers))
-    ax1 = fig.add_subplot(111)
-    ax1.plot(waves,powers)
-    # ax2 = ax1.twinx()
-    # ax2.plot(range(len(sharps)),origin,color='red')
-    # ax2.title(dir_)
-    plt.show()
-    # pass
+    return waves,powers
+
+
+def read_show_from_db(pk=None):
+    waves, powers = read_from_db(pk)
+    figure_plot(waves,powers)
+
+
+def read_xlsx_from_db(pk=None):
+    waves, powers = read_from_db(pk)
+    f = xlwt.Workbook()
+    sheet1 = f.add_sheet(u'sheet1', cell_overwrite_ok=True)
+    for i,w in enumerate(waves):
+        sheet1.write(i, 0, w)
+    for i,p in enumerate(powers):
+        sheet1.write(i, 1, p)
+    f.save("setting\\lastdata.xls")
