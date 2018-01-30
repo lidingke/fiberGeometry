@@ -4,6 +4,7 @@ import traceback
 from functools import partial
 
 import sys
+from time import sleep
 
 from PyQt4.QtGui import QLabel
 from PyQt4.QtGui import QPushButton
@@ -32,8 +33,7 @@ class StateMixin(object):
         self.state_number = state_number()
         self._worker = WorkerQueue()
         self.state_connect()
-        # QLabel.setText()
-        self._view.modbus_ui.stateText.setText("start")
+        self._view.modbus_ui.stateText.setText("start reboot motos")
         self._view.modbus_ui.next_state.setText("start")
 
 
@@ -46,55 +46,72 @@ class StateMixin(object):
         if hasattr(self._view, "next_state"):
             self._view.next_state.clicked.connect(state_change)
             print "next_state connect"
-        # move up button connection
 
 
     def context_transform_1(self):
-        # QPushButton.setText()
-        self._view.modbus_ui.stateText.setText("state 1")
+        self._view.modbus_ui.stateText.setText("state 1:input dark current")
+        self._modelop.get_zero()
+        self._view.modbus_ui.stateText.setText("state 1:geted dark current")
         self._view.modbus_ui.next_state.setText("next")
+        #motor 1down 2up 3up
 
 
     def context_transform_2(self):
         """"switch to PLAT2"""
-        self._view.modbus_ui.stateText.setText("state 2:input dark current")
+        self._view.modbus_ui.stateText.setText("state 2")
         self._modbus.platform_state = "PLAT2"
         # self._modelop.spect.new()
-        self._modelop.get_zero()
-        self._view.modbus_ui.stateText.setText("state 2:get dark current")
+        self._view.modbus_ui.stateText.setText("state 2")
         # self.platform_number = "2"
+        # motor 123
 
 
     def context_transform_3(self):
-        self._view.modbus_ui.stateText.setText("state 3:input init current")
-        self._modelop.get_before()
-        self._view.modbus_ui.stateText.setText("state 3:get init current")
+        self._view.modbus_ui.stateText.setText("state 3")
+
 
 
     def context_transform_4(self):
         """"switch to PLAT1"""
+        self._view.modbus_ui.stateText.setText("state 4:input init current")
+        self._modelop.get_before()
+        self._view.modbus_ui.stateText.setText("state 4:geted init current")
         self._modbus.platform_state = "PLAT1"
-        self._view.modbus_ui.stateText.setText("state 4")
-        self._view.modbus_ui.next_state.setText("end")
-
+        # self._view.modbus_ui.next_state.setText("end")
+        #motor 123
 
         # self.platform_number = "1"
 
     def context_transform_5(self):
+        # self._modelop.get_after()
+        # self._modelop.calculate_power(25)
+        self._view.modbus_ui.stateText.setText("state 5: to get end current")
+
+
+    def context_transform_6(self):
         self._modelop.get_after()
         self._modelop.calculate_power(25)
-        self._view.modbus_ui.stateText.setText("start")
+        self._view.modbus_ui.stateText.setText("state 6: geted end current")
+
+        self._view.modbus_ui.stateText.setText("start reboot motos")
         self._view.modbus_ui.next_state.setText("start")
+
 
 
 
     def state_all(self, number):
         # self.modbus_up_down(self.squence_number)
         # self.modbus.motor_up_down(str(self.sequence_number + 1))
-        push_operate_to_worker_queue = self._worker.append
-        push_operate_to_worker_queue(self._modbus.motor_up_down, str(number + 1))
         function_for_transform = getattr(self, "context_transform_" + str(number + 1))
         function_for_transform()
+        sleep(1)
+        print("state all",number)
+        if number == 5:
+            return
+        print("state all",number)
+        push_operate_to_worker_queue = self._worker.append
+        push_operate_to_worker_queue(self._modbus.motor_up_down, str(number + 1))
+
 
 
 
@@ -173,11 +190,7 @@ class ModelCVControllerMixin(object):
 
     def _changeFiberType(self):
         key = str(self._view.fiberTypeBox.currentText())
-
-        # newKey = SETTING().get('fiberType', 'error type')
-        # self._view.fiberTypeLabel.setText(newKey)
         self._modelcv.light_controller.update_fibertype(key)
-
         self._modelcv.updateClassifyObject(key)
 
     def _start_light_control(self):
@@ -188,11 +201,8 @@ class ModelCVControllerMixin(object):
 class OPCVController(ModelCVControllerMixin,
                             ModbusControllerMixin,
                             ModelOPControllerMixin,StateMixin):
-    """docstring for Controller"""
-
     def __init__(self, view):
         super(OPCVController, self).__init__()
-        # QObject.__init__(self)
         self._view = view
         self._start_modelcv()
         self._start_modelop()
@@ -204,7 +214,6 @@ class OPCVController(ModelCVControllerMixin,
         self._worker.start()
         self._modelcv.start()
         self._monkey.start()
-        # self._modelop.start()
         self._view.show()
 
     def close(self):

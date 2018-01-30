@@ -3,10 +3,8 @@ import logging
 import os
 from PyQt4 import QtGui, QtCore
 
-from PyQt4.QtCore import QRect, Qt, QRectF, pyqtSignal, QObject
-from PyQt4.QtGui import QWidget, QMainWindow, QPainter, QFont,\
-    QPixmap, QImage, QColor, QFileDialog, QMessageBox, QPalette,\
-    QGraphicsWidget, QGraphicsScene
+from PyQt4.QtCore import pyqtSignal, QObject
+from PyQt4.QtGui import QMainWindow
 
 from SDK.simulator.model import Model, Slave
 from SDK.simulator.simUI import Ui_Form
@@ -14,7 +12,6 @@ from SDK.simulator.simUI import Ui_Form
 
 class Frame(QMainWindow, Ui_Form,QObject):
     emit_dir = pyqtSignal(object)#信号槽
-
     emit_close=pyqtSignal()
     emit_Led=pyqtSignal(object,object,object)
     # emit_Led = pyqtSignal( object, object)

@@ -5,7 +5,7 @@ CONTEXT[3] = {"_platform_state": "PLAT2"}
 
 def state_number():
     while True:
-        for i in xrange(5):
+        for i in xrange(6):
             yield i
 
 

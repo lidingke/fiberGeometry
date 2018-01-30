@@ -1,6 +1,6 @@
 {
   "MODBUS_PORT": "com1",
-  "LED_PORT": "com1",
+  "LED_PORT": "com2",
   "VIEW_LABEL": "OPCV",
   "DYNAMIC_CAMERA": true,
   "FOR_UNIT_TEST": true,

@@ -1,11 +1,8 @@
 # coding:utf-8
 import collections
-import inspect
-import pdb
 import time
 import traceback
 from threading import Thread
-import copy
 import numpy as np
 import sys
 from PyQt4.QtCore import QObject, pyqtSignal
@@ -25,7 +22,6 @@ from pattern.classify import classifyObject
 from pattern.sharp import IsSharp
 from pattern.draw import output_axies_plot_to_matplot, duck_type_decorate, core_cross_flag
 from util.filter import AvgResult
-from pattern.coverimg import sliceImg
 
 import logging
 
@@ -113,8 +109,6 @@ class ModelCV(Thread, QObject):
                 logger.error("calc error {}".format(msg))
                 logger.error("thread state - {}".format(self.IS_RUNNING))
                 self.resultShowCV.emit(msg)
-                # except Exception as e:
-                #     raise e
 
         Thread(target=_calcImg, args=(self,)).start()
 
@@ -168,10 +162,6 @@ class ModelCV(Thread, QObject):
 
     def updateClassifyObject(self, obj='G652'):
         self.classify = self.classigy_method(obj)
-        # self.eresults = False
-        # self.result2Show = False
-        # self.decorateMethod = decorateMethod(obj)
-        # self.decorateMethod = decorateMethod(obj)
 
     def _relaxtive_index_to_matplot(self, core, img):
         plots = self._output_axies_plot_to_matplot(core, img)
