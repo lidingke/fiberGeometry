@@ -10,8 +10,8 @@ static PyObject * get_spectrum(PyObject *self, PyObject *args)
 	double *wavelengths = NULL;
 	double *spectrum = NULL;
 	int intergralTimesus = 0;
-	int boxcarWidth = 0;
 	int scansToAverage = 0;
+	int boxcarWidth = 0;
 	int stride = sizeof(double);
 	if (!PyArg_ParseTuple(args, "iii", &intergralTimesus,&scansToAverage,&boxcarWidth))
 	{
@@ -29,8 +29,9 @@ static PyObject * get_spectrum(PyObject *self, PyObject *args)
 	setScansToAverage(scansToAverage);
 	setBoxcarWidth(boxcarWidth);
 	setStrobe(true); // open led
+	Py_BEGIN_ALLOW_THREADS
 	flag = getSpectrum(&wavelengths, &spectrum, &number);
-
+	Py_END_ALLOW_THREADS
 	if (!flag)
 	{
 		PyErr_Format(PyExc_ValueError, "getSpectrum fail");

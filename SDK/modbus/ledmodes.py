@@ -18,9 +18,9 @@ crc16 = crcmod.predefined.mkCrcFun('modbus')
 def set_current_cmd(c1st=1, c2st=1, c3st=1, savemode=False):
     """ex:01 10 00 01 00 04 08 00 00 4B B9
      01 10 <2bytes 1st led> <2bytes 2st led> <2bytes 3st led> <save mode FF FF == save><crc>"""
-    # todo: c3st [0:300]
-    if c3st > 300:
-        raise ValueError("LED over current")
+    # todo: c2st [0:300]
+    # if c2st > 300:
+    #     raise ValueError("LED over current")
     hpack = partial(struct.pack, '>H')
     values = "".join([hpack(i) for i in (c1st, c2st, c3st)])
     cmd = '\x01\x10\x00\x01\x00\x04\x08' + values + SAVE_MODES[savemode]

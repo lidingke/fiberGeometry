@@ -27,6 +27,7 @@ from util.threadlock import WorkerQueue
 
 logger = logging.getLogger(__name__)
 
+
 class StateMixin(object):
 
     def _start_state(self):
@@ -35,7 +36,6 @@ class StateMixin(object):
         self.state_connect()
         self._view.modbus_ui.stateText.setText("start reboot motos")
         self._view.modbus_ui.next_state.setText("start")
-
 
     def state_connect(self):
         def state_change():
@@ -47,14 +47,12 @@ class StateMixin(object):
             self._view.next_state.clicked.connect(state_change)
             print "next_state connect"
 
-
     def context_transform_1(self):
         self._view.modbus_ui.stateText.setText("state 1:input dark current")
         self._modelop.get_zero()
         self._view.modbus_ui.stateText.setText("state 1:geted dark current")
         self._view.modbus_ui.next_state.setText("next")
-        #motor 1down 2up 3up
-
+        # motor 1down 2up 3up
 
     def context_transform_2(self):
         """"switch to PLAT2"""
@@ -65,11 +63,8 @@ class StateMixin(object):
         # self.platform_number = "2"
         # motor 123
 
-
     def context_transform_3(self):
         self._view.modbus_ui.stateText.setText("state 3")
-
-
 
     def context_transform_4(self):
         """"switch to PLAT1"""
@@ -78,7 +73,7 @@ class StateMixin(object):
         self._view.modbus_ui.stateText.setText("state 4:geted init current")
         self._modbus.platform_state = "PLAT1"
         # self._view.modbus_ui.next_state.setText("end")
-        #motor 123
+        # motor 123
 
         # self.platform_number = "1"
 
@@ -86,7 +81,6 @@ class StateMixin(object):
         # self._modelop.get_after()
         # self._modelop.calculate_power(25)
         self._view.modbus_ui.stateText.setText("state 5: to get end current")
-
 
     def context_transform_6(self):
         self._modelop.get_after()
@@ -96,23 +90,18 @@ class StateMixin(object):
         self._view.modbus_ui.stateText.setText("start reboot motos")
         self._view.modbus_ui.next_state.setText("start")
 
-
-
-
     def state_all(self, number):
         # self.modbus_up_down(self.squence_number)
         # self.modbus.motor_up_down(str(self.sequence_number + 1))
         function_for_transform = getattr(self, "context_transform_" + str(number + 1))
         function_for_transform()
         sleep(1)
-        print("state all",number)
+        print("state all", number)
         if number == 5:
             return
-        print("state all",number)
+        print("state all", number)
         push_operate_to_worker_queue = self._worker.append
         push_operate_to_worker_queue(self._modbus.motor_up_down, str(number + 1))
-
-
 
 
 class ModbusControllerMixin(object):
@@ -126,7 +115,7 @@ class ModbusControllerMixin(object):
         _ = partial(self._modbus.plat_motor_goto, *("PLAT1", "xstart", "stop"))
         self._view.move_up.released.connect(_)
         # move down button connection
-        _ = partial(self._modbus.plat_motor_goto, *("PLAT1" , "xstart", 0))
+        _ = partial(self._modbus.plat_motor_goto, *("PLAT1", "xstart", 0))
         self._view.move_down.pressed.connect(_)
         _ = partial(self._modbus.plat_motor_goto, *("PLAT1", "xstart", "stop"))
         self._view.move_down.released.connect(_)
@@ -162,12 +151,11 @@ class ModelOPControllerMixin(object):
                           self._view.spin_integral_steps.value(),
                           self._view.spin_smoothness.value(),)
             self._emit_spect.emit(*spect_args)
+
         get_spect_args(self)
-        self._view.spin_integral_times.valueChanged.connect(partial(get_spect_args,self))
-        self._view.spin_integral_steps.valueChanged.connect(partial(get_spect_args,self))
-        self._view.spin_smoothness.valueChanged.connect(partial(get_spect_args,self))
-
-
+        self._view.spin_integral_times.valueChanged.connect(partial(get_spect_args, self))
+        self._view.spin_integral_steps.valueChanged.connect(partial(get_spect_args, self))
+        self._view.spin_smoothness.valueChanged.connect(partial(get_spect_args, self))
 
 
 class ModelCVControllerMixin(object):
@@ -184,7 +172,7 @@ class ModelCVControllerMixin(object):
         self._modelcv.returnImg.connect(self._view.updatePixmap)
         self._modelcv.resultShowCV.connect(self._view.updateCVShow)
         self._modelcv.emit_relative_index.connect(self._view.relative_index_show)
-        self._modelcv.light_controller.emit_light_ready.connect(partial(self._view.lightControl.setEnabled,True))
+        self._modelcv.light_controller.emit_light_ready.connect(partial(self._view.lightControl.setEnabled, True))
 
         # self._modelcv.returnCoreLight.connect(self._view.getCoreLight)
 
@@ -199,8 +187,8 @@ class ModelCVControllerMixin(object):
 
 
 class OPCVController(ModelCVControllerMixin,
-                            ModbusControllerMixin,
-                            ModelOPControllerMixin,StateMixin):
+                     ModbusControllerMixin,
+                     ModelOPControllerMixin, StateMixin):
     def __init__(self, view):
         super(OPCVController, self).__init__()
         self._view = view
@@ -226,7 +214,7 @@ class OPCVController(ModelCVControllerMixin,
 
 class AutomaticCVController(ModelCVControllerMixin,
                             ModbusControllerMixin,
-                            ModelOPControllerMixin,StateMixin):
+                            ModelOPControllerMixin, StateMixin):
     """docstring for Controller"""
 
     def __init__(self, view):
@@ -253,8 +241,9 @@ class AutomaticCVController(ModelCVControllerMixin,
         self._modbus.close()
         self._monkey.close()
 
+
 class ManualCVController(ModelCVControllerMixin,
-                    ModelOPControllerMixin):
+                         ModelOPControllerMixin):
     """docstring for Controller"""
 
     def __init__(self, view):
@@ -273,25 +262,26 @@ class ManualCVController(ModelCVControllerMixin,
         self._modelcv.close()
         # logger.error(traceback.format_exception(*sys.exc_info()))
 
+
 class CapCVController(ManualCVController):
 
-    def __init__(self,*args,**kwargs):
-        super(CapCVController, self).__init__(*args,**kwargs)
+    def __init__(self, *args, **kwargs):
+        super(CapCVController, self).__init__(*args, **kwargs)
         self._modelcv.classify = classifyObject("capillary")
         self._view.cap_diffrange.valueChanged.connect(
             self._modelcv.classify.change_diff_radius
         )
 
-        def model_plot_change(self,value):
+        def model_plot_change(self, value):
             # print self,value
             core = self.classify.frame_core
             plots = draw_core_cross(core, value)
             self.plots.update({"diff_range": plots})
-        setattr(self._modelcv,"model_plot_change",partial(model_plot_change,self._modelcv))
+
+        setattr(self._modelcv, "model_plot_change", partial(model_plot_change, self._modelcv))
         self._view.cap_diffrange.valueChanged.connect(
             self._modelcv.model_plot_change
         )
-
 
 
 def get_controller(label):
