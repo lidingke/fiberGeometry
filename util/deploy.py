@@ -53,9 +53,6 @@ def copy_to_path(paths, direction):
 # file0 = "view\\view.py"
 # file1 = "view.py"
 # file2 = "GUI\\view\\view.py"
-#
-# for f in (file0,file1,file2):
-#     print f,os.path.isfile(f),os.path.isdir(f)
 if __name__ == '__main__':
     paths = relative_full_path(".")
     for p in paths:
@@ -63,4 +60,3 @@ if __name__ == '__main__':
     direction = "G:\\cvcx3_0"
     copy_to_path(paths, direction)
 
-# pdb.set_trace()

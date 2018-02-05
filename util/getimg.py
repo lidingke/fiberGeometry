@@ -15,7 +15,6 @@ class GetImage(object):
 
     def __init__(self, ):
         super(GetImage, self).__init__()
-        # self.arg = arg
         self.img = False
         self.colour = None
         self.suffix = ''
@@ -23,12 +22,9 @@ class GetImage(object):
         self.COLOR = ('colour', 'color')
 
     def get(self, dir_='', colour='colour'):
-        # if dir_.find('.') > 0:
         assert os.path.isfile(dir_)
         self.suffix = dir_.split('.')[-1]
         self.singleFileFind(dir_, colour)
-        # else:
-        #     self.fileFind(dir_, colour)
         assert isinstance(self.img, np.ndarray)
         # if not isinstance(self.img, np.ndarray):
         #     raise ValueError('img not ndarray')
@@ -39,7 +35,6 @@ class GetImage(object):
 
     def fileFind(self, dir_, colour):
         for file in os.listdir(dir_):
-            # pdb.set_trace()
             self.suffix = dir_.split('.')[-1]
             self.img = cv2.imread(dir_ + "\\" + file)
             self._getColorImg(colour=colour)
@@ -51,13 +46,9 @@ class GetImage(object):
     def _getColorImg(self, colour='colour'):
         if not self.colour:
             self.colour = colour
-            # print '_get img colour', self.colour, self.suffix
-            # sys.stdout.flush()
         if self.colour in self.GRAY:
             self.img = cv2.cvtColor(self.img, cv2.COLOR_RGB2GRAY)
         elif (self.colour in self.COLOR) and self.suffix.upper() == 'BMP':
-            # print 'get bgr 2 rbg'
-            # sys.stdout.flush()
             self.img = cv2.cvtColor(self.img, cv2.COLOR_BGR2RGB)
         else:
             pass
@@ -90,16 +81,13 @@ def yieldImg(dirs):
         yield img
 
 
-# new instance at 20171121
 def get_img_by_dir(dir_, colour='colour'):
     assert os.path.isfile(dir_)
     array = cv2.imread(dir_)
     assert isinstance(array, np.ndarray)
     if colour not in ('colour', 'color'):
-        # print "in colour"
         array = cv2.cvtColor(array, cv2.COLOR_RGB2GRAY)
         return array
-    # print dir_[-3:].upper(),dir_[-3:].upper() == "BMP"
     if dir_[-3:].upper() == "BMP":
         array = cv2.cvtColor(array, cv2.COLOR_BGR2RGB)
         return array
@@ -133,7 +121,6 @@ def yield_img_by_file(dirs):
 
 """" interface """
 
-#
 # def getImage(dir_):
 #     return GetImage().get(dir_)
 

@@ -117,7 +117,6 @@ def duck_type_decorate_list(origin, methods):
         elif len(m) == 3:
             fun_name, args, kwargs = m
         else:
-            # print m,len(m)
             raise ValueError("methods parameter error {} {}", len(m), m)
         fun = getattr(cv2, fun_name)
         fun(origin, *args, **kwargs)
@@ -224,7 +223,6 @@ def output_axies_plot_to_dir(core, img, dir_):
     ax2.plot(ylist, vertical, 'r')
     ax2.set_ylabel('bit')
     ax2.set_xlabel('pix')
-    # plt.show()
     plt.savefig(dir_)
 
 
@@ -257,7 +255,6 @@ def output_axies_plot_to_matplot(core, img):
 
 def show_temp_imgs(fun):
     wraps(fun)
-
     def inner(self, *args, **kwargs):
         result = fun(self, *args, **kwargs)
         if not SAVE_TEMP_IMG:
@@ -267,7 +264,6 @@ def show_temp_imgs(fun):
         for temps in imgs:
             column_stack = np.column_stack(temps)
             columns.append(column_stack)
-
         img = np.row_stack(columns)
         text_parameter = (cv2.FONT_HERSHEY_TRIPLEX, 5, (255, 0, 255), 5, False)
         times = time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime(time.time()))

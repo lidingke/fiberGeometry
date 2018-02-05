@@ -65,15 +65,7 @@ class PickHullCircle(MetaPick):
 
     # @timing
     def run(self, img, blurindex=False):
-        # if blurindex:
-        #     img = cv2.medianBlur(img, blurindex)
-        # else:
-        #     img = self._adaptive_filter_by_median(img)
         img = cv2.medianBlur(img, 11)
-        # img = out_fill_by_white_circle(img, [1296, 972], 1200)
-
-        # cv2.imshow("img", img[::4, ::4])
-        # cv2.waitKey()
         contours, hierarchys = cv2.findContours(img.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         logger.info('get contours len %s' % len(contours))
         if len(contours) == 0:
@@ -99,15 +91,8 @@ class PickPoly(MetaPick):
 
     def run(self, img, blurindex=False):
 
-        # if blurindex:
-        #     img = cv2.medianBlur(img, blurindex)
-        # else:
-        #     img = self._adaptive_filter_by_median(img)
         img = cv2.medianBlur(img, 11)
 
-        # blurindex = 37
-        # cv2.imshow("{}".format(blurindex), img[::4, ::4])
-        # cv2.waitKey()
         contours, hierarchys = cv2.findContours(img.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         logger.info('get contours len %s' % len(contours))
         if len(contours) == 0:
@@ -131,7 +116,6 @@ class PickPoly(MetaPick):
         plots = []
         epsilon = 100
 
-        # img = img.copy()
         def dynamic_approx_poly(epsilon):
             for i in range(20):
                 poly_points = cv2.approxPolyDP(contour, epsilon=epsilon, closed=True)

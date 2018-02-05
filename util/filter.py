@@ -67,7 +67,6 @@ class MedianLimitFilter(object):
             return datas[-1]
         datas.sort()
         datas = datas[1:-1]
-        # pdb.set_trace()
         result = sum(datas) / len(datas)
         return result
 

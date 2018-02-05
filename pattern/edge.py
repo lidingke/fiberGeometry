@@ -9,11 +9,9 @@ logger = logging.getLogger(__name__)
 
 
 class ExtractEdge(object):
-    """docstring for ExtractEdge"""
 
     def __init__(self, ):
         super(ExtractEdge, self).__init__()
-        # self.SET = SETTING()
 
     # @timing
     # def run(self, img):
@@ -35,11 +33,8 @@ class ExtractEdge(object):
     def directThr(self, img, hight=175):
         if len(img.shape) > 2:
             img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-        # hight = 40
         logger.info('thr%s' % hight)
         size, img = cv2.threshold(img, hight, 255, cv2.THRESH_BINARY)
-        # cv2.imshow("thr",img[::4,::4])
-        # cv2.waitKey()
         return img
 
 

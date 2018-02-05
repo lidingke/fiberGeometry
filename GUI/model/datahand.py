@@ -12,6 +12,7 @@ Base = declarative_base()
 relation_engine = create_engine(SQLALCHEMY_DIR)
 RDBSession = sessionmaker(bind=relation_engine)
 
+
 class ResultSheet(Base):
     __tablename__ = 'result_sheet'
 
@@ -23,26 +24,13 @@ class ResultSheet(Base):
     concentricity = Column(Float())
 
 
-# engine = create_engine("sqlite:///setting/cv_result.db")
-# # conn = engine.connect()
-# DBSession = sessionmaker(bind=engine)
-#
-#
-# def session_add(result):
-#     session = DBSession()
-#     session.add(result)
-#     session.commit()
-#     session.close()
-
-
-
 def update_cv_data(result):
-    #todo:default user
+    # todo:default user
     session = RDBSession()
     user = session.query(Account).filter_by(name='lidingke').one()
 
     context = ResultContext(
-        sharpindex= result['sharpindex'],
+        sharpindex=result['sharpindex'],
         fiber_type=result["fibertype"],
         fiber_producer=result["producer"],
         fiber_number=result["fiberNo"],
@@ -52,7 +40,6 @@ def update_cv_data(result):
     )
     session.add(context)
     session.commit()
-    #('corediameter', 'claddiameter', 'coreroundness','cladroundness', 'concentricity')
     cvresult = CVResult(
         corediameter=result["corediameter"],
         claddiameter=result["claddiameter"],
@@ -64,13 +51,14 @@ def update_cv_data(result):
     session.add(cvresult)
     session.commit()
 
+
 def update_op_data(result):
-    #todo:default user
+    # todo:default user
     session = RDBSession()
     user = session.query(Account).filter_by(name='lidingke').one()
 
     context = ResultContext(
-        sharpindex= result['sharpindex'],
+        sharpindex=result['sharpindex'],
         fiber_type=result["fibertype"],
         fiber_producer=result["producer"],
         fiber_number=result["fiberNo"],
@@ -80,7 +68,6 @@ def update_op_data(result):
     )
     session.add(context)
     session.commit()
-    #('corediameter', 'claddiameter', 'coreroundness','cladroundness', 'concentricity')
     opresult = OPResult(
         waves=result["attwaves"],
         powers=result["attpowers"],
@@ -91,8 +78,6 @@ def update_op_data(result):
     session.commit()
 
 
-import matplotlib.pyplot as plt
-
 def read_from_db(pk=None):
     session = RDBSession()
     if None == pk:
@@ -102,20 +87,20 @@ def read_from_db(pk=None):
     waves = pickle.loads(waves)
     powers = result.powers
     powers = pickle.loads(powers)
-    return waves,powers
+    return waves, powers
 
 
 def read_show_from_db(pk=None):
     waves, powers = read_from_db(pk)
-    figure_plot(waves,powers)
+    figure_plot(waves, powers)
 
 
 def read_xlsx_from_db(pk=None):
     waves, powers = read_from_db(pk)
     f = xlwt.Workbook()
     sheet1 = f.add_sheet(u'sheet1', cell_overwrite_ok=True)
-    for i,w in enumerate(waves):
+    for i, w in enumerate(waves):
         sheet1.write(i, 0, w)
-    for i,p in enumerate(powers):
+    for i, p in enumerate(powers):
         sheet1.write(i, 1, p)
     f.save("setting\\lastdata.xls")

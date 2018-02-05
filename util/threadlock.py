@@ -10,7 +10,6 @@ def mutex(fun):
 
     @wraps(fun)
     def inner(*args, **kwargs):
-        # nonlocal alock
         alock.acquire()
         result = fun(*args, **kwargs)
         alock.release()

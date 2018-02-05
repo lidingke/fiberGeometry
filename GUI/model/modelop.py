@@ -44,18 +44,15 @@ class ModelOP():
     def get_raw_spectograph_data(self):
         wave, data = self.spect.get_spectrograph(*self.spect_args)
         self.emit_spect.emit(wave, data)
-        # return (wave,data)
 
     def get_before(self):
         self.wave, self.before = self.get_data()
         self.emit_spect.emit(self.wave, self.before)
 
-    # def get_raw_spectro
 
     def get_after(self):
         self.wave, self.after = self.get_data()
 
-    # def get_power(self):
     def calculate_power(self, length):
         wave, before, after, zeros = \
             self.wave, self.before, self.after, self.zeros

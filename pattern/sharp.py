@@ -38,28 +38,21 @@ class IsSharp(object):
     def isSharpDiff(self, imgs):
         if len(imgs[0].shape) == 3:
             imgs = self._imgs2gray(imgs)
-        # for i,img in enumerate(imgs):
-        #     img.tofile("tests\\data\\imgforsharp{}.bin".format(i))
         imgs = [self._doSharpRange(img) for img in imgs]
-        # self._doSharpRange(img)
 
         imgAllor = np.zeros(imgs[0].shape, dtype=imgs[0].dtype)
         for img in imgs[-3:]:
             img = ExtractEdge().directThr(img)
-            # cv2.medianBlur(img, 7)
             imgAllor = cv2.bitwise_or(imgAllor, img)
         imgAllor = cv2.bitwise_not(imgAllor)
         kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
         imgAllor = cv2.erode(imgAllor, kernel)
-        # self.Show.show('sharp', imgAllor)
-        # imgAllor = cv2.medianBlur(imgAllor, 7)
         sumGrad2 = imgAllor.sum()
         normalizationSharp = sumGrad2 ** 2 // imgAllor.size // 100
 
         return normalizationSharp
 
     def _doSharpRange(self, img):
-        # if hasattr(self.SET, "corepoint") and hasattr(self.SET, "cladRange"):
         if "cladRange" in self.SET:
             corex, corey = self.SET["corepoint"]
             minRange, maxRange = self.SET["cladRange"]
@@ -70,12 +63,10 @@ class IsSharp(object):
             return img[::5, ::5]
 
     def erodeDilate(self, img):
-        # img = cv2.medianBlur(img, 9)
         kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (7, 7))
         erode = cv2.erode(img, kernel)
         dilate = cv2.dilate(img, kernel)
         img = cv2.absdiff(dilate, erode)
-        # img = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 17, 7)
         return img
 
     def _midSize(self, sizecoup=(100, 100), rato=0.1):
@@ -106,13 +97,9 @@ class IsSharp(object):
             img = img[0]
         if isinstance(img, np.ndarray):
             logger.debug("laplacian sharp:{}".format(img.shape))
-            # byimg = ExtractEdge().runMax(img)
-            # byimg = cv2.bitwise_not(byimg)
-            # sum_ = byimg.sum()
             sharp = cv2.Laplacian(img, cv2.CV_64F).var()
             imgfiltered = cv2.medianBlur(img, 7, )
             roundsharp = cv2.Laplacian(imgfiltered, cv2.CV_64F).var()
-            # sharp = sharp / sum_
             print 'all_sharp', roundsharp, sharp
             return sharp, roundsharp
         else:
@@ -181,8 +168,6 @@ def black_points(img, slice_point=300, dimension=0):
     corner01 = img[-slice_point:, :slice_point]
     corner10 = img[:slice_point, -slice_point:]
     corner11 = img[-slice_point:, -slice_point:]
-    # cv2.imshow("img",cv2.bitwise_not(corner11))
-    # cv2.waitKey()
     corners = (corner00, corner01, corner10, corner11)
     imgs = [cv2.bitwise_not(corner).sum() // 255 for corner in corners]
     return int(sum(imgs) // 255)
@@ -198,7 +183,6 @@ def black_points_not(img, slice_point=300, dimension=0):
     # cv2.imshow("img",cv2.bitwise_not(corner11))
     # cv2.waitKey()
     corners = (corner00, corner01, corner10, corner11)
-    # cornersbitwise =
     imgs = [corner.sum() for corner in corners]
 
     return int(sum(imgs) // 255)  # 4*slice_point**2 -

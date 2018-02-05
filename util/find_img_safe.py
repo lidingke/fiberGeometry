@@ -60,7 +60,6 @@ def safe_copy_file(paths, dir_):
         try:
             shutil.copy(path, target_dir)
         except IOError:
-            # if os.path.exists()
             os.makedirs(os.path.dirname(target_dir))
             shutil.copy(path, target_dir)
 

@@ -23,7 +23,6 @@ class Account(Base):
     password = Column(String(200), nullable=False)
     datetime = Column(DateTime, default=datetime.now())
     parameter_id = relationship("Result", backref="account", cascade="all")
-    # ac = Account(name = "lidingke", password = "123456")
 
 
 class Result(Base):
@@ -56,7 +55,6 @@ def session_add_by_account(result):
     logger.warning("error session_add_by_account")
     session = DBSession()
     is_exit = session.query(Account).filter(Account.name == result['worker']).count()
-    # pdb.set_trace()
     if 0 == is_exit:
         logger.warning('user not exit ' + result['worker'] + ' ' + str(is_exit))
         ac = Account(name=result['worker'], password='123456')

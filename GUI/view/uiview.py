@@ -39,6 +39,9 @@ class OPCVForm(QtGui.QMainWindow, opcvUI):
         self.modbus_ui = modbusUI()  # 初始化串口发送面板
         self.modbus_ui.setupUi(self.extendwidget)  # 将串口发送面板添加到cvUI面板中
         self.__dict__.update(self.modbus_ui.__dict__)
+        # self.hide_moves_button()
+
+    def hide_moves_button(self):
         collections = ("move_down", "move_up",
                        "move_right", "move_left", "reset")
         moves = {getattr(self.modbus_ui, c) for c in collections}

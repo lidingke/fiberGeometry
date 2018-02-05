@@ -10,7 +10,6 @@ from PyQt4.QtCore import QObject, pyqtSignal
 from SDK.modbus.autolight import LightController
 from setting import config
 
-# from setting.config import PDF_PARAMETER, DB_PARAMETER, DYNAMIC_CAMERA, FRAME_CORE, RAISE_EXCEPTION, IMG_ZOOM
 
 if config.DYNAMIC_CAMERA:
     from SDK.mdpy import GetRawImg
@@ -115,14 +114,6 @@ class ModelCV(Thread, QObject):
     def light_controller_handle_start(self):
         self.light_controller_handle = self.light_controller.start_coroutine()
 
-    # def _decorateImg(self, img):
-    #     """" mark the circle and size parameter """
-    #     # img = drawCoreCircle(img,*self.img_core_tag)
-    #     # if self.plots:
-    #     img = duck_type_decorate(img, self.plots)
-    #     # elif self.result2Show:
-    #     #     img = self.decorateMethod(img, self.result2Show)
-    #     return img
 
     def close(self):
         self.IS_RUNNING = False

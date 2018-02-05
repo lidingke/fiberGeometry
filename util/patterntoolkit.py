@@ -47,7 +47,6 @@ class IsCircle(object):
         super(IsCircle, self).__init__()
 
     def run(self, area, center, contours):
-        # pdb.set_trace()
         forMaxNumber = []
         for x in contours:
             absLen = ((center[0] - x[0][0]) ** 2 + (center[1] - x[0][1]) ** 2) ** 0.5
@@ -64,7 +63,6 @@ class Cv2ImShow(object):
 
     def __init__(self, ):
         super(Cv2ImShow, self).__init__()
-        # self.arg = arg
 
     def show(self, title, img):
         cv2.imshow(title, img)
@@ -76,7 +74,6 @@ class Cv2ImSave(object):
 
     def __init__(self, ):
         super(Cv2ImSave, self).__init__()
-        # self.arg = arg
 
     def save(self, title, img):
         cv2.imwrite(title, img)
@@ -87,7 +84,6 @@ class cv2CircleIndex(object):
 
     def __init__(self, ):
         super(cv2CircleIndex, self).__init__()
-        # self.arg = arg
 
     def contourIn(self, x):
         area = cv2.contourArea(x)
@@ -120,7 +116,6 @@ class XlsWrite(object):
 
     def __init__(self, ):
         super(XlsWrite, self).__init__()
-        # self.arg = arg
         self.filename = 'save\\test.xls'
         self.sheetName = 'sheet1'
         self.workbook = xlwt.Workbook(encoding='utf-8')
@@ -128,7 +123,6 @@ class XlsWrite(object):
 
     def savelist(self, lst):
         for i, row in enumerate(lst):
-            # pdb.set_trace()
             row = (row[0][0], row[0][1], row[1][0], row[1][1])
             for j, col in enumerate(row):
                 self.booksheet.write(i, j, col)

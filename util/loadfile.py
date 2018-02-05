@@ -1,10 +1,6 @@
 import pickle
 import sys
-# import pdb
 import json
-
-
-# from view.user import User
 
 class WRpickle(object):
     """docstring for WRpickle
@@ -18,18 +14,14 @@ class WRpickle(object):
 
     def loadPick(self):
         with open(self.pickname, 'rb') as f:
-            # print('f',f)
             try:
                 self.pick = pickle.load(f)
             except Exception as e:
                 raise e
-                # pass
-            # print('load',self.pick)
         return self.pick
 
     def savePick(self, pick):
         with open(self.pickname, 'wb') as f:
-            # print('savePick',pick)
             pickle.dump(pick, f)
 
     def insertItem(self, key, item):
@@ -75,7 +67,6 @@ class WriteReadJson(object):
     def save(self, store):
         with open(self.dir_, 'wb') as f:
             jsonBitBuffer = json.dumps(store).encode('utf-8')
-            # print('json', jsonBitBuffer)
             f.write(jsonBitBuffer)
 
 

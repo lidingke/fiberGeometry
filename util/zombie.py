@@ -31,26 +31,19 @@ class ZombieSingleton(MetaDict):
     _instance = {}
 
     def __new__(cls, file_name, *args, **kwargs):
-        # print 'cls',id(cls)
         if file_name in cls._instance:
             return cls._instance[file_name]
         else:
-            # cls['name'] = file_name
             obj = super(ZombieSingleton, cls).__new__(cls, *args, **kwargs)
-            # obj = object.__new__()
             obj.__name__ = 'ZombieSigleton_' + file_name
             cls._instance[file_name] = obj
-            # print 'obj',id(obj)
             return obj
 
-    # def __init__(self,file_name):
-    #     print "self",id(self),self._instance
 
     def __init__(self, file_name):
         super(ZombieSingleton, self).__init__()
         self.path = os.path.join(JSON_CONFIG_PATH, file_name) + '.json'
         with open(self.path, 'rb') as f:
-            # pdb.set_trace()
             data = json.load(f)
             assert isinstance(data, dict)
             self.store.update(data)
@@ -65,11 +58,6 @@ class ZombieSingleton(MetaDict):
 
     def __del__(self):
         self.save()
-        # print 'self.__name__ ', self.__name__
-        # self._del(self.__name__)
-        # self._instance.pop(self.__name__.split('_')[-1])
-        # super(ZombieSigleton, self).__del__()
-        # super(ZombieSigleton, self).__exit__(self, exc_type, exc_val, exc_tb)
 
     @classmethod
     def _del(cls, name):
@@ -87,11 +75,6 @@ class CallableItem(object):
         # print value
         self.qoute[self.key] = value
 
-
-# def fun(value):
-#     print fun.__name__
-
-
 def test_zombiesigleton():
     # ZombieSigleton.
     a, b, c = ZombieSingleton('a'), ZombieSingleton('b'), ZombieSingleton('a'),
@@ -102,9 +85,7 @@ def test_zombiesigleton():
     assert id(a) != id(b)
     assert id(a) == id(c)
 
-    # print z.__dict__
 
-    # z =
 
 
 if __name__ == '__main__':

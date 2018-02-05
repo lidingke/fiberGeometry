@@ -11,9 +11,7 @@ def getFilterImg(core, origin, minRange, maxRange):
     core = [core, 1]
     cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(maxRange), (0, 0, 0), -1)
     cv2.circle(img, (int(core[0][0]), int(core[0][1])), int(minRange), (255, 255, 255), -1)
-    # cv2.imshow('filter', img[::4,::4])
-    # cv2.waitKey()
-    # origin = cv2.bitwise_not(img)
+
     img = cv2.bitwise_or(img, origin)
     return img
 
@@ -63,15 +61,10 @@ def getFilterColorImg(core, origin, minRange, maxRange):
 def differCore():
     img = getImage("IMG\\midoc.BMP")
     print 'get shape', img.shape
-    # cv2.imshow('mid', img[::4,::4])
-    # cv2.waitKey()
     corecore = SETTING()["corepoint"]
     print getCircleMeans((corecore, 10), img)
     minRange, maxRange = SETTING()["coreRange"]
     img = getFilterImg(corecore, img, minRange, maxRange)
-    # cv2.imshow('dif', img[::4, ::4])
-    # cv2.waitKey()
-    # circle =
     print getCircleMeans((corecore, 100), img)
 
 

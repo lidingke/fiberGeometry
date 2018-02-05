@@ -65,8 +65,6 @@ class MetaClassify(object):
         diff_core_img, diff_clad_img = self._difcore(img)
         edge_core_img = self._edge_core(diff_core_img, self.core_thr_hight)
         edge_clad_img = self._edge_clad(diff_clad_img, self.clad_thr_hight)
-        # cv2.imshow("img", edge_clad_img[::4, ::4])
-        # cv2.waitKey()
         core_result = self._pick_core(edge_core_img, self.core_filter_index)
         # clad_result = self._pick_clad(edge_clad_img, self.filter_index(img))
         clad_result = self._pick_clad(edge_clad_img, self.clad_filter_index)

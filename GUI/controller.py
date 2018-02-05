@@ -1,27 +1,15 @@
 # coding:utf-8
-# from view import View
-import traceback
 from functools import partial
-
-import sys
 from time import sleep
-
-from PyQt4.QtGui import QLabel
-from PyQt4.QtGui import QPushButton
-
 from GUI.view.monkey import MonkeyServer
 from pattern.classify import classifyObject
 from pattern.draw import draw_core_cross
 from setting import config
 from GUI.model.stateconf import state_number
 from SDK.modbus.modbusmerge import AbsModeBusModeByAxis, MODENABLE_SIGNAL
-from setting.parameter import SETTING
 from GUI.model.modelcv import ModelCV
 from GUI.model.modelop import ModelOP
-from PyQt4.QtCore import QObject, pyqtSignal
-
 import logging
-
 from util.observer import PyTypeSignal
 from util.threadlock import WorkerQueue
 
@@ -37,12 +25,12 @@ class StateMixin(object):
         self._view.modbus_ui.stateText.setText("start reboot motos")
         self._view.modbus_ui.next_state.setText("start")
 
+
     def state_connect(self):
         def state_change():
             sequence_number = next(self.state_number)
             self.state_all(sequence_number)
             logger.warning("next state" + str(sequence_number))
-
         if hasattr(self._view, "next_state"):
             self._view.next_state.clicked.connect(state_change)
             print "next_state connect"
@@ -74,7 +62,6 @@ class StateMixin(object):
         self._modbus.platform_state = "PLAT1"
         # self._view.modbus_ui.next_state.setText("end")
         # motor 123
-
         # self.platform_number = "1"
 
     def context_transform_5(self):
