@@ -21,10 +21,10 @@ class StateMixin(object):
     def _start_state(self):
         self.state_number = state_number()
         self._worker = WorkerQueue()
+        self.fiber_length_value = None
         self.state_connect()
         self._view.modbus_ui.stateText.setText("start reboot motos")
         self._view.modbus_ui.next_state.setText("start")
-
 
     def state_connect(self):
         def state_change():
@@ -46,9 +46,7 @@ class StateMixin(object):
         """"switch to PLAT2"""
         self._view.modbus_ui.stateText.setText("state 2")
         self._modbus.platform_state = "PLAT2"
-        # self._modelop.spect.new()
-        self._view.modbus_ui.stateText.setText("state 2")
-        # self.platform_number = "2"
+        # self._view.modbus_ui.stateText.setText("state 2")
         # motor 123
 
     def context_transform_3(self):
@@ -60,9 +58,7 @@ class StateMixin(object):
         self._modelop.get_before()
         self._view.modbus_ui.stateText.setText("state 4:geted init current")
         self._modbus.platform_state = "PLAT1"
-        # self._view.modbus_ui.next_state.setText("end")
-        # motor 123
-        # self.platform_number = "1"
+
 
     def context_transform_5(self):
         # self._modelop.get_after()
@@ -71,13 +67,18 @@ class StateMixin(object):
 
     def context_transform_6(self):
         self._modelop.get_after()
-        self._modelop.calculate_power(25)
+        if self.fiber_length_value:
+            fiber_length = self.fiber_length_value
+        else:
+            fiber_length = 25
+            logging.warning("no fiber length getted")
+        self._modelop.calculate_power(fiber_length)
         self._view.modbus_ui.stateText.setText("state 6: geted end current")
-
         self._view.modbus_ui.stateText.setText("start reboot motos")
         self._view.modbus_ui.next_state.setText("start")
 
     def state_all(self, number):
+
         # self.modbus_up_down(self.squence_number)
         # self.modbus.motor_up_down(str(self.sequence_number + 1))
         function_for_transform = getattr(self, "context_transform_" + str(number + 1))
@@ -100,7 +101,7 @@ class ModbusControllerMixin(object):
         _ = partial(self._modbus.plat_motor_goto, *("PLAT1", "xstart", 50000))
         self._view.move_up.pressed.connect(_)
         _ = partial(self._modbus.plat_motor_goto, *("PLAT1", "xstart", "stop"))
-        self._view.move_up.released.connect(_)
+        self._view.move_up.clicked.connect(_)
         # move down button connection
         _ = partial(self._modbus.plat_motor_goto, *("PLAT1", "xstart", 0))
         self._view.move_down.pressed.connect(_)
@@ -127,11 +128,19 @@ class ModelOPControllerMixin(object):
         self._modelop = ModelOP()
         self._modelop.emit_spect.connect(self._view.opplot.update_figure)
         self._view.raw_spect.clicked.connect(self._modelop.get_raw_spectograph_data)
-        self._spect_args_connect()
+        self._view.fiberLength.textChanged.connect(self._change_fiber_length)
+        self.fiber_length_value = float(self._view.fiberLength.text())
+        if config.MAMUAL_SPECT_ARGS_FLAG:
+            self._spect_args_connect_manual()
+        else:
+            self._spect_args_connect_auto()
 
-    def _spect_args_connect(self):
+    def _spect_args_connect_auto(self):
+        self._view.fiberLength.textChanged.connect.connect(self._modelop.set_spect_args_auto)
+
+    def _spect_args_connect_manual(self):
         self._emit_spect = PyTypeSignal()
-        self._emit_spect.connect(self._modelop.set_spect_args)
+        self._emit_spect.connect(self._modelop.set_spect_args_manual)
 
         def get_spect_args(self):
             spect_args = (self._view.spin_integral_times.value(),
@@ -144,6 +153,15 @@ class ModelOPControllerMixin(object):
         self._view.spin_integral_steps.valueChanged.connect(partial(get_spect_args, self))
         self._view.spin_smoothness.valueChanged.connect(partial(get_spect_args, self))
 
+    def _change_fiber_length(self, length):
+        try:
+            length = float(length)
+        except Exception as e:
+            self._view.resultShowCV.setText(u"长度输入错误：\n"+unicode(e))
+        else:
+            self._view.resultShowCV.setText(u"输入长度："+unicode(length)+"m")
+        self.fiber_length_value = length
+        # print("value change",self.fiber_length_value)
 
 class ModelCVControllerMixin(object):
     def _start_modelcv(self):
@@ -202,11 +220,9 @@ class OPCVController(ModelCVControllerMixin,
 class AutomaticCVController(ModelCVControllerMixin,
                             ModbusControllerMixin,
                             ModelOPControllerMixin, StateMixin):
-    """docstring for Controller"""
 
     def __init__(self, view):
         super(AutomaticCVController, self).__init__()
-        # QObject.__init__(self)
         self._view = view
         self._start_modelcv()
         self._start_modelop()
@@ -231,7 +247,6 @@ class AutomaticCVController(ModelCVControllerMixin,
 
 class ManualCVController(ModelCVControllerMixin,
                          ModelOPControllerMixin):
-    """docstring for Controller"""
 
     def __init__(self, view):
         super(ManualCVController, self).__init__()

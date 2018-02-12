@@ -6,5 +6,5 @@
   "FOR_UNIT_TEST": true,
   "SPEC_ONLINE": true,
   "LOG_LEVEL" : "ERROR",
-  "IMG_ZOOM" : 2
+  "IMG_ZOOM" : 4
 }

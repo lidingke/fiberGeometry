@@ -36,8 +36,6 @@ UI界面采用PyQt库。
 与控制电机的PLC连接采用PySerials库。
 
 
-
-
 ## 入口文件
 由于多个产品共用一套代码，使得几个模块得动态生成，这里采取的方案是通过配置文件配置好需要动态生成的参数，在入口函数中读取并用工厂模式生成。
 
@@ -54,7 +52,10 @@ UI界面采用PyQt库。
 界面采用MVC架构，其中，model类包含后台逻辑，view类包含前端逻辑，连接前端和后台的信号槽都在controller类里面。而这几个类都由类工厂根据不同的产品动态生成。
 具体的工厂函数为get_view和get_controller。
 
-其中，controler采用Mixin形式的多继承。这里这么做是为了分离各个具体的model。因为具体的model对应不同的硬件，应该根据参数来选择加载不同的model。
+其中，controller采用Mixin形式的多继承。这里这么做是为了分离各个具体的model。因为具体的model对应不同的硬件，应该根据参数来选择加载不同的model。
+### controller
+controller.py中的StateMixin类包含了多个状态，分别用来处理电机平台的切换，升降电机的顺序等。
+每个状态由```context_transform```方法执行，根据函数名和状态顺序执行操作，每次状态切换完毕即执行电机动作。
 
 ```view```采取顺序VeiwModel和Form的方式，其中ViewModel保存具体的View需要的定制类控件以及逻辑，Form用来渲染.ui文件生成的UI.py文件。这样就分离了UI的生成和UI的定制。因为UI.py是脚本生成的，一般不应该改动，通过一个Form类去添加功能。
 
@@ -122,6 +123,9 @@ setting模块负责所有的配置文件，原则上来说，配置文件变量�
 每个配置文件都有json和pickle版本，原因在于json文件可读性比较好，怕被用户随意更改，一般加载时先加载pickle文件，找不到pickle时加载对应的json文件。不过pickle的保密性也等同于零，并没什么卵用。
 
 config模块在加载后会被动态更改一次，通过configs文件夹下的各个json文件来更改。该更改只应该在初始化时执行一次。动态更改用update_config_by_name函数。
+简单的来说就是全局的配置文件通过config.py和configs文件夹里的json文件决定，通过执行脚本命令的arg来决定最终的配置参数。具体命令就是```python main.py <cmd>```,通过命令行里的cmd来选择加载的json文件，比如cmd是```cvonline```，
+就加载```cvonline.json```，启动在线的几何测试。其中，```cap、cv、cvop```分别代表毛细管、几何、几何衰减的配置，
+```online、offline```分别代表在线和离线配置，离线配置指的是测试环境，在该环境中硬件用虚拟设备代替，在线配置指的是生产环境。
 
 ```logging```模块应该按照getlogger的方式存在于每个子文件，在这个工程中，只应该在调试和单元测试中使用print，
 其他部分都应采用logging来打印日子，并配置好日志的level。

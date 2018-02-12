@@ -128,7 +128,7 @@ class AbsModeBusModeByAxis(object):
         self.RUNNING = True
         self.timeout_times = 0
 
-    @enable_move
+    # @enable_move
     def plat_motor_goto(self, station, head_dir, move):
         if self._platform_state:
             station = self._platform_state
@@ -140,7 +140,7 @@ class AbsModeBusModeByAxis(object):
         logger.info('mode send cmd' + hex2str(cmd))
         self.ser.write(cmd)
 
-    @enable_move
+    # @enable_move
     def plat_motor_reset(self):
         cmd = self.send_translater('PLAT1', 'xstart', 'rest')
         logger.info('mode send cmd' + hex2str(cmd))

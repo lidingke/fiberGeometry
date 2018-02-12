@@ -54,6 +54,7 @@ class ModelOP():
         self.wave, self.after = self.get_data()
 
     def calculate_power(self, length):
+        # print("get length",length)
         wave, before, after, zeros = \
             self.wave, self.before, self.after, self.zeros
         powers = []
@@ -71,6 +72,19 @@ class ModelOP():
         self.dbparameter['attwaves'] = pickle.dumps(waves)
         self.dbparameter['attpowers'] = pickle.dumps(powers)
 
-    def set_spect_args(self, integral_times_ms, integral_steps, smoothness):
+    def set_spect_args_manual(self, integral_times_ms, integral_steps, smoothness):
         integral_times_us = integral_times_ms * 1000
         self.spect_args = (integral_times_us, integral_steps, smoothness)
+
+    def set_spect_args_auto(self, length):
+        args = list(self.spect_args)
+        args_0 = self.auto_get_spect_continue(length)
+        args[0] = args_0
+        self.spect_args = tuple(args)
+        # print(args_new)
+
+    def auto_get_spect_continue(self, length):
+        for limit, value in config.SPECT_CONTINUE:
+            if length > limit:
+                return value
+        raise ValueError("spect continue error")

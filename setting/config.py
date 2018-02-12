@@ -22,7 +22,7 @@ DB_PARAMETER = {}
 SAVED_VIEW_ITEMS = {}
 SQLALCHEMY_DIR = "sqlite:///setting/relation_result.db"
 
-""" camera configs"""
+"""camera configs"""
 DYNAMIC_CAMERA = True
 
 FRAME_SIZE = (1944, 2592)
@@ -45,8 +45,11 @@ SPEC_ONLINE = True
 
 LOG_LEVEL = "ERROR"
 
+#if manual flag is false ,use SPECT_CONTINUE to set args automaticlly
+MAMUAL_SPECT_ARGS_FLAG = True
 SPECT_CONTINUE = (
     (0,50000),
     (20,100000),
     (30,200000),
     (40,300000))
+

@@ -78,6 +78,7 @@ class Spectrograph(QObject):
         self.result = result
 
     def get_spectrograph(self,*args):
+        logging.error("spect args:{}".format(args))
         threading.Thread(target=self.get_spect_by_thread,args=(args)).start()
         while True:
             sleep(0.5)
@@ -104,6 +105,7 @@ class Spectrograph(QObject):
     def get_spect_by_thread(self, *args):
         self.result = None
         # pdb.set_trace()
+        # logging.error("")
         print(args)
         data = pynir.get_spectrum(*args)
         w, d = data.tolist()

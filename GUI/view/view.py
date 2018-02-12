@@ -19,7 +19,7 @@ from setting.config import PDF_PARAMETER, DB_PARAMETER
 from util.observer import PyTypeSignal
 from GUI.view.reporter import ReporterPdfs
 
-from PyQt4.QtGui import QPixmap, QImage, QGraphicsScene
+from PyQt4.QtGui import QPixmap, QImage, QGraphicsScene,QLineEdit
 
 from util.loadfile import WriteReadJson, load_pickle_nor_json
 from datetime import datetime
@@ -199,7 +199,8 @@ class OPCVViewModel(CVViewModel):
         super(OPCVViewModel, self).__init__()
 
         self.updateOPData.clicked.connect(self.write_op_result_to_db)
-
+        # self.fiberLength = QLineEdit()
+        # self.fiberLength.textChanged().connect()
         self.updata_OP_method = update_op_data
         # pdb.set_trace()
         # self.mainLayout.addWidget(self.opplot)
