@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 
 
 class ModelCV(Thread, QObject):
-    """docstring for Model"""
+    u"""图像处理的后台主线程"""
     returnImg = pyqtSignal(object, object, object)
     # returnATImg = pyqtSignal(object, object)
     resultShowCV = pyqtSignal(object)
@@ -37,6 +37,7 @@ class ModelCV(Thread, QObject):
     emit_relative_index = pyqtSignal(object)
 
     def __init__(self, ):
+        u"""初始化线程，同时初始化QObject保证信号槽可用；并且初始化相关外部引用的方法"""
         super(ModelCV, self).__init__()
         QObject.__init__(self)
         # self.setDaemon(True)
@@ -57,12 +58,14 @@ class ModelCV(Thread, QObject):
         self._output_axies_plot_to_matplot = output_axies_plot_to_matplot
 
     def init_light_controller(self):
+        u"""light_controller是协程风格的，初始化相关变量。"""
         self.light = ""
         self.light_controller = LightController()
         self.light_controller_handle = False
         self.light_controller.emit_dynamic_light.connect(self.get_light)
 
     def run(self):
+        u"""线程主函数，主要包含获取图片"""
         while self.IS_RUNNING:
             img = self.get_raw_img.get()
             if not isinstance(img, np.ndarray):

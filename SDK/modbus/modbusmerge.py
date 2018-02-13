@@ -151,7 +151,7 @@ class AbsModeBusModeByAxis(object):
     def motor_up_down(self, move='1'):
         assert isinstance(move, str)
         cmd = self.send_translater('UP_DOWN', 'xstart', move)
-        logger.error('mode send cmd' + hex2str(cmd))
+        logger.error(move+'mode send cmd' + hex2str(cmd))
         self.ser.write(cmd)
         self.timeout_times = 0
         while self.RUNNING:

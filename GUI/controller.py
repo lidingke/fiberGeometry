@@ -17,13 +17,14 @@ logger = logging.getLogger(__name__)
 
 
 class StateMixin(object):
+    u"""状态转换管理，管理衰减测试流程中的电机、按钮、界面显示状态"""
 
     def _start_state(self):
         self.state_number = state_number()
         self._worker = WorkerQueue()
         self.fiber_length_value = None
         self.state_connect()
-        self._view.modbus_ui.stateText.setText("start reboot motos")
+        self._view.modbus_ui.stateText.setText("    start reboot motos")
         self._view.modbus_ui.next_state.setText("start")
 
     def state_connect(self):
@@ -36,34 +37,35 @@ class StateMixin(object):
             print "next_state connect"
 
     def context_transform_1(self):
-        self._view.modbus_ui.stateText.setText("state 1:input dark current")
+        self._view.modbus_ui.stateText.setText(u"state 1:获取暗电流，显示夹1图像")
         self._modelop.get_zero()
-        self._view.modbus_ui.stateText.setText("state 1:geted dark current")
+        # self._view.modbus_ui.stateText.setText("state 1:geted dark current")
         self._view.modbus_ui.next_state.setText("next")
         # motor 1down 2up 3up
 
     def context_transform_2(self):
         """"switch to PLAT2"""
-        self._view.modbus_ui.stateText.setText("state 2")
+        self._view.modbus_ui.stateText.setText(u"显示夹2图像")
         self._modbus.platform_state = "PLAT2"
         # self._view.modbus_ui.stateText.setText("state 2")
         # motor 123
 
     def context_transform_3(self):
-        self._view.modbus_ui.stateText.setText("state 3")
+        self._modbus.platform_state = "PLAT1"
+        self._view.modbus_ui.stateText.setText(u"卤灯通过夹1耦合进光纤")
 
     def context_transform_4(self):
         """"switch to PLAT1"""
-        self._view.modbus_ui.stateText.setText("state 4:input init current")
+        # self._view.modbus_ui.stateText.setText("state 4:input init current")
         self._modelop.get_before()
-        self._view.modbus_ui.stateText.setText("state 4:geted init current")
+        self._view.modbus_ui.stateText.setText(u"state 4:测得第一次光谱")
         self._modbus.platform_state = "PLAT1"
 
 
     def context_transform_5(self):
         # self._modelop.get_after()
         # self._modelop.calculate_power(25)
-        self._view.modbus_ui.stateText.setText("state 5: to get end current")
+        self._view.modbus_ui.stateText.setText(u"state 5:取2m光纤，显示夹2端面，进行几何测试")
 
     def context_transform_6(self):
         self._modelop.get_after()
@@ -73,8 +75,8 @@ class StateMixin(object):
             fiber_length = 25
             logging.warning("no fiber length getted")
         self._modelop.calculate_power(fiber_length)
-        self._view.modbus_ui.stateText.setText("state 6: geted end current")
-        self._view.modbus_ui.stateText.setText("start reboot motos")
+        self._view.modbus_ui.stateText.setText("state 6: 获取光谱结果")
+        # self._view.modbus_ui.stateText.setText("start reboot motos")
         self._view.modbus_ui.next_state.setText("start")
 
     def state_all(self, number):

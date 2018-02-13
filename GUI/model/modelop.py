@@ -58,14 +58,15 @@ class ModelOP():
         wave, before, after, zeros = \
             self.wave, self.before, self.after, self.zeros
         powers = []
-        for x, y, z in zip(before, after, zeros):
+        waves = []
+        for x, y, z,w in zip(before, after, zeros,wave):
             if y <= 0 or x <= 0 or x / y <= 0:
                 continue
             power = 10 * np.log10(x / y) / length
             powers.append(power)
-
-        self.emit_spect.emit(wave, powers)
-        return (wave, powers)
+            waves.append(w)
+        self.emit_spect.emit(waves, powers)
+        return (waves, powers)
 
     def pickle_data(self, waves, powers):
 
