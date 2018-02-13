@@ -28,9 +28,10 @@ class StateMixin(object):
         self._view.modbus_ui.next_state.setText("start")
 
     def state_connect(self):
+        u"""先用同步的方式校对状态是否正常"""
         def state_change():
             sequence_number = next(self.state_number)
-            self.state_all(sequence_number)
+            # self.state_all(sequence_number)
             logger.warning("next state" + str(sequence_number))
         if hasattr(self._view, "next_state"):
             self._view.next_state.clicked.connect(state_change)
@@ -41,18 +42,23 @@ class StateMixin(object):
         self._modelop.get_zero()
         # self._view.modbus_ui.stateText.setText("state 1:geted dark current")
         self._view.modbus_ui.next_state.setText("next")
+        self._modbus.motor_up_down('1')
         # motor 1down 2up 3up
 
     def context_transform_2(self):
         """"switch to PLAT2"""
         self._view.modbus_ui.stateText.setText(u"显示夹2图像")
         self._modbus.platform_state = "PLAT2"
+        self._modbus.motor_up_down('2')
+
         # self._view.modbus_ui.stateText.setText("state 2")
         # motor 123
 
     def context_transform_3(self):
         self._modbus.platform_state = "PLAT1"
         self._view.modbus_ui.stateText.setText(u"卤灯通过夹1耦合进光纤")
+        self._modbus.motor_up_down('3')
+
 
     def context_transform_4(self):
         """"switch to PLAT1"""
@@ -60,12 +66,15 @@ class StateMixin(object):
         self._modelop.get_before()
         self._view.modbus_ui.stateText.setText(u"state 4:测得第一次光谱")
         self._modbus.platform_state = "PLAT1"
+        self._modbus.motor_up_down('4')
 
 
     def context_transform_5(self):
         # self._modelop.get_after()
         # self._modelop.calculate_power(25)
         self._view.modbus_ui.stateText.setText(u"state 5:取2m光纤，显示夹2端面，进行几何测试")
+        self._modbus.motor_up_down('5')
+
 
     def context_transform_6(self):
         self._modelop.get_after()
@@ -75,9 +84,11 @@ class StateMixin(object):
             fiber_length = 25
             logging.warning("no fiber length getted")
         self._modelop.calculate_power(fiber_length)
-        self._view.modbus_ui.stateText.setText("state 6: 获取光谱结果")
+        self._view.modbus_ui.stateText.setText(u"state 6: 获取光谱结果")
         # self._view.modbus_ui.stateText.setText("start reboot motos")
         self._view.modbus_ui.next_state.setText("start")
+        self._modbus.motor_up_down('5')
+
 
     def state_all(self, number):
 
@@ -86,12 +97,12 @@ class StateMixin(object):
         function_for_transform = getattr(self, "context_transform_" + str(number + 1))
         function_for_transform()
         sleep(1)
-        print("state all", number)
+        # print("state all", number)
         if number == 5:
             return
         print("state all", number)
-        push_operate_to_worker_queue = self._worker.append
-        push_operate_to_worker_queue(self._modbus.motor_up_down, str(number + 1))
+        # push_operate_to_worker_queue = self._worker.append
+        # push_operate_to_worker_queue(self._modbus.motor_up_down, str(number + 1))
 
 
 class ModbusControllerMixin(object):

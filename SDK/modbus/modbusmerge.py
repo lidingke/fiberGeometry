@@ -6,7 +6,7 @@ from time import sleep
 import serial
 import crcmod
 
-from SDK.modbus.directions import HEAD_DIR, MOTOR_GROUP, START_STOP,\
+from SDK.modbus.directions import HEAD_DIR, MOTOR_GROUP, START_STOP, \
     UP_DOWN, MOTOR_STATE, STATION_DIR
 import logging
 
@@ -14,7 +14,8 @@ from util.hexs import hex2str
 from util.observer import PyTypeSignal
 from util.threadlock import mutex
 from setting.config import MODBUS_PORT
-logger = logging.getLogger(__name__+":"+str(MODBUS_PORT))
+
+logger = logging.getLogger(__name__ + ":" + str(MODBUS_PORT))
 
 
 class SendTranslater(object):
@@ -88,29 +89,33 @@ class ReadTranslater(object):
         cmdline = cmdline + crc
         return cmdline
 
+
 class ReturnParse(object):
 
     def __init__(self):
         self.crc16 = crcmod.predefined.mkCrcFun('modbus')
 
-    def __call__(self, method ,cmd):
+    def __call__(self, method, cmd):
         if method == "up_down_state":
             return self._up_down_state(cmd)
 
     def _up_down_state(self, cmd):
-        cmd = struct.unpack('>H',cmd[3:5])[0]
+        cmd = struct.unpack('>H', cmd[3:5])[0]
         return cmd
+
 
 MODENABLE_SIGNAL = PyTypeSignal()
 
-def enable_move(fun):
 
-    def inner(*args,**kwargs):
+def enable_move(fun):
+    def inner(*args, **kwargs):
         MODENABLE_SIGNAL.emit(False)
-        result = fun(*args,**kwargs)
+        result = fun(*args, **kwargs)
         MODENABLE_SIGNAL.emit(True)
         return result
+
     return inner
+
 
 class AbsModeBusModeByAxis(object):
     def __init__(self, port=None, baudrate=19200, store=None):
@@ -118,7 +123,7 @@ class AbsModeBusModeByAxis(object):
         # print port,type(port)
         # if isinstance(port,unicode):
         #     port = port.encode("utf-8")
-        logger.error("motor com:{} {}".format(port,baudrate))
+        logger.error("motor com:{} {}".format(port, baudrate))
         self.ser = serial.Serial(port, baudrate, timeout=0.05, parity='E')
         # self.forward = False
         self.send_translater = SendTranslater()
@@ -147,11 +152,11 @@ class AbsModeBusModeByAxis(object):
         self.ser.write(cmd)
 
     # @mutex
-    @enable_move
+    # @enable_move
     def motor_up_down(self, move='1'):
         assert isinstance(move, str)
         cmd = self.send_translater('UP_DOWN', 'xstart', move)
-        logger.error(move+'mode send cmd' + hex2str(cmd))
+        logger.error(move + 'mode send cmd' + hex2str(cmd))
         self.ser.write(cmd)
         self.timeout_times = 0
         while self.RUNNING:
@@ -159,7 +164,7 @@ class AbsModeBusModeByAxis(object):
             self.ser.write(self.read_translater('up1'))
             sleep(0.1)
             readed = self.ser.read(7)
-            self.timeout_times +=1
+            self.timeout_times += 1
             if self.timeout_times == 20:
                 logger.debug("modbus recieved time out")
                 self.timeout_times = 0
@@ -174,7 +179,6 @@ class AbsModeBusModeByAxis(object):
                 else:
                     self.ser.flushInput()
 
-
     def close(self):
         self.RUNNING = False
         sleep(0.5)
@@ -185,7 +189,7 @@ class AbsModeBusModeByAxis(object):
         return self._platform_state
 
     @platform_state.setter
-    def platform_state(self,value):
+    def platform_state(self, value):
         assert value in MOTOR_STATE.keys()
         print "plat", value, MOTOR_STATE.keys()
         self._platform_state = value
@@ -264,5 +268,4 @@ class AbsModeBusModeByAxis(object):
 #             fun()
 #
 #     def plat_motor_goto(self,*args,**kwargs):
-        # pass
-
+# pass
