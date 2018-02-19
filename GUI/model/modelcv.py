@@ -28,7 +28,8 @@ logger = logging.getLogger(__name__)
 
 
 class ModelCV(Thread, QObject):
-    u"""图像处理的后台主线程"""
+    u"""图像处理的后台主线程
+    线程采用pyqt的线程定义在类变量里"""
     returnImg = pyqtSignal(object, object, object)
     # returnATImg = pyqtSignal(object, object)
     resultShowCV = pyqtSignal(object)

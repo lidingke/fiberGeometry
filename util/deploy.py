@@ -1,3 +1,4 @@
+#coding:utf-8
 import os
 import pdb
 import re
@@ -12,6 +13,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def relative_full_path(root):
+    u"""
+    :param root:源路径
+    :return full_paths：完整的路径列表
+     迭代的递归所有的路径，并拼接成完整路径。
+     迭代过程中根据规则做过滤。
+    """
     full_paths = []
     dirs = os.listdir(root)
     for d in dirs:
@@ -40,6 +47,12 @@ def is_ignore(full, path, starts, ends, fulls):
 
 
 def copy_to_path(paths, direction):
+    u"""
+    :param paths: 源地址
+    :param direction: 目标地址
+    :return:
+    shutil是一个文件操作库，操作相对路径容易失败，因此输入拼接完整的路径。
+    """
     for path in paths:
         target_dir = os.path.join(direction, path)
         print 'from', path, '\nto', target_dir
@@ -54,6 +67,11 @@ def copy_to_path(paths, direction):
 # file1 = "view.py"
 # file2 = "GUI\\view\\view.py"
 if __name__ == '__main__':
+    u"""执行部署脚本，基本功能是将代码拷到u盘，流程如下
+    1、获取所有代码完整路径。
+    2、打印路径。
+    3、目标文件夹
+    4、复制到目标文件夹。"""
     paths = relative_full_path(".")
     for p in paths:
         print p

@@ -17,15 +17,13 @@ logger = logging.getLogger(__name__)
 
 
 class StateMixin(object):
-    u"""状态转换管理，管理衰减测试流程中的电机、按钮、界面显示状态"""
-
-    def _start_state(self):
-        self.state_number = state_number()
-        self._worker = WorkerQueue()
-        self.fiber_length_value = None
-        self.state_connect()
-        self._view.modbus_ui.stateText.setText("    start reboot motos")
-        self._view.modbus_ui.next_state.setText("start")
+    u"""基于有限状态机的思想执行的状态转换管理，
+    由按钮触发状态转移操作，需要迁移的状态(变量)有：
+    界面UI：self._view.modbus_ui
+    平台电机状态切换：self._modbus.platform_state
+    光谱仪读取：self._modelop
+    升降台电机动作：self._modbus.motor_up_down
+    """
 
     def state_connect(self):
         u"""先用同步的方式校对状态是否正常"""
@@ -37,47 +35,54 @@ class StateMixin(object):
             self._view.next_state.clicked.connect(state_change)
             print "next_state connect"
 
-    def context_transform_1(self):
-        self._view.modbus_ui.stateText.setText(u"state 1:获取暗电流，显示夹1图像")
-        self._modelop.get_zero()
-        # self._view.modbus_ui.stateText.setText("state 1:geted dark current")
-        self._view.modbus_ui.next_state.setText("next")
+    def _start_state(self):
+        self.state_number = state_number()
+        self._worker = WorkerQueue()
+        self.fiber_length_value = None
+        self.state_connect()
+        self._view.modbus_ui.stateText.setText(u"   摆放光纤，\n调整图像清晰且位于中心")
+        self._view.modbus_ui.next_state.setText("start")
         self._modbus.motor_up_down('1')
+
+    def context_transform_1(self):
+        self._view.modbus_ui.stateText.setText(u"state 1:调整图像位于中心\n点击几何测试")
+        self._modelop.get_zero()
+        self._modbus.platform_state = "PLAT2"
+        self._view.modbus_ui.next_state.setText("next")
+        self._modbus.motor_up_down('2')
         # motor 1down 2up 3up
 
     def context_transform_2(self):
-        """"switch to PLAT2"""
-        self._view.modbus_ui.stateText.setText(u"显示夹2图像")
-        self._modbus.platform_state = "PLAT2"
-        self._modbus.motor_up_down('2')
+        # self._view.modbus_ui.stateText.setText(u"state 2:显示夹2图像\n调至屏幕中央")
+        self._modbus.motor_up_down('3')
 
         # self._view.modbus_ui.stateText.setText("state 2")
         # motor 123
 
     def context_transform_3(self):
-        self._modbus.platform_state = "PLAT1"
-        self._view.modbus_ui.stateText.setText(u"卤灯通过夹1耦合进光纤")
-        self._modbus.motor_up_down('3')
+        # self._modbus.platform_state = "PLAT1"
+        self._view.modbus_ui.stateText.setText(u"state 3:截取2m光纤\n调整图像清晰且位于中心")
+        self._modelop.get_before()
+        self._modbus.motor_up_down('4')
 
 
     def context_transform_4(self):
         """"switch to PLAT1"""
         # self._view.modbus_ui.stateText.setText("state 4:input init current")
-        self._modelop.get_before()
         self._view.modbus_ui.stateText.setText(u"state 4:测得第一次光谱")
         self._modbus.platform_state = "PLAT1"
-        self._modbus.motor_up_down('4')
+        self._modbus.motor_up_down('5')
 
 
     def context_transform_5(self):
         # self._modelop.get_after()
         # self._modelop.calculate_power(25)
         self._view.modbus_ui.stateText.setText(u"state 5:取2m光纤，显示夹2端面，进行几何测试")
-        self._modbus.motor_up_down('5')
+        self._modelop.get_after()
+        self._modbus.motor_up_down('1')
 
 
     def context_transform_6(self):
-        self._modelop.get_after()
         if self.fiber_length_value:
             fiber_length = self.fiber_length_value
         else:
@@ -87,7 +92,8 @@ class StateMixin(object):
         self._view.modbus_ui.stateText.setText(u"state 6: 获取光谱结果")
         # self._view.modbus_ui.stateText.setText("start reboot motos")
         self._view.modbus_ui.next_state.setText("start")
-        self._modbus.motor_up_down('5')
+        self._modbus.platform_state = "PLAT1"
+        self._modbus.motor_up_down('1')
 
 
     def state_all(self, number):

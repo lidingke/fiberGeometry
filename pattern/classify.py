@@ -1,3 +1,4 @@
+# coding:utf-8
 import cv2
 import numpy as np
 import time
@@ -20,7 +21,17 @@ logger = logging.getLogger(__name__)
 
 
 class MetaClassify(object):
+    u"""
+    图像分类用的抽象类/基类，其他的子类需要继承该基类，
+    重写相应的方法。
+    """
+
     def __init__(self, fiberType, ):
+        u"""
+        :param fiberType:光纤类型
+        引入全局配置sets，在init函数中配置好所有外部引入的属性和方法，
+        用self传递到其他函数中。
+        """
         super(MetaClassify, self).__init__()
         self.result = {}
         self.sets = ClassifyParameter()
@@ -46,6 +57,11 @@ class MetaClassify(object):
         self._cover_core_by_circle = cover_core_by_circle
 
     def _difcore(self, img):
+        u"""
+        :param img:
+        :return:
+        将内外两个圆划分开。
+        """
         corecore, core_range, clad_range = self.diff_range
         mincore_range, maxcore_range = core_range
         minclad_range, maxclad_range = clad_range
@@ -62,6 +78,16 @@ class MetaClassify(object):
     # @timing
     @show_temp_imgs
     def find(self, img, amp_ratio=False):
+        u"""
+        :param img:
+        :param amp_ratio:放大倍率
+        :return:
+        1、分离纤芯和包层。
+        2、获取边界。
+        3、椭圆拟合出结果。
+        4、缓存中间结果供调试。
+        5、合并结果。
+        """
         diff_core_img, diff_clad_img = self._difcore(img)
         edge_core_img = self._edge_core(diff_core_img, self.core_thr_hight)
         edge_clad_img = self._edge_clad(diff_clad_img, self.clad_thr_hight)
@@ -77,6 +103,13 @@ class MetaClassify(object):
         return self.convent_result(core_result, clad_result, self.amp_ratio)
 
     def get_show_result(self, core, clad, ampRatio):
+        u"""
+        :param core: 纤芯结果。
+        :param clad: 包层结果。
+        :param ampRatio: 放大倍率。
+        :return:
+        对结果进行合并和转换，得到可供显示的结果
+        """
         coreRadius = (core["longAxisLen"] + core["shortAxisLen"]) / 2
         cladRadius = (clad["longAxisLen"] + clad["shortAxisLen"]) / 2
 
@@ -93,6 +126,13 @@ class MetaClassify(object):
         return (concentricity, coreMidRadius, cladMidRadius, coreRness, cladRness)
 
     def convent_result(self, core, clad, amp):
+        u"""
+        :param core:
+        :param clad:
+        :param amp:
+        :return:
+        合并/转换结果
+        """
         corecore = core['corePoint'][0]
         output_result = {}
         output_result['showResult'] = self.get_show_result(core, clad, amp)
@@ -126,7 +166,14 @@ class MetaClassify(object):
 #         return coreimg, cladimg
 
 class PolyClassify(MetaClassify):
+    u"""多边形识别子类"""
+
     def __init__(self, fiberType, ploy=8):
+        u"""
+        :param fiberType:光纤类型。
+        :param ploy: 多边形边数。
+        引入一个识别多边形的外部变量。
+        """
         super(PolyClassify, self).__init__(fiberType)
         self.diff_range = (self.sets["corepoint"],
                            self.sets["coreRange"], self.sets["cladRange"])
@@ -188,9 +235,12 @@ class DoubleCircleClassify(MetaClassify):
 
 
 class CapillaryClassify(MetaClassify):
+    u"""
+    毛细管识别，毛细管需要指定一个半径去区分内外孔径。
+    """
+
     def __init__(self, fiberType):
         super(CapillaryClassify, self).__init__(fiberType)
-
         self.diff_radius = self.sets.get("diff_radius", False)
         if not self.diff_radius:
             raise KeyError("no diff_radius")
@@ -198,10 +248,8 @@ class CapillaryClassify(MetaClassify):
         self._edge_clad = ExtractEdge().directThr
         self._pick_core = PickHullCircle().run
         self._pick_clad = PickHullCircle().run
-
         self._outer_fill = outer_fill
         self._inner_fill_by_value = inner_fill_by_value
-
         self.frame_core = config.FRAME_CORE
         self.draw_core_cross = draw_core_cross
         # self.emit_return_plot = PyTypeSignal()
@@ -250,6 +298,10 @@ class CapillaryClassify(MetaClassify):
 
 
 class ThinClassify(MetaClassify):
+    u"""
+    大芯径光纤识别，大芯径光纤边缘很薄，需要小心选取分界半径。
+    """
+
     def __init__(self, fiberType):
         super(ThinClassify, self).__init__(fiberType)
         self.diff_range = (self.sets["corepoint"],
@@ -298,5 +350,4 @@ def classifyObject(fiberType):
     else:
         classify = DoubleCircleClassify(fiberType)
     logger.error('get fiber type: {} - {}'.format(fiberType, classify))
-
     return classify

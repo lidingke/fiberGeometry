@@ -2,7 +2,7 @@ from setting.parameter import SETTING
 # SETTING('test')
 import cv2
 import numpy as np
-from pattern.getimg import getImage
+from util.getimg import getImage
 import pdb
 
 
