@@ -36,6 +36,7 @@ class StateMixin(object):
             print "next_state connect"
 
     def _start_state(self):
+        u"""启动状态机初始化电机队列，初始化各个状态"""
         self.state_number = state_number()
         self._worker = WorkerQueue()
         self.fiber_length_value = None
@@ -97,7 +98,7 @@ class StateMixin(object):
 
 
     def state_all(self, number):
-
+        u"""启动状态，用getattr方法动态的获取各状态函数并执行"""
         # self.modbus_up_down(self.squence_number)
         # self.modbus.motor_up_down(str(self.sequence_number + 1))
         function_for_transform = getattr(self, "context_transform_" + str(number + 1))
@@ -112,6 +113,8 @@ class StateMixin(object):
 
 
 class ModbusControllerMixin(object):
+    u"""结合modbus协议的电机驱动Mixin类，
+    用信号槽绑定电机操作。"""
     def _start_modbus(self):
         self._modbus = AbsModeBusModeByAxis(port=config.MODBUS_PORT)
         self._modbus_connect()
@@ -142,7 +145,8 @@ class ModbusControllerMixin(object):
 
 
 class ModelOPControllerMixin(object):
-
+    u"""衰减控制模块mixin类。
+    需要相关方法去区分光谱仪长度手动控制还是自动由输入长度获取。"""
     def _start_modelop(self):
         self._modelop = ModelOP()
         self._modelop.emit_spect.connect(self._view.opplot.update_figure)
@@ -183,6 +187,9 @@ class ModelOPControllerMixin(object):
         # print("value change",self.fiber_length_value)
 
 class ModelCVControllerMixin(object):
+    u"""
+    图像处理mixin，主要用来设定相关信号槽的路由。
+    """
     def _start_modelcv(self):
         self._modelcv = ModelCV()
 

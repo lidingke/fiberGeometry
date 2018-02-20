@@ -1,4 +1,5 @@
 from __future__ import division
+# coding:utf-8
 import cv2
 import numpy as np
 import time
@@ -14,12 +15,25 @@ logger = logging.getLogger(__name__)
 
 
 class MetaPick(object):
+    u"""提取形状的抽象类    """
+
     def __init__(self):
+        u"""应该在init函数中引入其他函数中需要的外部方法"""
         super(MetaPick, self).__init__()
         self._adaptive_filter_by_median = adaptive_filter_by_median
 
     # @timing
     def run(self, img, blurindex=False):
+        u"""主要的执行函数：
+        1、滤波
+        2、提取轮廓
+        3、合并轮廓
+        4、椭圆拟合
+        5、计算结果
+        :param img:
+        :param blurindex:
+        :return:
+        """
         # blurindex = SETTING()["medianBlur"].get("corefilter", 3)
         # raise ValueError("abc")
         if blurindex:
@@ -45,6 +59,7 @@ class MetaPick(object):
         return result
 
     def _getResult(self, ellipse):
+        u"""结果合并"""
         result = {}
         result['longAxisLen'] = ellipse[1][1]
         result['shortAxisLen'] = ellipse[1][0]
@@ -60,11 +75,19 @@ class PickCircle(MetaPick):
 
 
 class PickHullCircle(MetaPick):
+    u"""圆形提取的子类
+    """
+
     def __init__(self):
         super(PickHullCircle, self).__init__()
 
     # @timing
     def run(self, img, blurindex=False):
+        u"""主函数，相对于父类有优化
+        :param img:
+        :param blurindex:
+        :return:
+        """
         img = cv2.medianBlur(img, 11)
         contours, hierarchys = cv2.findContours(img.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         logger.info('get contours len %s' % len(contours))
@@ -90,7 +113,12 @@ class PickPoly(MetaPick):
         self.poly_number = poly
 
     def run(self, img, blurindex=False):
-
+        u"""
+        多边形提取主函数，相对于父类而言讲椭圆拟合换成了多边形的convexHull。
+        :param img:
+        :param blurindex:
+        :return:
+        """
         img = cv2.medianBlur(img, 11)
 
         contours, hierarchys = cv2.findContours(img.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)

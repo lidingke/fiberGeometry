@@ -1,3 +1,4 @@
+#coding:utf-8
 import cv2
 # from pattern.meta import CV2MethodSet
 import numpy as np
@@ -31,6 +32,7 @@ class ExtractEdge(object):
     #     return img
 
     def directThr(self, img, hight=175):
+        u"""对cv2.threshold的封装"""
         if len(img.shape) > 2:
             img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         logger.info('thr%s' % hight)
@@ -39,7 +41,7 @@ class ExtractEdge(object):
 
 
 class EdgeFuncs(object):
-    """docstring for CloseOpen"""
+    u"""对一些图像处理操作的封装"""
 
     def __init__(self, ):
         super(EdgeFuncs, self).__init__()

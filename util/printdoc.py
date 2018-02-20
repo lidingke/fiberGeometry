@@ -1,4 +1,4 @@
-#coding:utf-8
+# coding:utf-8
 import os
 import pdb
 import re
@@ -10,12 +10,14 @@ fulls = (("tests", "data"), ("SDK", "MindPyScript"), ("SDK", "OceanOpticsScript"
 IGNORE_RULE_FULLS = {".".join(f) for f in fulls}
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+
 def is_py(root):
     # pdb.set_trace()
     if root.endswith('.py'):
         return True
     else:
         return False
+
 
 def relative_full_path(root):
     full_paths = []
@@ -45,28 +47,64 @@ def is_ignore(full, path, starts, ends, fulls):
         if re.findall(f, full):
             return True
 
-def filter_path(path):
-    def filter_lines(line):
-        line = line.strip()
-        if line.startswith("class"):
-            return line
-        if line.startswith("def"):
-            return "  "+line
-        if line.startswith("""\"\"\""""):
-            return "  "+line
-        if line.startswith("""u\"\"\""""):
-            return "  "+line
 
-    with open(path) as f:
-        lines = f.readlines()
-        filtered_lines = [filter_lines(l) for l in lines if l != None]
-        return filtered_lines
+multi_lines = []
+multi_flag = False
+
+
+class FilterPath(object):
+
+    def __init__(self):
+        self.multi_lines = []
+        self.multi_flag = False
+
+    def filter_lines(self, line):
+        line = line.strip()
+        if line.startswith("#"):
+            return
+        if self.multi_flag:
+            self.multi_lines.append(line)
+            if line.endswith("""\"\"\""""):
+                multi_line = "    \n".join(self.multi_lines)
+                self.multi_lines = []
+                self.multi_flag = False
+                return multi_line
+        else:
+            if line.startswith("class"):
+                return line
+            if line.startswith("def"):
+                return "  " + line
+            if line.startswith("""\"\""""):
+                if line.endswith("""\"\"\""""):
+                    return "  " + line
+                else:
+                    self.multi_flag = True
+                    self.multi_lines.append(line)
+
+            if line.startswith("u\"\""):
+                if line.endswith("\"\"\""):
+                    return "  " + line
+                else:
+                    self.multi_flag = True
+                    self.multi_lines.append(line)
+
+    def run(self, path):
+        with open(path) as f:
+            lines = f.readlines()
+            filtered_lines = [self.filter_lines(l) for l in lines if l != None]
+            return filtered_lines
 
 
 if __name__ == '__main__':
+    # pdb.set_trace()
     paths = relative_full_path(".")
-    for path in  paths:
-        fs = filter_path(path)
+    lines_length = 0
+    for path in paths:
+        # fs =
+        fs = FilterPath().run(path)
+        lines_length += len(fs)
         for f in fs:
             if f:
                 print(f)
+    print("lens:{}".format(lines_length))
+    # 9508
