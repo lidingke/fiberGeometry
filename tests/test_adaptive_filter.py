@@ -1,3 +1,4 @@
+#coding:utf-8
 import cv2
 
 from pattern.adaptivefilter import adaptive_filter_by_median
@@ -10,6 +11,7 @@ from setting import config
 
 
 def ttest_adaptive_filter():
+    u"""测试自适应滤波"""
     config.SAVE_TEMP_IMG = True
 
     logging.basicConfig(level=logging.INFO)
@@ -23,6 +25,7 @@ def ttest_adaptive_filter():
     cv2.waitKey()
 
 def test_adaptive_filter_on_classify():
+    # u""""""
     img = get_img("IMG\\10125\\dirty\\1.BMP")
     logger = logging.getLogger(__name__)
 

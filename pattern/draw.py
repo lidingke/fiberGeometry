@@ -174,6 +174,12 @@ def draw_core_cross(core, diffrange, line=10, line_type=5):
 
 
 def core_cross_flag(core, minRange, maxRange):
+    u"""绘制十字
+    :param core:
+    :param minRange:
+    :param maxRange:
+    :return:
+    """
     lists = []
     _ = ("circle", (core, int(minRange), (0, 0, 0), 4), {'lineType': 5})
     lists.append(_)
@@ -198,6 +204,12 @@ def core_cross_flag(core, minRange, maxRange):
 
 
 def output_axies_plot_to_dir(core, img, dir_):
+    u"""保存坐标图像到路径
+    :param core:
+    :param img:
+    :param dir_:
+    :return:
+    """
     x, y = map(int, core)
     shape = img.shape
     print dir(img)
@@ -224,6 +236,11 @@ def output_axies_plot_to_dir(core, img, dir_):
 
 
 def output_axies_plot_to_matplot(core, img):
+    u"""绘制图像到坐标轴
+    :param core:
+    :param img:
+    :return:
+    """
     x, y = map(int, core)
     shape = img.shape
 
@@ -251,6 +268,12 @@ def output_axies_plot_to_matplot(core, img):
 
 
 def show_temp_imgs(fun):
+    u"""
+    一个缓存图片处理中间结果的装饰器，
+    缓存结果后放在这该目录下tests\\data\\temp.png
+    :param fun:
+    :return:
+    """
     wraps(fun)
     def inner(self, *args, **kwargs):
         result = fun(self, *args, **kwargs)

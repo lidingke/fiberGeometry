@@ -1,3 +1,4 @@
+#coding:utf-8
 import pdb
 import numpy as np
 import cv2
@@ -6,6 +7,7 @@ from util.getimg import GetImage
 
 
 def test_origin_imgColor():
+    u"""bayer2RGB算法分离RGB三个通道"""
     bayer2RGB = GetRawImg().bayer2BGR
     img = np.fromfile("tests\\data\\imgblue.bin", dtype="uint8")
     img.shape = (1944, 2592)

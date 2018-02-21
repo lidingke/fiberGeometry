@@ -1,3 +1,4 @@
+#coding:utf-8
 import gc
 
 from util.observer import PyTypeSignal
@@ -6,6 +7,7 @@ from _functools import partial
 
 
 def test_zombiesigleton():
+    """ZombieSigleton 是一个动态的生成属性的类，这部分是针对这一类的单元测试"""
     # ZombieSigleton.
     a, b, c = ZombieSingleton('demo'), ZombieSingleton('test'), ZombieSingleton('demo'),
     # print dir(a)

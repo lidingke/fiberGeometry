@@ -1,3 +1,5 @@
+#coding:utf-8
+u"""清晰度函数的测试，最实用的函数还是对滤波后的图像采取Laplacian算子"""
 from setting.parameter import SETTING
 SETTING().update_by_key('test', 'octagon')
 from pattern.sharp import IsSharp, is_sharp_laplacian

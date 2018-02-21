@@ -1,4 +1,5 @@
-import pdb
+#coding:utf-8
+# import pdb
 import matplotlib;
 
 matplotlib.use("Qt4Agg")
@@ -9,6 +10,7 @@ from util.getimg import randomImg
 
 
 def ttest_output_axies_plot_to_dir():
+    u"""unit test case for output_axies_plot_to_dir"""
     img = randomImg("IMG\\G652\\pk\\")
     classify = classifyObject("G652")
     result = classify.find(img)
@@ -18,6 +20,7 @@ def ttest_output_axies_plot_to_dir():
 
 
 def test_output_axies_plot_to_matplot():
+    """unit test case for output_axies_plot_to_matplot"""
     fig = plt.figure()
     img = randomImg("IMG\\G652\\pk\\")
     classify = classifyObject("G652")

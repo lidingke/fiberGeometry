@@ -9,6 +9,7 @@ from pattern.coverimg import sliceImg
 
 
 def test_sliceImg():
+    """unit test case for sliceImg"""
     SETTING().update_by_key("Default")
     img = GetImage().get("IMG\\midoctagon\\mid1.BMP", "gray")
     if img.shape == (1944, 2592):
@@ -30,6 +31,7 @@ def test_sliceImg():
 
 
 def test_MedianFilter():
+    """unit test case for MedianFilter"""
     jsobject = WriteReadJson("tests\\data\\light.json").load()
     medianget = MedianFilter(maxlen=5)
     result = []
@@ -41,6 +43,8 @@ def test_MedianFilter():
     assert npresult[::,0].std() > npresult[::,2].std()
 
 def test_MedianLimitFilter():
+    """unit test case for MedianLimitFilter"""
+
     jsobject = WriteReadJson("tests\\data\\light.json").load()
     medianget = MedianLimitFilter(maxlen=5)
     result = []
@@ -54,12 +58,14 @@ def test_MedianLimitFilter():
 
 
 def test_avgresult():
+    """unit test case for avgresult"""
     get = [[1,2,3],[2,3,4],[4,3,5],[7,6,2],[3,6,1]]
     result = AvgResult(get)
     print result
     assert [3.0,4.0,3.0] == result
 
 def test_fill_mid():
+    """unit test case for fill_mid"""
     # SETTING().update_by_key("capillary")
     img = randomImg("IMG\\emptytuple\\eptlight0\\")
     coreimg = img[::, ::, 0].copy()

@@ -1,3 +1,4 @@
+# coding:utf-8
 from setting.config import SIMULATOR_IMG_SERVER_COFIG
 from SDK.simulator.client import Client
 from SDK.simulator.server import ImgServer, SeverMain, SharpSever
@@ -18,6 +19,9 @@ def test_sharpserver():
 
 
 def test_imgserver():
+    u"""测试摄像头模拟器/图片服务器的性能
+    :return:
+    """
     host, port, method, path = SIMULATOR_IMG_SERVER_COFIG
 
     port = 9885
@@ -45,6 +49,9 @@ def test_imgserver():
 
 
 def test_getimg_multi_connect():
+    u"""测试连接池取图片
+    :return:
+    """
     host, port, method, path = SIMULATOR_IMG_SERVER_COFIG
 
     port = 9883

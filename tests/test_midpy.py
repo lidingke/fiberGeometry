@@ -1,3 +1,4 @@
+#coding:utf-8
 from setting.parameter import SETTING
 SETTING("")
 import SDK.MindPy as mdp
@@ -6,6 +7,7 @@ import time
 import numpy as np
 
 def test_MindPy_pyd():
+    u"""测试接口的合法性"""
     print dir(mdp)
     assert hasattr(mdp, "get_camera_serial")
     assert hasattr(mdp, "get_raw_img")
@@ -14,6 +16,7 @@ def test_MindPy_pyd():
 
 
 def test_init_release_camera():
+    u"""测试相机模块的释放"""
     try:
         get = GetRawImg()
     except ValueError as e:
@@ -29,6 +32,7 @@ def test_init_release_camera():
         get.release_camera()
 
 def test_camera_get():
+    u"""测试相机模块的读取"""
     try:
         get = GetRawImg()
     except ValueError as e:

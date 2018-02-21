@@ -1,3 +1,4 @@
+#coding:utf-8
 import pdb
 
 import pickle
@@ -13,6 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 def test_create_relation_model():
+    u"""初始化sqlalchemy"""
     SQLALCHEMY_DIR = "sqlite:///setting/test_relation_result.db"
     engine = create_engine(SQLALCHEMY_DIR)
     Base.metadata.create_all(engine)
@@ -23,6 +25,7 @@ def test_create_relation_model():
 
 
 def test_insert_cvresult():
+    u"""测试测试结果的插入"""
     SQLALCHEMY_DIR = "sqlite:///setting/test_relation_result.db"
     engine = create_engine(SQLALCHEMY_DIR)
     Session = sessionmaker(bind=engine)

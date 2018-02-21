@@ -1,4 +1,5 @@
 #coding:utf-8
+"""pytype signal slot"""
 from concurrent.futures import ThreadPoolExecutor
 
 from util.observer import PyTypeSignal

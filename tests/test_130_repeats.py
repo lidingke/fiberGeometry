@@ -1,3 +1,4 @@
+#coding:utf-8
 import logging
 import os
 
@@ -12,6 +13,7 @@ from util.getimg import random_img, get_img
     ("IMG\\130-test\\img1\\",)
 )
 def test_class_poly20125(dir_):
+    u"""输出130文件夹下图片保存的光纤的重复性"""
     logging.basicConfig(level=logging.ERROR)
     # img = getImage("IMG\\midoctagon\\mid1.BMP")
     dirs = os.listdir(dir_)
