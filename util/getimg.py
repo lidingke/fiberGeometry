@@ -1,3 +1,7 @@
+#coding:utf-8
+u"""根据图片格式取图片的模块，
+最常用的函数是get_img_by_dir，
+其他还包含兼容性的接口，取整个文件夹中的图片，惰性取图，随机取图等。"""
 import cv2
 import os
 from random import choice
@@ -9,9 +13,12 @@ import sys
 import os
 
 
-# old
+
 class GetImage(object):
-    """docstring for GetImage"""
+    u"""该模块用于从本地读取图片,
+    需要区分黑白图片和彩色图片，区分bmp格式图片。
+    用class来封装这个东西并不好，建议应用中采用后面新增的函数，
+    该类做兼容性保留。"""
 
     def __init__(self, ):
         super(GetImage, self).__init__()
@@ -55,6 +62,7 @@ class GetImage(object):
 
 
 def randomImg(dirs):
+    u"""随机图片"""
     if dirs[-1] != '/':
         dirs = dirs + '/'
     dirlist = os.listdir(dirs)
@@ -64,6 +72,7 @@ def randomImg(dirs):
 
 
 def randomBin(dirs):
+    u"""随机获取bin格式的图片"""
     if dirs[-4:].find('.') > 0:
         raise ValueError('input para is not a folder, a file')
     dirlist = os.listdir(dirs)
@@ -74,6 +83,7 @@ def randomBin(dirs):
 
 
 def yieldImg(dirs):
+    u"""惰性加载图片"""
     dirlist = os.listdir(dirs)
     dirlist = [dirs + x for x in dirlist]
     for dir_ in dirlist:
@@ -82,6 +92,7 @@ def yieldImg(dirs):
 
 
 def get_img_by_dir(dir_, colour='colour'):
+    u"""最常用的取图片函数，根据文件名获取图片，返回图片的numpy矩阵"""
     assert os.path.isfile(dir_)
     array = cv2.imread(dir_)
     assert isinstance(array, np.ndarray)
@@ -95,6 +106,7 @@ def get_img_by_dir(dir_, colour='colour'):
 
 
 def random_img_by_file(dirs):
+    u"""根据文件夹随机获取一张图片，返回图片的numpy矩阵。"""
     assert os.path.isdir(dirs)
     dirlist = os.listdir(dirs)
     dirlist = [os.path.join(dirs, x) for x in dirlist]
@@ -103,6 +115,7 @@ def random_img_by_file(dirs):
 
 
 def list_img_by_file(dirs):
+    u"""根据文件夹获取图片list，list包含图片的numpy矩阵。"""
     assert os.path.isdir(dirs)
     files = os.listdir(dirs)
     dirlist = [os.path.join(dirs, x) for x in files]
@@ -111,6 +124,7 @@ def list_img_by_file(dirs):
 
 
 def yield_img_by_file(dirs):
+    u"""惰性的从文件夹中取图片。"""
     assert os.path.isdir(dirs)
     files = os.listdir(dirs)
     dirlist = [os.path.join(dirs, x) for x in files]
@@ -120,7 +134,7 @@ def yield_img_by_file(dirs):
 
 
 """" interface """
-
+u"""兼容性接口保留"""
 # def getImage(dir_):
 #     return GetImage().get(dir_)
 

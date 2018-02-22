@@ -1,11 +1,11 @@
+#coding:utf-8
+"""读写pickle"""
 import pickle
 import sys
 import json
 
 class WRpickle(object):
-    """docstring for WRpickle
-    input a pick name
-    """
+    u"""读写pickle"""
 
     def __init__(self, arg):
         super(WRpickle, self).__init__()

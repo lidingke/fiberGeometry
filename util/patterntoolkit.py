@@ -1,3 +1,5 @@
+#coding:utf-8
+
 import cv2
 import numpy as np
 # import pdb
@@ -41,7 +43,7 @@ class DynamicPick(object):
 
 
 class IsCircle(object):
-    """docstring for IsCircle"""
+    u"""判断轮廓点集是否是圆"""
 
     def __init__(self, ):
         super(IsCircle, self).__init__()
@@ -59,7 +61,7 @@ class IsCircle(object):
 
 
 class Cv2ImShow(object):
-    """docstring for Cv2ImShow"""
+    """encapsulation for cv2.imshow"""
 
     def __init__(self, ):
         super(Cv2ImShow, self).__init__()
@@ -70,7 +72,7 @@ class Cv2ImShow(object):
 
 
 class Cv2ImSave(object):
-    """docstring for Cv2ImSave"""
+    """encapsulation for cv2.imsave"""
 
     def __init__(self, ):
         super(Cv2ImSave, self).__init__()
@@ -80,7 +82,7 @@ class Cv2ImSave(object):
 
 
 class cv2CircleIndex(object):
-    """docstring for cv2CircleIndex"""
+    """calculate for cv m"""
 
     def __init__(self, ):
         super(cv2CircleIndex, self).__init__()

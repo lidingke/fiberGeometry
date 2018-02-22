@@ -1,3 +1,4 @@
+#coding:utf-8
 import threading
 from collections import deque
 from threading import Lock
@@ -31,7 +32,7 @@ def times():
 
 
 class WorkerQueue(threading.Thread):
-
+    u"""队列执行，保证不线程冲突。"""
     def __init__(self, maxlen=3):
         super(WorkerQueue, self).__init__()
         self.RUNNING = True

@@ -1,3 +1,4 @@
+#coding:utf-8
 import json
 import os
 import pdb
@@ -28,6 +29,8 @@ JSON_CONFIG_PATH = 'setting/zombie/'
 
 # @singleton
 class ZombieSingleton(MetaDict):
+    u"""一个单例模式，该单例在退出时会持久化自身状态，供下次加载时使用。
+    单例模式的del有时候不能触发，需要小心。"""
     _instance = {}
 
     def __new__(cls, file_name, *args, **kwargs):
