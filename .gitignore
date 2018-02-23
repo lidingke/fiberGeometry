@@ -4,7 +4,6 @@ testlog.log
 .cache
 .idea
 *.exe
-
 *.bmp
 *.pyc
 *.pdf
