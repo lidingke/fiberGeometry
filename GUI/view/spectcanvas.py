@@ -55,11 +55,12 @@ class SpectrumCanvas(FigureCanvas):
             # self.axes.set_ylim(0,65000)
 
     def update_figure(self, x, y1):
+        u"""set_xlim是设置x轴的范围，set_ylim是设置y轴的范围。"""
         self.axes.cla()
         self.axes.plot(x, y1, 'r')
         self.axes.set_title(u"待测光纤光谱", fontproperties='SimHei')
         self.axes.set_xlabel(u"波长(nm)", fontproperties='SimHei')
         self.axes.set_ylabel(u"强度(counts)", fontproperties='SimHei')
-        self.axes.set_xlim(900, 1700)
-        self.axes.set_ylim(0, 65000)
+        # self.axes.set_xlim(900, 1700)
+        # self.axes.set_ylim(0, 65000)
         self.draw()

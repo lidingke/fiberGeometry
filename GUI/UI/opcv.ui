@@ -63,16 +63,6 @@
       </property>
       <item>
        <layout class="QGridLayout" name="operaLayout">
-        <item row="4" column="1">
-         <widget class="QPushButton" name="reporterCV">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="text">
-           <string>输出报告</string>
-          </property>
-         </widget>
-        </item>
         <item row="2" column="1">
          <widget class="QPushButton" name="beginTestCV">
           <property name="minimumSize">
@@ -86,17 +76,13 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QLabel" name="labelCV">
-          <property name="text">
-           <string>几何：</string>
+        <item row="4" column="1">
+         <widget class="QPushButton" name="reporterCV">
+          <property name="enabled">
+           <bool>true</bool>
           </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QPushButton" name="lightControl">
           <property name="text">
-           <string>光照调节</string>
+           <string>输出报告</string>
           </property>
          </widget>
         </item>
@@ -114,10 +100,31 @@
           </property>
          </widget>
         </item>
+        <item row="3" column="1">
+         <widget class="QPushButton" name="lightControl">
+          <property name="text">
+           <string>光照调节</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="labelCV">
+          <property name="text">
+           <string>几何：</string>
+          </property>
+         </widget>
+        </item>
         <item row="7" column="1">
          <widget class="QPushButton" name="raw_spect">
           <property name="text">
            <string>raw_spect</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1">
+         <widget class="QPushButton" name="diff_zero_spect">
+          <property name="text">
+           <string>spect</string>
           </property>
          </widget>
         </item>
@@ -300,7 +307,7 @@ p, li { white-space: pre-wrap; }
                <number>50</number>
               </property>
               <property name="value">
-               <number>500</number>
+               <number>200</number>
               </property>
              </widget>
             </item>
@@ -317,7 +324,7 @@ p, li { white-space: pre-wrap; }
             <item>
              <widget class="QSpinBox" name="spin_integral_steps">
               <property name="value">
-               <number>10</number>
+               <number>5</number>
               </property>
              </widget>
             </item>
@@ -332,7 +339,11 @@ p, li { white-space: pre-wrap; }
              </widget>
             </item>
             <item>
-             <widget class="QSpinBox" name="spin_smoothness"/>
+             <widget class="QSpinBox" name="spin_smoothness">
+              <property name="value">
+               <number>5</number>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>

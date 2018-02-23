@@ -56,7 +56,7 @@ UI界面采用PyQt库。
 ### controller
 controller.py中的StateMixin类包含了多个状态，分别用来处理电机平台的切换，升降电机的顺序等。
 每个状态由```context_transform```方法执行，根据函数名和状态顺序执行操作，每次状态切换完毕即执行电机动作。
-
+![switch](IMG/md/switch.png)
 ```view```采取顺序VeiwModel和Form的方式，其中ViewModel保存具体的View需要的定制类控件以及逻辑，Form用来渲染.ui文件生成的UI.py文件。这样就分离了UI的生成和UI的定制。因为UI.py是脚本生成的，一般不应该改动，通过一个Form类去添加功能。
 
 界面的定制版QSS在GUI/UI/qss目录下。写qss的时候尽量用css兼容的语法，可以在pycharm中享受到css规则的代码提示。

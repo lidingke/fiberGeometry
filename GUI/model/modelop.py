@@ -1,3 +1,4 @@
+#coding:utf-8
 import time
 from threading import Thread
 import numpy as np
@@ -28,11 +29,13 @@ class ModelOP():
         self.dbparameter = config.DB_PARAMETER  # SETTING()['dbpara']
 
     def get_zero(self):
+        print("get zero")
         wave, zero = self.spect.get_spectrograph(*self.spect_args)
         self.wave, self.zeros = wave, zero
         return (wave, zero)
 
     def get_data(self):
+        u"""获得减去暗电流的数据"""
         wave, data = self.spect.get_spectrograph(*self.spect_args)
         if len(wave) == len(self.wave):
             powers = [z1 - z0 for z1, z0 in zip(data, self.zeros)]
@@ -41,7 +44,13 @@ class ModelOP():
         else:
             raise ValueError("wavelength unmatched")
 
+    def get_diff_zero_spectograph_data(self):
+        print("get diff zero data")
+        wave, data = self.get_data()
+        self.emit_spect.emit(wave, data)
+
     def get_raw_spectograph_data(self):
+        u"""获得原始的未减去暗电流的数据"""
         wave, data = self.spect.get_spectrograph(*self.spect_args)
         self.emit_spect.emit(wave, data)
 
@@ -52,14 +61,21 @@ class ModelOP():
 
     def get_after(self):
         self.wave, self.after = self.get_data()
+        self.emit_spect.emit(self.wave, self.after)
+
 
     def calculate_power(self, length):
+        u"""计算power = 10 * np.log10(x / y) / length
+        x:第一次测试。
+        y:第二次测试。
+        length：光纤长度。
+        """
         # print("get length",length)
         wave, before, after, zeros = \
             self.wave, self.before, self.after, self.zeros
         powers = []
         waves = []
-        for x, y, z,w in zip(before, after, zeros,wave):
+        for x, y, z,w in zip(before, after, zeros, wave):
             if y <= 0 or x <= 0 or x / y <= 0:
                 continue
             power = 10 * np.log10(x / y) / length

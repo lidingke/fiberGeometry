@@ -29,11 +29,11 @@ class StateMixin(object):
         u"""先用同步的方式校对状态是否正常"""
         def state_change():
             sequence_number = next(self.state_number)
-            # self.state_all(sequence_number)
+            self.state_all(sequence_number)
             logger.warning("next state" + str(sequence_number))
         if hasattr(self._view, "next_state"):
             self._view.next_state.clicked.connect(state_change)
-            print "next_state connect"
+            print("next_state connect")
 
     def _start_state(self):
         u"""启动状态机初始化电机队列，初始化各个状态"""
@@ -44,17 +44,21 @@ class StateMixin(object):
         self._view.modbus_ui.stateText.setText(u"   摆放光纤，\n调整图像清晰且位于中心")
         self._view.modbus_ui.next_state.setText("start")
         self._modbus.motor_up_down('1')
+        self._modbus.platform_state = "PLAT1"
+
 
     def context_transform_1(self):
-        self._view.modbus_ui.stateText.setText(u"state 1:调整图像位于中心\n点击几何测试")
         self._modelop.get_zero()
-        self._modbus.platform_state = "PLAT2"
+        sleep(1)
+        # self._modbus.platform_state = "PLAT2"
         self._view.modbus_ui.next_state.setText("next")
         self._modbus.motor_up_down('2')
+        self._view.modbus_ui.stateText.setText(u"state 1:调整夹2图像位于中心")
+
         # motor 1down 2up 3up
 
     def context_transform_2(self):
-        # self._view.modbus_ui.stateText.setText(u"state 2:显示夹2图像\n调至屏幕中央")
+        self._view.modbus_ui.stateText.setText(u"state 2:确认状态无误\n准备测试第一次光谱")
         self._modbus.motor_up_down('3')
 
         # self._view.modbus_ui.stateText.setText("state 2")
@@ -62,25 +66,30 @@ class StateMixin(object):
 
     def context_transform_3(self):
         # self._modbus.platform_state = "PLAT1"
-        self._view.modbus_ui.stateText.setText(u"state 3:截取2m光纤\n调整图像清晰且位于中心")
         self._modelop.get_before()
+        sleep(1)
         self._modbus.motor_up_down('4')
+        self._view.modbus_ui.stateText.setText(u"state 3:截取2m光纤\n调整图像清晰且位于中心\n"
+                                               u"并测几何")
+
 
 
     def context_transform_4(self):
         """"switch to PLAT1"""
         # self._view.modbus_ui.stateText.setText("state 4:input init current")
-        self._view.modbus_ui.stateText.setText(u"state 4:测得第一次光谱")
-        self._modbus.platform_state = "PLAT1"
+        self._view.modbus_ui.stateText.setText(u"state 4:进行最后一次测光谱\n")
+        # self._modbus.platform_state = "PLAT1"
         self._modbus.motor_up_down('5')
 
 
     def context_transform_5(self):
         # self._modelop.get_after()
         # self._modelop.calculate_power(25)
-        self._view.modbus_ui.stateText.setText(u"state 5:取2m光纤，显示夹2端面，进行几何测试")
         self._modelop.get_after()
+        sleep(1)
         self._modbus.motor_up_down('1')
+        self._view.modbus_ui.stateText.setText(u"state 5:计算光谱")
+
 
 
     def context_transform_6(self):
@@ -90,11 +99,11 @@ class StateMixin(object):
             fiber_length = 25
             logging.warning("no fiber length getted")
         self._modelop.calculate_power(fiber_length)
-        self._view.modbus_ui.stateText.setText(u"state 6: 获取光谱结果")
+        self._view.modbus_ui.stateText.setText(u"   摆放光纤，\n调整图像清晰且位于中心")
         # self._view.modbus_ui.stateText.setText("start reboot motos")
         self._view.modbus_ui.next_state.setText("start")
-        self._modbus.platform_state = "PLAT1"
-        self._modbus.motor_up_down('1')
+        # self._modbus.platform_state = "PLAT1"
+        # self._modbus.motor_up_down('1')
 
 
     def state_all(self, number):
@@ -151,6 +160,8 @@ class ModelOPControllerMixin(object):
         self._modelop = ModelOP()
         self._modelop.emit_spect.connect(self._view.opplot.update_figure)
         self._view.raw_spect.clicked.connect(self._modelop.get_raw_spectograph_data)
+        self._view.diff_zero_spect.clicked.connect(self._modelop.get_diff_zero_spectograph_data)
+
         self._view.fiberLength.textChanged.connect(self._change_fiber_length)
         self.fiber_length_value = float(self._view.fiberLength.text())
         if config.MAMUAL_SPECT_ARGS_FLAG:
@@ -159,7 +170,7 @@ class ModelOPControllerMixin(object):
             self._spect_args_connect_auto()
 
     def _spect_args_connect_auto(self):
-        self._view.fiberLength.textChanged.connect.connect(self._modelop.set_spect_args_auto)
+        self._view.fiberLength.textChanged.connect(self._modelop.set_spect_args_auto)
 
     def _spect_args_connect_manual(self):
         self._emit_spect = PyTypeSignal()

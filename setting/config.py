@@ -49,7 +49,7 @@ THIN_FIBERS = ("200/220", "105/125")
 
 SPEC_ONLINE = True
 
-"""logging level:ERROR,WARNNING"""
+"""logging level:DEBUG INFO WARNING ERROR CRITICAL"""
 LOG_LEVEL = "ERROR"
 
 """if manual flag is false ,use SPECT_CONTINUE to set args automaticlly"""
