@@ -4,7 +4,7 @@ testlog.log
 .cache
 .idea
 *.exe
-*.png
+
 *.bmp
 *.pyc
 *.pdf
@@ -28,6 +28,7 @@ tests/data
 
 .idea/workspace.xml
 IMG
+
 SDK/Lib/
 SDK/MindPyScript/MindPyCEx/Lib/
 SDK/OceanOpticsScript/VS
@@ -46,6 +47,3 @@ SDK/MindPyScript/test
 
 /dist/
 /setting/testlog.log
-!/IMG/md/
-/util/loadfile.py
-!/util/loadfile.py
