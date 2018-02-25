@@ -32,6 +32,7 @@ class ModelOP():
         print("get zero")
         wave, zero = self.spect.get_spectrograph(*self.spect_args)
         self.wave, self.zeros = wave, zero
+        self.emit_spect.emit(self.wave, self.zeros)
         return (wave, zero)
 
     def get_data(self):
@@ -65,7 +66,7 @@ class ModelOP():
 
 
     def calculate_power(self, length):
-        u"""计算power = 10 * np.log10(x / y) / length
+        u"""计算power = 10 * log10(x / y) / length
         x:第一次测试。
         y:第二次测试。
         length：光纤长度。
@@ -78,7 +79,7 @@ class ModelOP():
         for x, y, z,w in zip(before, after, zeros, wave):
             if y <= 0 or x <= 0 or x / y <= 0:
                 continue
-            power = 10 * np.log10(x / y) / length
+            power = 10 * np.log10(y / x) / length
             powers.append(power)
             waves.append(w)
         self.emit_spect.emit(waves, powers)
